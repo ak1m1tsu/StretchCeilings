@@ -7,16 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
+using System.Data.SQLite;
 
 namespace stretch_ceilings_app
 {
     public partial class MainForm : Form
     {
         private Form activeForm;
+        private SQLiteConnection sqLiteConnection;
 
         public MainForm()
         {
-            // new LoginForm().ShowDialog();
+            new LoginForm().ShowDialog();
             InitializeComponent();
         }
 
@@ -38,7 +41,6 @@ namespace stretch_ceilings_app
         private void button1_Click(object sender, EventArgs e)
         {
             OpenChildForm(new OrdersForm());
-
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -72,6 +74,10 @@ namespace stretch_ceilings_app
         private void button5_Click(object sender, EventArgs e)
         {
             OpenChildForm(new FactoriesForm());
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
         }
     }
 }

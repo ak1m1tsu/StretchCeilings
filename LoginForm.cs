@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Forms
+namespace stretch_ceilings_app
 {
     public partial class LoginForm : Form
     {

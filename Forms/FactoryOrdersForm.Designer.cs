@@ -48,11 +48,6 @@ namespace stretch_ceilings_app
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.label3 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel8 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,18 +56,23 @@ namespace stretch_ceilings_app
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.panel7 = new System.Windows.Forms.Panel();
             this.button6 = new System.Windows.Forms.Button();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.panel4.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel2.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // dateTimePicker2
@@ -82,7 +82,7 @@ namespace stretch_ceilings_app
             this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker2.Location = new System.Drawing.Point(101, 41);
             this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(160, 29);
+            this.dateTimePicker2.Size = new System.Drawing.Size(180, 29);
             this.dateTimePicker2.TabIndex = 10;
             // 
             // label1
@@ -102,7 +102,7 @@ namespace stretch_ceilings_app
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker1.Location = new System.Drawing.Point(101, 7);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(160, 29);
+            this.dateTimePicker1.Size = new System.Drawing.Size(180, 29);
             this.dateTimePicker1.TabIndex = 8;
             // 
             // label2
@@ -119,7 +119,7 @@ namespace stretch_ceilings_app
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.linkLabel1.Location = new System.Drawing.Point(361, 11);
+            this.linkLabel1.Location = new System.Drawing.Point(372, 11);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(117, 24);
             this.linkLabel1.TabIndex = 24;
@@ -130,7 +130,7 @@ namespace stretch_ceilings_app
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label4.Location = new System.Drawing.Point(275, 11);
+            this.label4.Location = new System.Drawing.Point(286, 11);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(80, 24);
             this.label4.TabIndex = 23;
@@ -197,7 +197,7 @@ namespace stretch_ceilings_app
             // textBox3
             // 
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.textBox3.Location = new System.Drawing.Point(525, 73);
+            this.textBox3.Location = new System.Drawing.Point(536, 73);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(115, 29);
             this.textBox3.TabIndex = 46;
@@ -208,7 +208,7 @@ namespace stretch_ceilings_app
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label6.Location = new System.Drawing.Point(481, 75);
+            this.label6.Location = new System.Drawing.Point(492, 75);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(38, 24);
             this.label6.TabIndex = 45;
@@ -217,7 +217,7 @@ namespace stretch_ceilings_app
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.textBox2.Location = new System.Drawing.Point(360, 73);
+            this.textBox2.Location = new System.Drawing.Point(371, 73);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(115, 29);
             this.textBox2.TabIndex = 44;
@@ -228,7 +228,7 @@ namespace stretch_ceilings_app
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label7.Location = new System.Drawing.Point(275, 75);
+            this.label7.Location = new System.Drawing.Point(286, 75);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(85, 24);
             this.label7.TabIndex = 43;
@@ -239,7 +239,7 @@ namespace stretch_ceilings_app
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.textBox1.Location = new System.Drawing.Point(101, 75);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(160, 29);
+            this.textBox1.Size = new System.Drawing.Size(180, 29);
             this.textBox1.TabIndex = 32;
             // 
             // label5
@@ -256,7 +256,7 @@ namespace stretch_ceilings_app
             // 
             this.linkLabel2.AutoSize = true;
             this.linkLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.linkLabel2.Location = new System.Drawing.Point(361, 44);
+            this.linkLabel2.Location = new System.Drawing.Point(372, 44);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(117, 24);
             this.linkLabel2.TabIndex = 30;
@@ -267,7 +267,7 @@ namespace stretch_ceilings_app
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label3.Location = new System.Drawing.Point(275, 44);
+            this.label3.Location = new System.Drawing.Point(286, 44);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(72, 24);
             this.label3.TabIndex = 29;
@@ -284,58 +284,6 @@ namespace stretch_ceilings_app
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1184, 447);
             this.panel3.TabIndex = 5;
-            // 
-            // panel7
-            // 
-            this.panel7.Controls.Add(this.button6);
-            this.panel7.Controls.Add(this.textBox4);
-            this.panel7.Controls.Add(this.button4);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel7.Location = new System.Drawing.Point(0, 409);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1184, 38);
-            this.panel7.TabIndex = 1;
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.panel1);
-            this.panel5.Controls.Add(this.panel4);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(0, 0);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1184, 114);
-            this.panel5.TabIndex = 22;
-            // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.panel3);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(0, 114);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1184, 447);
-            this.panel6.TabIndex = 23;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.button1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(1054, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(130, 409);
-            this.panel2.TabIndex = 23;
-            // 
-            // button1
-            // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(130, 56);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Добавить";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // panel8
             // 
@@ -408,6 +356,40 @@ namespace stretch_ceilings_app
             this.Column6.ReadOnly = true;
             this.Column6.Width = 24;
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.button1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel2.Location = new System.Drawing.Point(1054, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(130, 409);
+            this.panel2.TabIndex = 23;
+            // 
+            // button1
+            // 
+            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
+            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(130, 56);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Добавить";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.button6);
+            this.panel7.Controls.Add(this.textBox4);
+            this.panel7.Controls.Add(this.button4);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel7.Location = new System.Drawing.Point(0, 409);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(1184, 38);
+            this.panel7.TabIndex = 1;
+            // 
             // button6
             // 
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
@@ -436,6 +418,25 @@ namespace stretch_ceilings_app
             this.button4.Text = ">";
             this.button4.UseVisualStyleBackColor = true;
             // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.panel1);
+            this.panel5.Controls.Add(this.panel4);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(1184, 114);
+            this.panel5.TabIndex = 22;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.panel3);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel6.Location = new System.Drawing.Point(0, 114);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(1184, 447);
+            this.panel6.TabIndex = 23;
+            // 
             // FactoryOrdersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -449,13 +450,13 @@ namespace stretch_ceilings_app
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
+            this.panel8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panel2.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel8.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }

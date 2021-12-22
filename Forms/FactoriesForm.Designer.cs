@@ -46,14 +46,14 @@ namespace stretch_ceilings_app
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.button6 = new System.Windows.Forms.Button();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.button4 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -89,7 +89,7 @@ namespace stretch_ceilings_app
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1054, 108);
+            this.panel1.Size = new System.Drawing.Size(1054, 114);
             this.panel1.TabIndex = 1;
             // 
             // textBox1
@@ -174,9 +174,9 @@ namespace stretch_ceilings_app
             this.panel4.Controls.Add(this.panel7);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.panel4.Location = new System.Drawing.Point(0, 108);
+            this.panel4.Location = new System.Drawing.Point(0, 114);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1054, 453);
+            this.panel4.Size = new System.Drawing.Size(1054, 447);
             this.panel4.TabIndex = 2;
             // 
             // dataGridView1
@@ -192,7 +192,7 @@ namespace stretch_ceilings_app
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(1054, 415);
+            this.dataGridView1.Size = new System.Drawing.Size(1054, 409);
             this.dataGridView1.TabIndex = 5;
             // 
             // Column4
@@ -237,10 +237,38 @@ namespace stretch_ceilings_app
             this.panel7.Controls.Add(this.textBox3);
             this.panel7.Controls.Add(this.button4);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel7.Location = new System.Drawing.Point(0, 415);
+            this.panel7.Location = new System.Drawing.Point(0, 409);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(1054, 38);
             this.panel7.TabIndex = 3;
+            // 
+            // button6
+            // 
+            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.button6.Location = new System.Drawing.Point(4, 4);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(30, 29);
+            this.button6.TabIndex = 84;
+            this.button6.Text = "<";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.textBox3.Location = new System.Drawing.Point(40, 4);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(80, 29);
+            this.textBox3.TabIndex = 83;
+            // 
+            // button4
+            // 
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.button4.Location = new System.Drawing.Point(126, 4);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(30, 29);
+            this.button4.TabIndex = 82;
+            this.button4.Text = ">";
+            this.button4.UseVisualStyleBackColor = true;
             // 
             // panel2
             // 
@@ -296,34 +324,6 @@ namespace stretch_ceilings_app
             this.button2.Text = "Применить";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button6.Location = new System.Drawing.Point(4, 4);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(30, 29);
-            this.button6.TabIndex = 84;
-            this.button6.Text = "<";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.textBox3.Location = new System.Drawing.Point(40, 4);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(80, 29);
-            this.textBox3.TabIndex = 83;
-            // 
-            // button4
-            // 
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button4.Location = new System.Drawing.Point(126, 4);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(30, 29);
-            this.button4.TabIndex = 82;
-            this.button4.Text = ">";
-            this.button4.UseVisualStyleBackColor = true;
             // 
             // FactoriesForm
             // 

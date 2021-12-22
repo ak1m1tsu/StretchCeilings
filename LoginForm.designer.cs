@@ -1,5 +1,5 @@
 ﻿
-namespace Forms
+namespace stretch_ceilings_app
 {
     partial class LoginForm
     {

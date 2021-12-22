@@ -198,6 +198,7 @@ namespace stretch_ceilings_app
             this.MinimumSize = new System.Drawing.Size(1440, 800);
             this.Name = "MainForm";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
