@@ -9,13 +9,13 @@ namespace stretch_ceilings_app.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
-        [Column("OrderID")]
-        public int OrderID { get; set; }
-        [Column("OrderID")]
+        public int Id { get; set; }
+        [ForeignKey("Order")]
+        public int OrderId { get; set; }
         public Order Order { get; set; }
+        [Required]
         public string Comment { get; set; }
-        public DateTime DateCanceled { get; set; }
-        public DateTime DateDeleted { get; set; }
+        public DateTime? DateCanceled { get; set; }
+        public DateTime? DateDeleted { get; set; }
     }
 }

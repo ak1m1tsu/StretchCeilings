@@ -9,17 +9,19 @@ namespace stretch_ceilings_app.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public int FacotoryID { get; set; }
+        [ForeignKey("Factory")]
+        public int FactoryId { get; set; }
         public Factory Factory { get; set; }
-        public int ProductID { get; set; }
+        [ForeignKey("Product")]
+        public int ProductId { get; set; }
         public Product Product { get; set; }
         public int Pipes { get; set; }
         public int Lamps { get; set; }
         public bool Backlight { get; set; }
         public decimal Price { get; set; }
-        public DateTime DeteDeleted { get; set; }
+        public DateTime? DeteDeleted { get; set; }
     }
 }

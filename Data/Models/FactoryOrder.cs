@@ -9,13 +9,12 @@ namespace stretch_ceilings_app.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
-        [Column("FactoryID")]
-        public int FactoryID { get; set; }
-        [Column("FactoryID")]
+        public int Id { get; set; }
+        [ForeignKey("Factory")]
+        public int FactoryId { get; set; }
         public Factory Factory { get; set; }
-        public DateTime DateFilled { get; set; }
-        public DateTime DateComming { get; set; }
+        public DateTime? DateFilled { get; set; }
+        public DateTime? DateComming { get; set; }
         public decimal Total { get; set; }
     }
 }

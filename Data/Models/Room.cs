@@ -1,4 +1,5 @@
 ﻿using stretch_ceilings_app.Interfaces;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -9,15 +10,15 @@ namespace stretch_ceilings_app.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        public int Id { get; set; }
         public int Area { get; set; }
-        [Column("Type")]
-        public Type Type { get; set; }
+        [Required]
+        public RoomType Type { get; set; }
         public int Corners { get; set; }
-        [Column("EstateID")]
-        public int EstateID { get; set; }
-        [Column("EstateID")]
+        [ForeignKey("Estate")]
+        public int EstateId { get; set; }
         public Estate Estate { get; set; }
+        public DateTime? DateDeleted { get; set; }
 
         public string GetPlane()
         {
@@ -33,7 +34,7 @@ namespace stretch_ceilings_app.Models
         }
     }
 
-    public enum Type
+    public enum RoomType
     {
         WaterCloset,
         Nursery,

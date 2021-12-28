@@ -29,71 +29,72 @@ namespace stretch_ceilings_app
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
+            this.tbLogin = new System.Windows.Forms.TextBox();
+            this.lblLogin = new System.Windows.Forms.Label();
+            this.tbPassword = new System.Windows.Forms.TextBox();
+            this.lblPassword = new System.Windows.Forms.Label();
+            this.btnLogin = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // textBox1
+            // tbLogin
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.textBox1.Location = new System.Drawing.Point(97, 16);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(284, 29);
-            this.textBox1.TabIndex = 28;
+            this.tbLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.tbLogin.Location = new System.Drawing.Point(97, 16);
+            this.tbLogin.Name = "tbLogin";
+            this.tbLogin.Size = new System.Drawing.Size(284, 29);
+            this.tbLogin.TabIndex = 28;
             // 
-            // label7
+            // lblLogin
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label7.Location = new System.Drawing.Point(10, 18);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(69, 24);
-            this.label7.TabIndex = 27;
-            this.label7.Text = "Логин:";
+            this.lblLogin.AutoSize = true;
+            this.lblLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblLogin.Location = new System.Drawing.Point(10, 18);
+            this.lblLogin.Name = "lblLogin";
+            this.lblLogin.Size = new System.Drawing.Size(69, 24);
+            this.lblLogin.TabIndex = 27;
+            this.lblLogin.Text = "Логин:";
             // 
-            // textBox2
+            // tbPassword
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.textBox2.Location = new System.Drawing.Point(97, 56);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(284, 29);
-            this.textBox2.TabIndex = 30;
+            this.tbPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.tbPassword.Location = new System.Drawing.Point(97, 56);
+            this.tbPassword.Name = "tbPassword";
+            this.tbPassword.Size = new System.Drawing.Size(284, 29);
+            this.tbPassword.TabIndex = 30;
             // 
-            // label1
+            // lblPassword
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label1.Location = new System.Drawing.Point(10, 59);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(81, 24);
-            this.label1.TabIndex = 29;
-            this.label1.Text = "Пароль:";
+            this.lblPassword.AutoSize = true;
+            this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblPassword.Location = new System.Drawing.Point(10, 59);
+            this.lblPassword.Name = "lblPassword";
+            this.lblPassword.Size = new System.Drawing.Size(81, 24);
+            this.lblPassword.TabIndex = 29;
+            this.lblPassword.Text = "Пароль:";
             // 
-            // button3
+            // btnLogin
             // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button3.Location = new System.Drawing.Point(285, 97);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(96, 31);
-            this.button3.TabIndex = 31;
-            this.button3.Text = "Вход";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnLogin.Location = new System.Drawing.Point(281, 98);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(100, 30);
+            this.btnLogin.TabIndex = 31;
+            this.btnLogin.Text = "Войти";
+            this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(393, 140);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.btnLogin);
+            this.Controls.Add(this.tbPassword);
+            this.Controls.Add(this.lblPassword);
+            this.Controls.Add(this.tbLogin);
+            this.Controls.Add(this.lblLogin);
             this.Name = "LoginForm";
+            this.Load += new System.EventHandler(this.LoginForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -101,10 +102,10 @@ namespace stretch_ceilings_app
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox tbLogin;
+        private System.Windows.Forms.Label lblLogin;
+        private System.Windows.Forms.TextBox tbPassword;
+        private System.Windows.Forms.Label lblPassword;
+        private System.Windows.Forms.Button btnLogin;
     }
 }

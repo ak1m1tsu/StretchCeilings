@@ -11,11 +11,14 @@ namespace stretch_ceilings_app.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        public int Id { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public string Country { get; set; }
+        [Required]
         public string Address { get; set; }
-        public DateTime DateDeleted { get; set; }
+        public DateTime? DateDeleted { get; set; }
 
         public string AddOrder(FactoryOrder order)
         {

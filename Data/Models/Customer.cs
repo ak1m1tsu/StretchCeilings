@@ -10,12 +10,12 @@ namespace stretch_ceilings_app.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string FullName { get; set; }
         public string PhoneNumber { get; set; }
-        public DateTime DateDeleted { get; set; }
+        public DateTime? DateDeleted { get; set; }
 
-        public List<Estate> GetEstates()
+        public IEnumerable<Estate> GetEstates()
         {
             return new List<Estate>();
         }
@@ -30,7 +30,7 @@ namespace stretch_ceilings_app.Models
             return string.Empty;
         }
 
-        public List<Order> GetOrders(int count, int pages)
+        public IEnumerable<Order> GetOrders(int count, int pages)
         {
             return new List<Order>();
         }
@@ -45,7 +45,7 @@ namespace stretch_ceilings_app.Models
             return string.Empty;
         }
 
-        public List<Service> GetServices(int count, int pages)
+        public IEnumerable<Service> GetServices(int count, int pages)
         {
             return new List<Service>();
         }

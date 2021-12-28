@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -9,12 +10,13 @@ namespace stretch_ceilings_app.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        public int Id { get; set; }
+        [Required]
         public string Address { get; set; }
-        [Column("CustomerID")]
-        public int CustomerID { get; set; }
-        [Column("CustomerID")]
+        [ForeignKey("Customer")]
+        public int CustomerId { get; set; }
         public Customer Customer { get; set; }
+        public DateTime? DateDeleted { get; set; }
 
         public List<Room> GetRooms()
         {

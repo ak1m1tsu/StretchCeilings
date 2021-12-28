@@ -12,18 +12,17 @@ namespace stretch_ceilings_app.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        [Column("CustomerID")]
-        public int CustomerID { get; set; }
-        [Column("CustomerID")]
+        [ForeignKey("Customer")]
+        public int CustomerId { get; set; }
         public Customer Customer { get; set; }
-        public DateTime DatePlaced { get; set; }
-        public DateTime DateOfMeasurements { get; set; }
-        public DateTime[] DateOfWork { get; set; }
-        public DateTime DatePaid { get; set; }
-        public DateTime DateCanceled { get; set; }
+        public DateTime? DatePlaced { get; set; }
+        public DateTime? DateOfMeasurements { get; set; }
+        public DateTime?[] DateOfWork { get; set; }
+        public DateTime? DatePaid { get; set; }
+        public DateTime? DateCanceled { get; set; }
+        public DateTime? DateDeleted { get; set; }
         public bool PaidByCash { get; set; }
-        [Column("Status")]
-        public Status Status { get; set; }
+        public OrderStatus Status { get; set; }
         public decimal Total { get; set; }
 
         public decimal CalculateTotal()
@@ -48,10 +47,10 @@ namespace stretch_ceilings_app.Models
 
     }
 
-    public enum Status
+    public enum OrderStatus
     {
         WaitingForMeasurements,
-        WaitingForClientAnswer,
+        WaitingForCustomerAnswer,
         WaitingForPaid,
         WaitingForServices,
         WaitiongForExecution,

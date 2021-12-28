@@ -11,13 +11,16 @@ namespace stretch_ceilings_app.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string FullName { get; set; }
+        [Required]
         public string Login { get; set; }
+        [Required]
         public string Password { get; set; }
+        [ForeignKey("Role")]
         public int RoleID { get; set; }
         public Role Role { get; set; }
-        public DateTime DateDeleted { get; set; }
+        public DateTime? DateDeleted { get; set; }
 
         public bool Can(Permission permission)
         {

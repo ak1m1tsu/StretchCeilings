@@ -10,14 +10,23 @@ namespace stretch_ceilings_app
 {
     public partial class LoginForm : Form
     {
+        private MainForm _mainForm;
         public LoginForm()
         {
             InitializeComponent();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void btnLogin_Click(object sender, EventArgs e)
         {
-            Close();
+            this.Hide();
+            _mainForm = new MainForm();
+            _mainForm.FormClosed += (object o, FormClosedEventArgs args) => this.Close();
+            _mainForm.Show();
+        }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+            tbPassword.PasswordChar = '*';
         }
     }
 }
