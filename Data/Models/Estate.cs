@@ -1,4 +1,5 @@
-﻿using System;
+﻿using stretch_ceilings_app.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -6,29 +7,32 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace stretch_ceilings_app.Models
 {
     [Table("Estates")]
-    public class Estate
+    public class Estate : IEstate
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required]
         public string Address { get; set; }
-        [ForeignKey("Customer")]
+        [Column("CustomerId")]
         public int CustomerId { get; set; }
+        [Column("CustomerId")]
         public Customer Customer { get; set; }
         public DateTime? DateDeleted { get; set; }
 
-        public List<Room> GetRooms()
+        public void Add()
         {
-            return new List<Room>();
+            throw new NotImplementedException();
         }
-        public string AddRoom(Room room)
+
+        public void Delete()
         {
-            return string.Empty;
+            throw new NotImplementedException();
         }
-        public string DeleteRoom(Room room)
+
+        public void Update()
         {
-            return string.Empty;
+            throw new NotImplementedException();
         }
     }
 }

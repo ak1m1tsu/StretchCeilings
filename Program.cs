@@ -1,4 +1,6 @@
-﻿using System;
+﻿using stretch_ceilings_app.Utility;
+using System;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace stretch_ceilings_app
@@ -11,16 +13,15 @@ namespace stretch_ceilings_app
         [STAThread]
         static void Main()
         {
-            try
-            {
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new LoginForm());
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.ThreadException += new ThreadExceptionEventHandler(Exception);
+            Application.Run(new LoginForm());
+        }
+
+        private static void Exception(object sender, ThreadExceptionEventArgs e)
+        {
+            LogWriter.Write(DateTime.Now, e.Exception.Message);
         }
     }
 }

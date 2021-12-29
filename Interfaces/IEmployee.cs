@@ -5,7 +5,9 @@ namespace stretch_ceilings_app.Interfaces
 {
     public interface IEmployee
     {
-        bool Can(Permission permission);
+        string Add();
+        string Update();
+        string Delete();
         List<TimeTable> GetSchedule();
         string AddTimeTable(TimeTable timeTable);
         string DeleteTimeTable(TimeTable timeTable);

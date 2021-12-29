@@ -4,7 +4,7 @@ using stretch_ceilings_app.Data;
 
 namespace stretch_ceilings_app.Migrations
 {
-    internal sealed class Configuration : DbMigrationsConfiguration<ApplicationContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<StretchCeilingsContext>
     {
         public Configuration()
         {
@@ -12,6 +12,6 @@ namespace stretch_ceilings_app.Migrations
             SetSqlGenerator("System.Data.SQLite", new SQLiteMigrationSqlGenerator());
         }
 
-        protected override void Seed(ApplicationContext context) { }
+        protected override void Seed(StretchCeilingsContext context) { }
     }
 }

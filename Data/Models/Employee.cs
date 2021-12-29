@@ -1,14 +1,21 @@
-﻿using stretch_ceilings_app.Interfaces;
+﻿using stretch_ceilings_app.Data;
+using stretch_ceilings_app.Interfaces;
+using stretch_ceilings_app.Utility;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace stretch_ceilings_app.Models
 {
     [Table("Employees")]
     public class Employee : IEmployee
     {
+        public Employee()
+        {
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -17,57 +24,70 @@ namespace stretch_ceilings_app.Models
         public string Login { get; set; }
         [Required]
         public string Password { get; set; }
-        [ForeignKey("Role")]
-        public int RoleID { get; set; }
-        public Role Role { get; set; }
+        [Column("RoleId")]
+        public int? RoleId { get; set; }
+        [Column("RoleId")]
+        public virtual Role Role { get; set; }
         public DateTime? DateDeleted { get; set; }
 
-        public bool Can(Permission permission)
+        public string Add()
         {
-            return false;
+            throw new NotImplementedException();
         }
 
-        public List<TimeTable> GetSchedule()
+        public string AddOrder(Order order)
         {
-            return new List<TimeTable>();
+            throw new NotImplementedException();
+        }
+
+        public string AddService(Service service)
+        {
+            throw new NotImplementedException();
         }
 
         public string AddTimeTable(TimeTable timeTable)
         {
-            return string.Empty;
+            throw new NotImplementedException();
         }
 
-        public string DeleteTimeTable(TimeTable timeTable)
+        public string Delete()
         {
-            return string.Empty;
+            throw new NotImplementedException();
         }
 
-        public List<Order> GetOrders(int count, int pages)
+        public string DeleteOrder(Order order)
         {
-            return new List<Order>();
-        }
-        public string AddOrder(Order order)
-        {
-            return string.Empty;
-        }
-
-        public string DeleteOrder(Order Order)
-        {
-            return string.Empty;
-        }
-
-        public List<Service> GetServices(int count, int pages)
-        {
-            return new List<Service>();
-        }
-        public string AddService(Service service)
-        {
-            return string.Empty;
+            throw new NotImplementedException();
         }
 
         public string DeleteService(Service service)
         {
-            return string.Empty;
+            throw new NotImplementedException();
+        }
+
+        public string DeleteTimeTable(TimeTable timeTable)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Order> GetOrders(int count, int pages)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<TimeTable> GetSchedule()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Service> GetServices(int count, int pages)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string Update()
+        {
+            throw new NotImplementedException();
         }
     }
 }

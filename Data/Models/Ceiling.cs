@@ -1,35 +1,22 @@
 ﻿using stretch_ceilings_app.Interfaces;
+using stretch_ceilings_app.Utility.Enums;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace stretch_ceilings_app.Models
 {
-    [Table("Services")]
-    public class Service : IService
+    [Table("Products")]
+    public class Ceiling : ICeiling
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Name { get; set; }
+        public CeilingTexture Texture { get; set; }
         public string Description { get; set; }
-        [Column("CategoryId")]
-        public int CategoryId { get; set; }
-        [Column("CategoryId")]
-        public Category Category { get; set; }
-        [Column("ManufacturerId")]
-        public int ManufacturerId { get; set; }
-        [Column("ManufacturerId")]
-        public Manufacturer Manufacturer { get; set; }
-        [Column("ProductId")]
-        public int ProductId { get; set; }
-        [Column("ProductId")]
-        public Ceiling Product { get; set; }
-        public int Pipes { get; set; }
-        public int Lamps { get; set; }
-        public bool Backlight { get; set; }
         public decimal Price { get; set; }
-        public DateTime? DeteDeleted { get; set; }
+        public DateTime? DateDeleted { get; set; }
 
         public void Add()
         {
@@ -46,6 +33,4 @@ namespace stretch_ceilings_app.Models
             throw new NotImplementedException();
         }
     }
-
-
 }

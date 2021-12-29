@@ -1,4 +1,5 @@
 ﻿using stretch_ceilings_app.Interfaces;
+using stretch_ceilings_app.Utility.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,8 +13,9 @@ namespace stretch_ceilings_app.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        [ForeignKey("Customer")]
+        [Column("CustomerId")]
         public int CustomerId { get; set; }
+        [Column("CustomerId")]
         public Customer Customer { get; set; }
         public DateTime? DatePlaced { get; set; }
         public DateTime? DateOfMeasurements { get; set; }
@@ -25,36 +27,41 @@ namespace stretch_ceilings_app.Models
         public OrderStatus Status { get; set; }
         public decimal Total { get; set; }
 
+        public void Add()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddLog(Log log)
+        {
+            throw new NotImplementedException();
+        }
+
         public decimal CalculateTotal()
         {
-            return new decimal();
+            throw new NotImplementedException();
+        }
+
+        public void Delete()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteLog(Log log)
+        {
+            throw new NotImplementedException();
         }
 
         public List<Log> GetLogs()
         {
-            return new List<Log>();
-        }
-        
-        public string AddLog(Log log)
-        {
-            return string.Empty;
+            throw new NotImplementedException();
         }
 
-        public string DeleteLog(Log log)
+        public void Update()
         {
-            return string.Empty;
+            throw new NotImplementedException();
         }
-
     }
 
-    public enum OrderStatus
-    {
-        WaitingForMeasurements,
-        WaitingForCustomerAnswer,
-        WaitingForPaid,
-        WaitingForServices,
-        WaitiongForExecution,
-        Canceled,
-        Done
-    }
+
 }

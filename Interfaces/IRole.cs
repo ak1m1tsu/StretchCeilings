@@ -6,7 +6,7 @@ namespace stretch_ceilings_app.Interfaces
     public interface IRole
     {
         List<Permission> GetPermissions();
-        string AddPermission(Permission permission);
-        string DeletePermission(Permission permission);
+        void AddPermission(Permission permission);
+        void DeletePermission(Permission permission);
     }
 }

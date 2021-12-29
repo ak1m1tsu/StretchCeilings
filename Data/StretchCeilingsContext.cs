@@ -3,9 +3,9 @@ using System.Data.Entity;
 
 namespace stretch_ceilings_app.Data
 {
-    public class ApplicationContext : DbContext
+    public class StretchCeilingsContext : DbContext
     {
-        public ApplicationContext() 
+        public StretchCeilingsContext() 
             : base("Default") { }
 
         // Модели бизнес логики
@@ -13,8 +13,8 @@ namespace stretch_ceilings_app.Data
         public DbSet<Customer> Customers{ get; set; }
         public DbSet<Employee> Employees{ get; set; }
         public DbSet<Service> Services{ get; set; }
-        public DbSet<Factory> Factories { get; set; }
-        public DbSet<FactoryOrder> FactoryOrders { get; set; }
+        public DbSet<Manufacturer> Factories { get; set; }
+        public DbSet<ManufacturerOrder> FactoryOrders { get; set; }
         public DbSet<TimeTable> Schedules { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Log> OrderLogs { get; set; }

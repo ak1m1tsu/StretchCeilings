@@ -1,25 +1,23 @@
 ﻿using stretch_ceilings_app.Interfaces;
-using stretch_ceilings_app.Utility.Enums;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace stretch_ceilings_app.Models
 {
-    [Table("Rooms")]
-    public class Room : IRoom
+    [Table("Manufacturers")]
+    public class Manufacturer : IManufacturer
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public int Area { get; set; }
         [Required]
-        public RoomType Type { get; set; }
-        public int Corners { get; set; }
-        [Column("EstateId")]
-        public int EstateId { get; set; }
-        [Column("EstateId")]
-        public Estate Estate { get; set; }
+        public string Name { get; set; }
+        [Required]
+        public string Country { get; set; }
+        [Required]
+        public string Address { get; set; }
         public DateTime? DateDeleted { get; set; }
 
         public void Add()
@@ -27,12 +25,12 @@ namespace stretch_ceilings_app.Models
             throw new NotImplementedException();
         }
 
-        public string AddPlane(string path)
+        public void AddOrder(ManufacturerOrder order)
         {
             throw new NotImplementedException();
         }
 
-        public string ChangePlane(string path)
+        public void AddProduct(Ceiling product)
         {
             throw new NotImplementedException();
         }
@@ -42,7 +40,22 @@ namespace stretch_ceilings_app.Models
             throw new NotImplementedException();
         }
 
-        public string GetPlane()
+        public void DeleteOrder(ManufacturerOrder order)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteProduct(Ceiling product)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<ManufacturerOrder> GetOrders()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Ceiling> GetProduct()
         {
             throw new NotImplementedException();
         }

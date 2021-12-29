@@ -26,12 +26,12 @@
                         FullName = c.String(maxLength: 2147483647),
                         Login = c.String(nullable: false, maxLength: 2147483647),
                         Password = c.String(nullable: false, maxLength: 2147483647),
-                        RoleID = c.Int(nullable: false),
+                        RoleId = c.Int(nullable: false),
                         DateDeleted = c.DateTime(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Roles", t => t.RoleID, cascadeDelete: true)
-                .Index(t => t.RoleID);
+                .ForeignKey("dbo.Roles", t => t.RoleId, cascadeDelete: true)
+                .Index(t => t.RoleId);
             
             CreateTable(
                 "dbo.Roles",
@@ -39,7 +39,6 @@
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(maxLength: 2147483647),
-                        DateDeleted = c.DateTime(),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -57,7 +56,7 @@
                 .Index(t => t.CustomerId);
             
             CreateTable(
-                "dbo.Factories",
+                "dbo.Manufacturers",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -69,7 +68,7 @@
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.FactoryOrders",
+                "dbo.ManufacturerOrder",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -79,7 +78,7 @@
                         Total = c.Decimal(nullable: false, precision: 18, scale: 2),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Factories", t => t.FactoryId, cascadeDelete: true)
+                .ForeignKey("dbo.Manufacturers", t => t.FactoryId, cascadeDelete: true)
                 .Index(t => t.FactoryId);
             
             CreateTable(
@@ -121,8 +120,7 @@
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(maxLength: 2147483647),
-                        Code = c.String(nullable: false, maxLength: 2147483647),
-                        DateDeleted = c.DateTime(),
+                        Code = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -146,12 +144,15 @@
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
+                        EmployeeId = c.Int(nullable: false),
                         Date = c.DateTime(),
                         TimeStart = c.DateTime(),
                         TimeEnd = c.DateTime(),
                         DateDeleted = c.DateTime(),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Employees", t => t.EmployeeId, cascadeDelete: true)
+                .Index(t => t.EmployeeId);
             
             CreateTable(
                 "dbo.Services",
@@ -160,7 +161,8 @@
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(maxLength: 2147483647),
                         Description = c.String(maxLength: 2147483647),
-                        FactoryId = c.Int(nullable: false),
+                        CategoryId = c.Int(nullable: false),
+                        ManufacturerId = c.Int(nullable: false),
                         ProductId = c.Int(nullable: false),
                         Pipes = c.Int(nullable: false),
                         Lamps = c.Int(nullable: false),
@@ -169,10 +171,22 @@
                         DeteDeleted = c.DateTime(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Factories", t => t.FactoryId, cascadeDelete: true)
+                .ForeignKey("dbo.Categories", t => t.CategoryId, cascadeDelete: true)
+                .ForeignKey("dbo.Manufacturers", t => t.ManufacturerId, cascadeDelete: true)
                 .ForeignKey("dbo.Products", t => t.ProductId, cascadeDelete: true)
-                .Index(t => t.FactoryId)
+                .Index(t => t.CategoryId)
+                .Index(t => t.ManufacturerId)
                 .Index(t => t.ProductId);
+            
+            CreateTable(
+                "dbo.Categories",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(maxLength: 2147483647),
+                        DateDeleted = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Products",
@@ -180,6 +194,7 @@
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(maxLength: 2147483647),
+                        Texture = c.Int(nullable: false),
                         Description = c.String(maxLength: 2147483647),
                         Price = c.Decimal(nullable: false, precision: 18, scale: 2),
                         DateDeleted = c.DateTime(),
@@ -191,30 +206,35 @@
         public override void Down()
         {
             DropForeignKey("dbo.Services", "ProductId", "dbo.Products");
-            DropForeignKey("dbo.Services", "FactoryId", "dbo.Factories");
+            DropForeignKey("dbo.Services", "ManufacturerId", "dbo.Manufacturers");
+            DropForeignKey("dbo.Services", "CategoryId", "dbo.Categories");
+            DropForeignKey("dbo.Schedule", "EmployeeId", "dbo.Employees");
             DropForeignKey("dbo.Rooms", "EstateId", "dbo.Estates");
             DropForeignKey("dbo.OrderLogs", "OrderId", "dbo.Orders");
             DropForeignKey("dbo.Orders", "CustomerId", "dbo.Customers");
-            DropForeignKey("dbo.FactoryOrders", "FactoryId", "dbo.Factories");
+            DropForeignKey("dbo.ManufacturerOrder", "FactoryId", "dbo.Manufacturers");
             DropForeignKey("dbo.Estates", "CustomerId", "dbo.Customers");
-            DropForeignKey("dbo.Employees", "RoleID", "dbo.Roles");
+            DropForeignKey("dbo.Employees", "RoleId", "dbo.Roles");
             DropIndex("dbo.Services", new[] { "ProductId" });
-            DropIndex("dbo.Services", new[] { "FactoryId" });
+            DropIndex("dbo.Services", new[] { "ManufacturerId" });
+            DropIndex("dbo.Services", new[] { "CategoryId" });
+            DropIndex("dbo.Schedule", new[] { "EmployeeId" });
             DropIndex("dbo.Rooms", new[] { "EstateId" });
             DropIndex("dbo.Orders", new[] { "CustomerId" });
             DropIndex("dbo.OrderLogs", new[] { "OrderId" });
-            DropIndex("dbo.FactoryOrders", new[] { "FactoryId" });
+            DropIndex("dbo.ManufacturerOrder", new[] { "FactoryId" });
             DropIndex("dbo.Estates", new[] { "CustomerId" });
-            DropIndex("dbo.Employees", new[] { "RoleID" });
+            DropIndex("dbo.Employees", new[] { "RoleId" });
             DropTable("dbo.Products");
+            DropTable("dbo.Categories");
             DropTable("dbo.Services");
             DropTable("dbo.Schedule");
             DropTable("dbo.Rooms");
             DropTable("dbo.Permissions");
             DropTable("dbo.Orders");
             DropTable("dbo.OrderLogs");
-            DropTable("dbo.FactoryOrders");
-            DropTable("dbo.Factories");
+            DropTable("dbo.ManufacturerOrder");
+            DropTable("dbo.Manufacturers");
             DropTable("dbo.Estates");
             DropTable("dbo.Roles");
             DropTable("dbo.Employees");

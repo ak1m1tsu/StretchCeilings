@@ -1,24 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Configuration;
-using System.Data.SQLite;
 using stretch_ceilings_app.Utility.CustomBtn;
+using stretch_ceilings_app.Models;
+using System.Collections.Generic;
+using stretch_ceilings_app.Data;
 
 namespace stretch_ceilings_app
 {
     public partial class MainForm : Form
     {
         private Form _activeForm;
+        private Employee _user;
+        private List<NavigationButton> btns;
 
-        public MainForm()
+        public MainForm(Employee user)
         {
+            _user = user;
             InitializeComponent();
         }
 
@@ -40,15 +37,40 @@ namespace stretch_ceilings_app
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            NavigationButton btnOrders = new NavigationButton("btnOrder", "Заказы");
+            btns = new List<NavigationButton>();
+
+            NavigationButton btnOrders = new NavigationButton("btnOrders", "Заказы");
             btnOrders.Click += btnOrders_Click;
-            panelNav.Controls.Add(btnOrders);
+            btns.Add(btnOrders);
+
+            NavigationButton btnCustomers = new NavigationButton("btnCustomers", "Клиенты");
+            btnCustomers.Click += btnCustomers_Click;
+            btns.Add(btnCustomers);
+
+            NavigationButton btnEmployes = new NavigationButton("btnEmployees", "Сотрудники");
+            btnEmployes.Click += btnEmployees_Click;
+            btns.Add(btnEmployes);
+
+            btns.Reverse();
+            panelNav.Controls.AddRange(btns.ToArray());
         }
 
         private void btnOrders_Click(object sender, EventArgs e)
         {
             OrdersForm ordersForm = new OrdersForm();
             OpenChildForm(ordersForm);
+        }
+
+        private void btnCustomers_Click(object sender, EventArgs e)
+        {
+            CustomersForm customersForm = new CustomersForm();
+            OpenChildForm(customersForm);
+        }
+
+        private void btnEmployees_Click(object sender, EventArgs e)
+        {
+            EmployeesForm employeesForm = new EmployeesForm();
+            OpenChildForm(employeesForm);
         }
     }
 }

@@ -5,20 +5,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace stretch_ceilings_app.Models
 {
-    [Table("OrderLogs")]
-    public class Log : ILog
+    [Table("ManufacturerOrder")]
+    public class ManufacturerOrder : IManufacturerOrder
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        [Column("OrderId")]
-        public int OrderId { get; set; }
-        [Column("OrderId")]
-        public Order Order { get; set; }
-        [Required]
-        public string Comment { get; set; }
-        public DateTime? DateCanceled { get; set; }
-        public DateTime? DateDeleted { get; set; }
+        [Column("FactoryId")]
+        public int FactoryId { get; set; }
+        [Column("FactoryId")]
+        public Manufacturer Factory { get; set; }
+        public DateTime? DateFilled { get; set; }
+        public DateTime? DateComming { get; set; }
+        public decimal Total { get; set; }
 
         public void Add()
         {

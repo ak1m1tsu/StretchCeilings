@@ -5,9 +5,9 @@ using System.Data.SQLite.EF6;
 
 namespace stretch_ceilings_app.Data
 {
-    public class ApplicationConfiguration : DbConfiguration
+    public class StretchCeilingsConfiguration : DbConfiguration
     {
-        public ApplicationConfiguration()
+        public StretchCeilingsConfiguration()
         {
             SetProviderFactory("System.Data.SQLite", SQLiteFactory.Instance);
             SetProviderFactory("System.Data.SQLite.EF6", SQLiteProviderFactory.Instance);

@@ -5,9 +5,12 @@ namespace stretch_ceilings_app.Interfaces
 {
     public interface IOrder
     {
+        void Add();
+        void Update();
+        void Delete();
         decimal CalculateTotal();
         List<Log> GetLogs();
-        string AddLog(Log log);
-        string DeleteLog(Log log);
+        void AddLog(Log log);
+        void DeleteLog(Log log);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using stretch_ceilings_app.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -6,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace stretch_ceilings_app.Models
 {
     [Table("Customers")]
-    public class Customer
+    public class Customer : ICustomer
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -15,49 +16,19 @@ namespace stretch_ceilings_app.Models
         public string PhoneNumber { get; set; }
         public DateTime? DateDeleted { get; set; }
 
-        public IEnumerable<Estate> GetEstates()
+        public void Add()
         {
-            return new List<Estate>();
+            throw new NotImplementedException();
         }
 
-        public string AddEstate(Estate estate)
+        public void Delete()
         {
-            return string.Empty;
+            throw new NotImplementedException();
         }
 
-        public string DeleteEstate(Estate estate)
+        public void Update()
         {
-            return string.Empty;
-        }
-
-        public IEnumerable<Order> GetOrders(int count, int pages)
-        {
-            return new List<Order>();
-        }
-
-        public string AddOrder(Order order)
-        {
-            return string.Empty;
-        }
-
-        public string DeleteOrder(Order order)
-        {
-            return string.Empty;
-        }
-
-        public IEnumerable<Service> GetServices(int count, int pages)
-        {
-            return new List<Service>();
-        }
-
-        public string AddService(Service service)
-        {
-            return string.Empty;
-        }
-
-        public string DeleteService(Service service)
-        {
-            return string.Empty;
+            throw new NotImplementedException();
         }
     }
 }
