@@ -8,7 +8,7 @@ namespace stretch_ceilings_app.Utility.Enums
 {
     public enum OrderStatus
     {
-        WaitingForMeasurements,
+        WaitingForMeasurements = 0,
         WaitingForCustomerAnswer,
         WaitingForPaid,
         WaitingForServices,

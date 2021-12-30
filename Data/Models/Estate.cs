@@ -15,9 +15,9 @@ namespace stretch_ceilings_app.Models
         [Required]
         public string Address { get; set; }
         [Column("CustomerId")]
-        public int CustomerId { get; set; }
+        public int? CustomerId { get; set; }
         [Column("CustomerId")]
-        public Customer Customer { get; set; }
+        public virtual Customer Customer { get; set; }
         public DateTime? DateDeleted { get; set; }
 
         public void Add()

@@ -1,5 +1,6 @@
 ﻿using stretch_ceilings_app.Data;
 using stretch_ceilings_app.Interfaces;
+using stretch_ceilings_app.Utility;
 using stretch_ceilings_app.Utility.Enums;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -14,7 +15,6 @@ namespace stretch_ceilings_app.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] 
         public int Id { get; set; }
         public string Name { get; set; }
-        [Required]
         public PermissionCode Code { get; set; }
 
         public string Add()

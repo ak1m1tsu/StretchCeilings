@@ -5,19 +5,23 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace stretch_ceilings_app.Models
 {
-    [Table("ManufacturerOrder")]
+    [Table("ManufacturerOrders")]
     public class ManufacturerOrder : IManufacturerOrder
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        [Column("FactoryId")]
-        public int FactoryId { get; set; }
-        [Column("FactoryId")]
-        public Manufacturer Factory { get; set; }
+        [Column("ManufacturerId")]
+        public int? ManufacturerId { get; set; }
+        [Column("ManufacturerId")]
+        public virtual Manufacturer Manufacturer { get; set; }
+        [Column("CeilingId")]
+        public int? CeilingId { get; set; }
+        [Column("CeilingId")]
+        public virtual Ceiling Ceiling { get; set; }
         public DateTime? DateFilled { get; set; }
         public DateTime? DateComming { get; set; }
-        public decimal Total { get; set; }
+        public decimal? Total { get; set; }
 
         public void Add()
         {

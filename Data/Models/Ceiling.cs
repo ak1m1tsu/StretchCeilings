@@ -1,4 +1,5 @@
 ﻿using stretch_ceilings_app.Interfaces;
+using stretch_ceilings_app.Utility;
 using stretch_ceilings_app.Utility.Enums;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -6,15 +7,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace stretch_ceilings_app.Models
 {
-    [Table("Products")]
+    [Table("Ceilings")]
     public class Ceiling : ICeiling
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Name { get; set; }
+        [Column("ManufacturerId")]
+        public int? ManufacturerId { get; set; }
+        [Column("ManufacturerId")]
+        public virtual Manufacturer Manufacturer { get; set; }
         public CeilingTexture Texture { get; set; }
-        public string Description { get; set; }
+        public CeilingColor Color { get; set; }
         public decimal Price { get; set; }
         public DateTime? DateDeleted { get; set; }
 

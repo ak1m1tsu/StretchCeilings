@@ -6,7 +6,19 @@ namespace stretch_ceilings_app.Utility
 {
     public static class EnumExtantion
     {
-        public static string PermissionCodeToString(this PermissionCode code)
+        public static string ToString(this CeilingColor color)
+        {
+            switch (color)
+            {
+                case CeilingColor.White:
+                    return "Белый";
+                case CeilingColor.Colored:
+                    return "Цветной";
+                default:
+                    return "Неизвестный цвет";
+            }
+        }
+        public static string ToString(this PermissionCode code)
         {
             switch (code)
             {
@@ -51,7 +63,7 @@ namespace stretch_ceilings_app.Utility
             }
         }
 
-        public static string OrderStatusToString(this OrderStatus status)
+        public static string ToString(this OrderStatus status)
         {
             switch (status)
             {
@@ -74,7 +86,7 @@ namespace stretch_ceilings_app.Utility
             }
         }
 
-        public static string CeilingTextureToString(this CeilingTexture texture)
+        public static string ToString(this CeilingTexture texture)
         {
             switch (texture)
             {

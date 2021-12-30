@@ -1,4 +1,5 @@
 ﻿using stretch_ceilings_app.Interfaces;
+using stretch_ceilings_app.Utility;
 using stretch_ceilings_app.Utility.Enums;
 using System;
 using System.Collections.Generic;
@@ -14,18 +15,18 @@ namespace stretch_ceilings_app.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Column("CustomerId")]
-        public int CustomerId { get; set; }
+        public int? CustomerId { get; set; }
         [Column("CustomerId")]
-        public Customer Customer { get; set; }
+        public virtual Customer Customer { get; set; }
         public DateTime? DatePlaced { get; set; }
         public DateTime? DateOfMeasurements { get; set; }
-        public DateTime?[] DateOfWork { get; set; }
+        public List<DateTime?> DateOfWork { get; set; }
         public DateTime? DatePaid { get; set; }
         public DateTime? DateCanceled { get; set; }
         public DateTime? DateDeleted { get; set; }
-        public bool PaidByCash { get; set; }
+        public bool? PaidByCash { get; set; }
         public OrderStatus Status { get; set; }
-        public decimal Total { get; set; }
+        public decimal? Total { get; set; }
 
         public void Add()
         {

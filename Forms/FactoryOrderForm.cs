@@ -18,7 +18,7 @@ namespace stretch_ceilings_app
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            new FactoryForm().ShowDialog();
+            new ManufacturerForm().ShowDialog();
         }
     }
 }

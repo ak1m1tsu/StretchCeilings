@@ -8,7 +8,7 @@ namespace stretch_ceilings_app.Utility.Enums
 {
     public enum PermissionCode
     {
-        AddOrder,
+        AddOrder = 0,
         EditOrder,
         DelOrder,
         AddCustomer,

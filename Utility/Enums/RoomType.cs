@@ -8,7 +8,7 @@ namespace stretch_ceilings_app.Utility.Enums
 {
     public enum RoomType
     {
-        WaterCloset,
+        WaterCloset = 0,
         Nursery,
         Bathroom,
         Bedroom,

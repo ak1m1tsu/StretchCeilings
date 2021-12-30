@@ -1,8 +1,9 @@
-﻿using stretch_ceilings_app.Interfaces;
-using stretch_ceilings_app.Utility.Enums;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using stretch_ceilings_app.Interfaces;
+using stretch_ceilings_app.Utility;
+using stretch_ceilings_app.Utility.Enums;
 
 namespace stretch_ceilings_app.Models
 {
@@ -13,13 +14,12 @@ namespace stretch_ceilings_app.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public int Area { get; set; }
-        [Required]
         public RoomType Type { get; set; }
         public int Corners { get; set; }
         [Column("EstateId")]
-        public int EstateId { get; set; }
+        public int? EstateId { get; set; }
         [Column("EstateId")]
-        public Estate Estate { get; set; }
+        public virtual Estate Estate { get; set; }
         public DateTime? DateDeleted { get; set; }
 
         public void Add()

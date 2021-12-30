@@ -6,14 +6,9 @@ using System.Threading.Tasks;
 
 namespace stretch_ceilings_app.Utility.Enums
 {
-    public enum CeilingTexture
+    public enum CeilingColor
     {
-        Matte = 0,
-        Glossy,
-        Satin,
-        Tissular,
-        Translucent,
-        Printed,
-        Acoustic
+        White = 0,
+        Colored
     }
 }

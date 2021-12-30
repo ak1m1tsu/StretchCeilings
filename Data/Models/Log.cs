@@ -5,19 +5,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace stretch_ceilings_app.Models
 {
-    [Table("OrderLogs")]
+    [Table("Logs")]
     public class Log : ILog
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Column("OrderId")]
-        public int OrderId { get; set; }
+        public int? OrderId { get; set; }
         [Column("OrderId")]
-        public Order Order { get; set; }
+        public virtual Order Order { get; set; }
         [Required]
         public string Comment { get; set; }
-        public DateTime? DateCanceled { get; set; }
+        public DateTime? DateCreated { get; set; }
         public DateTime? DateDeleted { get; set; }
 
         public void Add()

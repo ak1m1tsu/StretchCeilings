@@ -13,7 +13,7 @@ namespace stretch_ceilings_app.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202112291415543_init"; }
+            get { return "202112301226581_init"; }
         }
         
         string IMigrationMetadata.Source

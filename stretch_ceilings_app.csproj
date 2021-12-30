@@ -71,8 +71,44 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\Models\Category.cs" />
+    <Compile Include="Data\Models\AdditionalService.cs" />
     <Compile Include="Data\StretchCeilingsConfiguration.cs" />
+    <Compile Include="Forms\AdditionalServiceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AdditionalServiceForm.Designer.cs">
+      <DependentUpon>AdditionalServiceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AdditionalServiceFormEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AdditionalServiceFormEdit.Designer.cs">
+      <DependentUpon>AdditionalServiceFormEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CeilingFormEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CeilingFormEdit.Designer.cs">
+      <DependentUpon>CeilingFormEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ManufacturerFormEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ManufacturerFormEdit.Designer.cs">
+      <DependentUpon>ManufacturerFormEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ServiceFormEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ServiceFormEdit.Designer.cs">
+      <DependentUpon>ServiceFormEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TimeTableForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TimeTableForm.Designer.cs">
+      <DependentUpon>TimeTableForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Interfaces\ICustomer.cs" />
     <Compile Include="Interfaces\IEstate.cs" />
     <Compile Include="Interfaces\IManufacturerOrder.cs" />
@@ -111,11 +147,11 @@
     <Compile Include="Forms\EmployeeForm.Designer.cs">
       <DependentUpon>EmployeeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FactoryForm.cs">
+    <Compile Include="Forms\ManufacturerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FactoryForm.Designer.cs">
-      <DependentUpon>FactoryForm.cs</DependentUpon>
+    <Compile Include="Forms\ManufacturerForm.Designer.cs">
+      <DependentUpon>ManufacturerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FactoryOrderForm.cs">
       <SubType>Form</SubType>
@@ -129,11 +165,11 @@
     <Compile Include="Forms\OrderForm.Designer.cs">
       <DependentUpon>OrderForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ProductForm.cs">
+    <Compile Include="Forms\CeilingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ProductForm.Designer.cs">
-      <DependentUpon>ProductForm.cs</DependentUpon>
+    <Compile Include="Forms\CeilingForm.Designer.cs">
+      <DependentUpon>CeilingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\RoomForm.cs">
       <SubType>Form</SubType>
@@ -147,19 +183,15 @@
     <Compile Include="Forms\ServiceForm.Designer.cs">
       <DependentUpon>ServiceForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\TimeTableForm.cs">
+    <Compile Include="Forms\SheduleForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\TimeTableForm.Designer.cs">
-      <DependentUpon>TimeTableForm.cs</DependentUpon>
+    <Compile Include="Forms\SheduleForm.Designer.cs">
+      <DependentUpon>SheduleForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202112291415543_init.cs" />
-    <Compile Include="Migrations\202112291415543_init.designer.cs">
-      <DependentUpon>202112291415543_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202112291416303_role-permissions.cs" />
-    <Compile Include="Migrations\202112291416303_role-permissions.designer.cs">
-      <DependentUpon>202112291416303_role-permissions.cs</DependentUpon>
+    <Compile Include="Migrations\202112301226581_init.cs" />
+    <Compile Include="Migrations\202112301226581_init.designer.cs">
+      <DependentUpon>202112301226581_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
@@ -218,12 +250,32 @@
     </Compile>
     <Compile Include="Utility\DllExtention.cs" />
     <Compile Include="Utility\EnumExtantion.cs" />
+    <Compile Include="Utility\Enums\CeilingColor.cs" />
     <Compile Include="Utility\Enums\CeilingTexture.cs" />
     <Compile Include="Utility\Enums\OrderStatus.cs" />
     <Compile Include="Utility\Enums\PermissionCode.cs" />
     <Compile Include="Utility\Enums\RoomType.cs" />
     <Compile Include="Utility\LogWriter.cs" />
+    <Compile Include="Utility\StringExtantion.cs" />
     <Compile Include="Utility\UserSession.cs" />
+    <EmbeddedResource Include="Forms\AdditionalServiceForm.resx">
+      <DependentUpon>AdditionalServiceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AdditionalServiceFormEdit.resx">
+      <DependentUpon>AdditionalServiceFormEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CeilingFormEdit.resx">
+      <DependentUpon>CeilingFormEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ManufacturerFormEdit.resx">
+      <DependentUpon>ManufacturerFormEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ServiceFormEdit.resx">
+      <DependentUpon>ServiceFormEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TimeTableForm.resx">
+      <DependentUpon>TimeTableForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -236,8 +288,8 @@
     <EmbeddedResource Include="Forms\EmployeeForm.resx">
       <DependentUpon>EmployeeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FactoryForm.resx">
-      <DependentUpon>FactoryForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ManufacturerForm.resx">
+      <DependentUpon>ManufacturerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FactoryOrderForm.resx">
       <DependentUpon>FactoryOrderForm.cs</DependentUpon>
@@ -245,8 +297,8 @@
     <EmbeddedResource Include="Forms\OrderForm.resx">
       <DependentUpon>OrderForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ProductForm.resx">
-      <DependentUpon>ProductForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\CeilingForm.resx">
+      <DependentUpon>CeilingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\RoomForm.resx">
       <DependentUpon>RoomForm.cs</DependentUpon>
@@ -254,14 +306,11 @@
     <EmbeddedResource Include="Forms\ServiceForm.resx">
       <DependentUpon>ServiceForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\TimeTableForm.resx">
-      <DependentUpon>TimeTableForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\SheduleForm.resx">
+      <DependentUpon>SheduleForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202112291415543_init.resx">
-      <DependentUpon>202112291415543_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202112291416303_role-permissions.resx">
-      <DependentUpon>202112291416303_role-permissions.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202112301226581_init.resx">
+      <DependentUpon>202112301226581_init.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

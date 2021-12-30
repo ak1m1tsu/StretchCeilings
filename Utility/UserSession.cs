@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using stretch_ceilings_app.Data;
 using stretch_ceilings_app.Models;
+using stretch_ceilings_app.Utility.Enums;
 
 namespace stretch_ceilings_app.Utility
 {
@@ -24,7 +26,7 @@ namespace stretch_ceilings_app.Utility
             return false;
         }
 
-        public static bool Can(Permission permission)
+        public static bool Can(PermissionCode code)
         {
             using (StretchCeilingsContext db = new StretchCeilingsContext())
             {
@@ -34,7 +36,7 @@ namespace stretch_ceilings_app.Utility
                 if (_currentUser.RoleId == 1) 
                     return true;
 
-                if (_currentUser.Role.GetPermissions().Contains(permission)) 
+                if (_currentUser.Role.GetPermissions().Any(p => p.Code == code))
                     return true;
 
                 return false;

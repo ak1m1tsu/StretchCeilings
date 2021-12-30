@@ -29,330 +29,257 @@ namespace stretch_ceilings_app
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServiceForm));
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.panelMainInfo = new System.Windows.Forms.Panel();
+            this.lblPriceValue = new System.Windows.Forms.Label();
+            this.lblPrice = new System.Windows.Forms.Label();
+            this.linkLblCeilingValue = new System.Windows.Forms.LinkLabel();
+            this.lblCeiling = new System.Windows.Forms.Label();
+            this.linkLblManufaturerValue = new System.Windows.Forms.LinkLabel();
+            this.lblManufacturer = new System.Windows.Forms.Label();
+            this.panelAdditServHeader = new System.Windows.Forms.Panel();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.lblAdditServs = new System.Windows.Forms.Label();
+            this.panelAdditServBody = new System.Windows.Forms.Panel();
+            this.dgvAdditServs = new System.Windows.Forms.DataGridView();
+            this.panelGridBtns = new System.Windows.Forms.Panel();
+            this.btnPreviousPage = new System.Windows.Forms.Button();
+            this.tbPage = new System.Windows.Forms.TextBox();
+            this.btnNextPage = new System.Windows.Forms.Button();
+            this.panelMainInfo.SuspendLayout();
+            this.panelAdditServHeader.SuspendLayout();
+            this.panelAdditServBody.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAdditServs)).BeginInit();
+            this.panelGridBtns.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // panelMainInfo
             // 
-            this.groupBox1.Controls.Add(this.panel1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1184, 561);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Услуга №0";
+            this.panelMainInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
+            this.panelMainInfo.Controls.Add(this.lblPriceValue);
+            this.panelMainInfo.Controls.Add(this.lblPrice);
+            this.panelMainInfo.Controls.Add(this.linkLblCeilingValue);
+            this.panelMainInfo.Controls.Add(this.lblCeiling);
+            this.panelMainInfo.Controls.Add(this.linkLblManufaturerValue);
+            this.panelMainInfo.Controls.Add(this.lblManufacturer);
+            this.panelMainInfo.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelMainInfo.Location = new System.Drawing.Point(0, 0);
+            this.panelMainInfo.Name = "panelMainInfo";
+            this.panelMainInfo.Size = new System.Drawing.Size(387, 411);
+            this.panelMainInfo.TabIndex = 0;
             // 
-            // panel1
+            // lblPriceValue
             // 
-            this.panel1.Controls.Add(this.groupBox2);
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 29);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1178, 529);
-            this.panel1.TabIndex = 29;
+            this.lblPriceValue.AutoSize = true;
+            this.lblPriceValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblPriceValue.Location = new System.Drawing.Point(176, 78);
+            this.lblPriceValue.Name = "lblPriceValue";
+            this.lblPriceValue.Size = new System.Drawing.Size(106, 24);
+            this.lblPriceValue.TabIndex = 6;
+            this.lblPriceValue.Text = "450.00 руб.";
             // 
-            // groupBox2
+            // lblPrice
             // 
-            this.groupBox2.Controls.Add(this.richTextBox1);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(428, 0);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(750, 529);
-            this.groupBox2.TabIndex = 53;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Описание";
+            this.lblPrice.AutoSize = true;
+            this.lblPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblPrice.Location = new System.Drawing.Point(12, 78);
+            this.lblPrice.Name = "lblPrice";
+            this.lblPrice.Size = new System.Drawing.Size(59, 24);
+            this.lblPrice.TabIndex = 5;
+            this.lblPrice.Text = "Цена:";
             // 
-            // richTextBox1
+            // linkLblCeilingValue
             // 
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox1.Location = new System.Drawing.Point(3, 29);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(744, 497);
-            this.richTextBox1.TabIndex = 28;
-            this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
+            this.linkLblCeilingValue.ActiveLinkColor = System.Drawing.Color.White;
+            this.linkLblCeilingValue.AutoSize = true;
+            this.linkLblCeilingValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.linkLblCeilingValue.LinkColor = System.Drawing.Color.Black;
+            this.linkLblCeilingValue.Location = new System.Drawing.Point(176, 44);
+            this.linkLblCeilingValue.Name = "linkLblCeilingValue";
+            this.linkLblCeilingValue.Size = new System.Drawing.Size(153, 24);
+            this.linkLblCeilingValue.TabIndex = 4;
+            this.linkLblCeilingValue.TabStop = true;
+            this.linkLblCeilingValue.Text = "Матовый белый";
+            this.linkLblCeilingValue.VisitedLinkColor = System.Drawing.Color.Black;
             // 
-            // panel2
+            // lblCeiling
             // 
-            this.panel2.Controls.Add(this.button3);
-            this.panel2.Controls.Add(this.textBox2);
-            this.panel2.Controls.Add(this.label11);
-            this.panel2.Controls.Add(this.textBox5);
-            this.panel2.Controls.Add(this.label9);
-            this.panel2.Controls.Add(this.textBox4);
-            this.panel2.Controls.Add(this.label10);
-            this.panel2.Controls.Add(this.comboBox3);
-            this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.comboBox1);
-            this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.comboBox2);
-            this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(428, 529);
-            this.panel2.TabIndex = 52;
+            this.lblCeiling.AutoSize = true;
+            this.lblCeiling.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblCeiling.Location = new System.Drawing.Point(12, 44);
+            this.lblCeiling.Name = "lblCeiling";
+            this.lblCeiling.Size = new System.Drawing.Size(90, 24);
+            this.lblCeiling.TabIndex = 3;
+            this.lblCeiling.Text = "Потолок:";
             // 
-            // button3
+            // linkLblManufaturerValue
             // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button3.Location = new System.Drawing.Point(302, 490);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(120, 30);
-            this.button3.TabIndex = 66;
-            this.button3.Text = "Изменить";
-            this.button3.UseVisualStyleBackColor = true;
+            this.linkLblManufaturerValue.ActiveLinkColor = System.Drawing.Color.White;
+            this.linkLblManufaturerValue.AutoSize = true;
+            this.linkLblManufaturerValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.linkLblManufaturerValue.LinkColor = System.Drawing.Color.Black;
+            this.linkLblManufaturerValue.Location = new System.Drawing.Point(176, 9);
+            this.linkLblManufaturerValue.Name = "linkLblManufaturerValue";
+            this.linkLblManufaturerValue.Size = new System.Drawing.Size(64, 24);
+            this.linkLblManufaturerValue.TabIndex = 2;
+            this.linkLblManufaturerValue.TabStop = true;
+            this.linkLblManufaturerValue.Text = "Pongs";
+            this.linkLblManufaturerValue.VisitedLinkColor = System.Drawing.Color.Black;
             // 
-            // textBox2
+            // lblManufacturer
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.textBox2.Location = new System.Drawing.Point(143, 254);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(71, 29);
-            this.textBox2.TabIndex = 65;
-            this.textBox2.Text = "1";
+            this.lblManufacturer.AutoSize = true;
+            this.lblManufacturer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblManufacturer.Location = new System.Drawing.Point(12, 9);
+            this.lblManufacturer.Name = "lblManufacturer";
+            this.lblManufacturer.Size = new System.Drawing.Size(158, 24);
+            this.lblManufacturer.TabIndex = 1;
+            this.lblManufacturer.Text = "Производитель:";
             // 
-            // label11
+            // panelAdditServHeader
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label11.Location = new System.Drawing.Point(8, 257);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(85, 24);
-            this.label11.TabIndex = 64;
-            this.label11.Text = "Люстры:";
+            this.panelAdditServHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
+            this.panelAdditServHeader.Controls.Add(this.btnEdit);
+            this.panelAdditServHeader.Controls.Add(this.lblAdditServs);
+            this.panelAdditServHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelAdditServHeader.Location = new System.Drawing.Point(387, 0);
+            this.panelAdditServHeader.Name = "panelAdditServHeader";
+            this.panelAdditServHeader.Size = new System.Drawing.Size(797, 44);
+            this.panelAdditServHeader.TabIndex = 1;
             // 
-            // textBox5
+            // btnEdit
             // 
-            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.textBox5.Location = new System.Drawing.Point(143, 216);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(71, 29);
-            this.textBox5.TabIndex = 63;
-            this.textBox5.Text = "0";
+            this.btnEdit.BackColor = System.Drawing.Color.Black;
+            this.btnEdit.FlatAppearance.BorderSize = 0;
+            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnEdit.ForeColor = System.Drawing.Color.White;
+            this.btnEdit.Location = new System.Drawing.Point(681, 7);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(110, 30);
+            this.btnEdit.TabIndex = 48;
+            this.btnEdit.Text = "Изменить";
+            this.btnEdit.UseVisualStyleBackColor = false;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
-            // label9
+            // lblAdditServs
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label9.Location = new System.Drawing.Point(8, 218);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(134, 24);
-            this.label9.TabIndex = 62;
-            this.label9.Text = "Светильники:";
+            this.lblAdditServs.AutoSize = true;
+            this.lblAdditServs.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblAdditServs.Location = new System.Drawing.Point(6, 9);
+            this.lblAdditServs.Name = "lblAdditServs";
+            this.lblAdditServs.Size = new System.Drawing.Size(234, 24);
+            this.lblAdditServs.TabIndex = 0;
+            this.lblAdditServs.Text = "Дополнительные услуги:";
             // 
-            // textBox4
+            // panelAdditServBody
             // 
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.textBox4.Location = new System.Drawing.Point(143, 176);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(71, 29);
-            this.textBox4.TabIndex = 61;
-            this.textBox4.Text = "2";
+            this.panelAdditServBody.Controls.Add(this.dgvAdditServs);
+            this.panelAdditServBody.Controls.Add(this.panelGridBtns);
+            this.panelAdditServBody.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelAdditServBody.Location = new System.Drawing.Point(387, 44);
+            this.panelAdditServBody.Name = "panelAdditServBody";
+            this.panelAdditServBody.Size = new System.Drawing.Size(797, 367);
+            this.panelAdditServBody.TabIndex = 2;
             // 
-            // label10
+            // dgvAdditServs
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label10.Location = new System.Drawing.Point(8, 179);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(71, 24);
-            this.label10.TabIndex = 60;
-            this.label10.Text = "Трубы:";
+            this.dgvAdditServs.BackgroundColor = System.Drawing.Color.Black;
+            this.dgvAdditServs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAdditServs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvAdditServs.Location = new System.Drawing.Point(0, 0);
+            this.dgvAdditServs.Name = "dgvAdditServs";
+            this.dgvAdditServs.Size = new System.Drawing.Size(797, 326);
+            this.dgvAdditServs.TabIndex = 1;
             // 
-            // comboBox3
+            // panelGridBtns
             // 
-            this.comboBox3.AutoCompleteCustomSource.AddRange(new string[] {
-            "Ожидает ответа клиента",
-            "Ожидает выполнения работ",
-            "Ожидает результатов замеров",
-            "Отменен",
-            "Завершен"});
-            this.comboBox3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
-            this.comboBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(143, 137);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(169, 32);
-            this.comboBox3.TabIndex = 59;
-            this.comboBox3.Text = "Нет";
+            this.panelGridBtns.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
+            this.panelGridBtns.Controls.Add(this.btnPreviousPage);
+            this.panelGridBtns.Controls.Add(this.tbPage);
+            this.panelGridBtns.Controls.Add(this.btnNextPage);
+            this.panelGridBtns.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelGridBtns.Location = new System.Drawing.Point(0, 326);
+            this.panelGridBtns.Name = "panelGridBtns";
+            this.panelGridBtns.Size = new System.Drawing.Size(797, 41);
+            this.panelGridBtns.TabIndex = 0;
             // 
-            // label8
+            // btnPreviousPage
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label8.Location = new System.Drawing.Point(8, 139);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(119, 25);
-            this.label8.TabIndex = 58;
-            this.label8.Text = "Подстветка:";
+            this.btnPreviousPage.BackColor = System.Drawing.Color.Black;
+            this.btnPreviousPage.FlatAppearance.BorderSize = 0;
+            this.btnPreviousPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPreviousPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnPreviousPage.ForeColor = System.Drawing.Color.White;
+            this.btnPreviousPage.Location = new System.Drawing.Point(10, 6);
+            this.btnPreviousPage.Name = "btnPreviousPage";
+            this.btnPreviousPage.Size = new System.Drawing.Size(30, 29);
+            this.btnPreviousPage.TabIndex = 75;
+            this.btnPreviousPage.Text = "<";
+            this.btnPreviousPage.UseVisualStyleBackColor = false;
             // 
-            // comboBox1
+            // tbPage
             // 
-            this.comboBox1.AutoCompleteCustomSource.AddRange(new string[] {
-            "Ожидает ответа клиента",
-            "Ожидает выполнения работ",
-            "Ожидает результатов замеров",
-            "Отменен",
-            "Завершен"});
-            this.comboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(143, 49);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(169, 32);
-            this.comboBox1.TabIndex = 57;
-            this.comboBox1.Text = "Pongs";
+            this.tbPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.tbPage.Location = new System.Drawing.Point(46, 6);
+            this.tbPage.Name = "tbPage";
+            this.tbPage.Size = new System.Drawing.Size(80, 29);
+            this.tbPage.TabIndex = 74;
+            this.tbPage.Text = "1/1";
+            this.tbPage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // label6
+            // btnNextPage
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label6.Location = new System.Drawing.Point(8, 51);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(70, 25);
-            this.label6.TabIndex = 56;
-            this.label6.Text = "Завод:";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.AutoCompleteCustomSource.AddRange(new string[] {
-            "Ожидает ответа клиента",
-            "Ожидает выполнения работ",
-            "Ожидает результатов замеров",
-            "Отменен",
-            "Завершен"});
-            this.comboBox2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
-            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(143, 93);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(169, 32);
-            this.comboBox2.TabIndex = 55;
-            this.comboBox2.Text = "Матовый белый";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label5.Location = new System.Drawing.Point(8, 94);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(106, 25);
-            this.label5.TabIndex = 54;
-            this.label5.Text = "Материал:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(143, 290);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(82, 25);
-            this.label4.TabIndex = 53;
-            this.label4.Text = "500 руб";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(143, 13);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(265, 25);
-            this.label3.TabIndex = 52;
-            this.label3.Text = "Матовый натяжной потолок";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label7.Location = new System.Drawing.Point(8, 13);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(103, 25);
-            this.label7.TabIndex = 50;
-            this.label7.Text = "Название:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(8, 290);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 25);
-            this.label1.TabIndex = 51;
-            this.label1.Text = "Цена:";
+            this.btnNextPage.BackColor = System.Drawing.Color.Black;
+            this.btnNextPage.FlatAppearance.BorderSize = 0;
+            this.btnNextPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNextPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnNextPage.ForeColor = System.Drawing.Color.White;
+            this.btnNextPage.Location = new System.Drawing.Point(132, 6);
+            this.btnNextPage.Name = "btnNextPage";
+            this.btnNextPage.Size = new System.Drawing.Size(30, 29);
+            this.btnNextPage.TabIndex = 73;
+            this.btnNextPage.Text = ">";
+            this.btnNextPage.UseVisualStyleBackColor = false;
             // 
             // ServiceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 561);
-            this.Controls.Add(this.groupBox1);
-            this.MinimumSize = new System.Drawing.Size(1200, 600);
+            this.ClientSize = new System.Drawing.Size(1184, 411);
+            this.Controls.Add(this.panelAdditServBody);
+            this.Controls.Add(this.panelAdditServHeader);
+            this.Controls.Add(this.panelMainInfo);
             this.Name = "ServiceForm";
-            this.groupBox1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.Load += new System.EventHandler(this.ServiceForm_Load);
+            this.panelMainInfo.ResumeLayout(false);
+            this.panelMainInfo.PerformLayout();
+            this.panelAdditServHeader.ResumeLayout(false);
+            this.panelAdditServHeader.PerformLayout();
+            this.panelAdditServBody.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAdditServs)).EndInit();
+            this.panelGridBtns.ResumeLayout(false);
+            this.panelGridBtns.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Panel panelMainInfo;
+        private System.Windows.Forms.Panel panelAdditServHeader;
+        private System.Windows.Forms.Label lblAdditServs;
+        private System.Windows.Forms.Panel panelAdditServBody;
+        private System.Windows.Forms.DataGridView dgvAdditServs;
+        private System.Windows.Forms.Panel panelGridBtns;
+        private System.Windows.Forms.Button btnPreviousPage;
+        private System.Windows.Forms.TextBox tbPage;
+        private System.Windows.Forms.Button btnNextPage;
+        private System.Windows.Forms.LinkLabel linkLblCeilingValue;
+        private System.Windows.Forms.Label lblCeiling;
+        private System.Windows.Forms.LinkLabel linkLblManufaturerValue;
+        private System.Windows.Forms.Label lblManufacturer;
+        private System.Windows.Forms.Label lblPriceValue;
+        private System.Windows.Forms.Label lblPrice;
+        private System.Windows.Forms.Button btnEdit;
     }
 }

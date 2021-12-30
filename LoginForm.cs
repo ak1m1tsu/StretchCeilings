@@ -14,12 +14,11 @@ namespace stretch_ceilings_app
     {
         private MainForm _mainForm;
         private List<Employee> _users;
+
         public LoginForm()
         {
             InitializeComponent();
         }
-
-
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
@@ -35,20 +34,13 @@ namespace stretch_ceilings_app
                 MessageBox.Show("Неверный логин или пароль.", "Авторизация не пройдена.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-            using (StretchCeilingsContext db = new StretchCeilingsContext())
+            using (var db = new StretchCeilingsContext())
             {
                 _users = db.Employees.Where(u => u.DateDeleted == null).ToList();
-                foreach (var _ in _users)
-                {
-                    db.Entry(_).Reference("Role").Load();
-                }
+                _users.ForEach(user => db.Entry(user).Reference("Role").Load());
             }
 
             tbPassword.PasswordChar = '*';

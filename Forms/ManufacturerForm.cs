@@ -8,16 +8,16 @@ using System.Windows.Forms;
 
 namespace stretch_ceilings_app
 {
-    public partial class FactoryForm : Form
+    public partial class ManufacturerForm : Form
     {
-        public FactoryForm()
+        public ManufacturerForm()
         {
             InitializeComponent();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            new ProductForm().ShowDialog();
+            new CeilingForm().ShowDialog();
         }
     }
 }

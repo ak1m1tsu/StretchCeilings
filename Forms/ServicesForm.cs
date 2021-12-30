@@ -1,4 +1,5 @@
-﻿using System;
+﻿using stretch_ceilings_app.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,7 +18,7 @@ namespace stretch_ceilings_app
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new ServiceForm().ShowDialog();
+            new ServiceForm(new Service()).ShowDialog();
         }
     }
 }
