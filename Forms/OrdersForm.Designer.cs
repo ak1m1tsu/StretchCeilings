@@ -1,5 +1,5 @@
 ﻿
-namespace stretch_ceilings_app
+namespace stretch_ceilings_app.Forms
 {
     partial class OrdersForm
     {
@@ -29,461 +29,442 @@ namespace stretch_ceilings_app
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.button6 = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label2 = new System.Windows.Forms.Label();
+            this.panelUserButtons = new System.Windows.Forms.Panel();
+            this.panelFilters = new System.Windows.Forms.Panel();
+            this.panelPages = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel7.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.panel5.SuspendLayout();
+            this.panelSearchButtons = new System.Windows.Forms.Panel();
+            this.tbPriceToValue = new System.Windows.Forms.TextBox();
+            this.lblPriceTo = new System.Windows.Forms.Label();
+            this.tbPriceFromValue = new System.Windows.Forms.TextBox();
+            this.lblPriceFrom = new System.Windows.Forms.Label();
+            this.lblId = new System.Windows.Forms.Label();
+            this.linkLblServiceValue = new System.Windows.Forms.LinkLabel();
+            this.lblService = new System.Windows.Forms.Label();
+            this.linkLblEmployeeValue = new System.Windows.Forms.LinkLabel();
+            this.lblEmployee = new System.Windows.Forms.Label();
+            this.linkLblCustomerValue = new System.Windows.Forms.LinkLabel();
+            this.lblCustomer = new System.Windows.Forms.Label();
+            this.cbPaidByCash = new System.Windows.Forms.CheckBox();
+            this.cbStatusValue = new System.Windows.Forms.ComboBox();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.dtpDateValueTo = new System.Windows.Forms.DateTimePicker();
+            this.lblDateTo = new System.Windows.Forms.Label();
+            this.dtpDateFromValue = new System.Windows.Forms.DateTimePicker();
+            this.lblDateFrom = new System.Windows.Forms.Label();
+            this.nudIdValue = new System.Windows.Forms.NumericUpDown();
+            this.btnPreviousPage = new System.Windows.Forms.Button();
+            this.tbPage = new System.Windows.Forms.TextBox();
+            this.btnNextPage = new System.Windows.Forms.Button();
+            this.btnResetFilters = new System.Windows.Forms.Button();
+            this.btnUseFilters = new System.Windows.Forms.Button();
+            this.panelUserButtons.SuspendLayout();
+            this.panelFilters.SuspendLayout();
+            this.panelPages.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panelSearchButtons.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudIdValue)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel2
+            // panelUserButtons
             // 
-            this.panel2.Controls.Add(this.button1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(1054, 114);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(130, 501);
-            this.panel2.TabIndex = 1;
+            this.panelUserButtons.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
+            this.panelUserButtons.Controls.Add(this.panelSearchButtons);
+            this.panelUserButtons.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panelUserButtons.Location = new System.Drawing.Point(1054, 0);
+            this.panelUserButtons.Name = "panelUserButtons";
+            this.panelUserButtons.Size = new System.Drawing.Size(130, 561);
+            this.panelUserButtons.TabIndex = 0;
             // 
-            // button1
+            // panelFilters
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(130, 56);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Добавить";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.panelFilters.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
+            this.panelFilters.Controls.Add(this.nudIdValue);
+            this.panelFilters.Controls.Add(this.tbPriceToValue);
+            this.panelFilters.Controls.Add(this.lblPriceTo);
+            this.panelFilters.Controls.Add(this.tbPriceFromValue);
+            this.panelFilters.Controls.Add(this.lblPriceFrom);
+            this.panelFilters.Controls.Add(this.lblId);
+            this.panelFilters.Controls.Add(this.linkLblServiceValue);
+            this.panelFilters.Controls.Add(this.lblService);
+            this.panelFilters.Controls.Add(this.linkLblEmployeeValue);
+            this.panelFilters.Controls.Add(this.lblEmployee);
+            this.panelFilters.Controls.Add(this.linkLblCustomerValue);
+            this.panelFilters.Controls.Add(this.lblCustomer);
+            this.panelFilters.Controls.Add(this.cbPaidByCash);
+            this.panelFilters.Controls.Add(this.cbStatusValue);
+            this.panelFilters.Controls.Add(this.lblStatus);
+            this.panelFilters.Controls.Add(this.dtpDateValueTo);
+            this.panelFilters.Controls.Add(this.lblDateTo);
+            this.panelFilters.Controls.Add(this.dtpDateFromValue);
+            this.panelFilters.Controls.Add(this.lblDateFrom);
+            this.panelFilters.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelFilters.Location = new System.Drawing.Point(0, 0);
+            this.panelFilters.Name = "panelFilters";
+            this.panelFilters.Size = new System.Drawing.Size(1054, 110);
+            this.panelFilters.TabIndex = 1;
             // 
-            // panel3
+            // panelPages
             // 
-            this.panel3.Controls.Add(this.dataGridView1);
-            this.panel3.Controls.Add(this.panel7);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.panel3.Location = new System.Drawing.Point(0, 114);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1054, 501);
-            this.panel3.TabIndex = 2;
+            this.panelPages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
+            this.panelPages.Controls.Add(this.btnPreviousPage);
+            this.panelPages.Controls.Add(this.tbPage);
+            this.panelPages.Controls.Add(this.btnNextPage);
+            this.panelPages.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelPages.Location = new System.Drawing.Point(0, 521);
+            this.panelPages.Name = "panelPages";
+            this.panelPages.Size = new System.Drawing.Size(1054, 40);
+            this.panelPages.TabIndex = 2;
             // 
-            // panel7
+            // dataGridView1
             // 
-            this.panel7.Controls.Add(this.button6);
-            this.panel7.Controls.Add(this.textBox4);
-            this.panel7.Controls.Add(this.button4);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel7.Location = new System.Drawing.Point(0, 463);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1054, 38);
-            this.panel7.TabIndex = 3;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.Black;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 110);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(1054, 411);
+            this.dataGridView1.TabIndex = 3;
             // 
-            // button6
+            // panelSearchButtons
             // 
-            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button6.Location = new System.Drawing.Point(3, 6);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(30, 29);
-            this.button6.TabIndex = 90;
-            this.button6.Text = "<";
-            this.button6.UseVisualStyleBackColor = true;
+            this.panelSearchButtons.Controls.Add(this.btnResetFilters);
+            this.panelSearchButtons.Controls.Add(this.btnUseFilters);
+            this.panelSearchButtons.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelSearchButtons.Location = new System.Drawing.Point(0, 0);
+            this.panelSearchButtons.Name = "panelSearchButtons";
+            this.panelSearchButtons.Size = new System.Drawing.Size(130, 110);
+            this.panelSearchButtons.TabIndex = 0;
             // 
-            // textBox4
+            // tbPriceToValue
             // 
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.textBox4.Location = new System.Drawing.Point(39, 6);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(80, 29);
-            this.textBox4.TabIndex = 89;
+            this.tbPriceToValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.tbPriceToValue.Location = new System.Drawing.Point(853, 40);
+            this.tbPriceToValue.Name = "tbPriceToValue";
+            this.tbPriceToValue.Size = new System.Drawing.Size(115, 29);
+            this.tbPriceToValue.TabIndex = 92;
+            this.tbPriceToValue.Text = "6000";
+            this.tbPriceToValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // button4
+            // lblPriceTo
             // 
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button4.Location = new System.Drawing.Point(125, 6);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(30, 29);
-            this.button4.TabIndex = 88;
-            this.button4.Text = ">";
-            this.button4.UseVisualStyleBackColor = true;
+            this.lblPriceTo.AutoSize = true;
+            this.lblPriceTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblPriceTo.Location = new System.Drawing.Point(802, 42);
+            this.lblPriceTo.Name = "lblPriceTo";
+            this.lblPriceTo.Size = new System.Drawing.Size(38, 24);
+            this.lblPriceTo.TabIndex = 91;
+            this.lblPriceTo.Text = "до:";
             // 
-            // panel4
+            // tbPriceFromValue
             // 
-            this.panel4.Controls.Add(this.button3);
-            this.panel4.Controls.Add(this.button2);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(1054, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(130, 114);
-            this.panel4.TabIndex = 21;
+            this.tbPriceFromValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.tbPriceFromValue.Location = new System.Drawing.Point(670, 41);
+            this.tbPriceFromValue.Name = "tbPriceFromValue";
+            this.tbPriceFromValue.Size = new System.Drawing.Size(115, 29);
+            this.tbPriceFromValue.TabIndex = 90;
+            this.tbPriceFromValue.Text = "3000";
+            this.tbPriceFromValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // button3
+            // lblPriceFrom
             // 
-            this.button3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button3.Location = new System.Drawing.Point(0, 56);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(130, 56);
-            this.button3.TabIndex = 8;
-            this.button3.Text = "Сбросить";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.UseVisualStyleBackColor = true;
+            this.lblPriceFrom.AutoSize = true;
+            this.lblPriceFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblPriceFrom.Location = new System.Drawing.Point(520, 43);
+            this.lblPriceFrom.Name = "lblPriceFrom";
+            this.lblPriceFrom.Size = new System.Drawing.Size(141, 24);
+            this.lblPriceFrom.TabIndex = 89;
+            this.lblPriceFrom.Text = "Стоимость от:";
             // 
-            // button2
+            // lblId
             // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button2.Location = new System.Drawing.Point(0, 0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(130, 56);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Применить";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.UseVisualStyleBackColor = true;
+            this.lblId.AutoSize = true;
+            this.lblId.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblId.Location = new System.Drawing.Point(14, 77);
+            this.lblId.Name = "lblId";
+            this.lblId.Size = new System.Drawing.Size(74, 24);
+            this.lblId.TabIndex = 88;
+            this.lblId.Text = "Номер:";
             // 
-            // panel1
+            // linkLblServiceValue
             // 
-            this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel1.Controls.Add(this.panel5);
-            this.panel1.Controls.Add(this.panel4);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1184, 114);
-            this.panel1.TabIndex = 0;
+            this.linkLblServiceValue.ActiveLinkColor = System.Drawing.Color.White;
+            this.linkLblServiceValue.AutoSize = true;
+            this.linkLblServiceValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.linkLblServiceValue.LinkColor = System.Drawing.Color.Black;
+            this.linkLblServiceValue.Location = new System.Drawing.Point(397, 77);
+            this.linkLblServiceValue.Name = "linkLblServiceValue";
+            this.linkLblServiceValue.Size = new System.Drawing.Size(117, 24);
+            this.linkLblServiceValue.TabIndex = 86;
+            this.linkLblServiceValue.TabStop = true;
+            this.linkLblServiceValue.Text = "Не выбрано";
+            this.linkLblServiceValue.VisitedLinkColor = System.Drawing.Color.Black;
             // 
-            // panel5
+            // lblService
             // 
-            this.panel5.Controls.Add(this.textBox3);
-            this.panel5.Controls.Add(this.label10);
-            this.panel5.Controls.Add(this.textBox2);
-            this.panel5.Controls.Add(this.label11);
-            this.panel5.Controls.Add(this.label7);
-            this.panel5.Controls.Add(this.textBox1);
-            this.panel5.Controls.Add(this.linkLabel3);
-            this.panel5.Controls.Add(this.label6);
-            this.panel5.Controls.Add(this.linkLabel2);
-            this.panel5.Controls.Add(this.label5);
-            this.panel5.Controls.Add(this.linkLabel1);
-            this.panel5.Controls.Add(this.label4);
-            this.panel5.Controls.Add(this.checkBox1);
-            this.panel5.Controls.Add(this.comboBox2);
-            this.panel5.Controls.Add(this.label3);
-            this.panel5.Controls.Add(this.dateTimePicker2);
-            this.panel5.Controls.Add(this.label1);
-            this.panel5.Controls.Add(this.dateTimePicker1);
-            this.panel5.Controls.Add(this.label2);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(0, 0);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1054, 114);
-            this.panel5.TabIndex = 22;
+            this.lblService.AutoSize = true;
+            this.lblService.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblService.Location = new System.Drawing.Point(297, 77);
+            this.lblService.Name = "lblService";
+            this.lblService.Size = new System.Drawing.Size(75, 24);
+            this.lblService.TabIndex = 85;
+            this.lblService.Text = "Услуга:";
             // 
-            // textBox3
+            // linkLblEmployeeValue
             // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.textBox3.Location = new System.Drawing.Point(823, 42);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(115, 29);
-            this.textBox3.TabIndex = 73;
-            this.textBox3.Text = "6000";
-            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.linkLblEmployeeValue.ActiveLinkColor = System.Drawing.Color.White;
+            this.linkLblEmployeeValue.AutoSize = true;
+            this.linkLblEmployeeValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.linkLblEmployeeValue.LinkColor = System.Drawing.Color.Black;
+            this.linkLblEmployeeValue.Location = new System.Drawing.Point(397, 43);
+            this.linkLblEmployeeValue.Name = "linkLblEmployeeValue";
+            this.linkLblEmployeeValue.Size = new System.Drawing.Size(117, 24);
+            this.linkLblEmployeeValue.TabIndex = 84;
+            this.linkLblEmployeeValue.TabStop = true;
+            this.linkLblEmployeeValue.Text = "Не выбрано";
+            this.linkLblEmployeeValue.VisitedLinkColor = System.Drawing.Color.Black;
             // 
-            // label10
+            // lblEmployee
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label10.Location = new System.Drawing.Point(779, 44);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(38, 24);
-            this.label10.TabIndex = 72;
-            this.label10.Text = "до:";
+            this.lblEmployee.AutoSize = true;
+            this.lblEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblEmployee.Location = new System.Drawing.Point(297, 43);
+            this.lblEmployee.Name = "lblEmployee";
+            this.lblEmployee.Size = new System.Drawing.Size(100, 24);
+            this.lblEmployee.TabIndex = 83;
+            this.lblEmployee.Text = "Работник:";
             // 
-            // textBox2
+            // linkLblCustomerValue
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.textBox2.Location = new System.Drawing.Point(659, 42);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(115, 29);
-            this.textBox2.TabIndex = 71;
-            this.textBox2.Text = "3000";
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.linkLblCustomerValue.ActiveLinkColor = System.Drawing.Color.White;
+            this.linkLblCustomerValue.AutoSize = true;
+            this.linkLblCustomerValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.linkLblCustomerValue.LinkColor = System.Drawing.Color.Black;
+            this.linkLblCustomerValue.Location = new System.Drawing.Point(397, 9);
+            this.linkLblCustomerValue.Name = "linkLblCustomerValue";
+            this.linkLblCustomerValue.Size = new System.Drawing.Size(117, 24);
+            this.linkLblCustomerValue.TabIndex = 82;
+            this.linkLblCustomerValue.TabStop = true;
+            this.linkLblCustomerValue.Text = "Не выбрано";
+            this.linkLblCustomerValue.VisitedLinkColor = System.Drawing.Color.Black;
             // 
-            // label11
+            // lblCustomer
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label11.Location = new System.Drawing.Point(509, 44);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(141, 24);
-            this.label11.TabIndex = 70;
-            this.label11.Text = "Стоимость от:";
+            this.lblCustomer.AutoSize = true;
+            this.lblCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblCustomer.Location = new System.Drawing.Point(297, 9);
+            this.lblCustomer.Name = "lblCustomer";
+            this.lblCustomer.Size = new System.Drawing.Size(80, 24);
+            this.lblCustomer.TabIndex = 81;
+            this.lblCustomer.Text = "Клиент:";
             // 
-            // label7
+            // cbPaidByCash
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label7.Location = new System.Drawing.Point(12, 78);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(74, 24);
-            this.label7.TabIndex = 65;
-            this.label7.Text = "Номер:";
+            this.cbPaidByCash.AutoSize = true;
+            this.cbPaidByCash.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbPaidByCash.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.cbPaidByCash.Location = new System.Drawing.Point(520, 77);
+            this.cbPaidByCash.Name = "cbPaidByCash";
+            this.cbPaidByCash.Size = new System.Drawing.Size(209, 28);
+            this.cbPaidByCash.TabIndex = 80;
+            this.cbPaidByCash.Text = "Оплачен наличными";
+            this.cbPaidByCash.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // cbStatusValue
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.textBox1.Location = new System.Drawing.Point(100, 76);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(180, 29);
-            this.textBox1.TabIndex = 64;
-            // 
-            // linkLabel3
-            // 
-            this.linkLabel3.AutoSize = true;
-            this.linkLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.linkLabel3.Location = new System.Drawing.Point(386, 78);
-            this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(117, 24);
-            this.linkLabel3.TabIndex = 63;
-            this.linkLabel3.TabStop = true;
-            this.linkLabel3.Text = "Не выбрано";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label6.Location = new System.Drawing.Point(286, 78);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(75, 24);
-            this.label6.TabIndex = 62;
-            this.label6.Text = "Услуга:";
-            // 
-            // linkLabel2
-            // 
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.linkLabel2.Location = new System.Drawing.Point(386, 44);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(117, 24);
-            this.linkLabel2.TabIndex = 61;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "Не выбрано";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label5.Location = new System.Drawing.Point(286, 44);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(100, 24);
-            this.label5.TabIndex = 60;
-            this.label5.Text = "Работник:";
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.linkLabel1.Location = new System.Drawing.Point(386, 10);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(117, 24);
-            this.linkLabel1.TabIndex = 59;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Не выбрано";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label4.Location = new System.Drawing.Point(286, 10);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(80, 24);
-            this.label4.TabIndex = 58;
-            this.label4.Text = "Клиент:";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.checkBox1.Location = new System.Drawing.Point(509, 78);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(212, 28);
-            this.checkBox1.TabIndex = 57;
-            this.checkBox1.Text = "Оплачен наличными";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.AutoCompleteCustomSource.AddRange(new string[] {
+            this.cbStatusValue.AutoCompleteCustomSource.AddRange(new string[] {
             "Ожидает ответа клиента",
             "Ожидает выполнения работ",
             "Ожидает результатов замеров",
             "Отменен",
             "Завершен"});
-            this.comboBox2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
-            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(659, 8);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(279, 32);
-            this.comboBox2.TabIndex = 56;
-            this.comboBox2.Text = "Ожидает результата замеров";
+            this.cbStatusValue.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.cbStatusValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.cbStatusValue.FormattingEnabled = true;
+            this.cbStatusValue.Location = new System.Drawing.Point(670, 7);
+            this.cbStatusValue.Name = "cbStatusValue";
+            this.cbStatusValue.Size = new System.Drawing.Size(298, 32);
+            this.cbStatusValue.TabIndex = 79;
+            this.cbStatusValue.Text = "Ожидает результата замеров";
             // 
-            // label3
+            // lblStatus
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label3.Location = new System.Drawing.Point(509, 10);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 24);
-            this.label3.TabIndex = 55;
-            this.label3.Text = "Статус:";
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblStatus.Location = new System.Drawing.Point(520, 9);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(77, 24);
+            this.lblStatus.TabIndex = 78;
+            this.lblStatus.Text = "Статус:";
             // 
-            // dateTimePicker2
+            // dtpDateValueTo
             // 
-            this.dateTimePicker2.CustomFormat = "dd.MM.yyyy HH:mm";
-            this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(100, 42);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(180, 29);
-            this.dateTimePicker2.TabIndex = 54;
+            this.dtpDateValueTo.CustomFormat = "dd.MM.yyyy HH:mm";
+            this.dtpDateValueTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.dtpDateValueTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpDateValueTo.Location = new System.Drawing.Point(102, 41);
+            this.dtpDateValueTo.Name = "dtpDateValueTo";
+            this.dtpDateValueTo.Size = new System.Drawing.Size(189, 29);
+            this.dtpDateValueTo.TabIndex = 77;
             // 
-            // label1
+            // lblDateTo
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label1.Location = new System.Drawing.Point(10, 44);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 24);
-            this.label1.TabIndex = 53;
-            this.label1.Text = "Дата до:";
+            this.lblDateTo.AutoSize = true;
+            this.lblDateTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblDateTo.Location = new System.Drawing.Point(12, 43);
+            this.lblDateTo.Name = "lblDateTo";
+            this.lblDateTo.Size = new System.Drawing.Size(87, 24);
+            this.lblDateTo.TabIndex = 76;
+            this.lblDateTo.Text = "Дата до:";
             // 
-            // dateTimePicker1
+            // dtpDateFromValue
             // 
-            this.dateTimePicker1.CustomFormat = "dd.MM.yyyy HH:mm";
-            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(100, 8);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(180, 29);
-            this.dateTimePicker1.TabIndex = 52;
+            this.dtpDateFromValue.CustomFormat = "dd.MM.yyyy HH:mm";
+            this.dtpDateFromValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.dtpDateFromValue.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpDateFromValue.Location = new System.Drawing.Point(102, 7);
+            this.dtpDateFromValue.Name = "dtpDateFromValue";
+            this.dtpDateFromValue.Size = new System.Drawing.Size(189, 29);
+            this.dtpDateFromValue.TabIndex = 75;
             // 
-            // label2
+            // lblDateFrom
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label2.Location = new System.Drawing.Point(10, 10);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(85, 24);
-            this.label2.TabIndex = 51;
-            this.label2.Text = "Дата от:";
+            this.lblDateFrom.AutoSize = true;
+            this.lblDateFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblDateFrom.Location = new System.Drawing.Point(12, 9);
+            this.lblDateFrom.Name = "lblDateFrom";
+            this.lblDateFrom.Size = new System.Drawing.Size(85, 24);
+            this.lblDateFrom.TabIndex = 74;
+            this.lblDateFrom.Text = "Дата от:";
             // 
-            // dataGridView1
+            // nudIdValue
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1054, 463);
-            this.dataGridView1.TabIndex = 4;
+            this.nudIdValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nudIdValue.Location = new System.Drawing.Point(102, 75);
+            this.nudIdValue.Name = "nudIdValue";
+            this.nudIdValue.Size = new System.Drawing.Size(77, 29);
+            this.nudIdValue.TabIndex = 93;
+            // 
+            // btnPreviousPage
+            // 
+            this.btnPreviousPage.BackColor = System.Drawing.Color.Black;
+            this.btnPreviousPage.FlatAppearance.BorderSize = 0;
+            this.btnPreviousPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPreviousPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnPreviousPage.ForeColor = System.Drawing.Color.White;
+            this.btnPreviousPage.Location = new System.Drawing.Point(8, 5);
+            this.btnPreviousPage.Name = "btnPreviousPage";
+            this.btnPreviousPage.Size = new System.Drawing.Size(30, 29);
+            this.btnPreviousPage.TabIndex = 96;
+            this.btnPreviousPage.Text = "<";
+            this.btnPreviousPage.UseVisualStyleBackColor = false;
+            // 
+            // tbPage
+            // 
+            this.tbPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.tbPage.Location = new System.Drawing.Point(44, 5);
+            this.tbPage.Name = "tbPage";
+            this.tbPage.Size = new System.Drawing.Size(80, 29);
+            this.tbPage.TabIndex = 95;
+            this.tbPage.Text = "1";
+            this.tbPage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // btnNextPage
+            // 
+            this.btnNextPage.BackColor = System.Drawing.Color.Black;
+            this.btnNextPage.FlatAppearance.BorderSize = 0;
+            this.btnNextPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNextPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnNextPage.ForeColor = System.Drawing.Color.White;
+            this.btnNextPage.Location = new System.Drawing.Point(130, 5);
+            this.btnNextPage.Name = "btnNextPage";
+            this.btnNextPage.Size = new System.Drawing.Size(30, 29);
+            this.btnNextPage.TabIndex = 94;
+            this.btnNextPage.Text = ">";
+            this.btnNextPage.UseVisualStyleBackColor = false;
+            // 
+            // btnResetFilters
+            // 
+            this.btnResetFilters.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnResetFilters.FlatAppearance.BorderSize = 0;
+            this.btnResetFilters.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnResetFilters.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnResetFilters.Location = new System.Drawing.Point(0, 56);
+            this.btnResetFilters.Name = "btnResetFilters";
+            this.btnResetFilters.Size = new System.Drawing.Size(130, 55);
+            this.btnResetFilters.TabIndex = 14;
+            this.btnResetFilters.Text = "Сбросить";
+            this.btnResetFilters.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnResetFilters.UseVisualStyleBackColor = true;
+            // 
+            // btnUseFilters
+            // 
+            this.btnUseFilters.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnUseFilters.FlatAppearance.BorderSize = 0;
+            this.btnUseFilters.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUseFilters.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnUseFilters.Location = new System.Drawing.Point(0, 0);
+            this.btnUseFilters.Name = "btnUseFilters";
+            this.btnUseFilters.Size = new System.Drawing.Size(130, 56);
+            this.btnUseFilters.TabIndex = 13;
+            this.btnUseFilters.Text = "Применить";
+            this.btnUseFilters.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUseFilters.UseVisualStyleBackColor = true;
             // 
             // OrdersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 615);
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
+            this.ClientSize = new System.Drawing.Size(1184, 561);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.panelPages);
+            this.Controls.Add(this.panelFilters);
+            this.Controls.Add(this.panelUserButtons);
             this.MinimumSize = new System.Drawing.Size(1200, 600);
             this.Name = "OrdersForm";
             this.Load += new System.EventHandler(this.OrdersForm_Load);
-            this.panel2.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
+            this.panelUserButtons.ResumeLayout(false);
+            this.panelFilters.ResumeLayout(false);
+            this.panelFilters.PerformLayout();
+            this.panelPages.ResumeLayout(false);
+            this.panelPages.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panelSearchButtons.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nudIdValue)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.LinkLabel linkLabel2;
-        private System.Windows.Forms.LinkLabel linkLabel3;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Button button4;
+
+        private System.Windows.Forms.Panel panelUserButtons;
+        private System.Windows.Forms.Panel panelSearchButtons;
+        private System.Windows.Forms.Panel panelFilters;
+        private System.Windows.Forms.TextBox tbPriceToValue;
+        private System.Windows.Forms.Label lblPriceTo;
+        private System.Windows.Forms.TextBox tbPriceFromValue;
+        private System.Windows.Forms.Label lblPriceFrom;
+        private System.Windows.Forms.Label lblId;
+        private System.Windows.Forms.LinkLabel linkLblServiceValue;
+        private System.Windows.Forms.Label lblService;
+        private System.Windows.Forms.LinkLabel linkLblEmployeeValue;
+        private System.Windows.Forms.Label lblEmployee;
+        private System.Windows.Forms.LinkLabel linkLblCustomerValue;
+        private System.Windows.Forms.Label lblCustomer;
+        private System.Windows.Forms.CheckBox cbPaidByCash;
+        private System.Windows.Forms.ComboBox cbStatusValue;
+        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.DateTimePicker dtpDateValueTo;
+        private System.Windows.Forms.Label lblDateTo;
+        private System.Windows.Forms.DateTimePicker dtpDateFromValue;
+        private System.Windows.Forms.Label lblDateFrom;
+        private System.Windows.Forms.Panel panelPages;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.NumericUpDown nudIdValue;
+        private System.Windows.Forms.Button btnPreviousPage;
+        private System.Windows.Forms.TextBox tbPage;
+        private System.Windows.Forms.Button btnNextPage;
+        private System.Windows.Forms.Button btnResetFilters;
+        private System.Windows.Forms.Button btnUseFilters;
     }
 }

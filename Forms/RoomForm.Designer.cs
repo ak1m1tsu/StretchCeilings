@@ -1,5 +1,5 @@
 ﻿
-namespace stretch_ceilings_app
+namespace stretch_ceilings_app.Forms
 {
     partial class RoomForm
     {
@@ -56,9 +56,11 @@ namespace stretch_ceilings_app
             // 
             // groupBox4
             // 
+            this.groupBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
             this.groupBox4.Controls.Add(this.panel2);
             this.groupBox4.Controls.Add(this.panel1);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.groupBox4.Location = new System.Drawing.Point(0, 0);
             this.groupBox4.Name = "groupBox4";
@@ -127,13 +129,17 @@ namespace stretch_ceilings_app
             // 
             // button3
             // 
+            this.button3.BackColor = System.Drawing.Color.Black;
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.button3.ForeColor = System.Drawing.Color.White;
             this.button3.Location = new System.Drawing.Point(5, 5);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(120, 30);
             this.button3.TabIndex = 44;
             this.button3.Text = "Изменить";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button3.UseVisualStyleBackColor = false;
             // 
             // panel1
             // 
@@ -170,12 +176,13 @@ namespace stretch_ceilings_app
             // 
             // comboBox1
             // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(147, 50);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(161, 32);
             this.comboBox1.TabIndex = 14;
-            this.comboBox1.Text = "Гостиная";
             // 
             // label1
             // 

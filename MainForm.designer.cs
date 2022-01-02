@@ -30,10 +30,10 @@ namespace stretch_ceilings_app
         private void InitializeComponent()
         {
             this.panelLeftSide = new System.Windows.Forms.Panel();
+            this.panelNav = new System.Windows.Forms.Panel();
             this.panelLogo = new System.Windows.Forms.Panel();
             this.panelTheme = new System.Windows.Forms.Panel();
             this.panelContent = new System.Windows.Forms.Panel();
-            this.panelNav = new System.Windows.Forms.Panel();
             this.panelLeftSide.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,8 +45,17 @@ namespace stretch_ceilings_app
             this.panelLeftSide.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelLeftSide.Location = new System.Drawing.Point(0, 0);
             this.panelLeftSide.Name = "panelLeftSide";
-            this.panelLeftSide.Size = new System.Drawing.Size(160, 761);
+            this.panelLeftSide.Size = new System.Drawing.Size(190, 761);
             this.panelLeftSide.TabIndex = 3;
+            // 
+            // panelNav
+            // 
+            this.panelNav.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
+            this.panelNav.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelNav.Location = new System.Drawing.Point(0, 87);
+            this.panelNav.Name = "panelNav";
+            this.panelNav.Size = new System.Drawing.Size(190, 674);
+            this.panelNav.TabIndex = 2;
             // 
             // panelLogo
             // 
@@ -54,33 +63,25 @@ namespace stretch_ceilings_app
             this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelLogo.Location = new System.Drawing.Point(0, 0);
             this.panelLogo.Name = "panelLogo";
-            this.panelLogo.Size = new System.Drawing.Size(160, 87);
+            this.panelLogo.Size = new System.Drawing.Size(190, 87);
             this.panelLogo.TabIndex = 1;
             // 
             // panelTheme
             // 
-            this.panelTheme.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
+            this.panelTheme.BackColor = System.Drawing.Color.Black;
             this.panelTheme.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelTheme.Location = new System.Drawing.Point(160, 0);
+            this.panelTheme.Location = new System.Drawing.Point(190, 0);
             this.panelTheme.Name = "panelTheme";
-            this.panelTheme.Size = new System.Drawing.Size(1264, 87);
+            this.panelTheme.Size = new System.Drawing.Size(1234, 87);
             this.panelTheme.TabIndex = 4;
             // 
             // panelContent
             // 
             this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContent.Location = new System.Drawing.Point(160, 87);
+            this.panelContent.Location = new System.Drawing.Point(190, 87);
             this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(1264, 674);
+            this.panelContent.Size = new System.Drawing.Size(1234, 674);
             this.panelContent.TabIndex = 5;
-            // 
-            // panelNav
-            // 
-            this.panelNav.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelNav.Location = new System.Drawing.Point(0, 87);
-            this.panelNav.Name = "panelNav";
-            this.panelNav.Size = new System.Drawing.Size(160, 674);
-            this.panelNav.TabIndex = 2;
             // 
             // MainForm
             // 

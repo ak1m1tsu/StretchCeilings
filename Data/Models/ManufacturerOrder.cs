@@ -1,9 +1,9 @@
-﻿using stretch_ceilings_app.Interfaces;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using stretch_ceilings_app.Interfaces.Models;
 
-namespace stretch_ceilings_app.Models
+namespace stretch_ceilings_app.Data.Models
 {
     [Table("ManufacturerOrders")]
     public class ManufacturerOrder : IManufacturerOrder

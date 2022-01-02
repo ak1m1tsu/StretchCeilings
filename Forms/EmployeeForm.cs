@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using stretch_ceilings_app.Models;
 
-namespace stretch_ceilings_app
+namespace stretch_ceilings_app.Forms
 {
     public partial class EmployeeForm : Form
     {
@@ -18,7 +12,6 @@ namespace stretch_ceilings_app
 
         private void button2_Click(object sender, EventArgs e)
         {
-            new SheduleForm().ShowDialog();
         }
     }
 }

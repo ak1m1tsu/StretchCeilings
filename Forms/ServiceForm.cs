@@ -1,20 +1,14 @@
-﻿using stretch_ceilings_app.Forms;
-using stretch_ceilings_app.Models;
+﻿using System;
+using System.Windows.Forms;
+using stretch_ceilings_app.Data.Models;
 using stretch_ceilings_app.Utility;
 using stretch_ceilings_app.Utility.Enums;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 
-namespace stretch_ceilings_app
+namespace stretch_ceilings_app.Forms
 {
     public partial class ServiceForm : Form
     {
-        private Service _currentService;
+        private readonly Service _currentService;
         public ServiceForm(Service service)
         {
             _currentService = service;

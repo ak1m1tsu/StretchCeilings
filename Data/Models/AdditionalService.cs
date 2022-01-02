@@ -1,8 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
-namespace stretch_ceilings_app.Models
+namespace stretch_ceilings_app.Data.Models
 {
     [Table("AdditionalServices")]
     public class AdditionalService
@@ -16,17 +17,39 @@ namespace stretch_ceilings_app.Models
 
         public void Add()
         {
-
+            using (var db = new StretchCeilingsContext())
+            {
+                db.AdditionalServices.Add(this);
+                db.SaveChanges();
+            }
         }
 
         public void Update()
         {
-
+            using (var db = new StretchCeilingsContext())
+            {
+                var oldAdditionalService = db.AdditionalServices.FirstOrDefault(s => s.Id == this.Id);
+                if (oldAdditionalService != null)
+                {
+                    db.Entry(oldAdditionalService).CurrentValues.SetValues(this);
+                    db.SaveChanges();
+                }
+            }
         }
 
         public void Delete()
         {
+            DateDeleted = DateTime.Now;
 
+            using (var db = new StretchCeilingsContext())
+            {
+                var oldAdditionalService = db.AdditionalServices.FirstOrDefault(s => s.Id == this.Id);
+                if (oldAdditionalService != null)
+                {
+                    db.Entry(oldAdditionalService).CurrentValues.SetValues(this);
+                    db.SaveChanges();
+                }
+            }
         }
     }
 }

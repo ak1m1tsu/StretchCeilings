@@ -1,12 +1,12 @@
-﻿using stretch_ceilings_app.Models;
-using System;
+﻿using System;
 using System.Windows.Forms;
+using stretch_ceilings_app.Data.Models;
 
 namespace stretch_ceilings_app.Forms
 {
     public partial class ServiceFormEdit : Form
     {
-        private Service _currentService;
+        private readonly Service _currentService;
         public ServiceFormEdit(Service service)
         {
             _currentService = service;
@@ -21,7 +21,7 @@ namespace stretch_ceilings_app.Forms
             _currentService.Update();
         }
 
-        private void btnAddAdditServ_Click(object sender, EventArgs e)
+        private void btnAddAdditionalService_Click(object sender, EventArgs e)
         {
 
         }
@@ -36,7 +36,7 @@ namespace stretch_ceilings_app.Forms
 
         }
 
-        private void btnPerivousPage_Click(object sender, EventArgs e)
+        private void btnPreviousPage_Click(object sender, EventArgs e)
         {
 
         }

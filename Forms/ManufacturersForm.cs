@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
-namespace stretch_ceilings_app
+namespace stretch_ceilings_app.Forms
 {
-    public partial class FactoriesForm : Form
+    public partial class ManufacturersForm : Form
     {
-        public FactoriesForm()
+        public ManufacturersForm()
         {
             InitializeComponent();
         }

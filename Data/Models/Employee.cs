@@ -1,21 +1,14 @@
-﻿using stretch_ceilings_app.Data;
-using stretch_ceilings_app.Interfaces;
-using stretch_ceilings_app.Utility;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
+using stretch_ceilings_app.Interfaces.Models;
 
-namespace stretch_ceilings_app.Models
+namespace stretch_ceilings_app.Data.Models
 {
     [Table("Employees")]
     public class Employee : IEmployee
     {
-        public Employee()
-        {
-        }
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }

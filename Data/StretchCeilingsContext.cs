@@ -1,5 +1,5 @@
-﻿using stretch_ceilings_app.Models;
-using System.Data.Entity;
+﻿using System.Data.Entity;
+using stretch_ceilings_app.Data.Models;
 
 namespace stretch_ceilings_app.Data
 {
@@ -8,7 +8,7 @@ namespace stretch_ceilings_app.Data
         public StretchCeilingsContext() 
             : base("Default") { }
 
-        // Модели бизнес логики
+        // Tables for business logic
         public DbSet<AdditionalService> AdditionalServices { get; set; }
         public DbSet<Ceiling> Ceilings { get; set; }
         public DbSet<Customer> Customers{ get; set; }
@@ -22,7 +22,7 @@ namespace stretch_ceilings_app.Data
         public DbSet<Service> Services{ get; set; }
         public DbSet<TimeTable> Schedules { get; set; }
 
-        // Права и роли пользователей системы
+        // Tables for user session
         public DbSet<Role> Roles { get; set; }
         public DbSet<Permission> Permissions { get; set; }
     }

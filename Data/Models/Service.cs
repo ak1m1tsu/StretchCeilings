@@ -1,11 +1,9 @@
-﻿using stretch_ceilings_app.Interfaces;
-using stretch_ceilings_app.Utility.Enums;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using stretch_ceilings_app.Interfaces.Models;
 
-namespace stretch_ceilings_app.Models
+namespace stretch_ceilings_app.Data.Models
 {
     [Table("Services")]
     public class Service : IService

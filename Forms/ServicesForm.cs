@@ -1,13 +1,8 @@
-﻿using stretch_ceilings_app.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
+﻿using System;
 using System.Windows.Forms;
+using stretch_ceilings_app.Data.Models;
 
-namespace stretch_ceilings_app
+namespace stretch_ceilings_app.Forms
 {
     public partial class ServicesForm : Form
     {

@@ -1,4 +1,4 @@
-﻿namespace stretch_ceilings_app.Interfaces
+﻿namespace stretch_ceilings_app.Interfaces.Models
 {
     public interface IRoom
     {

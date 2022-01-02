@@ -1,5 +1,5 @@
 ﻿
-namespace stretch_ceilings_app
+namespace stretch_ceilings_app.Forms
 {
     partial class EmployeeForm
     {
@@ -74,9 +74,10 @@ namespace stretch_ceilings_app
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
             this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1184, 561);
@@ -89,9 +90,9 @@ namespace stretch_ceilings_app
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 29);
+            this.panel1.Location = new System.Drawing.Point(3, 25);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1178, 529);
+            this.panel1.Size = new System.Drawing.Size(1178, 533);
             this.panel1.TabIndex = 28;
             // 
             // panel3
@@ -100,7 +101,7 @@ namespace stretch_ceilings_app
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(388, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(790, 529);
+            this.panel3.Size = new System.Drawing.Size(790, 533);
             this.panel3.TabIndex = 27;
             // 
             // groupBox2
@@ -110,7 +111,7 @@ namespace stretch_ceilings_app
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(790, 529);
+            this.groupBox2.Size = new System.Drawing.Size(790, 533);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Расписание";
@@ -120,13 +121,14 @@ namespace stretch_ceilings_app
             this.panel5.Controls.Add(this.dataGridView1);
             this.panel5.Controls.Add(this.panel6);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(3, 29);
+            this.panel5.Location = new System.Drawing.Point(3, 25);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(784, 457);
+            this.panel5.Size = new System.Drawing.Size(784, 465);
             this.panel5.TabIndex = 1;
             // 
             // dataGridView1
             // 
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.Black;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -138,7 +140,7 @@ namespace stretch_ceilings_app
             this.dataGridView1.Location = new System.Drawing.Point(0, 54);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(784, 403);
+            this.dataGridView1.Size = new System.Drawing.Size(784, 411);
             this.dataGridView1.TabIndex = 1;
             // 
             // Column1
@@ -172,7 +174,7 @@ namespace stretch_ceilings_app
             this.Column5.Name = "Column5";
             this.Column5.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Column5.Width = 28;
+            this.Column5.Width = 26;
             // 
             // panel6
             // 
@@ -190,23 +192,31 @@ namespace stretch_ceilings_app
             // 
             // button4
             // 
+            this.button4.BackColor = System.Drawing.Color.Black;
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.button4.ForeColor = System.Drawing.Color.White;
             this.button4.Location = new System.Drawing.Point(542, 9);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(120, 30);
             this.button4.TabIndex = 49;
             this.button4.Text = "Применить";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button4.UseVisualStyleBackColor = false;
             // 
             // button5
             // 
+            this.button5.BackColor = System.Drawing.Color.Black;
+            this.button5.FlatAppearance.BorderSize = 0;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.button5.ForeColor = System.Drawing.Color.White;
             this.button5.Location = new System.Drawing.Point(668, 9);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(110, 30);
             this.button5.TabIndex = 48;
             this.button5.Text = "Сбросить";
-            this.button5.UseVisualStyleBackColor = true;
+            this.button5.UseVisualStyleBackColor = false;
             // 
             // dateTimePicker2
             // 
@@ -255,20 +265,24 @@ namespace stretch_ceilings_app
             this.panel4.Controls.Add(this.button1);
             this.panel4.Controls.Add(this.button2);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(3, 486);
+            this.panel4.Location = new System.Drawing.Point(3, 490);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(784, 40);
             this.panel4.TabIndex = 0;
             // 
             // button6
             // 
+            this.button6.BackColor = System.Drawing.Color.Black;
+            this.button6.FlatAppearance.BorderSize = 0;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.button6.ForeColor = System.Drawing.Color.White;
             this.button6.Location = new System.Drawing.Point(3, 6);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(30, 29);
             this.button6.TabIndex = 72;
             this.button6.Text = "<";
-            this.button6.UseVisualStyleBackColor = true;
+            this.button6.UseVisualStyleBackColor = false;
             // 
             // textBox3
             // 
@@ -280,23 +294,31 @@ namespace stretch_ceilings_app
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.Color.Black;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(125, 6);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(30, 29);
             this.button1.TabIndex = 70;
             this.button1.Text = ">";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             // 
             // button2
             // 
+            this.button2.BackColor = System.Drawing.Color.Black;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(668, 4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(110, 30);
             this.button2.TabIndex = 47;
             this.button2.Text = "Добавить";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // panel2
@@ -312,7 +334,7 @@ namespace stretch_ceilings_app
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(388, 529);
+            this.panel2.Size = new System.Drawing.Size(388, 533);
             this.panel2.TabIndex = 26;
             // 
             // label10

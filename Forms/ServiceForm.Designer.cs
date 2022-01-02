@@ -1,5 +1,5 @@
 ﻿
-namespace stretch_ceilings_app
+namespace stretch_ceilings_app.Forms
 {
     partial class ServiceForm
     {

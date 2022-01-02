@@ -1,5 +1,5 @@
 ﻿
-namespace stretch_ceilings_app
+namespace stretch_ceilings_app.Forms
 {
     partial class CustomersForm
     {
@@ -38,6 +38,9 @@ namespace stretch_ceilings_app
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.button6 = new System.Windows.Forms.Button();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.button4 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -51,9 +54,6 @@ namespace stretch_ceilings_app
             this.panel5 = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -98,6 +98,7 @@ namespace stretch_ceilings_app
             // 
             // dataGridView1
             // 
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.Black;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column4,
@@ -141,6 +142,7 @@ namespace stretch_ceilings_app
             // 
             // panel7
             // 
+            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
             this.panel7.Controls.Add(this.button6);
             this.panel7.Controls.Add(this.textBox3);
             this.panel7.Controls.Add(this.button4);
@@ -150,8 +152,45 @@ namespace stretch_ceilings_app
             this.panel7.Size = new System.Drawing.Size(1054, 40);
             this.panel7.TabIndex = 0;
             // 
+            // button6
+            // 
+            this.button6.BackColor = System.Drawing.Color.Black;
+            this.button6.FlatAppearance.BorderSize = 0;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.button6.ForeColor = System.Drawing.Color.White;
+            this.button6.Location = new System.Drawing.Point(5, 6);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(30, 29);
+            this.button6.TabIndex = 84;
+            this.button6.Text = "<";
+            this.button6.UseVisualStyleBackColor = false;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.textBox3.Location = new System.Drawing.Point(41, 6);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(80, 29);
+            this.textBox3.TabIndex = 83;
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.Black;
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.button4.ForeColor = System.Drawing.Color.White;
+            this.button4.Location = new System.Drawing.Point(127, 6);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(30, 29);
+            this.button4.TabIndex = 82;
+            this.button4.Text = ">";
+            this.button4.UseVisualStyleBackColor = false;
+            // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
             this.panel1.Controls.Add(this.textBox4);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.textBox2);
@@ -223,6 +262,7 @@ namespace stretch_ceilings_app
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
             this.panel2.Controls.Add(this.panel6);
             this.panel2.Controls.Add(this.panel5);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
@@ -233,6 +273,7 @@ namespace stretch_ceilings_app
             // 
             // panel6
             // 
+            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
             this.panel6.Controls.Add(this.button1);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(0, 114);
@@ -289,34 +330,6 @@ namespace stretch_ceilings_app
             this.button2.Text = "Применить";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button6.Location = new System.Drawing.Point(5, 6);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(30, 29);
-            this.button6.TabIndex = 84;
-            this.button6.Text = "<";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.textBox3.Location = new System.Drawing.Point(41, 6);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(80, 29);
-            this.textBox3.TabIndex = 83;
-            // 
-            // button4
-            // 
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button4.Location = new System.Drawing.Point(127, 6);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(30, 29);
-            this.button4.TabIndex = 82;
-            this.button4.Text = ">";
-            this.button4.UseVisualStyleBackColor = true;
             // 
             // CustomersForm
             // 

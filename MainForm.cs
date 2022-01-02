@@ -1,32 +1,22 @@
 ﻿using System;
 using System.Windows.Forms;
-using stretch_ceilings_app.Utility.CustomBtn;
-using stretch_ceilings_app.Models;
-using System.Collections.Generic;
-using stretch_ceilings_app.Data;
-using stretch_ceilings_app.Utility.Enums;
-using System.Linq;
+using stretch_ceilings_app.Forms;
+using stretch_ceilings_app.Utility.CustomControls;
 
 namespace stretch_ceilings_app
 {
     public partial class MainForm : Form
     {
         private Form _activeForm;
-        private Employee _user;
-        private List<NavigationButton> btns;
 
-        public MainForm(Employee user)
+        public MainForm()
         {
-            _user = user;
             InitializeComponent();
         }
 
         private void OpenChildForm(Form childForm)
         {
-            if (_activeForm != null)
-            {
-                _activeForm.Close();
-            }
+            _activeForm?.Close();
             _activeForm = childForm;
 
             childForm.TopLevel = false;
@@ -37,42 +27,77 @@ namespace stretch_ceilings_app
             childForm.Show();
         }
 
+        private void DrawNavigationButtons()
+        {
+            var btnOrders = new FlatButton("btnOrders", "Заказы");
+            btnOrders.Click += btnOrders_Click;
+            panelNav.Controls.Add(btnOrders);
+
+            var btnCustomers = new FlatButton("btnCustomers", "Клиенты");
+            btnCustomers.Click += btnCustomers_Click;
+            panelNav.Controls.Add(btnCustomers);
+
+            var btnEmployes = new FlatButton("btnEmployees", "Сотрудники");
+            btnEmployes.Click += btnEmployees_Click;
+            panelNav.Controls.Add(btnEmployes);
+
+            var btnServices = new FlatButton("btnServices", "Услуги");
+            btnServices.Click += btnServices_Click;
+            panelNav.Controls.Add(btnServices);
+
+            var btnManufacturers = new FlatButton("btnManufacturers", "Производители");
+            btnManufacturers.Click += btnManufacturers_Click;
+            panelNav.Controls.Add(btnManufacturers);
+
+            var btnManufacturerOrders = new FlatButton("btnManufacturerOrders", "Заказы для производителей");
+            btnManufacturerOrders.Click += btnManufacturerOrders_Click;
+            panelNav.Controls.Add(btnManufacturerOrders);
+
+            var btnAdditionalService = new FlatButton("btnAdditionalService", "Дополнительный услуги");
+            btnAdditionalService.Click += btnAdditionalService_Click;
+            panelNav.Controls.Add(btnAdditionalService);
+        }
+
         private void MainForm_Load(object sender, EventArgs e)
         {
-            btns = new List<NavigationButton>();
-
-            NavigationButton btnOrders = new NavigationButton("btnOrders", "Заказы");
-            btnOrders.Click += btnOrders_Click;
-            btns.Add(btnOrders);
-
-            NavigationButton btnCustomers = new NavigationButton("btnCustomers", "Клиенты");
-            btnCustomers.Click += btnCustomers_Click;
-            btns.Add(btnCustomers);
-
-            NavigationButton btnEmployes = new NavigationButton("btnEmployees", "Сотрудники");
-            btnEmployes.Click += btnEmployees_Click;
-            btns.Add(btnEmployes);
-
-            btns.Reverse();
-            panelNav.Controls.AddRange(btns.ToArray());
+            DrawNavigationButtons();
         }
+
+
 
         private void btnOrders_Click(object sender, EventArgs e)
         {
-            OrdersForm ordersForm = new OrdersForm();
-            OpenChildForm(ordersForm);
+            OpenChildForm(new OrdersForm());
         }
 
         private void btnCustomers_Click(object sender, EventArgs e)
         {
-            CustomersForm customersForm = new CustomersForm();
-            OpenChildForm(customersForm);
+            OpenChildForm(new CustomersForm());
         }
 
         private void btnEmployees_Click(object sender, EventArgs e)
         {
-            EmployeesForm employeesForm = new EmployeesForm();
-            OpenChildForm(employeesForm);
+            OpenChildForm(new EmployeesForm());
+        }
+
+        private void btnServices_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new ServicesForm());
+        }
+
+        private void btnManufacturers_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new ManufacturersForm());
+        }
+
+        private void btnManufacturerOrders_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new ManufacturerOrdersForm());
+        }
+
+        private void btnAdditionalService_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new AdditionalServicesForm());
         }
     }
 }

@@ -1,21 +1,14 @@
-﻿using stretch_ceilings_app.Models;
-using stretch_ceilings_app.Utility;
+﻿using stretch_ceilings_app.Utility;
 using stretch_ceilings_app.Utility.Enums;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using stretch_ceilings_app.Data.Models;
 
 namespace stretch_ceilings_app.Forms
 {
     public partial class AdditionalServiceForm : Form
     {
-        private AdditionalService _currentService;
+        private readonly AdditionalService _currentService;
 
         public AdditionalServiceForm(AdditionalService service)
         {

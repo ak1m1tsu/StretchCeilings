@@ -99,7 +99,7 @@ namespace stretch_ceilings_app.Forms
             this.btnAddAdditServ.TabIndex = 49;
             this.btnAddAdditServ.Text = "Добавить";
             this.btnAddAdditServ.UseVisualStyleBackColor = false;
-            this.btnAddAdditServ.Click += new System.EventHandler(this.btnAddAdditServ_Click);
+            this.btnAddAdditServ.Click += new System.EventHandler(this.btnAddAdditionalService_Click);
             // 
             // btnPerivousPage
             // 
@@ -114,7 +114,7 @@ namespace stretch_ceilings_app.Forms
             this.btnPerivousPage.TabIndex = 75;
             this.btnPerivousPage.Text = "<";
             this.btnPerivousPage.UseVisualStyleBackColor = false;
-            this.btnPerivousPage.Click += new System.EventHandler(this.btnPerivousPage_Click);
+            this.btnPerivousPage.Click += new System.EventHandler(this.btnPreviousPage_Click);
             // 
             // tbPage
             // 

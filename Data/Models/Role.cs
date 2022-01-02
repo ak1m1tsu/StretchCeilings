@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.SqlClient;
-using System.Data.SQLite;
 using System.Linq;
-using stretch_ceilings_app.Data;
-using stretch_ceilings_app.Interfaces;
+using stretch_ceilings_app.Interfaces.Models;
 
-namespace stretch_ceilings_app.Models
+namespace stretch_ceilings_app.Data.Models
 {
     [Table("Roles")]
     public class Role : IRole

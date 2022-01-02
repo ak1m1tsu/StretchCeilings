@@ -1,12 +1,11 @@
-﻿using stretch_ceilings_app.Interfaces;
-using stretch_ceilings_app.Utility;
-using stretch_ceilings_app.Utility.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using stretch_ceilings_app.Interfaces.Models;
+using stretch_ceilings_app.Utility.Enums;
 
-namespace stretch_ceilings_app.Models
+namespace stretch_ceilings_app.Data.Models
 {
     [Table("Orders")]
     public class Order : IOrder

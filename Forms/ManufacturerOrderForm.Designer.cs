@@ -1,7 +1,7 @@
 ﻿
-namespace stretch_ceilings_app
+namespace stretch_ceilings_app.Forms
 {
-    partial class FactoryOrderForm
+    partial class ManufacturerOrderForm
     {
         /// <summary>
         /// Required designer variable.
@@ -37,6 +37,9 @@ namespace stretch_ceilings_app
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button6 = new System.Windows.Forms.Button();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
@@ -49,9 +52,6 @@ namespace stretch_ceilings_app
             this.label1 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label4 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -61,6 +61,7 @@ namespace stretch_ceilings_app
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -86,6 +87,7 @@ namespace stretch_ceilings_app
             // 
             // dataGridView1
             // 
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.Black;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -142,15 +144,55 @@ namespace stretch_ceilings_app
             this.panel2.Size = new System.Drawing.Size(1172, 42);
             this.panel2.TabIndex = 0;
             // 
+            // button6
+            // 
+            this.button6.BackColor = System.Drawing.Color.Black;
+            this.button6.FlatAppearance.BorderSize = 0;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.button6.ForeColor = System.Drawing.Color.White;
+            this.button6.Location = new System.Drawing.Point(6, 6);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(30, 29);
+            this.button6.TabIndex = 78;
+            this.button6.Text = "<";
+            this.button6.UseVisualStyleBackColor = false;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.textBox3.Location = new System.Drawing.Point(42, 6);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(80, 29);
+            this.textBox3.TabIndex = 77;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.Black;
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Location = new System.Drawing.Point(128, 6);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(30, 29);
+            this.button3.TabIndex = 76;
+            this.button3.Text = ">";
+            this.button3.UseVisualStyleBackColor = false;
+            // 
             // button2
             // 
+            this.button2.BackColor = System.Drawing.Color.Black;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(1056, 6);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(110, 30);
             this.button2.TabIndex = 57;
             this.button2.Text = "Добавить";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             // 
             // panel1
             // 
@@ -232,14 +274,17 @@ namespace stretch_ceilings_app
             // 
             // linkLabel2
             // 
+            this.linkLabel2.ActiveLinkColor = System.Drawing.Color.White;
             this.linkLabel2.AutoSize = true;
             this.linkLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.linkLabel2.LinkColor = System.Drawing.Color.Black;
             this.linkLabel2.Location = new System.Drawing.Point(186, 39);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(117, 24);
             this.linkLabel2.TabIndex = 38;
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "Не выбрано";
+            this.linkLabel2.VisitedLinkColor = System.Drawing.Color.Black;
             // 
             // label1
             // 
@@ -253,14 +298,17 @@ namespace stretch_ceilings_app
             // 
             // linkLabel1
             // 
+            this.linkLabel1.ActiveLinkColor = System.Drawing.Color.White;
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.linkLabel1.LinkColor = System.Drawing.Color.Black;
             this.linkLabel1.Location = new System.Drawing.Point(186, 8);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(117, 24);
             this.linkLabel1.TabIndex = 36;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Не выбрано";
+            this.linkLabel1.VisitedLinkColor = System.Drawing.Color.Black;
             // 
             // label4
             // 
@@ -272,42 +320,14 @@ namespace stretch_ceilings_app
             this.label4.TabIndex = 35;
             this.label4.Text = "Клиент:";
             // 
-            // button6
-            // 
-            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button6.Location = new System.Drawing.Point(6, 6);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(30, 29);
-            this.button6.TabIndex = 78;
-            this.button6.Text = "<";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.textBox3.Location = new System.Drawing.Point(42, 6);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(80, 29);
-            this.textBox3.TabIndex = 77;
-            // 
-            // button3
-            // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button3.Location = new System.Drawing.Point(128, 6);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(30, 29);
-            this.button3.TabIndex = 76;
-            this.button3.Text = ">";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // FactoryOrderForm
+            // ManufacturerOrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 561);
             this.Controls.Add(this.groupBox1);
             this.MinimumSize = new System.Drawing.Size(1200, 600);
-            this.Name = "FactoryOrderForm";
+            this.Name = "ManufacturerOrderForm";
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

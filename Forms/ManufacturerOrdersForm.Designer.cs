@@ -1,7 +1,7 @@
 ﻿
-namespace stretch_ceilings_app
+namespace stretch_ceilings_app.Forms
 {
-    partial class FactoryOrdersForm
+    partial class ManufacturerOrdersForm
     {
         /// <summary>
         /// Required designer variable.
@@ -58,21 +58,21 @@ namespace stretch_ceilings_app
             this.Column6 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.button6 = new System.Windows.Forms.Button();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
             this.panel4.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
-            this.panel7.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
+            this.panel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // dateTimePicker2
@@ -119,6 +119,7 @@ namespace stretch_ceilings_app
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.linkLabel1.LinkColor = System.Drawing.Color.Black;
             this.linkLabel1.Location = new System.Drawing.Point(372, 11);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(117, 24);
@@ -138,6 +139,7 @@ namespace stretch_ceilings_app
             // 
             // panel4
             // 
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
             this.panel4.Controls.Add(this.button3);
             this.panel4.Controls.Add(this.button2);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
@@ -174,6 +176,7 @@ namespace stretch_ceilings_app
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
             this.panel1.Controls.Add(this.textBox3);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.textBox2);
@@ -256,6 +259,7 @@ namespace stretch_ceilings_app
             // 
             this.linkLabel2.AutoSize = true;
             this.linkLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.linkLabel2.LinkColor = System.Drawing.Color.Black;
             this.linkLabel2.Location = new System.Drawing.Point(372, 44);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(117, 24);
@@ -275,9 +279,9 @@ namespace stretch_ceilings_app
             // 
             // panel3
             // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
             this.panel3.Controls.Add(this.panel8);
             this.panel3.Controls.Add(this.panel2);
-            this.panel3.Controls.Add(this.panel7);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.panel3.Location = new System.Drawing.Point(0, 0);
@@ -287,15 +291,17 @@ namespace stretch_ceilings_app
             // 
             // panel8
             // 
+            this.panel8.Controls.Add(this.panel7);
             this.panel8.Controls.Add(this.dataGridView1);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel8.Location = new System.Drawing.Point(0, 0);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(1054, 409);
+            this.panel8.Size = new System.Drawing.Size(1054, 447);
             this.panel8.TabIndex = 24;
             // 
             // dataGridView1
             // 
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.Black;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -309,7 +315,7 @@ namespace stretch_ceilings_app
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(1054, 409);
+            this.dataGridView1.Size = new System.Drawing.Size(1054, 447);
             this.dataGridView1.TabIndex = 22;
             // 
             // Column1
@@ -358,11 +364,12 @@ namespace stretch_ceilings_app
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
             this.panel2.Controls.Add(this.button1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(1054, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(130, 409);
+            this.panel2.Size = new System.Drawing.Size(130, 447);
             this.panel2.TabIndex = 23;
             // 
             // button1
@@ -378,45 +385,6 @@ namespace stretch_ceilings_app
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // panel7
-            // 
-            this.panel7.Controls.Add(this.button6);
-            this.panel7.Controls.Add(this.textBox4);
-            this.panel7.Controls.Add(this.button4);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel7.Location = new System.Drawing.Point(0, 409);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1184, 38);
-            this.panel7.TabIndex = 1;
-            // 
-            // button6
-            // 
-            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button6.Location = new System.Drawing.Point(5, 5);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(30, 29);
-            this.button6.TabIndex = 87;
-            this.button6.Text = "<";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.textBox4.Location = new System.Drawing.Point(41, 5);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(80, 29);
-            this.textBox4.TabIndex = 86;
-            // 
-            // button4
-            // 
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button4.Location = new System.Drawing.Point(127, 5);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(30, 29);
-            this.button4.TabIndex = 85;
-            this.button4.Text = ">";
-            this.button4.UseVisualStyleBackColor = true;
             // 
             // panel5
             // 
@@ -437,7 +405,55 @@ namespace stretch_ceilings_app
             this.panel6.Size = new System.Drawing.Size(1184, 447);
             this.panel6.TabIndex = 23;
             // 
-            // FactoryOrdersForm
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
+            this.panel7.Controls.Add(this.button6);
+            this.panel7.Controls.Add(this.textBox4);
+            this.panel7.Controls.Add(this.button4);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel7.Location = new System.Drawing.Point(0, 409);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(1054, 38);
+            this.panel7.TabIndex = 23;
+            // 
+            // button6
+            // 
+            this.button6.BackColor = System.Drawing.Color.Black;
+            this.button6.FlatAppearance.BorderSize = 0;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.button6.ForeColor = System.Drawing.Color.White;
+            this.button6.Location = new System.Drawing.Point(5, 5);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(30, 29);
+            this.button6.TabIndex = 87;
+            this.button6.Text = "<";
+            this.button6.UseVisualStyleBackColor = false;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.textBox4.Location = new System.Drawing.Point(41, 5);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(80, 29);
+            this.textBox4.TabIndex = 86;
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.Black;
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.button4.ForeColor = System.Drawing.Color.White;
+            this.button4.Location = new System.Drawing.Point(127, 5);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(30, 29);
+            this.button4.TabIndex = 85;
+            this.button4.Text = ">";
+            this.button4.UseVisualStyleBackColor = false;
+            // 
+            // ManufacturerOrdersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -445,7 +461,7 @@ namespace stretch_ceilings_app
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel5);
             this.MinimumSize = new System.Drawing.Size(1200, 600);
-            this.Name = "FactoryOrdersForm";
+            this.Name = "ManufacturerOrdersForm";
             this.panel4.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -453,10 +469,10 @@ namespace stretch_ceilings_app
             this.panel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel2.ResumeLayout(false);
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -475,7 +491,6 @@ namespace stretch_ceilings_app
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox2;
@@ -494,6 +509,7 @@ namespace stretch_ceilings_app
         private System.Windows.Forms.DataGridViewButtonColumn Column6;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Button button4;

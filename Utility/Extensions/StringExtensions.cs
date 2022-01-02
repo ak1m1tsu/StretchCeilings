@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace stretch_ceilings_app.Utility
+namespace stretch_ceilings_app.Utility.Extensions
 {
-    public static class StringExtantion
+    public static class StringExtensions
     {
         public static T ParseEnum<T>(this string value)
         {

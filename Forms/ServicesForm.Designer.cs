@@ -1,5 +1,5 @@
 ﻿
-namespace stretch_ceilings_app
+namespace stretch_ceilings_app.Forms
 {
     partial class ServicesForm
     {
@@ -30,6 +30,9 @@ namespace stretch_ceilings_app
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -58,10 +61,8 @@ namespace stretch_ceilings_app
             this.panel5 = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -69,7 +70,6 @@ namespace stretch_ceilings_app
             this.panel2.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel5.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -85,6 +85,49 @@ namespace stretch_ceilings_app
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1054, 114);
             this.panel1.TabIndex = 1;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.comboBox2);
+            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(326, 114);
+            this.groupBox1.TabIndex = 59;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Производитель";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.label1.Location = new System.Drawing.Point(17, 69);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(90, 24);
+            this.label1.TabIndex = 60;
+            this.label1.Text = "Потолок:";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.AutoCompleteCustomSource.AddRange(new string[] {
+            "Ожидает ответа клиента",
+            "Ожидает выполнения работ",
+            "Ожидает результатов замеров",
+            "Отменен",
+            "Завершен"});
+            this.comboBox2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(125, 66);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(191, 32);
+            this.comboBox2.TabIndex = 59;
+            this.comboBox2.Text = "Матовый белый";
             // 
             // comboBox1
             // 
@@ -161,7 +204,7 @@ namespace stretch_ceilings_app
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1184, 610);
+            this.panel3.Size = new System.Drawing.Size(1184, 561);
             this.panel3.TabIndex = 7;
             // 
             // panel4
@@ -172,7 +215,7 @@ namespace stretch_ceilings_app
             this.panel4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.panel4.Location = new System.Drawing.Point(0, 114);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1054, 496);
+            this.panel4.Size = new System.Drawing.Size(1054, 447);
             this.panel4.TabIndex = 2;
             // 
             // dataGridView1
@@ -193,7 +236,7 @@ namespace stretch_ceilings_app
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(1054, 458);
+            this.dataGridView1.Size = new System.Drawing.Size(1054, 409);
             this.dataGridView1.TabIndex = 3;
             // 
             // Column4
@@ -271,7 +314,7 @@ namespace stretch_ceilings_app
             this.panel7.Controls.Add(this.textBox8);
             this.panel7.Controls.Add(this.button4);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel7.Location = new System.Drawing.Point(0, 458);
+            this.panel7.Location = new System.Drawing.Point(0, 409);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(1054, 38);
             this.panel7.TabIndex = 2;
@@ -321,7 +364,7 @@ namespace stretch_ceilings_app
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(1054, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(130, 610);
+            this.panel2.Size = new System.Drawing.Size(130, 561);
             this.panel2.TabIndex = 0;
             // 
             // panel6
@@ -331,7 +374,7 @@ namespace stretch_ceilings_app
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(0, 114);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(130, 496);
+            this.panel6.Size = new System.Drawing.Size(130, 447);
             this.panel6.TabIndex = 1;
             // 
             // button1
@@ -385,59 +428,18 @@ namespace stretch_ceilings_app
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.comboBox2);
-            this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(326, 114);
-            this.groupBox1.TabIndex = 59;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Производитель";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.AutoCompleteCustomSource.AddRange(new string[] {
-            "Ожидает ответа клиента",
-            "Ожидает выполнения работ",
-            "Ожидает результатов замеров",
-            "Отменен",
-            "Завершен"});
-            this.comboBox2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
-            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(125, 66);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(191, 32);
-            this.comboBox2.TabIndex = 59;
-            this.comboBox2.Text = "Матовый белый";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label1.Location = new System.Drawing.Point(17, 69);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(90, 24);
-            this.label1.TabIndex = 60;
-            this.label1.Text = "Потолок:";
-            // 
             // ServicesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 610);
+            this.ClientSize = new System.Drawing.Size(1184, 561);
             this.Controls.Add(this.panel3);
             this.MinimumSize = new System.Drawing.Size(1200, 600);
             this.Name = "ServicesForm";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -446,8 +448,6 @@ namespace stretch_ceilings_app
             this.panel2.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
