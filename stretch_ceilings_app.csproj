@@ -264,6 +264,7 @@
     <Compile Include="Utility\LogWriter.cs" />
     <Compile Include="Utility\Extensions\StringExtensions.cs" />
     <Compile Include="Utility\Repositories\EmployeeRepository.cs" />
+    <Compile Include="Utility\Repositories\OrderRepository.cs" />
     <Compile Include="Utility\UserSession.cs" />
     <EmbeddedResource Include="Forms\AdditionalServiceForm.resx">
       <DependentUpon>AdditionalServiceForm.cs</DependentUpon>
