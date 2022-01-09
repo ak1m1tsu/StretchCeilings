@@ -5,9 +5,6 @@
         Matte = 0,
         Glossy,
         Satin,
-        Fabric,
-        Translucent,
-        Printed,
-        Acoustic
+        Fabric
     }
 }

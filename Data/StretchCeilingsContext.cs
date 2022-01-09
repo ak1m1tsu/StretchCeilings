@@ -16,7 +16,7 @@ namespace stretch_ceilings_app.Data
         public DbSet<Estate> Estates { get; set; }
         public DbSet<Log> Logs { get; set; }
         public DbSet<Manufacturer> Manufacturers { get; set; }
-        public DbSet<ManufacturerOrder> FManufacturerOrders { get; set; }
+        public DbSet<ManufacturerOrder> ManufacturerOrders { get; set; }
         public DbSet<Order> Orders{ get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Service> Services{ get; set; }

@@ -1,7 +1,7 @@
 ﻿
 namespace stretch_ceilings_app.Forms
 {
-    partial class CustomerForm
+    partial class CustomerFormEdit
     {
         /// <summary>
         /// Required designer variable.
@@ -31,23 +31,24 @@ namespace stretch_ceilings_app.Forms
         {
             this.tcCustomer = new System.Windows.Forms.TabControl();
             this.tbInfo = new System.Windows.Forms.TabPage();
-            this.tpEstates = new System.Windows.Forms.TabPage();
-            this.btnChangeInfo = new System.Windows.Forms.Button();
-            this.lblPhoneNumberValue = new System.Windows.Forms.Label();
-            this.lblFullNameValue = new System.Windows.Forms.Label();
+            this.mtbPhoneNumber = new System.Windows.Forms.MaskedTextBox();
+            this.tbFullName = new System.Windows.Forms.TextBox();
+            this.btnSaveInfo = new System.Windows.Forms.Button();
             this.lblFullName = new System.Windows.Forms.Label();
             this.lblPhoneNumber = new System.Windows.Forms.Label();
+            this.tpEstates = new System.Windows.Forms.TabPage();
+            this.dgvEstates = new System.Windows.Forms.DataGridView();
             this.panelPageSide = new System.Windows.Forms.Panel();
+            this.btnAddEstate = new System.Windows.Forms.Button();
             this.btnPreviousPage = new System.Windows.Forms.Button();
             this.tbPage = new System.Windows.Forms.TextBox();
             this.btnNextPage = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.dgvEstates = new System.Windows.Forms.DataGridView();
             this.tcCustomer.SuspendLayout();
             this.tbInfo.SuspendLayout();
             this.tpEstates.SuspendLayout();
-            this.panelPageSide.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEstates)).BeginInit();
+            this.panelPageSide.SuspendLayout();
             this.SuspendLayout();
             // 
             // tcCustomer
@@ -60,14 +61,14 @@ namespace stretch_ceilings_app.Forms
             this.tcCustomer.Name = "tcCustomer";
             this.tcCustomer.SelectedIndex = 0;
             this.tcCustomer.Size = new System.Drawing.Size(634, 361);
-            this.tcCustomer.TabIndex = 1;
+            this.tcCustomer.TabIndex = 2;
             // 
             // tbInfo
             // 
             this.tbInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
-            this.tbInfo.Controls.Add(this.btnChangeInfo);
-            this.tbInfo.Controls.Add(this.lblPhoneNumberValue);
-            this.tbInfo.Controls.Add(this.lblFullNameValue);
+            this.tbInfo.Controls.Add(this.mtbPhoneNumber);
+            this.tbInfo.Controls.Add(this.tbFullName);
+            this.tbInfo.Controls.Add(this.btnSaveInfo);
             this.tbInfo.Controls.Add(this.lblFullName);
             this.tbInfo.Controls.Add(this.lblPhoneNumber);
             this.tbInfo.Location = new System.Drawing.Point(4, 33);
@@ -77,52 +78,35 @@ namespace stretch_ceilings_app.Forms
             this.tbInfo.TabIndex = 0;
             this.tbInfo.Text = "Основная информация";
             // 
-            // tpEstates
+            // mtbPhoneNumber
             // 
-            this.tpEstates.Controls.Add(this.dgvEstates);
-            this.tpEstates.Controls.Add(this.panelPageSide);
-            this.tpEstates.Location = new System.Drawing.Point(4, 33);
-            this.tpEstates.Name = "tpEstates";
-            this.tpEstates.Padding = new System.Windows.Forms.Padding(3);
-            this.tpEstates.Size = new System.Drawing.Size(626, 324);
-            this.tpEstates.TabIndex = 1;
-            this.tpEstates.Text = "Недвижемость";
-            this.tpEstates.UseVisualStyleBackColor = true;
+            this.mtbPhoneNumber.Location = new System.Drawing.Point(189, 44);
+            this.mtbPhoneNumber.Mask = "+7(999)000-00-00";
+            this.mtbPhoneNumber.Name = "mtbPhoneNumber";
+            this.mtbPhoneNumber.Size = new System.Drawing.Size(155, 29);
+            this.mtbPhoneNumber.TabIndex = 51;
             // 
-            // btnChangeInfo
+            // tbFullName
             // 
-            this.btnChangeInfo.BackColor = System.Drawing.Color.Black;
-            this.btnChangeInfo.FlatAppearance.BorderSize = 0;
-            this.btnChangeInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnChangeInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.btnChangeInfo.ForeColor = System.Drawing.Color.White;
-            this.btnChangeInfo.Location = new System.Drawing.Point(512, 288);
-            this.btnChangeInfo.Name = "btnChangeInfo";
-            this.btnChangeInfo.Size = new System.Drawing.Size(110, 30);
-            this.btnChangeInfo.TabIndex = 49;
-            this.btnChangeInfo.Text = "Изменить";
-            this.btnChangeInfo.UseVisualStyleBackColor = false;
-            this.btnChangeInfo.Click += new System.EventHandler(this.btnChangeInfo_Click);
+            this.tbFullName.Location = new System.Drawing.Point(189, 11);
+            this.tbFullName.Name = "tbFullName";
+            this.tbFullName.Size = new System.Drawing.Size(421, 29);
+            this.tbFullName.TabIndex = 50;
             // 
-            // lblPhoneNumberValue
+            // btnSaveInfo
             // 
-            this.lblPhoneNumberValue.AutoSize = true;
-            this.lblPhoneNumberValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lblPhoneNumberValue.Location = new System.Drawing.Point(177, 45);
-            this.lblPhoneNumberValue.Name = "lblPhoneNumberValue";
-            this.lblPhoneNumberValue.Size = new System.Drawing.Size(44, 24);
-            this.lblPhoneNumberValue.TabIndex = 48;
-            this.lblPhoneNumberValue.Text = "Нет";
-            // 
-            // lblFullNameValue
-            // 
-            this.lblFullNameValue.AutoSize = true;
-            this.lblFullNameValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lblFullNameValue.Location = new System.Drawing.Point(177, 14);
-            this.lblFullNameValue.Name = "lblFullNameValue";
-            this.lblFullNameValue.Size = new System.Drawing.Size(44, 24);
-            this.lblFullNameValue.TabIndex = 47;
-            this.lblFullNameValue.Text = "Нет";
+            this.btnSaveInfo.BackColor = System.Drawing.Color.Black;
+            this.btnSaveInfo.FlatAppearance.BorderSize = 0;
+            this.btnSaveInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnSaveInfo.ForeColor = System.Drawing.Color.White;
+            this.btnSaveInfo.Location = new System.Drawing.Point(499, 287);
+            this.btnSaveInfo.Name = "btnSaveInfo";
+            this.btnSaveInfo.Size = new System.Drawing.Size(120, 30);
+            this.btnSaveInfo.TabIndex = 49;
+            this.btnSaveInfo.Text = "Сохранить";
+            this.btnSaveInfo.UseVisualStyleBackColor = false;
+            this.btnSaveInfo.Click += new System.EventHandler(this.btnSaveInfo_Click);
             // 
             // lblFullName
             // 
@@ -138,15 +122,38 @@ namespace stretch_ceilings_app.Forms
             // 
             this.lblPhoneNumber.AutoSize = true;
             this.lblPhoneNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lblPhoneNumber.Location = new System.Drawing.Point(8, 45);
+            this.lblPhoneNumber.Location = new System.Drawing.Point(8, 49);
             this.lblPhoneNumber.Name = "lblPhoneNumber";
             this.lblPhoneNumber.Size = new System.Drawing.Size(167, 24);
             this.lblPhoneNumber.TabIndex = 46;
             this.lblPhoneNumber.Text = "Номер телефона:";
             // 
+            // tpEstates
+            // 
+            this.tpEstates.Controls.Add(this.dgvEstates);
+            this.tpEstates.Controls.Add(this.panelPageSide);
+            this.tpEstates.Location = new System.Drawing.Point(4, 33);
+            this.tpEstates.Name = "tpEstates";
+            this.tpEstates.Padding = new System.Windows.Forms.Padding(3);
+            this.tpEstates.Size = new System.Drawing.Size(626, 324);
+            this.tpEstates.TabIndex = 1;
+            this.tpEstates.Text = "Недвижемость";
+            this.tpEstates.UseVisualStyleBackColor = true;
+            // 
+            // dgvEstates
+            // 
+            this.dgvEstates.BackgroundColor = System.Drawing.Color.Black;
+            this.dgvEstates.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEstates.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvEstates.Location = new System.Drawing.Point(3, 3);
+            this.dgvEstates.Name = "dgvEstates";
+            this.dgvEstates.Size = new System.Drawing.Size(620, 278);
+            this.dgvEstates.TabIndex = 2;
+            // 
             // panelPageSide
             // 
             this.panelPageSide.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
+            this.panelPageSide.Controls.Add(this.btnAddEstate);
             this.panelPageSide.Controls.Add(this.btnPreviousPage);
             this.panelPageSide.Controls.Add(this.tbPage);
             this.panelPageSide.Controls.Add(this.btnNextPage);
@@ -156,6 +163,21 @@ namespace stretch_ceilings_app.Forms
             this.panelPageSide.Name = "panelPageSide";
             this.panelPageSide.Size = new System.Drawing.Size(620, 40);
             this.panelPageSide.TabIndex = 1;
+            // 
+            // btnAddEstate
+            // 
+            this.btnAddEstate.BackColor = System.Drawing.Color.Black;
+            this.btnAddEstate.FlatAppearance.BorderSize = 0;
+            this.btnAddEstate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddEstate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnAddEstate.ForeColor = System.Drawing.Color.White;
+            this.btnAddEstate.Location = new System.Drawing.Point(497, 5);
+            this.btnAddEstate.Name = "btnAddEstate";
+            this.btnAddEstate.Size = new System.Drawing.Size(120, 30);
+            this.btnAddEstate.TabIndex = 82;
+            this.btnAddEstate.Text = "Добавить";
+            this.btnAddEstate.UseVisualStyleBackColor = false;
+            this.btnAddEstate.Click += new System.EventHandler(this.btnAddEstate_Click);
             // 
             // btnPreviousPage
             // 
@@ -208,32 +230,22 @@ namespace stretch_ceilings_app.Forms
             this.button2.Text = "Добавить";
             this.button2.UseVisualStyleBackColor = false;
             // 
-            // dgvEstates
-            // 
-            this.dgvEstates.BackgroundColor = System.Drawing.Color.Black;
-            this.dgvEstates.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEstates.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvEstates.Location = new System.Drawing.Point(3, 3);
-            this.dgvEstates.Name = "dgvEstates";
-            this.dgvEstates.Size = new System.Drawing.Size(620, 278);
-            this.dgvEstates.TabIndex = 2;
-            // 
-            // CustomerForm
+            // CustomerFormEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
             this.ClientSize = new System.Drawing.Size(634, 361);
             this.Controls.Add(this.tcCustomer);
-            this.Name = "CustomerForm";
-            this.Load += new System.EventHandler(this.CustomerForm_Load);
+            this.Name = "CustomerFormEdit";
+            this.Load += new System.EventHandler(this.CustomerFormEdit_Load);
             this.tcCustomer.ResumeLayout(false);
             this.tbInfo.ResumeLayout(false);
             this.tbInfo.PerformLayout();
             this.tpEstates.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEstates)).EndInit();
             this.panelPageSide.ResumeLayout(false);
             this.panelPageSide.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEstates)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -242,9 +254,7 @@ namespace stretch_ceilings_app.Forms
 
         private System.Windows.Forms.TabControl tcCustomer;
         private System.Windows.Forms.TabPage tbInfo;
-        private System.Windows.Forms.Button btnChangeInfo;
-        private System.Windows.Forms.Label lblPhoneNumberValue;
-        private System.Windows.Forms.Label lblFullNameValue;
+        private System.Windows.Forms.Button btnSaveInfo;
         private System.Windows.Forms.Label lblFullName;
         private System.Windows.Forms.Label lblPhoneNumber;
         private System.Windows.Forms.TabPage tpEstates;
@@ -254,5 +264,8 @@ namespace stretch_ceilings_app.Forms
         private System.Windows.Forms.TextBox tbPage;
         private System.Windows.Forms.Button btnNextPage;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox tbFullName;
+        private System.Windows.Forms.MaskedTextBox mtbPhoneNumber;
+        private System.Windows.Forms.Button btnAddEstate;
     }
 }

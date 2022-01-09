@@ -5,7 +5,7 @@ using stretch_ceilings_app.Data.Models;
 
 namespace stretch_ceilings_app.Utility.Repositories
 {
-    public static class OrderRepository
+    public static class ManufacturerRepository
     {
         public static List<Order> GetOrders(out int rows)
         {

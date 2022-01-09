@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using stretch_ceilings_app.Interfaces.Models;
 
 namespace stretch_ceilings_app.Data.Models
@@ -22,47 +23,45 @@ namespace stretch_ceilings_app.Data.Models
 
         public void Add()
         {
-            throw new NotImplementedException();
-        }
-
-        public void AddOrder(ManufacturerOrder order)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void AddProduct(Ceiling product)
-        {
-            throw new NotImplementedException();
+            using (var db = new StretchCeilingsContext())
+            {
+                db.Manufacturers.Add(this);
+                db.SaveChanges();
+            }
         }
 
         public void Delete()
         {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteOrder(ManufacturerOrder order)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteProduct(Ceiling product)
-        {
-            throw new NotImplementedException();
+            using (var db = new StretchCeilingsContext())
+            {
+                db.Entry(this.Id).CurrentValues.SetValues(DateDeleted = DateTime.Now);
+                db.SaveChanges();
+            }
         }
 
         public List<ManufacturerOrder> GetOrders()
         {
-            throw new NotImplementedException();
+            using (var db = new StretchCeilingsContext())
+            {
+                return db.ManufacturerOrders.Where(order => order.ManufacturerId == Id).ToList();
+            }
         }
 
-        public List<Ceiling> GetProduct()
+        public List<Ceiling> GetCeilings()
         {
-            throw new NotImplementedException();
+            using (var db = new StretchCeilingsContext())
+            {
+                return db.Ceilings.Where(ceiling => ceiling.ManufacturerId == Id).ToList();
+            }
         }
 
         public void Update()
         {
-            throw new NotImplementedException();
+            using (var db = new StretchCeilingsContext())
+            {
+                db.Entry(this.Id).CurrentValues.SetValues(this);
+                db.SaveChanges();
+            }
         }
     }
 }

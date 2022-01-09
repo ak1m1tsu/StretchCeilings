@@ -41,8 +41,6 @@ namespace stretch_ceilings_app.Forms
             this.tbPriceFromValue = new System.Windows.Forms.TextBox();
             this.lblPriceFrom = new System.Windows.Forms.Label();
             this.lblId = new System.Windows.Forms.Label();
-            this.linkLblServiceValue = new System.Windows.Forms.LinkLabel();
-            this.lblService = new System.Windows.Forms.Label();
             this.linkLblEmployeeValue = new System.Windows.Forms.LinkLabel();
             this.lblEmployee = new System.Windows.Forms.Label();
             this.linkLblCustomerValue = new System.Windows.Forms.LinkLabel();
@@ -59,6 +57,7 @@ namespace stretch_ceilings_app.Forms
             this.tbPage = new System.Windows.Forms.TextBox();
             this.btnNextPage = new System.Windows.Forms.Button();
             this.dgvOrders = new System.Windows.Forms.DataGridView();
+            this.cbRows = new System.Windows.Forms.ComboBox();
             this.panelButtonsSide.SuspendLayout();
             this.panelSearchButtons.SuspendLayout();
             this.panelFilters.SuspendLayout();
@@ -135,8 +134,6 @@ namespace stretch_ceilings_app.Forms
             this.panelFilters.Controls.Add(this.tbPriceFromValue);
             this.panelFilters.Controls.Add(this.lblPriceFrom);
             this.panelFilters.Controls.Add(this.lblId);
-            this.panelFilters.Controls.Add(this.linkLblServiceValue);
-            this.panelFilters.Controls.Add(this.lblService);
             this.panelFilters.Controls.Add(this.linkLblEmployeeValue);
             this.panelFilters.Controls.Add(this.lblEmployee);
             this.panelFilters.Controls.Add(this.linkLblCustomerValue);
@@ -165,7 +162,7 @@ namespace stretch_ceilings_app.Forms
             // tbPriceToValue
             // 
             this.tbPriceToValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.tbPriceToValue.Location = new System.Drawing.Point(853, 40);
+            this.tbPriceToValue.Location = new System.Drawing.Point(782, 40);
             this.tbPriceToValue.Name = "tbPriceToValue";
             this.tbPriceToValue.Size = new System.Drawing.Size(115, 29);
             this.tbPriceToValue.TabIndex = 92;
@@ -175,7 +172,7 @@ namespace stretch_ceilings_app.Forms
             // 
             this.lblPriceTo.AutoSize = true;
             this.lblPriceTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lblPriceTo.Location = new System.Drawing.Point(802, 42);
+            this.lblPriceTo.Location = new System.Drawing.Point(731, 42);
             this.lblPriceTo.Name = "lblPriceTo";
             this.lblPriceTo.Size = new System.Drawing.Size(38, 24);
             this.lblPriceTo.TabIndex = 91;
@@ -184,7 +181,7 @@ namespace stretch_ceilings_app.Forms
             // tbPriceFromValue
             // 
             this.tbPriceFromValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.tbPriceFromValue.Location = new System.Drawing.Point(670, 41);
+            this.tbPriceFromValue.Location = new System.Drawing.Point(599, 41);
             this.tbPriceFromValue.Name = "tbPriceFromValue";
             this.tbPriceFromValue.Size = new System.Drawing.Size(115, 29);
             this.tbPriceFromValue.TabIndex = 90;
@@ -194,7 +191,7 @@ namespace stretch_ceilings_app.Forms
             // 
             this.lblPriceFrom.AutoSize = true;
             this.lblPriceFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lblPriceFrom.Location = new System.Drawing.Point(520, 43);
+            this.lblPriceFrom.Location = new System.Drawing.Point(449, 43);
             this.lblPriceFrom.Name = "lblPriceFrom";
             this.lblPriceFrom.Size = new System.Drawing.Size(141, 24);
             this.lblPriceFrom.TabIndex = 89;
@@ -210,49 +207,26 @@ namespace stretch_ceilings_app.Forms
             this.lblId.TabIndex = 88;
             this.lblId.Text = "Номер:";
             // 
-            // linkLblServiceValue
-            // 
-            this.linkLblServiceValue.ActiveLinkColor = System.Drawing.Color.White;
-            this.linkLblServiceValue.AutoSize = true;
-            this.linkLblServiceValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.linkLblServiceValue.LinkColor = System.Drawing.Color.Black;
-            this.linkLblServiceValue.Location = new System.Drawing.Point(397, 77);
-            this.linkLblServiceValue.Name = "linkLblServiceValue";
-            this.linkLblServiceValue.Size = new System.Drawing.Size(31, 24);
-            this.linkLblServiceValue.TabIndex = 86;
-            this.linkLblServiceValue.TabStop = true;
-            this.linkLblServiceValue.Text = "🔍";
-            this.linkLblServiceValue.VisitedLinkColor = System.Drawing.Color.Black;
-            // 
-            // lblService
-            // 
-            this.lblService.AutoSize = true;
-            this.lblService.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lblService.Location = new System.Drawing.Point(297, 77);
-            this.lblService.Name = "lblService";
-            this.lblService.Size = new System.Drawing.Size(75, 24);
-            this.lblService.TabIndex = 85;
-            this.lblService.Text = "Услуга:";
-            // 
             // linkLblEmployeeValue
             // 
             this.linkLblEmployeeValue.ActiveLinkColor = System.Drawing.Color.White;
             this.linkLblEmployeeValue.AutoSize = true;
             this.linkLblEmployeeValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.linkLblEmployeeValue.LinkColor = System.Drawing.Color.Black;
-            this.linkLblEmployeeValue.Location = new System.Drawing.Point(397, 43);
+            this.linkLblEmployeeValue.Location = new System.Drawing.Point(408, 43);
             this.linkLblEmployeeValue.Name = "linkLblEmployeeValue";
             this.linkLblEmployeeValue.Size = new System.Drawing.Size(31, 24);
             this.linkLblEmployeeValue.TabIndex = 84;
             this.linkLblEmployeeValue.TabStop = true;
             this.linkLblEmployeeValue.Text = "🔍";
             this.linkLblEmployeeValue.VisitedLinkColor = System.Drawing.Color.Black;
+            this.linkLblEmployeeValue.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLblEmployeeValue_LinkClicked);
             // 
             // lblEmployee
             // 
             this.lblEmployee.AutoSize = true;
             this.lblEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lblEmployee.Location = new System.Drawing.Point(297, 43);
+            this.lblEmployee.Location = new System.Drawing.Point(308, 43);
             this.lblEmployee.Name = "lblEmployee";
             this.lblEmployee.Size = new System.Drawing.Size(100, 24);
             this.lblEmployee.TabIndex = 83;
@@ -264,19 +238,20 @@ namespace stretch_ceilings_app.Forms
             this.linkLblCustomerValue.AutoSize = true;
             this.linkLblCustomerValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.linkLblCustomerValue.LinkColor = System.Drawing.Color.Black;
-            this.linkLblCustomerValue.Location = new System.Drawing.Point(397, 9);
+            this.linkLblCustomerValue.Location = new System.Drawing.Point(408, 9);
             this.linkLblCustomerValue.Name = "linkLblCustomerValue";
             this.linkLblCustomerValue.Size = new System.Drawing.Size(31, 24);
             this.linkLblCustomerValue.TabIndex = 82;
             this.linkLblCustomerValue.TabStop = true;
             this.linkLblCustomerValue.Text = "🔍";
             this.linkLblCustomerValue.VisitedLinkColor = System.Drawing.Color.Black;
+            this.linkLblCustomerValue.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLblCustomerValue_LinkClicked);
             // 
             // lblCustomer
             // 
             this.lblCustomer.AutoSize = true;
             this.lblCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lblCustomer.Location = new System.Drawing.Point(297, 9);
+            this.lblCustomer.Location = new System.Drawing.Point(308, 9);
             this.lblCustomer.Name = "lblCustomer";
             this.lblCustomer.Size = new System.Drawing.Size(80, 24);
             this.lblCustomer.TabIndex = 81;
@@ -287,7 +262,7 @@ namespace stretch_ceilings_app.Forms
             this.cbPaidByCash.AutoSize = true;
             this.cbPaidByCash.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbPaidByCash.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.cbPaidByCash.Location = new System.Drawing.Point(520, 77);
+            this.cbPaidByCash.Location = new System.Drawing.Point(449, 77);
             this.cbPaidByCash.Name = "cbPaidByCash";
             this.cbPaidByCash.Size = new System.Drawing.Size(209, 28);
             this.cbPaidByCash.TabIndex = 80;
@@ -306,7 +281,7 @@ namespace stretch_ceilings_app.Forms
             this.cbStatusValue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbStatusValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.cbStatusValue.FormattingEnabled = true;
-            this.cbStatusValue.Location = new System.Drawing.Point(670, 7);
+            this.cbStatusValue.Location = new System.Drawing.Point(599, 7);
             this.cbStatusValue.Name = "cbStatusValue";
             this.cbStatusValue.Size = new System.Drawing.Size(298, 32);
             this.cbStatusValue.TabIndex = 79;
@@ -315,7 +290,7 @@ namespace stretch_ceilings_app.Forms
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lblStatus.Location = new System.Drawing.Point(520, 9);
+            this.lblStatus.Location = new System.Drawing.Point(449, 9);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(77, 24);
             this.lblStatus.TabIndex = 78;
@@ -364,6 +339,7 @@ namespace stretch_ceilings_app.Forms
             // panelPages
             // 
             this.panelPages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
+            this.panelPages.Controls.Add(this.cbRows);
             this.panelPages.Controls.Add(this.btnPreviousPage);
             this.panelPages.Controls.Add(this.tbPage);
             this.panelPages.Controls.Add(this.btnNextPage);
@@ -386,12 +362,14 @@ namespace stretch_ceilings_app.Forms
             this.btnPreviousPage.TabIndex = 96;
             this.btnPreviousPage.Text = "<";
             this.btnPreviousPage.UseVisualStyleBackColor = false;
+            this.btnPreviousPage.Click += new System.EventHandler(this.btnPreviousPage_Click);
             // 
             // tbPage
             // 
             this.tbPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.tbPage.Location = new System.Drawing.Point(44, 5);
             this.tbPage.Name = "tbPage";
+            this.tbPage.ReadOnly = true;
             this.tbPage.Size = new System.Drawing.Size(80, 29);
             this.tbPage.TabIndex = 95;
             this.tbPage.Text = "1";
@@ -410,6 +388,7 @@ namespace stretch_ceilings_app.Forms
             this.btnNextPage.TabIndex = 94;
             this.btnNextPage.Text = ">";
             this.btnNextPage.UseVisualStyleBackColor = false;
+            this.btnNextPage.Click += new System.EventHandler(this.btnNextPage_Click);
             // 
             // dgvOrders
             // 
@@ -425,6 +404,18 @@ namespace stretch_ceilings_app.Forms
             this.dgvOrders.Size = new System.Drawing.Size(1054, 415);
             this.dgvOrders.TabIndex = 3;
             this.dgvOrders.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrders_CellDoubleClick);
+            // 
+            // cbRows
+            // 
+            this.cbRows.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbRows.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbRows.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbRows.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cbRows.FormattingEnabled = true;
+            this.cbRows.Location = new System.Drawing.Point(994, 4);
+            this.cbRows.Name = "cbRows";
+            this.cbRows.Size = new System.Drawing.Size(55, 32);
+            this.cbRows.TabIndex = 97;
             // 
             // OrdersForm
             // 
@@ -460,8 +451,6 @@ namespace stretch_ceilings_app.Forms
         private System.Windows.Forms.TextBox tbPriceFromValue;
         private System.Windows.Forms.Label lblPriceFrom;
         private System.Windows.Forms.Label lblId;
-        private System.Windows.Forms.LinkLabel linkLblServiceValue;
-        private System.Windows.Forms.Label lblService;
         private System.Windows.Forms.LinkLabel linkLblEmployeeValue;
         private System.Windows.Forms.Label lblEmployee;
         private System.Windows.Forms.LinkLabel linkLblCustomerValue;
@@ -482,5 +471,6 @@ namespace stretch_ceilings_app.Forms
         private System.Windows.Forms.Panel paneUserButtons;
         private System.Windows.Forms.Button btnResetFilters;
         private System.Windows.Forms.Button btnUseFilters;
+        private System.Windows.Forms.ComboBox cbRows;
     }
 }

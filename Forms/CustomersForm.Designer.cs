@@ -293,7 +293,6 @@ namespace stretch_ceilings_app.Forms
             this.button1.Text = "Добавить";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // panel5
             // 

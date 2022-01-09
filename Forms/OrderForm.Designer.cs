@@ -74,11 +74,12 @@ namespace stretch_ceilings_app.Forms
             this.linkLblCustomer.LinkColor = System.Drawing.Color.Black;
             this.linkLblCustomer.Location = new System.Drawing.Point(198, 9);
             this.linkLblCustomer.Name = "linkLblCustomer";
-            this.linkLblCustomer.Size = new System.Drawing.Size(237, 24);
+            this.linkLblCustomer.Size = new System.Drawing.Size(44, 24);
             this.linkLblCustomer.TabIndex = 70;
             this.linkLblCustomer.TabStop = true;
-            this.linkLblCustomer.Text = "Кравчук Роман Олегович";
+            this.linkLblCustomer.Text = "Нет";
             this.linkLblCustomer.VisitedLinkColor = System.Drawing.Color.Black;
+            this.linkLblCustomer.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLblCustomer_LinkClicked);
             // 
             // lblStatus
             // 
@@ -152,11 +153,15 @@ namespace stretch_ceilings_app.Forms
             // 
             // dgvEmployees
             // 
+            this.dgvEmployees.AllowUserToAddRows = false;
+            this.dgvEmployees.AllowUserToDeleteRows = false;
             this.dgvEmployees.BackgroundColor = System.Drawing.Color.Black;
             this.dgvEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEmployees.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvEmployees.Location = new System.Drawing.Point(3, 3);
             this.dgvEmployees.Name = "dgvEmployees";
+            this.dgvEmployees.ReadOnly = true;
+            this.dgvEmployees.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvEmployees.Size = new System.Drawing.Size(1170, 418);
             this.dgvEmployees.TabIndex = 2;
             // 
@@ -166,9 +171,9 @@ namespace stretch_ceilings_app.Forms
             this.lblPriceValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.lblPriceValue.Location = new System.Drawing.Point(196, 250);
             this.lblPriceValue.Name = "lblPriceValue";
-            this.lblPriceValue.Size = new System.Drawing.Size(126, 24);
+            this.lblPriceValue.Size = new System.Drawing.Size(44, 24);
             this.lblPriceValue.TabIndex = 60;
-            this.lblPriceValue.Text = "11920.00 руб.";
+            this.lblPriceValue.Text = "Нет";
             // 
             // cbPaidByCash
             // 
@@ -184,21 +189,29 @@ namespace stretch_ceilings_app.Forms
             // 
             // dgvServices
             // 
+            this.dgvServices.AllowUserToAddRows = false;
+            this.dgvServices.AllowUserToDeleteRows = false;
             this.dgvServices.BackgroundColor = System.Drawing.Color.Black;
             this.dgvServices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvServices.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvServices.Location = new System.Drawing.Point(3, 3);
             this.dgvServices.Name = "dgvServices";
+            this.dgvServices.ReadOnly = true;
+            this.dgvServices.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvServices.Size = new System.Drawing.Size(1170, 418);
             this.dgvServices.TabIndex = 4;
             // 
             // dgvLogs
             // 
+            this.dgvLogs.AllowUserToAddRows = false;
+            this.dgvLogs.AllowUserToDeleteRows = false;
             this.dgvLogs.BackgroundColor = System.Drawing.Color.Black;
             this.dgvLogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvLogs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvLogs.Location = new System.Drawing.Point(3, 3);
             this.dgvLogs.Name = "dgvLogs";
+            this.dgvLogs.ReadOnly = true;
+            this.dgvLogs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvLogs.Size = new System.Drawing.Size(1170, 418);
             this.dgvLogs.TabIndex = 4;
             // 
@@ -214,11 +227,15 @@ namespace stretch_ceilings_app.Forms
             // 
             // dgvWorkDates
             // 
+            this.dgvWorkDates.AllowUserToAddRows = false;
+            this.dgvWorkDates.AllowUserToDeleteRows = false;
             this.dgvWorkDates.BackgroundColor = System.Drawing.Color.Black;
             this.dgvWorkDates.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvWorkDates.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvWorkDates.Location = new System.Drawing.Point(3, 25);
             this.dgvWorkDates.Name = "dgvWorkDates";
+            this.dgvWorkDates.ReadOnly = true;
+            this.dgvWorkDates.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvWorkDates.Size = new System.Drawing.Size(565, 390);
             this.dgvWorkDates.TabIndex = 1;
             // 
@@ -281,9 +298,9 @@ namespace stretch_ceilings_app.Forms
             this.lblStatusValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.lblStatusValue.Location = new System.Drawing.Point(198, 184);
             this.lblStatusValue.Name = "lblStatusValue";
-            this.lblStatusValue.Size = new System.Drawing.Size(100, 24);
+            this.lblStatusValue.Size = new System.Drawing.Size(44, 24);
             this.lblStatusValue.TabIndex = 74;
-            this.lblStatusValue.Text = "Выполнен";
+            this.lblStatusValue.Text = "Нет";
             // 
             // lblDatePaidValue
             // 
@@ -291,9 +308,9 @@ namespace stretch_ceilings_app.Forms
             this.lblDatePaidValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.lblDatePaidValue.Location = new System.Drawing.Point(198, 115);
             this.lblDatePaidValue.Name = "lblDatePaidValue";
-            this.lblDatePaidValue.Size = new System.Drawing.Size(153, 24);
+            this.lblDatePaidValue.Size = new System.Drawing.Size(44, 24);
             this.lblDatePaidValue.TabIndex = 73;
-            this.lblDatePaidValue.Text = "1/2/2022 8:33 PM";
+            this.lblDatePaidValue.Text = "Нет";
             // 
             // lblDateOfMeasurementsValue
             // 
@@ -301,9 +318,9 @@ namespace stretch_ceilings_app.Forms
             this.lblDateOfMeasurementsValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.lblDateOfMeasurementsValue.Location = new System.Drawing.Point(198, 80);
             this.lblDateOfMeasurementsValue.Name = "lblDateOfMeasurementsValue";
-            this.lblDateOfMeasurementsValue.Size = new System.Drawing.Size(153, 24);
+            this.lblDateOfMeasurementsValue.Size = new System.Drawing.Size(44, 24);
             this.lblDateOfMeasurementsValue.TabIndex = 72;
-            this.lblDateOfMeasurementsValue.Text = "1/2/2022 8:33 PM";
+            this.lblDateOfMeasurementsValue.Text = "Нет";
             // 
             // lblDatePlacedValue
             // 
@@ -311,9 +328,9 @@ namespace stretch_ceilings_app.Forms
             this.lblDatePlacedValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.lblDatePlacedValue.Location = new System.Drawing.Point(198, 45);
             this.lblDatePlacedValue.Name = "lblDatePlacedValue";
-            this.lblDatePlacedValue.Size = new System.Drawing.Size(153, 24);
+            this.lblDatePlacedValue.Size = new System.Drawing.Size(44, 24);
             this.lblDatePlacedValue.TabIndex = 71;
-            this.lblDatePlacedValue.Text = "1/2/2022 8:33 PM";
+            this.lblDatePlacedValue.Text = "Нет";
             // 
             // tpServices
             // 

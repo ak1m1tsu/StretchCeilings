@@ -29,23 +29,12 @@ namespace stretch_ceilings_app
         /// </summary>
         private void InitializeComponent()
         {
-            this.tbLogin = new System.Windows.Forms.TextBox();
             this.lblLogin = new System.Windows.Forms.Label();
             this.tbPassword = new System.Windows.Forms.TextBox();
             this.lblPassword = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
+            this.mtbLogin = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
-            // 
-            // tbLogin
-            // 
-            this.tbLogin.BackColor = System.Drawing.Color.Black;
-            this.tbLogin.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.tbLogin.ForeColor = System.Drawing.Color.White;
-            this.tbLogin.Location = new System.Drawing.Point(97, 20);
-            this.tbLogin.Name = "tbLogin";
-            this.tbLogin.Size = new System.Drawing.Size(241, 22);
-            this.tbLogin.TabIndex = 28;
             // 
             // lblLogin
             // 
@@ -90,16 +79,28 @@ namespace stretch_ceilings_app
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
+            // mtbLogin
+            // 
+            this.mtbLogin.BackColor = System.Drawing.Color.Black;
+            this.mtbLogin.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.mtbLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.mtbLogin.ForeColor = System.Drawing.Color.White;
+            this.mtbLogin.Location = new System.Drawing.Point(97, 18);
+            this.mtbLogin.Mask = "+7(999)000-00-00";
+            this.mtbLogin.Name = "mtbLogin";
+            this.mtbLogin.Size = new System.Drawing.Size(241, 22);
+            this.mtbLogin.TabIndex = 32;
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
             this.ClientSize = new System.Drawing.Size(350, 150);
+            this.Controls.Add(this.mtbLogin);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.tbPassword);
             this.Controls.Add(this.lblPassword);
-            this.Controls.Add(this.tbLogin);
             this.Controls.Add(this.lblLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "LoginForm";
@@ -112,11 +113,10 @@ namespace stretch_ceilings_app
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox tbLogin;
         private System.Windows.Forms.Label lblLogin;
         private System.Windows.Forms.TextBox tbPassword;
         private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.Button btnLogin;
+        private System.Windows.Forms.MaskedTextBox mtbLogin;
     }
 }

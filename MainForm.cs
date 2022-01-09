@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using stretch_ceilings_app.Forms;
 using stretch_ceilings_app.Utility.CustomControls;
@@ -29,33 +30,34 @@ namespace stretch_ceilings_app
 
         private void DrawNavigationButtons()
         {
-            var btnOrders = new FlatButton("btnOrders", "Заказы");
-            btnOrders.Click += btnOrders_Click;
-            panelNav.Controls.Add(btnOrders);
-
-            var btnCustomers = new FlatButton("btnCustomers", "Клиенты");
-            btnCustomers.Click += btnCustomers_Click;
-            panelNav.Controls.Add(btnCustomers);
-
-            var btnEmployes = new FlatButton("btnEmployees", "Сотрудники");
-            btnEmployes.Click += btnEmployees_Click;
-            panelNav.Controls.Add(btnEmployes);
-
-            var btnServices = new FlatButton("btnServices", "Услуги");
-            btnServices.Click += btnServices_Click;
-            panelNav.Controls.Add(btnServices);
+            var btnManufacturerOrders = new FlatButton("btnManufacturerOrders", "Заказы для производителей");
+            btnManufacturerOrders.Click += btnManufacturerOrders_Click;
 
             var btnManufacturers = new FlatButton("btnManufacturers", "Производители");
             btnManufacturers.Click += btnManufacturers_Click;
-            panelNav.Controls.Add(btnManufacturers);
-
-            var btnManufacturerOrders = new FlatButton("btnManufacturerOrders", "Заказы для производителей");
-            btnManufacturerOrders.Click += btnManufacturerOrders_Click;
-            panelNav.Controls.Add(btnManufacturerOrders);
 
             var btnAdditionalService = new FlatButton("btnAdditionalService", "Дополнительный услуги");
             btnAdditionalService.Click += btnAdditionalService_Click;
-            panelNav.Controls.Add(btnAdditionalService);
+
+            var btnServices = new FlatButton("btnServices", "Услуги");
+            btnServices.Click += btnServices_Click;
+
+            var btnEmployes = new FlatButton("btnEmployees", "Сотрудники");
+            btnEmployes.Click += btnEmployees_Click;
+
+            var btnCustomers = new FlatButton("btnCustomers", "Клиенты");
+            btnCustomers.Click += btnCustomers_Click;
+
+            var btnOrders = new FlatButton("btnOrders", "Заказы");
+            btnOrders.Click += btnOrders_Click;
+
+            var buttons = new Button[]
+            {
+                btnOrders, btnCustomers, btnEmployes, btnServices, 
+                btnAdditionalService, btnManufacturers, btnManufacturerOrders
+            }.Reverse();
+
+            panelNav.Controls.AddRange(buttons?.ToArray());
         }
 
         private void MainForm_Load(object sender, EventArgs e)

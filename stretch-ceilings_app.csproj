@@ -8,7 +8,7 @@
     <ProjectGuid>{14E5094F-53EE-4808-A98F-325781775ABC}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>stretch_ceilings_app</RootNamespace>
-    <AssemblyName>stretch_ceilings_app</AssemblyName>
+    <AssemblyName>stretch-ceilings_app</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -36,6 +36,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>stretch_ceilings_app.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
@@ -43,10 +46,16 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.ComponentModel.DataAnnotations.dll</HintPath>
+    </Reference>
     <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" />
+    <Reference Include="System.Core">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.SQLite, Version=1.0.115.5, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\lib\net46\System.Data.SQLite.dll</HintPath>
     </Reference>
@@ -96,6 +105,12 @@
     </Compile>
     <Compile Include="Forms\CeilingFormEdit.Designer.cs">
       <DependentUpon>CeilingFormEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CustomerFormEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CustomerFormEdit.Designer.cs">
+      <DependentUpon>CustomerFormEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ManufacturerFormEdit.cs">
       <SubType>Form</SubType>
@@ -195,9 +210,17 @@
     <Compile Include="Forms\TimeTableForm.Designer.cs">
       <DependentUpon>TimeTableForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202112301226581_init.cs" />
-    <Compile Include="Migrations\202112301226581_init.designer.cs">
-      <DependentUpon>202112301226581_init.cs</DependentUpon>
+    <Compile Include="Migrations\202201090553275_init.cs" />
+    <Compile Include="Migrations\202201090553275_init.designer.cs">
+      <DependentUpon>202201090553275_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202201090613497_update-permissions.cs" />
+    <Compile Include="Migrations\202201090613497_update-permissions.designer.cs">
+      <DependentUpon>202201090613497_update-permissions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202201090720453_minor-updates.cs" />
+    <Compile Include="Migrations\202201090720453_minor-updates.designer.cs">
+      <DependentUpon>202201090720453_minor-updates.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
@@ -263,8 +286,13 @@
     <Compile Include="Utility\Enums\RoomType.cs" />
     <Compile Include="Utility\LogWriter.cs" />
     <Compile Include="Utility\Extensions\StringExtensions.cs" />
+    <Compile Include="Utility\Repositories\AdditionalServiceRepository.cs" />
+    <Compile Include="Utility\Repositories\CustomerRepository.cs" />
     <Compile Include="Utility\Repositories\EmployeeRepository.cs" />
+    <Compile Include="Utility\Repositories\ManufacturerOrderRepository.cs" />
+    <Compile Include="Utility\Repositories\ManufacturerRepository.cs" />
     <Compile Include="Utility\Repositories\OrderRepository.cs" />
+    <Compile Include="Utility\Repositories\ServiceRepository.cs" />
     <Compile Include="Utility\UserSession.cs" />
     <EmbeddedResource Include="Forms\AdditionalServiceForm.resx">
       <DependentUpon>AdditionalServiceForm.cs</DependentUpon>
@@ -277,6 +305,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CeilingFormEdit.resx">
       <DependentUpon>CeilingFormEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CustomerFormEdit.resx">
+      <DependentUpon>CustomerFormEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ManufacturerFormEdit.resx">
       <DependentUpon>ManufacturerFormEdit.cs</DependentUpon>
@@ -320,8 +351,14 @@
     <EmbeddedResource Include="Forms\TimeTableForm.resx">
       <DependentUpon>TimeTableForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202112301226581_init.resx">
-      <DependentUpon>202112301226581_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202201090553275_init.resx">
+      <DependentUpon>202201090553275_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201090613497_update-permissions.resx">
+      <DependentUpon>202201090613497_update-permissions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201090720453_minor-updates.resx">
+      <DependentUpon>202201090720453_minor-updates.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

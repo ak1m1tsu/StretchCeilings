@@ -31,12 +31,20 @@ namespace stretch_ceilings_app.Data.Models
 
         public void Delete()
         {
-            throw new NotImplementedException();
+            using (var db = new StretchCeilingsContext())
+            {
+                db.Entry(this.Id).CurrentValues.SetValues(DateDeleted = DateTime.Now);
+                db.SaveChanges();
+            }
         }
 
         public void Update()
         {
-            throw new NotImplementedException();
+            using (var db = new StretchCeilingsContext())
+            {
+                db.Entry(this.Id).CurrentValues.SetValues(this);
+                db.SaveChanges();
+            }
         }
     }
 }

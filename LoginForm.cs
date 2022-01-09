@@ -33,7 +33,7 @@ namespace stretch_ceilings_app
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (UserSession.LogIn(_users, tbLogin.Text, tbPassword.Text) == false)
+            if (UserSession.LogIn(_users, mtbLogin.Text, tbPassword.Text) == false)
             {
                 MessageBox.Show("Неверный логин или пароль.", "Авторизация не пройдена.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;

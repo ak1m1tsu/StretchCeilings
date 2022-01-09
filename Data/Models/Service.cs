@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using stretch_ceilings_app.Interfaces.Models;
 
 namespace stretch_ceilings_app.Data.Models
@@ -20,21 +22,43 @@ namespace stretch_ceilings_app.Data.Models
         [Column("CeilingId")]
         public virtual Ceiling Ceiling { get; set; }
         public decimal? Price { get; set; }
-        public DateTime? DeteDeleted { get; set; }
+        public DateTime? DateDeleted { get; set; }
 
         public void Add()
         {
-            throw new NotImplementedException();
+            using (var db = new StretchCeilingsContext())
+            {
+                db.Services.Add(this);
+                db.SaveChanges();
+            }
         }
 
         public void Delete()
         {
-            throw new NotImplementedException();
+            using (var db = new StretchCeilingsContext())
+            {
+                db.Entry(this.Id).CurrentValues.SetValues(this);
+                db.SaveChanges();
+            }
+        }
+
+        public List<AdditionalService> GetAdditionalServices()
+        {
+            using (var db = new StretchCeilingsContext())
+            {
+                return db.AdditionalServices.SqlQuery("SELECT AdditionalServices.* FROM AdditionalServices " +
+                                                      "INNER JOIN ServiceAdditServices ON ServiceAdditServices.AdditServiceId = AdditionalServices.Id " +
+                                                      $"WHERE ServiceAdditServices.ServiceId = {Id} AND AdditionalServices.DateDeleted IS NULL").ToList();
+            }
         }
 
         public void Update()
         {
-            throw new NotImplementedException();
+            using (var db = new StretchCeilingsContext())
+            {
+                db.Entry(this.Id).CurrentValues.SetValues(this);
+                db.SaveChanges();
+            }
         }
     }
 
