@@ -22,6 +22,7 @@
         DelManufacturerOrder,
         AddAdditionalService,
         EditAdditionalService,
-        DelAdditionalService
+        DelAdditionalService,
+        All
     }
 }

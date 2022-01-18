@@ -26,7 +26,7 @@ namespace stretch_ceilings_app.Data.Models
         public DateTime? DateDeleted { get; set; }
         public bool? PaidByCash { get; set; }
         public OrderStatus Status { get; set; }
-        public decimal? Total { get; private set; }
+        public decimal? Total { get; set; }
 
         public void Add()
         {
@@ -46,7 +46,9 @@ namespace stretch_ceilings_app.Data.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                db.Entry(Id).CurrentValues.SetValues(DateDeleted = DateTime.Now);
+                DateDeleted = DateTime.Now;
+                var order = db.Orders.Find(Id);
+                db.Entry(order).CurrentValues.SetValues(this);
                 db.SaveChanges();
             }
         }
@@ -98,7 +100,8 @@ namespace stretch_ceilings_app.Data.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                db.Entry(Id).CurrentValues.SetValues(this);
+                var old = db.Orders.Find(Id);
+                db.Entry(old).CurrentValues.SetValues(this);
                 db.SaveChanges();
             }
         }

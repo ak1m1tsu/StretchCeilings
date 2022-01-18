@@ -60,7 +60,7 @@ namespace stretch_ceilings_app.Forms
             // 
             // panelButtons
             // 
-            this.panelButtons.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
+            this.panelButtons.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(51)))), ((int)(((byte)(107)))));
             this.panelButtons.Controls.Add(this.panelUserButtons);
             this.panelButtons.Controls.Add(this.panelSearchButtons);
             this.panelButtons.Dock = System.Windows.Forms.DockStyle.Right;
@@ -71,7 +71,6 @@ namespace stretch_ceilings_app.Forms
             // 
             // panelUserButtons
             // 
-            this.panelUserButtons.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
             this.panelUserButtons.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelUserButtons.Location = new System.Drawing.Point(0, 110);
             this.panelUserButtons.Name = "panelUserButtons";
@@ -137,7 +136,7 @@ namespace stretch_ceilings_app.Forms
             // 
             // panelPages
             // 
-            this.panelPages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
+            this.panelPages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(69)))), ((int)(((byte)(145)))));
             this.panelPages.Controls.Add(this.btnPreviousPage);
             this.panelPages.Controls.Add(this.tbPage);
             this.panelPages.Controls.Add(this.btnNextPage);
@@ -187,7 +186,7 @@ namespace stretch_ceilings_app.Forms
             // 
             // panelFilters
             // 
-            this.panelFilters.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
+            this.panelFilters.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(69)))), ((int)(((byte)(145)))));
             this.panelFilters.Controls.Add(this.tbPriceToValue);
             this.panelFilters.Controls.Add(this.lblPriceTo);
             this.panelFilters.Controls.Add(this.tbPriceFromValue);

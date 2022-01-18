@@ -65,7 +65,7 @@ namespace stretch_ceilings_app.Forms
             // 
             // tbInfo
             // 
-            this.tbInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
+            this.tbInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(69)))), ((int)(((byte)(145)))));
             this.tbInfo.Controls.Add(this.mtbPhoneNumber);
             this.tbInfo.Controls.Add(this.tbFullName);
             this.tbInfo.Controls.Add(this.btnSaveInfo);
@@ -152,7 +152,7 @@ namespace stretch_ceilings_app.Forms
             // 
             // panelPageSide
             // 
-            this.panelPageSide.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
+            this.panelPageSide.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(69)))), ((int)(((byte)(145)))));
             this.panelPageSide.Controls.Add(this.btnAddEstate);
             this.panelPageSide.Controls.Add(this.btnPreviousPage);
             this.panelPageSide.Controls.Add(this.tbPage);
@@ -234,7 +234,7 @@ namespace stretch_ceilings_app.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(51)))), ((int)(((byte)(107)))));
             this.ClientSize = new System.Drawing.Size(634, 361);
             this.Controls.Add(this.tcCustomer);
             this.Name = "CustomerFormEdit";

@@ -1,27 +1,35 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace stretch_ceilings_app.Utility.CustomControls
 {
-    public class FlatButton : Button
+    public sealed class FlatButton : Button
     {
-        public event EventHandler Event;
-
         public FlatButton(string name, string text)
         {
-            this.Name = name;
-            this.Text = text;
             this.Size = new Size(160, 65);
             this.FlatStyle = FlatStyle.Flat;
             this.Dock = DockStyle.Top;
-            this.Font = new Font("Microsoft Sans Serif", 14, FontStyle.Bold);
+            this.Font = new Font("Microsoft Sans Serif", 14, FontStyle.Regular);
             this.TextAlign = ContentAlignment.MiddleLeft;
+            this.FlatAppearance.BorderSize = 0;
+
+            this.Name = name;
+            this.Text = text;
         }
 
-        protected virtual void OnEvent()
+        public FlatButton(string name, string text, Color color)
         {
-            Event?.Invoke(this, EventArgs.Empty);
+            this.Size = new Size(160, 65);
+            this.FlatStyle = FlatStyle.Flat;
+            this.Dock = DockStyle.Top;
+            this.Font = new Font("Microsoft Sans Serif", 14, FontStyle.Regular);
+            this.TextAlign = ContentAlignment.MiddleLeft;
+            this.FlatAppearance.BorderSize = 0;
+
+            this.Name = name;
+            this.Text = text;
+            this.BackColor = color;
         }
     }
 }
