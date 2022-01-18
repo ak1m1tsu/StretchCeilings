@@ -29,102 +29,63 @@ namespace stretch_ceilings_app.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.panelUserButtons = new System.Windows.Forms.Panel();
-            this.panelFilters = new System.Windows.Forms.Panel();
-            this.panelPages = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.panelButtonsSide = new System.Windows.Forms.Panel();
+            this.paneUserButtons = new System.Windows.Forms.Panel();
             this.panelSearchButtons = new System.Windows.Forms.Panel();
-            this.tbPriceToValue = new System.Windows.Forms.TextBox();
+            this.btnResetFilters = new System.Windows.Forms.Button();
+            this.btnUseFilters = new System.Windows.Forms.Button();
+            this.panelFilters = new System.Windows.Forms.Panel();
+            this.ibtnEmployee = new FontAwesome.Sharp.IconButton();
+            this.ibtnCustomer = new FontAwesome.Sharp.IconButton();
+            this.nudTotalTo = new System.Windows.Forms.NumericUpDown();
+            this.nudTotalFrom = new System.Windows.Forms.NumericUpDown();
+            this.nudIdValue = new System.Windows.Forms.NumericUpDown();
             this.lblPriceTo = new System.Windows.Forms.Label();
-            this.tbPriceFromValue = new System.Windows.Forms.TextBox();
             this.lblPriceFrom = new System.Windows.Forms.Label();
             this.lblId = new System.Windows.Forms.Label();
-            this.linkLblServiceValue = new System.Windows.Forms.LinkLabel();
-            this.lblService = new System.Windows.Forms.Label();
-            this.linkLblEmployeeValue = new System.Windows.Forms.LinkLabel();
             this.lblEmployee = new System.Windows.Forms.Label();
-            this.linkLblCustomerValue = new System.Windows.Forms.LinkLabel();
             this.lblCustomer = new System.Windows.Forms.Label();
             this.cbPaidByCash = new System.Windows.Forms.CheckBox();
             this.cbStatusValue = new System.Windows.Forms.ComboBox();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.dtpDateValueTo = new System.Windows.Forms.DateTimePicker();
+            this.dtpDateToValue = new System.Windows.Forms.DateTimePicker();
             this.lblDateTo = new System.Windows.Forms.Label();
             this.dtpDateFromValue = new System.Windows.Forms.DateTimePicker();
             this.lblDateFrom = new System.Windows.Forms.Label();
-            this.nudIdValue = new System.Windows.Forms.NumericUpDown();
+            this.panelPages = new System.Windows.Forms.Panel();
+            this.cbRows = new System.Windows.Forms.ComboBox();
             this.btnPreviousPage = new System.Windows.Forms.Button();
             this.tbPage = new System.Windows.Forms.TextBox();
             this.btnNextPage = new System.Windows.Forms.Button();
-            this.btnResetFilters = new System.Windows.Forms.Button();
-            this.btnUseFilters = new System.Windows.Forms.Button();
-            this.panelUserButtons.SuspendLayout();
-            this.panelFilters.SuspendLayout();
-            this.panelPages.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.dgvOrders = new System.Windows.Forms.DataGridView();
+            this.panelButtonsSide.SuspendLayout();
             this.panelSearchButtons.SuspendLayout();
+            this.panelFilters.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTotalTo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTotalFrom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudIdValue)).BeginInit();
+            this.panelPages.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).BeginInit();
             this.SuspendLayout();
             // 
-            // panelUserButtons
+            // panelButtonsSide
             // 
-            this.panelUserButtons.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
-            this.panelUserButtons.Controls.Add(this.panelSearchButtons);
-            this.panelUserButtons.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelUserButtons.Location = new System.Drawing.Point(1054, 0);
-            this.panelUserButtons.Name = "panelUserButtons";
-            this.panelUserButtons.Size = new System.Drawing.Size(130, 561);
-            this.panelUserButtons.TabIndex = 0;
+            this.panelButtonsSide.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(51)))), ((int)(((byte)(107)))));
+            this.panelButtonsSide.Controls.Add(this.paneUserButtons);
+            this.panelButtonsSide.Controls.Add(this.panelSearchButtons);
+            this.panelButtonsSide.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panelButtonsSide.Location = new System.Drawing.Point(1054, 0);
+            this.panelButtonsSide.Name = "panelButtonsSide";
+            this.panelButtonsSide.Size = new System.Drawing.Size(130, 565);
+            this.panelButtonsSide.TabIndex = 0;
             // 
-            // panelFilters
+            // paneUserButtons
             // 
-            this.panelFilters.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
-            this.panelFilters.Controls.Add(this.nudIdValue);
-            this.panelFilters.Controls.Add(this.tbPriceToValue);
-            this.panelFilters.Controls.Add(this.lblPriceTo);
-            this.panelFilters.Controls.Add(this.tbPriceFromValue);
-            this.panelFilters.Controls.Add(this.lblPriceFrom);
-            this.panelFilters.Controls.Add(this.lblId);
-            this.panelFilters.Controls.Add(this.linkLblServiceValue);
-            this.panelFilters.Controls.Add(this.lblService);
-            this.panelFilters.Controls.Add(this.linkLblEmployeeValue);
-            this.panelFilters.Controls.Add(this.lblEmployee);
-            this.panelFilters.Controls.Add(this.linkLblCustomerValue);
-            this.panelFilters.Controls.Add(this.lblCustomer);
-            this.panelFilters.Controls.Add(this.cbPaidByCash);
-            this.panelFilters.Controls.Add(this.cbStatusValue);
-            this.panelFilters.Controls.Add(this.lblStatus);
-            this.panelFilters.Controls.Add(this.dtpDateValueTo);
-            this.panelFilters.Controls.Add(this.lblDateTo);
-            this.panelFilters.Controls.Add(this.dtpDateFromValue);
-            this.panelFilters.Controls.Add(this.lblDateFrom);
-            this.panelFilters.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelFilters.Location = new System.Drawing.Point(0, 0);
-            this.panelFilters.Name = "panelFilters";
-            this.panelFilters.Size = new System.Drawing.Size(1054, 110);
-            this.panelFilters.TabIndex = 1;
-            // 
-            // panelPages
-            // 
-            this.panelPages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
-            this.panelPages.Controls.Add(this.btnPreviousPage);
-            this.panelPages.Controls.Add(this.tbPage);
-            this.panelPages.Controls.Add(this.btnNextPage);
-            this.panelPages.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelPages.Location = new System.Drawing.Point(0, 521);
-            this.panelPages.Name = "panelPages";
-            this.panelPages.Size = new System.Drawing.Size(1054, 40);
-            this.panelPages.TabIndex = 2;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.Black;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 110);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1054, 411);
-            this.dataGridView1.TabIndex = 3;
+            this.paneUserButtons.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.paneUserButtons.Location = new System.Drawing.Point(0, 110);
+            this.paneUserButtons.Name = "paneUserButtons";
+            this.paneUserButtons.Size = new System.Drawing.Size(130, 455);
+            this.paneUserButtons.TabIndex = 1;
             // 
             // panelSearchButtons
             // 
@@ -136,41 +97,142 @@ namespace stretch_ceilings_app.Forms
             this.panelSearchButtons.Size = new System.Drawing.Size(130, 110);
             this.panelSearchButtons.TabIndex = 0;
             // 
-            // tbPriceToValue
+            // btnResetFilters
             // 
-            this.tbPriceToValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.tbPriceToValue.Location = new System.Drawing.Point(853, 40);
-            this.tbPriceToValue.Name = "tbPriceToValue";
-            this.tbPriceToValue.Size = new System.Drawing.Size(115, 29);
-            this.tbPriceToValue.TabIndex = 92;
-            this.tbPriceToValue.Text = "6000";
-            this.tbPriceToValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.btnResetFilters.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnResetFilters.FlatAppearance.BorderSize = 0;
+            this.btnResetFilters.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnResetFilters.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnResetFilters.Location = new System.Drawing.Point(0, 56);
+            this.btnResetFilters.Name = "btnResetFilters";
+            this.btnResetFilters.Size = new System.Drawing.Size(130, 55);
+            this.btnResetFilters.TabIndex = 16;
+            this.btnResetFilters.Text = "Сбросить";
+            this.btnResetFilters.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnResetFilters.UseVisualStyleBackColor = true;
+            this.btnResetFilters.Click += new System.EventHandler(this.btnResetFilters_Click);
+            // 
+            // btnUseFilters
+            // 
+            this.btnUseFilters.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnUseFilters.FlatAppearance.BorderSize = 0;
+            this.btnUseFilters.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUseFilters.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnUseFilters.Location = new System.Drawing.Point(0, 0);
+            this.btnUseFilters.Name = "btnUseFilters";
+            this.btnUseFilters.Size = new System.Drawing.Size(130, 56);
+            this.btnUseFilters.TabIndex = 15;
+            this.btnUseFilters.Text = "Применить";
+            this.btnUseFilters.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUseFilters.UseVisualStyleBackColor = true;
+            this.btnUseFilters.Click += new System.EventHandler(this.btnUseFilters_Click);
+            // 
+            // panelFilters
+            // 
+            this.panelFilters.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(69)))), ((int)(((byte)(145)))));
+            this.panelFilters.Controls.Add(this.ibtnEmployee);
+            this.panelFilters.Controls.Add(this.ibtnCustomer);
+            this.panelFilters.Controls.Add(this.nudTotalTo);
+            this.panelFilters.Controls.Add(this.nudTotalFrom);
+            this.panelFilters.Controls.Add(this.nudIdValue);
+            this.panelFilters.Controls.Add(this.lblPriceTo);
+            this.panelFilters.Controls.Add(this.lblPriceFrom);
+            this.panelFilters.Controls.Add(this.lblId);
+            this.panelFilters.Controls.Add(this.lblEmployee);
+            this.panelFilters.Controls.Add(this.lblCustomer);
+            this.panelFilters.Controls.Add(this.cbPaidByCash);
+            this.panelFilters.Controls.Add(this.cbStatusValue);
+            this.panelFilters.Controls.Add(this.lblStatus);
+            this.panelFilters.Controls.Add(this.dtpDateToValue);
+            this.panelFilters.Controls.Add(this.lblDateTo);
+            this.panelFilters.Controls.Add(this.dtpDateFromValue);
+            this.panelFilters.Controls.Add(this.lblDateFrom);
+            this.panelFilters.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelFilters.Location = new System.Drawing.Point(0, 0);
+            this.panelFilters.Name = "panelFilters";
+            this.panelFilters.Size = new System.Drawing.Size(1054, 110);
+            this.panelFilters.TabIndex = 1;
+            // 
+            // ibtnEmployee
+            // 
+            this.ibtnEmployee.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ibtnEmployee.FlatAppearance.BorderSize = 0;
+            this.ibtnEmployee.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ibtnEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ibtnEmployee.IconChar = FontAwesome.Sharp.IconChar.Search;
+            this.ibtnEmployee.IconColor = System.Drawing.Color.Black;
+            this.ibtnEmployee.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ibtnEmployee.IconSize = 25;
+            this.ibtnEmployee.Location = new System.Drawing.Point(873, 43);
+            this.ibtnEmployee.Name = "ibtnEmployee";
+            this.ibtnEmployee.Size = new System.Drawing.Size(25, 25);
+            this.ibtnEmployee.TabIndex = 97;
+            this.ibtnEmployee.UseVisualStyleBackColor = true;
+            this.ibtnEmployee.Click += new System.EventHandler(this.ibtnEmployee_Click);
+            // 
+            // ibtnCustomer
+            // 
+            this.ibtnCustomer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ibtnCustomer.FlatAppearance.BorderSize = 0;
+            this.ibtnCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ibtnCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ibtnCustomer.IconChar = FontAwesome.Sharp.IconChar.Search;
+            this.ibtnCustomer.IconColor = System.Drawing.Color.Black;
+            this.ibtnCustomer.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ibtnCustomer.IconSize = 25;
+            this.ibtnCustomer.Location = new System.Drawing.Point(873, 9);
+            this.ibtnCustomer.Name = "ibtnCustomer";
+            this.ibtnCustomer.Size = new System.Drawing.Size(25, 25);
+            this.ibtnCustomer.TabIndex = 96;
+            this.ibtnCustomer.UseVisualStyleBackColor = true;
+            this.ibtnCustomer.Click += new System.EventHandler(this.ibtnCustomer_Click);
+            // 
+            // nudTotalTo
+            // 
+            this.nudTotalTo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.nudTotalTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nudTotalTo.Location = new System.Drawing.Point(623, 41);
+            this.nudTotalTo.Name = "nudTotalTo";
+            this.nudTotalTo.Size = new System.Drawing.Size(122, 25);
+            this.nudTotalTo.TabIndex = 95;
+            this.nudTotalTo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nudTotalTo.ValueChanged += new System.EventHandler(this.nudTotalTo_ValueChanged);
+            // 
+            // nudTotalFrom
+            // 
+            this.nudTotalFrom.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.nudTotalFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nudTotalFrom.Location = new System.Drawing.Point(447, 41);
+            this.nudTotalFrom.Name = "nudTotalFrom";
+            this.nudTotalFrom.Size = new System.Drawing.Size(126, 25);
+            this.nudTotalFrom.TabIndex = 94;
+            this.nudTotalFrom.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nudTotalFrom.ValueChanged += new System.EventHandler(this.nudTotalFrom_ValueChanged);
+            // 
+            // nudIdValue
+            // 
+            this.nudIdValue.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.nudIdValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nudIdValue.Location = new System.Drawing.Point(102, 76);
+            this.nudIdValue.Name = "nudIdValue";
+            this.nudIdValue.Size = new System.Drawing.Size(77, 25);
+            this.nudIdValue.TabIndex = 93;
             // 
             // lblPriceTo
             // 
             this.lblPriceTo.AutoSize = true;
             this.lblPriceTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lblPriceTo.Location = new System.Drawing.Point(802, 42);
+            this.lblPriceTo.Location = new System.Drawing.Point(579, 43);
             this.lblPriceTo.Name = "lblPriceTo";
             this.lblPriceTo.Size = new System.Drawing.Size(38, 24);
             this.lblPriceTo.TabIndex = 91;
             this.lblPriceTo.Text = "до:";
             // 
-            // tbPriceFromValue
-            // 
-            this.tbPriceFromValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.tbPriceFromValue.Location = new System.Drawing.Point(670, 41);
-            this.tbPriceFromValue.Name = "tbPriceFromValue";
-            this.tbPriceFromValue.Size = new System.Drawing.Size(115, 29);
-            this.tbPriceFromValue.TabIndex = 90;
-            this.tbPriceFromValue.Text = "3000";
-            this.tbPriceFromValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // lblPriceFrom
             // 
             this.lblPriceFrom.AutoSize = true;
             this.lblPriceFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lblPriceFrom.Location = new System.Drawing.Point(520, 43);
+            this.lblPriceFrom.Location = new System.Drawing.Point(297, 43);
             this.lblPriceFrom.Name = "lblPriceFrom";
             this.lblPriceFrom.Size = new System.Drawing.Size(141, 24);
             this.lblPriceFrom.TabIndex = 89;
@@ -186,73 +248,21 @@ namespace stretch_ceilings_app.Forms
             this.lblId.TabIndex = 88;
             this.lblId.Text = "Номер:";
             // 
-            // linkLblServiceValue
-            // 
-            this.linkLblServiceValue.ActiveLinkColor = System.Drawing.Color.White;
-            this.linkLblServiceValue.AutoSize = true;
-            this.linkLblServiceValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.linkLblServiceValue.LinkColor = System.Drawing.Color.Black;
-            this.linkLblServiceValue.Location = new System.Drawing.Point(397, 77);
-            this.linkLblServiceValue.Name = "linkLblServiceValue";
-            this.linkLblServiceValue.Size = new System.Drawing.Size(117, 24);
-            this.linkLblServiceValue.TabIndex = 86;
-            this.linkLblServiceValue.TabStop = true;
-            this.linkLblServiceValue.Text = "Не выбрано";
-            this.linkLblServiceValue.VisitedLinkColor = System.Drawing.Color.Black;
-            // 
-            // lblService
-            // 
-            this.lblService.AutoSize = true;
-            this.lblService.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lblService.Location = new System.Drawing.Point(297, 77);
-            this.lblService.Name = "lblService";
-            this.lblService.Size = new System.Drawing.Size(75, 24);
-            this.lblService.TabIndex = 85;
-            this.lblService.Text = "Услуга:";
-            // 
-            // linkLblEmployeeValue
-            // 
-            this.linkLblEmployeeValue.ActiveLinkColor = System.Drawing.Color.White;
-            this.linkLblEmployeeValue.AutoSize = true;
-            this.linkLblEmployeeValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.linkLblEmployeeValue.LinkColor = System.Drawing.Color.Black;
-            this.linkLblEmployeeValue.Location = new System.Drawing.Point(397, 43);
-            this.linkLblEmployeeValue.Name = "linkLblEmployeeValue";
-            this.linkLblEmployeeValue.Size = new System.Drawing.Size(117, 24);
-            this.linkLblEmployeeValue.TabIndex = 84;
-            this.linkLblEmployeeValue.TabStop = true;
-            this.linkLblEmployeeValue.Text = "Не выбрано";
-            this.linkLblEmployeeValue.VisitedLinkColor = System.Drawing.Color.Black;
-            // 
             // lblEmployee
             // 
             this.lblEmployee.AutoSize = true;
             this.lblEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lblEmployee.Location = new System.Drawing.Point(297, 43);
+            this.lblEmployee.Location = new System.Drawing.Point(762, 43);
             this.lblEmployee.Name = "lblEmployee";
             this.lblEmployee.Size = new System.Drawing.Size(100, 24);
             this.lblEmployee.TabIndex = 83;
             this.lblEmployee.Text = "Работник:";
             // 
-            // linkLblCustomerValue
-            // 
-            this.linkLblCustomerValue.ActiveLinkColor = System.Drawing.Color.White;
-            this.linkLblCustomerValue.AutoSize = true;
-            this.linkLblCustomerValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.linkLblCustomerValue.LinkColor = System.Drawing.Color.Black;
-            this.linkLblCustomerValue.Location = new System.Drawing.Point(397, 9);
-            this.linkLblCustomerValue.Name = "linkLblCustomerValue";
-            this.linkLblCustomerValue.Size = new System.Drawing.Size(117, 24);
-            this.linkLblCustomerValue.TabIndex = 82;
-            this.linkLblCustomerValue.TabStop = true;
-            this.linkLblCustomerValue.Text = "Не выбрано";
-            this.linkLblCustomerValue.VisitedLinkColor = System.Drawing.Color.Black;
-            // 
             // lblCustomer
             // 
             this.lblCustomer.AutoSize = true;
             this.lblCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lblCustomer.Location = new System.Drawing.Point(297, 9);
+            this.lblCustomer.Location = new System.Drawing.Point(762, 9);
             this.lblCustomer.Name = "lblCustomer";
             this.lblCustomer.Size = new System.Drawing.Size(80, 24);
             this.lblCustomer.TabIndex = 81;
@@ -263,7 +273,7 @@ namespace stretch_ceilings_app.Forms
             this.cbPaidByCash.AutoSize = true;
             this.cbPaidByCash.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbPaidByCash.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.cbPaidByCash.Location = new System.Drawing.Point(520, 77);
+            this.cbPaidByCash.Location = new System.Drawing.Point(297, 77);
             this.cbPaidByCash.Name = "cbPaidByCash";
             this.cbPaidByCash.Size = new System.Drawing.Size(209, 28);
             this.cbPaidByCash.TabIndex = 80;
@@ -278,34 +288,36 @@ namespace stretch_ceilings_app.Forms
             "Ожидает результатов замеров",
             "Отменен",
             "Завершен"});
-            this.cbStatusValue.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.cbStatusValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbStatusValue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbStatusValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.cbStatusValue.FormattingEnabled = true;
-            this.cbStatusValue.Location = new System.Drawing.Point(670, 7);
+            this.cbStatusValue.Location = new System.Drawing.Point(447, 7);
             this.cbStatusValue.Name = "cbStatusValue";
             this.cbStatusValue.Size = new System.Drawing.Size(298, 32);
             this.cbStatusValue.TabIndex = 79;
-            this.cbStatusValue.Text = "Ожидает результата замеров";
+            this.cbStatusValue.SelectedIndexChanged += new System.EventHandler(this.cbStatusValue_SelectedIndexChanged);
             // 
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lblStatus.Location = new System.Drawing.Point(520, 9);
+            this.lblStatus.Location = new System.Drawing.Point(297, 9);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(77, 24);
             this.lblStatus.TabIndex = 78;
             this.lblStatus.Text = "Статус:";
             // 
-            // dtpDateValueTo
+            // dtpDateToValue
             // 
-            this.dtpDateValueTo.CustomFormat = "dd.MM.yyyy HH:mm";
-            this.dtpDateValueTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.dtpDateValueTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDateValueTo.Location = new System.Drawing.Point(102, 41);
-            this.dtpDateValueTo.Name = "dtpDateValueTo";
-            this.dtpDateValueTo.Size = new System.Drawing.Size(189, 29);
-            this.dtpDateValueTo.TabIndex = 77;
+            this.dtpDateToValue.CustomFormat = " ";
+            this.dtpDateToValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.dtpDateToValue.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpDateToValue.Location = new System.Drawing.Point(102, 41);
+            this.dtpDateToValue.Name = "dtpDateToValue";
+            this.dtpDateToValue.Size = new System.Drawing.Size(189, 29);
+            this.dtpDateToValue.TabIndex = 77;
+            this.dtpDateToValue.ValueChanged += new System.EventHandler(this.dtpDateToValue_ValueChanged);
             // 
             // lblDateTo
             // 
@@ -319,13 +331,14 @@ namespace stretch_ceilings_app.Forms
             // 
             // dtpDateFromValue
             // 
-            this.dtpDateFromValue.CustomFormat = "dd.MM.yyyy HH:mm";
+            this.dtpDateFromValue.CustomFormat = " ";
             this.dtpDateFromValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.dtpDateFromValue.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpDateFromValue.Location = new System.Drawing.Point(102, 7);
             this.dtpDateFromValue.Name = "dtpDateFromValue";
             this.dtpDateFromValue.Size = new System.Drawing.Size(189, 29);
             this.dtpDateFromValue.TabIndex = 75;
+            this.dtpDateFromValue.ValueChanged += new System.EventHandler(this.dtpDateFromValue_ValueChanged);
             // 
             // lblDateFrom
             // 
@@ -337,13 +350,31 @@ namespace stretch_ceilings_app.Forms
             this.lblDateFrom.TabIndex = 74;
             this.lblDateFrom.Text = "Дата от:";
             // 
-            // nudIdValue
+            // panelPages
             // 
-            this.nudIdValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nudIdValue.Location = new System.Drawing.Point(102, 75);
-            this.nudIdValue.Name = "nudIdValue";
-            this.nudIdValue.Size = new System.Drawing.Size(77, 29);
-            this.nudIdValue.TabIndex = 93;
+            this.panelPages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(69)))), ((int)(((byte)(145)))));
+            this.panelPages.Controls.Add(this.cbRows);
+            this.panelPages.Controls.Add(this.btnPreviousPage);
+            this.panelPages.Controls.Add(this.tbPage);
+            this.panelPages.Controls.Add(this.btnNextPage);
+            this.panelPages.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelPages.Location = new System.Drawing.Point(0, 525);
+            this.panelPages.Name = "panelPages";
+            this.panelPages.Size = new System.Drawing.Size(1054, 40);
+            this.panelPages.TabIndex = 2;
+            // 
+            // cbRows
+            // 
+            this.cbRows.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbRows.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbRows.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbRows.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cbRows.FormattingEnabled = true;
+            this.cbRows.Location = new System.Drawing.Point(994, 4);
+            this.cbRows.Name = "cbRows";
+            this.cbRows.Size = new System.Drawing.Size(55, 32);
+            this.cbRows.TabIndex = 97;
+            this.cbRows.SelectedIndexChanged += new System.EventHandler(this.cbRows_SelectedIndexChanged);
             // 
             // btnPreviousPage
             // 
@@ -358,15 +389,16 @@ namespace stretch_ceilings_app.Forms
             this.btnPreviousPage.TabIndex = 96;
             this.btnPreviousPage.Text = "<";
             this.btnPreviousPage.UseVisualStyleBackColor = false;
+            this.btnPreviousPage.Click += new System.EventHandler(this.btnPreviousPage_Click);
             // 
             // tbPage
             // 
             this.tbPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.tbPage.Location = new System.Drawing.Point(44, 5);
             this.tbPage.Name = "tbPage";
+            this.tbPage.ReadOnly = true;
             this.tbPage.Size = new System.Drawing.Size(80, 29);
             this.tbPage.TabIndex = 95;
-            this.tbPage.Text = "1";
             this.tbPage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnNextPage
@@ -382,89 +414,80 @@ namespace stretch_ceilings_app.Forms
             this.btnNextPage.TabIndex = 94;
             this.btnNextPage.Text = ">";
             this.btnNextPage.UseVisualStyleBackColor = false;
+            this.btnNextPage.Click += new System.EventHandler(this.btnNextPage_Click);
             // 
-            // btnResetFilters
+            // dgvOrders
             // 
-            this.btnResetFilters.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnResetFilters.FlatAppearance.BorderSize = 0;
-            this.btnResetFilters.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnResetFilters.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.btnResetFilters.Location = new System.Drawing.Point(0, 56);
-            this.btnResetFilters.Name = "btnResetFilters";
-            this.btnResetFilters.Size = new System.Drawing.Size(130, 55);
-            this.btnResetFilters.TabIndex = 14;
-            this.btnResetFilters.Text = "Сбросить";
-            this.btnResetFilters.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnResetFilters.UseVisualStyleBackColor = true;
-            // 
-            // btnUseFilters
-            // 
-            this.btnUseFilters.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnUseFilters.FlatAppearance.BorderSize = 0;
-            this.btnUseFilters.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUseFilters.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.btnUseFilters.Location = new System.Drawing.Point(0, 0);
-            this.btnUseFilters.Name = "btnUseFilters";
-            this.btnUseFilters.Size = new System.Drawing.Size(130, 56);
-            this.btnUseFilters.TabIndex = 13;
-            this.btnUseFilters.Text = "Применить";
-            this.btnUseFilters.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUseFilters.UseVisualStyleBackColor = true;
+            this.dgvOrders.AllowUserToAddRows = false;
+            this.dgvOrders.AllowUserToDeleteRows = false;
+            this.dgvOrders.BackgroundColor = System.Drawing.Color.Black;
+            this.dgvOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvOrders.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvOrders.Location = new System.Drawing.Point(0, 110);
+            this.dgvOrders.Name = "dgvOrders";
+            this.dgvOrders.ReadOnly = true;
+            this.dgvOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvOrders.Size = new System.Drawing.Size(1054, 415);
+            this.dgvOrders.TabIndex = 3;
+            this.dgvOrders.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrders_CellDoubleClick);
             // 
             // OrdersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 561);
-            this.Controls.Add(this.dataGridView1);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(69)))), ((int)(((byte)(145)))));
+            this.ClientSize = new System.Drawing.Size(1184, 565);
+            this.Controls.Add(this.dgvOrders);
             this.Controls.Add(this.panelPages);
             this.Controls.Add(this.panelFilters);
-            this.Controls.Add(this.panelUserButtons);
+            this.Controls.Add(this.panelButtonsSide);
             this.MinimumSize = new System.Drawing.Size(1200, 600);
             this.Name = "OrdersForm";
             this.Load += new System.EventHandler(this.OrdersForm_Load);
-            this.panelUserButtons.ResumeLayout(false);
+            this.panelButtonsSide.ResumeLayout(false);
+            this.panelSearchButtons.ResumeLayout(false);
             this.panelFilters.ResumeLayout(false);
             this.panelFilters.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTotalTo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTotalFrom)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudIdValue)).EndInit();
             this.panelPages.ResumeLayout(false);
             this.panelPages.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.panelSearchButtons.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.nudIdValue)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panelUserButtons;
+        private System.Windows.Forms.Panel panelButtonsSide;
         private System.Windows.Forms.Panel panelSearchButtons;
         private System.Windows.Forms.Panel panelFilters;
-        private System.Windows.Forms.TextBox tbPriceToValue;
         private System.Windows.Forms.Label lblPriceTo;
-        private System.Windows.Forms.TextBox tbPriceFromValue;
         private System.Windows.Forms.Label lblPriceFrom;
         private System.Windows.Forms.Label lblId;
-        private System.Windows.Forms.LinkLabel linkLblServiceValue;
-        private System.Windows.Forms.Label lblService;
-        private System.Windows.Forms.LinkLabel linkLblEmployeeValue;
         private System.Windows.Forms.Label lblEmployee;
-        private System.Windows.Forms.LinkLabel linkLblCustomerValue;
         private System.Windows.Forms.Label lblCustomer;
         private System.Windows.Forms.CheckBox cbPaidByCash;
         private System.Windows.Forms.ComboBox cbStatusValue;
         private System.Windows.Forms.Label lblStatus;
-        private System.Windows.Forms.DateTimePicker dtpDateValueTo;
+        private System.Windows.Forms.DateTimePicker dtpDateToValue;
         private System.Windows.Forms.Label lblDateTo;
         private System.Windows.Forms.DateTimePicker dtpDateFromValue;
         private System.Windows.Forms.Label lblDateFrom;
         private System.Windows.Forms.Panel panelPages;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvOrders;
         private System.Windows.Forms.NumericUpDown nudIdValue;
         private System.Windows.Forms.Button btnPreviousPage;
         private System.Windows.Forms.TextBox tbPage;
         private System.Windows.Forms.Button btnNextPage;
+        private System.Windows.Forms.Panel paneUserButtons;
         private System.Windows.Forms.Button btnResetFilters;
         private System.Windows.Forms.Button btnUseFilters;
+        private System.Windows.Forms.ComboBox cbRows;
+        private System.Windows.Forms.NumericUpDown nudTotalFrom;
+        private System.Windows.Forms.NumericUpDown nudTotalTo;
+        private FontAwesome.Sharp.IconButton ibtnEmployee;
+        private FontAwesome.Sharp.IconButton ibtnCustomer;
     }
 }

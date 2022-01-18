@@ -29,340 +29,280 @@ namespace stretch_ceilings_app.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.button6 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.label2 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label3 = new System.Windows.Forms.Label();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.panel2.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.panelPages = new System.Windows.Forms.Panel();
+            this.btnPrevious = new System.Windows.Forms.Button();
+            this.tbPages = new System.Windows.Forms.TextBox();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.gbCeilings = new System.Windows.Forms.GroupBox();
+            this.dgvCeilings = new System.Windows.Forms.DataGridView();
+            this.panelInfo = new System.Windows.Forms.Panel();
+            this.lblTotalValue = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
+            this.lblDateComing = new System.Windows.Forms.Label();
+            this.lblDatePlaced = new System.Windows.Forms.Label();
+            this.lblManufacturer = new System.Windows.Forms.Label();
+            this.lblCustomer = new System.Windows.Forms.Label();
+            this.ibtnCustomer = new FontAwesome.Sharp.IconButton();
+            this.ibtnManufacturer = new FontAwesome.Sharp.IconButton();
+            this.lblDateComingValue = new System.Windows.Forms.Label();
+            this.lblDatePlacedValue = new System.Windows.Forms.Label();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.panelPages.SuspendLayout();
+            this.gbCeilings.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCeilings)).BeginInit();
+            this.panelInfo.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // panelPages
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
-            this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Controls.Add(this.panel1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1184, 561);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Заказ №0";
+            this.panelPages.Controls.Add(this.btnPrevious);
+            this.panelPages.Controls.Add(this.tbPages);
+            this.panelPages.Controls.Add(this.btnNext);
+            this.panelPages.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelPages.Location = new System.Drawing.Point(3, 344);
+            this.panelPages.Name = "panelPages";
+            this.panelPages.Size = new System.Drawing.Size(1178, 42);
+            this.panelPages.TabIndex = 0;
             // 
-            // groupBox2
+            // btnPrevious
             // 
-            this.groupBox2.Controls.Add(this.dataGridView1);
-            this.groupBox2.Controls.Add(this.panel2);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(3, 197);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1178, 361);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Услуги";
+            this.btnPrevious.BackColor = System.Drawing.Color.Black;
+            this.btnPrevious.FlatAppearance.BorderSize = 0;
+            this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrevious.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnPrevious.ForeColor = System.Drawing.Color.White;
+            this.btnPrevious.Location = new System.Drawing.Point(6, 6);
+            this.btnPrevious.Name = "btnPrevious";
+            this.btnPrevious.Size = new System.Drawing.Size(30, 29);
+            this.btnPrevious.TabIndex = 78;
+            this.btnPrevious.Text = "<";
+            this.btnPrevious.UseVisualStyleBackColor = false;
             // 
-            // dataGridView1
+            // tbPages
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.Black;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 25);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(1172, 291);
-            this.dataGridView1.TabIndex = 1;
+            this.tbPages.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.tbPages.Location = new System.Drawing.Point(42, 6);
+            this.tbPages.Name = "tbPages";
+            this.tbPages.Size = new System.Drawing.Size(80, 29);
+            this.tbPages.TabIndex = 77;
             // 
-            // Column1
+            // btnNext
             // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.Column1.HeaderText = "№";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 55;
+            this.btnNext.BackColor = System.Drawing.Color.Black;
+            this.btnNext.FlatAppearance.BorderSize = 0;
+            this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnNext.ForeColor = System.Drawing.Color.White;
+            this.btnNext.Location = new System.Drawing.Point(128, 6);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(30, 29);
+            this.btnNext.TabIndex = 76;
+            this.btnNext.Text = ">";
+            this.btnNext.UseVisualStyleBackColor = false;
             // 
-            // Column2
+            // gbCeilings
             // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column2.HeaderText = "Название";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
+            this.gbCeilings.Controls.Add(this.dgvCeilings);
+            this.gbCeilings.Controls.Add(this.panelPages);
+            this.gbCeilings.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbCeilings.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.gbCeilings.Location = new System.Drawing.Point(0, 172);
+            this.gbCeilings.Name = "gbCeilings";
+            this.gbCeilings.Size = new System.Drawing.Size(1184, 389);
+            this.gbCeilings.TabIndex = 3;
+            this.gbCeilings.TabStop = false;
+            this.gbCeilings.Text = "Потолки";
             // 
-            // Column3
+            // dgvCeilings
             // 
-            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.Column3.HeaderText = "Цена";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 79;
+            this.dgvCeilings.BackgroundColor = System.Drawing.Color.Black;
+            this.dgvCeilings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCeilings.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvCeilings.Location = new System.Drawing.Point(3, 25);
+            this.dgvCeilings.Name = "dgvCeilings";
+            this.dgvCeilings.RowTemplate.Height = 25;
+            this.dgvCeilings.Size = new System.Drawing.Size(1178, 319);
+            this.dgvCeilings.TabIndex = 1;
             // 
-            // Column4
+            // panelInfo
             // 
-            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.Column4.HeaderText = "";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 26;
+            this.panelInfo.Controls.Add(this.lblDatePlacedValue);
+            this.panelInfo.Controls.Add(this.lblDateComingValue);
+            this.panelInfo.Controls.Add(this.ibtnManufacturer);
+            this.panelInfo.Controls.Add(this.btnEdit);
+            this.panelInfo.Controls.Add(this.ibtnCustomer);
+            this.panelInfo.Controls.Add(this.lblTotalValue);
+            this.panelInfo.Controls.Add(this.lblTotal);
+            this.panelInfo.Controls.Add(this.lblDateComing);
+            this.panelInfo.Controls.Add(this.lblDatePlaced);
+            this.panelInfo.Controls.Add(this.lblManufacturer);
+            this.panelInfo.Controls.Add(this.lblCustomer);
+            this.panelInfo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelInfo.Location = new System.Drawing.Point(0, 0);
+            this.panelInfo.Name = "panelInfo";
+            this.panelInfo.Size = new System.Drawing.Size(1184, 172);
+            this.panelInfo.TabIndex = 2;
             // 
-            // panel2
+            // lblTotalValue
             // 
-            this.panel2.Controls.Add(this.button6);
-            this.panel2.Controls.Add(this.textBox3);
-            this.panel2.Controls.Add(this.button3);
-            this.panel2.Controls.Add(this.button2);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(3, 316);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1172, 42);
-            this.panel2.TabIndex = 0;
+            this.lblTotalValue.AutoSize = true;
+            this.lblTotalValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblTotalValue.Location = new System.Drawing.Point(186, 138);
+            this.lblTotalValue.Name = "lblTotalValue";
+            this.lblTotalValue.Size = new System.Drawing.Size(81, 24);
+            this.lblTotalValue.TabIndex = 44;
+            this.lblTotalValue.Text = "0.00 руб";
             // 
-            // button6
+            // lblTotal
             // 
-            this.button6.BackColor = System.Drawing.Color.Black;
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button6.ForeColor = System.Drawing.Color.White;
-            this.button6.Location = new System.Drawing.Point(6, 6);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(30, 29);
-            this.button6.TabIndex = 78;
-            this.button6.Text = "<";
-            this.button6.UseVisualStyleBackColor = false;
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblTotal.Location = new System.Drawing.Point(8, 138);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(115, 24);
+            this.lblTotal.TabIndex = 43;
+            this.lblTotal.Text = "Стоимость:";
             // 
-            // textBox3
+            // lblDateComing
             // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.textBox3.Location = new System.Drawing.Point(42, 6);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(80, 29);
-            this.textBox3.TabIndex = 77;
+            this.lblDateComing.AutoSize = true;
+            this.lblDateComing.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblDateComing.Location = new System.Drawing.Point(8, 107);
+            this.lblDateComing.Name = "lblDateComing";
+            this.lblDateComing.Size = new System.Drawing.Size(152, 24);
+            this.lblDateComing.TabIndex = 41;
+            this.lblDateComing.Text = "Дата прибытия:";
             // 
-            // button3
+            // lblDatePlaced
             // 
-            this.button3.BackColor = System.Drawing.Color.Black;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(128, 6);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(30, 29);
-            this.button3.TabIndex = 76;
-            this.button3.Text = ">";
-            this.button3.UseVisualStyleBackColor = false;
+            this.lblDatePlaced.AutoSize = true;
+            this.lblDatePlaced.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblDatePlaced.Location = new System.Drawing.Point(8, 73);
+            this.lblDatePlaced.Name = "lblDatePlaced";
+            this.lblDatePlaced.Size = new System.Drawing.Size(175, 24);
+            this.lblDatePlaced.TabIndex = 39;
+            this.lblDatePlaced.Text = "Дата размещения:";
             // 
-            // button2
+            // lblManufacturer
             // 
-            this.button2.BackColor = System.Drawing.Color.Black;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(1056, 6);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(110, 30);
-            this.button2.TabIndex = 57;
-            this.button2.Text = "Добавить";
-            this.button2.UseVisualStyleBackColor = false;
+            this.lblManufacturer.AutoSize = true;
+            this.lblManufacturer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblManufacturer.Location = new System.Drawing.Point(8, 39);
+            this.lblManufacturer.Name = "lblManufacturer";
+            this.lblManufacturer.Size = new System.Drawing.Size(158, 24);
+            this.lblManufacturer.TabIndex = 37;
+            this.lblManufacturer.Text = "Производитель:";
             // 
-            // panel1
+            // lblCustomer
             // 
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.dateTimePicker2);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.dateTimePicker1);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.linkLabel2);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.linkLabel1);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(3, 25);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1178, 172);
-            this.panel1.TabIndex = 0;
+            this.lblCustomer.AutoSize = true;
+            this.lblCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblCustomer.Location = new System.Drawing.Point(8, 8);
+            this.lblCustomer.Name = "lblCustomer";
+            this.lblCustomer.Size = new System.Drawing.Size(80, 24);
+            this.lblCustomer.TabIndex = 35;
+            this.lblCustomer.Text = "Клиент:";
             // 
-            // label6
+            // ibtnCustomer
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label6.Location = new System.Drawing.Point(186, 138);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(85, 24);
-            this.label6.TabIndex = 44;
-            this.label6.Text = "13500.00";
+            this.ibtnCustomer.FlatAppearance.BorderSize = 0;
+            this.ibtnCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ibtnCustomer.IconChar = FontAwesome.Sharp.IconChar.Search;
+            this.ibtnCustomer.IconColor = System.Drawing.Color.Black;
+            this.ibtnCustomer.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ibtnCustomer.IconSize = 25;
+            this.ibtnCustomer.Location = new System.Drawing.Point(190, 10);
+            this.ibtnCustomer.Name = "ibtnCustomer";
+            this.ibtnCustomer.Size = new System.Drawing.Size(25, 25);
+            this.ibtnCustomer.TabIndex = 45;
+            this.ibtnCustomer.UseVisualStyleBackColor = true;
             // 
-            // label5
+            // ibtnManufacturer
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label5.Location = new System.Drawing.Point(8, 138);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(115, 24);
-            this.label5.TabIndex = 43;
-            this.label5.Text = "Стоимость:";
+            this.ibtnManufacturer.FlatAppearance.BorderSize = 0;
+            this.ibtnManufacturer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ibtnManufacturer.IconChar = FontAwesome.Sharp.IconChar.Search;
+            this.ibtnManufacturer.IconColor = System.Drawing.Color.Black;
+            this.ibtnManufacturer.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ibtnManufacturer.IconSize = 25;
+            this.ibtnManufacturer.Location = new System.Drawing.Point(190, 41);
+            this.ibtnManufacturer.Name = "ibtnManufacturer";
+            this.ibtnManufacturer.Size = new System.Drawing.Size(25, 25);
+            this.ibtnManufacturer.TabIndex = 46;
+            this.ibtnManufacturer.UseVisualStyleBackColor = true;
             // 
-            // dateTimePicker2
+            // lblDateComingValue
             // 
-            this.dateTimePicker2.CustomFormat = "dd.MM.yyyy HH:mm";
-            this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(186, 107);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(179, 29);
-            this.dateTimePicker2.TabIndex = 42;
+            this.lblDateComingValue.AutoSize = true;
+            this.lblDateComingValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblDateComingValue.Location = new System.Drawing.Point(186, 107);
+            this.lblDateComingValue.Name = "lblDateComingValue";
+            this.lblDateComingValue.Size = new System.Drawing.Size(44, 24);
+            this.lblDateComingValue.TabIndex = 47;
+            this.lblDateComingValue.Text = "Нет";
             // 
-            // label2
+            // lblDatePlacedValue
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label2.Location = new System.Drawing.Point(8, 107);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(152, 24);
-            this.label2.TabIndex = 41;
-            this.label2.Text = "Дата прибытия:";
+            this.lblDatePlacedValue.AutoSize = true;
+            this.lblDatePlacedValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblDatePlacedValue.Location = new System.Drawing.Point(186, 73);
+            this.lblDatePlacedValue.Name = "lblDatePlacedValue";
+            this.lblDatePlacedValue.Size = new System.Drawing.Size(44, 24);
+            this.lblDatePlacedValue.TabIndex = 48;
+            this.lblDatePlacedValue.Text = "Нет";
             // 
-            // dateTimePicker1
+            // btnEdit
             // 
-            this.dateTimePicker1.CustomFormat = "dd.MM.yyyy HH:mm";
-            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(186, 73);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(179, 29);
-            this.dateTimePicker1.TabIndex = 40;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label3.Location = new System.Drawing.Point(8, 73);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(175, 24);
-            this.label3.TabIndex = 39;
-            this.label3.Text = "Дата размещения:";
-            // 
-            // linkLabel2
-            // 
-            this.linkLabel2.ActiveLinkColor = System.Drawing.Color.White;
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.linkLabel2.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel2.Location = new System.Drawing.Point(186, 39);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(117, 24);
-            this.linkLabel2.TabIndex = 38;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "Не выбрано";
-            this.linkLabel2.VisitedLinkColor = System.Drawing.Color.Black;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label1.Location = new System.Drawing.Point(8, 39);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 24);
-            this.label1.TabIndex = 37;
-            this.label1.Text = "Завод:";
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.ActiveLinkColor = System.Drawing.Color.White;
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.linkLabel1.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel1.Location = new System.Drawing.Point(186, 8);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(117, 24);
-            this.linkLabel1.TabIndex = 36;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Не выбрано";
-            this.linkLabel1.VisitedLinkColor = System.Drawing.Color.Black;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label4.Location = new System.Drawing.Point(8, 8);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(80, 24);
-            this.label4.TabIndex = 35;
-            this.label4.Text = "Клиент:";
+            this.btnEdit.BackColor = System.Drawing.Color.Black;
+            this.btnEdit.FlatAppearance.BorderSize = 0;
+            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnEdit.ForeColor = System.Drawing.Color.White;
+            this.btnEdit.Location = new System.Drawing.Point(1068, 138);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(110, 30);
+            this.btnEdit.TabIndex = 57;
+            this.btnEdit.Text = "Изменить";
+            this.btnEdit.UseVisualStyleBackColor = false;
             // 
             // ManufacturerOrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 561);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbCeilings);
+            this.Controls.Add(this.panelInfo);
             this.MinimumSize = new System.Drawing.Size(1200, 600);
             this.Name = "ManufacturerOrderForm";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panelPages.ResumeLayout(false);
+            this.panelPages.PerformLayout();
+            this.gbCeilings.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCeilings)).EndInit();
+            this.panelInfo.ResumeLayout(false);
+            this.panelInfo.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.LinkLabel linkLabel2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewButtonColumn Column4;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Panel panelPages;
+        private System.Windows.Forms.Button btnPrevious;
+        private System.Windows.Forms.TextBox tbPages;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.GroupBox gbCeilings;
+        private System.Windows.Forms.DataGridView dgvCeilings;
+        private System.Windows.Forms.Panel panelInfo;
+        private System.Windows.Forms.Label lblTotalValue;
+        private System.Windows.Forms.Label lblTotal;
+        private System.Windows.Forms.Label lblDateComing;
+        private System.Windows.Forms.Label lblDatePlaced;
+        private System.Windows.Forms.Label lblManufacturer;
+        private System.Windows.Forms.Label lblCustomer;
+        private System.Windows.Forms.Label lblDatePlacedValue;
+        private System.Windows.Forms.Label lblDateComingValue;
+        private FontAwesome.Sharp.IconButton ibtnManufacturer;
+        private FontAwesome.Sharp.IconButton ibtnCustomer;
+        private System.Windows.Forms.Button btnEdit;
     }
 }

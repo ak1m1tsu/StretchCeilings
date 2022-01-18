@@ -6,7 +6,6 @@
         void Update();
         void Delete();
         string GetPlane();
-        string AddPlane(string path);
-        string ChangePlane(string path);
+        void SetPlane(string path);
     }
 }

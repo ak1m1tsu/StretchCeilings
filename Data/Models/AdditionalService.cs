@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 
 namespace stretch_ceilings_app.Data.Models
 {
@@ -28,27 +27,17 @@ namespace stretch_ceilings_app.Data.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                var oldAdditionalService = db.AdditionalServices.FirstOrDefault(s => s.Id == this.Id);
-                if (oldAdditionalService != null)
-                {
-                    db.Entry(oldAdditionalService).CurrentValues.SetValues(this);
-                    db.SaveChanges();
-                }
+                db.Entry(Id).CurrentValues.SetValues(this);
+                db.SaveChanges();
             }
         }
 
         public void Delete()
         {
-            DateDeleted = DateTime.Now;
-
             using (var db = new StretchCeilingsContext())
             {
-                var oldAdditionalService = db.AdditionalServices.FirstOrDefault(s => s.Id == this.Id);
-                if (oldAdditionalService != null)
-                {
-                    db.Entry(oldAdditionalService).CurrentValues.SetValues(this);
-                    db.SaveChanges();
-                }
+                db.Entry(Id).CurrentValues.SetValues(DateDeleted = DateTime.Now);
+                db.SaveChanges();
             }
         }
     }

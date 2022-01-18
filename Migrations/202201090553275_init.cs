@@ -5,9 +5,21 @@
     
     public partial class init : DbMigration
     {
-
         public override void Up()
         {
+            CreateTable(
+                    "dbo.OrderEmployees",
+                    c => new
+                    {
+                        OrderId = c.Int(nullable: false),
+                        EmployeeId = c.Int(nullable: false)
+                    })
+                .PrimaryKey(t => new { t.OrderId, t.EmployeeId })
+                .ForeignKey("dbo.Employees", t => t.EmployeeId, cascadeDelete: true)
+                .ForeignKey("dbo.Orders", t => t.OrderId, cascadeDelete: true)
+                .Index(t => t.EmployeeId)
+                .Index(t => t.OrderId);
+
             CreateTable(
                 "dbo.RolePermissions",
                 c => new
@@ -135,23 +147,6 @@
                 .Index(t => t.CustomerId);
             
             CreateTable(
-                "dbo.ManufacturerOrders",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        ManufacturerId = c.Int(),
-                        CeilingId = c.Int(),
-                        DateFilled = c.DateTime(),
-                        DateComming = c.DateTime(),
-                        Total = c.Decimal(precision: 18, scale: 2),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Ceilings", t => t.CeilingId)
-                .ForeignKey("dbo.Manufacturers", t => t.ManufacturerId)
-                .Index(t => t.ManufacturerId)
-                .Index(t => t.CeilingId);
-            
-            CreateTable(
                 "dbo.Logs",
                 c => new
                     {
@@ -183,6 +178,23 @@
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Customers", t => t.CustomerId)
                 .Index(t => t.CustomerId);
+            
+            CreateTable(
+                "dbo.ManufacturerOrders",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        ManufacturerId = c.Int(),
+                        CeilingId = c.Int(),
+                        DateFilled = c.DateTime(),
+                        DateComing = c.DateTime(),
+                        Total = c.Decimal(precision: 18, scale: 2),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Ceilings", t => t.CeilingId)
+                .ForeignKey("dbo.Manufacturers", t => t.ManufacturerId)
+                .Index(t => t.ManufacturerId)
+                .Index(t => t.CeilingId);
             
             CreateTable(
                 "dbo.Permissions",
@@ -232,7 +244,7 @@
                         ManufacturerId = c.Int(),
                         CeilingId = c.Int(),
                         Price = c.Decimal(precision: 18, scale: 2),
-                        DeteDeleted = c.DateTime(),
+                        DateDeleted = c.DateTime(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Ceilings", t => t.CeilingId)
@@ -244,12 +256,16 @@
         
         public override void Down()
         {
+            DropForeignKey("dbo.OrderEmployees", "OrderId", "dbo.Orders");
+            DropForeignKey("dbo.OrderEmployees", "EmployeeId", "dbo.Employees");
             DropForeignKey("dbo.RolesPermissions", "RoleId", "dbo.Roles");
             DropForeignKey("dbo.RolesPermissions", "PermissionId", "dbo.Permissions");
             DropForeignKey("dbo.ServiceAdditServices", "ServiceId", "dbo.Services");
             DropForeignKey("dbo.ServiceAdditServices", "AdditServiceId", "dbo.AdditionalServices");
             DropForeignKey("dbo.OrderServices", "OrderId", "dbo.Orders");
             DropForeignKey("dbo.OrderServices", "ServiceId", "dbo.Services");
+            DropIndex("dbo.OrderEmployees", new[] { "OrderId" });
+            DropIndex("dbo.OrderEmployees", new[] { "EmployeeId" });
             DropIndex("dbo.RolesPermissions", new[] { "RoleId" });
             DropIndex("dbo.RolesPermissions", new[] { "PermissionId" });
             DropIndex("dbo.ServiceAdditServices", new[] { "ServiceId" });
@@ -259,14 +275,15 @@
             DropTable("dbo.RolesPermissions");
             DropTable("dbo.ServiceAdditServices");
             DropTable("dbo.OrderServices");
+            DropTable("dbo.OrderEmployees");
             DropForeignKey("dbo.Services", "ManufacturerId", "dbo.Manufacturers");
             DropForeignKey("dbo.Services", "CeilingId", "dbo.Ceilings");
             DropForeignKey("dbo.Schedule", "EmployeeId", "dbo.Employees");
             DropForeignKey("dbo.Rooms", "EstateId", "dbo.Estates");
-            DropForeignKey("dbo.Logs", "OrderId", "dbo.Orders");
-            DropForeignKey("dbo.Orders", "CustomerId", "dbo.Customers");
             DropForeignKey("dbo.ManufacturerOrders", "ManufacturerId", "dbo.Manufacturers");
             DropForeignKey("dbo.ManufacturerOrders", "CeilingId", "dbo.Ceilings");
+            DropForeignKey("dbo.Logs", "OrderId", "dbo.Orders");
+            DropForeignKey("dbo.Orders", "CustomerId", "dbo.Customers");
             DropForeignKey("dbo.Estates", "CustomerId", "dbo.Customers");
             DropForeignKey("dbo.Employees", "RoleId", "dbo.Roles");
             DropForeignKey("dbo.Ceilings", "ManufacturerId", "dbo.Manufacturers");
@@ -274,10 +291,10 @@
             DropIndex("dbo.Services", new[] { "ManufacturerId" });
             DropIndex("dbo.Schedule", new[] { "EmployeeId" });
             DropIndex("dbo.Rooms", new[] { "EstateId" });
-            DropIndex("dbo.Orders", new[] { "CustomerId" });
-            DropIndex("dbo.Logs", new[] { "OrderId" });
             DropIndex("dbo.ManufacturerOrders", new[] { "CeilingId" });
             DropIndex("dbo.ManufacturerOrders", new[] { "ManufacturerId" });
+            DropIndex("dbo.Orders", new[] { "CustomerId" });
+            DropIndex("dbo.Logs", new[] { "OrderId" });
             DropIndex("dbo.Estates", new[] { "CustomerId" });
             DropIndex("dbo.Employees", new[] { "RoleId" });
             DropIndex("dbo.Ceilings", new[] { "ManufacturerId" });
@@ -285,9 +302,9 @@
             DropTable("dbo.Schedule");
             DropTable("dbo.Rooms");
             DropTable("dbo.Permissions");
+            DropTable("dbo.ManufacturerOrders");
             DropTable("dbo.Orders");
             DropTable("dbo.Logs");
-            DropTable("dbo.ManufacturerOrders");
             DropTable("dbo.Estates");
             DropTable("dbo.Roles");
             DropTable("dbo.Employees");

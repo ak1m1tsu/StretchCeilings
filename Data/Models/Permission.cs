@@ -13,6 +13,7 @@ namespace stretch_ceilings_app.Data.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] 
         public int Id { get; set; }
         public string Name { get; set; }
+        [Index(IsUnique = true)]
         public PermissionCode Code { get; set; }
 
         public string Add()

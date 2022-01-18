@@ -1,6 +1,7 @@
 ﻿using stretch_ceilings_app.Utility;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 using stretch_ceilings_app.Data.Models;
 using stretch_ceilings_app.Utility.Extensions;
@@ -33,7 +34,7 @@ namespace stretch_ceilings_app
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (UserSession.LogIn(_users, tbLogin.Text, tbPassword.Text) == false)
+            if (UserSession.LogIn(_users, mtbLogin.Text, tbPassword.Text) == false)
             {
                 MessageBox.Show("Неверный логин или пароль.", "Авторизация не пройдена.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -47,6 +48,7 @@ namespace stretch_ceilings_app
             LoadUsers();
 
             tbPassword.PasswordChar = '*';
+            btnLogin.BackColor = Constants.FlatAlphaGreen;
         }
 
         private void LoginForm_MouseDown(object sender, MouseEventArgs e)

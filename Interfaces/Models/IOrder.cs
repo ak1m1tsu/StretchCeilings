@@ -8,9 +8,9 @@ namespace stretch_ceilings_app.Interfaces.Models
         void Add();
         void Update();
         void Delete();
-        decimal CalculateTotal();
+        void CalculateTotal();
         List<Log> GetLogs();
-        void AddLog(Log log);
-        void DeleteLog(Log log);
+        List<Service> GetServices();
+        List<Employee> GetEmployees();
     }
 }

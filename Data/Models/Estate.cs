@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using stretch_ceilings_app.Interfaces.Models;
 
 namespace stretch_ceilings_app.Data.Models
@@ -21,17 +23,37 @@ namespace stretch_ceilings_app.Data.Models
 
         public void Add()
         {
-            throw new NotImplementedException();
+            using (var db = new StretchCeilingsContext())
+            {
+                db.Estates.Add(this);
+                db.SaveChanges();
+            }
         }
 
         public void Delete()
         {
-            throw new NotImplementedException();
+            using (var db = new StretchCeilingsContext())
+            {
+                db.Entry(this.Id).CurrentValues.SetValues(DateDeleted = DateTime.Now);
+                db.SaveChanges();
+            }
+        }
+
+        public List<Room> GetRooms()
+        {
+            using (var db = new StretchCeilingsContext())
+            {
+                return db.Rooms.Where(r => r.EstateId == this.Id).ToList();
+            }
         }
 
         public void Update()
         {
-            throw new NotImplementedException();
+            using (var db = new StretchCeilingsContext())
+            {
+                db.Entry(this.Id).CurrentValues.SetValues(this);
+                db.SaveChanges();
+            }
         }
     }
 }

@@ -31,8 +31,6 @@ namespace stretch_ceilings_app
         {
             this.panelLeftSide = new System.Windows.Forms.Panel();
             this.panelNav = new System.Windows.Forms.Panel();
-            this.panelLogo = new System.Windows.Forms.Panel();
-            this.panelTheme = new System.Windows.Forms.Panel();
             this.panelContent = new System.Windows.Forms.Panel();
             this.panelLeftSide.SuspendLayout();
             this.SuspendLayout();
@@ -41,7 +39,6 @@ namespace stretch_ceilings_app
             // 
             this.panelLeftSide.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
             this.panelLeftSide.Controls.Add(this.panelNav);
-            this.panelLeftSide.Controls.Add(this.panelLogo);
             this.panelLeftSide.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelLeftSide.Location = new System.Drawing.Point(0, 0);
             this.panelLeftSide.Name = "panelLeftSide";
@@ -50,37 +47,21 @@ namespace stretch_ceilings_app
             // 
             // panelNav
             // 
-            this.panelNav.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
+            this.panelNav.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(51)))), ((int)(((byte)(107)))));
             this.panelNav.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelNav.Location = new System.Drawing.Point(0, 87);
+            this.panelNav.Location = new System.Drawing.Point(0, 0);
             this.panelNav.Name = "panelNav";
-            this.panelNav.Size = new System.Drawing.Size(190, 674);
+            this.panelNav.Size = new System.Drawing.Size(190, 761);
             this.panelNav.TabIndex = 2;
-            // 
-            // panelLogo
-            // 
-            this.panelLogo.BackColor = System.Drawing.Color.Black;
-            this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelLogo.Location = new System.Drawing.Point(0, 0);
-            this.panelLogo.Name = "panelLogo";
-            this.panelLogo.Size = new System.Drawing.Size(190, 87);
-            this.panelLogo.TabIndex = 1;
-            // 
-            // panelTheme
-            // 
-            this.panelTheme.BackColor = System.Drawing.Color.Black;
-            this.panelTheme.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelTheme.Location = new System.Drawing.Point(190, 0);
-            this.panelTheme.Name = "panelTheme";
-            this.panelTheme.Size = new System.Drawing.Size(1234, 87);
-            this.panelTheme.TabIndex = 4;
             // 
             // panelContent
             // 
+            this.panelContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(69)))), ((int)(((byte)(145)))));
             this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContent.Location = new System.Drawing.Point(190, 87);
+            this.panelContent.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.panelContent.Location = new System.Drawing.Point(190, 0);
             this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(1234, 674);
+            this.panelContent.Size = new System.Drawing.Size(1234, 761);
             this.panelContent.TabIndex = 5;
             // 
             // MainForm
@@ -89,7 +70,6 @@ namespace stretch_ceilings_app
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 761);
             this.Controls.Add(this.panelContent);
-            this.Controls.Add(this.panelTheme);
             this.Controls.Add(this.panelLeftSide);
             this.MinimumSize = new System.Drawing.Size(1440, 800);
             this.Name = "MainForm";
@@ -103,8 +83,6 @@ namespace stretch_ceilings_app
         #endregion
 
         private System.Windows.Forms.Panel panelLeftSide;
-        private System.Windows.Forms.Panel panelLogo;
-        private System.Windows.Forms.Panel panelTheme;
         private System.Windows.Forms.Panel panelContent;
         private System.Windows.Forms.Panel panelNav;
     }

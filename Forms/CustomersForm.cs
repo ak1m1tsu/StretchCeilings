@@ -1,18 +1,15 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using stretch_ceilings_app.Data.Models;
 
 namespace stretch_ceilings_app.Forms
 {
     public partial class CustomersForm : Form
     {
+        public Customer Customer;
+
         public CustomersForm()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            new CustomerForm().ShowDialog();
         }
     }
 }

@@ -23,22 +23,20 @@ namespace stretch_ceilings_app.Data.Models
 
         public void Add()
         {
-            throw new NotImplementedException();
-        }
-
-        public string AddPlane(string path)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string ChangePlane(string path)
-        {
-            throw new NotImplementedException();
+            using (var db = new StretchCeilingsContext())
+            {
+                db.Rooms.Add(this);
+                db.SaveChanges();
+            }
         }
 
         public void Delete()
         {
-            throw new NotImplementedException();
+            using (var db = new StretchCeilingsContext())
+            {
+                db.Entry(this.Id).CurrentValues.SetValues(DateDeleted = DateTime.Now);
+                db.SaveChanges();
+            }
         }
 
         public string GetPlane()
@@ -46,9 +44,18 @@ namespace stretch_ceilings_app.Data.Models
             throw new NotImplementedException();
         }
 
-        public void Update()
+        public void SetPlane(string path)
         {
             throw new NotImplementedException();
+        }
+
+        public void Update()
+        {
+            using (var db = new StretchCeilingsContext())
+            {
+                db.Entry(this.Id).CurrentValues.SetValues(this);
+                db.SaveChanges();
+            }
         }
     }
 }

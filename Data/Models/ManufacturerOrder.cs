@@ -19,23 +19,45 @@ namespace stretch_ceilings_app.Data.Models
         public int? CeilingId { get; set; }
         [Column("CeilingId")]
         public virtual Ceiling Ceiling { get; set; }
+        [Column("RoomId")]
+        public int? RoomId { get; set; }
+        [Column("RoomId")]
+        public virtual Room Room { get; set; }
         public DateTime? DateFilled { get; set; }
-        public DateTime? DateComming { get; set; }
-        public decimal? Total { get; set; }
+        public DateTime? DateComing { get; set; }
+        public DateTime? DateDeleted { get; set; }
+        public decimal? Total { get; private set; }
 
         public void Add()
         {
-            throw new NotImplementedException();
+            using (var db = new StretchCeilingsContext())
+            {
+                db.ManufacturerOrders.Add(this);
+                db.SaveChanges();
+            }
         }
 
         public void Delete()
         {
-            throw new NotImplementedException();
+            using (var db = new StretchCeilingsContext())
+            {
+                db.Entry(this.Id).CurrentValues.SetValues(DateDeleted = DateTime.Now);
+                db.SaveChanges();
+            }
+        }
+
+        public void CalculateTotal()
+        {
+            Total = Room.Area * Ceiling.Price;
         }
 
         public void Update()
         {
-            throw new NotImplementedException();
+            using (var db = new StretchCeilingsContext())
+            {
+                db.Entry(this.Id).CurrentValues.SetValues(this);
+                db.SaveChanges();
+            }
         }
     }
 }

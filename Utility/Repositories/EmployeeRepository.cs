@@ -11,16 +11,14 @@ namespace stretch_ceilings_app.Utility.Repositories
         {
             using (var db = new StretchCeilingsContext())
             {
-                var employees = db.Employees.Where(e => e.Equals(filter));
+                var employees = db.Employees.Where(e => e.Equals(filter)).ToList();
                 rows = 0;
 
                 if (employees.Any())
                 {
-                    foreach (var employee in employees)
-                        db.Entry(employee).Reference(e => e.Role).Load();
-
+                    employees.ForEach(o => db.Entry(o).Reference(r => r.Role).Load());
                     rows = employees.Count();
-                    employees = employees.Skip((pages - 1) * count).Take(count);
+                    employees = employees.Skip((pages - 1) * count).Take(count).ToList();
                 }
 
                 return employees.ToList();
@@ -35,8 +33,7 @@ namespace stretch_ceilings_app.Utility.Repositories
                 
                 if (employees.Any())
                 {
-                    foreach (var employee in employees)
-                        db.Entry(employee).Reference(e => e.Role).Load();
+                    employees.ForEach(o => db.Entry(o).Reference(r => r.Role).Load());
                 }
 
                 return employees;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using stretch_ceilings_app.Interfaces.Models;
 
 namespace stretch_ceilings_app.Data.Models
@@ -23,64 +24,60 @@ namespace stretch_ceilings_app.Data.Models
         public virtual Role Role { get; set; }
         public DateTime? DateDeleted { get; set; }
 
-        public string Add()
+        public void Add()
         {
-            throw new NotImplementedException();
+            using (var db = new StretchCeilingsContext())
+            {
+                db.Employees.Add(this);
+                db.SaveChanges();
+            }
         }
 
-        public string AddOrder(Order order)
+        public void Update()
         {
-            throw new NotImplementedException();
+            using (var db = new StretchCeilingsContext())
+            {
+                db.Entry(this.Id).CurrentValues.SetValues(this);
+                db.SaveChanges();
+            }
         }
 
-        public string AddService(Service service)
+        public void Delete()
         {
-            throw new NotImplementedException();
-        }
-
-        public string AddTimeTable(TimeTable timeTable)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string Delete()
-        {
-            throw new NotImplementedException();
-        }
-
-        public string DeleteOrder(Order order)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string DeleteService(Service service)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string DeleteTimeTable(TimeTable timeTable)
-        {
-            throw new NotImplementedException();
+            using (var db = new StretchCeilingsContext())
+            {
+                db.Entry(this.Id).CurrentValues.SetValues(DateDeleted = DateTime.Now);
+                db.SaveChanges();
+            }
         }
 
         public List<Order> GetOrders(int count, int pages)
         {
-            throw new NotImplementedException();
+            using (var db = new StretchCeilingsContext())
+            {
+                return db.Orders.SqlQuery("SELECT Orders.* FROM Orders " +
+                                          "INNER JOIN OrderEmployees ON OrderEmployees.OrderId = Orders.Id " +
+                                          $"WHERE OrderEmployees.EmployeeId = {Id} AND Orders.DateDeleted IS NULL").ToList();
+            }
         }
 
         public List<TimeTable> GetSchedule()
         {
-            throw new NotImplementedException();
+            using (var db = new StretchCeilingsContext())
+            {
+                return db.Schedules.Where(t => t.EmployeeId == Id).ToList();
+            }
         }
 
         public List<Service> GetServices(int count, int pages)
         {
-            throw new NotImplementedException();
-        }
-
-        public string Update()
-        {
-            throw new NotImplementedException();
+            using (var db = new StretchCeilingsContext())
+            {
+                return db.Services.SqlQuery("SELECT Services.* FROM Services " +
+                                            "INNER JOIN OrderServices ON OrderServices.ServiceId = Services.Id " +
+                                            "INNER JOIN OrderEmployees ON OrderServices.OrderId = OrderEmployees.OrderId " +
+                                            $"WHERE OrderEmployees.EmployeeId = {Id}").ToList();
+            }
         }
     }
 }

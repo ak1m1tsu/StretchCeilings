@@ -26,9 +26,9 @@ namespace stretch_ceilings_app.Data.Models
                     db.SaveChanges();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw new Exception(ex.Message);
             }
         }
 
@@ -42,9 +42,9 @@ namespace stretch_ceilings_app.Data.Models
                     db.SaveChanges();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw new Exception(ex.Message);
             }
         }
 
@@ -54,16 +54,15 @@ namespace stretch_ceilings_app.Data.Models
             {
                 using (var db = new StretchCeilingsContext())
                 {
-                    return db.Database.SqlQuery<Permission>($"SELECT Permissions.* FROM Permissions " +
-                                                            $"INNER JOIN RolePermissions " +
-                                                            $"ON Permissions.Id = RolePermissions.PermissionId " +
-                                                            $"WHERE RolePermissions.RoleId = {Id} " +
-                                                            $"GROUP BY Permissions.Id").ToList();
+                    return db.Database.SqlQuery<Permission>("SELECT Permissions.* FROM Permissions " +
+                                                            "INNER JOIN RolePermissions " +
+                                                            "ON Permissions.Id = RolePermissions.PermissionId " +
+                                                            $"WHERE RolePermissions.RoleId = {Id}").ToList();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw new Exception(ex.Message);
             }
         }
     }

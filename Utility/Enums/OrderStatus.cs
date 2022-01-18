@@ -8,6 +8,7 @@
         WaitingForCeilings,
         WaitingForExecution,
         Canceled,
-        Finished
+        Finished,
+        Unknown
     }
 }

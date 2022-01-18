@@ -2,6 +2,8 @@
 {
     public interface ITimeTable
     {
-        void Add(); void Update(); void Delete();
+        void Add();
+        void Update();
+        void Delete();
      }
 }

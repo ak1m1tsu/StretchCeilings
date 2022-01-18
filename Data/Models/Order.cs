@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using stretch_ceilings_app.Interfaces.Models;
 using stretch_ceilings_app.Utility.Enums;
 
@@ -29,37 +30,80 @@ namespace stretch_ceilings_app.Data.Models
 
         public void Add()
         {
-            throw new NotImplementedException();
+            using (var db = new StretchCeilingsContext())
+            {
+                db.Orders.Add(this);
+                db.SaveChanges();
+            }
         }
 
-        public void AddLog(Log log)
+        public void CalculateTotal()
         {
-            throw new NotImplementedException();
-        }
-
-        public decimal CalculateTotal()
-        {
-            throw new NotImplementedException();
+            GetServices().ForEach(s => Total += s.Price);
         }
 
         public void Delete()
         {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteLog(Log log)
-        {
-            throw new NotImplementedException();
+            using (var db = new StretchCeilingsContext())
+            {
+                DateDeleted = DateTime.Now;
+                var order = db.Orders.Find(Id);
+                db.Entry(order).CurrentValues.SetValues(this);
+                db.SaveChanges();
+            }
         }
 
         public List<Log> GetLogs()
         {
-            throw new NotImplementedException();
+            using (var db = new StretchCeilingsContext())
+            {
+                return db.Logs.Where(l => l.OrderId == this.Id).ToList();
+            }
+        }
+
+        public List<Service> GetServices()
+        {
+            using (var db = new StretchCeilingsContext())
+            {
+                var services = db.Services.SqlQuery("SELECT Services.* FROM Services " +
+                                                     "INNER JOIN OrderServices ON OrderServices.ServiceId = Services.Id " +
+                                                     $"WHERE OrderServices.OrderId = {Id} AND Services.DateDeleted IS NULL").ToList();
+
+                if (services.Any())
+                {
+                    services.ForEach(service => db.Entry(service).Reference(r => r.Manufacturer).Load());
+                    services.ForEach(service => db.Entry(service).Reference(r => r.Ceiling).Load());
+                }
+
+                return services;
+            }
+        }
+
+        public List<Employee> GetEmployees()
+        {
+            using (var db = new StretchCeilingsContext())
+            {
+                var employees = db.Employees.SqlQuery("SELECT Employees.* FROM Employees " +
+                                                      "INNER JOIN OrderEmployees ON OrderEmployees.EmployeeId = Employees.Id " +
+                                                      $"WHERE OrderEmployees.OrderId = {Id} AND Employees.DateDeleted IS NULL").ToList();
+
+                if (employees.Any())
+                {
+                    employees.ForEach(employee => db.Entry(employee).Reference(e=>e.Role).Load());
+                }
+
+                return employees;
+            }
         }
 
         public void Update()
         {
-            throw new NotImplementedException();
+            using (var db = new StretchCeilingsContext())
+            {
+                var old = db.Orders.Find(Id);
+                db.Entry(old).CurrentValues.SetValues(this);
+                db.SaveChanges();
+            }
         }
     }
 
