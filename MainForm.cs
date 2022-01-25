@@ -2,7 +2,9 @@
 using System.Linq;
 using System.Windows.Forms;
 using stretch_ceilings_app.Forms;
+using stretch_ceilings_app.Utility;
 using stretch_ceilings_app.Utility.CustomControls;
+using stretch_ceilings_app.Utility.Extensions;
 
 namespace stretch_ceilings_app
 {
@@ -55,17 +57,21 @@ namespace stretch_ceilings_app
             {
                 btnOrders, btnCustomers, btnEmployes, btnServices, 
                 btnAdditionalService, btnManufacturers, btnManufacturerOrders
-            }.Reverse();
+            }.Reverse().ToArray();
 
-            panelNav.Controls.AddRange(buttons?.ToArray());
+            panelNav.Controls.AddRange(buttons);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            SetUpForm();
             DrawNavigationButtons();
         }
 
-
+        private void SetUpForm()
+        {
+            btnCloseApp.FlatAppearance.MouseOverBackColor = Constants.DraculaRed;
+        }
 
         private void btnOrders_Click(object sender, EventArgs e)
         {
@@ -100,6 +106,28 @@ namespace stretch_ceilings_app
         private void btnAdditionalService_Click(object sender, EventArgs e)
         {
             OpenChildForm(new AdditionalServicesForm());
+        }
+
+        private void btnMinimizeApp_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState != FormWindowState.Minimized)
+                this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnMaximizeApp_Click(object sender, EventArgs e)
+        {
+            this.WindowState = this.WindowState != FormWindowState.Maximized ? FormWindowState.Maximized : FormWindowState.Normal;
+        }
+
+        private void btnCloseApp_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void panelTop_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            DllExtensions.ReleaseCapture();
+            DllExtensions.SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
     }
 }

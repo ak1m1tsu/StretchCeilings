@@ -2,7 +2,8 @@
 {
     public enum PermissionCode
     {
-        AddOrder = 0,
+        All,
+        AddOrder,
         EditOrder,
         DelOrder,
         AddCustomer,
@@ -22,7 +23,6 @@
         DelManufacturerOrder,
         AddAdditionalService,
         EditAdditionalService,
-        DelAdditionalService,
-        All
+        DelAdditionalService
     }
 }

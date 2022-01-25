@@ -5,22 +5,38 @@ namespace stretch_ceilings_app.Utility
 {
     public static class Constants
     {
+        #region Fonts
+
+        public static readonly Font DataGridViewFont = new Font("Microsoft Sans Serif", 14, FontStyle.Regular);
+
+        #endregion
         #region Colors
-        
-        public static readonly Color FlatRed = Color.FromArgb( 231, 76, 60);
-        public static readonly Color FlatAlphaRed = Color.FromArgb( 0, 231, 76, 60);
-        public static readonly Color FlatGreen = Color.FromArgb( 46, 204, 113);
-        public static readonly Color FlatAlphaGreen = Color.FromArgb( 0, 46, 204, 113);
-        public static readonly Color FlatYellow = Color.FromArgb( 241, 196, 15);
-        public static readonly Color FlatAlphaYellow = Color.FromArgb( 0, 241, 196, 15);
+
+        public static readonly Color DraculaBackground = Color.FromArgb(40, 42, 54);
+        public static readonly Color DraculaSelection = Color.FromArgb(68, 71, 90);
+        public static readonly Color DraculaForeground = Color.FromArgb(248, 248, 242);
+        public static readonly Color DraculaComment = Color.FromArgb(40, 42, 54);
+        public static readonly Color DraculaCyan = Color.FromArgb(139, 233, 253);
+        public static readonly Color DraculaGreen = Color.FromArgb(80, 250, 123);
+        public static readonly Color DraculaOrange = Color.FromArgb(255, 184, 108);
+        public static readonly Color DraculaPink = Color.FromArgb(255 ,121 ,198);
+        public static readonly Color DraculaPurple = Color.FromArgb(189 ,147 ,249);
+        public static readonly Color DraculaRed = Color.FromArgb(255, 85, 85);
+        public static readonly Color DraculaYellow = Color.FromArgb(241, 250, 140);
+
+        public static readonly Color DraculaAlphaRed = Color.FromArgb( 0, 255, 85, 85);
+        public static readonly Color DraculaAlphaGreen = Color.FromArgb( 0, 80, 250, 123);
+        public static readonly Color DraculaAlphaYellow = Color.FromArgb( 0, 241, 250, 140);
 
         #endregion
-        #region Enum fields
+        #region Icons
 
-        public static readonly IconChar DefaultIconButtonIconChar = IconChar.Search;
+        public static readonly IconChar NoneIcon = IconChar.None;
+        public static readonly IconChar SearchIcon = IconChar.Search;
+        public static readonly IconChar UserIcon = IconChar.User;
 
         #endregion
-        #region String fields
+        #region Strings
 
         public static readonly string DefaultIconButtonText = "";
         public static readonly string DefaultTextBoxText = "";
@@ -29,12 +45,16 @@ namespace stretch_ceilings_app.Utility
 
         public static readonly string FilterDateTimePickerCustomFormat = @"dd.MM.yyyy HH:mm";
 
+        public static readonly string ErrorCaption = "Ошибка.";
+        public static readonly string WarningCaption = "Предупреждение.";
+        public static readonly string InfoCaption = "Информация.";
+
         #endregion
-        #region Interger fields
+        #region Numerics
 
-        public static readonly int DefaultNumericUpDownValue = 0;
+        public static readonly decimal DefaultNumericUpDownValue = 0;
 
-        public static readonly int[] RowCountItems = new int[4] { 5, 10, 15, 20 };
+        public static readonly int[] RowCountItems = new int[3] { 25, 50, 100 };
 
         #endregion
     }

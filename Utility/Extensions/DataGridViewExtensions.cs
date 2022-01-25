@@ -28,7 +28,7 @@ namespace stretch_ceilings_app.Utility.Extensions
             return new DataGridViewButtonColumn()
             {
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
-                FlatStyle = FlatStyle.Popup,
+                FlatStyle = FlatStyle.Flat,
                 Name = " ",
                 DefaultCellStyle = new DataGridViewCellStyle() { BackColor = color }
             };

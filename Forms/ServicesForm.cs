@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using stretch_ceilings_app.Data.Models;
 
 namespace stretch_ceilings_app.Forms
 {
@@ -11,9 +10,9 @@ namespace stretch_ceilings_app.Forms
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void ServicesForm_Load(object sender, EventArgs e)
         {
-            new ServiceForm(new Service()).ShowDialog();
+
         }
     }
 }

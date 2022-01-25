@@ -27,7 +27,8 @@ namespace stretch_ceilings_app.Data.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                db.Entry(Id).CurrentValues.SetValues(this);
+                var old = db.AdditionalServices.Find(Id);
+                db.Entry(old).CurrentValues.SetValues(this);
                 db.SaveChanges();
             }
         }
@@ -36,7 +37,9 @@ namespace stretch_ceilings_app.Data.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                db.Entry(Id).CurrentValues.SetValues(DateDeleted = DateTime.Now);
+                DateDeleted = DateTime.Now;
+                var old = db.AdditionalServices.Find(Id);
+                db.Entry(old).CurrentValues.SetValues(this);
                 db.SaveChanges();
             }
         }

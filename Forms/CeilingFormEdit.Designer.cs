@@ -29,113 +29,118 @@ namespace stretch_ceilings_app.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.btnSaveInfo = new System.Windows.Forms.Button();
+            this.lblColorType = new System.Windows.Forms.Label();
+            this.lblPrice = new System.Windows.Forms.Label();
+            this.lblTexture = new System.Windows.Forms.Label();
+            this.cbTexture = new System.Windows.Forms.ComboBox();
+            this.cbColorType = new System.Windows.Forms.ComboBox();
+            this.nudPrice = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPrice)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // btnSaveInfo
             // 
-            this.button1.BackColor = System.Drawing.Color.Black;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(257, 120);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(120, 30);
-            this.button1.TabIndex = 82;
-            this.button1.Text = "Сохранить";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnSaveInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.btnSaveInfo.FlatAppearance.BorderSize = 0;
+            this.btnSaveInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnSaveInfo.ForeColor = System.Drawing.Color.White;
+            this.btnSaveInfo.Location = new System.Drawing.Point(257, 120);
+            this.btnSaveInfo.Name = "btnSaveInfo";
+            this.btnSaveInfo.Size = new System.Drawing.Size(120, 30);
+            this.btnSaveInfo.TabIndex = 82;
+            this.btnSaveInfo.Text = "Сохранить";
+            this.btnSaveInfo.UseVisualStyleBackColor = false;
             // 
-            // label6
+            // lblColorType
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label6.Location = new System.Drawing.Point(12, 47);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(59, 24);
-            this.label6.TabIndex = 80;
-            this.label6.Text = "Цвет:";
+            this.lblColorType.AutoSize = true;
+            this.lblColorType.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblColorType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.lblColorType.Location = new System.Drawing.Point(12, 47);
+            this.lblColorType.Name = "lblColorType";
+            this.lblColorType.Size = new System.Drawing.Size(59, 24);
+            this.lblColorType.TabIndex = 80;
+            this.lblColorType.Text = "Цвет:";
             // 
-            // label8
+            // lblPrice
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label8.Location = new System.Drawing.Point(12, 84);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(164, 24);
-            this.label8.TabIndex = 78;
-            this.label8.Text = "Цена за кв. метр:";
+            this.lblPrice.AutoSize = true;
+            this.lblPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.lblPrice.Location = new System.Drawing.Point(12, 84);
+            this.lblPrice.Name = "lblPrice";
+            this.lblPrice.Size = new System.Drawing.Size(164, 24);
+            this.lblPrice.TabIndex = 78;
+            this.lblPrice.Text = "Цена за кв. метр:";
             // 
-            // label4
+            // lblTexture
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label4.Location = new System.Drawing.Point(12, 9);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(90, 24);
-            this.label4.TabIndex = 74;
-            this.label4.Text = "Фактура:";
+            this.lblTexture.AutoSize = true;
+            this.lblTexture.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblTexture.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.lblTexture.Location = new System.Drawing.Point(12, 9);
+            this.lblTexture.Name = "lblTexture";
+            this.lblTexture.Size = new System.Drawing.Size(90, 24);
+            this.lblTexture.TabIndex = 74;
+            this.lblTexture.Text = "Фактура:";
             // 
-            // comboBox1
+            // cbTexture
             // 
-            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(185, 6);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(192, 32);
-            this.comboBox1.TabIndex = 84;
-            this.comboBox1.Text = "Глянцевый";
+            this.cbTexture.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTexture.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbTexture.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cbTexture.FormattingEnabled = true;
+            this.cbTexture.Location = new System.Drawing.Point(185, 6);
+            this.cbTexture.Name = "cbTexture";
+            this.cbTexture.Size = new System.Drawing.Size(192, 32);
+            this.cbTexture.TabIndex = 84;
             // 
-            // comboBox2
+            // cbColorType
             // 
-            this.comboBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(185, 44);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(192, 32);
-            this.comboBox2.TabIndex = 85;
-            this.comboBox2.Text = "Белый";
+            this.cbColorType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbColorType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbColorType.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cbColorType.FormattingEnabled = true;
+            this.cbColorType.Location = new System.Drawing.Point(185, 44);
+            this.cbColorType.Name = "cbColorType";
+            this.cbColorType.Size = new System.Drawing.Size(192, 32);
+            this.cbColorType.TabIndex = 85;
             // 
-            // numericUpDown1
+            // nudPrice
             // 
-            this.numericUpDown1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.numericUpDown1.DecimalPlaces = 2;
-            this.numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.numericUpDown1.Location = new System.Drawing.Point(185, 82);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.nudPrice.Cursor = System.Windows.Forms.Cursors.Default;
+            this.nudPrice.DecimalPlaces = 2;
+            this.nudPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.nudPrice.Location = new System.Drawing.Point(185, 82);
+            this.nudPrice.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(192, 29);
-            this.numericUpDown1.TabIndex = 86;
+            this.nudPrice.Name = "nudPrice";
+            this.nudPrice.Size = new System.Drawing.Size(192, 29);
+            this.nudPrice.TabIndex = 86;
+            this.nudPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // CeilingFormEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(42)))), ((int)(((byte)(54)))));
             this.ClientSize = new System.Drawing.Size(384, 161);
-            this.Controls.Add(this.numericUpDown1);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.nudPrice);
+            this.Controls.Add(this.cbColorType);
+            this.Controls.Add(this.cbTexture);
+            this.Controls.Add(this.btnSaveInfo);
+            this.Controls.Add(this.lblColorType);
+            this.Controls.Add(this.lblPrice);
+            this.Controls.Add(this.lblTexture);
             this.Name = "CeilingFormEdit";
             this.Text = "Производитель \"Pongs\"";
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.Load += new System.EventHandler(this.CeilingFormEdit_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.nudPrice)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -143,12 +148,12 @@ namespace stretch_ceilings_app.Forms
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Button btnSaveInfo;
+        private System.Windows.Forms.Label lblColorType;
+        private System.Windows.Forms.Label lblPrice;
+        private System.Windows.Forms.Label lblTexture;
+        private System.Windows.Forms.ComboBox cbTexture;
+        private System.Windows.Forms.ComboBox cbColorType;
+        private System.Windows.Forms.NumericUpDown nudPrice;
     }
 }

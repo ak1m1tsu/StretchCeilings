@@ -20,13 +20,38 @@ namespace stretch_ceilings_app.Data.Models
         public virtual Customer Customer { get; set; }
         public DateTime? DatePlaced { get; set; }
         public DateTime? DateOfMeasurements { get; set; }
-        public List<DateTime?> DateOfWork { get; set; }
         public DateTime? DatePaid { get; set; }
         public DateTime? DateCanceled { get; set; }
         public DateTime? DateDeleted { get; set; }
         public bool? PaidByCash { get; set; }
         public OrderStatus Status { get; set; }
         public decimal? Total { get; set; }
+
+        public List<DateTime?> GetWorkdays()
+        {
+            using (var db = new StretchCeilingsContext())
+            {
+                return db.Database.SqlQuery<DateTime?>($"SELECT OrderWorkdays.DateOfWork FROM OrderWorkdays WHERE OrderWorkdays.OrderId = {Id}").ToList();
+            }
+        }
+
+        public void SetWorkday(DateTime? day)
+        {
+            using (var db = new StretchCeilingsContext())
+            {
+                db.Database.ExecuteSqlCommand($"INSERT INTO OrderWorkdays VALUES ({Id}, {day})");
+                db.SaveChanges();
+            }
+        }
+
+        public void DeleteWorkDay(DateTime? day)
+        {
+            using (var db = new StretchCeilingsContext())
+            {
+                db.Database.ExecuteSqlCommand($"DELETE FROM OrderWorkdays WHERE OrderWorkdays.OrderId = {Id} AND OrderWorkdays.DateOfWork = {day}");
+                db.SaveChanges();
+            }
+        }
 
         public void Add()
         {

@@ -140,6 +140,7 @@ namespace stretch_ceilings_app.Forms
             this.btnAddCeiling.TabIndex = 54;
             this.btnAddCeiling.Text = "Добавить";
             this.btnAddCeiling.UseVisualStyleBackColor = false;
+            this.btnAddCeiling.Click += new System.EventHandler(this.btnAddCeiling_Click);
             // 
             // panelInfo
             // 

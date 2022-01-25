@@ -39,7 +39,7 @@ namespace stretch_ceilings_app.Forms
             // 
             // btnSave
             // 
-            this.btnSave.BackColor = System.Drawing.Color.Black;
+            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.btnSave.FlatAppearance.BorderSize = 0;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
@@ -55,38 +55,40 @@ namespace stretch_ceilings_app.Forms
             // lblPrice
             // 
             this.lblPrice.AutoSize = true;
-            this.lblPrice.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
-            this.lblPrice.Location = new System.Drawing.Point(12, 47);
+            this.lblPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.lblPrice.Location = new System.Drawing.Point(12, 48);
             this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(63, 25);
+            this.lblPrice.Size = new System.Drawing.Size(59, 24);
             this.lblPrice.TabIndex = 69;
             this.lblPrice.Text = "Цена:";
             // 
             // lblName
             // 
             this.lblName.AutoSize = true;
-            this.lblName.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
-            this.lblName.Location = new System.Drawing.Point(12, 9);
+            this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.lblName.Location = new System.Drawing.Point(12, 10);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(103, 25);
+            this.lblName.Size = new System.Drawing.Size(102, 24);
             this.lblName.TabIndex = 68;
             this.lblName.Text = "Название:";
             // 
             // tbName
             // 
             this.tbName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbName.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
-            this.tbName.Location = new System.Drawing.Point(121, 9);
+            this.tbName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.tbName.Location = new System.Drawing.Point(118, 10);
             this.tbName.Name = "tbName";
-            this.tbName.Size = new System.Drawing.Size(254, 26);
+            this.tbName.Size = new System.Drawing.Size(254, 22);
             this.tbName.TabIndex = 71;
             // 
             // nudPrice
             // 
             this.nudPrice.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.nudPrice.DecimalPlaces = 2;
-            this.nudPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nudPrice.Location = new System.Drawing.Point(121, 47);
+            this.nudPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.nudPrice.Location = new System.Drawing.Point(118, 49);
             this.nudPrice.Name = "nudPrice";
             this.nudPrice.Size = new System.Drawing.Size(120, 25);
             this.nudPrice.TabIndex = 72;
@@ -96,7 +98,7 @@ namespace stretch_ceilings_app.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(69)))), ((int)(((byte)(145)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(42)))), ((int)(((byte)(54)))));
             this.ClientSize = new System.Drawing.Size(384, 161);
             this.Controls.Add(this.nudPrice);
             this.Controls.Add(this.tbName);
@@ -104,6 +106,7 @@ namespace stretch_ceilings_app.Forms
             this.Controls.Add(this.lblPrice);
             this.Controls.Add(this.lblName);
             this.Name = "AdditionalServiceFormEdit";
+            this.Load += new System.EventHandler(this.AdditionalServiceFormEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudPrice)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

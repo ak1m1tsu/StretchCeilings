@@ -17,7 +17,8 @@ namespace stretch_ceilings_app.Forms
 
         private void ServiceForm_Load(object sender, EventArgs e)
         {
-            if (UserSession.Can(PermissionCode.EditService) == false)
+            if (UserSession.Can(PermissionCode.EditService) == false || 
+                UserSession.IsAdmin() == false)
                 btnEdit.Visible = false;
         }
 

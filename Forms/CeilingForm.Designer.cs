@@ -29,116 +29,124 @@ namespace stretch_ceilings_app.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.lblTextureValue = new System.Windows.Forms.Label();
+            this.lblTexture = new System.Windows.Forms.Label();
+            this.lblColorTypeValue = new System.Windows.Forms.Label();
+            this.lblColorType = new System.Windows.Forms.Label();
+            this.lblPriceValue = new System.Windows.Forms.Label();
+            this.lblPrice = new System.Windows.Forms.Label();
+            this.btnEditInfo = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label3
+            // lblTextureValue
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label3.Location = new System.Drawing.Point(185, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(109, 24);
-            this.label3.TabIndex = 66;
-            this.label3.Text = "Глянцевый";
+            this.lblTextureValue.AutoSize = true;
+            this.lblTextureValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblTextureValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.lblTextureValue.Location = new System.Drawing.Point(185, 9);
+            this.lblTextureValue.Name = "lblTextureValue";
+            this.lblTextureValue.Size = new System.Drawing.Size(109, 24);
+            this.lblTextureValue.TabIndex = 66;
+            this.lblTextureValue.Text = "Глянцевый";
             // 
-            // label4
+            // lblTexture
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label4.Location = new System.Drawing.Point(12, 9);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(90, 24);
-            this.label4.TabIndex = 65;
-            this.label4.Text = "Фактура:";
+            this.lblTexture.AutoSize = true;
+            this.lblTexture.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblTexture.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.lblTexture.Location = new System.Drawing.Point(12, 9);
+            this.lblTexture.Name = "lblTexture";
+            this.lblTexture.Size = new System.Drawing.Size(90, 24);
+            this.lblTexture.TabIndex = 65;
+            this.lblTexture.Text = "Фактура:";
             // 
-            // label5
+            // lblColorTypeValue
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label5.Location = new System.Drawing.Point(185, 47);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(87, 24);
-            this.label5.TabIndex = 72;
-            this.label5.Text = "Цветной";
+            this.lblColorTypeValue.AutoSize = true;
+            this.lblColorTypeValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblColorTypeValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.lblColorTypeValue.Location = new System.Drawing.Point(185, 47);
+            this.lblColorTypeValue.Name = "lblColorTypeValue";
+            this.lblColorTypeValue.Size = new System.Drawing.Size(87, 24);
+            this.lblColorTypeValue.TabIndex = 72;
+            this.lblColorTypeValue.Text = "Цветной";
             // 
-            // label6
+            // lblColorType
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label6.Location = new System.Drawing.Point(12, 47);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(59, 24);
-            this.label6.TabIndex = 71;
-            this.label6.Text = "Цвет:";
+            this.lblColorType.AutoSize = true;
+            this.lblColorType.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblColorType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.lblColorType.Location = new System.Drawing.Point(12, 47);
+            this.lblColorType.Name = "lblColorType";
+            this.lblColorType.Size = new System.Drawing.Size(59, 24);
+            this.lblColorType.TabIndex = 71;
+            this.lblColorType.Text = "Цвет:";
             // 
-            // label7
+            // lblPriceValue
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label7.Location = new System.Drawing.Point(185, 84);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(106, 24);
-            this.label7.TabIndex = 70;
-            this.label7.Text = "390.00 руб.";
+            this.lblPriceValue.AutoSize = true;
+            this.lblPriceValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblPriceValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.lblPriceValue.Location = new System.Drawing.Point(185, 84);
+            this.lblPriceValue.Name = "lblPriceValue";
+            this.lblPriceValue.Size = new System.Drawing.Size(106, 24);
+            this.lblPriceValue.TabIndex = 70;
+            this.lblPriceValue.Text = "390.00 руб.";
             // 
-            // label8
+            // lblPrice
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label8.Location = new System.Drawing.Point(12, 84);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(164, 24);
-            this.label8.TabIndex = 69;
-            this.label8.Text = "Цена за кв. метр:";
+            this.lblPrice.AutoSize = true;
+            this.lblPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.lblPrice.Location = new System.Drawing.Point(12, 84);
+            this.lblPrice.Name = "lblPrice";
+            this.lblPrice.Size = new System.Drawing.Size(164, 24);
+            this.lblPrice.TabIndex = 69;
+            this.lblPrice.Text = "Цена за кв. метр:";
             // 
-            // button1
+            // btnEditInfo
             // 
-            this.button1.BackColor = System.Drawing.Color.Black;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(267, 120);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(110, 30);
-            this.button1.TabIndex = 73;
-            this.button1.Text = "Изменить";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnEditInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.btnEditInfo.FlatAppearance.BorderSize = 0;
+            this.btnEditInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnEditInfo.ForeColor = System.Drawing.Color.White;
+            this.btnEditInfo.Location = new System.Drawing.Point(267, 120);
+            this.btnEditInfo.Name = "btnEditInfo";
+            this.btnEditInfo.Size = new System.Drawing.Size(110, 30);
+            this.btnEditInfo.TabIndex = 73;
+            this.btnEditInfo.Text = "Изменить";
+            this.btnEditInfo.UseVisualStyleBackColor = false;
+            this.btnEditInfo.Click += new System.EventHandler(this.btnEditInfo_Click);
             // 
             // CeilingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(69)))), ((int)(((byte)(145)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(42)))), ((int)(((byte)(54)))));
             this.ClientSize = new System.Drawing.Size(384, 161);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.btnEditInfo);
+            this.Controls.Add(this.lblColorTypeValue);
+            this.Controls.Add(this.lblColorType);
+            this.Controls.Add(this.lblPriceValue);
+            this.Controls.Add(this.lblPrice);
+            this.Controls.Add(this.lblTextureValue);
+            this.Controls.Add(this.lblTexture);
             this.Name = "CeilingForm";
             this.Text = "Производитель \"Pongs\"";
+            this.Load += new System.EventHandler(this.CeilingForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lblTextureValue;
+        private System.Windows.Forms.Label lblTexture;
+        private System.Windows.Forms.Label lblColorTypeValue;
+        private System.Windows.Forms.Label lblColorType;
+        private System.Windows.Forms.Label lblPriceValue;
+        private System.Windows.Forms.Label lblPrice;
+        private System.Windows.Forms.Button btnEditInfo;
     }
 }

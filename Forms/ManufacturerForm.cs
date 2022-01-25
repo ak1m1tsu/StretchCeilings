@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using stretch_ceilings_app.Data.Models;
 
 namespace stretch_ceilings_app.Forms
 {
@@ -12,7 +13,7 @@ namespace stretch_ceilings_app.Forms
 
         private void button2_Click(object sender, EventArgs e)
         {
-            new CeilingForm().ShowDialog();
+            new CeilingForm(new Ceiling()).ShowDialog();
         }
     }
 }

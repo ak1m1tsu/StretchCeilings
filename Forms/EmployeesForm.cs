@@ -9,17 +9,16 @@ namespace stretch_ceilings_app.Forms
     public partial class EmployeesForm : Form
     {
         private List<Employee> _employees;
-        private int _rowsCount;
-        private int _currentPage = 1;
-        private int _maxPage = 1;
+        private Employee _employee;
 
-        public Employee Employee;
+        public Employee Employee => _employee;
 
         public EmployeesForm()
         {
             _employees = EmployeeRepository.GetEmployees();
             InitializeComponent();
         }
+
 
         private void EmployeesForm_Load(object sender, EventArgs e)
         {

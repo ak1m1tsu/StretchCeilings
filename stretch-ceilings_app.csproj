@@ -51,7 +51,9 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations">
       <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.ComponentModel.DataAnnotations.dll</HintPath>
     </Reference>
@@ -226,6 +228,10 @@
     <Compile Include="Migrations\202201090720453_minor-updates.designer.cs">
       <DependentUpon>202201090720453_minor-updates.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202201191303012_order-workdays-table.cs" />
+    <Compile Include="Migrations\202201191303012_order-workdays-table.designer.cs">
+      <DependentUpon>202201191303012_order-workdays-table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -279,6 +285,12 @@
     <Compile Include="Data\Models\Service.cs" />
     <Compile Include="Data\Models\TimeTable.cs" />
     <Compile Include="Utility\Constants.cs" />
+    <Compile Include="Utility\CustomControls\CustomMessageBoxForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utility\CustomControls\CustomMessageBoxForm.Designer.cs">
+      <DependentUpon>CustomMessageBoxForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utility\CustomControls\FlatButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -290,8 +302,8 @@
     <Compile Include="Utility\Enums\OrderStatus.cs" />
     <Compile Include="Utility\Enums\PermissionCode.cs" />
     <Compile Include="Utility\Enums\RoomType.cs" />
-    <Compile Include="Utility\LogWriter.cs" />
     <Compile Include="Utility\Extensions\StringExtensions.cs" />
+    <Compile Include="Utility\LogWriter.cs" />
     <Compile Include="Utility\Repositories\AdditionalServiceRepository.cs" />
     <Compile Include="Utility\Repositories\CustomerRepository.cs" />
     <Compile Include="Utility\Repositories\EmployeeRepository.cs" />
@@ -366,6 +378,9 @@
     <EmbeddedResource Include="Migrations\202201090720453_minor-updates.resx">
       <DependentUpon>202201090720453_minor-updates.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201191303012_order-workdays-table.resx">
+      <DependentUpon>202201191303012_order-workdays-table.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -393,6 +408,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ServicesForm.resx">
       <DependentUpon>ServicesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utility\CustomControls\CustomMessageBoxForm.resx">
+      <DependentUpon>CustomMessageBoxForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

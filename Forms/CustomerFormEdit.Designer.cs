@@ -65,7 +65,7 @@ namespace stretch_ceilings_app.Forms
             // 
             // tbInfo
             // 
-            this.tbInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(69)))), ((int)(((byte)(145)))));
+            this.tbInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(42)))), ((int)(((byte)(54)))));
             this.tbInfo.Controls.Add(this.mtbPhoneNumber);
             this.tbInfo.Controls.Add(this.tbFullName);
             this.tbInfo.Controls.Add(this.btnSaveInfo);
@@ -95,7 +95,7 @@ namespace stretch_ceilings_app.Forms
             // 
             // btnSaveInfo
             // 
-            this.btnSaveInfo.BackColor = System.Drawing.Color.Black;
+            this.btnSaveInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.btnSaveInfo.FlatAppearance.BorderSize = 0;
             this.btnSaveInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
@@ -112,6 +112,7 @@ namespace stretch_ceilings_app.Forms
             // 
             this.lblFullName.AutoSize = true;
             this.lblFullName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblFullName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.lblFullName.Location = new System.Drawing.Point(8, 14);
             this.lblFullName.Name = "lblFullName";
             this.lblFullName.Size = new System.Drawing.Size(59, 24);
@@ -122,6 +123,7 @@ namespace stretch_ceilings_app.Forms
             // 
             this.lblPhoneNumber.AutoSize = true;
             this.lblPhoneNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblPhoneNumber.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.lblPhoneNumber.Location = new System.Drawing.Point(8, 49);
             this.lblPhoneNumber.Name = "lblPhoneNumber";
             this.lblPhoneNumber.Size = new System.Drawing.Size(167, 24);
@@ -142,7 +144,7 @@ namespace stretch_ceilings_app.Forms
             // 
             // dgvEstates
             // 
-            this.dgvEstates.BackgroundColor = System.Drawing.Color.Black;
+            this.dgvEstates.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.dgvEstates.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEstates.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvEstates.Location = new System.Drawing.Point(3, 3);
@@ -152,7 +154,7 @@ namespace stretch_ceilings_app.Forms
             // 
             // panelPageSide
             // 
-            this.panelPageSide.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(69)))), ((int)(((byte)(145)))));
+            this.panelPageSide.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(42)))), ((int)(((byte)(54)))));
             this.panelPageSide.Controls.Add(this.btnAddEstate);
             this.panelPageSide.Controls.Add(this.btnPreviousPage);
             this.panelPageSide.Controls.Add(this.tbPage);
@@ -166,7 +168,7 @@ namespace stretch_ceilings_app.Forms
             // 
             // btnAddEstate
             // 
-            this.btnAddEstate.BackColor = System.Drawing.Color.Black;
+            this.btnAddEstate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.btnAddEstate.FlatAppearance.BorderSize = 0;
             this.btnAddEstate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddEstate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
@@ -181,7 +183,7 @@ namespace stretch_ceilings_app.Forms
             // 
             // btnPreviousPage
             // 
-            this.btnPreviousPage.BackColor = System.Drawing.Color.Black;
+            this.btnPreviousPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.btnPreviousPage.FlatAppearance.BorderSize = 0;
             this.btnPreviousPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPreviousPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
@@ -204,7 +206,7 @@ namespace stretch_ceilings_app.Forms
             // 
             // btnNextPage
             // 
-            this.btnNextPage.BackColor = System.Drawing.Color.Black;
+            this.btnNextPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.btnNextPage.FlatAppearance.BorderSize = 0;
             this.btnNextPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNextPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
@@ -234,7 +236,7 @@ namespace stretch_ceilings_app.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(51)))), ((int)(((byte)(107)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(42)))), ((int)(((byte)(54)))));
             this.ClientSize = new System.Drawing.Size(634, 361);
             this.Controls.Add(this.tcCustomer);
             this.Name = "CustomerFormEdit";

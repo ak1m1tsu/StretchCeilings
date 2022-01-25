@@ -29,303 +29,287 @@ namespace stretch_ceilings_app.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.button6 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.panel7.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel5.SuspendLayout();
+            this.panelFilters = new System.Windows.Forms.Panel();
+            this.tbName = new System.Windows.Forms.TextBox();
+            this.lblName = new System.Windows.Forms.Label();
+            this.cbCuntry = new System.Windows.Forms.ComboBox();
+            this.lblCuntry = new System.Windows.Forms.Label();
+            this.tbAddress = new System.Windows.Forms.TextBox();
+            this.lblAddress = new System.Windows.Forms.Label();
+            this.panelButtons = new System.Windows.Forms.Panel();
+            this.panelUserButtons = new System.Windows.Forms.Panel();
+            this.panelFilterButtons = new System.Windows.Forms.Panel();
+            this.btnResetFilters = new System.Windows.Forms.Button();
+            this.btnUserFilters = new System.Windows.Forms.Button();
+            this.dgvManufacturers = new System.Windows.Forms.DataGridView();
+            this.panelPages = new System.Windows.Forms.Panel();
+            this.cbRows = new System.Windows.Forms.ComboBox();
+            this.btnPrevious = new System.Windows.Forms.Button();
+            this.tbPages = new System.Windows.Forms.TextBox();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.panelFilters.SuspendLayout();
+            this.panelButtons.SuspendLayout();
+            this.panelFilterButtons.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvManufacturers)).BeginInit();
+            this.panelPages.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel3
+            // panelFilters
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
-            this.panel3.Controls.Add(this.panel4);
-            this.panel3.Controls.Add(this.panel1);
-            this.panel3.Controls.Add(this.panel2);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1184, 561);
-            this.panel3.TabIndex = 7;
+            this.panelFilters.Controls.Add(this.tbName);
+            this.panelFilters.Controls.Add(this.lblName);
+            this.panelFilters.Controls.Add(this.cbCuntry);
+            this.panelFilters.Controls.Add(this.lblCuntry);
+            this.panelFilters.Controls.Add(this.tbAddress);
+            this.panelFilters.Controls.Add(this.lblAddress);
+            this.panelFilters.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelFilters.Location = new System.Drawing.Point(0, 0);
+            this.panelFilters.Name = "panelFilters";
+            this.panelFilters.Size = new System.Drawing.Size(1054, 114);
+            this.panelFilters.TabIndex = 7;
             // 
-            // panel4
+            // tbName
             // 
-            this.panel4.Controls.Add(this.dataGridView1);
-            this.panel4.Controls.Add(this.panel7);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.panel4.Location = new System.Drawing.Point(0, 114);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1054, 447);
-            this.panel4.TabIndex = 2;
+            this.tbName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.tbName.Location = new System.Drawing.Point(117, 43);
+            this.tbName.Name = "tbName";
+            this.tbName.Size = new System.Drawing.Size(340, 29);
+            this.tbName.TabIndex = 40;
             // 
-            // dataGridView1
+            // lblName
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.Black;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(1054, 409);
-            this.dataGridView1.TabIndex = 5;
+            this.lblName.AutoSize = true;
+            this.lblName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.lblName.Location = new System.Drawing.Point(12, 45);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(102, 24);
+            this.lblName.TabIndex = 39;
+            this.lblName.Text = "Название:";
             // 
-            // panel7
+            // cbCuntry
             // 
-            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
-            this.panel7.Controls.Add(this.button6);
-            this.panel7.Controls.Add(this.textBox3);
-            this.panel7.Controls.Add(this.button4);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel7.Location = new System.Drawing.Point(0, 409);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1054, 38);
-            this.panel7.TabIndex = 3;
-            // 
-            // button6
-            // 
-            this.button6.BackColor = System.Drawing.Color.Black;
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button6.ForeColor = System.Drawing.Color.White;
-            this.button6.Location = new System.Drawing.Point(4, 4);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(30, 29);
-            this.button6.TabIndex = 84;
-            this.button6.Text = "<";
-            this.button6.UseVisualStyleBackColor = false;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.textBox3.Location = new System.Drawing.Point(40, 4);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(80, 29);
-            this.textBox3.TabIndex = 83;
-            // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.Color.Black;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(126, 4);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(30, 29);
-            this.button4.TabIndex = 82;
-            this.button4.Text = ">";
-            this.button4.UseVisualStyleBackColor = false;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
-            this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.comboBox2);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.textBox2);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1054, 114);
-            this.panel1.TabIndex = 1;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.textBox1.Location = new System.Drawing.Point(117, 43);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(340, 29);
-            this.textBox1.TabIndex = 40;
-            this.textBox1.Text = "Особенный с хорошим качеством";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(12, 45);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(102, 24);
-            this.label3.TabIndex = 39;
-            this.label3.Text = "Название:";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.AutoCompleteCustomSource.AddRange(new string[] {
+            this.cbCuntry.AutoCompleteCustomSource.AddRange(new string[] {
             "Ожидает ответа клиента",
             "Ожидает выполнения работ",
             "Ожидает результатов замеров",
             "Отменен",
             "Завершен"});
-            this.comboBox2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
-            this.comboBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(117, 78);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(166, 32);
-            this.comboBox2.TabIndex = 38;
-            this.comboBox2.Text = "Россия";
+            this.cbCuntry.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCuntry.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbCuntry.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.cbCuntry.FormattingEnabled = true;
+            this.cbCuntry.Location = new System.Drawing.Point(117, 78);
+            this.cbCuntry.Name = "cbCuntry";
+            this.cbCuntry.Size = new System.Drawing.Size(166, 32);
+            this.cbCuntry.TabIndex = 38;
             // 
-            // label2
+            // lblCuntry
             // 
-            this.label2.AutoSize = true;
-            this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(12, 81);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(80, 24);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "Страна:";
+            this.lblCuntry.AutoSize = true;
+            this.lblCuntry.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblCuntry.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblCuntry.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.lblCuntry.Location = new System.Drawing.Point(12, 81);
+            this.lblCuntry.Name = "lblCuntry";
+            this.lblCuntry.Size = new System.Drawing.Size(80, 24);
+            this.lblCuntry.TabIndex = 13;
+            this.lblCuntry.Text = "Страна:";
             // 
-            // textBox2
+            // tbAddress
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.textBox2.Location = new System.Drawing.Point(117, 7);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(241, 29);
-            this.textBox2.TabIndex = 12;
-            this.textBox2.Text = "Такая то улица, 125";
+            this.tbAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.tbAddress.Location = new System.Drawing.Point(117, 7);
+            this.tbAddress.Name = "tbAddress";
+            this.tbAddress.Size = new System.Drawing.Size(340, 29);
+            this.tbAddress.TabIndex = 12;
             // 
-            // label1
+            // lblAddress
             // 
-            this.label1.AutoSize = true;
-            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 24);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "Адрес:";
+            this.lblAddress.AutoSize = true;
+            this.lblAddress.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblAddress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.lblAddress.Location = new System.Drawing.Point(12, 9);
+            this.lblAddress.Name = "lblAddress";
+            this.lblAddress.Size = new System.Drawing.Size(72, 24);
+            this.lblAddress.TabIndex = 11;
+            this.lblAddress.Text = "Адрес:";
             // 
-            // panel2
+            // panelButtons
             // 
-            this.panel2.Controls.Add(this.panel6);
-            this.panel2.Controls.Add(this.panel5);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(1054, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(130, 561);
-            this.panel2.TabIndex = 0;
+            this.panelButtons.Controls.Add(this.panelUserButtons);
+            this.panelButtons.Controls.Add(this.panelFilterButtons);
+            this.panelButtons.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panelButtons.Location = new System.Drawing.Point(1054, 0);
+            this.panelButtons.Name = "panelButtons";
+            this.panelButtons.Size = new System.Drawing.Size(130, 561);
+            this.panelButtons.TabIndex = 6;
             // 
-            // panel6
+            // panelUserButtons
             // 
-            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(0, 114);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(130, 447);
-            this.panel6.TabIndex = 1;
+            this.panelUserButtons.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelUserButtons.Location = new System.Drawing.Point(0, 114);
+            this.panelUserButtons.Name = "panelUserButtons";
+            this.panelUserButtons.Size = new System.Drawing.Size(130, 447);
+            this.panelUserButtons.TabIndex = 1;
             // 
-            // panel5
+            // panelFilterButtons
             // 
-            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
-            this.panel5.Controls.Add(this.button3);
-            this.panel5.Controls.Add(this.button2);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(0, 0);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(130, 114);
-            this.panel5.TabIndex = 0;
+            this.panelFilterButtons.Controls.Add(this.btnResetFilters);
+            this.panelFilterButtons.Controls.Add(this.btnUserFilters);
+            this.panelFilterButtons.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelFilterButtons.Location = new System.Drawing.Point(0, 0);
+            this.panelFilterButtons.Name = "panelFilterButtons";
+            this.panelFilterButtons.Size = new System.Drawing.Size(130, 114);
+            this.panelFilterButtons.TabIndex = 0;
             // 
-            // button3
+            // btnResetFilters
             // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
-            this.button3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button3.ForeColor = System.Drawing.Color.Black;
-            this.button3.Location = new System.Drawing.Point(0, 56);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(130, 56);
-            this.button3.TabIndex = 10;
-            this.button3.Text = "Сбросить";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.UseVisualStyleBackColor = false;
+            this.btnResetFilters.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnResetFilters.FlatAppearance.BorderSize = 0;
+            this.btnResetFilters.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnResetFilters.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnResetFilters.Location = new System.Drawing.Point(0, 56);
+            this.btnResetFilters.Name = "btnResetFilters";
+            this.btnResetFilters.Size = new System.Drawing.Size(130, 56);
+            this.btnResetFilters.TabIndex = 10;
+            this.btnResetFilters.Text = "Сбросить";
+            this.btnResetFilters.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnResetFilters.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // btnUserFilters
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
-            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button2.ForeColor = System.Drawing.Color.Black;
-            this.button2.Location = new System.Drawing.Point(0, 0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(130, 56);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "Применить";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnUserFilters.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnUserFilters.FlatAppearance.BorderSize = 0;
+            this.btnUserFilters.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUserFilters.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnUserFilters.Location = new System.Drawing.Point(0, 0);
+            this.btnUserFilters.Name = "btnUserFilters";
+            this.btnUserFilters.Size = new System.Drawing.Size(130, 56);
+            this.btnUserFilters.TabIndex = 9;
+            this.btnUserFilters.Text = "Применить";
+            this.btnUserFilters.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUserFilters.UseVisualStyleBackColor = false;
+            // 
+            // dgvManufacturers
+            // 
+            this.dgvManufacturers.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.dgvManufacturers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvManufacturers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvManufacturers.Location = new System.Drawing.Point(0, 114);
+            this.dgvManufacturers.Name = "dgvManufacturers";
+            this.dgvManufacturers.RowTemplate.Height = 25;
+            this.dgvManufacturers.Size = new System.Drawing.Size(1054, 409);
+            this.dgvManufacturers.TabIndex = 11;
+            // 
+            // panelPages
+            // 
+            this.panelPages.Controls.Add(this.cbRows);
+            this.panelPages.Controls.Add(this.btnPrevious);
+            this.panelPages.Controls.Add(this.tbPages);
+            this.panelPages.Controls.Add(this.btnNext);
+            this.panelPages.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelPages.Location = new System.Drawing.Point(0, 523);
+            this.panelPages.Name = "panelPages";
+            this.panelPages.Size = new System.Drawing.Size(1054, 38);
+            this.panelPages.TabIndex = 10;
+            // 
+            // cbRows
+            // 
+            this.cbRows.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbRows.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbRows.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbRows.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cbRows.FormattingEnabled = true;
+            this.cbRows.Location = new System.Drawing.Point(993, 3);
+            this.cbRows.Name = "cbRows";
+            this.cbRows.Size = new System.Drawing.Size(55, 32);
+            this.cbRows.TabIndex = 98;
+            // 
+            // btnPrevious
+            // 
+            this.btnPrevious.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.btnPrevious.FlatAppearance.BorderSize = 0;
+            this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrevious.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnPrevious.ForeColor = System.Drawing.Color.White;
+            this.btnPrevious.Location = new System.Drawing.Point(4, 4);
+            this.btnPrevious.Name = "btnPrevious";
+            this.btnPrevious.Size = new System.Drawing.Size(30, 29);
+            this.btnPrevious.TabIndex = 84;
+            this.btnPrevious.Text = "<";
+            this.btnPrevious.UseVisualStyleBackColor = false;
+            // 
+            // tbPages
+            // 
+            this.tbPages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.tbPages.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbPages.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.tbPages.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.tbPages.Location = new System.Drawing.Point(40, 4);
+            this.tbPages.Name = "tbPages";
+            this.tbPages.Size = new System.Drawing.Size(80, 29);
+            this.tbPages.TabIndex = 83;
+            // 
+            // btnNext
+            // 
+            this.btnNext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.btnNext.FlatAppearance.BorderSize = 0;
+            this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnNext.ForeColor = System.Drawing.Color.White;
+            this.btnNext.Location = new System.Drawing.Point(126, 4);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(30, 29);
+            this.btnNext.TabIndex = 82;
+            this.btnNext.Text = ">";
+            this.btnNext.UseVisualStyleBackColor = false;
             // 
             // ManufacturersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(42)))), ((int)(((byte)(54)))));
             this.ClientSize = new System.Drawing.Size(1184, 561);
-            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.dgvManufacturers);
+            this.Controls.Add(this.panelPages);
+            this.Controls.Add(this.panelFilters);
+            this.Controls.Add(this.panelButtons);
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.MinimumSize = new System.Drawing.Size(1200, 600);
             this.Name = "ManufacturersForm";
-            this.panel3.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
+            this.panelFilters.ResumeLayout(false);
+            this.panelFilters.PerformLayout();
+            this.panelButtons.ResumeLayout(false);
+            this.panelFilterButtons.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvManufacturers)).EndInit();
+            this.panelPages.ResumeLayout(false);
+            this.panelPages.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button3;
+
+        private System.Windows.Forms.Panel panelFilters;
+        private System.Windows.Forms.TextBox tbName;
+        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.ComboBox cbCuntry;
+        private System.Windows.Forms.Label lblCuntry;
+        private System.Windows.Forms.TextBox tbAddress;
+        private System.Windows.Forms.Label lblAddress;
+        private System.Windows.Forms.Panel panelButtons;
+        private System.Windows.Forms.Panel panelUserButtons;
+        private System.Windows.Forms.Panel panelFilterButtons;
+        private System.Windows.Forms.Button btnResetFilters;
+        private System.Windows.Forms.Button btnUserFilters;
+        private System.Windows.Forms.DataGridView dgvManufacturers;
+        private System.Windows.Forms.Panel panelPages;
+        private System.Windows.Forms.ComboBox cbRows;
+        private System.Windows.Forms.Button btnPrevious;
+        private System.Windows.Forms.TextBox tbPages;
+        private System.Windows.Forms.Button btnNext;
     }
 }

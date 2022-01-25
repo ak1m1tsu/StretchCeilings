@@ -8,5 +8,10 @@ namespace stretch_ceilings_app.Forms
         {
             InitializeComponent();
         }
+
+        private void btnAddCeiling_Click(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }

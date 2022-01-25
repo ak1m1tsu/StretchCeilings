@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using stretch_ceilings_app.Data.Models;
 using stretch_ceilings_app.Utility;
 using stretch_ceilings_app.Utility.Enums;
+using stretch_ceilings_app.Utility.Extensions;
 
 namespace stretch_ceilings_app.Forms
 {
@@ -29,12 +30,12 @@ namespace stretch_ceilings_app.Forms
         {
             var estates = _currentCustomer.GetEstates();
 
-            var idCol = new DataGridViewTextBoxColumn()
-                { Name = "Id", AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells };
-            var addressCol = new DataGridViewTextBoxColumn()
-                { Name = "Адрес", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill };
+            var idCol = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
+            var addressCol = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Адресс", DataGridViewAutoSizeColumnMode.Fill);
 
             dgvEstates.Columns.AddRange(idCol, addressCol);
+            dgvEstates.DefaultCellStyle.SelectionBackColor = Constants.DraculaSelection;
+            dgvEstates.DefaultCellStyle.SelectionForeColor = Constants.DraculaForeground;
 
             for (var i = 0; i < estates?.Count; i++)
             {
@@ -47,7 +48,8 @@ namespace stretch_ceilings_app.Forms
 
         private void SetUpEditBtn()
         {
-            if (UserSession.Can(PermissionCode.EditCustomer) == false)
+            if (UserSession.Can(PermissionCode.EditCustomer) == false || 
+                UserSession.IsAdmin() == false)
                 btnChangeInfo.Visible = false;
         }
 

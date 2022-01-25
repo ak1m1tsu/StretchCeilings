@@ -29,292 +29,286 @@ namespace stretch_ceilings_app.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.panelInfo = new System.Windows.Forms.Panel();
+            this.lblId = new System.Windows.Forms.Label();
+            this.cbRole = new System.Windows.Forms.ComboBox();
+            this.lblRole = new System.Windows.Forms.Label();
+            this.tbFullName = new System.Windows.Forms.TextBox();
+            this.lblFullName = new System.Windows.Forms.Label();
+            this.panelButtons = new System.Windows.Forms.Panel();
+            this.panelUserButtons = new System.Windows.Forms.Panel();
+            this.panelFilterButtons = new System.Windows.Forms.Panel();
+            this.btnResetFilter = new System.Windows.Forms.Button();
+            this.btnUseFilters = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.button6 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
+            this.panelPages = new System.Windows.Forms.Panel();
+            this.btnPrevious = new System.Windows.Forms.Button();
+            this.tbPages = new System.Windows.Forms.TextBox();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.cbRows = new System.Windows.Forms.ComboBox();
+            this.nudId = new System.Windows.Forms.NumericUpDown();
+            this.panelInfo.SuspendLayout();
+            this.panelButtons.SuspendLayout();
+            this.panelFilterButtons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.panel7.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel5.SuspendLayout();
+            this.panelPages.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudId)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel1
+            // panelInfo
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(69)))), ((int)(((byte)(145)))));
-            this.panel1.Controls.Add(this.textBox4);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.comboBox2);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.textBox2);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1054, 114);
-            this.panel1.TabIndex = 1;
+            this.panelInfo.Controls.Add(this.nudId);
+            this.panelInfo.Controls.Add(this.lblId);
+            this.panelInfo.Controls.Add(this.cbRole);
+            this.panelInfo.Controls.Add(this.lblRole);
+            this.panelInfo.Controls.Add(this.tbFullName);
+            this.panelInfo.Controls.Add(this.lblFullName);
+            this.panelInfo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelInfo.Location = new System.Drawing.Point(0, 0);
+            this.panelInfo.Name = "panelInfo";
+            this.panelInfo.Size = new System.Drawing.Size(1054, 114);
+            this.panelInfo.TabIndex = 5;
             // 
-            // textBox4
+            // lblId
             // 
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.textBox4.Location = new System.Drawing.Point(131, 80);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(67, 29);
-            this.textBox4.TabIndex = 40;
-            this.textBox4.Text = "4";
+            this.lblId.AutoSize = true;
+            this.lblId.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblId.Location = new System.Drawing.Point(12, 9);
+            this.lblId.Name = "lblId";
+            this.lblId.Size = new System.Drawing.Size(35, 24);
+            this.lblId.TabIndex = 39;
+            this.lblId.Text = "№:";
             // 
-            // label3
+            // cbRole
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label3.Location = new System.Drawing.Point(10, 82);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 24);
-            this.label3.TabIndex = 39;
-            this.label3.Text = "№:";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.AutoCompleteCustomSource.AddRange(new string[] {
+            this.cbRole.AutoCompleteCustomSource.AddRange(new string[] {
             "Ожидает ответа клиента",
             "Ожидает выполнения работ",
             "Ожидает результатов замеров",
             "Отменен",
             "Завершен"});
-            this.comboBox2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
-            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(131, 42);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(169, 32);
-            this.comboBox2.TabIndex = 38;
-            this.comboBox2.Text = "Мастер";
+            this.cbRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.cbRole.FormattingEnabled = true;
+            this.cbRole.Location = new System.Drawing.Point(133, 79);
+            this.cbRole.Name = "cbRole";
+            this.cbRole.Size = new System.Drawing.Size(169, 32);
+            this.cbRole.TabIndex = 38;
             // 
-            // label2
+            // lblRole
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label2.Location = new System.Drawing.Point(10, 45);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(117, 24);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "Должность:";
+            this.lblRole.AutoSize = true;
+            this.lblRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblRole.Location = new System.Drawing.Point(12, 82);
+            this.lblRole.Name = "lblRole";
+            this.lblRole.Size = new System.Drawing.Size(117, 24);
+            this.lblRole.TabIndex = 13;
+            this.lblRole.Text = "Должность:";
             // 
-            // textBox2
+            // tbFullName
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.textBox2.Location = new System.Drawing.Point(131, 5);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(252, 29);
-            this.textBox2.TabIndex = 12;
-            this.textBox2.Text = "Кравчук Роман Олегович";
+            this.tbFullName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbFullName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.tbFullName.Location = new System.Drawing.Point(133, 42);
+            this.tbFullName.Name = "tbFullName";
+            this.tbFullName.Size = new System.Drawing.Size(252, 29);
+            this.tbFullName.TabIndex = 12;
             // 
-            // label1
+            // lblFullName
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label1.Location = new System.Drawing.Point(10, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 24);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "ФИО:";
+            this.lblFullName.AutoSize = true;
+            this.lblFullName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblFullName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.lblFullName.Location = new System.Drawing.Point(12, 45);
+            this.lblFullName.Name = "lblFullName";
+            this.lblFullName.Size = new System.Drawing.Size(59, 24);
+            this.lblFullName.TabIndex = 11;
+            this.lblFullName.Text = "ФИО:";
             // 
-            // panel3
+            // panelButtons
             // 
-            this.panel3.Controls.Add(this.panel4);
-            this.panel3.Controls.Add(this.panel1);
-            this.panel3.Controls.Add(this.panel2);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1184, 561);
-            this.panel3.TabIndex = 6;
+            this.panelButtons.Controls.Add(this.panelUserButtons);
+            this.panelButtons.Controls.Add(this.panelFilterButtons);
+            this.panelButtons.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panelButtons.Location = new System.Drawing.Point(1054, 0);
+            this.panelButtons.Name = "panelButtons";
+            this.panelButtons.Size = new System.Drawing.Size(130, 561);
+            this.panelButtons.TabIndex = 4;
             // 
-            // panel4
+            // panelUserButtons
             // 
-            this.panel4.Controls.Add(this.dataGridView1);
-            this.panel4.Controls.Add(this.panel7);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.panel4.Location = new System.Drawing.Point(0, 114);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1054, 447);
-            this.panel4.TabIndex = 2;
+            this.panelUserButtons.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelUserButtons.Location = new System.Drawing.Point(0, 114);
+            this.panelUserButtons.Name = "panelUserButtons";
+            this.panelUserButtons.Size = new System.Drawing.Size(130, 447);
+            this.panelUserButtons.TabIndex = 1;
+            // 
+            // panelFilterButtons
+            // 
+            this.panelFilterButtons.Controls.Add(this.btnResetFilter);
+            this.panelFilterButtons.Controls.Add(this.btnUseFilters);
+            this.panelFilterButtons.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelFilterButtons.Location = new System.Drawing.Point(0, 0);
+            this.panelFilterButtons.Name = "panelFilterButtons";
+            this.panelFilterButtons.Size = new System.Drawing.Size(130, 114);
+            this.panelFilterButtons.TabIndex = 0;
+            // 
+            // btnResetFilter
+            // 
+            this.btnResetFilter.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnResetFilter.FlatAppearance.BorderSize = 0;
+            this.btnResetFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnResetFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnResetFilter.Location = new System.Drawing.Point(0, 56);
+            this.btnResetFilter.Name = "btnResetFilter";
+            this.btnResetFilter.Size = new System.Drawing.Size(130, 56);
+            this.btnResetFilter.TabIndex = 10;
+            this.btnResetFilter.Text = "Сбросить";
+            this.btnResetFilter.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnResetFilter.UseVisualStyleBackColor = true;
+            // 
+            // btnUseFilters
+            // 
+            this.btnUseFilters.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnUseFilters.FlatAppearance.BorderSize = 0;
+            this.btnUseFilters.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUseFilters.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnUseFilters.Location = new System.Drawing.Point(0, 0);
+            this.btnUseFilters.Name = "btnUseFilters";
+            this.btnUseFilters.Size = new System.Drawing.Size(130, 56);
+            this.btnUseFilters.TabIndex = 9;
+            this.btnUseFilters.Text = "Применить";
+            this.btnUseFilters.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUseFilters.UseVisualStyleBackColor = true;
             // 
             // dataGridView1
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.Black;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 114);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 25;
             this.dataGridView1.Size = new System.Drawing.Size(1054, 407);
-            this.dataGridView1.TabIndex = 3;
+            this.dataGridView1.TabIndex = 9;
             // 
-            // panel7
+            // panelPages
             // 
-            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(69)))), ((int)(((byte)(145)))));
-            this.panel7.Controls.Add(this.button6);
-            this.panel7.Controls.Add(this.textBox3);
-            this.panel7.Controls.Add(this.button4);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel7.Location = new System.Drawing.Point(0, 407);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1054, 40);
-            this.panel7.TabIndex = 1;
+            this.panelPages.Controls.Add(this.cbRows);
+            this.panelPages.Controls.Add(this.btnPrevious);
+            this.panelPages.Controls.Add(this.tbPages);
+            this.panelPages.Controls.Add(this.btnNext);
+            this.panelPages.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelPages.Location = new System.Drawing.Point(0, 521);
+            this.panelPages.Name = "panelPages";
+            this.panelPages.Size = new System.Drawing.Size(1054, 40);
+            this.panelPages.TabIndex = 8;
             // 
-            // button6
+            // btnPrevious
             // 
-            this.button6.BackColor = System.Drawing.Color.Black;
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button6.ForeColor = System.Drawing.Color.White;
-            this.button6.Location = new System.Drawing.Point(3, 6);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(30, 29);
-            this.button6.TabIndex = 69;
-            this.button6.Text = "<";
-            this.button6.UseVisualStyleBackColor = false;
+            this.btnPrevious.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.btnPrevious.FlatAppearance.BorderSize = 0;
+            this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrevious.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnPrevious.ForeColor = System.Drawing.Color.White;
+            this.btnPrevious.Location = new System.Drawing.Point(3, 6);
+            this.btnPrevious.Name = "btnPrevious";
+            this.btnPrevious.Size = new System.Drawing.Size(30, 29);
+            this.btnPrevious.TabIndex = 69;
+            this.btnPrevious.Text = "<";
+            this.btnPrevious.UseVisualStyleBackColor = false;
             // 
-            // textBox3
+            // tbPages
             // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.textBox3.Location = new System.Drawing.Point(39, 6);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(80, 29);
-            this.textBox3.TabIndex = 68;
+            this.tbPages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.tbPages.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbPages.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.tbPages.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.tbPages.Location = new System.Drawing.Point(39, 6);
+            this.tbPages.Name = "tbPages";
+            this.tbPages.Size = new System.Drawing.Size(80, 29);
+            this.tbPages.TabIndex = 68;
             // 
-            // button4
+            // btnNext
             // 
-            this.button4.BackColor = System.Drawing.Color.Black;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(125, 6);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(30, 29);
-            this.button4.TabIndex = 67;
-            this.button4.Text = ">";
-            this.button4.UseVisualStyleBackColor = false;
+            this.btnNext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.btnNext.FlatAppearance.BorderSize = 0;
+            this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnNext.ForeColor = System.Drawing.Color.White;
+            this.btnNext.Location = new System.Drawing.Point(125, 6);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(30, 29);
+            this.btnNext.TabIndex = 67;
+            this.btnNext.Text = ">";
+            this.btnNext.UseVisualStyleBackColor = false;
             // 
-            // panel2
+            // cbRows
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(51)))), ((int)(((byte)(107)))));
-            this.panel2.Controls.Add(this.panel6);
-            this.panel2.Controls.Add(this.panel5);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(1054, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(130, 561);
-            this.panel2.TabIndex = 0;
+            this.cbRows.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbRows.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbRows.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbRows.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cbRows.FormattingEnabled = true;
+            this.cbRows.Location = new System.Drawing.Point(993, 5);
+            this.cbRows.Name = "cbRows";
+            this.cbRows.Size = new System.Drawing.Size(55, 32);
+            this.cbRows.TabIndex = 99;
             // 
-            // panel6
+            // nudId
             // 
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(0, 114);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(130, 447);
-            this.panel6.TabIndex = 1;
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.button3);
-            this.panel5.Controls.Add(this.button2);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(0, 0);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(130, 114);
-            this.panel5.TabIndex = 0;
-            // 
-            // button3
-            // 
-            this.button3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button3.Location = new System.Drawing.Point(0, 56);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(130, 56);
-            this.button3.TabIndex = 10;
-            this.button3.Text = "Сбросить";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button2.Location = new System.Drawing.Point(0, 0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(130, 56);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "Применить";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.UseVisualStyleBackColor = true;
+            this.nudId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.nudId.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nudId.Location = new System.Drawing.Point(133, 7);
+            this.nudId.Name = "nudId";
+            this.nudId.Size = new System.Drawing.Size(68, 29);
+            this.nudId.TabIndex = 40;
             // 
             // EmployeesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(42)))), ((int)(((byte)(54)))));
             this.ClientSize = new System.Drawing.Size(1184, 561);
-            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.panelPages);
+            this.Controls.Add(this.panelInfo);
+            this.Controls.Add(this.panelButtons);
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.MinimumSize = new System.Drawing.Size(1200, 600);
             this.Name = "EmployeesForm";
             this.Load += new System.EventHandler(this.EmployeesForm_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
+            this.panelInfo.ResumeLayout(false);
+            this.panelInfo.PerformLayout();
+            this.panelButtons.ResumeLayout(false);
+            this.panelFilterButtons.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
+            this.panelPages.ResumeLayout(false);
+            this.panelPages.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudId)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel panelInfo;
+        private System.Windows.Forms.Label lblId;
+        private System.Windows.Forms.ComboBox cbRole;
+        private System.Windows.Forms.Label lblRole;
+        private System.Windows.Forms.TextBox tbFullName;
+        private System.Windows.Forms.Label lblFullName;
+        private System.Windows.Forms.Panel panelButtons;
+        private System.Windows.Forms.Panel panelUserButtons;
+        private System.Windows.Forms.Panel panelFilterButtons;
+        private System.Windows.Forms.Button btnResetFilter;
+        private System.Windows.Forms.Button btnUseFilters;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Panel panelPages;
+        private System.Windows.Forms.Button btnPrevious;
+        private System.Windows.Forms.TextBox tbPages;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.ComboBox cbRows;
+        private System.Windows.Forms.NumericUpDown nudId;
     }
 }

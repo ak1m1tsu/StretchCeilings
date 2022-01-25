@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
 using stretch_ceilings_app.Data.Models;
@@ -31,14 +30,6 @@ namespace stretch_ceilings_app.Forms
             InitializeComponent();
         }
 
-        private void CheckUserPermissions()
-        {
-            if (UserSession.Can(PermissionCode.AddOrder))
-            {
-                DrawButtonAddOrder();
-            }
-        }
-
         private void OpenDataGridRowForm()
         {
             if (dgvOrders.SelectedRows.Count <= 0) return;
@@ -52,17 +43,19 @@ namespace stretch_ceilings_app.Forms
             _orders = OrderRepository.GetOrders(out _rowsCount);
 
             var idColumn = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
-            var datePlacedColumn = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Дата размещения", DataGridViewAutoSizeColumnMode.DisplayedCells);
+            var datePlacedColumn = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Дата размещения", DataGridViewAutoSizeColumnMode.Fill);
             var customerColumn = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Клиент", DataGridViewAutoSizeColumnMode.Fill);
-            var statusColumn = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Дата размещения", DataGridViewAutoSizeColumnMode.Fill);
-            var paidByCashColumn = DataGridViewExtensions.CreateDataGridViewCheckBoxColumn("Оплачен наличными", DataGridViewAutoSizeColumnMode.DisplayedCells);
+            var statusColumn = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Статус", DataGridViewAutoSizeColumnMode.Fill);
+            var paidByCashColumn = DataGridViewExtensions.CreateDataGridViewCheckBoxColumn("Оплачен наличными", DataGridViewAutoSizeColumnMode.Fill);
             var totalColumn = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Стоимость", DataGridViewAutoSizeColumnMode.DisplayedCells);
-            var delColumn = DataGridViewExtensions.CreateDataGridViewButtonColumn(Constants.FlatRed);
+            var delColumn = DataGridViewExtensions.CreateDataGridViewButtonColumn(Constants.DraculaRed);
 
-            dgvOrders.Font = new Font("Microsoft Sans Serif", 14, FontStyle.Regular);
+            dgvOrders.Font = Constants.DataGridViewFont;
+            dgvOrders.DefaultCellStyle.SelectionBackColor = Constants.DraculaSelection;
+            dgvOrders.DefaultCellStyle.SelectionForeColor = Constants.DraculaForeground;
+            dgvOrders.CellClick += dgvOrdersButtonsColumn_CellClick;
             dgvOrders.Columns.AddRange(idColumn, datePlacedColumn, customerColumn, statusColumn, paidByCashColumn,
                 totalColumn, delColumn);
-            dgvOrders.CellClick += dgvOrdersButtonsColumn_CellClick;
 
             FillDataGrid();
         }
@@ -78,8 +71,15 @@ namespace stretch_ceilings_app.Forms
             FilterDataGrid();
         }
 
-        private void SetUpFilterControls()
+        private void SetUpControls()
         {
+            if (UserSession.IsAdmin() || UserSession.Can(PermissionCode.AddOrder))
+            {
+                var btnAddOrder = new FlatButton("btnAddOrder", "Добавить");
+                btnAddOrder.Click += btnAddOrder_Click;
+                paneUserButtons.Controls.Add(btnAddOrder);
+            }
+
             foreach (OrderStatus status in Enum.GetValues(typeof(OrderStatus)))
             {
                 if(status == OrderStatus.Unknown)
@@ -97,11 +97,10 @@ namespace stretch_ceilings_app.Forms
             foreach (var item in Constants.RowCountItems)
                 cbRows.Items.Add(item);
             cbRows.SelectedItem = cbRows.Items[0];
-            
-            tbPage.Text = $"{_currentPage} / {_maxPage}";
 
-            btnUseFilters.BackColor = Constants.FlatAlphaYellow;
-            btnResetFilters.BackColor = Constants.FlatAlphaRed;
+            SetPages();
+
+            btnResetFilters.BackColor = Constants.DraculaAlphaRed;
         }
 
         private void FilterDataGrid()
@@ -120,7 +119,7 @@ namespace stretch_ceilings_app.Forms
         {
             dgvOrders.Rows.Clear();
 
-            for (var i = 0; i < _orders.Count; i++)
+            for (var i = 0; i < _orders?.Count; i++)
             {
                 dgvOrders.Rows.Add(new DataGridViewRow() { Resizable = DataGridViewTriState.False });
 
@@ -133,7 +132,7 @@ namespace stretch_ceilings_app.Forms
             }
 
             _maxPage = (int)Math.Ceiling((double)_rowsCount / _count);
-            tbPage.Text = $"{_currentPage} / {_maxPage}";
+            SetPages();
         }
 
         private void ResetDataGridFilters()
@@ -151,9 +150,9 @@ namespace stretch_ceilings_app.Forms
             dtpDateFromValue.CustomFormat = Constants.DefaultDateTimePickerCustomFormat;
             dtpDateToValue.CustomFormat = Constants.DefaultDateTimePickerCustomFormat;
             
-            ibtnCustomer.IconChar = Constants.DefaultIconButtonIconChar;
+            ibtnCustomer.IconChar = Constants.SearchIcon;
             ibtnCustomer.Text = Constants.DefaultIconButtonText;
-            ibtnEmployee.IconChar = Constants.DefaultIconButtonIconChar;
+            ibtnEmployee.IconChar = Constants.SearchIcon;
             ibtnEmployee.Text = Constants.DefaultIconButtonText;
 
             cbPaidByCash.Checked = false;
@@ -162,13 +161,6 @@ namespace stretch_ceilings_app.Forms
             _orders = OrderRepository.GetOrders(out _rowsCount);
 
             FillDataGrid();
-        }
-
-        private void DrawButtonAddOrder()
-        {
-            var btnAddOrder = new FlatButton("btnAddOrder", "Добавить", Constants.FlatAlphaGreen);
-            btnAddOrder.Click += btnAddOrder_Click;
-            paneUserButtons.Controls.Add(btnAddOrder);
         }
 
         private void TakeEmployee()
@@ -198,16 +190,18 @@ namespace stretch_ceilings_app.Forms
             }
         }
 
+        private void SetPages()
+        {
+            tbPage.Text = $"{_currentPage} / {_maxPage}";
+        }
+
         private void OrdersForm_Load(object sender, EventArgs e)
         {
-            _firstFilter = new Order()
-            {
-                Status = OrderStatus.Unknown
-            };
+            _firstFilter = new Order() { Status = OrderStatus.Unknown };
             _secondFilter = new Order();
-            CheckUserPermissions();
+
             SetUpDataGridView();
-            SetUpFilterControls();
+            SetUpControls();
         }
 
         private static void btnAddOrder_Click(object sender, EventArgs e)
@@ -228,8 +222,7 @@ namespace stretch_ceilings_app.Forms
         private static void DtpToValueChanged(object sender, EventArgs e)
         {
             var dateTimePicker = (DateTimePicker) sender;
-            dateTimePicker.Value = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month,
-                dateTimePicker.Value.Day, 0, 0, 0);
+            dateTimePicker.Value = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day, 0, 0, 0);
             dateTimePicker.CustomFormat = Constants.FilterDateTimePickerCustomFormat;
             dateTimePicker.Format = DateTimePickerFormat.Custom;
         }
@@ -244,7 +237,7 @@ namespace stretch_ceilings_app.Forms
             if (_currentPage < _maxPage)
             {
                 _currentPage++;
-                tbPage.Text = $"{_currentPage} / {_maxPage}";
+                SetPages();
                 FilterDataGrid();
             }
         }
@@ -254,7 +247,7 @@ namespace stretch_ceilings_app.Forms
             if (_currentPage > 1)
             {
                 _currentPage--;
-                tbPage.Text = $"{_currentPage} / {_maxPage}";
+                SetPages();
                 FilterDataGrid();
             }
         }

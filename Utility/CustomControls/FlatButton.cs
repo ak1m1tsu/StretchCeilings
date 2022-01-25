@@ -13,6 +13,7 @@ namespace stretch_ceilings_app.Utility.CustomControls
             this.Font = new Font("Microsoft Sans Serif", 14, FontStyle.Regular);
             this.TextAlign = ContentAlignment.MiddleLeft;
             this.FlatAppearance.BorderSize = 0;
+            this.ForeColor = Constants.DraculaForeground;
 
             this.Name = name;
             this.Text = text;
@@ -26,6 +27,7 @@ namespace stretch_ceilings_app.Utility.CustomControls
             this.Font = new Font("Microsoft Sans Serif", 14, FontStyle.Regular);
             this.TextAlign = ContentAlignment.MiddleLeft;
             this.FlatAppearance.BorderSize = 0;
+            this.ForeColor = Constants.DraculaForeground;
 
             this.Name = name;
             this.Text = text;

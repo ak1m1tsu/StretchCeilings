@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Drawing;
+using System.Windows.Forms;
 using stretch_ceilings_app.Data.Models;
 using stretch_ceilings_app.Utility;
 using stretch_ceilings_app.Utility.Enums;
@@ -19,25 +20,27 @@ namespace stretch_ceilings_app.Forms
 
         private void SetupEditButton()
         {
-            btnEditOrder.Visible = CanUserEdit();
+            if (UserSession.IsAdmin() || UserSession.Can(PermissionCode.EditOrder))
+                btnEditOrder.Visible = true;
         }
 
         private void SetUpForm()
         {
-            linkLblCustomer.Text = _currentOrder.Customer.FullName;
+            linkLblCustomer.Text = _currentOrder.Customer?.FullName;
+            linkLblCustomer.ActiveLinkColor = Constants.DraculaPink;
+            linkLblCustomer.VisitedLinkColor = Constants.DraculaPurple;
 
             lblDatePlacedValue.Text = _currentOrder.DatePlaced?.ToString();
             lblDateOfMeasurementsValue.Text = _currentOrder.DateOfMeasurements?.ToString();
             lblDatePaidValue.Text = _currentOrder.DatePaid?.ToString();
             lblStatusValue.Text = _currentOrder.Status.ParseString();
-            
+            lblPriceValue.Text = _currentOrder.Total?.ToString();
+
             if (_currentOrder.PaidByCash == true)
             {
                 cbPaidByCash.CheckState = CheckState.Checked;
             }
 
-            lblPriceValue.Text = _currentOrder.Total.ToString();
-            
             SetUpWorkDaysGrid();
             SetUpServicesGrid();
             SetUpEmployeesGrid();
@@ -52,8 +55,11 @@ namespace stretch_ceilings_app.Forms
             var manufacturerCol = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Производитель", DataGridViewAutoSizeColumnMode.Fill);
             var ceilingCol = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Потолок", DataGridViewAutoSizeColumnMode.Fill);
             var priceCol = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Цена", DataGridViewAutoSizeColumnMode.DisplayedCells);
+            var delColumn = DataGridViewExtensions.CreateDataGridViewButtonColumn(Constants.DraculaRed);
 
-            dgvServices.Columns.AddRange(idCol, manufacturerCol, ceilingCol, priceCol);
+            dgvServices.Columns.AddRange(idCol, manufacturerCol, ceilingCol, priceCol, delColumn);
+            dgvServices.DefaultCellStyle.SelectionBackColor = Constants.DraculaSelection;
+            dgvServices.DefaultCellStyle.SelectionForeColor = Constants.DraculaForeground;
 
             for (var i = 0; i < services?.Count; i++)
             {
@@ -72,8 +78,11 @@ namespace stretch_ceilings_app.Forms
 
             var idCol = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
             var nameCol = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Имя", DataGridViewAutoSizeColumnMode.Fill);
+            var delColumn = DataGridViewExtensions.CreateDataGridViewButtonColumn(Constants.DraculaRed);
 
-            dgvEmployees.Columns.AddRange(idCol, nameCol);
+            dgvEmployees.Columns.AddRange(idCol, nameCol, delColumn);
+            dgvEmployees.DefaultCellStyle.SelectionBackColor = Constants.DraculaSelection;
+            dgvEmployees.DefaultCellStyle.SelectionForeColor = Constants.DraculaForeground;
 
             for (var i = 0; i < employees?.Count; i++)
             {
@@ -89,10 +98,13 @@ namespace stretch_ceilings_app.Forms
             var logs = _currentOrder.GetLogs();
 
             var idCol = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
+            var dateCreatedCol = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Дата создания", DataGridViewAutoSizeColumnMode.Fill);
             var commentCol = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Событие", DataGridViewAutoSizeColumnMode.Fill);
-            var dateCreatedCol = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Дата создания", DataGridViewAutoSizeColumnMode.DisplayedCells);
+            var delColumn = DataGridViewExtensions.CreateDataGridViewButtonColumn(Constants.DraculaRed);
 
-            dgvLogs.Columns.AddRange(idCol, dateCreatedCol, commentCol);
+            dgvLogs.Columns.AddRange(idCol, dateCreatedCol, commentCol, delColumn);
+            dgvLogs.DefaultCellStyle.SelectionBackColor = Constants.DraculaSelection;
+            dgvLogs.DefaultCellStyle.SelectionForeColor = Constants.DraculaForeground;
 
             for (var i = 0; i < logs?.Count; i++)
             {
@@ -106,24 +118,24 @@ namespace stretch_ceilings_app.Forms
 
         private void SetUpWorkDaysGrid()
         {
+            var workdays = _currentOrder.GetWorkdays();
+
             var num = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
             var date = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Дата", DataGridViewAutoSizeColumnMode.Fill);
+            var delColumn = DataGridViewExtensions.CreateDataGridViewButtonColumn(Constants.DraculaRed);
 
-            dgvWorkDates.Columns.AddRange(num, date);
+            dgvWorkDates.Columns.AddRange(num, date, delColumn);
+            dgvWorkDates.DefaultCellStyle.SelectionBackColor = Constants.DraculaSelection;
+            dgvWorkDates.DefaultCellStyle.SelectionForeColor = Constants.DraculaForeground;
+            dgvWorkDates.DefaultCellStyle.ForeColor = Color.Black;
 
-            for (var i = 0; i < _currentOrder.DateOfWork?.Count; i++)
+            for (var i = 0; i < workdays?.Count; i++)
             {
-                dgvWorkDates.Rows[i].Cells[0].Value = i;
-                dgvWorkDates.Rows[i].Cells[1].Value = _currentOrder.DateOfWork;
+                dgvWorkDates.Rows.Add(new DataGridViewRow());
+
+                dgvWorkDates.Rows[i].Cells[0].Value = i + 1;
+                dgvWorkDates.Rows[i].Cells[1].Value = workdays[i];
             }
-        }
-
-        private void OpenEmployeeForm()
-        {
-            if (dgvEmployees.SelectedRows.Count <= 0) return;
-
-            var employee = EmployeeRepository.GetById((int)dgvEmployees.SelectedRows[0].Cells[0].Value);
-            new EmployeeForm(employee).ShowDialog();
         }
 
         private void ShowCustomerInfo()
@@ -131,9 +143,16 @@ namespace stretch_ceilings_app.Forms
             new CustomerForm(_currentOrder.Customer).ShowDialog();
         }
 
-        private static bool CanUserEdit()
+        private void ShowEmployeeInfo()
         {
-            return UserSession.Can(PermissionCode.EditOrder);
+            if (dgvEmployees.SelectedRows.Count <= 0) return;
+            new EmployeeForm(EmployeeRepository.GetById((int)dgvEmployees.SelectedRows[0].Cells[0].Value)).ShowDialog();
+        }
+
+        private void ShowServiceInfo()
+        {
+            if (dgvEmployees.SelectedRows.Count <= 0) return;
+            new ServiceForm(ServiceRepository.GetById((int)dgvServices.SelectedRows[0].Cells[0].Value)).ShowDialog();
         }
 
         private void OrderForm_Load(object sender, System.EventArgs e)
@@ -148,6 +167,16 @@ namespace stretch_ceilings_app.Forms
             var orderFormEdit = new OrderFormEdit(_currentOrder);
             orderFormEdit.FormClosed += (o, args) => this.Show();
             orderFormEdit.ShowDialog();
+        }
+
+        private void dgvEmployees_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            ShowEmployeeInfo();
+        }
+
+        private void dgvServices_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            ShowServiceInfo();
         }
 
         private void linkLblCustomer_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
