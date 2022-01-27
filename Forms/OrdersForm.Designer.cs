@@ -288,6 +288,7 @@ namespace stretch_ceilings_app.Forms
             this.cbPaidByCash.TabIndex = 80;
             this.cbPaidByCash.Text = "Оплачен наличными";
             this.cbPaidByCash.UseVisualStyleBackColor = false;
+            this.cbPaidByCash.CheckedChanged += new System.EventHandler(this.cbPaidByCash_CheckedChanged);
             // 
             // cbStatusValue
             // 

@@ -16,8 +16,8 @@ namespace stretch_ceilings_app.Forms
 
         private void SetUpForm()
         {
-            lblTextureValue.Text = _ceiling.Texture.ParseString();
-            lblColorTypeValue.Text = _ceiling.Color.ParseString();
+            lblTextureValue.Text = _ceiling.TextureType.ParseString();
+            lblColorTypeValue.Text = _ceiling.ColorType.ParseString();
             lblPriceValue.Text = _ceiling.Price.ToString();
         }
 

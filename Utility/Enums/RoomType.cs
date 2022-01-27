@@ -2,7 +2,8 @@
 {
     public enum RoomType
     {
-        WaterCloset = 0,
+        Unknown = 0,
+        WaterCloset,
         Nursery,
         Bathroom,
         Bedroom,

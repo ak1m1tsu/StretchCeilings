@@ -13,14 +13,18 @@ namespace stretch_ceilings_app.Data.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        [Column("ManufacturerId")]
+        [Column("ManufacturerId")] 
         public int? ManufacturerId { get; set; }
-        [Column("ManufacturerId")]
+        [Column("ManufacturerId")] 
         public virtual Manufacturer Manufacturer { get; set; }
-        [Column("CeilingId")]
+        [Column("CeilingId")] 
         public int? CeilingId { get; set; }
-        [Column("CeilingId")]
+        [Column("CeilingId")] 
         public virtual Ceiling Ceiling { get; set; }
+        [Column("RoomId")] 
+        public int? RoomId { get; set; }
+        [Column("RoomId")] 
+        public virtual Room Room { get; set; }
         public decimal? Price { get; set; }
         public DateTime? DateDeleted { get; set; }
 
@@ -40,6 +44,20 @@ namespace stretch_ceilings_app.Data.Models
                 db.Entry(this.Id).CurrentValues.SetValues(this);
                 db.SaveChanges();
             }
+        }
+
+        public void CalculatePrice()
+        {
+            using (var db = new StretchCeilingsContext())
+            {
+                Price = Ceiling?.Price * Room?.Area;
+                var services = db.ServiceAdditionalServices.Where(x => x.ServiceId == Id);
+                foreach (var serviceAdditionalService in services)
+                {
+                    Price += serviceAdditionalService.AdditionalService?.Price * serviceAdditionalService.Count;
+                }
+            }
+
         }
 
         public List<AdditionalService> GetAdditionalServices()

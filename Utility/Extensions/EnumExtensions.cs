@@ -7,15 +7,16 @@ namespace stretch_ceilings_app.Utility.Extensions
 
     public static class EnumExtensions
     {
-        private static readonly Dictionary<OrderStatus, string> CachedStatuses;
-        private static readonly Dictionary<PermissionCode, string> CachedCodes;
-        private static readonly Dictionary<CeilingColor, string> CachedColors;
-        private static readonly Dictionary<CeilingTexture, string> CachedTextures;
-        private static readonly Dictionary<RoomType, string> CachedTypes;
+        private static readonly Dictionary<OrderStatus, string> _orderStatuses;
+        private static readonly Dictionary<PermissionCode, string> _permissionCodes;
+        private static readonly Dictionary<ColorType, string> _colorTypes;
+        private static readonly Dictionary<TextureType, string> _textureTypes;
+        private static readonly Dictionary<RoomType, string> _roomTypes;
+        private static readonly Dictionary<Country, string> _countries;
 
         static EnumExtensions()
         {
-            CachedStatuses = new Dictionary<OrderStatus, string>
+            _orderStatuses = new Dictionary<OrderStatus, string>
             {
                 { OrderStatus.Canceled, "Отменен" },
                 { OrderStatus.Finished, "Выполнен" },
@@ -25,12 +26,12 @@ namespace stretch_ceilings_app.Utility.Extensions
                 { OrderStatus.WaitingForPaid, "Ожидает оплаты" },
                 { OrderStatus.WaitingForCeilings, "Ожидает пирбытия потолков" },
             };
-            CachedColors = new Dictionary<CeilingColor, string>
+            _colorTypes = new Dictionary<ColorType, string>
             {
-                { CeilingColor.White, "Белый" },
-                { CeilingColor.Colored, "Цветной" },
+                { ColorType.White, "Белый" },
+                { ColorType.Colored, "Цветной" },
             };
-            CachedCodes = new Dictionary<PermissionCode, string>
+            _permissionCodes = new Dictionary<PermissionCode, string>
             {
                 { PermissionCode.All , "Полный доступ" },
                 { PermissionCode.AddOrder, "Добавить заказ" },
@@ -48,21 +49,18 @@ namespace stretch_ceilings_app.Utility.Extensions
                 { PermissionCode.AddManufacturer, "Добавить производителя" },
                 { PermissionCode.EditManufacturer, "Изменить производителя" },
                 { PermissionCode.DelManufacturer, "Удалить производителя" },
-                { PermissionCode.AddManufacturerOrder, "Добавить заказ производителя" },
-                { PermissionCode.EditManufacturerOrder, "Изменить заказ производителя" },
-                { PermissionCode.DelManufacturerOrder, "Удалить заказ производителя" },
                 { PermissionCode.AddAdditionalService, "Добавить доп. услугу" },
                 { PermissionCode.EditAdditionalService, "Изменить доп. услугу" },
                 { PermissionCode.DelAdditionalService, "Удалить доп. услугу" },
             };
-            CachedTextures = new Dictionary<CeilingTexture, string>
+            _textureTypes = new Dictionary<TextureType, string>
             {
-                { CeilingTexture.Fabric, "Тканевый" },
-                { CeilingTexture.Matte, "Матовый" },
-                { CeilingTexture.Glossy, "Глянцевый" },
-                { CeilingTexture.Satin, "Сатиновый" }
+                { TextureType.Fabric, "Тканевый" },
+                { TextureType.Matte, "Матовый" },
+                { TextureType.Glossy, "Глянцевый" },
+                { TextureType.Satin, "Сатиновый" }
             };
-            CachedTypes = new Dictionary<RoomType, string>
+            _roomTypes = new Dictionary<RoomType, string>
             {
                 { RoomType.Balcony, "Балкон" },
                 { RoomType.Bathroom, "Ванна" },
@@ -75,30 +73,43 @@ namespace stretch_ceilings_app.Utility.Extensions
                 { RoomType.Pool, "Бассейн" },
                 { RoomType.WaterCloset, "Туалет" }
             };
+            _countries = new Dictionary<Country, string>()
+            {
+                { Country.Russia, "Россия" },
+                { Country.USA, "США" },
+                { Country.UK, "Англия" },
+                { Country.Germany, "Германия" },
+                { Country.China, "Китай" },
+            };
         }
 
-        public static string ParseString(this CeilingColor color)
+        public static string ParseString(this ColorType colorType)
         {
-            return CachedColors.FirstOrDefault(c => c.Key == color).Value;
+            return _colorTypes.FirstOrDefault(c => c.Key == colorType).Value;
         }
         public static string ParseString(this PermissionCode code)
         {
-            return CachedCodes.FirstOrDefault(c => c.Key == code).Value;
+            return _permissionCodes.FirstOrDefault(c => c.Key == code).Value;
         }
 
         public static string ParseString(this OrderStatus status)
         {
-            return CachedStatuses.FirstOrDefault(c => c.Key == status).Value;
+            return _orderStatuses.FirstOrDefault(c => c.Key == status).Value;
         }
 
-        public static string ParseString(this CeilingTexture texture)
+        public static string ParseString(this TextureType textureType)
         {
-            return CachedTextures.FirstOrDefault(t => t.Key == texture).Value;
+            return _textureTypes.FirstOrDefault(t => t.Key == textureType).Value;
         }
 
         public static string ParseString(this RoomType type)
         {
-            return CachedTypes.FirstOrDefault(t => t.Key == type).Value;
+            return _roomTypes.FirstOrDefault(t => t.Key == type).Value;
+        }
+
+        public static string ParseString(this Country type)
+        {
+            return _countries.FirstOrDefault(t => t.Key == type).Value;
         }
     }
 }

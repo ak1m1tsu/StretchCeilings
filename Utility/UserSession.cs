@@ -16,11 +16,14 @@ namespace stretch_ceilings_app.Utility
             return User != null;
         }
 
-        public static bool IsAdmin()
+        public static bool IsAdmin
         {
-            using (var db = new StretchCeilingsContext())
+            get
             {
-                return User != null && User.Role.GetPermissions().Any(p => p.Code == PermissionCode.All);
+                using (var db = new StretchCeilingsContext())
+                {
+                    return User != null && User.Role.GetPermissions().Any(p => p.Code == PermissionCode.All);
+                }
             }
         }
 

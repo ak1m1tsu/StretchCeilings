@@ -2,57 +2,68 @@
 using System.Linq;
 using stretch_ceilings_app.Data;
 using stretch_ceilings_app.Data.Models;
+using stretch_ceilings_app.Utility.Enums;
 
 namespace stretch_ceilings_app.Utility.Repositories
 {
     public static class ManufacturerRepository
     {
-        public static List<Order> GetOrders(out int rows)
+        public static List<Manufacturer> GetAll(out int rows)
         {
             using (var db = new StretchCeilingsContext())
             {
-                var orders = db.Orders.Where(o => o.DateDeleted == null).ToList();
+                var queryable = db.Manufacturers.Where(x => x.DateDeleted == null);
                 rows = 0;
-                if (orders.Any())
-                {
-                    orders.ForEach(o => db.Entry(o).Reference(r => r.Customer).Load());
-                    rows = orders.Count;
-                }
 
-                return orders;
+                if (queryable.Any()) 
+                    rows = queryable.Count();
+
+                return queryable.ToList();
             }
         }
 
-        public static List<Order> GetOrders(Order filter, int count, int page, out int rows)
+        public static List<Manufacturer> GetAll(Manufacturer firstFilter, int count, int page, out int rows)
         {
             using (var db = new StretchCeilingsContext())
             {
-                var orders = db.Orders.Where(o => o.Equals(filter)).ToList();
+                var queryable = db.Manufacturers.Where(x => x.DateDeleted == null);
                 rows = 0;
 
-                if (orders.Any())
+                if (firstFilter.Id != 0)
                 {
-                    orders.ForEach(o => db.Entry(o).Reference(r => r.Customer).Load());
-                    rows = orders.Count;
-                    orders = orders.Skip((page - 1) * count).Take(count).ToList();
+                    queryable = queryable.Where(x => x.Id == firstFilter.Id);
+                }
+                else
+                {
+                    queryable = firstFilter.Address != null 
+                        ? queryable.Where(x => x.Address == firstFilter.Address) 
+                        : queryable;
+
+                    queryable = firstFilter.Country != Country.Unknown
+                        ? queryable.Where(x => x.Country == firstFilter.Country)
+                        : queryable;
+
+                    queryable = firstFilter.Name != null
+                        ? queryable.Where(x => x.Name == firstFilter.Name)
+                        : queryable;
                 }
 
-                return orders;
+                if (!queryable.Any()) 
+                    return queryable.ToList();
+
+                rows = queryable.Count();
+                return queryable.ToList().Skip((page - 1) * count).Take(count).ToList();
+
             }
         }
 
-        public static Order GetById(int id)
+        public static Manufacturer GetById(int id)
         {
             using (var db = new StretchCeilingsContext())
             {
-                var order = db.Orders.FirstOrDefault(o => o.Id == id);
+                var entity = db.Manufacturers.FirstOrDefault(o => o.Id == id);
 
-                if (order != null)
-                {
-                    db.Entry(order).Reference(o => o.Customer).Load();
-                }
-
-                return order;
+                return entity;
             }
         }
     }

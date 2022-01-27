@@ -40,7 +40,7 @@ namespace stretch_ceilings_app.Forms
 
         private void SetUpDataGridView()
         {
-            _orders = OrderRepository.GetOrders(out _rowsCount);
+            _orders = OrderRepository.GetALl(out _rowsCount);
 
             var idColumn = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
             var datePlacedColumn = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Дата размещения", DataGridViewAutoSizeColumnMode.Fill);
@@ -73,7 +73,7 @@ namespace stretch_ceilings_app.Forms
 
         private void SetUpControls()
         {
-            if (UserSession.IsAdmin() || UserSession.Can(PermissionCode.AddOrder))
+            if (UserSession.IsAdmin || UserSession.Can(PermissionCode.AddOrder))
             {
                 var btnAddOrder = new FlatButton("btnAddOrder", "Добавить");
                 btnAddOrder.Click += btnAddOrder_Click;
@@ -82,17 +82,14 @@ namespace stretch_ceilings_app.Forms
 
             foreach (OrderStatus status in Enum.GetValues(typeof(OrderStatus)))
             {
-                if(status == OrderStatus.Unknown)
-                    continue;
+                if(status == OrderStatus.Unknown) continue;
                 cbStatusValue.Items.Add(status.ParseString());
             }
             cbStatusValue.SelectedItem = null;
 
             nudTotalFrom.Maximum = decimal.MaxValue;
             nudTotalTo.Maximum = decimal.MaxValue;
-
-            dtpDateFromValue.ValueChanged += DtpToValueChanged;
-            dtpDateToValue.ValueChanged += DtpToValueChanged;
+            
 
             foreach (var item in Constants.RowCountItems)
                 cbRows.Items.Add(item);
@@ -105,7 +102,7 @@ namespace stretch_ceilings_app.Forms
 
         private void FilterDataGrid()
         {
-            _orders = OrderRepository.GetOrders(
+            _orders = OrderRepository.GetALl(
                 _firstFilter,
                 _secondFilter, 
                 _count,
@@ -157,10 +154,9 @@ namespace stretch_ceilings_app.Forms
 
             cbPaidByCash.Checked = false;
             cbStatusValue.SelectedItem = null;
+            cbPaidByCash.Checked = false;
 
-            _orders = OrderRepository.GetOrders(out _rowsCount);
-
-            FillDataGrid();
+            FilterDataGrid();
         }
 
         private void TakeEmployee()
@@ -173,6 +169,7 @@ namespace stretch_ceilings_app.Forms
             {
                 ibtnEmployee.Tag = employeesForm.Employee;
                 ibtnEmployee.Text = employeesForm.Employee.FullName;
+                ibtnEmployee.AutoSizeMode = AutoSizeMode.GrowAndShrink;
                 ibtnCustomer.IconChar = IconChar.None;
             }
         }
@@ -192,6 +189,8 @@ namespace stretch_ceilings_app.Forms
 
         private void SetPages()
         {
+            if (_maxPage == 0)
+                _currentPage = 0;
             tbPage.Text = $"{_currentPage} / {_maxPage}";
         }
 
@@ -219,7 +218,7 @@ namespace stretch_ceilings_app.Forms
             ResetDataGridFilters();
         }
 
-        private static void DtpToValueChanged(object sender, EventArgs e)
+        private static void ChangeFormat(object sender, EventArgs e)
         {
             var dateTimePicker = (DateTimePicker) sender;
             dateTimePicker.Value = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day, 0, 0, 0);
@@ -260,11 +259,13 @@ namespace stretch_ceilings_app.Forms
 
         private void dtpDateFromValue_ValueChanged(object sender, EventArgs e)
         {
+            ChangeFormat(sender, e);
             SetFilterDatePlacedValue(_firstFilter, dtpDateFromValue);
         }
 
         private void dtpDateToValue_ValueChanged(object sender, EventArgs e)
         {
+            ChangeFormat(sender, e);
             SetFilterDatePlacedValue(_secondFilter, dtpDateToValue);
         }
 
@@ -282,7 +283,7 @@ namespace stretch_ceilings_app.Forms
                 _firstFilter.Status = OrderStatus.Unknown;
                 return;
             }
-            _firstFilter.Status = cbStatusValue.SelectedItem.ToString().ParseStatusEnum();
+            _firstFilter.Status = cbStatusValue.SelectedItem.ToString().ToOrderStatus();
         }
 
         private static void SetFilterTotalValue(Order filter, decimal value)
@@ -308,6 +309,11 @@ namespace stretch_ceilings_app.Forms
         private void ibtnEmployee_Click(object sender, EventArgs e)
         {
             TakeCustomer();
+        }
+
+        private void cbPaidByCash_CheckedChanged(object sender, EventArgs e)
+        {
+            _firstFilter.PaidByCash = cbPaidByCash.Checked;
         }
     }
 }

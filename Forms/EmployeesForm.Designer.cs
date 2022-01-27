@@ -30,6 +30,7 @@ namespace stretch_ceilings_app.Forms
         private void InitializeComponent()
         {
             this.panelInfo = new System.Windows.Forms.Panel();
+            this.nudId = new System.Windows.Forms.NumericUpDown();
             this.lblId = new System.Windows.Forms.Label();
             this.cbRole = new System.Windows.Forms.ComboBox();
             this.lblRole = new System.Windows.Forms.Label();
@@ -40,19 +41,18 @@ namespace stretch_ceilings_app.Forms
             this.panelFilterButtons = new System.Windows.Forms.Panel();
             this.btnResetFilter = new System.Windows.Forms.Button();
             this.btnUseFilters = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvEmployees = new System.Windows.Forms.DataGridView();
             this.panelPages = new System.Windows.Forms.Panel();
+            this.cbRows = new System.Windows.Forms.ComboBox();
             this.btnPrevious = new System.Windows.Forms.Button();
             this.tbPages = new System.Windows.Forms.TextBox();
             this.btnNext = new System.Windows.Forms.Button();
-            this.cbRows = new System.Windows.Forms.ComboBox();
-            this.nudId = new System.Windows.Forms.NumericUpDown();
             this.panelInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudId)).BeginInit();
             this.panelButtons.SuspendLayout();
             this.panelFilterButtons.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).BeginInit();
             this.panelPages.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudId)).BeginInit();
             this.SuspendLayout();
             // 
             // panelInfo
@@ -69,10 +69,21 @@ namespace stretch_ceilings_app.Forms
             this.panelInfo.Size = new System.Drawing.Size(1054, 114);
             this.panelInfo.TabIndex = 5;
             // 
+            // nudId
+            // 
+            this.nudId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.nudId.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nudId.Location = new System.Drawing.Point(133, 7);
+            this.nudId.Name = "nudId";
+            this.nudId.Size = new System.Drawing.Size(68, 29);
+            this.nudId.TabIndex = 40;
+            this.nudId.ValueChanged += new System.EventHandler(this.nudId_ValueChanged);
+            // 
             // lblId
             // 
             this.lblId.AutoSize = true;
             this.lblId.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.lblId.Location = new System.Drawing.Point(12, 9);
             this.lblId.Name = "lblId";
             this.lblId.Size = new System.Drawing.Size(35, 24);
@@ -88,17 +99,20 @@ namespace stretch_ceilings_app.Forms
             "Отменен",
             "Завершен"});
             this.cbRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbRole.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.cbRole.FormattingEnabled = true;
             this.cbRole.Location = new System.Drawing.Point(133, 79);
             this.cbRole.Name = "cbRole";
             this.cbRole.Size = new System.Drawing.Size(169, 32);
             this.cbRole.TabIndex = 38;
+            this.cbRole.SelectedIndexChanged += new System.EventHandler(this.cbRole_SelectedIndexChanged);
             // 
             // lblRole
             // 
             this.lblRole.AutoSize = true;
             this.lblRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblRole.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.lblRole.Location = new System.Drawing.Point(12, 82);
             this.lblRole.Name = "lblRole";
             this.lblRole.Size = new System.Drawing.Size(117, 24);
@@ -113,6 +127,7 @@ namespace stretch_ceilings_app.Forms
             this.tbFullName.Name = "tbFullName";
             this.tbFullName.Size = new System.Drawing.Size(252, 29);
             this.tbFullName.TabIndex = 12;
+            this.tbFullName.TextChanged += new System.EventHandler(this.tbFullName_TextChanged);
             // 
             // lblFullName
             // 
@@ -159,6 +174,7 @@ namespace stretch_ceilings_app.Forms
             this.btnResetFilter.FlatAppearance.BorderSize = 0;
             this.btnResetFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnResetFilter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.btnResetFilter.Location = new System.Drawing.Point(0, 56);
             this.btnResetFilter.Name = "btnResetFilter";
             this.btnResetFilter.Size = new System.Drawing.Size(130, 56);
@@ -166,6 +182,7 @@ namespace stretch_ceilings_app.Forms
             this.btnResetFilter.Text = "Сбросить";
             this.btnResetFilter.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnResetFilter.UseVisualStyleBackColor = true;
+            this.btnResetFilter.Click += new System.EventHandler(this.btnResetFilter_Click);
             // 
             // btnUseFilters
             // 
@@ -173,6 +190,7 @@ namespace stretch_ceilings_app.Forms
             this.btnUseFilters.FlatAppearance.BorderSize = 0;
             this.btnUseFilters.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUseFilters.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnUseFilters.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.btnUseFilters.Location = new System.Drawing.Point(0, 0);
             this.btnUseFilters.Name = "btnUseFilters";
             this.btnUseFilters.Size = new System.Drawing.Size(130, 56);
@@ -180,17 +198,25 @@ namespace stretch_ceilings_app.Forms
             this.btnUseFilters.Text = "Применить";
             this.btnUseFilters.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnUseFilters.UseVisualStyleBackColor = true;
+            this.btnUseFilters.Click += new System.EventHandler(this.btnUseFilters_Click);
             // 
-            // dataGridView1
+            // dgvEmployees
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 114);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(1054, 407);
-            this.dataGridView1.TabIndex = 9;
+            this.dgvEmployees.AllowUserToAddRows = false;
+            this.dgvEmployees.AllowUserToDeleteRows = false;
+            this.dgvEmployees.AllowUserToResizeRows = false;
+            this.dgvEmployees.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.dgvEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEmployees.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvEmployees.Location = new System.Drawing.Point(0, 114);
+            this.dgvEmployees.Name = "dgvEmployees";
+            this.dgvEmployees.RowHeadersVisible = false;
+            this.dgvEmployees.RowTemplate.Height = 25;
+            this.dgvEmployees.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvEmployees.Size = new System.Drawing.Size(1054, 407);
+            this.dgvEmployees.TabIndex = 9;
+            this.dgvEmployees.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmployees_CellClick);
+            this.dgvEmployees.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmployees_CellDoubleClick);
             // 
             // panelPages
             // 
@@ -203,6 +229,19 @@ namespace stretch_ceilings_app.Forms
             this.panelPages.Name = "panelPages";
             this.panelPages.Size = new System.Drawing.Size(1054, 40);
             this.panelPages.TabIndex = 8;
+            // 
+            // cbRows
+            // 
+            this.cbRows.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbRows.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbRows.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbRows.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cbRows.FormattingEnabled = true;
+            this.cbRows.Location = new System.Drawing.Point(993, 5);
+            this.cbRows.Name = "cbRows";
+            this.cbRows.Size = new System.Drawing.Size(55, 32);
+            this.cbRows.TabIndex = 99;
+            this.cbRows.SelectedIndexChanged += new System.EventHandler(this.cbRows_SelectedIndexChanged);
             // 
             // btnPrevious
             // 
@@ -217,6 +256,7 @@ namespace stretch_ceilings_app.Forms
             this.btnPrevious.TabIndex = 69;
             this.btnPrevious.Text = "<";
             this.btnPrevious.UseVisualStyleBackColor = false;
+            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
             // 
             // tbPages
             // 
@@ -226,8 +266,10 @@ namespace stretch_ceilings_app.Forms
             this.tbPages.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.tbPages.Location = new System.Drawing.Point(39, 6);
             this.tbPages.Name = "tbPages";
+            this.tbPages.ReadOnly = true;
             this.tbPages.Size = new System.Drawing.Size(80, 29);
             this.tbPages.TabIndex = 68;
+            this.tbPages.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnNext
             // 
@@ -242,27 +284,7 @@ namespace stretch_ceilings_app.Forms
             this.btnNext.TabIndex = 67;
             this.btnNext.Text = ">";
             this.btnNext.UseVisualStyleBackColor = false;
-            // 
-            // cbRows
-            // 
-            this.cbRows.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbRows.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbRows.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbRows.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cbRows.FormattingEnabled = true;
-            this.cbRows.Location = new System.Drawing.Point(993, 5);
-            this.cbRows.Name = "cbRows";
-            this.cbRows.Size = new System.Drawing.Size(55, 32);
-            this.cbRows.TabIndex = 99;
-            // 
-            // nudId
-            // 
-            this.nudId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.nudId.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nudId.Location = new System.Drawing.Point(133, 7);
-            this.nudId.Name = "nudId";
-            this.nudId.Size = new System.Drawing.Size(68, 29);
-            this.nudId.TabIndex = 40;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // EmployeesForm
             // 
@@ -270,22 +292,21 @@ namespace stretch_ceilings_app.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(42)))), ((int)(((byte)(54)))));
             this.ClientSize = new System.Drawing.Size(1184, 561);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvEmployees);
             this.Controls.Add(this.panelPages);
             this.Controls.Add(this.panelInfo);
             this.Controls.Add(this.panelButtons);
-            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.MinimumSize = new System.Drawing.Size(1200, 600);
             this.Name = "EmployeesForm";
             this.Load += new System.EventHandler(this.EmployeesForm_Load);
             this.panelInfo.ResumeLayout(false);
             this.panelInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudId)).EndInit();
             this.panelButtons.ResumeLayout(false);
             this.panelFilterButtons.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).EndInit();
             this.panelPages.ResumeLayout(false);
             this.panelPages.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudId)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -303,7 +324,7 @@ namespace stretch_ceilings_app.Forms
         private System.Windows.Forms.Panel panelFilterButtons;
         private System.Windows.Forms.Button btnResetFilter;
         private System.Windows.Forms.Button btnUseFilters;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvEmployees;
         private System.Windows.Forms.Panel panelPages;
         private System.Windows.Forms.Button btnPrevious;
         private System.Windows.Forms.TextBox tbPages;

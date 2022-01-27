@@ -37,7 +37,8 @@ namespace stretch_ceilings_app.Data.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                db.Entry(this.Id).CurrentValues.SetValues(this);
+                var old = db.Employees.Find(this.Id);
+                db.Entry(old).CurrentValues.SetValues(this);
                 db.SaveChanges();
             }
         }
@@ -46,7 +47,9 @@ namespace stretch_ceilings_app.Data.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                db.Entry(this.Id).CurrentValues.SetValues(DateDeleted = DateTime.Now);
+                DateDeleted = DateTime.Now;
+                var old = db.Employees.Find(this.Id);
+                db.Entry(old).CurrentValues.SetValues(this);
                 db.SaveChanges();
             }
         }
@@ -55,9 +58,13 @@ namespace stretch_ceilings_app.Data.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                return db.Orders.SqlQuery("SELECT Orders.* FROM Orders " +
-                                          "INNER JOIN OrderEmployees ON OrderEmployees.OrderId = Orders.Id " +
-                                          $"WHERE OrderEmployees.EmployeeId = {Id} AND Orders.DateDeleted IS NULL").ToList();
+                var list = new List<Order>();
+                var orderEmployees = db.OrderEmployees.Where(x => x.EmployeeId == Id);
+                foreach (var orderEmployee in orderEmployees)
+                {
+                    list.Add(orderEmployee.Order);
+                }
+                return list;
             }
         }
 
@@ -73,10 +80,17 @@ namespace stretch_ceilings_app.Data.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                return db.Services.SqlQuery("SELECT Services.* FROM Services " +
-                                            "INNER JOIN OrderServices ON OrderServices.ServiceId = Services.Id " +
-                                            "INNER JOIN OrderEmployees ON OrderServices.OrderId = OrderEmployees.OrderId " +
-                                            $"WHERE OrderEmployees.EmployeeId = {Id}").ToList();
+                var list = new List<Service>();
+                var orderEmployees = db.OrderEmployees.Where(x => x.EmployeeId == Id);
+                foreach (var orderEmployee in orderEmployees)
+                {
+                    var orderServices = db.OrderServices.Where(x => x.OrderId == orderEmployee.OrderId);
+                    foreach (var orderService in orderServices)
+                    {
+                        list.AddRange(db.Services.Where(x => x.Id == orderService.ServiceId));
+                    }
+                }
+                return list;
             }
         }
     }

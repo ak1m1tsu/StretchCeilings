@@ -20,7 +20,7 @@ namespace stretch_ceilings_app
 
         private void LoadUsers()
         {
-            _users = EmployeeRepository.GetEmployees();
+            _users = EmployeeRepository.GetAll();
         }
 
         private void LogIn()

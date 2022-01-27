@@ -7,9 +7,12 @@ namespace stretch_ceilings_app.Forms
     public partial class ServiceFormEdit : Form
     {
         private readonly Service _currentService;
-        public ServiceFormEdit(Service service)
+        private readonly bool _isNew;
+
+        public ServiceFormEdit(Service service, bool isNew = false)
         {
             _currentService = service;
+            _isNew = isNew;
             InitializeComponent();
         }
 

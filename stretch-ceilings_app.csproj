@@ -87,6 +87,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Models\AdditionalService.cs" />
+    <Compile Include="Data\Models\OrderEmployee.cs" />
+    <Compile Include="Data\Models\OrderService.cs" />
+    <Compile Include="Data\Models\OrderWorkDay.cs" />
+    <Compile Include="Data\Models\RolePermission.cs" />
+    <Compile Include="Data\Models\ServiceAdditionalServices.cs" />
     <Compile Include="Data\StretchCeilingsConfiguration.cs" />
     <Compile Include="Forms\AdditionalServiceForm.cs">
       <SubType>Form</SubType>
@@ -180,12 +185,6 @@
     <Compile Include="Forms\ManufacturerForm.Designer.cs">
       <DependentUpon>ManufacturerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ManufacturerOrderForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ManufacturerOrderForm.Designer.cs">
-      <DependentUpon>ManufacturerOrderForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\OrderForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -216,21 +215,9 @@
     <Compile Include="Forms\TimeTableForm.Designer.cs">
       <DependentUpon>TimeTableForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202201090553275_init.cs" />
-    <Compile Include="Migrations\202201090553275_init.designer.cs">
-      <DependentUpon>202201090553275_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202201090613497_update-permissions.cs" />
-    <Compile Include="Migrations\202201090613497_update-permissions.designer.cs">
-      <DependentUpon>202201090613497_update-permissions.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202201090720453_minor-updates.cs" />
-    <Compile Include="Migrations\202201090720453_minor-updates.designer.cs">
-      <DependentUpon>202201090720453_minor-updates.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202201191303012_order-workdays-table.cs" />
-    <Compile Include="Migrations\202201191303012_order-workdays-table.designer.cs">
-      <DependentUpon>202201191303012_order-workdays-table.cs</DependentUpon>
+    <Compile Include="Migrations\202201270930382_init.cs" />
+    <Compile Include="Migrations\202201270930382_init.designer.cs">
+      <DependentUpon>202201270930382_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
@@ -253,12 +240,6 @@
     <Compile Include="Forms\ManufacturersForm.Designer.cs">
       <DependentUpon>ManufacturersForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ManufacturerOrdersForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ManufacturerOrdersForm.Designer.cs">
-      <DependentUpon>ManufacturerOrdersForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\OrdersForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -276,7 +257,6 @@
     <Compile Include="Data\Models\Employee.cs" />
     <Compile Include="Data\Models\Estate.cs" />
     <Compile Include="Data\Models\Manufacturer.cs" />
-    <Compile Include="Data\Models\ManufacturerOrder.cs" />
     <Compile Include="Data\Models\Log.cs" />
     <Compile Include="Data\Models\Order.cs" />
     <Compile Include="Data\Models\Permission.cs" />
@@ -294,11 +274,12 @@
     <Compile Include="Utility\CustomControls\FlatButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Utility\Enums\Country.cs" />
     <Compile Include="Utility\Extensions\DataGridViewExtensions.cs" />
     <Compile Include="Utility\Extensions\DllExtensions.cs" />
     <Compile Include="Utility\Extensions\EnumExtensions.cs" />
-    <Compile Include="Utility\Enums\CeilingColor.cs" />
-    <Compile Include="Utility\Enums\CeilingTexture.cs" />
+    <Compile Include="Utility\Enums\ColorType.cs" />
+    <Compile Include="Utility\Enums\TextureType.cs" />
     <Compile Include="Utility\Enums\OrderStatus.cs" />
     <Compile Include="Utility\Enums\PermissionCode.cs" />
     <Compile Include="Utility\Enums\RoomType.cs" />
@@ -307,9 +288,9 @@
     <Compile Include="Utility\Repositories\AdditionalServiceRepository.cs" />
     <Compile Include="Utility\Repositories\CustomerRepository.cs" />
     <Compile Include="Utility\Repositories\EmployeeRepository.cs" />
-    <Compile Include="Utility\Repositories\ManufacturerOrderRepository.cs" />
     <Compile Include="Utility\Repositories\ManufacturerRepository.cs" />
     <Compile Include="Utility\Repositories\OrderRepository.cs" />
+    <Compile Include="Utility\Repositories\RoleRepository.cs" />
     <Compile Include="Utility\Repositories\ServiceRepository.cs" />
     <Compile Include="Utility\UserSession.cs" />
     <EmbeddedResource Include="Forms\AdditionalServiceForm.resx">
@@ -351,9 +332,6 @@
     <EmbeddedResource Include="Forms\ManufacturerForm.resx">
       <DependentUpon>ManufacturerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ManufacturerOrderForm.resx">
-      <DependentUpon>ManufacturerOrderForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\OrderForm.resx">
       <DependentUpon>OrderForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -369,17 +347,8 @@
     <EmbeddedResource Include="Forms\TimeTableForm.resx">
       <DependentUpon>TimeTableForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202201090553275_init.resx">
-      <DependentUpon>202201090553275_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202201090613497_update-permissions.resx">
-      <DependentUpon>202201090613497_update-permissions.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202201090720453_minor-updates.resx">
-      <DependentUpon>202201090720453_minor-updates.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202201191303012_order-workdays-table.resx">
-      <DependentUpon>202201191303012_order-workdays-table.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202201270930382_init.resx">
+      <DependentUpon>202201270930382_init.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -399,9 +368,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ManufacturersForm.resx">
       <DependentUpon>ManufacturersForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ManufacturerOrdersForm.resx">
-      <DependentUpon>ManufacturerOrdersForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\OrdersForm.resx">
       <DependentUpon>OrdersForm.cs</DependentUpon>

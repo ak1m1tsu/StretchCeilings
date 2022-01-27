@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using stretch_ceilings_app.Interfaces.Models;
+using stretch_ceilings_app.Utility.Enums;
 
 namespace stretch_ceilings_app.Data.Models
 {
@@ -16,7 +17,7 @@ namespace stretch_ceilings_app.Data.Models
         [Required]
         public string Name { get; set; }
         [Required]
-        public string Country { get; set; }
+        public Country Country { get; set; }
         [Required]
         public string Address { get; set; }
         public DateTime? DateDeleted { get; set; }
@@ -34,16 +35,10 @@ namespace stretch_ceilings_app.Data.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                db.Entry(this.Id).CurrentValues.SetValues(DateDeleted = DateTime.Now);
+                DateDeleted = DateTime.Now;
+                var old = db.Manufacturers.FirstOrDefault(x => x.Id == Id);
+                db.Entry(old).CurrentValues.SetValues(this);
                 db.SaveChanges();
-            }
-        }
-
-        public List<ManufacturerOrder> GetOrders()
-        {
-            using (var db = new StretchCeilingsContext())
-            {
-                return db.ManufacturerOrders.Where(order => order.ManufacturerId == Id).ToList();
             }
         }
 
@@ -59,7 +54,8 @@ namespace stretch_ceilings_app.Data.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                db.Entry(this.Id).CurrentValues.SetValues(this);
+                var old = db.Manufacturers.FirstOrDefault(x=>x.Id == Id);
+                db.Entry(old).CurrentValues.SetValues(this);
                 db.SaveChanges();
             }
         }

@@ -20,7 +20,7 @@ namespace stretch_ceilings_app.Forms
 
         private void SetupEditButton()
         {
-            if (UserSession.IsAdmin() || UserSession.Can(PermissionCode.EditOrder))
+            if (UserSession.IsAdmin || UserSession.Can(PermissionCode.EditOrder))
                 btnEditOrder.Visible = true;
         }
 

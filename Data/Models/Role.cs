@@ -21,8 +21,8 @@ namespace stretch_ceilings_app.Data.Models
             {
                 using (var db = new StretchCeilingsContext())
                 {
-                    db.Database.ExecuteSqlCommandAsync("INSERT INTO RolePermissions (RoleId, PermissionId) " +
-                                                      $"VALUES ({Id}, {permission.Id})");
+                    var rolePermission = new RolePermission() {RoleId = Id, PermissionId = permission.Id};
+                    db.RolePermissions.Add(rolePermission);
                     db.SaveChanges();
                 }
             }
@@ -38,7 +38,8 @@ namespace stretch_ceilings_app.Data.Models
             {
                 using (var db = new StretchCeilingsContext())
                 {
-                    db.Database.ExecuteSqlCommandAsync($"DELETE {Id}, {permission.Id} FROM RolePermissions");
+                    var rolePermission = db.RolePermissions.FirstOrDefault(x => x.PermissionId == permission.Id);
+                    if (rolePermission != null) db.RolePermissions.Remove(rolePermission);
                     db.SaveChanges();
                 }
             }
@@ -50,19 +51,16 @@ namespace stretch_ceilings_app.Data.Models
 
         public List<Permission> GetPermissions()
         {
-            try
+            using (var db = new StretchCeilingsContext())
             {
-                using (var db = new StretchCeilingsContext())
+                var list = new List<Permission>();
+                var rolePermissions = db.RolePermissions.Where(x => x.RoleId == Id);
+                foreach (var rolePermission in rolePermissions)
                 {
-                    return db.Database.SqlQuery<Permission>("SELECT Permissions.* FROM Permissions " +
-                                                            "INNER JOIN RolePermissions " +
-                                                            "ON Permissions.Id = RolePermissions.PermissionId " +
-                                                            $"WHERE RolePermissions.RoleId = {Id}").ToList();
+                    list.Add(rolePermission.Permission);
                 }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
+
+                return list;
             }
         }
     }

@@ -20,21 +20,21 @@ namespace stretch_ceilings_app.Forms
         {
             nudPrice.Value = _ceiling?.Price ?? 0M;
 
-            foreach (CeilingTexture texture in Enum.GetValues(typeof(CeilingTexture)))
+            foreach (TextureType texture in Enum.GetValues(typeof(TextureType)))
                 cbTexture.Items.Add(texture.ParseString());
 
             foreach (string item in cbTexture.Items)
             {
-                if (item == _ceiling?.Texture.ParseString())
+                if (item == _ceiling?.TextureType.ParseString())
                     cbTexture.SelectedItem = item;
             }
 
-            foreach (CeilingColor color in Enum.GetValues(typeof(CeilingColor)))
+            foreach (ColorType color in Enum.GetValues(typeof(ColorType)))
                 cbTexture.Items.Add(color.ParseString());
 
             foreach (string item in cbColorType.Items)
             {
-                if (item == _ceiling?.Color.ParseString())
+                if (item == _ceiling?.ColorType.ParseString())
                     cbTexture.SelectedItem = item;
             }
         }

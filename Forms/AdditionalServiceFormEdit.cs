@@ -7,9 +7,12 @@ namespace stretch_ceilings_app.Forms
     public partial class AdditionalServiceFormEdit : Form
     {
         private readonly AdditionalService _currentService;
-        public AdditionalServiceFormEdit(AdditionalService service)
+        private readonly bool _isNew;
+
+        public AdditionalServiceFormEdit(AdditionalService service, bool isNew = false)
         {
             _currentService = service;
+            _isNew = isNew;
             InitializeComponent();
         }
 
@@ -25,14 +28,20 @@ namespace stretch_ceilings_app.Forms
         {
             _currentService.Name = tbName.Text;
             _currentService.Price = nudPrice.Value;
-            _currentService.Update();
+            if (_isNew)
+            {
+                _currentService.Add();
+            }
+            else
+            {
+                _currentService.Update();
+            }
             DialogResult = DialogResult.OK;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             SaveChanges();
-            this.Close();
         }
 
         private void AdditionalServiceFormEdit_Load(object sender, EventArgs e)

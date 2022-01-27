@@ -9,6 +9,5 @@ namespace stretch_ceilings_app.Interfaces.Models
         void Update();
         void Delete();
         List<Ceiling> GetCeilings();
-        List<ManufacturerOrder> GetOrders();
     }
 }

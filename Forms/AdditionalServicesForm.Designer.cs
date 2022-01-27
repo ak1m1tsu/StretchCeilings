@@ -146,7 +146,6 @@ namespace stretch_ceilings_app.Forms
             this.dgvAdditionalServices.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAdditionalServices.Size = new System.Drawing.Size(1054, 411);
             this.dgvAdditionalServices.TabIndex = 2;
-            this.dgvAdditionalServices.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAdditionalServices_CellClick);
             this.dgvAdditionalServices.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAdditionalServices_CellDoubleClick);
             // 
             // panelPages

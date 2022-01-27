@@ -31,48 +31,53 @@ namespace stretch_ceilings_app.Forms
         {
             this.dgvServices = new System.Windows.Forms.DataGridView();
             this.panelPages = new System.Windows.Forms.Panel();
-            this.btnPrevios = new System.Windows.Forms.Button();
+            this.cbRows = new System.Windows.Forms.ComboBox();
+            this.btnPrevious = new System.Windows.Forms.Button();
             this.tbPages = new System.Windows.Forms.TextBox();
             this.btnNext = new System.Windows.Forms.Button();
             this.panelFilters = new System.Windows.Forms.Panel();
+            this.linkLblManufacturer = new System.Windows.Forms.LinkLabel();
+            this.nudTotalTo = new System.Windows.Forms.NumericUpDown();
+            this.nudTotalFrom = new System.Windows.Forms.NumericUpDown();
+            this.lblCeiling = new System.Windows.Forms.Label();
+            this.cbCeiling = new System.Windows.Forms.ComboBox();
+            this.lblManufacturer = new System.Windows.Forms.Label();
             this.lblPriceTo = new System.Windows.Forms.Label();
             this.lblPriceFrom = new System.Windows.Forms.Label();
             this.panelButtons = new System.Windows.Forms.Panel();
             this.panelUserButtons = new System.Windows.Forms.Panel();
             this.panelFilterButtons = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.lblCeiling = new System.Windows.Forms.Label();
-            this.cbCeiling = new System.Windows.Forms.ComboBox();
-            this.cbManufacturer = new System.Windows.Forms.ComboBox();
-            this.lblManufacturer = new System.Windows.Forms.Label();
-            this.cbRows = new System.Windows.Forms.ComboBox();
-            this.nudTotalTo = new System.Windows.Forms.NumericUpDown();
-            this.nudTotalFrom = new System.Windows.Forms.NumericUpDown();
+            this.btnResetFilters = new System.Windows.Forms.Button();
+            this.btnUseFilters = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvServices)).BeginInit();
             this.panelPages.SuspendLayout();
             this.panelFilters.SuspendLayout();
-            this.panelButtons.SuspendLayout();
-            this.panelFilterButtons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudTotalTo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTotalFrom)).BeginInit();
+            this.panelButtons.SuspendLayout();
+            this.panelFilterButtons.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvServices
             // 
+            this.dgvServices.AllowUserToAddRows = false;
+            this.dgvServices.AllowUserToDeleteRows = false;
             this.dgvServices.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.dgvServices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvServices.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvServices.Location = new System.Drawing.Point(0, 114);
             this.dgvServices.Name = "dgvServices";
+            this.dgvServices.RowHeadersVisible = false;
             this.dgvServices.RowTemplate.Height = 25;
             this.dgvServices.Size = new System.Drawing.Size(1054, 409);
             this.dgvServices.TabIndex = 13;
+            this.dgvServices.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvServices_CellClick);
+            this.dgvServices.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvServices_CellDoubleClick);
             // 
             // panelPages
             // 
             this.panelPages.Controls.Add(this.cbRows);
-            this.panelPages.Controls.Add(this.btnPrevios);
+            this.panelPages.Controls.Add(this.btnPrevious);
             this.panelPages.Controls.Add(this.tbPages);
             this.panelPages.Controls.Add(this.btnNext);
             this.panelPages.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -81,19 +86,33 @@ namespace stretch_ceilings_app.Forms
             this.panelPages.Size = new System.Drawing.Size(1054, 38);
             this.panelPages.TabIndex = 12;
             // 
-            // btnPrevios
+            // cbRows
             // 
-            this.btnPrevios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
-            this.btnPrevios.FlatAppearance.BorderSize = 0;
-            this.btnPrevios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrevios.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.btnPrevios.ForeColor = System.Drawing.Color.White;
-            this.btnPrevios.Location = new System.Drawing.Point(6, 4);
-            this.btnPrevios.Name = "btnPrevios";
-            this.btnPrevios.Size = new System.Drawing.Size(30, 29);
-            this.btnPrevios.TabIndex = 90;
-            this.btnPrevios.Text = "<";
-            this.btnPrevios.UseVisualStyleBackColor = false;
+            this.cbRows.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbRows.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbRows.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbRows.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cbRows.FormattingEnabled = true;
+            this.cbRows.Location = new System.Drawing.Point(993, 3);
+            this.cbRows.Name = "cbRows";
+            this.cbRows.Size = new System.Drawing.Size(55, 32);
+            this.cbRows.TabIndex = 98;
+            this.cbRows.SelectedIndexChanged += new System.EventHandler(this.cbRows_SelectedIndexChanged);
+            // 
+            // btnPrevious
+            // 
+            this.btnPrevious.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.btnPrevious.FlatAppearance.BorderSize = 0;
+            this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrevious.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnPrevious.ForeColor = System.Drawing.Color.White;
+            this.btnPrevious.Location = new System.Drawing.Point(6, 4);
+            this.btnPrevious.Name = "btnPrevious";
+            this.btnPrevious.Size = new System.Drawing.Size(30, 29);
+            this.btnPrevious.TabIndex = 90;
+            this.btnPrevious.Text = "<";
+            this.btnPrevious.UseVisualStyleBackColor = false;
+            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
             // 
             // tbPages
             // 
@@ -103,6 +122,7 @@ namespace stretch_ceilings_app.Forms
             this.tbPages.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.tbPages.Location = new System.Drawing.Point(42, 4);
             this.tbPages.Name = "tbPages";
+            this.tbPages.ReadOnly = true;
             this.tbPages.Size = new System.Drawing.Size(80, 29);
             this.tbPages.TabIndex = 89;
             this.tbPages.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -120,14 +140,15 @@ namespace stretch_ceilings_app.Forms
             this.btnNext.TabIndex = 88;
             this.btnNext.Text = ">";
             this.btnNext.UseVisualStyleBackColor = false;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // panelFilters
             // 
+            this.panelFilters.Controls.Add(this.linkLblManufacturer);
             this.panelFilters.Controls.Add(this.nudTotalTo);
             this.panelFilters.Controls.Add(this.nudTotalFrom);
             this.panelFilters.Controls.Add(this.lblCeiling);
             this.panelFilters.Controls.Add(this.cbCeiling);
-            this.panelFilters.Controls.Add(this.cbManufacturer);
             this.panelFilters.Controls.Add(this.lblManufacturer);
             this.panelFilters.Controls.Add(this.lblPriceTo);
             this.panelFilters.Controls.Add(this.lblPriceFrom);
@@ -136,6 +157,79 @@ namespace stretch_ceilings_app.Forms
             this.panelFilters.Name = "panelFilters";
             this.panelFilters.Size = new System.Drawing.Size(1054, 114);
             this.panelFilters.TabIndex = 11;
+            // 
+            // linkLblManufacturer
+            // 
+            this.linkLblManufacturer.AutoSize = true;
+            this.linkLblManufacturer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.linkLblManufacturer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.linkLblManufacturer.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.linkLblManufacturer.Location = new System.Drawing.Point(172, 9);
+            this.linkLblManufacturer.Name = "linkLblManufacturer";
+            this.linkLblManufacturer.Size = new System.Drawing.Size(44, 24);
+            this.linkLblManufacturer.TabIndex = 98;
+            this.linkLblManufacturer.TabStop = true;
+            this.linkLblManufacturer.Text = "Нет";
+            this.linkLblManufacturer.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLblManufacturer_LinkClicked);
+            // 
+            // nudTotalTo
+            // 
+            this.nudTotalTo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.nudTotalTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nudTotalTo.Location = new System.Drawing.Point(341, 81);
+            this.nudTotalTo.Name = "nudTotalTo";
+            this.nudTotalTo.Size = new System.Drawing.Size(122, 29);
+            this.nudTotalTo.TabIndex = 97;
+            this.nudTotalTo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nudTotalTo.ValueChanged += new System.EventHandler(this.nudTotalTo_ValueChanged);
+            // 
+            // nudTotalFrom
+            // 
+            this.nudTotalFrom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.nudTotalFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nudTotalFrom.Location = new System.Drawing.Point(176, 81);
+            this.nudTotalFrom.Name = "nudTotalFrom";
+            this.nudTotalFrom.Size = new System.Drawing.Size(115, 29);
+            this.nudTotalFrom.TabIndex = 96;
+            this.nudTotalFrom.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nudTotalFrom.ValueChanged += new System.EventHandler(this.nudTotalFrom_ValueChanged);
+            // 
+            // lblCeiling
+            // 
+            this.lblCeiling.AutoSize = true;
+            this.lblCeiling.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblCeiling.Location = new System.Drawing.Point(12, 46);
+            this.lblCeiling.Name = "lblCeiling";
+            this.lblCeiling.Size = new System.Drawing.Size(90, 24);
+            this.lblCeiling.TabIndex = 64;
+            this.lblCeiling.Text = "Потолок:";
+            // 
+            // cbCeiling
+            // 
+            this.cbCeiling.AutoCompleteCustomSource.AddRange(new string[] {
+            "Ожидает ответа клиента",
+            "Ожидает выполнения работ",
+            "Ожидает результатов замеров",
+            "Отменен",
+            "Завершен"});
+            this.cbCeiling.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCeiling.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.cbCeiling.FormattingEnabled = true;
+            this.cbCeiling.Location = new System.Drawing.Point(176, 43);
+            this.cbCeiling.Name = "cbCeiling";
+            this.cbCeiling.Size = new System.Drawing.Size(287, 32);
+            this.cbCeiling.TabIndex = 63;
+            this.cbCeiling.SelectedIndexChanged += new System.EventHandler(this.cbCeiling_SelectedIndexChanged);
+            // 
+            // lblManufacturer
+            // 
+            this.lblManufacturer.AutoSize = true;
+            this.lblManufacturer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblManufacturer.Location = new System.Drawing.Point(12, 9);
+            this.lblManufacturer.Name = "lblManufacturer";
+            this.lblManufacturer.Size = new System.Drawing.Size(158, 24);
+            this.lblManufacturer.TabIndex = 61;
+            this.lblManufacturer.Text = "Производитель:";
             // 
             // lblPriceTo
             // 
@@ -177,125 +271,43 @@ namespace stretch_ceilings_app.Forms
             // 
             // panelFilterButtons
             // 
-            this.panelFilterButtons.Controls.Add(this.button3);
-            this.panelFilterButtons.Controls.Add(this.button2);
+            this.panelFilterButtons.Controls.Add(this.btnResetFilters);
+            this.panelFilterButtons.Controls.Add(this.btnUseFilters);
             this.panelFilterButtons.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelFilterButtons.Location = new System.Drawing.Point(0, 0);
             this.panelFilterButtons.Name = "panelFilterButtons";
             this.panelFilterButtons.Size = new System.Drawing.Size(130, 114);
             this.panelFilterButtons.TabIndex = 0;
             // 
-            // button3
+            // btnResetFilters
             // 
-            this.button3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button3.Location = new System.Drawing.Point(0, 56);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(130, 58);
-            this.button3.TabIndex = 10;
-            this.button3.Text = "Сбросить";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnResetFilters.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnResetFilters.FlatAppearance.BorderSize = 0;
+            this.btnResetFilters.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnResetFilters.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnResetFilters.Location = new System.Drawing.Point(0, 56);
+            this.btnResetFilters.Name = "btnResetFilters";
+            this.btnResetFilters.Size = new System.Drawing.Size(130, 58);
+            this.btnResetFilters.TabIndex = 10;
+            this.btnResetFilters.Text = "Сбросить";
+            this.btnResetFilters.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnResetFilters.UseVisualStyleBackColor = true;
+            this.btnResetFilters.Click += new System.EventHandler(this.btnResetFilters_Click);
             // 
-            // button2
+            // btnUseFilters
             // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button2.Location = new System.Drawing.Point(0, 0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(130, 56);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "Применить";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // lblCeiling
-            // 
-            this.lblCeiling.AutoSize = true;
-            this.lblCeiling.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lblCeiling.Location = new System.Drawing.Point(12, 46);
-            this.lblCeiling.Name = "lblCeiling";
-            this.lblCeiling.Size = new System.Drawing.Size(90, 24);
-            this.lblCeiling.TabIndex = 64;
-            this.lblCeiling.Text = "Потолок:";
-            // 
-            // cbCeiling
-            // 
-            this.cbCeiling.AutoCompleteCustomSource.AddRange(new string[] {
-            "Ожидает ответа клиента",
-            "Ожидает выполнения работ",
-            "Ожидает результатов замеров",
-            "Отменен",
-            "Завершен"});
-            this.cbCeiling.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCeiling.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.cbCeiling.FormattingEnabled = true;
-            this.cbCeiling.Location = new System.Drawing.Point(176, 44);
-            this.cbCeiling.Name = "cbCeiling";
-            this.cbCeiling.Size = new System.Drawing.Size(287, 32);
-            this.cbCeiling.TabIndex = 63;
-            // 
-            // cbManufacturer
-            // 
-            this.cbManufacturer.AutoCompleteCustomSource.AddRange(new string[] {
-            "Ожидает ответа клиента",
-            "Ожидает выполнения работ",
-            "Ожидает результатов замеров",
-            "Отменен",
-            "Завершен"});
-            this.cbManufacturer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbManufacturer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.cbManufacturer.FormattingEnabled = true;
-            this.cbManufacturer.Location = new System.Drawing.Point(176, 6);
-            this.cbManufacturer.Name = "cbManufacturer";
-            this.cbManufacturer.Size = new System.Drawing.Size(287, 32);
-            this.cbManufacturer.TabIndex = 62;
-            // 
-            // lblManufacturer
-            // 
-            this.lblManufacturer.AutoSize = true;
-            this.lblManufacturer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lblManufacturer.Location = new System.Drawing.Point(12, 9);
-            this.lblManufacturer.Name = "lblManufacturer";
-            this.lblManufacturer.Size = new System.Drawing.Size(158, 24);
-            this.lblManufacturer.TabIndex = 61;
-            this.lblManufacturer.Text = "Производитель:";
-            // 
-            // cbRows
-            // 
-            this.cbRows.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbRows.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbRows.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbRows.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cbRows.FormattingEnabled = true;
-            this.cbRows.Location = new System.Drawing.Point(993, 3);
-            this.cbRows.Name = "cbRows";
-            this.cbRows.Size = new System.Drawing.Size(55, 32);
-            this.cbRows.TabIndex = 98;
-            // 
-            // nudTotalTo
-            // 
-            this.nudTotalTo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.nudTotalTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nudTotalTo.Location = new System.Drawing.Point(341, 81);
-            this.nudTotalTo.Name = "nudTotalTo";
-            this.nudTotalTo.Size = new System.Drawing.Size(122, 29);
-            this.nudTotalTo.TabIndex = 97;
-            this.nudTotalTo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // nudTotalFrom
-            // 
-            this.nudTotalFrom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.nudTotalFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nudTotalFrom.Location = new System.Drawing.Point(176, 81);
-            this.nudTotalFrom.Name = "nudTotalFrom";
-            this.nudTotalFrom.Size = new System.Drawing.Size(115, 29);
-            this.nudTotalFrom.TabIndex = 96;
-            this.nudTotalFrom.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.btnUseFilters.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnUseFilters.FlatAppearance.BorderSize = 0;
+            this.btnUseFilters.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUseFilters.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnUseFilters.Location = new System.Drawing.Point(0, 0);
+            this.btnUseFilters.Name = "btnUseFilters";
+            this.btnUseFilters.Size = new System.Drawing.Size(130, 56);
+            this.btnUseFilters.TabIndex = 9;
+            this.btnUseFilters.Text = "Применить";
+            this.btnUseFilters.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUseFilters.UseVisualStyleBackColor = true;
+            this.btnUseFilters.Click += new System.EventHandler(this.btnUseFilters_Click);
             // 
             // ServicesForm
             // 
@@ -316,10 +328,10 @@ namespace stretch_ceilings_app.Forms
             this.panelPages.PerformLayout();
             this.panelFilters.ResumeLayout(false);
             this.panelFilters.PerformLayout();
-            this.panelButtons.ResumeLayout(false);
-            this.panelFilterButtons.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nudTotalTo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTotalFrom)).EndInit();
+            this.panelButtons.ResumeLayout(false);
+            this.panelFilterButtons.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -328,7 +340,7 @@ namespace stretch_ceilings_app.Forms
 
         private System.Windows.Forms.DataGridView dgvServices;
         private System.Windows.Forms.Panel panelPages;
-        private System.Windows.Forms.Button btnPrevios;
+        private System.Windows.Forms.Button btnPrevious;
         private System.Windows.Forms.TextBox tbPages;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Panel panelFilters;
@@ -337,14 +349,14 @@ namespace stretch_ceilings_app.Forms
         private System.Windows.Forms.Panel panelButtons;
         private System.Windows.Forms.Panel panelUserButtons;
         private System.Windows.Forms.Panel panelFilterButtons;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnResetFilters;
+        private System.Windows.Forms.Button btnUseFilters;
         private System.Windows.Forms.Label lblCeiling;
         private System.Windows.Forms.ComboBox cbCeiling;
-        private System.Windows.Forms.ComboBox cbManufacturer;
         private System.Windows.Forms.Label lblManufacturer;
         private System.Windows.Forms.ComboBox cbRows;
         private System.Windows.Forms.NumericUpDown nudTotalTo;
         private System.Windows.Forms.NumericUpDown nudTotalFrom;
+        private System.Windows.Forms.LinkLabel linkLblManufacturer;
     }
 }

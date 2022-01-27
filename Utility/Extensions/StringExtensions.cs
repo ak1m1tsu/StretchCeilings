@@ -6,13 +6,14 @@ namespace stretch_ceilings_app.Utility.Extensions
 {
     public static class StringExtensions
     {
-        private static readonly Dictionary<string, OrderStatus> CachedStatuses;
-        private static readonly Dictionary<string, CeilingTexture> CachedTextures;
-        private static readonly Dictionary<string, CeilingColor> CachedColors;
+        private static readonly Dictionary<string, OrderStatus> _orderStatus;
+        private static readonly Dictionary<string, TextureType> _textureTypes;
+        private static readonly Dictionary<string, ColorType> _colorTypes;
+        private static readonly Dictionary<string, Country> _countries;
 
         static StringExtensions()
         {
-            CachedStatuses = new Dictionary<string, OrderStatus>()
+            _orderStatus = new Dictionary<string, OrderStatus>()
             {
                 { "Отменен", OrderStatus.Canceled },
                 { "Выполнен", OrderStatus.Finished },
@@ -23,34 +24,47 @@ namespace stretch_ceilings_app.Utility.Extensions
                 { "Ожидает пирбытия потолков", OrderStatus.WaitingForCeilings },
             };
 
-            CachedTextures = new Dictionary<string, CeilingTexture>
+            _textureTypes = new Dictionary<string, TextureType>
             {
-                { "Тканевый", CeilingTexture.Fabric },
-                { "Матовый", CeilingTexture.Matte },
-                { "Глянцевый", CeilingTexture.Glossy },
-                { "Сатиновый", CeilingTexture.Satin }
+                { "Тканевый", TextureType.Fabric },
+                { "Матовый", TextureType.Matte },
+                { "Глянцевый", TextureType.Glossy },
+                { "Сатиновый", TextureType.Satin }
             };
 
-            CachedColors = new Dictionary<string, CeilingColor>
+            _colorTypes = new Dictionary<string, ColorType>
             {
-                { "Белый", CeilingColor.White},
-                { "Цветной", CeilingColor.Colored },
+                { "Белый", ColorType.White},
+                { "Цветной", ColorType.Colored },
+            };
+            _countries = new Dictionary<string, Country>()
+            {
+                { "Россия", Country.Russia },
+                { "США", Country.USA },
+                { "Англия", Country.UK },
+                { "Германия", Country.Germany },
+                { "Китай", Country.China },
             };
         }
 
-        public static OrderStatus ParseStatusEnum(this string value)
+        public static Country ToCountry(this string value)
         {
-            return CachedStatuses.FirstOrDefault(k => k.Key == value).Value;
+            return _countries.FirstOrDefault(k => k.Key == value).Value;
         }
 
-        public static CeilingTexture ParseCeilingTextureEnum(this string value)
+        public static OrderStatus ToOrderStatus(this string value)
         {
-            return CachedTextures.FirstOrDefault(k => k.Key == value).Value;
+            return _orderStatus.FirstOrDefault(k => k.Key == value).Value;
         }
 
-        public static CeilingColor ParseCeilingColorEnum(this string value)
+        public static TextureType ToTextureType(this string value)
         {
-            return CachedColors.FirstOrDefault(k => k.Key == value).Value;
+            return _textureTypes.FirstOrDefault(k => k.Key == value).Value;
+        }
+
+        public static ColorType ToColorType(this string value)
+        {
+            return _colorTypes.FirstOrDefault(k => k.Key == value).Value;
         }
     }
 }

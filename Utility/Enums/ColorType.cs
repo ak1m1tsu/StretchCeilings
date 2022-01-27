@@ -1,8 +1,9 @@
 ﻿namespace stretch_ceilings_app.Utility.Enums
 {
-    public enum CeilingColor
+    public enum ColorType
     {
-        White = 0,
+        Unknown = 0,
+        White,
         Colored
     }
 }

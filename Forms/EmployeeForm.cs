@@ -17,7 +17,7 @@ namespace stretch_ceilings_app.Forms
 
         private void SetUpForm()
         {
-            if (UserSession.IsAdmin())
+            if (UserSession.IsAdmin)
             {
                 lblLogin.Visible = true;
                 lblLoginValue.Visible = true;

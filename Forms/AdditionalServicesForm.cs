@@ -37,7 +37,7 @@ namespace stretch_ceilings_app.Forms
 
         private void SetUpControls()
         {
-            if (UserSession.Can(PermissionCode.AddAdditionalService) || UserSession.IsAdmin())
+            if (UserSession.Can(PermissionCode.AddAdditionalService) || UserSession.IsAdmin)
             {
                 var btnAddService = new FlatButton("btnAddAdditionalService", "Добавить", Constants.DraculaAlphaGreen);
                 btnAddService.Click += btnAddAdditionalService_Click;
@@ -84,18 +84,6 @@ namespace stretch_ceilings_app.Forms
             var form = new AdditionalServiceForm(service);
             if (form.ShowDialog() == DialogResult.OK)
                 FillDataGrid();
-        }
-
-        private void DeleteRow(object sender, DataGridViewCellEventArgs e)
-        {
-            if(e.RowIndex < 0 || e.ColumnIndex != dgvAdditionalServices.Columns[" "]?.Index) return;
-
-            var service =
-                AdditionalServiceRepository.GetById((int)dgvAdditionalServices.SelectedRows[0].Cells["№"].Value);
-
-            service.Delete();
-
-            FillDataGrid();
         }
 
         private void FilterDataGrid()
@@ -149,10 +137,10 @@ namespace stretch_ceilings_app.Forms
 
         private void AddAdditionalService()
         {
-            var service = new AdditionalServiceFormEdit(new AdditionalService());
+            var service = new AdditionalServiceFormEdit(new AdditionalService(), true);
             if (service.ShowDialog() != DialogResult.OK)
                 return;
-            FillDataGrid();
+            FilterDataGrid();
         }
 
         private void UpdateComboBoxRow()
@@ -223,7 +211,13 @@ namespace stretch_ceilings_app.Forms
 
         private void dgvAdditionalServices_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            DeleteRow(sender, e);
+            if (e.RowIndex < 0 || e.ColumnIndex != dgvAdditionalServices.Columns[" "]?.Index) return;
+
+            var service = AdditionalServiceRepository.GetById((int)dgvAdditionalServices.SelectedRows[0].Cells["№"].Value);
+
+            service.Delete();
+
+            FilterDataGrid();
         }
 
         private void dgvAdditionalServices_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

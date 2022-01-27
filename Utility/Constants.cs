@@ -41,9 +41,10 @@ namespace stretch_ceilings_app.Utility
         public static readonly string DefaultIconButtonText = "";
         public static readonly string DefaultTextBoxText = "";
         public static readonly string DefaultDateTimePickerCustomFormat = " ";
-        public static readonly string DefaultDataGridViewButtonCellText = "❌";
 
         public static readonly string FilterDateTimePickerCustomFormat = @"dd.MM.yyyy HH:mm";
+
+        public static readonly string DefaultLinkLabelText = "Нет";
 
         public static readonly string ErrorCaption = "Ошибка.";
         public static readonly string WarningCaption = "Предупреждение.";
@@ -54,7 +55,7 @@ namespace stretch_ceilings_app.Utility
 
         public static readonly decimal DefaultNumericUpDownValue = 0;
 
-        public static readonly int[] RowCountItems = new int[3] { 25, 50, 100 };
+        public static readonly int[] RowCountItems = new int[3] { 2, 5, 10 };
 
         #endregion
     }

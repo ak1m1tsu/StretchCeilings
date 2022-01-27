@@ -17,8 +17,8 @@ namespace stretch_ceilings_app.Data.Models
         public int? ManufacturerId { get; set; }
         [Column("ManufacturerId")]
         public virtual Manufacturer Manufacturer { get; set; }
-        public CeilingTexture Texture { get; set; }
-        public CeilingColor Color { get; set; }
+        public TextureType TextureType { get; set; }
+        public ColorType ColorType { get; set; }
         public decimal Price { get; set; }
         public DateTime? DateDeleted { get; set; }
 

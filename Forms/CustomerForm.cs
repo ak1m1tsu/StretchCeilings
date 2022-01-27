@@ -49,7 +49,7 @@ namespace stretch_ceilings_app.Forms
         private void SetUpEditBtn()
         {
             if (UserSession.Can(PermissionCode.EditCustomer) == false || 
-                UserSession.IsAdmin() == false)
+                UserSession.IsAdmin == false)
                 btnChangeInfo.Visible = false;
         }
 

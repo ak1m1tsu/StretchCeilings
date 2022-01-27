@@ -2,6 +2,7 @@
 {
     public enum PermissionCode
     {
+        Unknown = 0,
         All,
         AddOrder,
         EditOrder,
@@ -18,9 +19,6 @@
         AddManufacturer,
         EditManufacturer,
         DelManufacturer,
-        AddManufacturerOrder,
-        EditManufacturerOrder,
-        DelManufacturerOrder,
         AddAdditionalService,
         EditAdditionalService,
         DelAdditionalService

@@ -32,7 +32,7 @@ namespace stretch_ceilings_app.Forms
             this.panelFilters = new System.Windows.Forms.Panel();
             this.tbName = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
-            this.cbCuntry = new System.Windows.Forms.ComboBox();
+            this.cbCountry = new System.Windows.Forms.ComboBox();
             this.lblCuntry = new System.Windows.Forms.Label();
             this.tbAddress = new System.Windows.Forms.TextBox();
             this.lblAddress = new System.Windows.Forms.Label();
@@ -58,7 +58,7 @@ namespace stretch_ceilings_app.Forms
             // 
             this.panelFilters.Controls.Add(this.tbName);
             this.panelFilters.Controls.Add(this.lblName);
-            this.panelFilters.Controls.Add(this.cbCuntry);
+            this.panelFilters.Controls.Add(this.cbCountry);
             this.panelFilters.Controls.Add(this.lblCuntry);
             this.panelFilters.Controls.Add(this.tbAddress);
             this.panelFilters.Controls.Add(this.lblAddress);
@@ -75,6 +75,7 @@ namespace stretch_ceilings_app.Forms
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(340, 29);
             this.tbName.TabIndex = 40;
+            this.tbName.TextChanged += new System.EventHandler(this.tbName_TextChanged);
             // 
             // lblName
             // 
@@ -88,22 +89,23 @@ namespace stretch_ceilings_app.Forms
             this.lblName.TabIndex = 39;
             this.lblName.Text = "Название:";
             // 
-            // cbCuntry
+            // cbCountry
             // 
-            this.cbCuntry.AutoCompleteCustomSource.AddRange(new string[] {
+            this.cbCountry.AutoCompleteCustomSource.AddRange(new string[] {
             "Ожидает ответа клиента",
             "Ожидает выполнения работ",
             "Ожидает результатов замеров",
             "Отменен",
             "Завершен"});
-            this.cbCuntry.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCuntry.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbCuntry.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.cbCuntry.FormattingEnabled = true;
-            this.cbCuntry.Location = new System.Drawing.Point(117, 78);
-            this.cbCuntry.Name = "cbCuntry";
-            this.cbCuntry.Size = new System.Drawing.Size(166, 32);
-            this.cbCuntry.TabIndex = 38;
+            this.cbCountry.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCountry.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbCountry.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.cbCountry.FormattingEnabled = true;
+            this.cbCountry.Location = new System.Drawing.Point(117, 78);
+            this.cbCountry.Name = "cbCountry";
+            this.cbCountry.Size = new System.Drawing.Size(166, 32);
+            this.cbCountry.TabIndex = 38;
+            this.cbCountry.SelectedIndexChanged += new System.EventHandler(this.cbCountry_SelectedIndexChanged);
             // 
             // lblCuntry
             // 
@@ -124,6 +126,7 @@ namespace stretch_ceilings_app.Forms
             this.tbAddress.Name = "tbAddress";
             this.tbAddress.Size = new System.Drawing.Size(340, 29);
             this.tbAddress.TabIndex = 12;
+            this.tbAddress.TextChanged += new System.EventHandler(this.tbAddress_TextChanged);
             // 
             // lblAddress
             // 
@@ -171,6 +174,7 @@ namespace stretch_ceilings_app.Forms
             this.btnResetFilters.FlatAppearance.BorderSize = 0;
             this.btnResetFilters.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetFilters.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnResetFilters.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.btnResetFilters.Location = new System.Drawing.Point(0, 56);
             this.btnResetFilters.Name = "btnResetFilters";
             this.btnResetFilters.Size = new System.Drawing.Size(130, 56);
@@ -178,6 +182,7 @@ namespace stretch_ceilings_app.Forms
             this.btnResetFilters.Text = "Сбросить";
             this.btnResetFilters.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnResetFilters.UseVisualStyleBackColor = false;
+            this.btnResetFilters.Click += new System.EventHandler(this.btnResetFilters_Click);
             // 
             // btnUserFilters
             // 
@@ -185,6 +190,7 @@ namespace stretch_ceilings_app.Forms
             this.btnUserFilters.FlatAppearance.BorderSize = 0;
             this.btnUserFilters.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUserFilters.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnUserFilters.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.btnUserFilters.Location = new System.Drawing.Point(0, 0);
             this.btnUserFilters.Name = "btnUserFilters";
             this.btnUserFilters.Size = new System.Drawing.Size(130, 56);
@@ -192,15 +198,21 @@ namespace stretch_ceilings_app.Forms
             this.btnUserFilters.Text = "Применить";
             this.btnUserFilters.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnUserFilters.UseVisualStyleBackColor = false;
+            this.btnUserFilters.Click += new System.EventHandler(this.btnUserFilters_Click);
             // 
             // dgvManufacturers
             // 
+            this.dgvManufacturers.AllowUserToAddRows = false;
+            this.dgvManufacturers.AllowUserToDeleteRows = false;
+            this.dgvManufacturers.AllowUserToResizeRows = false;
             this.dgvManufacturers.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.dgvManufacturers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvManufacturers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvManufacturers.Location = new System.Drawing.Point(0, 114);
             this.dgvManufacturers.Name = "dgvManufacturers";
+            this.dgvManufacturers.RowHeadersVisible = false;
             this.dgvManufacturers.RowTemplate.Height = 25;
+            this.dgvManufacturers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvManufacturers.Size = new System.Drawing.Size(1054, 409);
             this.dgvManufacturers.TabIndex = 11;
             // 
@@ -227,6 +239,7 @@ namespace stretch_ceilings_app.Forms
             this.cbRows.Name = "cbRows";
             this.cbRows.Size = new System.Drawing.Size(55, 32);
             this.cbRows.TabIndex = 98;
+            this.cbRows.SelectedIndexChanged += new System.EventHandler(this.cbRows_SelectedIndexChanged);
             // 
             // btnPrevious
             // 
@@ -241,6 +254,7 @@ namespace stretch_ceilings_app.Forms
             this.btnPrevious.TabIndex = 84;
             this.btnPrevious.Text = "<";
             this.btnPrevious.UseVisualStyleBackColor = false;
+            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
             // 
             // tbPages
             // 
@@ -250,8 +264,10 @@ namespace stretch_ceilings_app.Forms
             this.tbPages.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.tbPages.Location = new System.Drawing.Point(40, 4);
             this.tbPages.Name = "tbPages";
+            this.tbPages.ReadOnly = true;
             this.tbPages.Size = new System.Drawing.Size(80, 29);
             this.tbPages.TabIndex = 83;
+            this.tbPages.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnNext
             // 
@@ -266,6 +282,7 @@ namespace stretch_ceilings_app.Forms
             this.btnNext.TabIndex = 82;
             this.btnNext.Text = ">";
             this.btnNext.UseVisualStyleBackColor = false;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // ManufacturersForm
             // 
@@ -277,9 +294,9 @@ namespace stretch_ceilings_app.Forms
             this.Controls.Add(this.panelPages);
             this.Controls.Add(this.panelFilters);
             this.Controls.Add(this.panelButtons);
-            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.MinimumSize = new System.Drawing.Size(1200, 600);
             this.Name = "ManufacturersForm";
+            this.Load += new System.EventHandler(this.ManufacturersForm_Load);
             this.panelFilters.ResumeLayout(false);
             this.panelFilters.PerformLayout();
             this.panelButtons.ResumeLayout(false);
@@ -296,7 +313,7 @@ namespace stretch_ceilings_app.Forms
         private System.Windows.Forms.Panel panelFilters;
         private System.Windows.Forms.TextBox tbName;
         private System.Windows.Forms.Label lblName;
-        private System.Windows.Forms.ComboBox cbCuntry;
+        private System.Windows.Forms.ComboBox cbCountry;
         private System.Windows.Forms.Label lblCuntry;
         private System.Windows.Forms.TextBox tbAddress;
         private System.Windows.Forms.Label lblAddress;

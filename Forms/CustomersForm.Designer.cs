@@ -30,10 +30,11 @@ namespace stretch_ceilings_app.Forms
         private void InitializeComponent()
         {
             this.panelPages = new System.Windows.Forms.Panel();
+            this.cbRows = new System.Windows.Forms.ComboBox();
             this.btnPreviousPage = new System.Windows.Forms.Button();
             this.tbPages = new System.Windows.Forms.TextBox();
             this.btnNextPage = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvCustomers = new System.Windows.Forms.DataGridView();
             this.panelFilters = new System.Windows.Forms.Panel();
             this.mtbPhoneNumber = new System.Windows.Forms.MaskedTextBox();
             this.nudId = new System.Windows.Forms.NumericUpDown();
@@ -46,9 +47,8 @@ namespace stretch_ceilings_app.Forms
             this.panelSearchButtons = new System.Windows.Forms.Panel();
             this.btnResetFilters = new System.Windows.Forms.Button();
             this.btnAcceptFilters = new System.Windows.Forms.Button();
-            this.cbRows = new System.Windows.Forms.ComboBox();
             this.panelPages.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).BeginInit();
             this.panelFilters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudId)).BeginInit();
             this.panelButtons.SuspendLayout();
@@ -67,6 +67,19 @@ namespace stretch_ceilings_app.Forms
             this.panelPages.Size = new System.Drawing.Size(1054, 40);
             this.panelPages.TabIndex = 6;
             // 
+            // cbRows
+            // 
+            this.cbRows.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbRows.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbRows.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbRows.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cbRows.FormattingEnabled = true;
+            this.cbRows.Location = new System.Drawing.Point(993, 5);
+            this.cbRows.Name = "cbRows";
+            this.cbRows.Size = new System.Drawing.Size(55, 32);
+            this.cbRows.TabIndex = 98;
+            this.cbRows.SelectedIndexChanged += new System.EventHandler(this.cbRows_SelectedIndexChanged);
+            // 
             // btnPreviousPage
             // 
             this.btnPreviousPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
@@ -80,6 +93,7 @@ namespace stretch_ceilings_app.Forms
             this.btnPreviousPage.TabIndex = 84;
             this.btnPreviousPage.Text = "<";
             this.btnPreviousPage.UseVisualStyleBackColor = false;
+            this.btnPreviousPage.Click += new System.EventHandler(this.btnPreviousPage_Click);
             // 
             // tbPages
             // 
@@ -89,8 +103,10 @@ namespace stretch_ceilings_app.Forms
             this.tbPages.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.tbPages.Location = new System.Drawing.Point(41, 6);
             this.tbPages.Name = "tbPages";
+            this.tbPages.ReadOnly = true;
             this.tbPages.Size = new System.Drawing.Size(80, 29);
             this.tbPages.TabIndex = 83;
+            this.tbPages.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnNextPage
             // 
@@ -105,17 +121,25 @@ namespace stretch_ceilings_app.Forms
             this.btnNextPage.TabIndex = 82;
             this.btnNextPage.Text = ">";
             this.btnNextPage.UseVisualStyleBackColor = false;
+            this.btnNextPage.Click += new System.EventHandler(this.btnNextPage_Click);
             // 
-            // dataGridView1
+            // dgvCustomers
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 114);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(1054, 447);
-            this.dataGridView1.TabIndex = 7;
+            this.dgvCustomers.AllowUserToAddRows = false;
+            this.dgvCustomers.AllowUserToDeleteRows = false;
+            this.dgvCustomers.AllowUserToResizeRows = false;
+            this.dgvCustomers.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.dgvCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCustomers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvCustomers.Location = new System.Drawing.Point(0, 114);
+            this.dgvCustomers.Name = "dgvCustomers";
+            this.dgvCustomers.RowHeadersVisible = false;
+            this.dgvCustomers.RowTemplate.Height = 25;
+            this.dgvCustomers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvCustomers.Size = new System.Drawing.Size(1054, 447);
+            this.dgvCustomers.TabIndex = 7;
+            this.dgvCustomers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomers_CellClick);
+            this.dgvCustomers.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomers_CellDoubleClick);
             // 
             // panelFilters
             // 
@@ -167,6 +191,7 @@ namespace stretch_ceilings_app.Forms
             this.tbFullName.Name = "tbFullName";
             this.tbFullName.Size = new System.Drawing.Size(241, 29);
             this.tbFullName.TabIndex = 12;
+            this.tbFullName.TextChanged += new System.EventHandler(this.tbFullName_TextChanged);
             // 
             // lblFullName
             // 
@@ -224,6 +249,7 @@ namespace stretch_ceilings_app.Forms
             this.btnResetFilters.FlatAppearance.BorderSize = 0;
             this.btnResetFilters.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetFilters.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnResetFilters.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.btnResetFilters.Location = new System.Drawing.Point(0, 56);
             this.btnResetFilters.Name = "btnResetFilters";
             this.btnResetFilters.Size = new System.Drawing.Size(130, 56);
@@ -238,6 +264,7 @@ namespace stretch_ceilings_app.Forms
             this.btnAcceptFilters.FlatAppearance.BorderSize = 0;
             this.btnAcceptFilters.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAcceptFilters.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnAcceptFilters.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.btnAcceptFilters.Location = new System.Drawing.Point(0, 0);
             this.btnAcceptFilters.Name = "btnAcceptFilters";
             this.btnAcceptFilters.Size = new System.Drawing.Size(130, 56);
@@ -246,18 +273,6 @@ namespace stretch_ceilings_app.Forms
             this.btnAcceptFilters.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAcceptFilters.UseVisualStyleBackColor = true;
             // 
-            // cbRows
-            // 
-            this.cbRows.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbRows.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbRows.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbRows.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cbRows.FormattingEnabled = true;
-            this.cbRows.Location = new System.Drawing.Point(993, 5);
-            this.cbRows.Name = "cbRows";
-            this.cbRows.Size = new System.Drawing.Size(55, 32);
-            this.cbRows.TabIndex = 98;
-            // 
             // CustomersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -265,15 +280,16 @@ namespace stretch_ceilings_app.Forms
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(42)))), ((int)(((byte)(54)))));
             this.ClientSize = new System.Drawing.Size(1184, 561);
             this.Controls.Add(this.panelPages);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvCustomers);
             this.Controls.Add(this.panelFilters);
             this.Controls.Add(this.panelButtons);
-            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.ForeColor = System.Drawing.Color.Black;
             this.MinimumSize = new System.Drawing.Size(1200, 600);
             this.Name = "CustomersForm";
+            this.Load += new System.EventHandler(this.CustomersForm_Load);
             this.panelPages.ResumeLayout(false);
             this.panelPages.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).EndInit();
             this.panelFilters.ResumeLayout(false);
             this.panelFilters.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudId)).EndInit();
@@ -289,7 +305,7 @@ namespace stretch_ceilings_app.Forms
         private System.Windows.Forms.Button btnPreviousPage;
         private System.Windows.Forms.TextBox tbPages;
         private System.Windows.Forms.Button btnNextPage;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvCustomers;
         private System.Windows.Forms.Panel panelFilters;
         private System.Windows.Forms.MaskedTextBox mtbPhoneNumber;
         private System.Windows.Forms.NumericUpDown nudId;

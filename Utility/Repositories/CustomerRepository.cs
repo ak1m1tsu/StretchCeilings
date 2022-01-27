@@ -7,35 +7,47 @@ namespace stretch_ceilings_app.Utility.Repositories
 {
     public static class CustomerRepository
     {
-        public static List<Customer> GetCustomers(out int rows)
+        public static List<Customer> GetAll(out int rows)
         {
             using (var db = new StretchCeilingsContext())
             {
-                var customers = db.Customers.Where(o => o.DateDeleted == null).ToList();
+                var queryable = db.Customers.Where(x => x.DateDeleted == null);
                 rows = 0;
-                if (customers.Any())
-                {
-                    rows = customers.Count;
-                }
 
-                return customers;
+                if (queryable.Any())
+                    rows = queryable.Count();
+
+                return queryable.ToList();
             }
         }
 
-        public static List<Customer> GetOrders(Customer filter, int count, int page, out int rows)
+        public static List<Customer> GetAll(Customer filter, int count, int page, out int rows)
         {
             using (var db = new StretchCeilingsContext())
             {
-                var customers = db.Customers.Where(o => o.Equals(filter)).ToList();
+                var queryable = db.Customers.Where(x => x.DateDeleted == null);
                 rows = 0;
 
-                if (customers.Any())
+                if (filter.Id != 0)
                 {
-                    rows = customers.Count;
-                    customers = customers.Skip((page - 1) * count).Take(count).ToList();
+                    queryable = queryable.Where(x => x.Id == filter.Id);
+                }
+                else
+                {
+                    queryable = filter.FullName != null
+                        ? queryable.Where(x => x.FullName.Contains(filter.FullName))
+                        : queryable;
+
+                    queryable = filter.PhoneNumber != null
+                        ? queryable.Where(x => x.PhoneNumber == filter.PhoneNumber)
+                        : queryable;
                 }
 
-                return customers;
+                if (!queryable.Any())
+                    return queryable.ToList();
+
+                rows = queryable.Count();
+                return queryable.ToList().Skip((page - 1) * count).Take(count).ToList();
             }
         }
 

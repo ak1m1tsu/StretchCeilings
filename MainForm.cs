@@ -32,9 +32,6 @@ namespace stretch_ceilings_app
 
         private void DrawNavigationButtons()
         {
-            var btnManufacturerOrders = new FlatButton("btnManufacturerOrders", "Заказы для производителей");
-            btnManufacturerOrders.Click += btnManufacturerOrders_Click;
-
             var btnManufacturers = new FlatButton("btnManufacturers", "Производители");
             btnManufacturers.Click += btnManufacturers_Click;
 
@@ -55,8 +52,7 @@ namespace stretch_ceilings_app
 
             var buttons = new Button[]
             {
-                btnOrders, btnCustomers, btnEmployes, btnServices, 
-                btnAdditionalService, btnManufacturers, btnManufacturerOrders
+                btnOrders, btnCustomers, btnEmployes, btnServices, btnAdditionalService, btnManufacturers
             }.Reverse().ToArray();
 
             panelNav.Controls.AddRange(buttons);
@@ -96,11 +92,6 @@ namespace stretch_ceilings_app
         private void btnManufacturers_Click(object sender, EventArgs e)
         {
             OpenChildForm(new ManufacturersForm());
-        }
-
-        private void btnManufacturerOrders_Click(object sender, EventArgs e)
-        {
-            OpenChildForm(new ManufacturerOrdersForm());
         }
 
         private void btnAdditionalService_Click(object sender, EventArgs e)

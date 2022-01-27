@@ -1,6 +1,6 @@
 ﻿namespace stretch_ceilings_app.Utility.Enums
 {
-    public enum CeilingTexture
+    public enum TextureType
     {
         Matte = 0,
         Glossy,

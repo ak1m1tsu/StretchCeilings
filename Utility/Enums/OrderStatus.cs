@@ -2,13 +2,13 @@
 {
     public enum OrderStatus
     {
-        WaitingForMeasurements = 0,
+        Unknown = 0,
+        WaitingForMeasurements,
         WaitingForCustomerAnswer,
         WaitingForPaid,
         WaitingForCeilings,
         WaitingForExecution,
         Canceled,
         Finished,
-        Unknown
     }
 }

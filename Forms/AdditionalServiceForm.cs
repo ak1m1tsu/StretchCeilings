@@ -27,7 +27,7 @@ namespace stretch_ceilings_app.Forms
 
         private void SetUpForm()
         {
-            if (UserSession.Can(PermissionCode.EditService) || UserSession.IsAdmin())
+            if (UserSession.Can(PermissionCode.EditService) || UserSession.IsAdmin)
                 btnChange.Visible = true;
 
             lblNameValue.Text = _currentService?.Name;

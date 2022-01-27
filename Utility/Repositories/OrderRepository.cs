@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using stretch_ceilings_app.Data;
 using stretch_ceilings_app.Data.Models;
@@ -8,7 +9,7 @@ namespace stretch_ceilings_app.Utility.Repositories
 {
     public static class OrderRepository
     {
-        public static List<Order> GetOrders(out int rows)
+        public static List<Order> GetALl(out int rows)
         {
             using (var db = new StretchCeilingsContext())
             {
@@ -24,63 +25,59 @@ namespace stretch_ceilings_app.Utility.Repositories
             }
         }
 
-        public static List<Order> GetOrders(Order firstFilter, Order secondFilter, int count, int page, out int rows)
+        public static List<Order> GetALl(Order firstFilter, Order secondFilter, int count, int page, out int rows)
         {
             using (var db = new StretchCeilingsContext())
             {
-                var orders = db.Orders.Where(o => o.DateDeleted == null).ToList();
+                var orders = db.Orders.Where(o => o.DateDeleted == null);
 
                 if (firstFilter.Id != 0)
-                    orders = orders.Where(o => o.Id == firstFilter.Id).ToList();
+                    orders = orders.Where(o => o.Id == firstFilter.Id);
                 else
                 {
-                    if (firstFilter.DatePlaced != null && secondFilter.DatePlaced != null)
-                    {
-                        orders = orders.Where(o => firstFilter.DatePlaced <= o.DatePlaced && secondFilter.DatePlaced >= o.DatePlaced).ToList();
-                    }
-                    else if (firstFilter.DatePlaced != null)
-                    {
-                        orders = orders.Where(o => firstFilter.DatePlaced <= o.DatePlaced).ToList();
-                    }
-                    else if (secondFilter.DatePlaced != null)
-                    {
-                        orders = orders.Where(o => secondFilter.DatePlaced >= o.DatePlaced).ToList();
-                    }
+                    orders = firstFilter.DatePlaced != null && secondFilter.DatePlaced != null
+                        ? orders.Where(o => firstFilter.DatePlaced <= o.DatePlaced && secondFilter.DatePlaced >= o.DatePlaced)
+                        : orders;
 
-                    if (firstFilter.Total != null && secondFilter.Total != null)
-                    {
-                        orders = orders.Where(o => firstFilter.Total <= o.Total && o.Total <= secondFilter.Total).ToList();
-                    }
-                    else if (firstFilter.Total != null)
-                    {
-                        orders = orders.Where(o => firstFilter.Total <= o.Total).ToList();
-                    }
-                    else if (secondFilter.Total != null)
-                    {
-                        orders = orders.Where(o => o.Total <= secondFilter.Total).ToList();
-                    }
+                    orders = firstFilter.DatePlaced != null
+                        ? orders.Where(o => firstFilter.DatePlaced <= o.DatePlaced)
+                        : orders;
 
-                    if (firstFilter.Status != OrderStatus.Unknown)
-                    {
-                        orders = orders.Where(o => o.Status == firstFilter.Status).ToList();
-                    }
+                    orders = secondFilter.DatePlaced != null
+                        ? orders.Where(o => secondFilter.DatePlaced >= o.DatePlaced)
+                        : orders;
 
-                    if (firstFilter.PaidByCash != null)
-                    {
-                        orders = orders.Where(o => o.PaidByCash == firstFilter.PaidByCash).ToList();
-                    }
+                    orders = firstFilter.Total != null && secondFilter.Total != null
+                        ? orders.Where(o => firstFilter.Total <= o.Total && o.Total <= secondFilter.Total)
+                        : orders;
+
+                    orders = firstFilter.Total != null
+                        ? orders.Where(o => firstFilter.Total <= o.Total)
+                        : orders;
+
+                    orders = secondFilter.Total != null
+                        ? orders.Where(o => o.Total <= secondFilter.Total)
+                        : orders;
+
+                    orders = firstFilter.Status != OrderStatus.Unknown
+                        ? orders.Where(x => x.Status == firstFilter.Status)
+                        : orders;
+
+                    orders = firstFilter.PaidByCash != null
+                        ? orders.Where(o => o.PaidByCash == firstFilter.PaidByCash)
+                        : orders;
                 }
 
                 rows = 0;
 
                 if (orders.Any())
                 {
-                    orders.ForEach(o => db.Entry(o).Reference(r => r.Customer).Load());
-                    rows = orders.Count;
-                    orders = orders.Skip((page - 1) * count).Take(count).ToList();
+                    orders.ForEachAsync(o => db.Entry(o).Reference(r => r.Customer).Load());
+                    rows = orders.Count();
+                    return orders.ToList().Skip((page - 1) * count).Take(count).ToList();
                 }
 
-                return orders;
+                return orders.ToList();
             }
         }
 
