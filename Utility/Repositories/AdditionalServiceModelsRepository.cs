@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using stretch_ceilings_app.Data;
-using stretch_ceilings_app.Data.Models;
+using StretchCeilingsApp.Data;
+using StretchCeilingsApp.Data.Models;
 
-namespace stretch_ceilings_app.Utility.Repositories
+namespace StretchCeilingsApp.Utility.Repositories
 {
-    public static class AdditionalServiceRepository
+    public static class AdditionalServiceModelsRepository
     {
         public static List<AdditionalService> GetAll(out int rows)
         {
             using (var db = new StretchCeilingsContext())
             {
-                var additionalServices = db.AdditionalServices.Where(o => o.DateDeleted == null).ToList();
+                var additionalServices = db.AdditionalServices.Where(o => o.DeletedDate == null).ToList();
                 rows = 0;
 
                 if (additionalServices.Any())
@@ -27,7 +27,7 @@ namespace stretch_ceilings_app.Utility.Repositories
         {
             using (var db = new StretchCeilingsContext())
             {
-                var additionalServices = db.AdditionalServices.Where(s => s.DateDeleted == null).ToList();
+                var additionalServices = db.AdditionalServices.Where(s => s.DeletedDate == null).ToList();
                 rows = 0;
 
                 if (firstFilter.Id != 0)

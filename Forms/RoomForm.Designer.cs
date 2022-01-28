@@ -1,5 +1,5 @@
 ﻿
-namespace stretch_ceilings_app.Forms
+namespace StretchCeilingsApp.Forms
 {
     partial class RoomForm
     {
@@ -29,227 +29,174 @@ namespace stretch_ceilings_app.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.groupBox4.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel6.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.panel5.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.panelTop = new System.Windows.Forms.Panel();
+            this.btnClose = new FontAwesome.Sharp.IconButton();
+            this.panelBody = new System.Windows.Forms.Panel();
+            this.pbPlane = new System.Windows.Forms.PictureBox();
+            this.panelInfo = new System.Windows.Forms.Panel();
+            this.lblCornersValue = new System.Windows.Forms.Label();
+            this.lblTypeValue = new System.Windows.Forms.Label();
+            this.lblAreaValue = new System.Windows.Forms.Label();
+            this.lblCorners = new System.Windows.Forms.Label();
+            this.lblType = new System.Windows.Forms.Label();
+            this.lblArea = new System.Windows.Forms.Label();
+            this.panelTop.SuspendLayout();
+            this.panelBody.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPlane)).BeginInit();
+            this.panelInfo.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox4
+            // panelTop
             // 
-            this.groupBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
-            this.groupBox4.Controls.Add(this.panel2);
-            this.groupBox4.Controls.Add(this.panel1);
-            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.groupBox4.Location = new System.Drawing.Point(0, 0);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(684, 561);
-            this.groupBox4.TabIndex = 4;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Комната №0";
+            this.panelTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
+            this.panelTop.Controls.Add(this.btnClose);
+            this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTop.Location = new System.Drawing.Point(0, 0);
+            this.panelTop.Name = "panelTop";
+            this.panelTop.Size = new System.Drawing.Size(700, 25);
+            this.panelTop.TabIndex = 79;
             // 
-            // panel2
+            // btnClose
             // 
-            this.panel2.Controls.Add(this.panel4);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 158);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(678, 400);
-            this.panel2.TabIndex = 1;
+            this.btnClose.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.IconChar = FontAwesome.Sharp.IconChar.Times;
+            this.btnClose.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.btnClose.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnClose.IconSize = 25;
+            this.btnClose.Location = new System.Drawing.Point(675, 0);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(25, 25);
+            this.btnClose.TabIndex = 2;
+            this.btnClose.UseVisualStyleBackColor = true;
             // 
-            // panel4
+            // panelBody
             // 
-            this.panel4.Controls.Add(this.panel6);
-            this.panel4.Controls.Add(this.panel5);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(678, 400);
-            this.panel4.TabIndex = 1;
+            this.panelBody.Controls.Add(this.pbPlane);
+            this.panelBody.Controls.Add(this.panelInfo);
+            this.panelBody.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelBody.Location = new System.Drawing.Point(0, 25);
+            this.panelBody.Name = "panelBody";
+            this.panelBody.Size = new System.Drawing.Size(700, 575);
+            this.panelBody.TabIndex = 80;
             // 
-            // panel6
+            // pbPlane
             // 
-            this.panel6.Controls.Add(this.groupBox2);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(0, 0);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(549, 400);
-            this.panel6.TabIndex = 1;
+            this.pbPlane.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pbPlane.Location = new System.Drawing.Point(0, 100);
+            this.pbPlane.Name = "pbPlane";
+            this.pbPlane.Size = new System.Drawing.Size(700, 475);
+            this.pbPlane.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbPlane.TabIndex = 6;
+            this.pbPlane.TabStop = false;
             // 
-            // groupBox2
+            // panelInfo
             // 
-            this.groupBox2.Controls.Add(this.pictureBox2);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(0, 0);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(549, 400);
-            this.groupBox2.TabIndex = 0;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "План";
+            this.panelInfo.Controls.Add(this.lblCornersValue);
+            this.panelInfo.Controls.Add(this.lblTypeValue);
+            this.panelInfo.Controls.Add(this.lblAreaValue);
+            this.panelInfo.Controls.Add(this.lblCorners);
+            this.panelInfo.Controls.Add(this.lblType);
+            this.panelInfo.Controls.Add(this.lblArea);
+            this.panelInfo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelInfo.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.panelInfo.Location = new System.Drawing.Point(0, 0);
+            this.panelInfo.Name = "panelInfo";
+            this.panelInfo.Size = new System.Drawing.Size(700, 100);
+            this.panelInfo.TabIndex = 5;
             // 
-            // pictureBox2
+            // lblCornersValue
             // 
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox2.Location = new System.Drawing.Point(3, 25);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(543, 372);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 0;
-            this.pictureBox2.TabStop = false;
+            this.lblCornersValue.AutoSize = true;
+            this.lblCornersValue.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.lblCornersValue.Location = new System.Drawing.Point(116, 63);
+            this.lblCornersValue.Name = "lblCornersValue";
+            this.lblCornersValue.Size = new System.Drawing.Size(19, 23);
+            this.lblCornersValue.TabIndex = 20;
+            this.lblCornersValue.Text = "4";
             // 
-            // panel5
+            // lblTypeValue
             // 
-            this.panel5.Controls.Add(this.button3);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel5.Location = new System.Drawing.Point(549, 0);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(129, 400);
-            this.panel5.TabIndex = 0;
+            this.lblTypeValue.AutoSize = true;
+            this.lblTypeValue.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.lblTypeValue.Location = new System.Drawing.Point(116, 33);
+            this.lblTypeValue.Name = "lblTypeValue";
+            this.lblTypeValue.Size = new System.Drawing.Size(39, 23);
+            this.lblTypeValue.TabIndex = 19;
+            this.lblTypeValue.Text = "Нет";
             // 
-            // button3
+            // lblAreaValue
             // 
-            this.button3.BackColor = System.Drawing.Color.Black;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(5, 5);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(120, 30);
-            this.button3.TabIndex = 44;
-            this.button3.Text = "Изменить";
-            this.button3.UseVisualStyleBackColor = false;
+            this.lblAreaValue.AutoSize = true;
+            this.lblAreaValue.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.lblAreaValue.Location = new System.Drawing.Point(116, 3);
+            this.lblAreaValue.Name = "lblAreaValue";
+            this.lblAreaValue.Size = new System.Drawing.Size(19, 23);
+            this.lblAreaValue.TabIndex = 18;
+            this.lblAreaValue.Text = "0";
             // 
-            // panel1
+            // lblCorners
             // 
-            this.panel1.Controls.Add(this.textBox3);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.comboBox1);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(3, 25);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(678, 133);
-            this.panel1.TabIndex = 0;
+            this.lblCorners.AutoSize = true;
+            this.lblCorners.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.lblCorners.Location = new System.Drawing.Point(3, 63);
+            this.lblCorners.Name = "lblCorners";
+            this.lblCorners.Size = new System.Drawing.Size(114, 23);
+            this.lblCorners.TabIndex = 17;
+            this.lblCorners.Text = "Кол-во углов:";
             // 
-            // textBox3
+            // lblType
             // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.textBox3.Location = new System.Drawing.Point(147, 89);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(105, 29);
-            this.textBox3.TabIndex = 18;
-            this.textBox3.Text = "4";
+            this.lblType.AutoSize = true;
+            this.lblType.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.lblType.Location = new System.Drawing.Point(3, 33);
+            this.lblType.Name = "lblType";
+            this.lblType.Size = new System.Drawing.Size(43, 23);
+            this.lblType.TabIndex = 13;
+            this.lblType.Text = "Тип:";
             // 
-            // label4
+            // lblArea
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label4.Location = new System.Drawing.Point(15, 92);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(131, 24);
-            this.label4.TabIndex = 17;
-            this.label4.Text = "Кол-во углов:";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(147, 50);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(161, 32);
-            this.comboBox1.TabIndex = 14;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label1.Location = new System.Drawing.Point(15, 53);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 24);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "Тип:";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.textBox1.Location = new System.Drawing.Point(147, 13);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(115, 29);
-            this.textBox1.TabIndex = 12;
-            this.textBox1.Text = "12.2";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label2.Location = new System.Drawing.Point(15, 16);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(95, 24);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "Площадь:";
+            this.lblArea.AutoSize = true;
+            this.lblArea.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.lblArea.Location = new System.Drawing.Point(3, 3);
+            this.lblArea.Name = "lblArea";
+            this.lblArea.Size = new System.Drawing.Size(86, 23);
+            this.lblArea.TabIndex = 11;
+            this.lblArea.Text = "Площадь:";
             // 
             // RoomForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(684, 561);
-            this.Controls.Add(this.groupBox4);
-            this.MinimumSize = new System.Drawing.Size(700, 600);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(42)))), ((int)(((byte)(54)))));
+            this.ClientSize = new System.Drawing.Size(700, 600);
+            this.Controls.Add(this.panelBody);
+            this.Controls.Add(this.panelTop);
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "RoomForm";
-            this.groupBox4.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel6.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.panel5.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panelTop.ResumeLayout(false);
+            this.panelBody.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbPlane)).EndInit();
+            this.panelInfo.ResumeLayout(false);
+            this.panelInfo.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel panelTop;
+        private FontAwesome.Sharp.IconButton btnClose;
+        private System.Windows.Forms.Panel panelBody;
+        private System.Windows.Forms.Panel panelInfo;
+        private System.Windows.Forms.Label lblCorners;
+        private System.Windows.Forms.Label lblType;
+        private System.Windows.Forms.Label lblArea;
+        private System.Windows.Forms.PictureBox pbPlane;
+        private System.Windows.Forms.Label lblCornersValue;
+        private System.Windows.Forms.Label lblTypeValue;
+        private System.Windows.Forms.Label lblAreaValue;
     }
 }

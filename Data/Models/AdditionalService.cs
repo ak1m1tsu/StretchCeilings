@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace stretch_ceilings_app.Data.Models
+namespace StretchCeilingsApp.Data.Models
 {
     [Table("AdditionalServices")]
     public class AdditionalService
@@ -12,7 +12,7 @@ namespace stretch_ceilings_app.Data.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public decimal? Price { get; set; }
-        public DateTime? DateDeleted { get; set; }
+        public DateTime? DeletedDate { get; set; }
 
         public void Add()
         {
@@ -37,7 +37,7 @@ namespace stretch_ceilings_app.Data.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                DateDeleted = DateTime.Now;
+                DeletedDate = DateTime.Now;
                 var old = db.AdditionalServices.Find(Id);
                 db.Entry(old).CurrentValues.SetValues(this);
                 db.SaveChanges();

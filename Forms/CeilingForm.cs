@@ -1,12 +1,12 @@
 ﻿using System.Windows.Forms;
-using stretch_ceilings_app.Data.Models;
-using stretch_ceilings_app.Utility.Extensions;
+using StretchCeilingsApp.Data.Models;
+using StretchCeilingsApp.Utility.Extensions;
 
-namespace stretch_ceilings_app.Forms
+namespace StretchCeilingsApp.Forms
 {
     public partial class CeilingForm : Form
     {
-        private readonly Ceiling _ceiling;
+        private Ceiling _ceiling;
 
         public CeilingForm(Ceiling ceiling)
         {
@@ -16,14 +16,19 @@ namespace stretch_ceilings_app.Forms
 
         private void SetUpForm()
         {
-            lblTextureValue.Text = _ceiling.TextureType.ParseString();
-            lblColorTypeValue.Text = _ceiling.ColorType.ParseString();
+            lblTextureValue.Text = _ceiling.TextureType?.ParseString();
+            lblColorTypeValue.Text = _ceiling.ColorType?.ParseString();
             lblPriceValue.Text = _ceiling.Price.ToString();
         }
 
         private void OpenEditForm()
         {
-            new CeilingFormEdit(_ceiling).ShowDialog();
+            var form = new CeilingFormEdit(_ceiling);
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                _ceiling = form.Ceiling;
+                SetUpForm();
+            }
         }
 
         private void CeilingForm_Load(object sender, System.EventArgs e)
@@ -33,7 +38,7 @@ namespace stretch_ceilings_app.Forms
 
         private void btnEditInfo_Click(object sender, System.EventArgs e)
         {
-
+            OpenEditForm();
         }
     }
 }

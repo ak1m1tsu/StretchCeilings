@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using stretch_ceilings_app.Interfaces.Models;
+using StretchCeilingsApp.Interfaces.Models;
 
-namespace stretch_ceilings_app.Data.Models
+namespace StretchCeilingsApp.Data.Models
 {
     [Table("Services")]
     public class Service : IService
@@ -26,7 +26,7 @@ namespace stretch_ceilings_app.Data.Models
         [Column("RoomId")] 
         public virtual Room Room { get; set; }
         public decimal? Price { get; set; }
-        public DateTime? DateDeleted { get; set; }
+        public DateTime? DeletedDate { get; set; }
 
         public void Add()
         {
@@ -66,7 +66,7 @@ namespace stretch_ceilings_app.Data.Models
             {
                 return db.AdditionalServices.SqlQuery("SELECT AdditionalServices.* FROM AdditionalServices " +
                                                       "INNER JOIN ServiceAdditServices ON ServiceAdditServices.AdditServiceId = AdditionalServices.Id " +
-                                                      $"WHERE ServiceAdditServices.ServiceId = {Id} AND AdditionalServices.DateDeleted IS NULL").ToList();
+                                                      $"WHERE ServiceAdditServices.ServiceId = {Id} AND AdditionalServices.DeletedDate IS NULL").ToList();
             }
         }
 

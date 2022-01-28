@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using stretch_ceilings_app.Interfaces.Models;
+using StretchCeilingsApp.Interfaces.Models;
 
-namespace stretch_ceilings_app.Data.Models
+namespace StretchCeilingsApp.Data.Models
 {
     [Table("Roles")]
     public class Role : IRole
@@ -57,6 +57,7 @@ namespace stretch_ceilings_app.Data.Models
                 var rolePermissions = db.RolePermissions.Where(x => x.RoleId == Id);
                 foreach (var rolePermission in rolePermissions)
                 {
+                    db.Entry(rolePermission).Reference(r => r.Permission).Load();
                     list.Add(rolePermission.Permission);
                 }
 

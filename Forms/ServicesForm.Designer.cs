@@ -1,5 +1,5 @@
 ﻿
-namespace stretch_ceilings_app.Forms
+namespace StretchCeilingsApp.Forms
 {
     partial class ServicesForm
     {
@@ -65,11 +65,11 @@ namespace stretch_ceilings_app.Forms
             this.dgvServices.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.dgvServices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvServices.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvServices.Location = new System.Drawing.Point(0, 114);
+            this.dgvServices.Location = new System.Drawing.Point(0, 100);
             this.dgvServices.Name = "dgvServices";
             this.dgvServices.RowHeadersVisible = false;
             this.dgvServices.RowTemplate.Height = 25;
-            this.dgvServices.Size = new System.Drawing.Size(1054, 409);
+            this.dgvServices.Size = new System.Drawing.Size(1034, 421);
             this.dgvServices.TabIndex = 13;
             this.dgvServices.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvServices_CellClick);
             this.dgvServices.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvServices_CellDoubleClick);
@@ -81,21 +81,23 @@ namespace stretch_ceilings_app.Forms
             this.panelPages.Controls.Add(this.tbPages);
             this.panelPages.Controls.Add(this.btnNext);
             this.panelPages.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelPages.Location = new System.Drawing.Point(0, 523);
+            this.panelPages.Location = new System.Drawing.Point(0, 521);
             this.panelPages.Name = "panelPages";
-            this.panelPages.Size = new System.Drawing.Size(1054, 38);
+            this.panelPages.Size = new System.Drawing.Size(1034, 40);
             this.panelPages.TabIndex = 12;
             // 
             // cbRows
             // 
             this.cbRows.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbRows.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.cbRows.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbRows.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbRows.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cbRows.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.cbRows.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.cbRows.FormattingEnabled = true;
-            this.cbRows.Location = new System.Drawing.Point(993, 3);
+            this.cbRows.Location = new System.Drawing.Point(973, 3);
             this.cbRows.Name = "cbRows";
-            this.cbRows.Size = new System.Drawing.Size(55, 32);
+            this.cbRows.Size = new System.Drawing.Size(55, 31);
             this.cbRows.TabIndex = 98;
             this.cbRows.SelectedIndexChanged += new System.EventHandler(this.cbRows_SelectedIndexChanged);
             // 
@@ -104,11 +106,11 @@ namespace stretch_ceilings_app.Forms
             this.btnPrevious.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.btnPrevious.FlatAppearance.BorderSize = 0;
             this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrevious.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnPrevious.Font = new System.Drawing.Font("Open Sans", 12F);
             this.btnPrevious.ForeColor = System.Drawing.Color.White;
             this.btnPrevious.Location = new System.Drawing.Point(6, 4);
             this.btnPrevious.Name = "btnPrevious";
-            this.btnPrevious.Size = new System.Drawing.Size(30, 29);
+            this.btnPrevious.Size = new System.Drawing.Size(31, 31);
             this.btnPrevious.TabIndex = 90;
             this.btnPrevious.Text = "<";
             this.btnPrevious.UseVisualStyleBackColor = false;
@@ -118,9 +120,9 @@ namespace stretch_ceilings_app.Forms
             // 
             this.tbPages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.tbPages.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbPages.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.tbPages.Font = new System.Drawing.Font("Open Sans", 12F);
             this.tbPages.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.tbPages.Location = new System.Drawing.Point(42, 4);
+            this.tbPages.Location = new System.Drawing.Point(38, 5);
             this.tbPages.Name = "tbPages";
             this.tbPages.ReadOnly = true;
             this.tbPages.Size = new System.Drawing.Size(80, 29);
@@ -132,11 +134,11 @@ namespace stretch_ceilings_app.Forms
             this.btnNext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.btnNext.FlatAppearance.BorderSize = 0;
             this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnNext.Font = new System.Drawing.Font("Open Sans", 12F);
             this.btnNext.ForeColor = System.Drawing.Color.White;
-            this.btnNext.Location = new System.Drawing.Point(128, 4);
+            this.btnNext.Location = new System.Drawing.Point(120, 4);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(30, 29);
+            this.btnNext.Size = new System.Drawing.Size(31, 31);
             this.btnNext.TabIndex = 88;
             this.btnNext.Text = ">";
             this.btnNext.UseVisualStyleBackColor = false;
@@ -155,18 +157,18 @@ namespace stretch_ceilings_app.Forms
             this.panelFilters.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelFilters.Location = new System.Drawing.Point(0, 0);
             this.panelFilters.Name = "panelFilters";
-            this.panelFilters.Size = new System.Drawing.Size(1054, 114);
+            this.panelFilters.Size = new System.Drawing.Size(1034, 100);
             this.panelFilters.TabIndex = 11;
             // 
             // linkLblManufacturer
             // 
             this.linkLblManufacturer.AutoSize = true;
-            this.linkLblManufacturer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.linkLblManufacturer.Font = new System.Drawing.Font("Open Sans", 12F);
             this.linkLblManufacturer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.linkLblManufacturer.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.linkLblManufacturer.Location = new System.Drawing.Point(172, 9);
+            this.linkLblManufacturer.Location = new System.Drawing.Point(146, 5);
             this.linkLblManufacturer.Name = "linkLblManufacturer";
-            this.linkLblManufacturer.Size = new System.Drawing.Size(44, 24);
+            this.linkLblManufacturer.Size = new System.Drawing.Size(39, 23);
             this.linkLblManufacturer.TabIndex = 98;
             this.linkLblManufacturer.TabStop = true;
             this.linkLblManufacturer.Text = "Нет";
@@ -174,9 +176,11 @@ namespace stretch_ceilings_app.Forms
             // 
             // nudTotalTo
             // 
+            this.nudTotalTo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.nudTotalTo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.nudTotalTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nudTotalTo.Location = new System.Drawing.Point(341, 81);
+            this.nudTotalTo.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.nudTotalTo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.nudTotalTo.Location = new System.Drawing.Point(311, 67);
             this.nudTotalTo.Name = "nudTotalTo";
             this.nudTotalTo.Size = new System.Drawing.Size(122, 29);
             this.nudTotalTo.TabIndex = 97;
@@ -185,9 +189,11 @@ namespace stretch_ceilings_app.Forms
             // 
             // nudTotalFrom
             // 
+            this.nudTotalFrom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.nudTotalFrom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.nudTotalFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nudTotalFrom.Location = new System.Drawing.Point(176, 81);
+            this.nudTotalFrom.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.nudTotalFrom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.nudTotalFrom.Location = new System.Drawing.Point(146, 67);
             this.nudTotalFrom.Name = "nudTotalFrom";
             this.nudTotalFrom.Size = new System.Drawing.Size(115, 29);
             this.nudTotalFrom.TabIndex = 96;
@@ -197,10 +203,10 @@ namespace stretch_ceilings_app.Forms
             // lblCeiling
             // 
             this.lblCeiling.AutoSize = true;
-            this.lblCeiling.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lblCeiling.Location = new System.Drawing.Point(12, 46);
+            this.lblCeiling.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.lblCeiling.Location = new System.Drawing.Point(3, 35);
             this.lblCeiling.Name = "lblCeiling";
-            this.lblCeiling.Size = new System.Drawing.Size(90, 24);
+            this.lblCeiling.Size = new System.Drawing.Size(81, 23);
             this.lblCeiling.TabIndex = 64;
             this.lblCeiling.Text = "Потолок:";
             // 
@@ -212,42 +218,45 @@ namespace stretch_ceilings_app.Forms
             "Ожидает результатов замеров",
             "Отменен",
             "Завершен"});
+            this.cbCeiling.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.cbCeiling.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCeiling.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.cbCeiling.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbCeiling.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.cbCeiling.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.cbCeiling.FormattingEnabled = true;
-            this.cbCeiling.Location = new System.Drawing.Point(176, 43);
+            this.cbCeiling.Location = new System.Drawing.Point(146, 33);
             this.cbCeiling.Name = "cbCeiling";
-            this.cbCeiling.Size = new System.Drawing.Size(287, 32);
+            this.cbCeiling.Size = new System.Drawing.Size(287, 31);
             this.cbCeiling.TabIndex = 63;
             this.cbCeiling.SelectedIndexChanged += new System.EventHandler(this.cbCeiling_SelectedIndexChanged);
             // 
             // lblManufacturer
             // 
             this.lblManufacturer.AutoSize = true;
-            this.lblManufacturer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lblManufacturer.Location = new System.Drawing.Point(12, 9);
+            this.lblManufacturer.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.lblManufacturer.Location = new System.Drawing.Point(3, 5);
             this.lblManufacturer.Name = "lblManufacturer";
-            this.lblManufacturer.Size = new System.Drawing.Size(158, 24);
+            this.lblManufacturer.Size = new System.Drawing.Size(137, 23);
             this.lblManufacturer.TabIndex = 61;
             this.lblManufacturer.Text = "Производитель:";
             // 
             // lblPriceTo
             // 
             this.lblPriceTo.AutoSize = true;
-            this.lblPriceTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lblPriceTo.Location = new System.Drawing.Point(297, 83);
+            this.lblPriceTo.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.lblPriceTo.Location = new System.Drawing.Point(270, 69);
             this.lblPriceTo.Name = "lblPriceTo";
-            this.lblPriceTo.Size = new System.Drawing.Size(38, 24);
+            this.lblPriceTo.Size = new System.Drawing.Size(33, 23);
             this.lblPriceTo.TabIndex = 41;
             this.lblPriceTo.Text = "до:";
             // 
             // lblPriceFrom
             // 
             this.lblPriceFrom.AutoSize = true;
-            this.lblPriceFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lblPriceFrom.Location = new System.Drawing.Point(12, 82);
+            this.lblPriceFrom.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.lblPriceFrom.Location = new System.Drawing.Point(3, 69);
             this.lblPriceFrom.Name = "lblPriceFrom";
-            this.lblPriceFrom.Size = new System.Drawing.Size(85, 24);
+            this.lblPriceFrom.Size = new System.Drawing.Size(76, 23);
             this.lblPriceFrom.TabIndex = 39;
             this.lblPriceFrom.Text = "Цена от:";
             // 
@@ -256,17 +265,17 @@ namespace stretch_ceilings_app.Forms
             this.panelButtons.Controls.Add(this.panelUserButtons);
             this.panelButtons.Controls.Add(this.panelFilterButtons);
             this.panelButtons.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelButtons.Location = new System.Drawing.Point(1054, 0);
+            this.panelButtons.Location = new System.Drawing.Point(1034, 0);
             this.panelButtons.Name = "panelButtons";
-            this.panelButtons.Size = new System.Drawing.Size(130, 561);
+            this.panelButtons.Size = new System.Drawing.Size(150, 561);
             this.panelButtons.TabIndex = 10;
             // 
             // panelUserButtons
             // 
             this.panelUserButtons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelUserButtons.Location = new System.Drawing.Point(0, 114);
+            this.panelUserButtons.Location = new System.Drawing.Point(0, 100);
             this.panelUserButtons.Name = "panelUserButtons";
-            this.panelUserButtons.Size = new System.Drawing.Size(130, 447);
+            this.panelUserButtons.Size = new System.Drawing.Size(150, 461);
             this.panelUserButtons.TabIndex = 2;
             // 
             // panelFilterButtons
@@ -276,7 +285,7 @@ namespace stretch_ceilings_app.Forms
             this.panelFilterButtons.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelFilterButtons.Location = new System.Drawing.Point(0, 0);
             this.panelFilterButtons.Name = "panelFilterButtons";
-            this.panelFilterButtons.Size = new System.Drawing.Size(130, 114);
+            this.panelFilterButtons.Size = new System.Drawing.Size(150, 100);
             this.panelFilterButtons.TabIndex = 0;
             // 
             // btnResetFilters
@@ -284,10 +293,10 @@ namespace stretch_ceilings_app.Forms
             this.btnResetFilters.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnResetFilters.FlatAppearance.BorderSize = 0;
             this.btnResetFilters.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnResetFilters.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.btnResetFilters.Location = new System.Drawing.Point(0, 56);
+            this.btnResetFilters.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.btnResetFilters.Location = new System.Drawing.Point(0, 50);
             this.btnResetFilters.Name = "btnResetFilters";
-            this.btnResetFilters.Size = new System.Drawing.Size(130, 58);
+            this.btnResetFilters.Size = new System.Drawing.Size(150, 50);
             this.btnResetFilters.TabIndex = 10;
             this.btnResetFilters.Text = "Сбросить";
             this.btnResetFilters.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -299,10 +308,10 @@ namespace stretch_ceilings_app.Forms
             this.btnUseFilters.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnUseFilters.FlatAppearance.BorderSize = 0;
             this.btnUseFilters.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUseFilters.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnUseFilters.Font = new System.Drawing.Font("Open Sans", 12F);
             this.btnUseFilters.Location = new System.Drawing.Point(0, 0);
             this.btnUseFilters.Name = "btnUseFilters";
-            this.btnUseFilters.Size = new System.Drawing.Size(130, 56);
+            this.btnUseFilters.Size = new System.Drawing.Size(150, 50);
             this.btnUseFilters.TabIndex = 9;
             this.btnUseFilters.Text = "Применить";
             this.btnUseFilters.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -320,7 +329,7 @@ namespace stretch_ceilings_app.Forms
             this.Controls.Add(this.panelFilters);
             this.Controls.Add(this.panelButtons);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.MinimumSize = new System.Drawing.Size(1053, 600);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ServicesForm";
             this.Load += new System.EventHandler(this.ServicesForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvServices)).EndInit();

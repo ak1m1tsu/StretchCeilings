@@ -1,9 +1,9 @@
-﻿using stretch_ceilings_app.Utility;
-using System;
+﻿using System;
 using System.Threading;
 using System.Windows.Forms;
+using StretchCeilingsApp.Utility;
 
-namespace stretch_ceilings_app
+namespace StretchCeilingsApp
 {
     public static class Program
     {

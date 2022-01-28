@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using stretch_ceilings_app.Data;
-using stretch_ceilings_app.Data.Models;
-using stretch_ceilings_app.Utility.Enums;
+using StretchCeilingsApp.Data;
+using StretchCeilingsApp.Data.Models;
+using StretchCeilingsApp.Utility.Enums;
 
-namespace stretch_ceilings_app.Utility
+namespace StretchCeilingsApp.Utility
 {
     public static class UserSession
     {

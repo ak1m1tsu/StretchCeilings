@@ -1,19 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using stretch_ceilings_app.Data;
-using stretch_ceilings_app.Data.Models;
-using stretch_ceilings_app.Utility.Enums;
+using StretchCeilingsApp.Data;
+using StretchCeilingsApp.Data.Models;
+using StretchCeilingsApp.Utility.Enums;
 
-namespace stretch_ceilings_app.Utility.Repositories
+namespace StretchCeilingsApp.Utility.Repositories
 {
-    public static class OrderRepository
+    public static class OrderModelsRepository
     {
         public static List<Order> GetALl(out int rows)
         {
             using (var db = new StretchCeilingsContext())
             {
-                var orders = db.Orders.Where(o => o.DateDeleted == null).ToList();
+                var orders = db.Orders.Where(o => o.DeletedDate == null).ToList();
                 rows = 0;
                 if (orders.Any())
                 {
@@ -29,7 +29,7 @@ namespace stretch_ceilings_app.Utility.Repositories
         {
             using (var db = new StretchCeilingsContext())
             {
-                var orders = db.Orders.Where(o => o.DateDeleted == null);
+                var orders = db.Orders.Where(o => o.DeletedDate == null);
 
                 if (firstFilter.Id != 0)
                     orders = orders.Where(o => o.Id == firstFilter.Id);

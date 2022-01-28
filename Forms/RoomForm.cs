@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace stretch_ceilings_app.Forms
+namespace StretchCeilingsApp.Forms
 {
     public partial class RoomForm : Form
     {

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using stretch_ceilings_app.Interfaces.Models;
-using stretch_ceilings_app.Utility.Enums;
+using StretchCeilingsApp.Interfaces.Models;
+using StretchCeilingsApp.Utility.Enums;
 
-namespace stretch_ceilings_app.Data.Models
+namespace StretchCeilingsApp.Data.Models
 {
     [Table("Orders")]
     public class Order : IOrder
@@ -22,9 +22,9 @@ namespace stretch_ceilings_app.Data.Models
         public DateTime? DateOfMeasurements { get; set; }
         public DateTime? DatePaid { get; set; }
         public DateTime? DateCanceled { get; set; }
-        public DateTime? DateDeleted { get; set; }
+        public DateTime? DeletedDate { get; set; }
         public bool? PaidByCash { get; set; }
-        public OrderStatus Status { get; set; }
+        public OrderStatus? Status { get; set; }
         public decimal? Total { get; set; }
 
         public List<DateTime?> GetWorkdays()
@@ -71,7 +71,7 @@ namespace stretch_ceilings_app.Data.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                DateDeleted = DateTime.Now;
+                DeletedDate = DateTime.Now;
                 var order = db.Orders.Find(Id);
                 db.Entry(order).CurrentValues.SetValues(this);
                 db.SaveChanges();
@@ -92,7 +92,7 @@ namespace stretch_ceilings_app.Data.Models
             {
                 var services = db.Services.SqlQuery("SELECT Services.* FROM Services " +
                                                      "INNER JOIN OrderServices ON OrderServices.ServiceId = Services.Id " +
-                                                     $"WHERE OrderServices.OrderId = {Id} AND Services.DateDeleted IS NULL").ToList();
+                                                     $"WHERE OrderServices.OrderId = {Id} AND Services.DeletedDate IS NULL").ToList();
 
                 if (services.Any())
                 {
@@ -110,7 +110,7 @@ namespace stretch_ceilings_app.Data.Models
             {
                 var employees = db.Employees.SqlQuery("SELECT Employees.* FROM Employees " +
                                                       "INNER JOIN OrderEmployees ON OrderEmployees.EmployeeId = Employees.Id " +
-                                                      $"WHERE OrderEmployees.OrderId = {Id} AND Employees.DateDeleted IS NULL").ToList();
+                                                      $"WHERE OrderEmployees.OrderId = {Id} AND Employees.DeletedDate IS NULL").ToList();
 
                 if (employees.Any())
                 {

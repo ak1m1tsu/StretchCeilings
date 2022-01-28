@@ -1,4 +1,4 @@
-﻿namespace stretch_ceilings_app.Migrations
+﻿namespace StretchCeilingsApp.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
@@ -14,7 +14,7 @@
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(maxLength: 2147483647),
                         Price = c.Decimal(precision: 18, scale: 2),
-                        DateDeleted = c.DateTime(),
+                        DeletedDate = c.DateTime(),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -25,10 +25,10 @@
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(maxLength: 2147483647),
                         ManufacturerId = c.Int(),
-                        TextureType = c.Int(nullable: false),
-                        ColorType = c.Int(nullable: false),
-                        Price = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        DateDeleted = c.DateTime(),
+                        TextureType = c.Int(),
+                        ColorType = c.Int(),
+                        Price = c.Decimal(precision: 18, scale: 2),
+                        DeletedDate = c.DateTime(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Manufacturers", t => t.ManufacturerId)
@@ -40,9 +40,9 @@
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false, maxLength: 2147483647),
-                        Country = c.Int(nullable: false),
+                        Country = c.Int(),
                         Address = c.String(nullable: false, maxLength: 2147483647),
-                        DateDeleted = c.DateTime(),
+                        DeletedDate = c.DateTime(),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -53,7 +53,7 @@
                         Id = c.Int(nullable: false, identity: true),
                         FullName = c.String(maxLength: 2147483647),
                         PhoneNumber = c.String(maxLength: 2147483647),
-                        DateDeleted = c.DateTime(),
+                        DeletedDate = c.DateTime(),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -66,7 +66,7 @@
                         Login = c.String(nullable: false, maxLength: 2147483647),
                         Password = c.String(nullable: false, maxLength: 2147483647),
                         RoleId = c.Int(),
-                        DateDeleted = c.DateTime(),
+                        DeletedDate = c.DateTime(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Roles", t => t.RoleId)
@@ -88,7 +88,7 @@
                         Id = c.Int(nullable: false, identity: true),
                         Address = c.String(nullable: false, maxLength: 2147483647),
                         CustomerId = c.Int(),
-                        DateDeleted = c.DateTime(),
+                        DeletedDate = c.DateTime(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Customers", t => t.CustomerId)
@@ -102,7 +102,7 @@
                         OrderId = c.Int(),
                         Comment = c.String(nullable: false, maxLength: 2147483647),
                         DateCreated = c.DateTime(),
-                        DateDeleted = c.DateTime(),
+                        DeletedDate = c.DateTime(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Orders", t => t.OrderId)
@@ -118,9 +118,9 @@
                         DateOfMeasurements = c.DateTime(),
                         DatePaid = c.DateTime(),
                         DateCanceled = c.DateTime(),
-                        DateDeleted = c.DateTime(),
+                        DeletedDate = c.DateTime(),
                         PaidByCash = c.Boolean(),
-                        Status = c.Int(nullable: false),
+                        Status = c.Int(),
                         Total = c.Decimal(precision: 18, scale: 2),
                     })
                 .PrimaryKey(t => t.Id)
@@ -162,7 +162,7 @@
                         CeilingId = c.Int(),
                         RoomId = c.Int(),
                         Price = c.Decimal(precision: 18, scale: 2),
-                        DateDeleted = c.DateTime(),
+                        DeletedDate = c.DateTime(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Ceilings", t => t.CeilingId)
@@ -178,10 +178,10 @@
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Area = c.Int(nullable: false),
-                        Type = c.Int(nullable: false),
+                        Type = c.Int(),
                         Corners = c.Int(nullable: false),
                         EstateId = c.Int(),
-                        DateDeleted = c.DateTime(),
+                        DeletedDate = c.DateTime(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Estates", t => t.EstateId)
@@ -231,7 +231,7 @@
                         Date = c.DateTime(),
                         TimeStart = c.DateTime(),
                         TimeEnd = c.DateTime(),
-                        DateDeleted = c.DateTime(),
+                        DeletedDate = c.DateTime(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Employees", t => t.EmployeeId)

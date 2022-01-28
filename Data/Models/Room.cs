@@ -1,10 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using stretch_ceilings_app.Interfaces.Models;
-using stretch_ceilings_app.Utility.Enums;
+using StretchCeilingsApp.Interfaces.Models;
+using StretchCeilingsApp.Utility.Enums;
 
-namespace stretch_ceilings_app.Data.Models
+namespace StretchCeilingsApp.Data.Models
 {
     [Table("Rooms")]
     public class Room : IRoom
@@ -13,13 +13,13 @@ namespace stretch_ceilings_app.Data.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public int Area { get; set; }
-        public RoomType Type { get; set; }
+        public RoomType? Type { get; set; }
         public int Corners { get; set; }
         [Column("EstateId")]
         public int? EstateId { get; set; }
         [Column("EstateId")]
         public virtual Estate Estate { get; set; }
-        public DateTime? DateDeleted { get; set; }
+        public DateTime? DeletedDate { get; set; }
 
         public void Add()
         {
@@ -34,7 +34,7 @@ namespace stretch_ceilings_app.Data.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                db.Entry(this.Id).CurrentValues.SetValues(DateDeleted = DateTime.Now);
+                db.Entry(this.Id).CurrentValues.SetValues(DeletedDate = DateTime.Now);
                 db.SaveChanges();
             }
         }

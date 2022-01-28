@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
-using stretch_ceilings_app.Data.Models;
+using StretchCeilingsApp.Data.Models;
 
-namespace stretch_ceilings_app.Data
+namespace StretchCeilingsApp.Data
 {
     public class StretchCeilingsContext : DbContext
     {

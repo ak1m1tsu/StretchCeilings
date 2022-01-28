@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
-using stretch_ceilings_app.Data.Models;
-using stretch_ceilings_app.Utility;
-using stretch_ceilings_app.Utility.Enums;
-using stretch_ceilings_app.Utility.Extensions;
+using StretchCeilingsApp.Data.Models;
+using StretchCeilingsApp.Utility;
+using StretchCeilingsApp.Utility.Enums;
+using StretchCeilingsApp.Utility.Extensions;
+using StretchCeilingsApp.Utility.Extensions.Controls;
 
-namespace stretch_ceilings_app.Forms
+namespace StretchCeilingsApp.Forms
 {
     public partial class OrderFormEdit : Form
     {
@@ -42,7 +43,7 @@ namespace stretch_ceilings_app.Forms
 
             foreach (string item in cbStatusValue.Items)
             {
-                if (item == _currentOrder?.Status.ParseString())
+                if (item == _currentOrder?.Status?.ParseString())
                     cbStatusValue.SelectedItem = item;
             }
 
@@ -59,11 +60,10 @@ namespace stretch_ceilings_app.Forms
         private void SetUpEmployeesGrid()
         {
             var employees = _currentOrder?.GetEmployees();
-
-            var idCol = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
-            var nameCol = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Имя", DataGridViewAutoSizeColumnMode.Fill);
-
-            dgvEmployees.Columns.AddRange(idCol, nameCol);
+            
+            dgvEmployees.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvEmployees.AddDataGridViewTextBoxColumn("Имя", DataGridViewAutoSizeColumnMode.Fill);
+            dgvEmployees.AddDataGridViewTextBoxColumn("Номер телефона", DataGridViewAutoSizeColumnMode.Fill);
 
             for (var i = 0; i < employees?.Count; i++)
             {
@@ -71,19 +71,17 @@ namespace stretch_ceilings_app.Forms
 
                 dgvEmployees.Rows[i].Cells[0].Value = employees[i].Id;
                 dgvEmployees.Rows[i].Cells[1].Value = employees[i].FullName;
+                dgvEmployees.Rows[i].Cells[2].Value = employees[i].Login;
             }
         }
         private void SetUpServicesGrid()
         {
             var services = _currentOrder?.GetServices();
 
-            var idCol = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
-            var manufacturerCol = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Производитель", DataGridViewAutoSizeColumnMode.Fill);
-            var ceilingCol = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Потолок", DataGridViewAutoSizeColumnMode.Fill);
-            var priceCol = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Цена", DataGridViewAutoSizeColumnMode.Fill);
-
-
-            dgvServices.Columns.AddRange(idCol, manufacturerCol, ceilingCol, priceCol);
+            dgvServices.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvServices.AddDataGridViewTextBoxColumn("Производитель", DataGridViewAutoSizeColumnMode.Fill);
+            dgvServices.AddDataGridViewTextBoxColumn("Потолок", DataGridViewAutoSizeColumnMode.Fill);
+            dgvServices.AddDataGridViewTextBoxColumn("Цена", DataGridViewAutoSizeColumnMode.Fill);
 
             for (var i = 0; i < services?.Count; i++)
             {
@@ -100,12 +98,10 @@ namespace stretch_ceilings_app.Forms
         {
             var logs = _currentOrder?.GetLogs();
 
-            var idCol = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
-            var dateCreatedCol = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Дата создания", DataGridViewAutoSizeColumnMode.Fill);
-            var commentCol = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("События", DataGridViewAutoSizeColumnMode.Fill);
-
-            dgvLogs.Columns.AddRange(idCol, dateCreatedCol, commentCol);
-
+            dgvLogs.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvLogs.AddDataGridViewTextBoxColumn("Дата создания", DataGridViewAutoSizeColumnMode.Fill);
+            dgvLogs.AddDataGridViewTextBoxColumn("События", DataGridViewAutoSizeColumnMode.Fill);
+            
             for (var i = 0; i < logs?.Count; i++)
             {
                 dgvLogs.Rows.Add(new DataGridViewRow());
@@ -120,11 +116,9 @@ namespace stretch_ceilings_app.Forms
         {
             var days = _currentOrder?.GetWorkdays();
 
-            var num = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
-            var date = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Дата", DataGridViewAutoSizeColumnMode.Fill);
-
-            dgvWorkDates.Columns.AddRange(num, date);
-
+            dgvWorkDates.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvWorkDates.AddDataGridViewTextBoxColumn("Дата", DataGridViewAutoSizeColumnMode.Fill);
+            
             for (var i = 0; i < days?.Count; i++)
             {
                 dgvWorkDates.Rows.Add(new DataGridViewRow());

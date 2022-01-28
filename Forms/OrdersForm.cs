@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
-using stretch_ceilings_app.Data.Models;
-using stretch_ceilings_app.Utility;
-using stretch_ceilings_app.Utility.CustomControls;
-using stretch_ceilings_app.Utility.Enums;
-using stretch_ceilings_app.Utility.Extensions;
-using stretch_ceilings_app.Utility.Repositories;
+using StretchCeilingsApp.Data.Models;
+using StretchCeilingsApp.Utility;
+using StretchCeilingsApp.Utility.Controls;
+using StretchCeilingsApp.Utility.Enums;
+using StretchCeilingsApp.Utility.Extensions;
+using StretchCeilingsApp.Utility.Extensions.Controls;
+using StretchCeilingsApp.Utility.Repositories;
 
-namespace stretch_ceilings_app.Forms
+namespace StretchCeilingsApp.Forms
 {
     public partial class OrdersForm : Form
     {
@@ -34,28 +35,26 @@ namespace stretch_ceilings_app.Forms
         {
             if (dgvOrders.SelectedRows.Count <= 0) return;
 
-            var order = OrderRepository.GetById((int) dgvOrders.SelectedRows[0].Cells[0].Value);
+            var order = OrderModelsRepository.GetById((int) dgvOrders.SelectedRows[0].Cells[0].Value);
             new OrderForm(order).ShowDialog();
         }
 
         private void SetUpDataGridView()
         {
-            _orders = OrderRepository.GetALl(out _rowsCount);
+            _orders = OrderModelsRepository.GetALl(out _rowsCount);
 
-            var idColumn = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
-            var datePlacedColumn = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Дата размещения", DataGridViewAutoSizeColumnMode.Fill);
-            var customerColumn = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Клиент", DataGridViewAutoSizeColumnMode.Fill);
-            var statusColumn = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Статус", DataGridViewAutoSizeColumnMode.Fill);
-            var paidByCashColumn = DataGridViewExtensions.CreateDataGridViewCheckBoxColumn("Оплачен наличными", DataGridViewAutoSizeColumnMode.Fill);
-            var totalColumn = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Стоимость", DataGridViewAutoSizeColumnMode.DisplayedCells);
-            var delColumn = DataGridViewExtensions.CreateDataGridViewButtonColumn(Constants.DraculaRed);
+            dgvOrders.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvOrders.AddDataGridViewTextBoxColumn("Дата размещения", DataGridViewAutoSizeColumnMode.Fill);
+            dgvOrders.AddDataGridViewTextBoxColumn("Клиент", DataGridViewAutoSizeColumnMode.Fill);
+            dgvOrders.AddDataGridViewTextBoxColumn("Статус", DataGridViewAutoSizeColumnMode.Fill);
+            dgvOrders.AddDataGridViewCheckBoxColumn("Оплачен наличными", DataGridViewAutoSizeColumnMode.Fill);
+            dgvOrders.AddDataGridViewTextBoxColumn("Стоимость", DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvOrders.AddDataGridViewButtonColumn(Constants.DraculaRed);
 
             dgvOrders.Font = Constants.DataGridViewFont;
             dgvOrders.DefaultCellStyle.SelectionBackColor = Constants.DraculaSelection;
             dgvOrders.DefaultCellStyle.SelectionForeColor = Constants.DraculaForeground;
             dgvOrders.CellClick += dgvOrdersButtonsColumn_CellClick;
-            dgvOrders.Columns.AddRange(idColumn, datePlacedColumn, customerColumn, statusColumn, paidByCashColumn,
-                totalColumn, delColumn);
 
             FillDataGrid();
         }
@@ -64,7 +63,7 @@ namespace stretch_ceilings_app.Forms
         {
             if (e.RowIndex < 0 || e.ColumnIndex != dgvOrders.Columns[" "]?.Index) return;
 
-            var order = OrderRepository.GetById((int)dgvOrders.SelectedRows[0].Cells["№"].Value);
+            var order = OrderModelsRepository.GetById((int)dgvOrders.SelectedRows[0].Cells["№"].Value);
 
             order.Delete();
 
@@ -75,8 +74,7 @@ namespace stretch_ceilings_app.Forms
         {
             if (UserSession.IsAdmin || UserSession.Can(PermissionCode.AddOrder))
             {
-                var btnAddOrder = new FlatButton("btnAddOrder", "Добавить");
-                btnAddOrder.Click += btnAddOrder_Click;
+                var btnAddOrder = new FlatButton("btnAddOrder", "Добавить", btnAddOrder_Click);
                 paneUserButtons.Controls.Add(btnAddOrder);
             }
 
@@ -87,6 +85,10 @@ namespace stretch_ceilings_app.Forms
             }
             cbStatusValue.SelectedItem = null;
 
+            foreach (var paidByCashItem in Constants.PaidByCashItems)
+                cbPaidByCash.Items.Add(paidByCashItem);
+            cbPaidByCash.SelectedItem = null;
+            
             nudTotalFrom.Maximum = decimal.MaxValue;
             nudTotalTo.Maximum = decimal.MaxValue;
             
@@ -102,7 +104,7 @@ namespace stretch_ceilings_app.Forms
 
         private void FilterDataGrid()
         {
-            _orders = OrderRepository.GetALl(
+            _orders = OrderModelsRepository.GetALl(
                 _firstFilter,
                 _secondFilter, 
                 _count,
@@ -123,7 +125,7 @@ namespace stretch_ceilings_app.Forms
                 dgvOrders.Rows[i].Cells[0].Value = _orders[i].Id;
                 dgvOrders.Rows[i].Cells[1].Value = _orders[i].DatePlaced;
                 dgvOrders.Rows[i].Cells[2].Value = _orders[i].Customer.FullName;
-                dgvOrders.Rows[i].Cells[3].Value = _orders[i].Status.ParseString();
+                dgvOrders.Rows[i].Cells[3].Value = _orders[i].Status?.ParseString();
                 dgvOrders.Rows[i].Cells[4].Value = _orders[i].PaidByCash;
                 dgvOrders.Rows[i].Cells[5].Value = _orders[i].Total;
             }
@@ -152,9 +154,8 @@ namespace stretch_ceilings_app.Forms
             ibtnEmployee.IconChar = Constants.SearchIcon;
             ibtnEmployee.Text = Constants.DefaultIconButtonText;
 
-            cbPaidByCash.Checked = false;
+            cbPaidByCash.SelectedItem = null;
             cbStatusValue.SelectedItem = null;
-            cbPaidByCash.Checked = false;
 
             FilterDataGrid();
         }
@@ -223,7 +224,6 @@ namespace stretch_ceilings_app.Forms
             var dateTimePicker = (DateTimePicker) sender;
             dateTimePicker.Value = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day, 0, 0, 0);
             dateTimePicker.CustomFormat = Constants.FilterDateTimePickerCustomFormat;
-            dateTimePicker.Format = DateTimePickerFormat.Custom;
         }
 
         private void dgvOrders_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -310,10 +310,16 @@ namespace stretch_ceilings_app.Forms
         {
             TakeCustomer();
         }
-
-        private void cbPaidByCash_CheckedChanged(object sender, EventArgs e)
+        private void nudIdValue_ValueChanged(object sender, EventArgs e)
         {
-            _firstFilter.PaidByCash = cbPaidByCash.Checked;
+            if (nudIdValue.Value == 0) return;
+            _firstFilter.Id = (int)nudIdValue.Value;
+        }
+
+        private void cbPaidByCash_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _firstFilter.PaidByCash = (string)cbPaidByCash.SelectedItem == Constants.PaidByCashItems[0] ? false : _firstFilter.PaidByCash;
+            _firstFilter.PaidByCash = (string)cbPaidByCash.SelectedItem == Constants.PaidByCashItems[1] ? true : _firstFilter.PaidByCash;
         }
     }
 }

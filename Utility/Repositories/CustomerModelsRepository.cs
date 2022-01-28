@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using stretch_ceilings_app.Data;
-using stretch_ceilings_app.Data.Models;
+using StretchCeilingsApp.Data;
+using StretchCeilingsApp.Data.Models;
 
-namespace stretch_ceilings_app.Utility.Repositories
+namespace StretchCeilingsApp.Utility.Repositories
 {
-    public static class CustomerRepository
+    public static class CustomerModelsRepository
     {
         public static List<Customer> GetAll(out int rows)
         {
             using (var db = new StretchCeilingsContext())
             {
-                var queryable = db.Customers.Where(x => x.DateDeleted == null);
+                var queryable = db.Customers.Where(x => x.DeletedDate == null);
                 rows = 0;
 
                 if (queryable.Any())
@@ -25,7 +25,7 @@ namespace stretch_ceilings_app.Utility.Repositories
         {
             using (var db = new StretchCeilingsContext())
             {
-                var queryable = db.Customers.Where(x => x.DateDeleted == null);
+                var queryable = db.Customers.Where(x => x.DeletedDate == null);
                 rows = 0;
 
                 if (filter.Id != 0)

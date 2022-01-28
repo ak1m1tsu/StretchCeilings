@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using stretch_ceilings_app.Data.Models;
-using stretch_ceilings_app.Utility;
-using stretch_ceilings_app.Utility.CustomControls;
-using stretch_ceilings_app.Utility.Enums;
-using stretch_ceilings_app.Utility.Extensions;
-using stretch_ceilings_app.Utility.Repositories;
+using StretchCeilingsApp.Data.Models;
+using StretchCeilingsApp.Utility;
+using StretchCeilingsApp.Utility.Controls;
+using StretchCeilingsApp.Utility.Enums;
+using StretchCeilingsApp.Utility.Extensions.Controls;
+using StretchCeilingsApp.Utility.Repositories;
 
-namespace stretch_ceilings_app.Forms
+namespace StretchCeilingsApp.Forms
 {
     public partial class CustomersForm : Form
     {
@@ -36,8 +36,7 @@ namespace stretch_ceilings_app.Forms
         {
             if (UserSession.IsAdmin || UserSession.Can(PermissionCode.AddCustomer))
             {
-                var btnAddOrder = new FlatButton("btnAddOrder", "Добавить");
-                btnAddOrder.Click += btnAddOrder_Click;
+                var btnAddOrder = new FlatButton("btnAddOrder", "Добавить", btnAddOrder_Click);
                 panelUserButtons.Controls.Add(btnAddOrder);
             }
 
@@ -52,17 +51,16 @@ namespace stretch_ceilings_app.Forms
 
         private void SetUpDataGrid()
         {
-            _customers = CustomerRepository.GetAll(out _rows);
+            _customers = CustomerModelsRepository.GetAll(out _rows);
 
-            var idColumn = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
-            var fullNameColumn = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("ФИО", DataGridViewAutoSizeColumnMode.Fill);
-            var phoneNumberColumn = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Номер телефона", DataGridViewAutoSizeColumnMode.Fill);
-            var delColumn = DataGridViewExtensions.CreateDataGridViewButtonColumn(Constants.DraculaRed);
+            dgvCustomers.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvCustomers.AddDataGridViewTextBoxColumn("ФИО", DataGridViewAutoSizeColumnMode.Fill);
+            dgvCustomers.AddDataGridViewTextBoxColumn("Номер телефона", DataGridViewAutoSizeColumnMode.Fill);
+            dgvCustomers.AddDataGridViewButtonColumn(Constants.DraculaRed);
 
             dgvCustomers.Font = Constants.DataGridViewFont;
             dgvCustomers.DefaultCellStyle.SelectionBackColor = Constants.DraculaSelection;
             dgvCustomers.DefaultCellStyle.SelectionForeColor = Constants.DraculaForeground;
-            dgvCustomers.Columns.AddRange(idColumn,fullNameColumn,phoneNumberColumn,delColumn);
 
             FillDataGrid();
         }
@@ -86,7 +84,7 @@ namespace stretch_ceilings_app.Forms
 
         private void FilterDataGrid()
         {
-            _customers = CustomerRepository.GetAll(
+            _customers = CustomerModelsRepository.GetAll(
                 _filter,
                 _count,
                 _currentPage,
@@ -99,7 +97,7 @@ namespace stretch_ceilings_app.Forms
         {
             if (dgvCustomers.SelectedRows.Count <= 0) return;
 
-            var customer = CustomerRepository.GetById((int)dgvCustomers.SelectedRows[0].Cells[0].Value);
+            var customer = CustomerModelsRepository.GetById((int)dgvCustomers.SelectedRows[0].Cells[0].Value);
             new CustomerForm(customer).ShowDialog();
         }
 
@@ -119,7 +117,7 @@ namespace stretch_ceilings_app.Forms
         {
             if (e.RowIndex < 0 || e.ColumnIndex != dgvCustomers.Columns[" "]?.Index) return;
 
-            var customer = CustomerRepository.GetById((int)dgvCustomers.SelectedRows[0].Cells["№"].Value);
+            var customer = CustomerModelsRepository.GetById((int)dgvCustomers.SelectedRows[0].Cells["№"].Value);
             customer.Delete();
 
             FilterDataGrid();
@@ -163,6 +161,16 @@ namespace stretch_ceilings_app.Forms
         }
 
         private void tbFullName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void nudId_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblId_Click(object sender, EventArgs e)
         {
 
         }

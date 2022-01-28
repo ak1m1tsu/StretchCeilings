@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
-using stretch_ceilings_app.Data.Models;
-using stretch_ceilings_app.Utility;
-using stretch_ceilings_app.Utility.Enums;
+using StretchCeilingsApp.Data.Models;
+using StretchCeilingsApp.Utility;
+using StretchCeilingsApp.Utility.Enums;
 
-namespace stretch_ceilings_app.Forms
+namespace StretchCeilingsApp.Forms
 {
     public partial class ServiceForm : Form
     {

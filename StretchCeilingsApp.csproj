@@ -7,8 +7,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{14E5094F-53EE-4808-A98F-325781775ABC}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>stretch_ceilings_app</RootNamespace>
-    <AssemblyName>stretch-ceilings_app</AssemblyName>
+    <RootNamespace>StretchCeilingsApp</RootNamespace>
+    <AssemblyName>StretchCeilingsApp</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -37,7 +37,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>stretch_ceilings_app.Program</StartupObject>
+    <StartupObject>StretchCeilingsApp.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -123,6 +123,12 @@
     <Compile Include="Forms\CustomerFormEdit.Designer.cs">
       <DependentUpon>CustomerFormEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\EmployeeFormEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EmployeeFormEdit.Designer.cs">
+      <DependentUpon>EmployeeFormEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ManufacturerFormEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +140,12 @@
     </Compile>
     <Compile Include="Forms\OrderFormEdit.Designer.cs">
       <DependentUpon>OrderFormEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RoomFormEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\RoomFormEdit.Designer.cs">
+      <DependentUpon>RoomFormEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ServiceFormEdit.cs">
       <SubType>Form</SubType>
@@ -215,9 +227,9 @@
     <Compile Include="Forms\TimeTableForm.Designer.cs">
       <DependentUpon>TimeTableForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202201270930382_init.cs" />
-    <Compile Include="Migrations\202201270930382_init.designer.cs">
-      <DependentUpon>202201270930382_init.cs</DependentUpon>
+    <Compile Include="Migrations\202201281301159_init.cs" />
+    <Compile Include="Migrations\202201281301159_init.designer.cs">
+      <DependentUpon>202201281301159_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
@@ -265,33 +277,36 @@
     <Compile Include="Data\Models\Service.cs" />
     <Compile Include="Data\Models\TimeTable.cs" />
     <Compile Include="Utility\Constants.cs" />
-    <Compile Include="Utility\CustomControls\CustomMessageBoxForm.cs">
+    <Compile Include="Utility\Controls\CustomMessageBoxForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Utility\CustomControls\CustomMessageBoxForm.Designer.cs">
+    <Compile Include="Utility\Controls\CustomMessageBoxForm.Designer.cs">
       <DependentUpon>CustomMessageBoxForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utility\CustomControls\FlatButton.cs">
+    <Compile Include="Utility\Controls\FlatButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Utility\Enums\Country.cs" />
-    <Compile Include="Utility\Extensions\DataGridViewExtensions.cs" />
-    <Compile Include="Utility\Extensions\DllExtensions.cs" />
+    <Compile Include="Utility\Extensions\Controls\DataGridViewExtensions.cs" />
+    <Compile Include="Utility\DLL\User32.cs" />
+    <Compile Include="Utility\Extensions\Controls\PanelExtensions.cs" />
     <Compile Include="Utility\Extensions\EnumExtensions.cs" />
     <Compile Include="Utility\Enums\ColorType.cs" />
     <Compile Include="Utility\Enums\TextureType.cs" />
     <Compile Include="Utility\Enums\OrderStatus.cs" />
     <Compile Include="Utility\Enums\PermissionCode.cs" />
     <Compile Include="Utility\Enums\RoomType.cs" />
+    <Compile Include="Utility\Extensions\FormExtensions.cs" />
     <Compile Include="Utility\Extensions\StringExtensions.cs" />
+    <Compile Include="Utility\Extensions\Controls\TextBoxExtensions.cs" />
     <Compile Include="Utility\LogWriter.cs" />
-    <Compile Include="Utility\Repositories\AdditionalServiceRepository.cs" />
-    <Compile Include="Utility\Repositories\CustomerRepository.cs" />
-    <Compile Include="Utility\Repositories\EmployeeRepository.cs" />
-    <Compile Include="Utility\Repositories\ManufacturerRepository.cs" />
-    <Compile Include="Utility\Repositories\OrderRepository.cs" />
-    <Compile Include="Utility\Repositories\RoleRepository.cs" />
-    <Compile Include="Utility\Repositories\ServiceRepository.cs" />
+    <Compile Include="Utility\Repositories\AdditionalServiceModelsRepository.cs" />
+    <Compile Include="Utility\Repositories\CustomerModelsRepository.cs" />
+    <Compile Include="Utility\Repositories\EmployeeModelsRepository.cs" />
+    <Compile Include="Utility\Repositories\ManufacturerModelsRepository.cs" />
+    <Compile Include="Utility\Repositories\OrderModelsRepository.cs" />
+    <Compile Include="Utility\Repositories\RoleModelsRepository.cs" />
+    <Compile Include="Utility\Repositories\ServiceModelsRepository.cs" />
     <Compile Include="Utility\UserSession.cs" />
     <EmbeddedResource Include="Forms\AdditionalServiceForm.resx">
       <DependentUpon>AdditionalServiceForm.cs</DependentUpon>
@@ -308,11 +323,17 @@
     <EmbeddedResource Include="Forms\CustomerFormEdit.resx">
       <DependentUpon>CustomerFormEdit.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EmployeeFormEdit.resx">
+      <DependentUpon>EmployeeFormEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ManufacturerFormEdit.resx">
       <DependentUpon>ManufacturerFormEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\OrderFormEdit.resx">
       <DependentUpon>OrderFormEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\RoomFormEdit.resx">
+      <DependentUpon>RoomFormEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ServiceFormEdit.resx">
       <DependentUpon>ServiceFormEdit.cs</DependentUpon>
@@ -347,8 +368,8 @@
     <EmbeddedResource Include="Forms\TimeTableForm.resx">
       <DependentUpon>TimeTableForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202201270930382_init.resx">
-      <DependentUpon>202201270930382_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202201281301159_init.resx">
+      <DependentUpon>202201281301159_init.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -375,7 +396,7 @@
     <EmbeddedResource Include="Forms\ServicesForm.resx">
       <DependentUpon>ServicesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Utility\CustomControls\CustomMessageBoxForm.resx">
+    <EmbeddedResource Include="Utility\Controls\CustomMessageBoxForm.resx">
       <DependentUpon>CustomMessageBoxForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
@@ -392,6 +413,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

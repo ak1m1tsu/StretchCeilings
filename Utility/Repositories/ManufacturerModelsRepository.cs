@@ -1,18 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using stretch_ceilings_app.Data;
-using stretch_ceilings_app.Data.Models;
-using stretch_ceilings_app.Utility.Enums;
+using StretchCeilingsApp.Data;
+using StretchCeilingsApp.Data.Models;
+using StretchCeilingsApp.Utility.Enums;
 
-namespace stretch_ceilings_app.Utility.Repositories
+namespace StretchCeilingsApp.Utility.Repositories
 {
-    public static class ManufacturerRepository
+    public static class ManufacturerModelsRepository
     {
         public static List<Manufacturer> GetAll(out int rows)
         {
             using (var db = new StretchCeilingsContext())
             {
-                var queryable = db.Manufacturers.Where(x => x.DateDeleted == null);
+                var queryable = db.Manufacturers.Where(x => x.DeletedDate == null);
                 rows = 0;
 
                 if (queryable.Any()) 
@@ -26,7 +26,7 @@ namespace stretch_ceilings_app.Utility.Repositories
         {
             using (var db = new StretchCeilingsContext())
             {
-                var queryable = db.Manufacturers.Where(x => x.DateDeleted == null);
+                var queryable = db.Manufacturers.Where(x => x.DeletedDate == null);
                 rows = 0;
 
                 if (firstFilter.Id != 0)

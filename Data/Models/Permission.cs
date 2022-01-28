@@ -1,10 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using stretch_ceilings_app.Interfaces.Models;
-using stretch_ceilings_app.Utility.Enums;
+using StretchCeilingsApp.Interfaces.Models;
+using StretchCeilingsApp.Utility.Enums;
 
-namespace stretch_ceilings_app.Data.Models
+namespace StretchCeilingsApp.Data.Models
 {
     [Table("Permissions")]
     public class Permission : IPermission

@@ -1,5 +1,5 @@
 ﻿
-namespace stretch_ceilings_app.Forms
+namespace StretchCeilingsApp.Forms
 {
     partial class ServiceFormEdit
     {
@@ -29,157 +29,58 @@ namespace stretch_ceilings_app.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.panelAdditServBody = new System.Windows.Forms.Panel();
-            this.dgvAdditServs = new System.Windows.Forms.DataGridView();
-            this.panelGridBtns = new System.Windows.Forms.Panel();
-            this.btnAddAdditServ = new System.Windows.Forms.Button();
-            this.btnPerivousPage = new System.Windows.Forms.Button();
-            this.tbPage = new System.Windows.Forms.TextBox();
-            this.btnNextPage = new System.Windows.Forms.Button();
-            this.panelAdditServHeader = new System.Windows.Forms.Panel();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.lblAdditServs = new System.Windows.Forms.Label();
+            this.panelTop = new System.Windows.Forms.Panel();
+            this.btnClose = new FontAwesome.Sharp.IconButton();
             this.panelMainInfo = new System.Windows.Forms.Panel();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.cbCeilingValue = new System.Windows.Forms.ComboBox();
+            this.cbManufacturerValue = new System.Windows.Forms.ComboBox();
             this.lblPriceValue = new System.Windows.Forms.Label();
             this.lblPrice = new System.Windows.Forms.Label();
             this.lblCeiling = new System.Windows.Forms.Label();
             this.lblManufacturer = new System.Windows.Forms.Label();
-            this.cbManufacturerValue = new System.Windows.Forms.ComboBox();
-            this.cbCeilingValue = new System.Windows.Forms.ComboBox();
+            this.panelAdditServBody = new System.Windows.Forms.Panel();
+            this.dgvAdditServs = new System.Windows.Forms.DataGridView();
+            this.panelGridBtns = new System.Windows.Forms.Panel();
+            this.btnAddAdditServ = new System.Windows.Forms.Button();
+            this.panelAdditServHeader = new System.Windows.Forms.Panel();
+            this.lblAdditServs = new System.Windows.Forms.Label();
+            this.panelTop.SuspendLayout();
+            this.panelMainInfo.SuspendLayout();
             this.panelAdditServBody.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdditServs)).BeginInit();
             this.panelGridBtns.SuspendLayout();
             this.panelAdditServHeader.SuspendLayout();
-            this.panelMainInfo.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panelAdditServBody
+            // panelTop
             // 
-            this.panelAdditServBody.Controls.Add(this.dgvAdditServs);
-            this.panelAdditServBody.Controls.Add(this.panelGridBtns);
-            this.panelAdditServBody.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelAdditServBody.Location = new System.Drawing.Point(387, 44);
-            this.panelAdditServBody.Name = "panelAdditServBody";
-            this.panelAdditServBody.Size = new System.Drawing.Size(797, 367);
-            this.panelAdditServBody.TabIndex = 5;
+            this.panelTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
+            this.panelTop.Controls.Add(this.btnClose);
+            this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTop.Location = new System.Drawing.Point(0, 0);
+            this.panelTop.Name = "panelTop";
+            this.panelTop.Size = new System.Drawing.Size(1000, 25);
+            this.panelTop.TabIndex = 74;
             // 
-            // dgvAdditServs
+            // btnClose
             // 
-            this.dgvAdditServs.BackgroundColor = System.Drawing.Color.Black;
-            this.dgvAdditServs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAdditServs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvAdditServs.Location = new System.Drawing.Point(0, 0);
-            this.dgvAdditServs.Name = "dgvAdditServs";
-            this.dgvAdditServs.Size = new System.Drawing.Size(797, 326);
-            this.dgvAdditServs.TabIndex = 1;
-            // 
-            // panelGridBtns
-            // 
-            this.panelGridBtns.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
-            this.panelGridBtns.Controls.Add(this.btnAddAdditServ);
-            this.panelGridBtns.Controls.Add(this.btnPerivousPage);
-            this.panelGridBtns.Controls.Add(this.tbPage);
-            this.panelGridBtns.Controls.Add(this.btnNextPage);
-            this.panelGridBtns.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelGridBtns.Location = new System.Drawing.Point(0, 326);
-            this.panelGridBtns.Name = "panelGridBtns";
-            this.panelGridBtns.Size = new System.Drawing.Size(797, 41);
-            this.panelGridBtns.TabIndex = 0;
-            // 
-            // btnAddAdditServ
-            // 
-            this.btnAddAdditServ.BackColor = System.Drawing.Color.Black;
-            this.btnAddAdditServ.FlatAppearance.BorderSize = 0;
-            this.btnAddAdditServ.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddAdditServ.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.btnAddAdditServ.ForeColor = System.Drawing.Color.White;
-            this.btnAddAdditServ.Location = new System.Drawing.Point(674, 5);
-            this.btnAddAdditServ.Name = "btnAddAdditServ";
-            this.btnAddAdditServ.Size = new System.Drawing.Size(120, 30);
-            this.btnAddAdditServ.TabIndex = 49;
-            this.btnAddAdditServ.Text = "Добавить";
-            this.btnAddAdditServ.UseVisualStyleBackColor = false;
-            this.btnAddAdditServ.Click += new System.EventHandler(this.btnAddAdditionalService_Click);
-            // 
-            // btnPerivousPage
-            // 
-            this.btnPerivousPage.BackColor = System.Drawing.Color.Black;
-            this.btnPerivousPage.FlatAppearance.BorderSize = 0;
-            this.btnPerivousPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPerivousPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.btnPerivousPage.ForeColor = System.Drawing.Color.White;
-            this.btnPerivousPage.Location = new System.Drawing.Point(10, 6);
-            this.btnPerivousPage.Name = "btnPerivousPage";
-            this.btnPerivousPage.Size = new System.Drawing.Size(30, 29);
-            this.btnPerivousPage.TabIndex = 75;
-            this.btnPerivousPage.Text = "<";
-            this.btnPerivousPage.UseVisualStyleBackColor = false;
-            this.btnPerivousPage.Click += new System.EventHandler(this.btnPreviousPage_Click);
-            // 
-            // tbPage
-            // 
-            this.tbPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.tbPage.Location = new System.Drawing.Point(46, 6);
-            this.tbPage.Name = "tbPage";
-            this.tbPage.Size = new System.Drawing.Size(80, 29);
-            this.tbPage.TabIndex = 74;
-            this.tbPage.Text = "1/1";
-            this.tbPage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // btnNextPage
-            // 
-            this.btnNextPage.BackColor = System.Drawing.Color.Black;
-            this.btnNextPage.FlatAppearance.BorderSize = 0;
-            this.btnNextPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNextPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.btnNextPage.ForeColor = System.Drawing.Color.White;
-            this.btnNextPage.Location = new System.Drawing.Point(132, 6);
-            this.btnNextPage.Name = "btnNextPage";
-            this.btnNextPage.Size = new System.Drawing.Size(30, 29);
-            this.btnNextPage.TabIndex = 73;
-            this.btnNextPage.Text = ">";
-            this.btnNextPage.UseVisualStyleBackColor = false;
-            this.btnNextPage.Click += new System.EventHandler(this.btnNextPage_Click);
-            // 
-            // panelAdditServHeader
-            // 
-            this.panelAdditServHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
-            this.panelAdditServHeader.Controls.Add(this.btnSave);
-            this.panelAdditServHeader.Controls.Add(this.lblAdditServs);
-            this.panelAdditServHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelAdditServHeader.Location = new System.Drawing.Point(387, 0);
-            this.panelAdditServHeader.Name = "panelAdditServHeader";
-            this.panelAdditServHeader.Size = new System.Drawing.Size(797, 44);
-            this.panelAdditServHeader.TabIndex = 4;
-            // 
-            // btnSave
-            // 
-            this.btnSave.BackColor = System.Drawing.Color.Black;
-            this.btnSave.FlatAppearance.BorderSize = 0;
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(673, 6);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(120, 30);
-            this.btnSave.TabIndex = 48;
-            this.btnSave.Text = "Сохранить";
-            this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // lblAdditServs
-            // 
-            this.lblAdditServs.AutoSize = true;
-            this.lblAdditServs.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblAdditServs.Location = new System.Drawing.Point(6, 9);
-            this.lblAdditServs.Name = "lblAdditServs";
-            this.lblAdditServs.Size = new System.Drawing.Size(234, 24);
-            this.lblAdditServs.TabIndex = 0;
-            this.lblAdditServs.Text = "Дополнительные услуги:";
+            this.btnClose.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.IconChar = FontAwesome.Sharp.IconChar.Times;
+            this.btnClose.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.btnClose.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnClose.IconSize = 25;
+            this.btnClose.Location = new System.Drawing.Point(975, 0);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(25, 25);
+            this.btnClose.TabIndex = 2;
+            this.btnClose.UseVisualStyleBackColor = true;
             // 
             // panelMainInfo
             // 
-            this.panelMainInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(134)))), ((int)(((byte)(72)))));
+            this.panelMainInfo.Controls.Add(this.btnSave);
             this.panelMainInfo.Controls.Add(this.cbCeilingValue);
             this.panelMainInfo.Controls.Add(this.cbManufacturerValue);
             this.panelMainInfo.Controls.Add(this.lblPriceValue);
@@ -187,114 +88,204 @@ namespace stretch_ceilings_app.Forms
             this.panelMainInfo.Controls.Add(this.lblCeiling);
             this.panelMainInfo.Controls.Add(this.lblManufacturer);
             this.panelMainInfo.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelMainInfo.Location = new System.Drawing.Point(0, 0);
+            this.panelMainInfo.Location = new System.Drawing.Point(0, 25);
             this.panelMainInfo.Name = "panelMainInfo";
-            this.panelMainInfo.Size = new System.Drawing.Size(387, 411);
-            this.panelMainInfo.TabIndex = 3;
+            this.panelMainInfo.Size = new System.Drawing.Size(320, 475);
+            this.panelMainInfo.TabIndex = 75;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.btnSave.FlatAppearance.BorderSize = 0;
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.btnSave.Location = new System.Drawing.Point(194, 440);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(120, 30);
+            this.btnSave.TabIndex = 48;
+            this.btnSave.Text = "Сохранить";
+            this.btnSave.UseVisualStyleBackColor = false;
+            // 
+            // cbCeilingValue
+            // 
+            this.cbCeilingValue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.cbCeilingValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCeilingValue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbCeilingValue.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.cbCeilingValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.cbCeilingValue.FormattingEnabled = true;
+            this.cbCeilingValue.Location = new System.Drawing.Point(146, 40);
+            this.cbCeilingValue.Name = "cbCeilingValue";
+            this.cbCeilingValue.Size = new System.Drawing.Size(168, 31);
+            this.cbCeilingValue.TabIndex = 8;
+            this.cbCeilingValue.SelectedIndexChanged += new System.EventHandler(this.cbCeilingValue_SelectedIndexChanged);
+            // 
+            // cbManufacturerValue
+            // 
+            this.cbManufacturerValue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.cbManufacturerValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbManufacturerValue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbManufacturerValue.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.cbManufacturerValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.cbManufacturerValue.FormattingEnabled = true;
+            this.cbManufacturerValue.Items.AddRange(new object[] {
+            "Pongs"});
+            this.cbManufacturerValue.Location = new System.Drawing.Point(146, 3);
+            this.cbManufacturerValue.Name = "cbManufacturerValue";
+            this.cbManufacturerValue.Size = new System.Drawing.Size(168, 31);
+            this.cbManufacturerValue.TabIndex = 7;
             // 
             // lblPriceValue
             // 
             this.lblPriceValue.AutoSize = true;
-            this.lblPriceValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblPriceValue.Location = new System.Drawing.Point(172, 88);
+            this.lblPriceValue.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.lblPriceValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.lblPriceValue.Location = new System.Drawing.Point(146, 78);
             this.lblPriceValue.Name = "lblPriceValue";
-            this.lblPriceValue.Size = new System.Drawing.Size(126, 24);
+            this.lblPriceValue.Size = new System.Drawing.Size(41, 23);
             this.lblPriceValue.TabIndex = 6;
-            this.lblPriceValue.Text = "10000.00 руб.";
+            this.lblPriceValue.Text = "0.00";
             // 
             // lblPrice
             // 
             this.lblPrice.AutoSize = true;
-            this.lblPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblPrice.Location = new System.Drawing.Point(12, 88);
+            this.lblPrice.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.lblPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.lblPrice.Location = new System.Drawing.Point(3, 78);
             this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(59, 24);
+            this.lblPrice.Size = new System.Drawing.Size(54, 23);
             this.lblPrice.TabIndex = 5;
             this.lblPrice.Text = "Цена:";
             // 
             // lblCeiling
             // 
             this.lblCeiling.AutoSize = true;
-            this.lblCeiling.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblCeiling.Location = new System.Drawing.Point(12, 47);
+            this.lblCeiling.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.lblCeiling.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.lblCeiling.Location = new System.Drawing.Point(3, 42);
             this.lblCeiling.Name = "lblCeiling";
-            this.lblCeiling.Size = new System.Drawing.Size(90, 24);
+            this.lblCeiling.Size = new System.Drawing.Size(81, 23);
             this.lblCeiling.TabIndex = 3;
             this.lblCeiling.Text = "Потолок:";
             // 
             // lblManufacturer
             // 
             this.lblManufacturer.AutoSize = true;
-            this.lblManufacturer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblManufacturer.Location = new System.Drawing.Point(12, 9);
+            this.lblManufacturer.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.lblManufacturer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.lblManufacturer.Location = new System.Drawing.Point(3, 5);
             this.lblManufacturer.Name = "lblManufacturer";
-            this.lblManufacturer.Size = new System.Drawing.Size(158, 24);
+            this.lblManufacturer.Size = new System.Drawing.Size(137, 23);
             this.lblManufacturer.TabIndex = 1;
             this.lblManufacturer.Text = "Производитель:";
             // 
-            // cbManufacturerValue
+            // panelAdditServBody
             // 
-            this.cbManufacturerValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbManufacturerValue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbManufacturerValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cbManufacturerValue.FormattingEnabled = true;
-            this.cbManufacturerValue.Items.AddRange(new object[] {
-            "Pongs"});
-            this.cbManufacturerValue.Location = new System.Drawing.Point(176, 6);
-            this.cbManufacturerValue.Name = "cbManufacturerValue";
-            this.cbManufacturerValue.Size = new System.Drawing.Size(205, 32);
-            this.cbManufacturerValue.TabIndex = 7;
+            this.panelAdditServBody.Controls.Add(this.dgvAdditServs);
+            this.panelAdditServBody.Controls.Add(this.panelGridBtns);
+            this.panelAdditServBody.Controls.Add(this.panelAdditServHeader);
+            this.panelAdditServBody.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelAdditServBody.Location = new System.Drawing.Point(320, 25);
+            this.panelAdditServBody.Name = "panelAdditServBody";
+            this.panelAdditServBody.Size = new System.Drawing.Size(680, 475);
+            this.panelAdditServBody.TabIndex = 76;
             // 
-            // cbCeilingValue
+            // dgvAdditServs
             // 
-            this.cbCeilingValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCeilingValue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbCeilingValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cbCeilingValue.FormattingEnabled = true;
-            this.cbCeilingValue.Location = new System.Drawing.Point(176, 44);
-            this.cbCeilingValue.Name = "cbCeilingValue";
-            this.cbCeilingValue.Size = new System.Drawing.Size(205, 32);
-            this.cbCeilingValue.TabIndex = 8;
+            this.dgvAdditServs.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.dgvAdditServs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAdditServs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvAdditServs.Location = new System.Drawing.Point(0, 40);
+            this.dgvAdditServs.Name = "dgvAdditServs";
+            this.dgvAdditServs.Size = new System.Drawing.Size(680, 395);
+            this.dgvAdditServs.TabIndex = 5;
+            // 
+            // panelGridBtns
+            // 
+            this.panelGridBtns.Controls.Add(this.btnAddAdditServ);
+            this.panelGridBtns.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelGridBtns.Location = new System.Drawing.Point(0, 435);
+            this.panelGridBtns.Name = "panelGridBtns";
+            this.panelGridBtns.Size = new System.Drawing.Size(680, 40);
+            this.panelGridBtns.TabIndex = 0;
+            // 
+            // btnAddAdditServ
+            // 
+            this.btnAddAdditServ.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddAdditServ.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.btnAddAdditServ.FlatAppearance.BorderSize = 0;
+            this.btnAddAdditServ.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddAdditServ.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.btnAddAdditServ.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.btnAddAdditServ.Location = new System.Drawing.Point(553, 5);
+            this.btnAddAdditServ.Name = "btnAddAdditServ";
+            this.btnAddAdditServ.Size = new System.Drawing.Size(120, 30);
+            this.btnAddAdditServ.TabIndex = 49;
+            this.btnAddAdditServ.Text = "Добавить";
+            this.btnAddAdditServ.UseVisualStyleBackColor = false;
+            // 
+            // panelAdditServHeader
+            // 
+            this.panelAdditServHeader.Controls.Add(this.lblAdditServs);
+            this.panelAdditServHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelAdditServHeader.Location = new System.Drawing.Point(0, 0);
+            this.panelAdditServHeader.Name = "panelAdditServHeader";
+            this.panelAdditServHeader.Size = new System.Drawing.Size(680, 40);
+            this.panelAdditServHeader.TabIndex = 4;
+            // 
+            // lblAdditServs
+            // 
+            this.lblAdditServs.AutoSize = true;
+            this.lblAdditServs.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.lblAdditServs.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.lblAdditServs.Location = new System.Drawing.Point(6, 9);
+            this.lblAdditServs.Name = "lblAdditServs";
+            this.lblAdditServs.Size = new System.Drawing.Size(204, 23);
+            this.lblAdditServs.TabIndex = 0;
+            this.lblAdditServs.Text = "Дополнительные услуги:";
             // 
             // ServiceFormEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 411);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(42)))), ((int)(((byte)(54)))));
+            this.ClientSize = new System.Drawing.Size(1000, 500);
             this.Controls.Add(this.panelAdditServBody);
-            this.Controls.Add(this.panelAdditServHeader);
             this.Controls.Add(this.panelMainInfo);
+            this.Controls.Add(this.panelTop);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ServiceFormEdit";
+            this.panelTop.ResumeLayout(false);
+            this.panelMainInfo.ResumeLayout(false);
+            this.panelMainInfo.PerformLayout();
             this.panelAdditServBody.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdditServs)).EndInit();
             this.panelGridBtns.ResumeLayout(false);
-            this.panelGridBtns.PerformLayout();
             this.panelAdditServHeader.ResumeLayout(false);
             this.panelAdditServHeader.PerformLayout();
-            this.panelMainInfo.ResumeLayout(false);
-            this.panelMainInfo.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panelAdditServBody;
-        private System.Windows.Forms.DataGridView dgvAdditServs;
-        private System.Windows.Forms.Panel panelGridBtns;
-        private System.Windows.Forms.Button btnAddAdditServ;
-        private System.Windows.Forms.Button btnPerivousPage;
-        private System.Windows.Forms.TextBox tbPage;
-        private System.Windows.Forms.Button btnNextPage;
-        private System.Windows.Forms.Panel panelAdditServHeader;
-        private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Label lblAdditServs;
+        private System.Windows.Forms.Panel panelTop;
+        private FontAwesome.Sharp.IconButton btnClose;
         private System.Windows.Forms.Panel panelMainInfo;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.ComboBox cbCeilingValue;
+        private System.Windows.Forms.ComboBox cbManufacturerValue;
         private System.Windows.Forms.Label lblPriceValue;
         private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.Label lblCeiling;
         private System.Windows.Forms.Label lblManufacturer;
-        private System.Windows.Forms.ComboBox cbManufacturerValue;
-        private System.Windows.Forms.ComboBox cbCeilingValue;
+        private System.Windows.Forms.Panel panelAdditServBody;
+        private System.Windows.Forms.DataGridView dgvAdditServs;
+        private System.Windows.Forms.Panel panelGridBtns;
+        private System.Windows.Forms.Button btnAddAdditServ;
+        private System.Windows.Forms.Panel panelAdditServHeader;
+        private System.Windows.Forms.Label lblAdditServs;
     }
 }

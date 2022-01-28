@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Forms;
-using stretch_ceilings_app.Data.Models;
-using stretch_ceilings_app.Utility;
-using stretch_ceilings_app.Utility.CustomControls;
-using stretch_ceilings_app.Utility.Enums;
-using stretch_ceilings_app.Utility.Extensions;
-using stretch_ceilings_app.Utility.Repositories;
+using StretchCeilingsApp.Data.Models;
+using StretchCeilingsApp.Utility;
+using StretchCeilingsApp.Utility.Controls;
+using StretchCeilingsApp.Utility.Enums;
+using StretchCeilingsApp.Utility.Extensions.Controls;
+using StretchCeilingsApp.Utility.Repositories;
 
-namespace stretch_ceilings_app.Forms
+namespace StretchCeilingsApp.Forms
 {
     public partial class EmployeesForm : Form
     {
@@ -41,13 +41,12 @@ namespace stretch_ceilings_app.Forms
 
             if (UserSession.IsAdmin || UserSession.Can(PermissionCode.AddCustomer))
             {
-                var btnAddOrder = new FlatButton("btnAddOrder", "Добавить");
-                btnAddOrder.Click += btnAddOrder_Click;
+                var btnAddOrder = new FlatButton("btnAddOrder", "Добавить", btnAddOrder_Click);
                 panelUserButtons.Controls.Add(btnAddOrder);
             }
 
             nudId.Maximum = decimal.MaxValue;
-            foreach (var role in RoleRepository.GetAll())
+            foreach (var role in RoleModelsRepository.GetAll())
             {
                 ComboBoxItem item = new ComboBoxItem()
                 {
@@ -68,18 +67,17 @@ namespace stretch_ceilings_app.Forms
 
         private void SetUpDataGrid()
         {
-            _employees = EmployeeRepository.GetAll(out _rows);
+            _employees = EmployeeModelsRepository.GetAll(out _rows);
 
-            var idColumn = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
-            var fullNameColumn = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("ФИО", DataGridViewAutoSizeColumnMode.Fill);
-            var phoneNumberColumn = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Номер телефона", DataGridViewAutoSizeColumnMode.Fill);
-            var roleColumn = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Должность", DataGridViewAutoSizeColumnMode.DisplayedCells);
-            var delColumn = DataGridViewExtensions.CreateDataGridViewButtonColumn(Constants.DraculaRed);
+            dgvEmployees.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvEmployees.AddDataGridViewTextBoxColumn("ФИО", DataGridViewAutoSizeColumnMode.Fill);
+            dgvEmployees.AddDataGridViewTextBoxColumn("Номер телефона", DataGridViewAutoSizeColumnMode.Fill);
+            dgvEmployees.AddDataGridViewTextBoxColumn("Должность", DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvEmployees.AddDataGridViewButtonColumn(Constants.DraculaRed);
 
             dgvEmployees.Font = Constants.DataGridViewFont;
             dgvEmployees.DefaultCellStyle.SelectionBackColor = Constants.DraculaSelection;
             dgvEmployees.DefaultCellStyle.SelectionForeColor = Constants.DraculaForeground;
-            dgvEmployees.Columns.AddRange(idColumn, fullNameColumn, phoneNumberColumn, roleColumn, delColumn);
 
             FillDataGrid();
         }
@@ -105,7 +103,7 @@ namespace stretch_ceilings_app.Forms
 
         private void FilterDataGrid()
         {
-            _employees = EmployeeRepository.GetAll(
+            _employees = EmployeeModelsRepository.GetAll(
                 _filter,
                 _count,
                 _currentPage,
@@ -117,7 +115,7 @@ namespace stretch_ceilings_app.Forms
         {
             if (dgvEmployees.SelectedRows.Count <= 0) return;
 
-            var customer = CustomerRepository.GetById((int)dgvEmployees.SelectedRows[0].Cells[0].Value);
+            var customer = CustomerModelsRepository.GetById((int)dgvEmployees.SelectedRows[0].Cells[0].Value);
             new CustomerForm(customer).ShowDialog();
         }
 
@@ -206,7 +204,7 @@ namespace stretch_ceilings_app.Forms
         {
             if (e.RowIndex < 0 || e.ColumnIndex != dgvEmployees.Columns[" "]?.Index) return;
 
-            var employee = EmployeeRepository.GetById((int)dgvEmployees.SelectedRows[0].Cells["№"].Value);
+            var employee = EmployeeModelsRepository.GetById((int)dgvEmployees.SelectedRows[0].Cells["№"].Value);
 
             employee.Delete();
 

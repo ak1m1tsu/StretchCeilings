@@ -1,13 +1,13 @@
 ﻿using System.Drawing;
 using FontAwesome.Sharp;
 
-namespace stretch_ceilings_app.Utility
+namespace StretchCeilingsApp.Utility
 {
     public static class Constants
     {
         #region Fonts
 
-        public static readonly Font DataGridViewFont = new Font("Microsoft Sans Serif", 14, FontStyle.Regular);
+        public static readonly Font DataGridViewFont = new Font("Open Sans", 12, FontStyle.Regular);
 
         #endregion
         #region Colors
@@ -33,6 +33,8 @@ namespace stretch_ceilings_app.Utility
 
         public static readonly IconChar NoneIcon = IconChar.None;
         public static readonly IconChar SearchIcon = IconChar.Search;
+        public static readonly IconChar WindowRestoreIcon = IconChar.WindowRestore;
+        public static readonly IconChar WindowMaximizeIcon = IconChar.WindowMaximize;
         public static readonly IconChar UserIcon = IconChar.User;
 
         #endregion
@@ -49,6 +51,8 @@ namespace stretch_ceilings_app.Utility
         public static readonly string ErrorCaption = "Ошибка.";
         public static readonly string WarningCaption = "Предупреждение.";
         public static readonly string InfoCaption = "Информация.";
+
+        public static readonly string[] PaidByCashItems = new string[2] { "Нет", "Да" };
 
         #endregion
         #region Numerics

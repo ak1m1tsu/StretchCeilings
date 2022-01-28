@@ -1,12 +1,12 @@
-﻿using stretch_ceilings_app.Utility;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using stretch_ceilings_app.Data.Models;
-using stretch_ceilings_app.Utility.Extensions;
-using stretch_ceilings_app.Utility.Repositories;
+using StretchCeilingsApp.Data.Models;
+using StretchCeilingsApp.Utility;
+using StretchCeilingsApp.Utility.DLL;
+using StretchCeilingsApp.Utility.Repositories;
 
-namespace stretch_ceilings_app
+namespace StretchCeilingsApp
 {
     public partial class LoginForm : Form
     {
@@ -20,7 +20,7 @@ namespace stretch_ceilings_app
 
         private void LoadUsers()
         {
-            _users = EmployeeRepository.GetAll();
+            _users = EmployeeModelsRepository.GetAll();
         }
 
         private void LogIn()
@@ -52,7 +52,7 @@ namespace stretch_ceilings_app
         {
             LoadUsers();
             tbPassword.PasswordChar = '*';
-            btnCloseApp.FlatAppearance.MouseOverBackColor = Constants.DraculaRed;
+            btnClose.FlatAppearance.MouseOverBackColor = Constants.DraculaRed;
         }
 
         private void mtbLogin_KeyDown(object sender, KeyEventArgs e)
@@ -72,8 +72,8 @@ namespace stretch_ceilings_app
 
         private void panelTop_MouseDown(object sender, MouseEventArgs e)
         {
-            DllExtensions.ReleaseCapture();
-            DllExtensions.SendMessage(this.Handle, 0x112, 0xf012, 0);
+            User32.ReleaseCapture();
+            User32.SendMessage(this.Handle, User32.VM_NCLBUTTONDOWN, User32.HT_CAPTION, 0);
         }
     }
 }

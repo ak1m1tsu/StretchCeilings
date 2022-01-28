@@ -1,9 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using stretch_ceilings_app.Interfaces.Models;
+using System.Linq;
+using StretchCeilingsApp.Interfaces.Models;
 
-namespace stretch_ceilings_app.Data.Models
+namespace StretchCeilingsApp.Data.Models
 {
     [Table("Schedule")]
     public class TimeTable : ITimeTable
@@ -18,7 +19,7 @@ namespace stretch_ceilings_app.Data.Models
         public DateTime? Date { get; set; }
         public DateTime? TimeStart { get; set; }
         public DateTime? TimeEnd { get; set; }
-        public DateTime? DateDeleted { get; set; }
+        public DateTime? DeletedDate { get; set; }
 
         public void Add()
         {
@@ -33,7 +34,9 @@ namespace stretch_ceilings_app.Data.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                db.Entry(this.Id).CurrentValues.SetValues(DateDeleted = DateTime.Now);
+                DeletedDate = DateTime.Now;
+                var old = db.Schedules.FirstOrDefault(x=>x.Id == Id);
+                db.Entry(old).CurrentValues.SetValues(this);
                 db.SaveChanges();
             }
         }
@@ -42,7 +45,8 @@ namespace stretch_ceilings_app.Data.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                db.Entry(this.Id).CurrentValues.SetValues(this);
+                var old = db.Schedules.FirstOrDefault(x => x.Id == Id);
+                db.Entry(old).CurrentValues.SetValues(this);
                 db.SaveChanges();
             }
         }

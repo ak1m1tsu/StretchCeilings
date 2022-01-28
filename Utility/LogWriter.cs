@@ -3,12 +3,12 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace stretch_ceilings_app.Utility
+namespace StretchCeilingsApp.Utility
 {
     public static class LogWriter
     {
         private static readonly string _logFilePath;
-        private const string _fileName = "stretch_ceiling_app.log";
+        private const string _fileName = "App.log";
 
         static LogWriter()
         {

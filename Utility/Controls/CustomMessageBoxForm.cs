@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
-using stretch_ceilings_app.Utility.Extensions;
+using StretchCeilingsApp.Utility.DLL;
 
-namespace stretch_ceilings_app.Utility.CustomControls
+namespace StretchCeilingsApp.Utility.Controls
 {
     public partial class CustomMessageBoxForm : Form
     {
@@ -31,8 +31,8 @@ namespace stretch_ceilings_app.Utility.CustomControls
 
         private void panelTop_MouseDown(object sender, MouseEventArgs e)
         {
-            DllExtensions.ReleaseCapture();
-            DllExtensions.SendMessage(this.Handle, 0x112, 0xf012, 0);
+            User32.ReleaseCapture();
+            User32.SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
     }
 

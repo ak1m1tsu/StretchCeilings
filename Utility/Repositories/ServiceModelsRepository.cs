@@ -1,26 +1,25 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using stretch_ceilings_app.Data;
-using stretch_ceilings_app.Data.Models;
+using StretchCeilingsApp.Data;
+using StretchCeilingsApp.Data.Models;
 
-namespace stretch_ceilings_app.Utility.Repositories
+namespace StretchCeilingsApp.Utility.Repositories
 {
-    public static class ServiceRepository
+    public static class ServiceModelsRepository
     {
         public static List<Service> GetAll(out int rows)
         {
             using (var db = new StretchCeilingsContext())
             {
-                var services = db.Services.Where(o => o.DateDeleted == null).ToList();
+                var services = db.Services.Where(o => o.DeletedDate == null);
                 rows = 0;
-                if (services.Any())
-                {
-                    services.ForEach(s => db.Entry(s).Reference(r => r.Ceiling).Load());
-                    services.ForEach(s => db.Entry(s).Reference(r => r.Manufacturer).Load());
-                    rows = services.Count;
-                }
+                if (!services.Any()) return services.ToList();
+                services.ForEachAsync(s => db.Entry(s).Reference(r => r.Ceiling).Load());
+                services.ForEachAsync(s => db.Entry(s).Reference(r => r.Manufacturer).Load());
+                rows = services.Count();
 
-                return services;
+                return services.ToList();
             }
         }
 
@@ -28,7 +27,7 @@ namespace stretch_ceilings_app.Utility.Repositories
         {
             using (var db = new StretchCeilingsContext())
             {
-                var services = db.Services.Where(o => o.DateDeleted == null);
+                var services = db.Services.Where(o => o.DeletedDate == null);
                 rows = 0;
 
                 if (firstFilter.Id != 0)

@@ -1,18 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using stretch_ceilings_app.Data;
-using stretch_ceilings_app.Data.Models;
+using StretchCeilingsApp.Data;
+using StretchCeilingsApp.Data.Models;
 
-namespace stretch_ceilings_app.Utility.Repositories
+namespace StretchCeilingsApp.Utility.Repositories
 {
-    public static class EmployeeRepository
+    public static class EmployeeModelsRepository
     {
         public static List<Employee> GetAll(Employee filter, int count, int page, out int rows)
         {
             using (var db = new StretchCeilingsContext())
             {
-                var queryable = db.Employees.Where(x => x.DateDeleted == null);
+                var queryable = db.Employees.Where(x => x.DeletedDate == null);
                 rows = 0;
 
                 if (filter.Id != 0)
@@ -43,7 +43,7 @@ namespace stretch_ceilings_app.Utility.Repositories
         {
             using (var db = new StretchCeilingsContext())
             {
-                var queryable = db.Employees.Where(x => x.DateDeleted == null);
+                var queryable = db.Employees.Where(x => x.DeletedDate == null);
                 rows = 0;
 
                 if (queryable.Any())
@@ -60,14 +60,14 @@ namespace stretch_ceilings_app.Utility.Repositories
         {
             using (var db = new StretchCeilingsContext())
             {
-                var queryable = db.Employees.Where(x => x.DateDeleted == null).ToList();
+                var queryable = db.Employees.Where(x => x.DeletedDate == null);
 
                 if (queryable.Any())
                 {
-                    queryable.ForEach(x => db.Entry(x).Reference(r => r.Role).Load());
+                    queryable.ForEachAsync(x => db.Entry(x).Reference(r => r.Role).Load());
                 }
 
-                return queryable;
+                return queryable.ToList();
             }
         }
 

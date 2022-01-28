@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using stretch_ceilings_app.Data.Models;
-using stretch_ceilings_app.Utility;
-using stretch_ceilings_app.Utility.CustomControls;
-using stretch_ceilings_app.Utility.Enums;
-using stretch_ceilings_app.Utility.Extensions;
-using stretch_ceilings_app.Utility.Repositories;
+using StretchCeilingsApp.Data.Models;
+using StretchCeilingsApp.Utility;
+using StretchCeilingsApp.Utility.Controls;
+using StretchCeilingsApp.Utility.Enums;
+using StretchCeilingsApp.Utility.Extensions;
+using StretchCeilingsApp.Utility.Extensions.Controls;
+using StretchCeilingsApp.Utility.Repositories;
 
-namespace stretch_ceilings_app.Forms
+namespace StretchCeilingsApp.Forms
 {
     public partial class ManufacturersForm : Form
     {
@@ -35,8 +36,7 @@ namespace stretch_ceilings_app.Forms
         {
             if (UserSession.IsAdmin || UserSession.Can(PermissionCode.AddCustomer))
             {
-                var btnAddManufacturer = new FlatButton("btnAddOrder", "Добавить");
-                btnAddManufacturer.Click += btnAddManufacturer_Click;
+                var btnAddManufacturer = new FlatButton("btnAddOrder", "Добавить", btnAddManufacturer_Click);
                 panelUserButtons.Controls.Add(btnAddManufacturer);
             }
 
@@ -54,18 +54,17 @@ namespace stretch_ceilings_app.Forms
 
         private void SetUpDataGrid()
         {
-            _manufacturers = ManufacturerRepository.GetAll(out _rows);
+            _manufacturers = ManufacturerModelsRepository.GetAll(out _rows);
             
-            var idColumn = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
-            var nameColumn = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Производитель", DataGridViewAutoSizeColumnMode.Fill);
-            var addressColumn = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Адрес", DataGridViewAutoSizeColumnMode.Fill);
-            var countryColumn = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Страна", DataGridViewAutoSizeColumnMode.DisplayedCells);
-            var delColumn = DataGridViewExtensions.CreateDataGridViewButtonColumn(Constants.DraculaRed);
+            dgvManufacturers.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvManufacturers.AddDataGridViewTextBoxColumn("Производитель", DataGridViewAutoSizeColumnMode.Fill);
+            dgvManufacturers.AddDataGridViewTextBoxColumn("Адрес", DataGridViewAutoSizeColumnMode.Fill);
+            dgvManufacturers.AddDataGridViewTextBoxColumn("Страна", DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvManufacturers.AddDataGridViewButtonColumn(Constants.DraculaRed);
 
             dgvManufacturers.Font = Constants.DataGridViewFont;
             dgvManufacturers.DefaultCellStyle.SelectionBackColor = Constants.DraculaSelection;
             dgvManufacturers.DefaultCellStyle.SelectionForeColor = Constants.DraculaForeground;
-            dgvManufacturers.Columns.AddRange(idColumn, nameColumn, addressColumn, countryColumn, delColumn);
 
             FillDataGrid();
         }
@@ -90,7 +89,7 @@ namespace stretch_ceilings_app.Forms
 
         private void FilterDataGrid()
         {
-            _manufacturers = ManufacturerRepository.GetAll(
+            _manufacturers = ManufacturerModelsRepository.GetAll(
                 _filter,
                 _count,
                 _currentPage,
@@ -102,7 +101,7 @@ namespace stretch_ceilings_app.Forms
         {
             if (dgvManufacturers.SelectedRows.Count <= 0) return;
 
-            var customer = CustomerRepository.GetById((int)dgvManufacturers.SelectedRows[0].Cells[0].Value);
+            var customer = CustomerModelsRepository.GetById((int)dgvManufacturers.SelectedRows[0].Cells[0].Value);
             new CustomerForm(customer).ShowDialog();
         }
 

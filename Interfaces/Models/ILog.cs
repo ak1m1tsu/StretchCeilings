@@ -1,4 +1,4 @@
-﻿namespace stretch_ceilings_app.Interfaces.Models
+﻿namespace StretchCeilingsApp.Interfaces.Models
 {
     public interface ILog
     {

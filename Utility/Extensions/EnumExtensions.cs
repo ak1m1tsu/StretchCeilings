@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using stretch_ceilings_app.Utility.Enums;
+using StretchCeilingsApp.Utility.Enums;
 
-namespace stretch_ceilings_app.Utility.Extensions
+namespace StretchCeilingsApp.Utility.Extensions
 {
 
     public static class EnumExtensions

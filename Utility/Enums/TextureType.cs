@@ -1,8 +1,9 @@
-﻿namespace stretch_ceilings_app.Utility.Enums
+﻿namespace StretchCeilingsApp.Utility.Enums
 {
     public enum TextureType
     {
-        Matte = 0,
+        Unknown = 0,
+        Matte,
         Glossy,
         Satin,
         Fabric

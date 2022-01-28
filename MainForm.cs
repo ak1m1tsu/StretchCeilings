@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
-using stretch_ceilings_app.Forms;
-using stretch_ceilings_app.Utility;
-using stretch_ceilings_app.Utility.CustomControls;
-using stretch_ceilings_app.Utility.Extensions;
+using StretchCeilingsApp.Forms;
+using StretchCeilingsApp.Utility;
+using StretchCeilingsApp.Utility.Controls;
+using StretchCeilingsApp.Utility.DLL;
+using StretchCeilingsApp.Utility.Extensions.Controls;
 
-namespace stretch_ceilings_app
+namespace StretchCeilingsApp
 {
     public partial class MainForm : Form
     {
@@ -32,30 +33,17 @@ namespace stretch_ceilings_app
 
         private void DrawNavigationButtons()
         {
-            var btnManufacturers = new FlatButton("btnManufacturers", "Производители");
-            btnManufacturers.Click += btnManufacturers_Click;
-
-            var btnAdditionalService = new FlatButton("btnAdditionalService", "Дополнительный услуги");
-            btnAdditionalService.Click += btnAdditionalService_Click;
-
-            var btnServices = new FlatButton("btnServices", "Услуги");
-            btnServices.Click += btnServices_Click;
-
-            var btnEmployes = new FlatButton("btnEmployees", "Сотрудники");
-            btnEmployes.Click += btnEmployees_Click;
-
-            var btnCustomers = new FlatButton("btnCustomers", "Клиенты");
-            btnCustomers.Click += btnCustomers_Click;
-
-            var btnOrders = new FlatButton("btnOrders", "Заказы");
-            btnOrders.Click += btnOrders_Click;
-
             var buttons = new Button[]
             {
-                btnOrders, btnCustomers, btnEmployes, btnServices, btnAdditionalService, btnManufacturers
-            }.Reverse().ToArray();
+                new FlatButton("btnOrders", "Заказы", btnOrders_Click),
+                new FlatButton("btnCustomers", "Клиенты", btnCustomers_Click),
+                new FlatButton("btnEmployees", "Сотрудники", btnEmployees_Click),
+                new FlatButton("btnServices", "Услуги", btnServices_Click),
+                new FlatButton("btnAdditionalService", "Дополнительный услуги", btnAdditionalService_Click),
+                new FlatButton("btnManufacturers", "Производители", btnManufacturers_Click)
+            }.Reverse();
 
-            panelNav.Controls.AddRange(buttons);
+            panelNav.AddButtons(buttons.ToArray());
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -108,6 +96,9 @@ namespace stretch_ceilings_app
         private void btnMaximizeApp_Click(object sender, EventArgs e)
         {
             this.WindowState = this.WindowState != FormWindowState.Maximized ? FormWindowState.Maximized : FormWindowState.Normal;
+            btnResiizeApp.IconChar = btnResiizeApp.IconChar == Constants.WindowMaximizeIcon
+                ? Constants.WindowRestoreIcon
+                : Constants.WindowMaximizeIcon;
         }
 
         private void btnCloseApp_Click(object sender, EventArgs e)
@@ -117,8 +108,8 @@ namespace stretch_ceilings_app
 
         private void panelTop_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-            DllExtensions.ReleaseCapture();
-            DllExtensions.SendMessage(this.Handle, 0x112, 0xf012, 0);
+            User32.ReleaseCapture();
+            User32.SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
     }
 }

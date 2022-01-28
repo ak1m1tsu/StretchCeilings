@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
-using stretch_ceilings_app.Data.Models;
+using StretchCeilingsApp.Data.Models;
 
-namespace stretch_ceilings_app.Forms
+namespace StretchCeilingsApp.Forms
 {
     public partial class ServiceFormEdit : Form
     {
@@ -40,6 +40,11 @@ namespace stretch_ceilings_app.Forms
         }
 
         private void btnPreviousPage_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbCeilingValue_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

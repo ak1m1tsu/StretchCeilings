@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using stretch_ceilings_app.Interfaces.Models;
+using StretchCeilingsApp.Interfaces.Models;
 
-namespace stretch_ceilings_app.Data.Models
+namespace StretchCeilingsApp.Data.Models
 {
     [Table("Logs")]
     public class Log : ILog
@@ -18,7 +18,7 @@ namespace stretch_ceilings_app.Data.Models
         [Required]
         public string Comment { get; set; }
         public DateTime? DateCreated { get; set; }
-        public DateTime? DateDeleted { get; set; }
+        public DateTime? DeletedDate { get; set; }
 
         public void Add()
         {
@@ -33,7 +33,7 @@ namespace stretch_ceilings_app.Data.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                db.Entry(this.Id).CurrentValues.SetValues(DateDeleted = DateTime.Now);
+                db.Entry(this.Id).CurrentValues.SetValues(DeletedDate = DateTime.Now);
                 db.SaveChanges();
             }
         }

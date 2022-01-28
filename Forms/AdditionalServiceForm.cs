@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
-using stretch_ceilings_app.Utility;
-using stretch_ceilings_app.Utility.Enums;
-using stretch_ceilings_app.Data.Models;
-using stretch_ceilings_app.Utility.Repositories;
+using StretchCeilingsApp.Data.Models;
+using StretchCeilingsApp.Utility;
+using StretchCeilingsApp.Utility.Enums;
+using StretchCeilingsApp.Utility.Repositories;
 
-namespace stretch_ceilings_app.Forms
+namespace StretchCeilingsApp.Forms
 {
     public partial class AdditionalServiceForm : Form
     {
@@ -19,7 +19,7 @@ namespace stretch_ceilings_app.Forms
 
         private void ReSetUpForm()
         {
-            _currentService = AdditionalServiceRepository.GetById(_currentService.Id);
+            _currentService = AdditionalServiceModelsRepository.GetById(_currentService.Id);
 
             lblNameValue.Text = _currentService?.Name;
             lblPriceValue.Text = _currentService?.Price?.ToString();

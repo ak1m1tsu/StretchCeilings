@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
-using stretch_ceilings_app.Data.Models;
+using StretchCeilingsApp.Data.Models;
 
-namespace stretch_ceilings_app.Forms
+namespace StretchCeilingsApp.Forms
 {
     public partial class AdditionalServiceFormEdit : Form
     {

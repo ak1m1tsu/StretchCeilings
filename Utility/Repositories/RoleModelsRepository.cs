@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using stretch_ceilings_app.Data;
-using stretch_ceilings_app.Data.Models;
+using StretchCeilingsApp.Data;
+using StretchCeilingsApp.Data.Models;
 
-namespace stretch_ceilings_app.Utility.Repositories
+namespace StretchCeilingsApp.Utility.Repositories
 {
-    public static class RoleRepository
+    public static class RoleModelsRepository
     {
         public static List<Role> GetAll()
         {

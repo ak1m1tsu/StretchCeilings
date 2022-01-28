@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
-using stretch_ceilings_app.Data.Models;
-using stretch_ceilings_app.Utility;
+using StretchCeilingsApp.Data.Models;
+using StretchCeilingsApp.Utility;
 
-namespace stretch_ceilings_app.Forms
+namespace StretchCeilingsApp.Forms
 {
     public partial class EmployeeForm : Form
     {
@@ -28,8 +28,8 @@ namespace stretch_ceilings_app.Forms
                 lblPasswordValue.Text = _employee.Password;
             }
 
-            lblNameValue.Text = _employee.FullName;
-            lblRoleValue.Text = _employee.Role.Name;
+            lblNameValue.Text = _employee?.FullName;
+            lblRoleValue.Text = _employee?.Role.Name;
 
             SetUpTimeTableGrid();
         }

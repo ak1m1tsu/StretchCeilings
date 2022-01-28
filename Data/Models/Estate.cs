@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using stretch_ceilings_app.Interfaces.Models;
+using StretchCeilingsApp.Interfaces.Models;
 
-namespace stretch_ceilings_app.Data.Models
+namespace StretchCeilingsApp.Data.Models
 {
     [Table("Estates")]
     public class Estate : IEstate
@@ -19,7 +19,7 @@ namespace stretch_ceilings_app.Data.Models
         public int? CustomerId { get; set; }
         [Column("CustomerId")]
         public virtual Customer Customer { get; set; }
-        public DateTime? DateDeleted { get; set; }
+        public DateTime? DeletedDate { get; set; }
 
         public void Add()
         {
@@ -34,7 +34,7 @@ namespace stretch_ceilings_app.Data.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                db.Entry(this.Id).CurrentValues.SetValues(DateDeleted = DateTime.Now);
+                db.Entry(this.Id).CurrentValues.SetValues(DeletedDate = DateTime.Now);
                 db.SaveChanges();
             }
         }

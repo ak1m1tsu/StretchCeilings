@@ -1,5 +1,5 @@
 ﻿
-namespace stretch_ceilings_app.Utility.CustomControls
+namespace StretchCeilingsApp.Utility.Controls
 {
     partial class CustomMessageBoxForm
     {

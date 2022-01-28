@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using stretch_ceilings_app.Data.Models;
-using stretch_ceilings_app.Utility;
-using stretch_ceilings_app.Utility.CustomControls;
-using stretch_ceilings_app.Utility.Enums;
-using stretch_ceilings_app.Utility.Extensions;
-using stretch_ceilings_app.Utility.Repositories;
+using StretchCeilingsApp.Data.Models;
+using StretchCeilingsApp.Utility;
+using StretchCeilingsApp.Utility.Controls;
+using StretchCeilingsApp.Utility.Enums;
+using StretchCeilingsApp.Utility.Extensions.Controls;
+using StretchCeilingsApp.Utility.Repositories;
 
-namespace stretch_ceilings_app.Forms
+namespace StretchCeilingsApp.Forms
 {
     public partial class AdditionalServicesForm : Form
     {
@@ -39,8 +39,7 @@ namespace stretch_ceilings_app.Forms
         {
             if (UserSession.Can(PermissionCode.AddAdditionalService) || UserSession.IsAdmin)
             {
-                var btnAddService = new FlatButton("btnAddAdditionalService", "Добавить", Constants.DraculaAlphaGreen);
-                btnAddService.Click += btnAddAdditionalService_Click;
+                var btnAddService = new FlatButton("btnAddAdditionalService", "Добавить", btnAddAdditionalService_Click, Constants.DraculaAlphaGreen);
                 panelUserButtons.Controls.Add(btnAddService);
             }
 
@@ -59,18 +58,18 @@ namespace stretch_ceilings_app.Forms
 
         private void SetUpDataGrid()
         {
-            _additionalServices = AdditionalServiceRepository.GetAll(out _rowsCount);
+            _additionalServices = AdditionalServiceModelsRepository.GetAll(out _rowsCount);
 
-            var idColumn = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
-            var nameColumn = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Название", DataGridViewAutoSizeColumnMode.Fill);
-            var priceColumn = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Цена", DataGridViewAutoSizeColumnMode.Fill);
-            var delColumn = DataGridViewExtensions.CreateDataGridViewButtonColumn(Constants.DraculaRed);
+            
+            dgvAdditionalServices.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvAdditionalServices.AddDataGridViewTextBoxColumn("Название", DataGridViewAutoSizeColumnMode.Fill);
+            dgvAdditionalServices.AddDataGridViewTextBoxColumn("Цена", DataGridViewAutoSizeColumnMode.Fill);
+            dgvAdditionalServices.AddDataGridViewButtonColumn(Constants.DraculaRed);
 
             dgvAdditionalServices.Font = Constants.DataGridViewFont;
             dgvAdditionalServices.DefaultCellStyle.SelectionBackColor = Constants.DraculaSelection;
             dgvAdditionalServices.DefaultCellStyle.SelectionForeColor = Constants.DraculaForeground;
             dgvAdditionalServices.CellClick += dgvAdditionalServices_CellClick;
-            dgvAdditionalServices.Columns.AddRange(idColumn, nameColumn, priceColumn, delColumn);
 
             FillDataGrid();
         }
@@ -80,7 +79,7 @@ namespace stretch_ceilings_app.Forms
             if (dgvAdditionalServices.SelectedRows.Count <= 0) return;
 
             var service =
-                AdditionalServiceRepository.GetById((int)dgvAdditionalServices.SelectedRows[0].Cells[0].Value);
+                AdditionalServiceModelsRepository.GetById((int)dgvAdditionalServices.SelectedRows[0].Cells[0].Value);
             var form = new AdditionalServiceForm(service);
             if (form.ShowDialog() == DialogResult.OK)
                 FillDataGrid();
@@ -93,7 +92,7 @@ namespace stretch_ceilings_app.Forms
                 CustomMessageBox.Show("Неверно указан ценовой диапозон", Constants.ErrorCaption);
                 return;
             }
-            _additionalServices = AdditionalServiceRepository.GetAll(
+            _additionalServices = AdditionalServiceModelsRepository.GetAll(
                 _firstFilter,
                 _secondsFilter,
                 _count,
@@ -130,7 +129,7 @@ namespace stretch_ceilings_app.Forms
             nudId.Value = Constants.DefaultNumericUpDownValue;
             tbName.Text = Constants.DefaultTextBoxText;
             
-            _additionalServices = AdditionalServiceRepository.GetAll(out _rowsCount);
+            _additionalServices = AdditionalServiceModelsRepository.GetAll(out _rowsCount);
 
             FillDataGrid();
         }
@@ -213,7 +212,7 @@ namespace stretch_ceilings_app.Forms
         {
             if (e.RowIndex < 0 || e.ColumnIndex != dgvAdditionalServices.Columns[" "]?.Index) return;
 
-            var service = AdditionalServiceRepository.GetById((int)dgvAdditionalServices.SelectedRows[0].Cells["№"].Value);
+            var service = AdditionalServiceModelsRepository.GetById((int)dgvAdditionalServices.SelectedRows[0].Cells["№"].Value);
 
             service.Delete();
 

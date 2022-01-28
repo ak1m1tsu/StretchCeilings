@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using stretch_ceilings_app.Interfaces.Models;
-using stretch_ceilings_app.Utility.Enums;
+using StretchCeilingsApp.Interfaces.Models;
+using StretchCeilingsApp.Utility.Enums;
 
-namespace stretch_ceilings_app.Data.Models
+namespace StretchCeilingsApp.Data.Models
 {
     [Table("Manufacturers")]
     public class Manufacturer : IManufacturer
@@ -16,11 +16,10 @@ namespace stretch_ceilings_app.Data.Models
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-        [Required]
-        public Country Country { get; set; }
+        public Country? Country { get; set; }
         [Required]
         public string Address { get; set; }
-        public DateTime? DateDeleted { get; set; }
+        public DateTime? DeletedDate { get; set; }
 
         public void Add()
         {
@@ -35,7 +34,7 @@ namespace stretch_ceilings_app.Data.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                DateDeleted = DateTime.Now;
+                DeletedDate = DateTime.Now;
                 var old = db.Manufacturers.FirstOrDefault(x => x.Id == Id);
                 db.Entry(old).CurrentValues.SetValues(this);
                 db.SaveChanges();

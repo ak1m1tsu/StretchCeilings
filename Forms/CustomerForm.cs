@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
-using stretch_ceilings_app.Data.Models;
-using stretch_ceilings_app.Utility;
-using stretch_ceilings_app.Utility.Enums;
-using stretch_ceilings_app.Utility.Extensions;
+using StretchCeilingsApp.Data.Models;
+using StretchCeilingsApp.Utility;
+using StretchCeilingsApp.Utility.Enums;
+using StretchCeilingsApp.Utility.Extensions.Controls;
 
-namespace stretch_ceilings_app.Forms
+namespace StretchCeilingsApp.Forms
 {
     public partial class CustomerForm : Form
     {
@@ -30,10 +30,10 @@ namespace stretch_ceilings_app.Forms
         {
             var estates = _currentCustomer.GetEstates();
 
-            var idCol = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
-            var addressCol = DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Адресс", DataGridViewAutoSizeColumnMode.Fill);
+            dgvEstates.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvEstates.AddDataGridViewTextBoxColumn("Адресс", DataGridViewAutoSizeColumnMode.Fill);
 
-            dgvEstates.Columns.AddRange(idCol, addressCol);
+            dgvEstates.Font = Constants.DataGridViewFont;
             dgvEstates.DefaultCellStyle.SelectionBackColor = Constants.DraculaSelection;
             dgvEstates.DefaultCellStyle.SelectionForeColor = Constants.DraculaForeground;
 

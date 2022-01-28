@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Forms;
-using stretch_ceilings_app.Data.Models;
-using stretch_ceilings_app.Utility;
-using stretch_ceilings_app.Utility.CustomControls;
-using stretch_ceilings_app.Utility.Enums;
-using stretch_ceilings_app.Utility.Extensions;
-using stretch_ceilings_app.Utility.Repositories;
+using StretchCeilingsApp.Data.Models;
+using StretchCeilingsApp.Utility;
+using StretchCeilingsApp.Utility.Controls;
+using StretchCeilingsApp.Utility.Enums;
+using StretchCeilingsApp.Utility.Extensions.Controls;
+using StretchCeilingsApp.Utility.Repositories;
 
-namespace stretch_ceilings_app.Forms
+namespace StretchCeilingsApp.Forms
 {
     public partial class ServicesForm : Form
     {
@@ -33,33 +33,24 @@ namespace stretch_ceilings_app.Forms
 
         private void SetUpDataGrid()
         {
-            _services = ServiceRepository.GetAll(out _rowsCount);
+            _services = ServiceModelsRepository.GetAll(out _rowsCount);
 
-            var idColumn =
-                DataGridViewExtensions.CreateDataGridViewTextBoxColumn("№",
-                    DataGridViewAutoSizeColumnMode.DisplayedCells);
-            var manufacturerColumn =
-                DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Производитель",
-                    DataGridViewAutoSizeColumnMode.Fill);
-            var ceilingColumn =
-                DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Потолок", DataGridViewAutoSizeColumnMode.Fill);
-            var priceColumn =
-                DataGridViewExtensions.CreateDataGridViewTextBoxColumn("Цена",
-                    DataGridViewAutoSizeColumnMode.DisplayedCells);
-            var delColumn = DataGridViewExtensions.CreateDataGridViewButtonColumn(Constants.DraculaRed);
+            dgvServices.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvServices.AddDataGridViewTextBoxColumn("Производитель", DataGridViewAutoSizeColumnMode.Fill);
+            dgvServices.AddDataGridViewTextBoxColumn("Потолок", DataGridViewAutoSizeColumnMode.Fill);
+            dgvServices.AddDataGridViewTextBoxColumn("Цена", DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvServices.AddDataGridViewButtonColumn(Constants.DraculaRed);
 
             dgvServices.Font = Constants.DataGridViewFont;
             dgvServices.DefaultCellStyle.SelectionBackColor = Constants.DraculaSelection;
             dgvServices.DefaultCellStyle.SelectionForeColor = Constants.DraculaForeground;
-            dgvServices.Columns.AddRange(idColumn, manufacturerColumn, ceilingColumn, priceColumn, delColumn);
         }
 
         private void SetUpControls()
         {
             if (UserSession.Can(PermissionCode.AddService) || UserSession.IsAdmin)
             {
-                var btnAddService = new FlatButton("btnAddAdditionalService", "Добавить", Constants.DraculaAlphaGreen);
-                btnAddService.Click += AddService;
+                var btnAddService = new FlatButton("btnAddAdditionalService", "Добавить", AddService, Constants.DraculaAlphaGreen);
                 panelUserButtons.Controls.Add(btnAddService);
             }
         }
@@ -90,7 +81,7 @@ namespace stretch_ceilings_app.Forms
                 return;
             }
 
-            _services = ServiceRepository.GetAll(
+            _services = ServiceModelsRepository.GetAll(
                 _firstFilter, 
                 _secondFilter, 
                 _count, 
@@ -110,14 +101,14 @@ namespace stretch_ceilings_app.Forms
             linkLblManufacturer.Text = Constants.DefaultLinkLabelText;
             cbCeiling.Items.Clear();
 
-            _services = ServiceRepository.GetAll(out _rowsCount);
+            _services = ServiceModelsRepository.GetAll(out _rowsCount);
 
             FillDataGrid();
         }
 
         private void UpdatePageTextBox()
         {
-            tbPages.Text = $"{_currentPage} / {_maxPage}";
+            tbPages.UpdatePagesValue(_currentPage, _maxPage);
         }
 
         private void UpdateComboBoxRow()
