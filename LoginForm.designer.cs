@@ -1,5 +1,5 @@
 ﻿
-namespace StretchCeilingsApp
+namespace StretchCeilings
 {
     partial class LoginForm
     {
@@ -73,10 +73,10 @@ namespace StretchCeilingsApp
             this.mtbLogin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.mtbLogin.Font = new System.Drawing.Font("Open Sans", 12F);
             this.mtbLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.mtbLogin.Location = new System.Drawing.Point(137, 31);
+            this.mtbLogin.Location = new System.Drawing.Point(121, 31);
             this.mtbLogin.Mask = "+7(999)000-00-00";
             this.mtbLogin.Name = "mtbLogin";
-            this.mtbLogin.Size = new System.Drawing.Size(164, 29);
+            this.mtbLogin.Size = new System.Drawing.Size(179, 29);
             this.mtbLogin.TabIndex = 12;
             this.mtbLogin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtbLogin_KeyDown);
             // 
@@ -87,7 +87,7 @@ namespace StretchCeilingsApp
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.Font = new System.Drawing.Font("Open Sans", 12F);
             this.btnLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.btnLogin.Location = new System.Drawing.Point(132, 113);
+            this.btnLogin.Location = new System.Drawing.Point(125, 107);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(100, 35);
             this.btnLogin.TabIndex = 14;
@@ -101,9 +101,9 @@ namespace StretchCeilingsApp
             this.tbPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbPassword.Font = new System.Drawing.Font("Open Sans", 12F);
             this.tbPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.tbPassword.Location = new System.Drawing.Point(137, 72);
+            this.tbPassword.Location = new System.Drawing.Point(121, 66);
             this.tbPassword.Name = "tbPassword";
-            this.tbPassword.Size = new System.Drawing.Size(164, 29);
+            this.tbPassword.Size = new System.Drawing.Size(179, 29);
             this.tbPassword.TabIndex = 13;
             this.tbPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbPassword_KeyDown);
             // 
@@ -112,7 +112,7 @@ namespace StretchCeilingsApp
             this.lblPassword.AutoSize = true;
             this.lblPassword.Font = new System.Drawing.Font("Open Sans", 12F);
             this.lblPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.lblPassword.Location = new System.Drawing.Point(59, 75);
+            this.lblPassword.Location = new System.Drawing.Point(50, 68);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(73, 23);
             this.lblPassword.TabIndex = 11;
@@ -123,7 +123,7 @@ namespace StretchCeilingsApp
             this.lblLogin.AutoSize = true;
             this.lblLogin.Font = new System.Drawing.Font("Open Sans", 12F);
             this.lblLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.lblLogin.Location = new System.Drawing.Point(59, 34);
+            this.lblLogin.Location = new System.Drawing.Point(50, 33);
             this.lblLogin.Name = "lblLogin";
             this.lblLogin.Size = new System.Drawing.Size(62, 23);
             this.lblLogin.TabIndex = 10;
@@ -134,7 +134,7 @@ namespace StretchCeilingsApp
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(42)))), ((int)(((byte)(54)))));
-            this.ClientSize = new System.Drawing.Size(350, 160);
+            this.ClientSize = new System.Drawing.Size(350, 150);
             this.Controls.Add(this.mtbLogin);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.tbPassword);

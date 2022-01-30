@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using StretchCeilingsApp.Data.Models;
-using StretchCeilingsApp.Utility;
-using StretchCeilingsApp.Utility.DLL;
-using StretchCeilingsApp.Utility.Repositories;
+using StretchCeilings.Helpers;
+using StretchCeilings.Helpers.Controls;
+using StretchCeilings.Helpers.DLL;
+using StretchCeilings.Models;
+using StretchCeilings.Repositories;
 
-namespace StretchCeilingsApp
+namespace StretchCeilings
 {
     public partial class LoginForm : Form
     {
@@ -27,7 +28,7 @@ namespace StretchCeilingsApp
         {
             if (UserSession.LogIn(_users, mtbLogin.Text, tbPassword.Text) == false)
             {
-                MessageBox.Show("Неверный логин или пароль.", "Авторизация не пройдена.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CustomMessageBox.Show("Неверный логин или пароль.", Constants.ErrorCaption);
                 return;
             }
 

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace StretchCeilingsApp.Properties {
+namespace StretchCeilings.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace StretchCeilingsApp.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("StretchCeilingsApp.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("StretchCeilings.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,6 +57,25 @@ namespace StretchCeilingsApp.Properties {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на +7(   )   -  -.
+        /// </summary>
+        internal static string defaultPhoneNumberText {
+            get {
+                return ResourceManager.GetString("defaultPhoneNumberText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+        /// </summary>
+        internal static System.Drawing.Icon error_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("error_32x32", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
     }

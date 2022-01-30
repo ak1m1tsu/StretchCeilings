@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace StretchCeilingsApp.Properties {
+namespace StretchCeilings.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

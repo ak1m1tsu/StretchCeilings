@@ -1,4 +1,4 @@
-﻿namespace StretchCeilingsApp.Interfaces.Models
+﻿namespace StretchCeilings.Interfaces.Models
 {
     public interface IPermission
     {

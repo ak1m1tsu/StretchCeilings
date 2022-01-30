@@ -1,5 +1,5 @@
 ﻿
-namespace StretchCeilingsApp
+namespace StretchCeilings
 {
     partial class MainForm
     {

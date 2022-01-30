@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using StretchCeilingsApp.Data.Models;
+using StretchCeilings.Models;
 
-namespace StretchCeilingsApp.Interfaces.Models
+namespace StretchCeilings.Interfaces.Models
 {
     public interface IRole
     {

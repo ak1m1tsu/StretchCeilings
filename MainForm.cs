@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
-using StretchCeilingsApp.Forms;
-using StretchCeilingsApp.Utility;
-using StretchCeilingsApp.Utility.Controls;
-using StretchCeilingsApp.Utility.DLL;
-using StretchCeilingsApp.Utility.Extensions.Controls;
+using StretchCeilings.Helpers;
+using StretchCeilings.Helpers.Controls;
+using StretchCeilings.Helpers.DLL;
+using StretchCeilings.Helpers.Extensions.Controls;
+using StretchCeilings.Views;
 
-namespace StretchCeilingsApp
+namespace StretchCeilings
 {
     public partial class MainForm : Form
     {

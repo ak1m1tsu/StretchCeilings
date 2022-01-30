@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Threading;
 using System.Windows.Forms;
-using StretchCeilingsApp.Utility;
+using StretchCeilings.Helpers;
+using StretchCeilings.Helpers.Enums;
 
-namespace StretchCeilingsApp
+namespace StretchCeilings
 {
     public static class Program
     {
@@ -18,7 +19,7 @@ namespace StretchCeilingsApp
 
         private static async void Exception(object sender, ThreadExceptionEventArgs e)
         {
-            await LogWriter.WriteAsync(DateTime.Now, e.Exception.Message);
+            await LogWriter.WriteAsync(DateTime.Now, e.Exception.Message, LogLevel.ERROR);
         }
     }
 }
