@@ -43,8 +43,8 @@ namespace StretchCeilings.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                List<AdditionalService> services = new List<AdditionalService>();
-                for (int i = 0; i < Count; i++)
+                var services = new List<AdditionalService>();
+                for (var i = 0; i < Count; i++)
                 {
                     services.Add(db.AdditionalServices.FirstOrDefault(x=>x.Id == AdditionalServiceId));
                 }

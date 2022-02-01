@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
-using StretchCeilings.Helpers.DLL;
+using StretchCeilings.Helpers.Extensions;
 using StretchCeilings.Models;
 
 namespace StretchCeilings.Views
@@ -11,9 +12,12 @@ namespace StretchCeilings.Views
         private readonly Employee _employee;
         private List<CheckBox> _cbDays;
 
+        public List<TimeTable> TimeTables { get; } 
+
         public TimeTableForm(Employee employee)
         {
             _employee = employee;
+            TimeTables = new List<TimeTable>();
             InitializeComponent();
         }
 
@@ -52,13 +56,13 @@ namespace StretchCeilings.Views
 
         private void AddSingleTimeTable()
         {
-            new TimeTable()
+            TimeTables.Add(new TimeTable()
             {
                 Date = dtpDate.Value,
                 TimeStart = dtpStart.Value,
                 TimeEnd = dtpEnd.Value,
                 EmployeeId = _employee.Id
-            }.Add();
+            });
         }
 
         private void AddSomeTimeTables()
@@ -66,23 +70,18 @@ namespace StretchCeilings.Views
             var weeks = Convert.ToInt32(nudWeeksValue.Value);
             var currentDate = dtpDate.Value;
             var lastDate = dtpDate.Value.AddDays(weeks * 7);
-            var selectedDays = new List<DayOfWeek>();
-            foreach (CheckBox checkBox in _cbDays)
-            {
-                if (checkBox.Checked)
-                    selectedDays.Add((DayOfWeek)checkBox.Tag);
-            }
+            var selectedDays = (from checkBox in _cbDays where checkBox.Checked select (DayOfWeek)checkBox.Tag).ToList();
             while (currentDate < lastDate)
             {
                 if (selectedDays.Contains(currentDate.DayOfWeek))
                 {
-                    new TimeTable()
+                    TimeTables.Add(new TimeTable()
                     {
                         EmployeeId = _employee.Id,
                         Date = currentDate,
                         TimeStart = dtpStart.Value,
                         TimeEnd = dtpEnd.Value
-                    }.Add();
+                    });
                 }
                 currentDate = currentDate.AddDays(1);
             }
@@ -91,11 +90,10 @@ namespace StretchCeilings.Views
         private void btnSave_Click(object sender, EventArgs e)
         {
             if(IsRepeated() == false)
-            {
                 AddSingleTimeTable();
-                return;
-            }
-            AddSomeTimeTables();
+            else
+                AddSomeTimeTables();
+            
             DialogResult = DialogResult.OK;
         }
 
@@ -119,8 +117,7 @@ namespace StretchCeilings.Views
 
         private void panelTop_MouseDown(object sender, MouseEventArgs e)
         {
-            User32.ReleaseCapture();
-            User32.SendMessage(Handle, User32.VM_NCLBUTTONDOWN, User32.HT_CAPTION, 0);
+            Handle.DragMove(e);
         }
     }
 }

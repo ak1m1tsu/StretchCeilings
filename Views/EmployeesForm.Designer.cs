@@ -247,9 +247,9 @@ namespace StretchCeilings.Views
             this.cbRows.Font = new System.Drawing.Font("Open Sans", 12F);
             this.cbRows.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.cbRows.FormattingEnabled = true;
-            this.cbRows.Location = new System.Drawing.Point(989, 5);
+            this.cbRows.Location = new System.Drawing.Point(995, 4);
             this.cbRows.Name = "cbRows";
-            this.cbRows.Size = new System.Drawing.Size(55, 31);
+            this.cbRows.Size = new System.Drawing.Size(50, 31);
             this.cbRows.TabIndex = 99;
             this.cbRows.SelectedIndexChanged += new System.EventHandler(this.cbRows_SelectedIndexChanged);
             // 
@@ -260,7 +260,7 @@ namespace StretchCeilings.Views
             this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrevious.Font = new System.Drawing.Font("Open Sans", 12F);
             this.btnPrevious.ForeColor = System.Drawing.Color.White;
-            this.btnPrevious.Location = new System.Drawing.Point(5, 5);
+            this.btnPrevious.Location = new System.Drawing.Point(5, 4);
             this.btnPrevious.Name = "btnPrevious";
             this.btnPrevious.Size = new System.Drawing.Size(31, 31);
             this.btnPrevious.TabIndex = 69;
@@ -274,10 +274,10 @@ namespace StretchCeilings.Views
             this.tbPages.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbPages.Font = new System.Drawing.Font("Open Sans", 12F);
             this.tbPages.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.tbPages.Location = new System.Drawing.Point(37, 6);
+            this.tbPages.Location = new System.Drawing.Point(38, 5);
             this.tbPages.Name = "tbPages";
             this.tbPages.ReadOnly = true;
-            this.tbPages.Size = new System.Drawing.Size(80, 29);
+            this.tbPages.Size = new System.Drawing.Size(60, 29);
             this.tbPages.TabIndex = 68;
             this.tbPages.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -288,7 +288,7 @@ namespace StretchCeilings.Views
             this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNext.Font = new System.Drawing.Font("Open Sans", 12F);
             this.btnNext.ForeColor = System.Drawing.Color.White;
-            this.btnNext.Location = new System.Drawing.Point(118, 5);
+            this.btnNext.Location = new System.Drawing.Point(100, 4);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(31, 31);
             this.btnNext.TabIndex = 67;

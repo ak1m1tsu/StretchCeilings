@@ -111,7 +111,6 @@ namespace StretchCeilings.Views
             this.btnPreviousPage.TabIndex = 96;
             this.btnPreviousPage.Text = "<";
             this.btnPreviousPage.UseVisualStyleBackColor = false;
-            this.btnPreviousPage.Click += new System.EventHandler(this.btnPreviousPage_Click);
             // 
             // tbPage
             // 
@@ -139,7 +138,6 @@ namespace StretchCeilings.Views
             this.btnNextPage.TabIndex = 94;
             this.btnNextPage.Text = ">";
             this.btnNextPage.UseVisualStyleBackColor = false;
-            this.btnNextPage.Click += new System.EventHandler(this.btnNextPage_Click);
             // 
             // dgvOrders
             // 
@@ -202,7 +200,6 @@ namespace StretchCeilings.Views
             this.ibtnEmployee.Size = new System.Drawing.Size(25, 25);
             this.ibtnEmployee.TabIndex = 114;
             this.ibtnEmployee.UseVisualStyleBackColor = true;
-            this.ibtnEmployee.Click += new System.EventHandler(this.ibtnEmployee_Click);
             // 
             // lblPayment
             // 
@@ -231,7 +228,6 @@ namespace StretchCeilings.Views
             this.ibtnCustomer.Size = new System.Drawing.Size(25, 25);
             this.ibtnCustomer.TabIndex = 113;
             this.ibtnCustomer.UseVisualStyleBackColor = true;
-            this.ibtnCustomer.Click += new System.EventHandler(this.ibtnCustomer_Click);
             // 
             // cbStatusValue
             // 
@@ -251,7 +247,6 @@ namespace StretchCeilings.Views
             this.cbStatusValue.Name = "cbStatusValue";
             this.cbStatusValue.Size = new System.Drawing.Size(280, 31);
             this.cbStatusValue.TabIndex = 103;
-            this.cbStatusValue.SelectedIndexChanged += new System.EventHandler(this.cbStatusValue_SelectedIndexChanged);
             // 
             // lblEmployee
             // 
@@ -293,7 +288,6 @@ namespace StretchCeilings.Views
             this.cbPaidByCash.Name = "cbPaidByCash";
             this.cbPaidByCash.Size = new System.Drawing.Size(67, 31);
             this.cbPaidByCash.TabIndex = 115;
-            this.cbPaidByCash.SelectedIndexChanged += new System.EventHandler(this.cbPaidByCash_SelectedIndexChanged);
             // 
             // nudTotalTo
             // 

@@ -1,6 +1,6 @@
 ﻿namespace StretchCeilings.Views
 {
-    partial class RoomFormEdit
+    partial class RoomEditForm
     {
         /// <summary>
         /// Required designer variable.

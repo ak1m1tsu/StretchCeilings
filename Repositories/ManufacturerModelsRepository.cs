@@ -48,7 +48,7 @@ namespace StretchCeilings.Repositories
                         : queryable;
                 }
 
-                if (!queryable.Any()) 
+                if (queryable.Any() == false) 
                     return queryable.ToList();
 
                 rows = queryable.Count();

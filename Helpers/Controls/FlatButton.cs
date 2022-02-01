@@ -8,33 +8,33 @@ namespace StretchCeilings.Helpers.Controls
     {
         public FlatButton(string name, string text, EventHandler eventHandler)
         {
-            this.Size = new Size(160, 65);
-            this.FlatStyle = FlatStyle.Flat;
-            this.Dock = DockStyle.Top;
-            this.Font = new Font("Open Sans", 12, FontStyle.Regular);
-            this.TextAlign = ContentAlignment.MiddleLeft;
-            this.FlatAppearance.BorderSize = 0;
-            this.ForeColor = Constants.DraculaForeground;
-            this.Click += eventHandler;
+            Size = new Size(160, 65);
+            FlatStyle = FlatStyle.Flat;
+            Dock = DockStyle.Top;
+            Font = new Font("Open Sans", 12, FontStyle.Regular);
+            TextAlign = ContentAlignment.MiddleLeft;
+            FlatAppearance.BorderSize = 0;
+            ForeColor = DraculaColor.Foreground;
+            Click += eventHandler;
 
-            this.Name = name;
-            this.Text = text;
+            Name = name;
+            Text = text;
         }
 
         public FlatButton(string name, string text, EventHandler eventHandler, Color color)
         {
-            this.Size = new Size(160, 65);
-            this.FlatStyle = FlatStyle.Flat;
-            this.Dock = DockStyle.Top;
-            this.Font = new Font("Open Sans", 12, FontStyle.Regular);
-            this.TextAlign = ContentAlignment.MiddleLeft;
-            this.FlatAppearance.BorderSize = 0;
-            this.ForeColor = Constants.DraculaForeground;
-            this.Click += eventHandler;
+            Size = new Size(160, 65);
+            FlatStyle = FlatStyle.Flat;
+            Dock = DockStyle.Top;
+            Font = new Font("Open Sans", 12, FontStyle.Regular);
+            TextAlign = ContentAlignment.MiddleLeft;
+            FlatAppearance.BorderSize = 0;
+            ForeColor = DraculaColor.Foreground;
+            Click += eventHandler;
 
-            this.Name = name;
-            this.Text = text;
-            this.BackColor = color;
+            Name = name;
+            Text = text;
+            BackColor = color;
         }
     }
 }

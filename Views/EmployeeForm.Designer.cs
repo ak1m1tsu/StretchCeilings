@@ -42,6 +42,7 @@ namespace StretchCeilings.Views
             this.lblRole = new System.Windows.Forms.Label();
             this.gbTimeTable = new System.Windows.Forms.GroupBox();
             this.dgvTimeTable = new System.Windows.Forms.DataGridView();
+            this.btnEdit = new System.Windows.Forms.Button();
             this.panelTop.SuspendLayout();
             this.panelInfo.SuspendLayout();
             this.gbTimeTable.SuspendLayout();
@@ -57,6 +58,7 @@ namespace StretchCeilings.Views
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(1000, 25);
             this.panelTop.TabIndex = 89;
+            this.panelTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTop_MouseDown);
             // 
             // btnClose
             // 
@@ -75,6 +77,7 @@ namespace StretchCeilings.Views
             // 
             // panelInfo
             // 
+            this.panelInfo.Controls.Add(this.btnEdit);
             this.panelInfo.Controls.Add(this.lblPasswordValue);
             this.panelInfo.Controls.Add(this.lblLoginValue);
             this.panelInfo.Controls.Add(this.lblRoleValue);
@@ -215,7 +218,22 @@ namespace StretchCeilings.Views
             this.dgvTimeTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvTimeTable.Size = new System.Drawing.Size(644, 447);
             this.dgvTimeTable.TabIndex = 4;
-            this.dgvTimeTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTimeTable_CellClick);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.btnEdit.FlatAppearance.BorderSize = 0;
+            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEdit.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.btnEdit.ForeColor = System.Drawing.Color.White;
+            this.btnEdit.Location = new System.Drawing.Point(224, 433);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(120, 30);
+            this.btnEdit.TabIndex = 73;
+            this.btnEdit.Text = "Изменить";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Visible = false;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // EmployeeForm
             // 
@@ -254,5 +272,6 @@ namespace StretchCeilings.Views
         private System.Windows.Forms.Label lblRole;
         private System.Windows.Forms.GroupBox gbTimeTable;
         private System.Windows.Forms.DataGridView dgvTimeTable;
+        private System.Windows.Forms.Button btnEdit;
     }
 }

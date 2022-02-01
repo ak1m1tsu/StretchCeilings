@@ -2,9 +2,9 @@
 
 namespace StretchCeilings.Views
 {
-    public partial class RoomFormEdit : Form
+    public partial class RoomEditForm : Form
     {
-        public RoomFormEdit()
+        public RoomEditForm()
         {
             InitializeComponent();
         }

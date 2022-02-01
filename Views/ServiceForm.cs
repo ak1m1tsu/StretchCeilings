@@ -24,8 +24,8 @@ namespace StretchCeilings.Views
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (ShowDialog(new ServiceFormEdit(_currentService)) == DialogResult.OK)
-                this.Close();
+            if (ShowDialog(new ServiceEditForm(_currentService)) == DialogResult.OK)
+                Close();
         }
     }
 }

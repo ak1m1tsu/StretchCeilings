@@ -1,7 +1,7 @@
 ﻿
 namespace StretchCeilings.Views
 {
-    partial class CeilingFormEdit
+    partial class CeilingEditForm
     {
         /// <summary>
         /// Required designer variable.
@@ -125,7 +125,6 @@ namespace StretchCeilings.Views
             this.btnSaveInfo.TabIndex = 91;
             this.btnSaveInfo.Text = "Сохранить";
             this.btnSaveInfo.UseVisualStyleBackColor = false;
-            this.btnSaveInfo.Click += new System.EventHandler(this.btnSaveInfo_Click);
             // 
             // lblColorType
             // 
@@ -177,7 +176,6 @@ namespace StretchCeilings.Views
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "CeilingFormEdit";
             this.Text = "Производитель \"Pongs\"";
-            this.Load += new System.EventHandler(this.CeilingFormEdit_Load);
             this.panelTop.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nudPrice)).EndInit();
             this.ResumeLayout(false);

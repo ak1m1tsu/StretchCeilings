@@ -33,9 +33,9 @@ namespace StretchCeilings.Views
             dgvEstates.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
             dgvEstates.AddDataGridViewTextBoxColumn("Адресс", DataGridViewAutoSizeColumnMode.Fill);
 
-            dgvEstates.Font = Constants.DataGridViewFont;
-            dgvEstates.DefaultCellStyle.SelectionBackColor = Constants.DraculaSelection;
-            dgvEstates.DefaultCellStyle.SelectionForeColor = Constants.DraculaForeground;
+            dgvEstates.Font = GoogleFont.OpenSans;
+            dgvEstates.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
+            dgvEstates.DefaultCellStyle.SelectionForeColor = DraculaColor.Foreground;
 
             for (var i = 0; i < estates?.Count; i++)
             {
@@ -55,8 +55,8 @@ namespace StretchCeilings.Views
 
         private void OpenEditForm()
         {
-            this.Hide();
-            new CustomerFormEdit(_currentCustomer).ShowDialog();
+            Hide();
+            new CustomerEditForm(_currentCustomer).ShowDialog();
         }
 
         private void CustomerForm_Load(object sender, EventArgs e)

@@ -8,25 +8,25 @@ using StretchCeilings.Models;
 
 namespace StretchCeilings.Views
 {
-    public partial class OrderFormEdit : Form
+    public partial class OrderEditForm : Form
     {
         private readonly Order _currentOrder;
 
-        public OrderFormEdit(Order order)
+        public OrderEditForm(Order order)
         {
             _currentOrder = order;
             InitializeComponent();
         }
 
-        public OrderFormEdit()
+        public OrderEditForm()
         {
             InitializeComponent();
         }
         private void SetUpForm()
         {
             linkLblCustomer.Text = _currentOrder?.Customer?.FullName;
-            linkLblCustomer.ActiveLinkColor = Constants.DraculaPink;
-            linkLblCustomer.VisitedLinkColor = Constants.DraculaPurple;
+            linkLblCustomer.ActiveLinkColor = DraculaColor.Pink;
+            linkLblCustomer.VisitedLinkColor = DraculaColor.Purple;
 
             lblPriceValue.Text = _currentOrder?.Total.ToString();
 

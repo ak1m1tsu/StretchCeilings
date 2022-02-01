@@ -32,21 +32,21 @@ namespace StretchCeilings.Views
             this.panelTop = new System.Windows.Forms.Panel();
             this.btnClose = new FontAwesome.Sharp.IconButton();
             this.panelBody = new System.Windows.Forms.Panel();
-            this.lblNameValue = new System.Windows.Forms.Label();
-            this.lblCountry = new System.Windows.Forms.Label();
-            this.lblName = new System.Windows.Forms.Label();
-            this.lblCountryValue = new System.Windows.Forms.Label();
-            this.lblAddress = new System.Windows.Forms.Label();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.lblAddressValue = new System.Windows.Forms.Label();
-            this.panelInfo = new System.Windows.Forms.Panel();
             this.gbCeiilings = new System.Windows.Forms.GroupBox();
             this.dgvCeilings = new System.Windows.Forms.DataGridView();
+            this.panelInfo = new System.Windows.Forms.Panel();
+            this.lblAddressValue = new System.Windows.Forms.Label();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.lblAddress = new System.Windows.Forms.Label();
+            this.lblCountryValue = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
+            this.lblCountry = new System.Windows.Forms.Label();
+            this.lblNameValue = new System.Windows.Forms.Label();
             this.panelTop.SuspendLayout();
             this.panelBody.SuspendLayout();
-            this.panelInfo.SuspendLayout();
             this.gbCeiilings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCeilings)).BeginInit();
+            this.panelInfo.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTop
@@ -84,101 +84,6 @@ namespace StretchCeilings.Views
             this.panelBody.Size = new System.Drawing.Size(1000, 575);
             this.panelBody.TabIndex = 75;
             // 
-            // lblNameValue
-            // 
-            this.lblNameValue.AutoSize = true;
-            this.lblNameValue.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.lblNameValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.lblNameValue.Location = new System.Drawing.Point(93, 5);
-            this.lblNameValue.Name = "lblNameValue";
-            this.lblNameValue.Size = new System.Drawing.Size(39, 23);
-            this.lblNameValue.TabIndex = 50;
-            this.lblNameValue.Text = "Нет";
-            // 
-            // lblCountry
-            // 
-            this.lblCountry.AutoSize = true;
-            this.lblCountry.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.lblCountry.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.lblCountry.Location = new System.Drawing.Point(5, 37);
-            this.lblCountry.Name = "lblCountry";
-            this.lblCountry.Size = new System.Drawing.Size(70, 23);
-            this.lblCountry.TabIndex = 51;
-            this.lblCountry.Text = "Страна:";
-            // 
-            // lblName
-            // 
-            this.lblName.AutoSize = true;
-            this.lblName.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.lblName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.lblName.Location = new System.Drawing.Point(5, 5);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(90, 23);
-            this.lblName.TabIndex = 49;
-            this.lblName.Text = "Название:";
-            // 
-            // lblCountryValue
-            // 
-            this.lblCountryValue.AutoSize = true;
-            this.lblCountryValue.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.lblCountryValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.lblCountryValue.Location = new System.Drawing.Point(93, 37);
-            this.lblCountryValue.Name = "lblCountryValue";
-            this.lblCountryValue.Size = new System.Drawing.Size(39, 23);
-            this.lblCountryValue.TabIndex = 52;
-            this.lblCountryValue.Text = "Нет";
-            // 
-            // lblAddress
-            // 
-            this.lblAddress.AutoSize = true;
-            this.lblAddress.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.lblAddress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.lblAddress.Location = new System.Drawing.Point(5, 69);
-            this.lblAddress.Name = "lblAddress";
-            this.lblAddress.Size = new System.Drawing.Size(60, 23);
-            this.lblAddress.TabIndex = 54;
-            this.lblAddress.Text = "Адрес:";
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
-            this.btnEdit.FlatAppearance.BorderSize = 0;
-            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEdit.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.btnEdit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.btnEdit.Location = new System.Drawing.Point(874, 65);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(120, 30);
-            this.btnEdit.TabIndex = 53;
-            this.btnEdit.Text = "Изменить";
-            this.btnEdit.UseVisualStyleBackColor = false;
-            // 
-            // lblAddressValue
-            // 
-            this.lblAddressValue.AutoSize = true;
-            this.lblAddressValue.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.lblAddressValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.lblAddressValue.Location = new System.Drawing.Point(93, 69);
-            this.lblAddressValue.Name = "lblAddressValue";
-            this.lblAddressValue.Size = new System.Drawing.Size(39, 23);
-            this.lblAddressValue.TabIndex = 55;
-            this.lblAddressValue.Text = "Нет";
-            // 
-            // panelInfo
-            // 
-            this.panelInfo.Controls.Add(this.lblAddressValue);
-            this.panelInfo.Controls.Add(this.btnEdit);
-            this.panelInfo.Controls.Add(this.lblAddress);
-            this.panelInfo.Controls.Add(this.lblCountryValue);
-            this.panelInfo.Controls.Add(this.lblName);
-            this.panelInfo.Controls.Add(this.lblCountry);
-            this.panelInfo.Controls.Add(this.lblNameValue);
-            this.panelInfo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelInfo.Location = new System.Drawing.Point(0, 0);
-            this.panelInfo.Name = "panelInfo";
-            this.panelInfo.Size = new System.Drawing.Size(1000, 105);
-            this.panelInfo.TabIndex = 66;
-            // 
             // gbCeiilings
             // 
             this.gbCeiilings.Controls.Add(this.dgvCeilings);
@@ -195,15 +100,117 @@ namespace StretchCeilings.Views
             // 
             // dgvCeilings
             // 
+            this.dgvCeilings.AllowUserToAddRows = false;
+            this.dgvCeilings.AllowUserToDeleteRows = false;
+            this.dgvCeilings.AllowUserToResizeRows = false;
             this.dgvCeilings.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.dgvCeilings.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvCeilings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCeilings.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCeilings.Location = new System.Drawing.Point(3, 25);
             this.dgvCeilings.Name = "dgvCeilings";
+            this.dgvCeilings.ReadOnly = true;
+            this.dgvCeilings.RowHeadersVisible = false;
             this.dgvCeilings.RowTemplate.Height = 25;
+            this.dgvCeilings.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCeilings.Size = new System.Drawing.Size(994, 442);
             this.dgvCeilings.TabIndex = 1;
+            // 
+            // panelInfo
+            // 
+            this.panelInfo.Controls.Add(this.lblAddressValue);
+            this.panelInfo.Controls.Add(this.btnEdit);
+            this.panelInfo.Controls.Add(this.lblAddress);
+            this.panelInfo.Controls.Add(this.lblCountryValue);
+            this.panelInfo.Controls.Add(this.lblName);
+            this.panelInfo.Controls.Add(this.lblCountry);
+            this.panelInfo.Controls.Add(this.lblNameValue);
+            this.panelInfo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelInfo.Location = new System.Drawing.Point(0, 0);
+            this.panelInfo.Name = "panelInfo";
+            this.panelInfo.Size = new System.Drawing.Size(1000, 105);
+            this.panelInfo.TabIndex = 66;
+            // 
+            // lblAddressValue
+            // 
+            this.lblAddressValue.AutoSize = true;
+            this.lblAddressValue.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.lblAddressValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.lblAddressValue.Location = new System.Drawing.Point(93, 69);
+            this.lblAddressValue.Name = "lblAddressValue";
+            this.lblAddressValue.Size = new System.Drawing.Size(39, 23);
+            this.lblAddressValue.TabIndex = 55;
+            this.lblAddressValue.Text = "Нет";
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.btnEdit.FlatAppearance.BorderSize = 0;
+            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEdit.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.btnEdit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.btnEdit.Location = new System.Drawing.Point(874, 65);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(120, 30);
+            this.btnEdit.TabIndex = 53;
+            this.btnEdit.Text = "Изменить";
+            this.btnEdit.UseVisualStyleBackColor = false;
+            // 
+            // lblAddress
+            // 
+            this.lblAddress.AutoSize = true;
+            this.lblAddress.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.lblAddress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.lblAddress.Location = new System.Drawing.Point(5, 69);
+            this.lblAddress.Name = "lblAddress";
+            this.lblAddress.Size = new System.Drawing.Size(60, 23);
+            this.lblAddress.TabIndex = 54;
+            this.lblAddress.Text = "Адрес:";
+            // 
+            // lblCountryValue
+            // 
+            this.lblCountryValue.AutoSize = true;
+            this.lblCountryValue.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.lblCountryValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.lblCountryValue.Location = new System.Drawing.Point(93, 37);
+            this.lblCountryValue.Name = "lblCountryValue";
+            this.lblCountryValue.Size = new System.Drawing.Size(39, 23);
+            this.lblCountryValue.TabIndex = 52;
+            this.lblCountryValue.Text = "Нет";
+            // 
+            // lblName
+            // 
+            this.lblName.AutoSize = true;
+            this.lblName.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.lblName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.lblName.Location = new System.Drawing.Point(5, 5);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(90, 23);
+            this.lblName.TabIndex = 49;
+            this.lblName.Text = "Название:";
+            // 
+            // lblCountry
+            // 
+            this.lblCountry.AutoSize = true;
+            this.lblCountry.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.lblCountry.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.lblCountry.Location = new System.Drawing.Point(5, 37);
+            this.lblCountry.Name = "lblCountry";
+            this.lblCountry.Size = new System.Drawing.Size(70, 23);
+            this.lblCountry.TabIndex = 51;
+            this.lblCountry.Text = "Страна:";
+            // 
+            // lblNameValue
+            // 
+            this.lblNameValue.AutoSize = true;
+            this.lblNameValue.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.lblNameValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.lblNameValue.Location = new System.Drawing.Point(93, 5);
+            this.lblNameValue.Name = "lblNameValue";
+            this.lblNameValue.Size = new System.Drawing.Size(39, 23);
+            this.lblNameValue.TabIndex = 50;
+            this.lblNameValue.Text = "Нет";
             // 
             // ManufacturerForm
             // 
@@ -215,12 +222,13 @@ namespace StretchCeilings.Views
             this.Controls.Add(this.panelTop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ManufacturerForm";
+            this.Load += new System.EventHandler(this.ManufacturerForm_Load);
             this.panelTop.ResumeLayout(false);
             this.panelBody.ResumeLayout(false);
-            this.panelInfo.ResumeLayout(false);
-            this.panelInfo.PerformLayout();
             this.gbCeiilings.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCeilings)).EndInit();
+            this.panelInfo.ResumeLayout(false);
+            this.panelInfo.PerformLayout();
             this.ResumeLayout(false);
 
         }

@@ -24,12 +24,28 @@ namespace StretchCeilings.Views
         private int _currentPage = 1;
         private int _maxPage = 1;
 
-        public Customer Customer => _customer;
+        public Customer GetCustomer() => _customer;
 
         public CustomersForm(bool forSearching = false)
         {
             _forSearching = forSearching;
             InitializeComponent();
+        }
+
+        private void SetUpDataGrid()
+        {
+            _customers = CustomerModelsRepository.GetAll(out _rows);
+
+            dgvCustomers.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvCustomers.AddDataGridViewTextBoxColumn("ФИО", DataGridViewAutoSizeColumnMode.Fill);
+            dgvCustomers.AddDataGridViewTextBoxColumn("Номер телефона", DataGridViewAutoSizeColumnMode.Fill);
+            dgvCustomers.AddDataGridViewButtonColumn(DraculaColor.Red);
+
+            dgvCustomers.Font = GoogleFont.OpenSans;
+            dgvCustomers.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
+            dgvCustomers.DefaultCellStyle.SelectionForeColor = DraculaColor.Foreground;
+
+            FillDataGrid();
         }
 
         private void SetUpControls()
@@ -49,22 +65,6 @@ namespace StretchCeilings.Views
             cbRows.SelectedItem = cbRows.Items[0];
         }
 
-        private void SetUpDataGrid()
-        {
-            _customers = CustomerModelsRepository.GetAll(out _rows);
-
-            dgvCustomers.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvCustomers.AddDataGridViewTextBoxColumn("ФИО", DataGridViewAutoSizeColumnMode.Fill);
-            dgvCustomers.AddDataGridViewTextBoxColumn("Номер телефона", DataGridViewAutoSizeColumnMode.Fill);
-            dgvCustomers.AddDataGridViewButtonColumn(Constants.DraculaRed);
-
-            dgvCustomers.Font = Constants.DataGridViewFont;
-            dgvCustomers.DefaultCellStyle.SelectionBackColor = Constants.DraculaSelection;
-            dgvCustomers.DefaultCellStyle.SelectionForeColor = Constants.DraculaForeground;
-
-            FillDataGrid();
-        }
-
         private void FillDataGrid()
         {
             dgvCustomers.Rows.Clear();
@@ -79,7 +79,7 @@ namespace StretchCeilings.Views
             }
 
             _maxPage = (int)Math.Ceiling((double)_rows / _count);
-            SetPages();
+            UpdatePagesTextBox();
         }
 
         private void FilterDataGrid()
@@ -93,20 +93,40 @@ namespace StretchCeilings.Views
             FillDataGrid();
         }
 
-        private void OpenDataGridRowForm()
+        private void OpenDataGridRowForm(DataGridViewCellEventArgs e)
         {
-            if (dgvCustomers.SelectedRows.Count <= 0) return;
+            if (dgvCustomers.SelectedRows.Count <= 0 || e.RowIndex < 0) return;
 
             var customer = CustomerModelsRepository.GetById((int)dgvCustomers.SelectedRows[0].Cells[0].Value);
             new CustomerForm(customer).ShowDialog();
         }
 
-        private void SetPages()
+        private void ShowPreviousPage()
         {
+            if (_currentPage <= 1) return;
+
+            _currentPage--;
+            UpdatePagesTextBox();
+            FilterDataGrid();
+        }
+
+        private void ShowNextPage()
+        {
+            if (_currentPage >= _maxPage) return;
+
+            _currentPage++;
+            UpdatePagesTextBox();
+            FilterDataGrid();
+        }
+
+        private void UpdatePagesTextBox()
+        {
+            if (_maxPage == 0)
+                _currentPage = 0;
             tbPages.UpdatePagesValue(_currentPage, _maxPage);
         }
 
-        private void CustomersForm_Load(object sender, System.EventArgs e)
+        private void CustomersForm_Load(object sender, EventArgs e)
         {
             _filter = new Customer();
             SetUpDataGrid();
@@ -125,32 +145,22 @@ namespace StretchCeilings.Views
 
         private void dgvCustomers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            OpenDataGridRowForm();
+            OpenDataGridRowForm(e);
         }
 
         private static void btnAddOrder_Click(object sender, EventArgs e)
         {
-            new CustomerFormEdit(new Customer()).ShowDialog();
+            new CustomerEditForm(new Customer()).ShowDialog();
         }
 
         private void btnPreviousPage_Click(object sender, EventArgs e)
         {
-            if (_currentPage > 1)
-            {
-                _currentPage--;
-                SetPages();
-                FilterDataGrid();
-            }
+            ShowPreviousPage();
         }
 
         private void btnNextPage_Click(object sender, EventArgs e)
         {
-            if (_currentPage < _maxPage)
-            {
-                _currentPage++;
-                SetPages();
-                FilterDataGrid();
-            }
+            ShowNextPage();
         }
 
         private void cbRows_SelectedIndexChanged(object sender, EventArgs e)

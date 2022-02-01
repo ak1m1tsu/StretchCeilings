@@ -23,8 +23,8 @@ namespace StretchCeilings.Helpers.Extensions
         public static void DragMove(this IntPtr handle, MouseEventArgs eventArgs)
         {
             if (eventArgs.Button != MouseButtons.Left) return;
-            User32.ReleaseCapture();
-            User32.SendMessage(handle, User32.VM_NCLBUTTONDOWN, User32.HT_CAPTION, 0);
+            User32Helper.ReleaseCapture();
+            User32Helper.SendMessage(handle, User32Helper.VM_NCLBUTTONDOWN, User32Helper.HT_CAPTION, 0);
         }
     }
 }

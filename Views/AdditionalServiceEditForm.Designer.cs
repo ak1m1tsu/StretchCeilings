@@ -1,7 +1,7 @@
 ﻿
 namespace StretchCeilings.Views
 {
-    partial class AdditionalServiceFormEdit
+    partial class AdditionalServiceEditForm
     {
         /// <summary>
         /// Required designer variable.
@@ -110,6 +110,7 @@ namespace StretchCeilings.Views
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(400, 25);
             this.panelTop.TabIndex = 73;
+            this.panelTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTop_MouseDown);
             // 
             // btnClose
             // 
@@ -125,6 +126,7 @@ namespace StretchCeilings.Views
             this.btnClose.Size = new System.Drawing.Size(25, 25);
             this.btnClose.TabIndex = 2;
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // AdditionalServiceFormEdit
             // 

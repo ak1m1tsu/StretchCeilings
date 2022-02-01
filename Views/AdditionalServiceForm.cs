@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using StretchCeilings.Helpers;
 using StretchCeilings.Helpers.Enums;
+using StretchCeilings.Helpers.Extensions;
 using StretchCeilings.Models;
 using StretchCeilings.Repositories;
 
@@ -36,8 +37,10 @@ namespace StretchCeilings.Views
 
         private void Edit()
         {
-            if (new AdditionalServiceFormEdit(_currentService).ShowDialog() == DialogResult.OK)
+            Hide();
+            if (new AdditionalServiceEditForm(_currentService).ShowDialog() == DialogResult.OK)
                 ReSetUpForm();
+            Show();
         }
 
         private void btnChange_Click(object sender, EventArgs e)
@@ -48,6 +51,16 @@ namespace StretchCeilings.Views
         private void AdditionalServiceForm_Load(object sender, EventArgs e)
         {
             SetUpForm();
+        }
+
+        private void panelTop_MouseDown(object sender, MouseEventArgs e)
+        {
+            Handle.DragMove(e);
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
         }
     }
 }

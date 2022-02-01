@@ -67,9 +67,10 @@ namespace StretchCeilings.Views
             this.dgvServices.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvServices.Location = new System.Drawing.Point(0, 100);
             this.dgvServices.Name = "dgvServices";
+            this.dgvServices.ReadOnly = true;
             this.dgvServices.RowHeadersVisible = false;
             this.dgvServices.RowTemplate.Height = 25;
-            this.dgvServices.Size = new System.Drawing.Size(1034, 421);
+            this.dgvServices.Size = new System.Drawing.Size(1050, 460);
             this.dgvServices.TabIndex = 13;
             this.dgvServices.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvServices_CellClick);
             this.dgvServices.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvServices_CellDoubleClick);
@@ -81,9 +82,9 @@ namespace StretchCeilings.Views
             this.panelPages.Controls.Add(this.tbPages);
             this.panelPages.Controls.Add(this.btnNext);
             this.panelPages.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelPages.Location = new System.Drawing.Point(0, 521);
+            this.panelPages.Location = new System.Drawing.Point(0, 560);
             this.panelPages.Name = "panelPages";
-            this.panelPages.Size = new System.Drawing.Size(1034, 40);
+            this.panelPages.Size = new System.Drawing.Size(1050, 40);
             this.panelPages.TabIndex = 12;
             // 
             // cbRows
@@ -95,9 +96,9 @@ namespace StretchCeilings.Views
             this.cbRows.Font = new System.Drawing.Font("Open Sans", 12F);
             this.cbRows.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.cbRows.FormattingEnabled = true;
-            this.cbRows.Location = new System.Drawing.Point(973, 3);
+            this.cbRows.Location = new System.Drawing.Point(995, 4);
             this.cbRows.Name = "cbRows";
-            this.cbRows.Size = new System.Drawing.Size(55, 31);
+            this.cbRows.Size = new System.Drawing.Size(50, 31);
             this.cbRows.TabIndex = 98;
             this.cbRows.SelectedIndexChanged += new System.EventHandler(this.cbRows_SelectedIndexChanged);
             // 
@@ -108,7 +109,7 @@ namespace StretchCeilings.Views
             this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrevious.Font = new System.Drawing.Font("Open Sans", 12F);
             this.btnPrevious.ForeColor = System.Drawing.Color.White;
-            this.btnPrevious.Location = new System.Drawing.Point(6, 4);
+            this.btnPrevious.Location = new System.Drawing.Point(5, 4);
             this.btnPrevious.Name = "btnPrevious";
             this.btnPrevious.Size = new System.Drawing.Size(31, 31);
             this.btnPrevious.TabIndex = 90;
@@ -125,7 +126,7 @@ namespace StretchCeilings.Views
             this.tbPages.Location = new System.Drawing.Point(38, 5);
             this.tbPages.Name = "tbPages";
             this.tbPages.ReadOnly = true;
-            this.tbPages.Size = new System.Drawing.Size(80, 29);
+            this.tbPages.Size = new System.Drawing.Size(60, 29);
             this.tbPages.TabIndex = 89;
             this.tbPages.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -136,7 +137,7 @@ namespace StretchCeilings.Views
             this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNext.Font = new System.Drawing.Font("Open Sans", 12F);
             this.btnNext.ForeColor = System.Drawing.Color.White;
-            this.btnNext.Location = new System.Drawing.Point(120, 4);
+            this.btnNext.Location = new System.Drawing.Point(100, 4);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(31, 31);
             this.btnNext.TabIndex = 88;
@@ -157,7 +158,7 @@ namespace StretchCeilings.Views
             this.panelFilters.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelFilters.Location = new System.Drawing.Point(0, 0);
             this.panelFilters.Name = "panelFilters";
-            this.panelFilters.Size = new System.Drawing.Size(1034, 100);
+            this.panelFilters.Size = new System.Drawing.Size(1050, 100);
             this.panelFilters.TabIndex = 11;
             // 
             // linkLblManufacturer
@@ -265,9 +266,9 @@ namespace StretchCeilings.Views
             this.panelButtons.Controls.Add(this.panelUserButtons);
             this.panelButtons.Controls.Add(this.panelFilterButtons);
             this.panelButtons.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelButtons.Location = new System.Drawing.Point(1034, 0);
+            this.panelButtons.Location = new System.Drawing.Point(1050, 0);
             this.panelButtons.Name = "panelButtons";
-            this.panelButtons.Size = new System.Drawing.Size(150, 561);
+            this.panelButtons.Size = new System.Drawing.Size(150, 600);
             this.panelButtons.TabIndex = 10;
             // 
             // panelUserButtons
@@ -275,7 +276,7 @@ namespace StretchCeilings.Views
             this.panelUserButtons.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelUserButtons.Location = new System.Drawing.Point(0, 100);
             this.panelUserButtons.Name = "panelUserButtons";
-            this.panelUserButtons.Size = new System.Drawing.Size(150, 461);
+            this.panelUserButtons.Size = new System.Drawing.Size(150, 500);
             this.panelUserButtons.TabIndex = 2;
             // 
             // panelFilterButtons
@@ -323,7 +324,7 @@ namespace StretchCeilings.Views
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(42)))), ((int)(((byte)(54)))));
-            this.ClientSize = new System.Drawing.Size(1184, 561);
+            this.ClientSize = new System.Drawing.Size(1200, 600);
             this.Controls.Add(this.dgvServices);
             this.Controls.Add(this.panelPages);
             this.Controls.Add(this.panelFilters);

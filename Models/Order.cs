@@ -82,7 +82,7 @@ namespace StretchCeilings.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                return db.Logs.Where(l => l.OrderId == this.Id).ToList();
+                return db.Logs.Where(l => l.OrderId == Id).ToList();
             }
         }
 

@@ -33,7 +33,7 @@ namespace StretchCeilings.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                db.Entry(this.Id).CurrentValues.SetValues(DeletedDate = DateTime.Now);
+                db.Entry(Id).CurrentValues.SetValues(DeletedDate = DateTime.Now);
                 db.SaveChanges();
             }
         }
@@ -42,7 +42,7 @@ namespace StretchCeilings.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                return db.CustomersRooms.Where(r => r.EstateId == this.Id).ToList();
+                return db.CustomersRooms.Where(r => r.EstateId == Id).ToList();
             }
         }
 
@@ -50,7 +50,7 @@ namespace StretchCeilings.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                db.Entry(this.Id).CurrentValues.SetValues(this);
+                db.Entry(Id).CurrentValues.SetValues(this);
                 db.SaveChanges();
             }
         }

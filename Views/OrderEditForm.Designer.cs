@@ -1,7 +1,7 @@
 ﻿
 namespace StretchCeilings.Views
 {
-    partial class OrderFormEdit
+    partial class OrderEditForm
     {
         /// <summary>
         /// Required designer variable.

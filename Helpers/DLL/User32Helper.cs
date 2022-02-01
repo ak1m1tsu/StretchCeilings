@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace StretchCeilings.Helpers.DLL
 {
-    public static class User32
+    public static class User32Helper
     {
         private const int _wm_nclButtonDown = 0xA1;
         private const int _ht_caption = 0x2;

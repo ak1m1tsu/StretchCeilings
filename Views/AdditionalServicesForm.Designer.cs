@@ -66,9 +66,9 @@ namespace StretchCeilings.Views
             this.panelButtons.Controls.Add(this.panelUserButtons);
             this.panelButtons.Controls.Add(this.panelSearchButtons);
             this.panelButtons.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelButtons.Location = new System.Drawing.Point(1034, 0);
+            this.panelButtons.Location = new System.Drawing.Point(1050, 0);
             this.panelButtons.Name = "panelButtons";
-            this.panelButtons.Size = new System.Drawing.Size(150, 561);
+            this.panelButtons.Size = new System.Drawing.Size(150, 600);
             this.panelButtons.TabIndex = 0;
             // 
             // panelUserButtons
@@ -76,7 +76,7 @@ namespace StretchCeilings.Views
             this.panelUserButtons.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelUserButtons.Location = new System.Drawing.Point(0, 100);
             this.panelUserButtons.Name = "panelUserButtons";
-            this.panelUserButtons.Size = new System.Drawing.Size(150, 461);
+            this.panelUserButtons.Size = new System.Drawing.Size(150, 500);
             this.panelUserButtons.TabIndex = 1;
             // 
             // panelSearchButtons
@@ -129,7 +129,7 @@ namespace StretchCeilings.Views
             this.panelData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelData.Location = new System.Drawing.Point(0, 0);
             this.panelData.Name = "panelData";
-            this.panelData.Size = new System.Drawing.Size(1034, 561);
+            this.panelData.Size = new System.Drawing.Size(1050, 600);
             this.panelData.TabIndex = 1;
             // 
             // dgvAdditionalServices
@@ -144,7 +144,7 @@ namespace StretchCeilings.Views
             this.dgvAdditionalServices.ReadOnly = true;
             this.dgvAdditionalServices.RowHeadersVisible = false;
             this.dgvAdditionalServices.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAdditionalServices.Size = new System.Drawing.Size(1034, 421);
+            this.dgvAdditionalServices.Size = new System.Drawing.Size(1050, 460);
             this.dgvAdditionalServices.TabIndex = 2;
             this.dgvAdditionalServices.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAdditionalServices_CellDoubleClick);
             // 
@@ -155,9 +155,9 @@ namespace StretchCeilings.Views
             this.panelPages.Controls.Add(this.tbPage);
             this.panelPages.Controls.Add(this.btnNextPage);
             this.panelPages.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelPages.Location = new System.Drawing.Point(0, 521);
+            this.panelPages.Location = new System.Drawing.Point(0, 560);
             this.panelPages.Name = "panelPages";
-            this.panelPages.Size = new System.Drawing.Size(1034, 40);
+            this.panelPages.Size = new System.Drawing.Size(1050, 40);
             this.panelPages.TabIndex = 1;
             // 
             // cbRows
@@ -169,9 +169,9 @@ namespace StretchCeilings.Views
             this.cbRows.Font = new System.Drawing.Font("Open Sans", 12F);
             this.cbRows.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.cbRows.FormattingEnabled = true;
-            this.cbRows.Location = new System.Drawing.Point(973, 4);
+            this.cbRows.Location = new System.Drawing.Point(995, 4);
             this.cbRows.Name = "cbRows";
-            this.cbRows.Size = new System.Drawing.Size(55, 31);
+            this.cbRows.Size = new System.Drawing.Size(50, 31);
             this.cbRows.TabIndex = 98;
             this.cbRows.SelectedIndexChanged += new System.EventHandler(this.cbRows_SelectedIndexChanged);
             // 
@@ -182,9 +182,9 @@ namespace StretchCeilings.Views
             this.btnPreviousPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPreviousPage.Font = new System.Drawing.Font("Open Sans", 12F);
             this.btnPreviousPage.ForeColor = System.Drawing.Color.White;
-            this.btnPreviousPage.Location = new System.Drawing.Point(5, 5);
+            this.btnPreviousPage.Location = new System.Drawing.Point(5, 4);
             this.btnPreviousPage.Name = "btnPreviousPage";
-            this.btnPreviousPage.Size = new System.Drawing.Size(30, 29);
+            this.btnPreviousPage.Size = new System.Drawing.Size(31, 31);
             this.btnPreviousPage.TabIndex = 93;
             this.btnPreviousPage.Text = "<";
             this.btnPreviousPage.UseVisualStyleBackColor = false;
@@ -196,10 +196,10 @@ namespace StretchCeilings.Views
             this.tbPage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbPage.Font = new System.Drawing.Font("Open Sans", 12F);
             this.tbPage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.tbPage.Location = new System.Drawing.Point(41, 5);
+            this.tbPage.Location = new System.Drawing.Point(38, 5);
             this.tbPage.Name = "tbPage";
             this.tbPage.ReadOnly = true;
-            this.tbPage.Size = new System.Drawing.Size(80, 29);
+            this.tbPage.Size = new System.Drawing.Size(60, 29);
             this.tbPage.TabIndex = 92;
             this.tbPage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -210,9 +210,9 @@ namespace StretchCeilings.Views
             this.btnNextPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNextPage.Font = new System.Drawing.Font("Open Sans", 12F);
             this.btnNextPage.ForeColor = System.Drawing.Color.White;
-            this.btnNextPage.Location = new System.Drawing.Point(127, 5);
+            this.btnNextPage.Location = new System.Drawing.Point(100, 4);
             this.btnNextPage.Name = "btnNextPage";
-            this.btnNextPage.Size = new System.Drawing.Size(30, 29);
+            this.btnNextPage.Size = new System.Drawing.Size(31, 31);
             this.btnNextPage.TabIndex = 91;
             this.btnNextPage.Text = ">";
             this.btnNextPage.UseVisualStyleBackColor = false;
@@ -231,7 +231,7 @@ namespace StretchCeilings.Views
             this.panelFilters.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelFilters.Location = new System.Drawing.Point(0, 0);
             this.panelFilters.Name = "panelFilters";
-            this.panelFilters.Size = new System.Drawing.Size(1034, 100);
+            this.panelFilters.Size = new System.Drawing.Size(1050, 100);
             this.panelFilters.TabIndex = 0;
             // 
             // nudTotalTo
@@ -333,7 +333,7 @@ namespace StretchCeilings.Views
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(42)))), ((int)(((byte)(54)))));
-            this.ClientSize = new System.Drawing.Size(1184, 561);
+            this.ClientSize = new System.Drawing.Size(1200, 600);
             this.Controls.Add(this.panelData);
             this.Controls.Add(this.panelButtons);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

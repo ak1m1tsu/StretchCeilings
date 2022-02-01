@@ -63,9 +63,9 @@ namespace StretchCeilings.Properties {
         /// <summary>
         ///   Ищет локализованную строку, похожую на +7(   )   -  -.
         /// </summary>
-        internal static string defaultPhoneNumberText {
+        internal static string EmptyPhoneNumber {
             get {
-                return ResourceManager.GetString("defaultPhoneNumberText", resourceCulture);
+                return ResourceManager.GetString("EmptyPhoneNumber", resourceCulture);
             }
         }
         
@@ -76,6 +76,24 @@ namespace StretchCeilings.Properties {
             get {
                 object obj = ResourceManager.GetObject("error_32x32", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Не все поля заполнены..
+        /// </summary>
+        internal static string RequiredControlsAreEmpty {
+            get {
+                return ResourceManager.GetString("RequiredControlsAreEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Это поле обязательно к заполнению..
+        /// </summary>
+        internal static string RequiredToFillOut {
+            get {
+                return ResourceManager.GetString("RequiredToFillOut", resourceCulture);
             }
         }
     }

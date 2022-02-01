@@ -30,16 +30,29 @@ namespace StretchCeilings.Views
             InitializeComponent();
         }
 
-        private void UpdatePageTextBox()
+        private void SetUpDataGrid()
         {
-            tbPage.UpdatePagesValue(_currentPage, _maxPage);
+            _additionalServices = AdditionalServiceModelsRepository.GetAll(out _rowsCount);
+
+            
+            dgvAdditionalServices.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvAdditionalServices.AddDataGridViewTextBoxColumn("Название", DataGridViewAutoSizeColumnMode.Fill);
+            dgvAdditionalServices.AddDataGridViewTextBoxColumn("Цена", DataGridViewAutoSizeColumnMode.Fill);
+            dgvAdditionalServices.AddDataGridViewButtonColumn(DraculaColor.Red);
+
+            dgvAdditionalServices.Font = GoogleFont.OpenSans;
+            dgvAdditionalServices.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
+            dgvAdditionalServices.DefaultCellStyle.SelectionForeColor = DraculaColor.Foreground;
+            dgvAdditionalServices.CellClick += dgvAdditionalServices_CellClick;
+
+            FillDataGrid();
         }
 
         private void SetUpControls()
         {
             if (UserSession.Can(PermissionCode.AddAdditionalService) || UserSession.IsAdmin)
             {
-                var btnAddService = new FlatButton("btnAddAdditionalService", "Добавить", btnAddAdditionalService_Click, Constants.DraculaAlphaGreen);
+                var btnAddService = new FlatButton("btnAddAdditionalService", "Добавить", btnAddAdditionalService_Click);
                 panelUserButtons.Controls.Add(btnAddService);
             }
 
@@ -51,45 +64,25 @@ namespace StretchCeilings.Views
                 cbRows.Items.Add(item);
             cbRows.SelectedItem = cbRows.Items[0];
 
-            UpdatePageTextBox();
+            UpdatePagesTextBox();
 
-            btnResetFilters.BackColor = Constants.DraculaAlphaRed;
+            btnResetFilters.FlatAppearance.MouseOverBackColor = DraculaColor.Red;
         }
 
-        private void SetUpDataGrid()
+        private void OpenServiceForm(DataGridViewCellEventArgs e)
         {
-            _additionalServices = AdditionalServiceModelsRepository.GetAll(out _rowsCount);
+            if (dgvAdditionalServices.SelectedRows.Count <= 0 || e.RowIndex < 0) return;
 
-            
-            dgvAdditionalServices.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvAdditionalServices.AddDataGridViewTextBoxColumn("Название", DataGridViewAutoSizeColumnMode.Fill);
-            dgvAdditionalServices.AddDataGridViewTextBoxColumn("Цена", DataGridViewAutoSizeColumnMode.Fill);
-            dgvAdditionalServices.AddDataGridViewButtonColumn(Constants.DraculaRed);
-
-            dgvAdditionalServices.Font = Constants.DataGridViewFont;
-            dgvAdditionalServices.DefaultCellStyle.SelectionBackColor = Constants.DraculaSelection;
-            dgvAdditionalServices.DefaultCellStyle.SelectionForeColor = Constants.DraculaForeground;
-            dgvAdditionalServices.CellClick += dgvAdditionalServices_CellClick;
-
-            FillDataGrid();
-        }
-
-        private void OpenServiceForm()
-        {
-            if (dgvAdditionalServices.SelectedRows.Count <= 0) return;
-
-            var service =
-                AdditionalServiceModelsRepository.GetById((int)dgvAdditionalServices.SelectedRows[0].Cells[0].Value);
-            var form = new AdditionalServiceForm(service);
-            if (form.ShowDialog() == DialogResult.OK)
-                FillDataGrid();
+            var service = AdditionalServiceModelsRepository.GetById((int)dgvAdditionalServices.SelectedRows[0].Cells[0].Value);
+            new AdditionalServiceForm(service).ShowDialog();
+            FilterDataGrid();
         }
 
         private void FilterDataGrid()
         {
             if (nudTotalFrom.Value > nudTotalTo.Value)
             {
-                CustomMessageBox.Show("Неверно указан ценовой диапозон", Constants.ErrorCaption);
+                CustomMessageBox.Show("Неверно указан ценовой диапозон", CustomMessageBoxCaption.Error);
                 return;
             }
             _additionalServices = AdditionalServiceModelsRepository.GetAll(
@@ -108,7 +101,7 @@ namespace StretchCeilings.Views
 
             for (var i = 0; i < _additionalServices?.Count; i++)
             {
-                dgvAdditionalServices.Rows.Add(new DataGridViewRow() { Resizable = DataGridViewTriState.False });
+                dgvAdditionalServices.Rows.Add(new DataGridViewRow());
 
                 dgvAdditionalServices.Rows[i].Cells[0].Value = _additionalServices[i].Id;
                 dgvAdditionalServices.Rows[i].Cells[1].Value = _additionalServices[i].Name;
@@ -116,7 +109,7 @@ namespace StretchCeilings.Views
             }
 
             _maxPage = (int)Math.Ceiling((double)_rowsCount / _count);
-            UpdatePageTextBox();
+            UpdatePagesTextBox();
         }
 
         private void ResetFilters()
@@ -136,10 +129,15 @@ namespace StretchCeilings.Views
 
         private void AddAdditionalService()
         {
-            var service = new AdditionalServiceFormEdit(new AdditionalService(), true);
-            if (service.ShowDialog() != DialogResult.OK)
-                return;
-            FilterDataGrid();
+            var service = new AdditionalServiceEditForm(new AdditionalService(), true);
+            if (service.ShowDialog() == DialogResult.OK) FilterDataGrid();
+        }
+
+        private void UpdatePagesTextBox()
+        {
+            if (_maxPage == 0)
+                _currentPage = 0;
+            tbPage.UpdatePagesValue(_currentPage, _maxPage);
         }
 
         private void UpdateComboBoxRow()
@@ -149,24 +147,22 @@ namespace StretchCeilings.Views
             FilterDataGrid();
         }
 
-        private void TakeNextPage()
+        private void ShowNextPage()
         {
-            if (_currentPage < _maxPage)
-            {
-                _currentPage++;
-                UpdatePageTextBox();
-                FilterDataGrid();
-            }
+            if (_currentPage >= _maxPage) return;
+            
+            _currentPage++;
+            UpdatePagesTextBox();
+            FilterDataGrid();
         }
 
-        private void TakePreviousPage()
+        private void ShowPreviousPage()
         {
-            if (_currentPage > 1)
-            {
-                _currentPage--;
-                UpdatePageTextBox();
-                FilterDataGrid();
-            }
+            if (_currentPage <= 1) return;
+
+            _currentPage--;
+            UpdatePagesTextBox();
+            FilterDataGrid();
         }
 
         private void AdditionalServicesForm_Load(object sender, EventArgs e)
@@ -200,12 +196,12 @@ namespace StretchCeilings.Views
 
         private void btnNextPage_Click(object sender, EventArgs e)
         {
-            TakeNextPage();
+            ShowNextPage();
         }
 
         private void btnPreviousPage_Click(object sender, EventArgs e)
         {
-            TakePreviousPage();
+            ShowPreviousPage();
         }
 
         private void dgvAdditionalServices_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -221,7 +217,7 @@ namespace StretchCeilings.Views
 
         private void dgvAdditionalServices_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            OpenServiceForm();
+            OpenServiceForm(e);
         }
 
         private void nudIdValue_ValueChanged(object sender, EventArgs e)

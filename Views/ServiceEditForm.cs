@@ -4,12 +4,12 @@ using StretchCeilings.Models;
 
 namespace StretchCeilings.Views
 {
-    public partial class ServiceFormEdit : Form
+    public partial class ServiceEditForm : Form
     {
         private readonly Service _currentService;
         private readonly bool _isNew;
 
-        public ServiceFormEdit(Service service, bool isNew = false)
+        public ServiceEditForm(Service service, bool isNew = false)
         {
             _currentService = service;
             _isNew = isNew;

@@ -28,8 +28,8 @@ namespace StretchCeilings.Views
         private void SetUpForm()
         {
             linkLblCustomer.Text = _currentOrder.Customer?.FullName;
-            linkLblCustomer.ActiveLinkColor = Constants.DraculaPink;
-            linkLblCustomer.VisitedLinkColor = Constants.DraculaPurple;
+            linkLblCustomer.ActiveLinkColor = DraculaColor.Pink;
+            linkLblCustomer.VisitedLinkColor = DraculaColor.Purple;
 
             lblDatePlacedValue.Text = _currentOrder.DatePlaced?.ToString();
             lblDateOfMeasurementsValue.Text = _currentOrder?.DateOfMeasurements?.ToString();
@@ -56,10 +56,10 @@ namespace StretchCeilings.Views
             dgvServices.AddDataGridViewTextBoxColumn("Производитель", DataGridViewAutoSizeColumnMode.Fill);
             dgvServices.AddDataGridViewTextBoxColumn("Потолок", DataGridViewAutoSizeColumnMode.Fill);
             dgvServices.AddDataGridViewTextBoxColumn("Цена", DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvServices.AddDataGridViewButtonColumn(Constants.DraculaRed);
+            dgvServices.AddDataGridViewButtonColumn(DraculaColor.Red);
             
-            dgvServices.DefaultCellStyle.SelectionBackColor = Constants.DraculaSelection;
-            dgvServices.DefaultCellStyle.SelectionForeColor = Constants.DraculaForeground;
+            dgvServices.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
+            dgvServices.DefaultCellStyle.SelectionForeColor = DraculaColor.Foreground;
 
             for (var i = 0; i < services?.Count; i++)
             {
@@ -78,10 +78,10 @@ namespace StretchCeilings.Views
 
             dgvEmployees.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
             dgvEmployees.AddDataGridViewTextBoxColumn("Имя", DataGridViewAutoSizeColumnMode.Fill);
-            dgvEmployees.AddDataGridViewButtonColumn(Constants.DraculaRed);
+            dgvEmployees.AddDataGridViewButtonColumn(DraculaColor.Red);
 
-            dgvEmployees.DefaultCellStyle.SelectionBackColor = Constants.DraculaSelection;
-            dgvEmployees.DefaultCellStyle.SelectionForeColor = Constants.DraculaForeground;
+            dgvEmployees.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
+            dgvEmployees.DefaultCellStyle.SelectionForeColor = DraculaColor.Foreground;
 
             for (var i = 0; i < employees?.Count; i++)
             {
@@ -99,10 +99,10 @@ namespace StretchCeilings.Views
             dgvLogs.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
             dgvLogs.AddDataGridViewTextBoxColumn("Дата создания", DataGridViewAutoSizeColumnMode.Fill);
             dgvLogs.AddDataGridViewTextBoxColumn("Событие", DataGridViewAutoSizeColumnMode.Fill);
-            dgvLogs.AddDataGridViewButtonColumn(Constants.DraculaRed);
+            dgvLogs.AddDataGridViewButtonColumn(DraculaColor.Red);
 
-            dgvLogs.DefaultCellStyle.SelectionBackColor = Constants.DraculaSelection;
-            dgvLogs.DefaultCellStyle.SelectionForeColor = Constants.DraculaForeground;
+            dgvLogs.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
+            dgvLogs.DefaultCellStyle.SelectionForeColor = DraculaColor.Foreground;
 
             for (var i = 0; i < logs?.Count; i++)
             {
@@ -120,10 +120,10 @@ namespace StretchCeilings.Views
 
             dgvWorkDates.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
             dgvWorkDates.AddDataGridViewTextBoxColumn("Дата", DataGridViewAutoSizeColumnMode.Fill);
-            dgvWorkDates.AddDataGridViewButtonColumn(Constants.DraculaRed);
+            dgvWorkDates.AddDataGridViewButtonColumn(DraculaColor.Red);
             
-            dgvWorkDates.DefaultCellStyle.SelectionBackColor = Constants.DraculaSelection;
-            dgvWorkDates.DefaultCellStyle.SelectionForeColor = Constants.DraculaForeground;
+            dgvWorkDates.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
+            dgvWorkDates.DefaultCellStyle.SelectionForeColor = DraculaColor.Foreground;
             dgvWorkDates.DefaultCellStyle.ForeColor = Color.Black;
 
             for (var i = 0; i < workdays?.Count; i++)
@@ -140,15 +140,15 @@ namespace StretchCeilings.Views
             new CustomerForm(_currentOrder.Customer).ShowDialog();
         }
 
-        private void ShowEmployeeInfo()
+        private void ShowEmployeeInfo(DataGridViewCellEventArgs e)
         {
-            if (dgvEmployees.SelectedRows.Count <= 0) return;
+            if (dgvEmployees.SelectedRows.Count <= 0 || e.RowIndex < 0) return;
             new EmployeeForm(EmployeeModelsRepository.GetById((int)dgvEmployees.SelectedRows[0].Cells[0].Value)).ShowDialog();
         }
 
-        private void ShowServiceInfo()
+        private void ShowServiceInfo(DataGridViewCellEventArgs e)
         {
-            if (dgvEmployees.SelectedRows.Count <= 0) return;
+            if (dgvEmployees.SelectedRows.Count <= 0 || e.RowIndex < 0) return;
             new ServiceForm(ServiceModelsRepository.GetById((int)dgvServices.SelectedRows[0].Cells[0].Value)).ShowDialog();
         }
 
@@ -160,20 +160,20 @@ namespace StretchCeilings.Views
 
         private void btnEditOrder_Click(object sender, System.EventArgs e)
         {
-            this.Hide();
-            var orderFormEdit = new OrderFormEdit(_currentOrder);
-            orderFormEdit.FormClosed += (o, args) => this.Show();
+            Hide();
+            var orderFormEdit = new OrderEditForm(_currentOrder);
+            orderFormEdit.FormClosed += (o, args) => Show();
             orderFormEdit.ShowDialog();
         }
 
         private void dgvEmployees_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            ShowEmployeeInfo();
+            ShowEmployeeInfo(e);
         }
 
         private void dgvServices_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            ShowServiceInfo();
+            ShowServiceInfo(e);
         }
 
         private void linkLblCustomer_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

@@ -4,11 +4,11 @@ using StretchCeilings.Models;
 
 namespace StretchCeilings.Views
 {
-    public partial class CustomerFormEdit : Form
+    public partial class CustomerEditForm : Form
     {
         private readonly Customer _customer;
 
-        public CustomerFormEdit(Customer customer)
+        public CustomerEditForm(Customer customer)
         {
             _customer = customer;
             InitializeComponent();

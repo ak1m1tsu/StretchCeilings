@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using StretchCeilings.Helpers.Extensions;
 using StretchCeilings.Models;
 
@@ -12,33 +13,27 @@ namespace StretchCeilings.Views
         {
             _ceiling = ceiling;
             InitializeComponent();
+            this.Load += SetupForm;
         }
 
-        private void SetUpForm()
+        private void SetupForm(object sender, EventArgs e)
         {
             lblTextureValue.Text = _ceiling.TextureType?.ParseString();
             lblColorTypeValue.Text = _ceiling.ColorType?.ParseString();
             lblPriceValue.Text = _ceiling.Price.ToString();
+            btnEditInfo.Click += OpenEditForm;
         }
 
-        private void OpenEditForm()
+        private void OpenEditForm(object sender, EventArgs e)
         {
-            var form = new CeilingFormEdit(_ceiling);
+            this.Hide();
+            var form = new CeilingEditForm(_ceiling);
             if (form.ShowDialog() == DialogResult.OK)
             {
-                _ceiling = form.Ceiling;
-                SetUpForm();
+                _ceiling = form.GetCeiling();
+                SetupForm(sender, e);
             }
-        }
-
-        private void CeilingForm_Load(object sender, System.EventArgs e)
-        {
-            SetUpForm();
-        }
-
-        private void btnEditInfo_Click(object sender, System.EventArgs e)
-        {
-            OpenEditForm();
+            this.Show();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using StretchCeilings.DataAccess;
 using StretchCeilings.Helpers.Enums;
 using StretchCeilings.Interfaces.Models;
@@ -35,7 +36,9 @@ namespace StretchCeilings.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                db.Entry(this.Id).CurrentValues.SetValues(DeletedDate = DateTime.Now);
+                DeletedDate = DateTime.Now;
+                var old = db.Ceilings.FirstOrDefault(x => x.Id == Id);
+                db.Entry(old).CurrentValues.SetValues(this);
                 db.SaveChanges();
             }
         }
@@ -44,7 +47,8 @@ namespace StretchCeilings.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                db.Entry(this.Id).CurrentValues.SetValues(this);
+                var old = db.Ceilings.FirstOrDefault(x => x.Id == Id);
+                db.Entry(old).CurrentValues.SetValues(this);
                 db.SaveChanges();
             }
         }

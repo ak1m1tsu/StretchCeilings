@@ -28,13 +28,13 @@ namespace StretchCeilings
         {
             if (UserSession.LogIn(_users, mtbLogin.Text, tbPassword.Text) == false)
             {
-                CustomMessageBox.Show("Неверный логин или пароль.", Constants.ErrorCaption);
+                CustomMessageBox.Show("Неверный логин или пароль.", CustomMessageBoxCaption.Error);
                 return;
             }
 
-            this.Hide();
+            Hide();
             _mainForm = new MainForm();
-            _mainForm.FormClosed += (o, args) => this.Close();
+            _mainForm.FormClosed += btnCloseApp_Click;
             _mainForm.Show();
         }
 
@@ -53,7 +53,7 @@ namespace StretchCeilings
         {
             LoadUsers();
             tbPassword.PasswordChar = '*';
-            btnClose.FlatAppearance.MouseOverBackColor = Constants.DraculaRed;
+            btnClose.FlatAppearance.MouseOverBackColor = DraculaColor.Red;
         }
 
         private void mtbLogin_KeyDown(object sender, KeyEventArgs e)
@@ -68,13 +68,13 @@ namespace StretchCeilings
 
         private void btnCloseApp_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
 
         private void panelTop_MouseDown(object sender, MouseEventArgs e)
         {
-            User32.ReleaseCapture();
-            User32.SendMessage(this.Handle, User32.VM_NCLBUTTONDOWN, User32.HT_CAPTION, 0);
+            User32Helper.ReleaseCapture();
+            User32Helper.SendMessage(Handle, User32Helper.VM_NCLBUTTONDOWN, User32Helper.HT_CAPTION, 0);
         }
     }
 }

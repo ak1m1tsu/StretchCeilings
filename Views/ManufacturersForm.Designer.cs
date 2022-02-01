@@ -74,9 +74,9 @@ namespace StretchCeilings.Views
             this.tbName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbName.Font = new System.Drawing.Font("Open Sans", 12F);
             this.tbName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.tbName.Location = new System.Drawing.Point(93, 34);
+            this.tbName.Location = new System.Drawing.Point(93, 32);
             this.tbName.Name = "tbName";
-            this.tbName.Size = new System.Drawing.Size(246, 29);
+            this.tbName.Size = new System.Drawing.Size(200, 29);
             this.tbName.TabIndex = 40;
             this.tbName.TextChanged += new System.EventHandler(this.tbName_TextChanged);
             // 
@@ -106,9 +106,9 @@ namespace StretchCeilings.Views
             this.cbCountry.Font = new System.Drawing.Font("Open Sans", 12F);
             this.cbCountry.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.cbCountry.FormattingEnabled = true;
-            this.cbCountry.Location = new System.Drawing.Point(94, 66);
+            this.cbCountry.Location = new System.Drawing.Point(94, 65);
             this.cbCountry.Name = "cbCountry";
-            this.cbCountry.Size = new System.Drawing.Size(246, 31);
+            this.cbCountry.Size = new System.Drawing.Size(200, 31);
             this.cbCountry.TabIndex = 38;
             this.cbCountry.SelectedIndexChanged += new System.EventHandler(this.cbCountry_SelectedIndexChanged);
             // 
@@ -130,9 +130,9 @@ namespace StretchCeilings.Views
             this.tbAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbAddress.Font = new System.Drawing.Font("Open Sans", 12F);
             this.tbAddress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.tbAddress.Location = new System.Drawing.Point(93, 2);
+            this.tbAddress.Location = new System.Drawing.Point(93, 0);
             this.tbAddress.Name = "tbAddress";
-            this.tbAddress.Size = new System.Drawing.Size(340, 29);
+            this.tbAddress.Size = new System.Drawing.Size(400, 29);
             this.tbAddress.TabIndex = 12;
             this.tbAddress.TextChanged += new System.EventHandler(this.tbAddress_TextChanged);
             // 
@@ -218,6 +218,7 @@ namespace StretchCeilings.Views
             this.dgvManufacturers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvManufacturers.Location = new System.Drawing.Point(0, 100);
             this.dgvManufacturers.Name = "dgvManufacturers";
+            this.dgvManufacturers.ReadOnly = true;
             this.dgvManufacturers.RowHeadersVisible = false;
             this.dgvManufacturers.RowTemplate.Height = 25;
             this.dgvManufacturers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -245,9 +246,9 @@ namespace StretchCeilings.Views
             this.cbRows.Font = new System.Drawing.Font("Open Sans", 12F);
             this.cbRows.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.cbRows.FormattingEnabled = true;
-            this.cbRows.Location = new System.Drawing.Point(989, 5);
+            this.cbRows.Location = new System.Drawing.Point(995, 4);
             this.cbRows.Name = "cbRows";
-            this.cbRows.Size = new System.Drawing.Size(55, 31);
+            this.cbRows.Size = new System.Drawing.Size(50, 31);
             this.cbRows.TabIndex = 98;
             this.cbRows.SelectedIndexChanged += new System.EventHandler(this.cbRows_SelectedIndexChanged);
             // 
@@ -258,13 +259,12 @@ namespace StretchCeilings.Views
             this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrevious.Font = new System.Drawing.Font("Open Sans", 12F);
             this.btnPrevious.ForeColor = System.Drawing.Color.White;
-            this.btnPrevious.Location = new System.Drawing.Point(4, 4);
+            this.btnPrevious.Location = new System.Drawing.Point(5, 4);
             this.btnPrevious.Name = "btnPrevious";
             this.btnPrevious.Size = new System.Drawing.Size(31, 31);
             this.btnPrevious.TabIndex = 84;
             this.btnPrevious.Text = "<";
             this.btnPrevious.UseVisualStyleBackColor = false;
-            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
             // 
             // tbPages
             // 
@@ -272,10 +272,10 @@ namespace StretchCeilings.Views
             this.tbPages.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbPages.Font = new System.Drawing.Font("Open Sans", 12F);
             this.tbPages.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.tbPages.Location = new System.Drawing.Point(37, 5);
+            this.tbPages.Location = new System.Drawing.Point(38, 5);
             this.tbPages.Name = "tbPages";
             this.tbPages.ReadOnly = true;
-            this.tbPages.Size = new System.Drawing.Size(80, 29);
+            this.tbPages.Size = new System.Drawing.Size(60, 29);
             this.tbPages.TabIndex = 83;
             this.tbPages.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -286,13 +286,12 @@ namespace StretchCeilings.Views
             this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNext.Font = new System.Drawing.Font("Open Sans", 12F);
             this.btnNext.ForeColor = System.Drawing.Color.White;
-            this.btnNext.Location = new System.Drawing.Point(119, 4);
+            this.btnNext.Location = new System.Drawing.Point(100, 4);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(31, 31);
             this.btnNext.TabIndex = 82;
             this.btnNext.Text = ">";
             this.btnNext.UseVisualStyleBackColor = false;
-            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // ManufacturersForm
             // 

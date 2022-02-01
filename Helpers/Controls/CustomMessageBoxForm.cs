@@ -22,15 +22,15 @@ namespace StretchCeilings.Helpers.Controls
         private void SetUpButtons()
         {
             btnAccept.DialogResult = DialogResult.OK;
-            btnAccept.FlatAppearance.MouseOverBackColor = Constants.DraculaGreen;
+            btnAccept.FlatAppearance.MouseOverBackColor = DraculaColor.Green;
             btnCloseForm.DialogResult = DialogResult.Cancel;
-            btnCloseForm.FlatAppearance.MouseOverBackColor = Constants.DraculaRed;
+            btnCloseForm.FlatAppearance.MouseOverBackColor = DraculaColor.Red;
         }
 
         private void panelTop_MouseDown(object sender, MouseEventArgs e)
         {
-            User32.ReleaseCapture();
-            User32.SendMessage(this.Handle, 0x112, 0xf012, 0);
+            User32Helper.ReleaseCapture();
+            User32Helper.SendMessage(Handle, 0x112, 0xf012, 0);
         }
     }
 

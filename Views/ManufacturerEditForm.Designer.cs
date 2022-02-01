@@ -1,7 +1,7 @@
 ﻿
 namespace StretchCeilings.Views
 {
-    partial class ManufacturerFormEdit
+    partial class ManufacturerEditForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,27 +29,31 @@ namespace StretchCeilings.Views
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManufacturerEditForm));
             this.panelTop = new System.Windows.Forms.Panel();
             this.btnClose = new FontAwesome.Sharp.IconButton();
             this.panelBody = new System.Windows.Forms.Panel();
             this.gbCeilings = new System.Windows.Forms.GroupBox();
             this.dgvCeilings = new System.Windows.Forms.DataGridView();
             this.panelInfo = new System.Windows.Forms.Panel();
+            this.cbCountry = new System.Windows.Forms.ComboBox();
             this.tbName = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
-            this.tbCuntry = new System.Windows.Forms.TextBox();
             this.tbAddress = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.lblCuntry = new System.Windows.Forms.Label();
             this.lblAddress = new System.Windows.Forms.Label();
             this.panelPages = new System.Windows.Forms.Panel();
             this.btnAddCeiling = new System.Windows.Forms.Button();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.panelTop.SuspendLayout();
             this.panelBody.SuspendLayout();
             this.gbCeilings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCeilings)).BeginInit();
             this.panelInfo.SuspendLayout();
             this.panelPages.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTop
@@ -104,21 +108,28 @@ namespace StretchCeilings.Views
             // 
             // dgvCeilings
             // 
+            this.dgvCeilings.AllowUserToAddRows = false;
+            this.dgvCeilings.AllowUserToDeleteRows = false;
+            this.dgvCeilings.AllowUserToResizeColumns = false;
+            this.dgvCeilings.AllowUserToResizeRows = false;
             this.dgvCeilings.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.dgvCeilings.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvCeilings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCeilings.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCeilings.Location = new System.Drawing.Point(3, 25);
             this.dgvCeilings.Name = "dgvCeilings";
+            this.dgvCeilings.ReadOnly = true;
+            this.dgvCeilings.RowHeadersVisible = false;
             this.dgvCeilings.RowTemplate.Height = 25;
+            this.dgvCeilings.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCeilings.Size = new System.Drawing.Size(994, 407);
             this.dgvCeilings.TabIndex = 0;
             // 
             // panelInfo
             // 
+            this.panelInfo.Controls.Add(this.cbCountry);
             this.panelInfo.Controls.Add(this.tbName);
             this.panelInfo.Controls.Add(this.lblName);
-            this.panelInfo.Controls.Add(this.tbCuntry);
             this.panelInfo.Controls.Add(this.tbAddress);
             this.panelInfo.Controls.Add(this.btnSave);
             this.panelInfo.Controls.Add(this.lblCuntry);
@@ -129,15 +140,34 @@ namespace StretchCeilings.Views
             this.panelInfo.Size = new System.Drawing.Size(1000, 100);
             this.panelInfo.TabIndex = 69;
             // 
+            // cbCountry
+            // 
+            this.cbCountry.AutoCompleteCustomSource.AddRange(new string[] {
+            "Ожидает ответа клиента",
+            "Ожидает выполнения работ",
+            "Ожидает результатов замеров",
+            "Отменен",
+            "Завершен"});
+            this.cbCountry.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.cbCountry.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCountry.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbCountry.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.cbCountry.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.cbCountry.FormattingEnabled = true;
+            this.cbCountry.Location = new System.Drawing.Point(99, 33);
+            this.cbCountry.Name = "cbCountry";
+            this.cbCountry.Size = new System.Drawing.Size(200, 31);
+            this.cbCountry.TabIndex = 58;
+            // 
             // tbName
             // 
             this.tbName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.tbName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbName.Font = new System.Drawing.Font("Open Sans", 12F);
             this.tbName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.tbName.Location = new System.Drawing.Point(99, 1);
+            this.tbName.Location = new System.Drawing.Point(99, 0);
             this.tbName.Name = "tbName";
-            this.tbName.Size = new System.Drawing.Size(206, 29);
+            this.tbName.Size = new System.Drawing.Size(200, 29);
             this.tbName.TabIndex = 57;
             // 
             // lblName
@@ -151,26 +181,15 @@ namespace StretchCeilings.Views
             this.lblName.TabIndex = 56;
             this.lblName.Text = "Название:";
             // 
-            // tbCuntry
-            // 
-            this.tbCuntry.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
-            this.tbCuntry.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbCuntry.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.tbCuntry.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.tbCuntry.Location = new System.Drawing.Point(99, 33);
-            this.tbCuntry.Name = "tbCuntry";
-            this.tbCuntry.Size = new System.Drawing.Size(206, 29);
-            this.tbCuntry.TabIndex = 55;
-            // 
             // tbAddress
             // 
             this.tbAddress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.tbAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbAddress.Font = new System.Drawing.Font("Open Sans", 12F);
             this.tbAddress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.tbAddress.Location = new System.Drawing.Point(99, 65);
+            this.tbAddress.Location = new System.Drawing.Point(99, 68);
             this.tbAddress.Name = "tbAddress";
-            this.tbAddress.Size = new System.Drawing.Size(393, 29);
+            this.tbAddress.Size = new System.Drawing.Size(400, 29);
             this.tbAddress.TabIndex = 54;
             // 
             // btnSave
@@ -234,7 +253,12 @@ namespace StretchCeilings.Views
             this.btnAddCeiling.Text = "Добавить";
             this.btnAddCeiling.UseVisualStyleBackColor = false;
             // 
-            // ManufacturerFormEdit
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            this.errorProvider.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider.Icon")));
+            // 
+            // ManufacturerEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -243,7 +267,8 @@ namespace StretchCeilings.Views
             this.Controls.Add(this.panelBody);
             this.Controls.Add(this.panelTop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "ManufacturerFormEdit";
+            this.Name = "ManufacturerEditForm";
+            this.Load += new System.EventHandler(this.ManufacturerEditForm_Load);
             this.panelTop.ResumeLayout(false);
             this.panelBody.ResumeLayout(false);
             this.gbCeilings.ResumeLayout(false);
@@ -251,6 +276,7 @@ namespace StretchCeilings.Views
             this.panelInfo.ResumeLayout(false);
             this.panelInfo.PerformLayout();
             this.panelPages.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -265,12 +291,13 @@ namespace StretchCeilings.Views
         private System.Windows.Forms.Panel panelInfo;
         private System.Windows.Forms.TextBox tbName;
         private System.Windows.Forms.Label lblName;
-        private System.Windows.Forms.TextBox tbCuntry;
         private System.Windows.Forms.TextBox tbAddress;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Label lblCuntry;
         private System.Windows.Forms.Label lblAddress;
         private System.Windows.Forms.Panel panelPages;
         private System.Windows.Forms.Button btnAddCeiling;
+        private System.Windows.Forms.ComboBox cbCountry;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

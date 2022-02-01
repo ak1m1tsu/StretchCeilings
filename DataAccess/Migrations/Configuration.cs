@@ -1,8 +1,7 @@
 ﻿using System.Data.Entity.Migrations;
 using System.Data.SQLite.EF6.Migrations;
-using StretchCeilings.DataAccess;
 
-namespace StretchCeilings.Migrations
+namespace StretchCeilings.DataAccess.Migrations
 {
     internal sealed class Configuration : DbMigrationsConfiguration<StretchCeilingsContext>
     {

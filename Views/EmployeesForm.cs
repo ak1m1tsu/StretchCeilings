@@ -20,19 +20,36 @@ namespace StretchCeilings.Views
         private readonly bool _forSearching;
 
         private Employee _filter;
-        private Employee _employee;
+        private Employee _getEmployee;
         
         private int _rows;
         private int _count;
         private int _currentPage = 1;
         private int _maxPage = 1;
 
-        public Employee Employee => _employee;
+        public Employee GetEmployee() => _getEmployee;
 
         public EmployeesForm(bool forSearching = false)
         {
             _forSearching = forSearching;
             InitializeComponent();
+        }
+
+        private void SetUpDataGrid()
+        {
+            _employees = EmployeeModelsRepository.GetAll(out _rows);
+
+            dgvEmployees.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvEmployees.AddDataGridViewTextBoxColumn("ФИО", DataGridViewAutoSizeColumnMode.Fill);
+            dgvEmployees.AddDataGridViewTextBoxColumn("Номер телефона", DataGridViewAutoSizeColumnMode.Fill);
+            dgvEmployees.AddDataGridViewTextBoxColumn("Должность", DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvEmployees.AddDataGridViewButtonColumn(DraculaColor.Red);
+
+            dgvEmployees.Font = GoogleFont.OpenSans;
+            dgvEmployees.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
+            dgvEmployees.DefaultCellStyle.SelectionForeColor = DraculaColor.Foreground;
+
+            FillEmployeesGrid();
         }
 
         private void SetUpControls()
@@ -63,23 +80,6 @@ namespace StretchCeilings.Views
             cbRows.SelectedItem = cbRows.Items[0];
 
             UpdateTextBoxPagesText();
-        }
-
-        private void SetUpDataGrid()
-        {
-            _employees = EmployeeModelsRepository.GetAll(out _rows);
-
-            dgvEmployees.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvEmployees.AddDataGridViewTextBoxColumn("ФИО", DataGridViewAutoSizeColumnMode.Fill);
-            dgvEmployees.AddDataGridViewTextBoxColumn("Номер телефона", DataGridViewAutoSizeColumnMode.Fill);
-            dgvEmployees.AddDataGridViewTextBoxColumn("Должность", DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvEmployees.AddDataGridViewButtonColumn(Constants.DraculaRed);
-
-            dgvEmployees.Font = Constants.DataGridViewFont;
-            dgvEmployees.DefaultCellStyle.SelectionBackColor = Constants.DraculaSelection;
-            dgvEmployees.DefaultCellStyle.SelectionForeColor = Constants.DraculaForeground;
-
-            FillEmployeesGrid();
         }
 
         private void FillEmployeesGrid()
@@ -124,12 +124,13 @@ namespace StretchCeilings.Views
 
             FillEmployeesGrid();
         }
-        private void OpenDataGridRowForm()
+        private void OpenDataGridRowForm(DataGridViewCellEventArgs e)
         {
-            if (dgvEmployees.SelectedRows.Count <= 0) return;
+            if (dgvEmployees.SelectedRows.Count <= 0 || e.RowIndex < 0) return;
 
             var employee = EmployeeModelsRepository.GetById((int)dgvEmployees.SelectedRows[0].Cells[0].Value);
             new EmployeeForm(employee).ShowDialog();
+            FilterEmployeesGrid();
         }
 
         private void UpdateTextBoxPagesText()
@@ -155,7 +156,7 @@ namespace StretchCeilings.Views
 
         private void btnAddEmployee_Click(object sender, EventArgs e)
         {
-            var form = new EmployeeFormEdit(new Employee());
+            var form = new EmployeeEditForm(new Employee());
             if (form.ShowDialog() == DialogResult.OK)
                 FilterEmployeesGrid();
         }
@@ -220,7 +221,7 @@ namespace StretchCeilings.Views
 
         private void dgvEmployees_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            OpenDataGridRowForm();
+            OpenDataGridRowForm(e);
         }
     }
 }

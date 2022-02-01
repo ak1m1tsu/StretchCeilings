@@ -117,11 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="defaultPhoneNumberText" xml:space="preserve">
+  <data name="EmptyPhoneNumber" xml:space="preserve">
     <value>+7(   )   -  -</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="error_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\Icons\error_32x32.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RequiredControlsAreEmpty" xml:space="preserve">
+    <value>Не все поля заполнены.</value>
+  </data>
+  <data name="RequiredToFillOut" xml:space="preserve">
+    <value>Это поле обязательно к заполнению.</value>
   </data>
 </root>

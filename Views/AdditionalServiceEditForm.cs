@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Windows.Forms;
+using StretchCeilings.Helpers.Extensions;
 using StretchCeilings.Models;
 
 namespace StretchCeilings.Views
 {
-    public partial class AdditionalServiceFormEdit : Form
+    public partial class AdditionalServiceEditForm : Form
     {
         private readonly AdditionalService _currentService;
         private readonly bool _isNew;
 
-        public AdditionalServiceFormEdit(AdditionalService service, bool isNew = false)
+        public AdditionalServiceEditForm(AdditionalService service, bool isNew = false)
         {
             _currentService = service;
             _isNew = isNew;
@@ -48,6 +49,16 @@ namespace StretchCeilings.Views
         private void AdditionalServiceFormEdit_Load(object sender, EventArgs e)
         {
             SetUpForm();
+        }
+
+        private void panelTop_MouseDown(object sender, MouseEventArgs e)
+        {
+            Handle.DragMove(e);
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
         }
     }
 }

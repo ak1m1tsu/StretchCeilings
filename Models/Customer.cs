@@ -31,7 +31,7 @@ namespace StretchCeilings.Models
             using (var db = new StretchCeilingsContext())
             {
                 DeletedDate = DateTime.Now;
-                var old = db.Customers.Find(this.Id);
+                var old = db.Customers.Find(Id);
                 db.Entry(old).CurrentValues.SetValues(this);
                 db.SaveChanges();
             }
@@ -41,7 +41,7 @@ namespace StretchCeilings.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                return db.Estates.Where(e => e.CustomerId == this.Id).ToList();
+                return db.Estates.Where(e => e.CustomerId == Id).ToList();
             }
         }
 
@@ -49,7 +49,7 @@ namespace StretchCeilings.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                var old = db.Customers.Find(this.Id);
+                var old = db.Customers.Find(Id);
                 db.Entry(old).CurrentValues.SetValues(this);
                 db.SaveChanges();
             }

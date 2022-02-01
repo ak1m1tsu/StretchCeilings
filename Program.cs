@@ -19,7 +19,7 @@ namespace StretchCeilings
 
         private static async void Exception(object sender, ThreadExceptionEventArgs e)
         {
-            await LogWriter.WriteAsync(DateTime.Now, e.Exception.Message, LogLevel.ERROR);
+            await LoggingHelper.WriteAsync(DateTime.Now, e.Exception.Message, LogLevel.ERROR);
         }
     }
 }

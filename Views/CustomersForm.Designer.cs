@@ -76,9 +76,9 @@ namespace StretchCeilings.Views
             this.cbRows.Font = new System.Drawing.Font("Open Sans", 12F);
             this.cbRows.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.cbRows.FormattingEnabled = true;
-            this.cbRows.Location = new System.Drawing.Point(989, 5);
+            this.cbRows.Location = new System.Drawing.Point(995, 4);
             this.cbRows.Name = "cbRows";
-            this.cbRows.Size = new System.Drawing.Size(55, 31);
+            this.cbRows.Size = new System.Drawing.Size(50, 31);
             this.cbRows.TabIndex = 98;
             this.cbRows.SelectedIndexChanged += new System.EventHandler(this.cbRows_SelectedIndexChanged);
             // 
@@ -108,7 +108,7 @@ namespace StretchCeilings.Views
             this.tbPages.Location = new System.Drawing.Point(38, 5);
             this.tbPages.Name = "tbPages";
             this.tbPages.ReadOnly = true;
-            this.tbPages.Size = new System.Drawing.Size(80, 29);
+            this.tbPages.Size = new System.Drawing.Size(60, 29);
             this.tbPages.TabIndex = 83;
             this.tbPages.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -120,7 +120,7 @@ namespace StretchCeilings.Views
             this.btnNextPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNextPage.Font = new System.Drawing.Font("Open Sans", 12F);
             this.btnNextPage.ForeColor = System.Drawing.Color.White;
-            this.btnNextPage.Location = new System.Drawing.Point(120, 4);
+            this.btnNextPage.Location = new System.Drawing.Point(100, 4);
             this.btnNextPage.Name = "btnNextPage";
             this.btnNextPage.Size = new System.Drawing.Size(31, 31);
             this.btnNextPage.TabIndex = 82;
@@ -138,6 +138,7 @@ namespace StretchCeilings.Views
             this.dgvCustomers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCustomers.Location = new System.Drawing.Point(0, 100);
             this.dgvCustomers.Name = "dgvCustomers";
+            this.dgvCustomers.ReadOnly = true;
             this.dgvCustomers.RowHeadersVisible = false;
             this.dgvCustomers.RowTemplate.Height = 25;
             this.dgvCustomers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;

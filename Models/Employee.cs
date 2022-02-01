@@ -35,7 +35,7 @@ namespace StretchCeilings.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                var old = db.Employees.Find(this.Id);
+                var old = db.Employees.Find(Id);
                 db.Entry(old).CurrentValues.SetValues(this);
                 db.SaveChanges();
             }
@@ -46,7 +46,7 @@ namespace StretchCeilings.Models
             using (var db = new StretchCeilingsContext())
             {
                 DeletedDate = DateTime.Now;
-                var old = db.Employees.Find(this.Id);
+                var old = db.Employees.Find(Id);
                 db.Entry(old).CurrentValues.SetValues(this);
                 db.SaveChanges();
             }

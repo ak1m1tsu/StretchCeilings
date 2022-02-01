@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using StretchCeilings.Helpers;
+using StretchCeilings.Helpers.Extensions;
 using StretchCeilings.Helpers.Extensions.Controls;
 using StretchCeilings.Models;
 using StretchCeilings.Repositories;
@@ -10,7 +11,7 @@ namespace StretchCeilings.Views
 {
     public partial class EmployeeForm : Form
     {
-        private readonly Employee _employee;
+        private Employee _employee;
         private List<TimeTable> _tables;
 
         public EmployeeForm(Employee employee)
@@ -21,6 +22,14 @@ namespace StretchCeilings.Views
 
         private void SetUpForm()
         {
+            btnClose.DialogResult = DialogResult.Cancel;
+
+            SetUpControls();
+            SetUpTimeTableGrid();
+        }
+
+        private void SetUpControls()
+        {
             if (UserSession.IsAdmin)
             {
                 lblLogin.Visible = true;
@@ -30,19 +39,19 @@ namespace StretchCeilings.Views
 
                 lblLoginValue.Text = _employee.Login;
                 lblPasswordValue.Text = _employee.Password;
+
+                btnEdit.Visible = true;
             }
 
             lblNameValue.Text = _employee?.FullName;
             lblRoleValue.Text = _employee?.Role?.Name;
-
-            btnClose.DialogResult = DialogResult.Cancel;
-
-            SetUpTimeTableGrid();
         }
 
         private void FillTimeTableGrid()
         {
             _tables = TimeTableModelsRepository.GetByEmployeeId(_employee.Id);
+
+            dgvTimeTable.Rows.Clear();
 
             for (var i = 0; i < _tables?.Count; i++)
             {
@@ -63,23 +72,26 @@ namespace StretchCeilings.Views
             dgvTimeTable.AddDataGridViewTextBoxColumn("День недели", DataGridViewAutoSizeColumnMode.Fill);
             dgvTimeTable.AddDataGridViewTextBoxColumn("Начало", DataGridViewAutoSizeColumnMode.DisplayedCells);
             dgvTimeTable.AddDataGridViewTextBoxColumn("Конец", DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvTimeTable.AddDataGridViewButtonColumn(Constants.DraculaRed);
-
-            dgvTimeTable.Font = Constants.DataGridViewFont;
-            dgvTimeTable.ForeColor = Constants.DraculaBackground;
-            dgvTimeTable.DefaultCellStyle.SelectionBackColor = Constants.DraculaSelection;
-            dgvTimeTable.DefaultCellStyle.SelectionForeColor = Constants.DraculaForeground;
+            
+            dgvTimeTable.Font = GoogleFont.OpenSans;
+            dgvTimeTable.ForeColor = DraculaColor.Background;
+            dgvTimeTable.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
+            dgvTimeTable.DefaultCellStyle.SelectionForeColor = DraculaColor.Foreground;
 
             FillTimeTableGrid();
         }
 
-        private void RemoveGridRow(DataGridViewCellEventArgs @event)
+        private void OpenEditForm()
         {
-            if (@event.RowIndex < 0 || @event.ColumnIndex != dgvTimeTable.Columns[" "]?.Index) return;
-
-            TimeTableModelsRepository.GetById((int)dgvTimeTable.SelectedRows[0].Cells["№"].Value).Delete();
-
-            FillTimeTableGrid();
+            Hide();
+            var form = new EmployeeEditForm(_employee);
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                _employee = form.GetEmployee();
+                SetUpControls();
+                FillTimeTableGrid();
+            }
+            Show();
         }
 
         private void EmployeeForm_Load(object sender, EventArgs e)
@@ -87,9 +99,14 @@ namespace StretchCeilings.Views
             SetUpForm();
         }
 
-        private void dgvTimeTable_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void panelTop_MouseDown(object sender, MouseEventArgs e)
         {
-            RemoveGridRow(e);
+            Handle.DragMove(e);
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            OpenEditForm();
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿
 namespace StretchCeilings.Views
 {
-    partial class ServiceFormEdit
+    partial class ServiceEditForm
     {
         /// <summary>
         /// Required designer variable.

@@ -23,12 +23,11 @@ namespace StretchCeilings
             _activeForm?.Close();
             _activeForm = childForm;
 
-            childForm.TopLevel = false;
-            childForm.FormBorderStyle = FormBorderStyle.None;
-            panelContent.Controls.Add(childForm);
-            childForm.Dock = DockStyle.Fill;
-            childForm.BringToFront();
-            childForm.Show();
+            _activeForm.TopLevel = false;
+            panelContent.Controls.Add(_activeForm);
+            _activeForm.Dock = DockStyle.Fill;
+            _activeForm.BringToFront();
+            _activeForm.Show();
         }
 
         private void DrawNavigationButtons()
@@ -54,7 +53,7 @@ namespace StretchCeilings
 
         private void SetUpForm()
         {
-            btnCloseApp.FlatAppearance.MouseOverBackColor = Constants.DraculaRed;
+            btnCloseApp.FlatAppearance.MouseOverBackColor = DraculaColor.Red;
         }
 
         private void btnOrders_Click(object sender, EventArgs e)
@@ -89,13 +88,13 @@ namespace StretchCeilings
 
         private void btnMinimizeApp_Click(object sender, EventArgs e)
         {
-            if (this.WindowState != FormWindowState.Minimized)
-                this.WindowState = FormWindowState.Minimized;
+            if (WindowState != FormWindowState.Minimized)
+                WindowState = FormWindowState.Minimized;
         }
 
         private void btnMaximizeApp_Click(object sender, EventArgs e)
         {
-            this.WindowState = this.WindowState != FormWindowState.Maximized ? FormWindowState.Maximized : FormWindowState.Normal;
+            WindowState = WindowState != FormWindowState.Maximized ? FormWindowState.Maximized : FormWindowState.Normal;
             btnResiizeApp.IconChar = btnResiizeApp.IconChar == Constants.WindowMaximizeIcon
                 ? Constants.WindowRestoreIcon
                 : Constants.WindowMaximizeIcon;
@@ -103,13 +102,13 @@ namespace StretchCeilings
 
         private void btnCloseApp_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
-        private void panelTop_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        private void panelTop_MouseDown(object sender, MouseEventArgs e)
         {
-            User32.ReleaseCapture();
-            User32.SendMessage(this.Handle, 0x112, 0xf012, 0);
+            User32Helper.ReleaseCapture();
+            User32Helper.SendMessage(Handle, 0x112, 0xf012, 0);
         }
     }
 }

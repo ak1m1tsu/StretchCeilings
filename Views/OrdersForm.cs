@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Controls;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
 using StretchCeilings.Helpers;
@@ -18,7 +19,7 @@ namespace StretchCeilings.Views
         
         private bool _forSearching;
         private int _count;
-        private int _rowsCount;
+        private int _rows;
         private int _currentPage = 1;
         private int _maxPage = 1;
 
@@ -31,17 +32,9 @@ namespace StretchCeilings.Views
             InitializeComponent();
         }
 
-        private void OpenDataGridRowForm()
+        private void SetUpDataGrid()
         {
-            if (dgvOrders.SelectedRows.Count <= 0) return;
-
-            var order = OrderModelsRepository.GetById((int) dgvOrders.SelectedRows[0].Cells[0].Value);
-            new OrderForm(order).ShowDialog();
-        }
-
-        private void SetUpDataGridView()
-        {
-            _orders = OrderModelsRepository.GetALl(out _rowsCount);
+            _orders = OrderModelsRepository.GetALl(out _rows);
 
             dgvOrders.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
             dgvOrders.AddDataGridViewTextBoxColumn("Дата размещения", DataGridViewAutoSizeColumnMode.Fill);
@@ -49,69 +42,83 @@ namespace StretchCeilings.Views
             dgvOrders.AddDataGridViewTextBoxColumn("Статус", DataGridViewAutoSizeColumnMode.Fill);
             dgvOrders.AddDataGridViewCheckBoxColumn("Оплачен наличными", DataGridViewAutoSizeColumnMode.Fill);
             dgvOrders.AddDataGridViewTextBoxColumn("Стоимость", DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvOrders.AddDataGridViewButtonColumn(Constants.DraculaRed);
-
-            dgvOrders.Font = Constants.DataGridViewFont;
-            dgvOrders.DefaultCellStyle.SelectionBackColor = Constants.DraculaSelection;
-            dgvOrders.DefaultCellStyle.SelectionForeColor = Constants.DraculaForeground;
-            dgvOrders.CellClick += dgvOrdersButtonsColumn_CellClick;
+            dgvOrders.AddDataGridViewButtonColumn(DraculaColor.Red);
+            dgvOrders.Font = GoogleFont.OpenSans;
+            dgvOrders.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
+            dgvOrders.DefaultCellStyle.SelectionForeColor = DraculaColor.Foreground;
+            dgvOrders.CellClick += RemoveGridRow;
 
             FillDataGrid();
         }
 
-        private void dgvOrdersButtonsColumn_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void FillStatusComboBox()
         {
-            if (e.RowIndex < 0 || e.ColumnIndex != dgvOrders.Columns[" "]?.Index) return;
+            foreach (OrderStatus status in Enum.GetValues(typeof(OrderStatus)))
+            {
+                if (status == OrderStatus.Unknown) continue;
+                var item = new ComboBoxItem()
+                {
+                    Content = status.ParseString(),
+                    Tag = status,
+                };
+                cbStatusValue.Items.Add(item);
+            }
+            cbStatusValue.DisplayMember = "Content";
+            cbStatusValue.SelectedItem = null;
+        }
 
-            var order = OrderModelsRepository.GetById((int)dgvOrders.SelectedRows[0].Cells["№"].Value);
+        private void FillPaidByCashComboBox()
+        {
+            foreach (var paidByCashItem in Constants.PaidByCashItems)
+            {
+                var item = new ComboBoxItem()
+                {
+                    Content = paidByCashItem.Key,
+                    Tag = paidByCashItem.Value,
+                };
+                cbPaidByCash.Items.Add(item);
+            }
 
-            order.Delete();
+            cbPaidByCash.DisplayMember = "Content";
+            cbPaidByCash.SelectedItem = null;
+        }
 
-            FilterDataGrid();
+        private static bool HasUserPermissions() 
+            => UserSession.IsAdmin || UserSession.Can(PermissionCode.AddOrder);
+
+        private void DrawAddOrderButton()
+        {
+            var btnAddOrder = new FlatButton("btnAddOrder", "Добавить", btnAddOrder_Click);
+            paneUserButtons.Controls.Add(btnAddOrder);
+        }
+
+        private void FillRowsComboBox()
+        {
+            foreach (var item in Constants.RowCountItems)
+                cbRows.Items.Add(item);
+            cbRows.SelectedItem = cbRows.Items[0];
         }
 
         private void SetUpControls()
         {
-            if (UserSession.IsAdmin || UserSession.Can(PermissionCode.AddOrder))
-            {
-                var btnAddOrder = new FlatButton("btnAddOrder", "Добавить", btnAddOrder_Click);
-                paneUserButtons.Controls.Add(btnAddOrder);
-            }
+            if (HasUserPermissions())
+                DrawAddOrderButton();
 
-            foreach (OrderStatus status in Enum.GetValues(typeof(OrderStatus)))
-            {
-                if(status == OrderStatus.Unknown) continue;
-                cbStatusValue.Items.Add(status.ParseString());
-            }
-            cbStatusValue.SelectedItem = null;
+            btnNextPage.Click += ShowNextPage;
+            btnPreviousPage.Click += ShowPreviousPage;
+            ibtnCustomer.Click += TakeCustomer;
+            ibtnEmployee.Click += TakeEmployee;
+            cbPaidByCash.SelectedIndexChanged += SetPaidByCashValue;
+            cbStatusValue.SelectedIndexChanged += SetStatusValue;
+            btnResetFilters.FlatAppearance.MouseOverBackColor = DraculaColor.Red;
 
-            foreach (var paidByCashItem in Constants.PaidByCashItems)
-                cbPaidByCash.Items.Add(paidByCashItem);
-            cbPaidByCash.SelectedItem = null;
-            
             nudTotalFrom.Maximum = decimal.MaxValue;
             nudTotalTo.Maximum = decimal.MaxValue;
-            
 
-            foreach (var item in Constants.RowCountItems)
-                cbRows.Items.Add(item);
-            cbRows.SelectedItem = cbRows.Items[0];
-
-            SetPages();
-
-            btnResetFilters.BackColor = Constants.DraculaAlphaRed;
-        }
-
-        private void FilterDataGrid()
-        {
-            _orders = OrderModelsRepository.GetALl(
-                _firstFilter,
-                _secondFilter, 
-                _count,
-                _currentPage,
-                out _rowsCount);
-
-            FillDataGrid();
+            FillStatusComboBox();
+            FillPaidByCashComboBox();
+            FillRowsComboBox();
+            UpdatePageTextBox();
         }
 
         private void FillDataGrid()
@@ -120,7 +127,7 @@ namespace StretchCeilings.Views
 
             for (var i = 0; i < _orders?.Count; i++)
             {
-                dgvOrders.Rows.Add(new DataGridViewRow() { Resizable = DataGridViewTriState.False });
+                dgvOrders.Rows.Add(new DataGridViewRow());
 
                 dgvOrders.Rows[i].Cells[0].Value = _orders[i].Id;
                 dgvOrders.Rows[i].Cells[1].Value = _orders[i].DatePlaced;
@@ -130,8 +137,20 @@ namespace StretchCeilings.Views
                 dgvOrders.Rows[i].Cells[5].Value = _orders[i].Total;
             }
 
-            _maxPage = (int)Math.Ceiling((double)_rowsCount / _count);
-            SetPages();
+            _maxPage = (int)Math.Ceiling((double)_rows / _count);
+            UpdatePageTextBox();
+        }
+
+        private void FilterDataGrid()
+        {
+            _orders = OrderModelsRepository.GetALl(
+                _firstFilter,
+                _secondFilter,
+                _count,
+                _currentPage,
+                out _rows);
+
+            FillDataGrid();
         }
 
         private void ResetDataGridFilters()
@@ -145,10 +164,10 @@ namespace StretchCeilings.Views
             nudTotalFrom.Value = Constants.DefaultNumericUpDownValue;
             nudTotalTo.Value = Constants.DefaultNumericUpDownValue;
             nudIdValue.Value = Constants.DefaultNumericUpDownValue;
-            
+
             dtpDateFromValue.CustomFormat = Constants.DefaultDateTimePickerCustomFormat;
             dtpDateToValue.CustomFormat = Constants.DefaultDateTimePickerCustomFormat;
-            
+
             ibtnCustomer.IconChar = Constants.SearchIcon;
             ibtnCustomer.Text = Constants.DefaultIconButtonText;
             ibtnEmployee.IconChar = Constants.SearchIcon;
@@ -159,40 +178,79 @@ namespace StretchCeilings.Views
 
             FilterDataGrid();
         }
+        
+        private void OpenDataGridRowForm(DataGridViewCellEventArgs e)
+        {
+            if (dgvOrders.SelectedRows.Count <= 0 || e.RowIndex < 0) return;
 
-        private void TakeEmployee()
+            var order = OrderModelsRepository.GetById((int)dgvOrders.SelectedRows[0].Cells[0].Value);
+            new OrderForm(order).ShowDialog();
+        }
+
+        private void UpdatePageTextBox()
+        {
+            if (_maxPage == 0)
+                _currentPage = 0;
+            tbPage.UpdatePagesValue(_currentPage, _maxPage);
+        }
+
+        private void TakeEmployee(object sender, EventArgs e)
         {
             var employeesForm = new EmployeesForm();
 
             employeesForm.ShowDialog();
 
-            if (employeesForm.DialogResult == DialogResult.OK)
-            {
-                ibtnEmployee.Tag = employeesForm.Employee;
-                ibtnEmployee.Text = employeesForm.Employee.FullName;
-                ibtnEmployee.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-                ibtnCustomer.IconChar = IconChar.None;
-            }
+            if (employeesForm.DialogResult != DialogResult.OK) return;
+
+            var employee = employeesForm.GetEmployee();
+            ibtnEmployee.Tag = employee;
+            ibtnEmployee.Text = employee?.FullName;
+            ibtnEmployee.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            ibtnCustomer.IconChar = IconChar.None;
         }
-        private void TakeCustomer()
+
+        private void TakeCustomer(object sender, EventArgs e)
         {
             var customersForm = new CustomersForm();
 
             customersForm.ShowDialog();
 
-            if (customersForm.DialogResult == DialogResult.OK)
-            {
-                ibtnCustomer.Tag = customersForm.Customer;
-                ibtnCustomer.Text = customersForm.Customer.FullName;
-                ibtnCustomer.IconChar = IconChar.None;
-            }
+            if (customersForm.DialogResult != DialogResult.OK) return;
+
+            var customer = customersForm.GetCustomer();
+            ibtnCustomer.Tag = customer;
+            ibtnCustomer.Text = customer?.FullName;
+            ibtnCustomer.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            ibtnCustomer.IconChar = IconChar.None;
         }
 
-        private void SetPages()
+        private void ShowNextPage(object sender, EventArgs e)
         {
-            if (_maxPage == 0)
-                _currentPage = 0;
-            tbPage.UpdatePagesValue(_currentPage, _maxPage);
+            if (_currentPage >= _maxPage) return;
+
+            _currentPage++;
+            UpdatePageTextBox();
+            FilterDataGrid();
+        }
+
+        private void ShowPreviousPage(object sender, EventArgs e)
+        {
+            if (_currentPage <= 1) return;
+
+            _currentPage--;
+            UpdatePageTextBox();
+            FilterDataGrid();
+        }
+
+        private void RemoveGridRow(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex != dgvOrders.Columns[" "]?.Index) return;
+
+            var order = OrderModelsRepository.GetById((int)dgvOrders.SelectedRows[0].Cells["№"].Value);
+
+            order.Delete();
+
+            FilterDataGrid();
         }
 
         private void OrdersForm_Load(object sender, EventArgs e)
@@ -200,13 +258,13 @@ namespace StretchCeilings.Views
             _firstFilter = new Order() { Status = OrderStatus.Unknown };
             _secondFilter = new Order();
 
-            SetUpDataGridView();
+            SetUpDataGrid();
             SetUpControls();
         }
 
-        private static void btnAddOrder_Click(object sender, EventArgs e)
+        private void btnAddOrder_Click(object sender, EventArgs e)
         {
-            new OrderFormEdit().ShowDialog();
+            if (new OrderEditForm().ShowDialog() == DialogResult.OK) FilterDataGrid();
         }
 
         private void btnUseFilters_Click(object sender, EventArgs e)
@@ -228,27 +286,7 @@ namespace StretchCeilings.Views
 
         private void dgvOrders_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            OpenDataGridRowForm();
-        }
-
-        private void btnNextPage_Click(object sender, EventArgs e)
-        {
-            if (_currentPage < _maxPage)
-            {
-                _currentPage++;
-                SetPages();
-                FilterDataGrid();
-            }
-        }
-
-        private void btnPreviousPage_Click(object sender, EventArgs e)
-        {
-            if (_currentPage > 1)
-            {
-                _currentPage--;
-                SetPages();
-                FilterDataGrid();
-            }
+            OpenDataGridRowForm(e);
         }
 
         private static void SetFilterDatePlacedValue(Order filter, DateTimePicker dateTimePicker)
@@ -276,14 +314,12 @@ namespace StretchCeilings.Views
             FilterDataGrid();
         }
 
-        private void cbStatusValue_SelectedIndexChanged(object sender, EventArgs e)
+        private void SetStatusValue(object sender, EventArgs e)
         {
-            if (cbStatusValue.SelectedItem == null)
+            foreach (ComboBoxItem item in cbStatusValue.Items)
             {
-                _firstFilter.Status = OrderStatus.Unknown;
-                return;
+                if (item == cbStatusValue.SelectedItem) _firstFilter.Status = (OrderStatus)item.Tag;
             }
-            _firstFilter.Status = cbStatusValue.SelectedItem.ToString().ToOrderStatus();
         }
 
         private static void SetFilterTotalValue(Order filter, decimal value)
@@ -301,25 +337,17 @@ namespace StretchCeilings.Views
             SetFilterTotalValue(_firstFilter, nudTotalFrom.Value);
         }
 
-        private void ibtnCustomer_Click(object sender, EventArgs e)
-        {
-            TakeEmployee();
-        }
-
-        private void ibtnEmployee_Click(object sender, EventArgs e)
-        {
-            TakeCustomer();
-        }
         private void nudIdValue_ValueChanged(object sender, EventArgs e)
         {
-            if (nudIdValue.Value == 0) return;
-            _firstFilter.Id = (int)nudIdValue.Value;
+            if (nudIdValue.Value != 0) _firstFilter.Id = (int)nudIdValue.Value;
         }
 
-        private void cbPaidByCash_SelectedIndexChanged(object sender, EventArgs e)
+        private void SetPaidByCashValue(object sender, EventArgs e)
         {
-            _firstFilter.PaidByCash = (string)cbPaidByCash.SelectedItem == Constants.PaidByCashItems[0] ? false : _firstFilter.PaidByCash;
-            _firstFilter.PaidByCash = (string)cbPaidByCash.SelectedItem == Constants.PaidByCashItems[1] ? true : _firstFilter.PaidByCash;
+            foreach (ComboBoxItem item in cbPaidByCash.Items)
+            {
+                if (item == cbPaidByCash.SelectedItem) _firstFilter.PaidByCash = (bool)item.Tag;
+            }
         }
     }
 }

@@ -79,7 +79,6 @@ namespace StretchCeilings.Views
             this.btnEditInfo.TabIndex = 95;
             this.btnEditInfo.Text = "Изменить";
             this.btnEditInfo.UseVisualStyleBackColor = false;
-            this.btnEditInfo.Click += new System.EventHandler(this.btnEditInfo_Click);
             // 
             // lblColorTypeValue
             // 
@@ -88,9 +87,9 @@ namespace StretchCeilings.Views
             this.lblColorTypeValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.lblColorTypeValue.Location = new System.Drawing.Point(152, 64);
             this.lblColorTypeValue.Name = "lblColorTypeValue";
-            this.lblColorTypeValue.Size = new System.Drawing.Size(78, 23);
+            this.lblColorTypeValue.Size = new System.Drawing.Size(39, 23);
             this.lblColorTypeValue.TabIndex = 94;
-            this.lblColorTypeValue.Text = "Цветной";
+            this.lblColorTypeValue.Text = "Нет";
             // 
             // lblColorType
             // 
@@ -110,9 +109,9 @@ namespace StretchCeilings.Views
             this.lblPriceValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.lblPriceValue.Location = new System.Drawing.Point(152, 98);
             this.lblPriceValue.Name = "lblPriceValue";
-            this.lblPriceValue.Size = new System.Drawing.Size(95, 23);
+            this.lblPriceValue.Size = new System.Drawing.Size(41, 23);
             this.lblPriceValue.TabIndex = 92;
-            this.lblPriceValue.Text = "390.00 руб.";
+            this.lblPriceValue.Text = "0.00";
             // 
             // lblPrice
             // 
@@ -132,9 +131,9 @@ namespace StretchCeilings.Views
             this.lblTextureValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.lblTextureValue.Location = new System.Drawing.Point(152, 30);
             this.lblTextureValue.Name = "lblTextureValue";
-            this.lblTextureValue.Size = new System.Drawing.Size(96, 23);
+            this.lblTextureValue.Size = new System.Drawing.Size(39, 23);
             this.lblTextureValue.TabIndex = 90;
-            this.lblTextureValue.Text = "Глянцевый";
+            this.lblTextureValue.Text = "Нет";
             // 
             // lblTexture
             // 
@@ -164,7 +163,6 @@ namespace StretchCeilings.Views
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "CeilingForm";
             this.Text = "Производитель \"Pongs\"";
-            this.Load += new System.EventHandler(this.CeilingForm_Load);
             this.panelTop.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
