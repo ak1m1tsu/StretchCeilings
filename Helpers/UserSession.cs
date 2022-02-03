@@ -1,19 +1,19 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using StretchCeilings.DataAccess;
 using StretchCeilings.Helpers.Enums;
 using StretchCeilings.Models;
+using StretchCeilings.Repositories;
 
 namespace StretchCeilings.Helpers
 {
     public static class UserSession
     {
-        public static Employee User { get; private set; }
+        private static Employee _user;
 
-        public static bool LogIn(List<Employee> users, string login, string password)
+        public static bool LogIn(string login, string password)
         {
-            User = users.FirstOrDefault(user => user.Login == login && user.Password == password);
-            return User != null;
+            _user = EmployeeRepository.GetUser(login, password);
+            return _user != null;
         }
 
         public static bool IsAdmin
@@ -22,7 +22,7 @@ namespace StretchCeilings.Helpers
             {
                 using (var db = new StretchCeilingsContext())
                 {
-                    return User != null && User.Role.GetPermissions().Any(p => p.Code == PermissionCode.All);
+                    return _user != null && _user.Role.GetPermissions().Any(p => p.Code == PermissionCode.All);
                 }
             }
         }
@@ -31,7 +31,7 @@ namespace StretchCeilings.Helpers
         {
             using (var db = new StretchCeilingsContext())
             {
-                return User != null && User.Role.GetPermissions().Any(p => p.Code == code);
+                return _user != null && _user.Role.GetPermissions().Any(p => p.Code == code);
             }
         }
     }

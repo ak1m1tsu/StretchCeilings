@@ -43,7 +43,7 @@ namespace StretchCeilings.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                return db.Ceilings.Where(ceiling => ceiling.ManufacturerId == Id).ToList();
+                return db.Ceilings.Where(ceiling => ceiling.ManufacturerId == Id && ceiling.DeletedDate == null).ToList();
             }
         }
 

@@ -32,9 +32,8 @@ namespace StretchCeilings.Views
 
         private void SetUpDataGrid()
         {
-            _additionalServices = AdditionalServiceModelsRepository.GetAll(out _rowsCount);
+            _additionalServices = AdditionalServiceRepository.GetAll(out _rowsCount);
 
-            
             dgvAdditionalServices.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
             dgvAdditionalServices.AddDataGridViewTextBoxColumn("Название", DataGridViewAutoSizeColumnMode.Fill);
             dgvAdditionalServices.AddDataGridViewTextBoxColumn("Цена", DataGridViewAutoSizeColumnMode.Fill);
@@ -73,7 +72,7 @@ namespace StretchCeilings.Views
         {
             if (dgvAdditionalServices.SelectedRows.Count <= 0 || e.RowIndex < 0) return;
 
-            var service = AdditionalServiceModelsRepository.GetById((int)dgvAdditionalServices.SelectedRows[0].Cells[0].Value);
+            var service = AdditionalServiceRepository.GetById((int)dgvAdditionalServices.SelectedRows[0].Cells[0].Value);
             new AdditionalServiceForm(service).ShowDialog();
             FilterDataGrid();
         }
@@ -85,7 +84,7 @@ namespace StretchCeilings.Views
                 CustomMessageBox.Show("Неверно указан ценовой диапозон", CustomMessageBoxCaption.Error);
                 return;
             }
-            _additionalServices = AdditionalServiceModelsRepository.GetAll(
+            _additionalServices = AdditionalServiceRepository.GetAll(
                 _firstFilter,
                 _secondsFilter,
                 _count,
@@ -114,6 +113,9 @@ namespace StretchCeilings.Views
 
         private void ResetFilters()
         {
+            _currentPage = 1;
+            _maxPage = 1;
+
             _firstFilter = new AdditionalService();
             _secondsFilter = new AdditionalService();
 
@@ -122,7 +124,7 @@ namespace StretchCeilings.Views
             nudId.Value = Constants.DefaultNumericUpDownValue;
             tbName.Text = Constants.DefaultTextBoxText;
             
-            _additionalServices = AdditionalServiceModelsRepository.GetAll(out _rowsCount);
+            _additionalServices = AdditionalServiceRepository.GetAll(out _rowsCount);
 
             FillDataGrid();
         }
@@ -208,7 +210,7 @@ namespace StretchCeilings.Views
         {
             if (e.RowIndex < 0 || e.ColumnIndex != dgvAdditionalServices.Columns[" "]?.Index) return;
 
-            var service = AdditionalServiceModelsRepository.GetById((int)dgvAdditionalServices.SelectedRows[0].Cells["№"].Value);
+            var service = AdditionalServiceRepository.GetById((int)dgvAdditionalServices.SelectedRows[0].Cells["№"].Value);
 
             service.Delete();
 

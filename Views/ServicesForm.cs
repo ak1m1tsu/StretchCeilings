@@ -31,9 +31,9 @@ namespace StretchCeilings.Views
             InitializeComponent();
         }
 
-        private void SetUpDataGrid()
+        private void SetupDataGrid()
         {
-            _services = ServiceModelsRepository.GetAll(out _rowsCount);
+            _services = ServiceRepository.GetAll(out _rowsCount);
 
             dgvServices.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
             dgvServices.AddDataGridViewTextBoxColumn("Производитель", DataGridViewAutoSizeColumnMode.Fill);
@@ -46,13 +46,15 @@ namespace StretchCeilings.Views
             dgvServices.DefaultCellStyle.SelectionForeColor = DraculaColor.Foreground;
         }
 
-        private void SetUpControls()
+        private void SetupControls()
         {
             if (UserSession.Can(PermissionCode.AddService) || UserSession.IsAdmin)
             {
                 var btnAddService = new FlatButton("btnAddAdditionalService", "Добавить", AddService);
                 panelUserButtons.Controls.Add(btnAddService);
             }
+
+            cbCeiling.DisplayMember = "Content";
         }
 
         private void FillDataGrid()
@@ -81,7 +83,7 @@ namespace StretchCeilings.Views
                 return;
             }
 
-            _services = ServiceModelsRepository.GetAll(
+            _services = ServiceRepository.GetAll(
                 _firstFilter, 
                 _secondFilter, 
                 _count, 
@@ -101,14 +103,14 @@ namespace StretchCeilings.Views
             linkLblManufacturer.Text = Constants.DefaultLinkLabelText;
             cbCeiling.Items.Clear();
 
-            _services = ServiceModelsRepository.GetAll(out _rowsCount);
+            _services = ServiceRepository.GetAll(out _rowsCount);
 
             FillDataGrid();
         }
 
         private void UpdatePageTextBox()
         {
-            if (_maxPage == 0)
+            if (_maxPage == 0) 
                 _currentPage = 0;
             tbPages.UpdatePagesValue(_currentPage, _maxPage);
         }
@@ -123,8 +125,9 @@ namespace StretchCeilings.Views
         private void TakeManufacturer()
         {
             var form = new ManufacturersForm(forSearching: true);
-            if (form.ShowDialog() != DialogResult.OK) return;
-
+            if (form.ShowDialog() != DialogResult.OK)
+                return;
+                
             var manufacturer = form.GetManufacturer();
 
             linkLblManufacturer.Text = manufacturer?.Name;
@@ -135,13 +138,19 @@ namespace StretchCeilings.Views
 
             foreach (var ceiling in manufacturer?.GetCeilings())
             {
-                cbCeiling.Items.Add(new ComboBoxItem() { Tag = ceiling, Name = ceiling.Name });
+                var item = new ComboBoxItem()
+                {
+                    Content = ceiling.Name,
+                    Tag = ceiling
+                };
+                cbCeiling.Items.Add(item);
             }
         }
 
         private void ShowNextPage()
         {
-            if (_currentPage >= _maxPage) return;
+            if (_currentPage >= _maxPage)
+                return;
 
             _currentPage++;
             UpdatePageTextBox();
@@ -150,7 +159,8 @@ namespace StretchCeilings.Views
 
         private void ShowPreviousPage()
         {
-            if (_currentPage <= 1) return;
+            if (_currentPage <= 1)
+                return;
 
             _currentPage--;
             UpdatePageTextBox();
@@ -169,8 +179,8 @@ namespace StretchCeilings.Views
             _firstFilter = new Service();
             _secondFilter = new Service();
 
-            SetUpDataGrid();
-            SetUpControls();
+            SetupDataGrid();
+            SetupControls();
         }
 
         private void btnUseFilters_Click(object sender, EventArgs e)

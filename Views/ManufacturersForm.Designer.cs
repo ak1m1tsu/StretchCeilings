@@ -78,7 +78,7 @@ namespace StretchCeilings.Views
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(200, 29);
             this.tbName.TabIndex = 40;
-            this.tbName.TextChanged += new System.EventHandler(this.tbName_TextChanged);
+            this.tbName.TextChanged += new System.EventHandler(this.SetManufacturerName);
             // 
             // lblName
             // 
@@ -110,7 +110,7 @@ namespace StretchCeilings.Views
             this.cbCountry.Name = "cbCountry";
             this.cbCountry.Size = new System.Drawing.Size(200, 31);
             this.cbCountry.TabIndex = 38;
-            this.cbCountry.SelectedIndexChanged += new System.EventHandler(this.cbCountry_SelectedIndexChanged);
+            this.cbCountry.SelectedIndexChanged += new System.EventHandler(this.SetManufacturerCountry);
             // 
             // lblCuntry
             // 
@@ -134,7 +134,7 @@ namespace StretchCeilings.Views
             this.tbAddress.Name = "tbAddress";
             this.tbAddress.Size = new System.Drawing.Size(400, 29);
             this.tbAddress.TabIndex = 12;
-            this.tbAddress.TextChanged += new System.EventHandler(this.tbAddress_TextChanged);
+            this.tbAddress.TextChanged += new System.EventHandler(this.SetManufacturerAddress);
             // 
             // lblAddress
             // 
@@ -190,7 +190,7 @@ namespace StretchCeilings.Views
             this.btnResetFilters.Text = "Сбросить";
             this.btnResetFilters.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnResetFilters.UseVisualStyleBackColor = false;
-            this.btnResetFilters.Click += new System.EventHandler(this.btnResetFilters_Click);
+            this.btnResetFilters.Click += new System.EventHandler(this.ResetFilters);
             // 
             // btnUserFilters
             // 
@@ -206,7 +206,7 @@ namespace StretchCeilings.Views
             this.btnUserFilters.Text = "Применить";
             this.btnUserFilters.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnUserFilters.UseVisualStyleBackColor = false;
-            this.btnUserFilters.Click += new System.EventHandler(this.btnUserFilters_Click);
+            this.btnUserFilters.Click += new System.EventHandler(this.UseFilters);
             // 
             // dgvManufacturers
             // 
@@ -250,7 +250,7 @@ namespace StretchCeilings.Views
             this.cbRows.Name = "cbRows";
             this.cbRows.Size = new System.Drawing.Size(50, 31);
             this.cbRows.TabIndex = 98;
-            this.cbRows.SelectedIndexChanged += new System.EventHandler(this.cbRows_SelectedIndexChanged);
+            this.cbRows.SelectedIndexChanged += new System.EventHandler(this.SetDisplayedRowsCount);
             // 
             // btnPrevious
             // 
@@ -305,7 +305,7 @@ namespace StretchCeilings.Views
             this.Controls.Add(this.panelButtons);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ManufacturersForm";
-            this.Load += new System.EventHandler(this.ManufacturersForm_Load);
+            this.Load += new System.EventHandler(this.LoadForm);
             this.panelFilters.ResumeLayout(false);
             this.panelFilters.PerformLayout();
             this.panelButtons.ResumeLayout(false);

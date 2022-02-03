@@ -37,7 +37,7 @@ namespace StretchCeilings.Views
 
         private void SetUpDataGrid()
         {
-            _employees = EmployeeModelsRepository.GetAll(out _rows);
+            _employees = EmployeeRepository.GetAll(out _rows);
 
             dgvEmployees.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
             dgvEmployees.AddDataGridViewTextBoxColumn("ФИО", DataGridViewAutoSizeColumnMode.Fill);
@@ -63,7 +63,7 @@ namespace StretchCeilings.Views
             }
 
             nudId.Maximum = decimal.MaxValue;
-            foreach (var role in RoleModelsRepository.GetAll())
+            foreach (var role in RoleRepository.GetAll())
             {
                 var item = new ComboBoxItem()
                 {
@@ -116,7 +116,7 @@ namespace StretchCeilings.Views
 
         private void FilterEmployeesGrid()
         {
-            _employees = EmployeeModelsRepository.GetAll(
+            _employees = EmployeeRepository.GetAll(
                 _filter,
                 _count,
                 _currentPage,
@@ -128,7 +128,7 @@ namespace StretchCeilings.Views
         {
             if (dgvEmployees.SelectedRows.Count <= 0 || e.RowIndex < 0) return;
 
-            var employee = EmployeeModelsRepository.GetById((int)dgvEmployees.SelectedRows[0].Cells[0].Value);
+            var employee = EmployeeRepository.GetById((int)dgvEmployees.SelectedRows[0].Cells[0].Value);
             new EmployeeForm(employee).ShowDialog();
             FilterEmployeesGrid();
         }
@@ -212,7 +212,7 @@ namespace StretchCeilings.Views
         {
             if (e.RowIndex < 0 || e.ColumnIndex != dgvEmployees.Columns[" "]?.Index) return;
 
-            var employee = EmployeeModelsRepository.GetById((int)dgvEmployees.SelectedRows[0].Cells["№"].Value);
+            var employee = EmployeeRepository.GetById((int)dgvEmployees.SelectedRows[0].Cells["№"].Value);
 
             employee.Delete();
 

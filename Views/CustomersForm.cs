@@ -34,7 +34,7 @@ namespace StretchCeilings.Views
 
         private void SetUpDataGrid()
         {
-            _customers = CustomerModelsRepository.GetAll(out _rows);
+            _customers = CustomerRepository.GetAll(out _rows);
 
             dgvCustomers.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
             dgvCustomers.AddDataGridViewTextBoxColumn("ФИО", DataGridViewAutoSizeColumnMode.Fill);
@@ -84,7 +84,7 @@ namespace StretchCeilings.Views
 
         private void FilterDataGrid()
         {
-            _customers = CustomerModelsRepository.GetAll(
+            _customers = CustomerRepository.GetAll(
                 _filter,
                 _count,
                 _currentPage,
@@ -97,7 +97,7 @@ namespace StretchCeilings.Views
         {
             if (dgvCustomers.SelectedRows.Count <= 0 || e.RowIndex < 0) return;
 
-            var customer = CustomerModelsRepository.GetById((int)dgvCustomers.SelectedRows[0].Cells[0].Value);
+            var customer = CustomerRepository.GetById((int)dgvCustomers.SelectedRows[0].Cells[0].Value);
             new CustomerForm(customer).ShowDialog();
         }
 
@@ -137,7 +137,7 @@ namespace StretchCeilings.Views
         {
             if (e.RowIndex < 0 || e.ColumnIndex != dgvCustomers.Columns[" "]?.Index) return;
 
-            var customer = CustomerModelsRepository.GetById((int)dgvCustomers.SelectedRows[0].Cells["№"].Value);
+            var customer = CustomerRepository.GetById((int)dgvCustomers.SelectedRows[0].Cells["№"].Value);
             customer.Delete();
 
             FilterDataGrid();

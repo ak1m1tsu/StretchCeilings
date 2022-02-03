@@ -7,7 +7,7 @@ using StretchCeilings.Helpers.DLL;
 using StretchCeilings.Models;
 using StretchCeilings.Repositories;
 
-namespace StretchCeilings
+namespace StretchCeilings.Views
 {
     public partial class LoginForm : Form
     {
@@ -21,12 +21,12 @@ namespace StretchCeilings
 
         private void LoadUsers()
         {
-            _users = EmployeeModelsRepository.GetAll();
+            _users = EmployeeRepository.GetAll();
         }
 
         private void LogIn()
         {
-            if (UserSession.LogIn(_users, mtbLogin.Text, tbPassword.Text) == false)
+            if (UserSession.LogIn(mtbLogin.Text, tbPassword.Text) == false)
             {
                 CustomMessageBox.Show("Неверный логин или пароль.", CustomMessageBoxCaption.Error);
                 return;

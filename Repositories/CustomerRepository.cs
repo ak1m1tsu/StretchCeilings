@@ -5,7 +5,7 @@ using StretchCeilings.Models;
 
 namespace StretchCeilings.Repositories
 {
-    public static class CustomerModelsRepository
+    public static class CustomerRepository
     {
         public static List<Customer> GetAll(out int rows)
         {

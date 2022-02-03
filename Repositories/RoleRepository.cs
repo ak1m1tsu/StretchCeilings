@@ -5,21 +5,21 @@ using StretchCeilings.Models;
 
 namespace StretchCeilings.Repositories
 {
-    public static class TimeTableModelsRepository
+    public static class RoleRepository
     {
-        public static List<TimeTable> GetByEmployeeId(int id)
+        public static Role GetById(int id)
         {
             using (var db = new StretchCeilingsContext())
             {
-                return db.Schedule.Where(x => x.EmployeeId == id && x.DeletedDate == null).ToList();
+                return db.Roles.FirstOrDefault(x => x.Id == id);
             }
         }
 
-        public static TimeTable GetById(int id)
+        public static List<Role> GetAll()
         {
             using (var db = new StretchCeilingsContext())
             {
-                return db.Schedule.FirstOrDefault(x => x.Id == id && x.DeletedDate == null);
+                return db.Roles.ToList();
             }
         }
     }

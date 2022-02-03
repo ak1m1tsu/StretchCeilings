@@ -64,7 +64,7 @@
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(1000, 25);
             this.panelTop.TabIndex = 92;
-            this.panelTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTop_MouseDown);
+            this.panelTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DragMove);
             // 
             // btnClose
             // 
@@ -80,7 +80,7 @@
             this.btnClose.Size = new System.Drawing.Size(25, 25);
             this.btnClose.TabIndex = 2;
             this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.btnClose.Click += new System.EventHandler(this.CloseForm);
             // 
             // panelInfo
             // 
@@ -111,7 +111,7 @@
             this.tbLogin.Name = "tbLogin";
             this.tbLogin.Size = new System.Drawing.Size(203, 29);
             this.tbLogin.TabIndex = 36;
-            this.tbLogin.TextChanged += new System.EventHandler(this.tbLogin_TextChanged);
+            this.tbLogin.TextChanged += new System.EventHandler(this.SetEmployeeLogin);
             // 
             // btnSave
             // 
@@ -132,7 +132,7 @@
             this.btnSave.Text = "Сохранить";
             this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnUpdate_Click);
+            this.btnSave.Click += new System.EventHandler(this.UpdateEmployeeData);
             // 
             // cbRole
             // 
@@ -145,7 +145,7 @@
             this.cbRole.Name = "cbRole";
             this.cbRole.Size = new System.Drawing.Size(203, 31);
             this.cbRole.TabIndex = 34;
-            this.cbRole.SelectedIndexChanged += new System.EventHandler(this.cbRole_SelectedIndexChanged);
+            this.cbRole.SelectedIndexChanged += new System.EventHandler(this.SetEmployeeRole);
             // 
             // tbPassword
             // 
@@ -157,7 +157,7 @@
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(203, 29);
             this.tbPassword.TabIndex = 33;
-            this.tbPassword.TextChanged += new System.EventHandler(this.tbPassword_TextChanged);
+            this.tbPassword.TextChanged += new System.EventHandler(this.SetEmployeePassword);
             // 
             // tbFullName
             // 
@@ -169,7 +169,7 @@
             this.tbFullName.Name = "tbFullName";
             this.tbFullName.Size = new System.Drawing.Size(203, 29);
             this.tbFullName.TabIndex = 31;
-            this.tbFullName.TextChanged += new System.EventHandler(this.tbFullName_TextChanged);
+            this.tbFullName.TextChanged += new System.EventHandler(this.SetEmployeeFullName);
             // 
             // lblName
             // 
@@ -248,7 +248,7 @@
             this.dgvTimeTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvTimeTable.Size = new System.Drawing.Size(644, 407);
             this.dgvTimeTable.TabIndex = 7;
-            this.dgvTimeTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTimeTable_CellClick);
+            this.dgvTimeTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.RemoveGridData);
             // 
             // panelPages
             // 
@@ -273,7 +273,7 @@
             this.btnAddTimeTable.TabIndex = 96;
             this.btnAddTimeTable.Text = "Добавить";
             this.btnAddTimeTable.UseVisualStyleBackColor = false;
-            this.btnAddTimeTable.Click += new System.EventHandler(this.btnAddTimeTable_Click);
+            this.btnAddTimeTable.Click += new System.EventHandler(this.AddGridData);
             // 
             // epControls
             // 
@@ -291,7 +291,7 @@
             this.Controls.Add(this.panelTop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "EmployeeFormEdit";
-            this.Load += new System.EventHandler(this.EmployeeFormEdit_Load);
+            this.Load += new System.EventHandler(this.LoadForm);
             this.panelTop.ResumeLayout(false);
             this.panelInfo.ResumeLayout(false);
             this.panelInfo.PerformLayout();

@@ -1,5 +1,5 @@
 ﻿
-namespace StretchCeilings
+namespace StretchCeilings.Views
 {
     partial class LoginForm
     {

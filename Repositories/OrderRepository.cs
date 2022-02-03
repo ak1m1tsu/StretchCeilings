@@ -7,7 +7,7 @@ using StretchCeilings.Models;
 
 namespace StretchCeilings.Repositories
 {
-    public static class OrderModelsRepository
+    public static class OrderRepository
     {
         public static List<Order> GetALl(out int rows)
         {

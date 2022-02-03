@@ -34,7 +34,7 @@ namespace StretchCeilings.Views
 
         private void SetUpDataGrid()
         {
-            _orders = OrderModelsRepository.GetALl(out _rows);
+            _orders = OrderRepository.GetALl(out _rows);
 
             dgvOrders.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
             dgvOrders.AddDataGridViewTextBoxColumn("Дата размещения", DataGridViewAutoSizeColumnMode.Fill);
@@ -143,7 +143,7 @@ namespace StretchCeilings.Views
 
         private void FilterDataGrid()
         {
-            _orders = OrderModelsRepository.GetALl(
+            _orders = OrderRepository.GetALl(
                 _firstFilter,
                 _secondFilter,
                 _count,
@@ -183,7 +183,7 @@ namespace StretchCeilings.Views
         {
             if (dgvOrders.SelectedRows.Count <= 0 || e.RowIndex < 0) return;
 
-            var order = OrderModelsRepository.GetById((int)dgvOrders.SelectedRows[0].Cells[0].Value);
+            var order = OrderRepository.GetById((int)dgvOrders.SelectedRows[0].Cells[0].Value);
             new OrderForm(order).ShowDialog();
         }
 
@@ -246,7 +246,7 @@ namespace StretchCeilings.Views
         {
             if (e.RowIndex < 0 || e.ColumnIndex != dgvOrders.Columns[" "]?.Index) return;
 
-            var order = OrderModelsRepository.GetById((int)dgvOrders.SelectedRows[0].Cells["№"].Value);
+            var order = OrderRepository.GetById((int)dgvOrders.SelectedRows[0].Cells["№"].Value);
 
             order.Delete();
 

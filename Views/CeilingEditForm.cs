@@ -12,7 +12,6 @@ namespace StretchCeilings.Views
     public partial class CeilingEditForm : Form
     {
         private readonly Ceiling _ceiling;
-        private readonly bool _isNew;
 
         public CeilingEditForm(Ceiling ceiling) 
         {
@@ -21,14 +20,20 @@ namespace StretchCeilings.Views
             this.Load += SetupForm;
         }
 
-        public Ceiling Ceiling { get; }
-
         public CeilingEditForm(Manufacturer manufacturer)
         {
-            _isNew = true;
-            Ceiling = new Ceiling() { ManufacturerId = manufacturer.Id };
+            _ceiling = new Ceiling()
+            {
+                ManufacturerId = manufacturer.Id
+            };
+
             InitializeComponent();
             this.Load += SetupForm;
+        }
+
+        private void DragMove(object sender, MouseEventArgs e)
+        {
+            Handle.DragMove(e);
         }
 
         public Ceiling GetCeiling() => _ceiling;
@@ -37,6 +42,7 @@ namespace StretchCeilings.Views
         {
             btnClose.DialogResult = DialogResult.Cancel;
             btnSaveInfo.Click += SaveChanges;
+            panelTop.MouseDown += DragMove;
 
             nudPrice.Value = _ceiling?.Price ?? 0M;
 
@@ -48,12 +54,15 @@ namespace StretchCeilings.Views
         {
             foreach (ColorType colorType in Enum.GetValues(typeof(ColorType)))
             {
-                if(colorType == ColorType.Unknown) continue;
+                if(colorType == ColorType.Unknown)
+                    continue;
+
                 var item = new ComboBoxItem()
                 {
                     Content = colorType.ParseString(),
                     Tag = colorType
                 };
+
                 cbColorType.Items.Add(item);
             }
 
@@ -61,78 +70,71 @@ namespace StretchCeilings.Views
             cbColorType.SelectedItem = null;
 
             foreach (ComboBoxItem item in cbColorType.Items)
-            {
-                if ((ColorType)item.Tag == _ceiling?.ColorType) 
+                if ((ColorType)item.Tag == _ceiling?.ColorType)
                     cbColorType.SelectedItem = item;
-            }
         }
 
         private void FillTextureComboBox()
         {
             foreach (TextureType textureType in Enum.GetValues(typeof(TextureType)))
             {
-                if (textureType == TextureType.Unknown) continue;
+                if (textureType == TextureType.Unknown)
+                    continue;
+
                 var item = new ComboBoxItem()
                 {
                     Content = textureType.ParseString(),
                     Tag = textureType
                 };
+
                 cbTexture.Items.Add(item);
             }
 
             cbTexture.DisplayMember = "Content";
             cbTexture.SelectedItem = null;
 
-            foreach (ComboBoxItem item in cbColorType.Items)
-            {
+            foreach (ComboBoxItem item in cbTexture.Items)
                 if ((TextureType)item.Tag == _ceiling?.TextureType)
                     cbTexture.SelectedItem = item;
-            }
         }
 
         private bool AreControlsEmpty()
         {
-            return string.IsNullOrEmpty(cbColorType.SelectedItem.ToString()) ||
-                   string.IsNullOrEmpty(cbTexture.SelectedItem.ToString()) ||
+            return string.IsNullOrEmpty(cbColorType.SelectedItem?.ToString()) ||
+                   string.IsNullOrEmpty(cbTexture.SelectedItem?.ToString()) ||
                    nudPrice.Value == 0M;
         }
 
-        private void SetCeilingValues(Ceiling ceiling)
+        private void SetCeilingValues()
         {
             var color = ColorType.Unknown;
             var texture = TextureType.Unknown;
             foreach (ComboBoxItem item in cbColorType.Items)
             {
-                if (item != cbColorType.SelectedItem) continue;
+                if (item != cbColorType.SelectedItem)
+                    continue;
 
                 color = (ColorType)item.Tag;
-                ceiling.ColorType = color;
+                _ceiling.ColorType = color;
             }
 
             foreach (ComboBoxItem item in cbTexture.Items)
             {
-                if (item != cbTexture.SelectedItem) continue;
+                if (item != cbTexture.SelectedItem)
+                    continue;
 
                 texture = (TextureType)item.Tag;
-                ceiling.TextureType = texture;
+                _ceiling.TextureType = texture;
             }
-            ceiling.Price = nudPrice.Value;
-            ceiling.Name = $"{texture.ParseString()} {color.ParseString().ToLower()}";
+            _ceiling.Price = nudPrice.Value;
+            _ceiling.Name = $"{texture.ParseString()} {color.ParseString().ToLower()}";
         }
 
         private void SaveChanges(object sender, EventArgs e)
         {
             if (AreControlsEmpty() == false)
             {
-                if (_isNew)
-                {
-                    SetCeilingValues(Ceiling);
-                }
-                else
-                {
-                    SetCeilingValues(_ceiling);
-                    _ceiling.Update();
-                }
+                SetCeilingValues();
                 DialogResult = DialogResult.OK;
             }
             else

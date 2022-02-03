@@ -6,7 +6,7 @@ using StretchCeilings.Models;
 
 namespace StretchCeilings.Repositories
 {
-    public static class EmployeeModelsRepository
+    public static class EmployeeRepository
     {
         public static List<Employee> GetAll(Employee filter, int count, int page, out int rows)
         {
@@ -83,6 +83,20 @@ namespace StretchCeilings.Repositories
                 }
 
                 return employee;
+            }
+        }
+
+        public static Employee GetUser(string login, string password)
+        {
+            using (var db = new StretchCeilingsContext())
+            {
+                var user = db.Employees.FirstOrDefault(x => x.Login == login && x.Password == password);
+                if (user != null)
+                {
+                    db.Entry(user).Reference(x=>x.Role).Load();
+                }
+
+                return user;
             }
         }
     }

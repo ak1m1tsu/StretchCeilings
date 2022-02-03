@@ -10,7 +10,7 @@ namespace StretchCeilings.Views
     public partial class TimeTableForm : Form
     {
         private readonly Employee _employee;
-        private List<CheckBox> _cbDays;
+        private List<CheckBox> _days;
 
         public List<TimeTable> TimeTables { get; } 
 
@@ -23,35 +23,44 @@ namespace StretchCeilings.Views
 
         private void SetUpForm()
         {
-            panelRepeat.Enabled = false;
+            panelRepeatBody.Enabled = false;
             dtpDate.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-            dtpStart.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 8, 0, 0);
-            dtpEnd.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 20, 0, 0);
+            dtpStartTime.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 8, 0, 0);
+            dtpEndTime.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 20, 0, 0);
 
-            cbMo.Tag = DayOfWeek.Monday;
-            cbTu.Tag = DayOfWeek.Tuesday;
-            cbWe.Tag = DayOfWeek.Wednesday;
-            cbTh.Tag = DayOfWeek.Thursday;
-            cbFr.Tag = DayOfWeek.Friday;
-            cbSa.Tag = DayOfWeek.Saturday;
-            cbSu.Tag = DayOfWeek.Sunday;
+            cbMonday.Tag = DayOfWeek.Monday;
+            cbTuesday.Tag = DayOfWeek.Tuesday;
+            cbWednesday.Tag = DayOfWeek.Wednesday;
+            cbThursday.Tag = DayOfWeek.Thursday;
+            cbFriday.Tag = DayOfWeek.Friday;
+            cbSaturday.Tag = DayOfWeek.Saturday;
+            cbSunday.Tag = DayOfWeek.Sunday;
 
-            _cbDays = new List<CheckBox>() { cbMo, cbTu,cbWe, cbTh, cbFr, cbSa,cbSu };
+            _days = new List<CheckBox>()
+            {
+                cbMonday,
+                cbTuesday,
+                cbWednesday,
+                cbThursday,
+                cbFriday,
+                cbSaturday,
+                cbSunday
+            };
         }
 
-        private bool IsRepeated()
+        private bool IsComboBoxRepeatChecked()
         {
             return cbRepeat.Checked;
         }
 
         private void EnablePanel()
         {
-            panelRepeat.Enabled = true;
+            panelRepeatBody.Enabled = true;
         }
 
         private void DisablePanel()
         {
-            panelRepeat.Enabled = false;
+            panelRepeatBody.Enabled = false;
         }
 
         private void AddSingleTimeTable()
@@ -59,18 +68,18 @@ namespace StretchCeilings.Views
             TimeTables.Add(new TimeTable()
             {
                 Date = dtpDate.Value,
-                TimeStart = dtpStart.Value,
-                TimeEnd = dtpEnd.Value,
+                TimeStart = dtpStartTime.Value,
+                TimeEnd = dtpEndTime.Value,
                 EmployeeId = _employee.Id
             });
         }
 
         private void AddSomeTimeTables()
         {
-            var weeks = Convert.ToInt32(nudWeeksValue.Value);
+            var weeks = Convert.ToInt32(numericUpDownWeeks.Value);
             var currentDate = dtpDate.Value;
             var lastDate = dtpDate.Value.AddDays(weeks * 7);
-            var selectedDays = (from checkBox in _cbDays where checkBox.Checked select (DayOfWeek)checkBox.Tag).ToList();
+            var selectedDays = (from checkBox in _days where checkBox.Checked select (DayOfWeek)checkBox.Tag).ToList();
             while (currentDate < lastDate)
             {
                 if (selectedDays.Contains(currentDate.DayOfWeek))
@@ -79,17 +88,18 @@ namespace StretchCeilings.Views
                     {
                         EmployeeId = _employee.Id,
                         Date = currentDate,
-                        TimeStart = dtpStart.Value,
-                        TimeEnd = dtpEnd.Value
+                        TimeStart = dtpStartTime.Value,
+                        TimeEnd = dtpEndTime.Value
                     });
                 }
+
                 currentDate = currentDate.AddDays(1);
             }
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void SaveData(object sender, EventArgs e)
         {
-            if(IsRepeated() == false)
+            if(IsComboBoxRepeatChecked() == false)
                 AddSingleTimeTable();
             else
                 AddSomeTimeTables();
@@ -97,7 +107,7 @@ namespace StretchCeilings.Views
             DialogResult = DialogResult.OK;
         }
 
-        private void cbRepeat_CheckedChanged(object sender, EventArgs e)
+        private void SwitchRepeatPanelEnable(object sender, EventArgs e)
         {
             if (cbRepeat.Checked)
                 EnablePanel();
@@ -105,17 +115,17 @@ namespace StretchCeilings.Views
                 DisablePanel();
         }
 
-        private void TimeTableForm_Load(object sender, EventArgs e)
+        private void LoadForm(object sender, EventArgs e)
         {
             SetUpForm();
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
+        private void CloseForm(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
         }
 
-        private void panelTop_MouseDown(object sender, MouseEventArgs e)
+        private void DragMove(object sender, MouseEventArgs e)
         {
             Handle.DragMove(e);
         }

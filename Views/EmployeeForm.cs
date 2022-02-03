@@ -49,7 +49,7 @@ namespace StretchCeilings.Views
 
         private void FillTimeTableGrid()
         {
-            _tables = TimeTableModelsRepository.GetByEmployeeId(_employee.Id);
+            _tables = TimeTableRepository.GetByEmployeeId(_employee.Id);
 
             dgvTimeTable.Rows.Clear();
 

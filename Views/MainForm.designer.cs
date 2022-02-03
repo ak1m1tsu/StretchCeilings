@@ -1,5 +1,5 @@
 ﻿
-namespace StretchCeilings
+namespace StretchCeilings.Views
 {
     partial class MainForm
     {
@@ -53,7 +53,7 @@ namespace StretchCeilings
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(1400, 25);
             this.panelTop.TabIndex = 6;
-            this.panelTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTop_MouseDown);
+            this.panelTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DragMove);
             // 
             // btnMinimizeApp
             // 
@@ -70,7 +70,7 @@ namespace StretchCeilings
             this.btnMinimizeApp.Size = new System.Drawing.Size(25, 25);
             this.btnMinimizeApp.TabIndex = 3;
             this.btnMinimizeApp.UseVisualStyleBackColor = true;
-            this.btnMinimizeApp.Click += new System.EventHandler(this.btnMinimizeApp_Click);
+            this.btnMinimizeApp.Click += new System.EventHandler(this.MinimizeApp);
             // 
             // btnResiizeApp
             // 
@@ -87,7 +87,7 @@ namespace StretchCeilings
             this.btnResiizeApp.Size = new System.Drawing.Size(25, 25);
             this.btnResiizeApp.TabIndex = 2;
             this.btnResiizeApp.UseVisualStyleBackColor = true;
-            this.btnResiizeApp.Click += new System.EventHandler(this.btnMaximizeApp_Click);
+            this.btnResiizeApp.Click += new System.EventHandler(this.MaximizeApp);
             // 
             // btnCloseApp
             // 
@@ -104,7 +104,7 @@ namespace StretchCeilings
             this.btnCloseApp.Size = new System.Drawing.Size(25, 25);
             this.btnCloseApp.TabIndex = 1;
             this.btnCloseApp.UseVisualStyleBackColor = true;
-            this.btnCloseApp.Click += new System.EventHandler(this.btnCloseApp_Click);
+            this.btnCloseApp.Click += new System.EventHandler(this.CloseApp);
             // 
             // lblName
             // 

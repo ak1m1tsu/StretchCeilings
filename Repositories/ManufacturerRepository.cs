@@ -6,7 +6,7 @@ using StretchCeilings.Models;
 
 namespace StretchCeilings.Repositories
 {
-    public static class ManufacturerModelsRepository
+    public static class ManufacturerRepository
     {
         public static List<Manufacturer> GetAll(out int rows)
         {

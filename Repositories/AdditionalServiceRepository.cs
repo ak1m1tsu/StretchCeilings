@@ -5,7 +5,7 @@ using StretchCeilings.Models;
 
 namespace StretchCeilings.Repositories
 {
-    public static class AdditionalServiceModelsRepository
+    public static class AdditionalServiceRepository
     {
         public static List<AdditionalService> GetAll(out int rows)
         {

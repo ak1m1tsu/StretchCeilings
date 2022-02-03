@@ -143,13 +143,13 @@ namespace StretchCeilings.Views
         private void ShowEmployeeInfo(DataGridViewCellEventArgs e)
         {
             if (dgvEmployees.SelectedRows.Count <= 0 || e.RowIndex < 0) return;
-            new EmployeeForm(EmployeeModelsRepository.GetById((int)dgvEmployees.SelectedRows[0].Cells[0].Value)).ShowDialog();
+            new EmployeeForm(EmployeeRepository.GetById((int)dgvEmployees.SelectedRows[0].Cells[0].Value)).ShowDialog();
         }
 
         private void ShowServiceInfo(DataGridViewCellEventArgs e)
         {
             if (dgvEmployees.SelectedRows.Count <= 0 || e.RowIndex < 0) return;
-            new ServiceForm(ServiceModelsRepository.GetById((int)dgvServices.SelectedRows[0].Cells[0].Value)).ShowDialog();
+            new ServiceForm(ServiceRepository.GetById((int)dgvServices.SelectedRows[0].Cells[0].Value)).ShowDialog();
         }
 
         private void OrderForm_Load(object sender, System.EventArgs e)

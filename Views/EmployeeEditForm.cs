@@ -15,24 +15,24 @@ namespace StretchCeilings.Views
 {
     public partial class EmployeeEditForm : Form
     {
-        private Employee _employee;
+        private readonly Employee _employee;
+        private readonly List<Role> _roles;
 
         private List<TimeTable> _tempTables;
         private List<TimeTable> _tables;
-        private List<ComboBoxItem> _roles;
 
         public EmployeeEditForm(Employee employee)
         {
-            _employee = EmployeeModelsRepository.GetById(employee.Id);
+            _employee = employee;
+            _roles = RoleRepository.GetAll();
             InitializeComponent();
         }
 
         public Employee GetEmployee() => _employee;
 
-        private void SetUpForm()
+        private void SetupForm()
         {
-            _roles = new List<ComboBoxItem>();
-
+            tbFullName.Text = _employee?.FullName;
             if (UserSession.IsAdmin)
             {
                 lblLogin.Visible = true;
@@ -44,25 +44,20 @@ namespace StretchCeilings.Views
                 tbPassword.Text = _employee?.Password;
             }
 
-            foreach (var role in RoleModelsRepository.GetAll().Select(role => new ComboBoxItem() { Name = role.Name, Tag = role }))
+            foreach (var item in RoleRepository.GetAll()
+                                                     .Select(role => new ComboBoxItem() { Content = role.Name, Tag = role                                                     }))
             {
-                var item = new ComboBoxItem()
-                {
-                    Content = role.Name,
-                    Tag = role
-                };
                 cbRole.Items.Add(item);
             }
 
-            cbRole.SelectedItem = cbRole.Items[2];
-            tbFullName.Text = _employee?.FullName;
+            cbRole.DisplayMember = "Content";
+            cbRole.SelectedItem = cbRole.Items[cbRole.Items.Count - 1];
 
             SetUpTimeTableGrid();
 
-            if (_employee != null) return;
-            
+            if (_employee.Id != 0) return;
+
             UpdateEmployeeData();
-            _employee = new Employee();
             _employee.Add();
         }
 
@@ -85,7 +80,7 @@ namespace StretchCeilings.Views
 
         private void FillTimeTableGrid()
         {
-            _tables = TimeTableModelsRepository.GetByEmployeeId(_employee.Id);
+            _tables = _employee?.GetSchedule();
             
             dgvTimeTable.Rows.Clear();
 
@@ -101,24 +96,13 @@ namespace StretchCeilings.Views
             }
         }
 
-        private void RemoveGridRow(DataGridViewCellEventArgs @event)
-        {
-            if (@event.RowIndex < 0 || @event.ColumnIndex != dgvTimeTable.Columns[" "]?.Index) return;
-
-            TimeTableModelsRepository.GetById((int)dgvTimeTable.SelectedRows[0].Cells["№"].Value).Delete();
-            
-            FillTimeTableGrid();
-        }
-
         private void UpdateEmployeeData()
         {
             foreach (ComboBoxItem item in cbRole.Items)
             {
                 if (item != cbRole.SelectedItem) continue;
-
-                var role = (Role)item.Tag;;
+                var role = _roles.First(x => x.Id == ((Role)item.Tag).Id);
                 _employee.RoleId = role.Id;
-                _employee.Role = role;
             }
 
             _employee.FullName = tbFullName.Text;
@@ -131,13 +115,13 @@ namespace StretchCeilings.Views
             var hasErrors = false;
             epControls.Clear();
 
-            if (tbPassword.Text == "")
+            if (string.IsNullOrWhiteSpace(tbPassword.Text))
             {
                 epControls.SetError(tbPassword, RequiredToFillOut);
                 hasErrors = true;
             }
 
-            if (tbFullName.Text == "")
+            if (string.IsNullOrWhiteSpace(tbFullName.Text))
             {
                 epControls.SetError(tbFullName, RequiredToFillOut);
                 hasErrors = true;
@@ -151,8 +135,50 @@ namespace StretchCeilings.Views
 
             return hasErrors;
         }
+        private void LoadForm(object sender, EventArgs e)
+        {
+            SetupForm();
+        }
 
-        private void UpdateEmployee()
+        private void AddGridData(object sender, EventArgs e)
+        {
+            var form = new TimeTableForm(_employee);
+            if (form.ShowDialog() != DialogResult.OK) return;
+
+            _tempTables = form.TimeTables;
+
+            var rows = dgvTimeTable.Rows.Count;
+            var tablesToRemove = (from table in _tables
+                from formTimeTable in _tempTables
+                where table.Date == formTimeTable.Date
+                select formTimeTable).ToList();
+
+            foreach (var table in tablesToRemove.Where(table => _tempTables.Contains(table)))
+            {
+                _tempTables.Remove(table);
+            }
+
+            for (int i = rows, j = 0; i < rows + _tempTables.Count; i++, j++)
+            {
+                dgvTimeTable.Rows.Add(new DataGridViewRow());
+                dgvTimeTable.Rows[i].Cells["№"].Value = dgvTimeTable.Rows.Count;
+                dgvTimeTable.Rows[i].Cells["Дата"].Value = _tempTables[j].Date?.Date.ToString("d");
+                dgvTimeTable.Rows[i].Cells["День недели"].Value = _tempTables[j].Date?.DayOfWeek;
+                dgvTimeTable.Rows[i].Cells["Начало"].Value = _tempTables[j].TimeStart?.TimeOfDay;
+                dgvTimeTable.Rows[i].Cells["Конец"].Value = _tempTables[j].TimeEnd?.TimeOfDay;
+            }
+        }
+
+        private void RemoveGridData(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex != dgvTimeTable.Columns[" "]?.Index) return;
+
+            TimeTableRepository.GetById((int)dgvTimeTable.SelectedRows[0].Cells["№"].Value).Delete();
+
+            FillTimeTableGrid();
+        }
+
+        private void UpdateEmployeeData(object sender, EventArgs e)
         {
             if (CanUpdate())
             {
@@ -166,92 +192,39 @@ namespace StretchCeilings.Views
             DialogResult = DialogResult.OK;
         }
 
-        private void CloseForm()
-        {
-            if(_employee.Login.Contains(" ") || _employee.Password.Length <= 0 || _employee.FullName.Length <= 0) 
-                _employee.Delete();
-            DialogResult = DialogResult.Cancel;
-        }
-
-        private void AddTimeTable()
-        {
-            var form = new TimeTableForm(_employee);
-            if (form.ShowDialog() != DialogResult.OK) return;
-
-            _tempTables = form.TimeTables;
-
-            var rows = dgvTimeTable.Rows.Count;
-            var tablesToRemove = (from table in _tables 
-                from formTimeTable in _tempTables 
-                where table.Date == formTimeTable.Date 
-                select formTimeTable).ToList();
-
-            foreach (var table in tablesToRemove.Where(table => _tempTables.Contains(table)))
-            {
-                _tempTables.Remove(table);
-            }
-            
-            for (int i = rows, j = 0; i < rows + _tempTables.Count; i++, j++)
-            {
-                dgvTimeTable.Rows.Add(new DataGridViewRow());
-
-                dgvTimeTable.Rows[i].Cells["№"].Value = _tempTables[j].Id;
-                dgvTimeTable.Rows[i].Cells["Дата"].Value = _tempTables[j].Date?.Date.ToString("d");
-                dgvTimeTable.Rows[i].Cells["День недели"].Value = _tempTables[j].Date?.DayOfWeek;
-                dgvTimeTable.Rows[i].Cells["Начало"].Value = _tempTables[j].TimeStart?.TimeOfDay;
-                dgvTimeTable.Rows[i].Cells["Конец"].Value = _tempTables[j].TimeEnd?.TimeOfDay;
-            }
-        }
-
-        private void btnAddTimeTable_Click(object sender, EventArgs e)
-        {
-            AddTimeTable();
-        }
-
-        private void EmployeeFormEdit_Load(object sender, EventArgs e)
-        {
-            SetUpForm();
-        }
-
-        private void dgvTimeTable_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            RemoveGridRow(e);
-        }
-
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            UpdateEmployee();
-        }
-
-        private void panelTop_MouseDown(object sender, MouseEventArgs e)
+        private void DragMove(object sender, MouseEventArgs e)
         {
             Handle.DragMove(e);
         }
 
-        private void tbFullName_TextChanged(object sender, EventArgs e)
+        private void SetEmployeeFullName(object sender, EventArgs e)
         {
             _employee.FullName = tbFullName.Text;
         }
 
-        private void cbRole_SelectedIndexChanged(object sender, EventArgs e)
+        private void SetEmployeeRole(object sender, EventArgs e)
         {
-            var role = (Role)_roles.First(x => x.Name == (string)cbRole.SelectedItem).Tag;
-            _employee.RoleId = role.Id;
+            foreach (ComboBoxItem item in cbRole.Items)
+            {
+                if (item == cbRole.SelectedItem) _employee.RoleId = ((Role)item.Tag).Id;
+            }
         }
 
-        private void tbPassword_TextChanged(object sender, EventArgs e)
+        private void SetEmployeePassword(object sender, EventArgs e)
         {
             _employee.Password = tbPassword.Text;
         }
 
-        private void tbLogin_TextChanged(object sender, EventArgs e)
+        private void SetEmployeeLogin(object sender, EventArgs e)
         {
             _employee.Login = tbLogin.Text;
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
+        private void CloseForm(object sender, EventArgs e)
         {
-            CloseForm();
+            if (_employee.Login.Contains(" ") || _employee.Password.Length <= 0 || _employee.FullName.Length <= 0)
+                _employee.Delete();
+            DialogResult = DialogResult.Cancel;
         }
     }
 }

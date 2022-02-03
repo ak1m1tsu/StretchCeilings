@@ -20,7 +20,7 @@ namespace StretchCeilings.Views
 
         private void ReSetUpForm()
         {
-            _currentService = AdditionalServiceModelsRepository.GetById(_currentService.Id);
+            _currentService = AdditionalServiceRepository.GetById(_currentService.Id);
 
             lblNameValue.Text = _currentService?.Name;
             lblPriceValue.Text = _currentService?.Price?.ToString();

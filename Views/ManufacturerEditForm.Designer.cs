@@ -268,7 +268,7 @@ namespace StretchCeilings.Views
             this.Controls.Add(this.panelTop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ManufacturerEditForm";
-            this.Load += new System.EventHandler(this.ManufacturerEditForm_Load);
+            this.Load += new System.EventHandler(this.LoadForm);
             this.panelTop.ResumeLayout(false);
             this.panelBody.ResumeLayout(false);
             this.gbCeilings.ResumeLayout(false);

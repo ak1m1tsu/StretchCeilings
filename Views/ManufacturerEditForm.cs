@@ -15,14 +15,20 @@ namespace StretchCeilings.Views
 {
     public partial class ManufacturerEditForm : Form
     {
-        private readonly Manufacturer _manufacturer;
-        private List<Ceiling> _ceilings;
-        private List<Ceiling> _tempCeilings;
+        private Manufacturer _manufacturer;
+        private readonly List<Ceiling> _addedCeilings;
+        private readonly List<Ceiling> _deletedCeilings;
+        private readonly List<Ceiling> _updatedCeilings;
 
-        public ManufacturerEditForm(Manufacturer manufacturer)
+        private List<Ceiling> _ceilings;
+        
+        public ManufacturerEditForm(Manufacturer manufacturer = null)
         {
             _manufacturer = manufacturer;
-            _tempCeilings = new List<Ceiling>();
+            _addedCeilings = new List<Ceiling>();
+            _deletedCeilings = new List<Ceiling>();
+            _updatedCeilings = new List<Ceiling>();
+
             InitializeComponent();
         }
 
@@ -35,17 +41,26 @@ namespace StretchCeilings.Views
 
         private void SetupControls()
         {
-            btnClose.DialogResult = DialogResult.Cancel;
+            btnClose.Click += CloseForm;
             btnSave.Click += SaveData;
             btnAddCeiling.Click += AddGridData;
             panelTop.MouseDown += DragMove;
-            tbAddress.Text = _manufacturer?.Address;
-            tbName.Text = _manufacturer?.Name;
             dgvCeilings.CellDoubleClick += OpenCeilingForm;
             dgvCeilings.CellClick += RemoveGridData;
 
+            tbAddress.Text = _manufacturer?.Address;
+            tbName.Text = _manufacturer?.Name;
+
             FillCountryComboBox();
+
+            if (_manufacturer != null)
+                return;
+
+            _manufacturer = new Manufacturer();
+            UpdateManufacturerData();
+            _manufacturer.Add();
         }
+
         private void SetupCeilingsGrid()
         {
             dgvCeilings.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
@@ -54,6 +69,7 @@ namespace StretchCeilings.Views
             dgvCeilings.AddDataGridViewTextBoxColumn("Цвет", DataGridViewAutoSizeColumnMode.Fill);
             dgvCeilings.AddDataGridViewTextBoxColumn("Цена", DataGridViewAutoSizeColumnMode.DisplayedCells);
             dgvCeilings.AddDataGridViewButtonColumn(DraculaColor.Red);
+
             dgvCeilings.Font = GoogleFont.OpenSans;
             dgvCeilings.ForeColor = DraculaColor.Background;
             dgvCeilings.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
@@ -64,7 +80,7 @@ namespace StretchCeilings.Views
 
         private void FillCeilingsGrid()
         {
-            _ceilings = _manufacturer.GetCeilings();
+            _ceilings = _manufacturer?.GetCeilings();
 
             dgvCeilings.Rows.Clear();
 
@@ -81,47 +97,63 @@ namespace StretchCeilings.Views
 
         private void OpenCeilingForm(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvCeilings.SelectedRows.Count <= 0 || e.RowIndex < 0 || e.RowIndex < 0) return;
+            if (dgvCeilings.SelectedRows.Count <= 0 || e.RowIndex < 0 || e.RowIndex < 0)
+                return;
 
             var ceiling = _ceilings[(int)dgvCeilings.SelectedRows[0].Cells[0].Value - 1];
-            new CeilingForm(ceiling).ShowDialog();
-            FillCeilingsGrid();
+            var form = new CeilingEditForm(ceiling);
+
+            if (form.ShowDialog() != DialogResult.OK)
+                return;
+
+            ceiling = form.GetCeiling();
+            _updatedCeilings.Add(ceiling);
+
+            dgvCeilings.Rows[e.RowIndex].Cells["Название"].Value = ceiling?.Name;
+            dgvCeilings.Rows[e.RowIndex].Cells["Текстура"].Value = ceiling?.TextureType?.ParseString();
+            dgvCeilings.Rows[e.RowIndex].Cells["Цвет"].Value = ceiling?.ColorType?.ParseString();
+            dgvCeilings.Rows[e.RowIndex].Cells["Цена"].Value = ceiling?.Price;
         }
 
         private void FillCountryComboBox()
         {
             foreach (Country country in Enum.GetValues(typeof(Country)))
             {
-                if (country == Country.Unknown) continue;
+                if (country == Country.Unknown)
+                    continue;
+
                 var item = new ComboBoxItem()
                 {
                     Content = country.ParseString(),
                     Tag = country
                 };
+
                 cbCountry.Items.Add(item);
             }
 
             foreach (ComboBoxItem item in cbCountry.Items)
-            {
                 if ((Country)item.Tag == _manufacturer?.Country)
                     cbCountry.SelectedItem = item;
-            }
+            
             cbCountry.DisplayMember = "Content";
         }
 
         private void AddGridData(object sender, EventArgs e)
         {
             var form = new CeilingEditForm(_manufacturer);
-            if (form.ShowDialog() != DialogResult.OK) return;
 
-            var ceiling = form.Ceiling;
-            _tempCeilings.Add(ceiling);
-            var rows = _ceilings.Count + _tempCeilings.Count;
+            if (form.ShowDialog() != DialogResult.OK)
+                return;
+
+            var ceiling = form.GetCeiling();
+            var rows = dgvCeilings.Rows.Count;
+
+            _addedCeilings.Add(ceiling);
 
             for (var i = rows; i < rows + 1; i++)
             {
                 dgvCeilings.Rows.Add(new DataGridViewRow());
-                dgvCeilings.Rows[i].Cells["№"].Value = ceiling.Id;
+                dgvCeilings.Rows[i].Cells["№"].Value = dgvCeilings.Rows.Count;
                 dgvCeilings.Rows[i].Cells["Название"].Value = ceiling.Name;
                 dgvCeilings.Rows[i].Cells["Текстура"].Value = ceiling.TextureType?.ParseString();
                 dgvCeilings.Rows[i].Cells["Цвет"].Value = ceiling.ColorType?.ParseString();
@@ -131,46 +163,48 @@ namespace StretchCeilings.Views
 
         private void RemoveGridData(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0 || e.ColumnIndex != dgvCeilings.Columns[" "]?.Index) return;
+            if (e.RowIndex < 0 || e.ColumnIndex != dgvCeilings.Columns[" "]?.Index)
+                return;
 
             var ceilingId = (int)dgvCeilings.SelectedRows[0].Cells["№"].Value;
-            var ceiling = _manufacturer.GetCeilings().FirstOrDefault(x => x.Id == ceilingId);
-            ceiling?.Delete();
-            FillCeilingsGrid();
+            var ceiling = _updatedCeilings.FirstOrDefault(x => x.Id == ceilingId) ?? 
+                          _ceilings.FirstOrDefault(x=>x.Id == ceilingId);
+
+            _deletedCeilings.Add(ceiling);
+
+            dgvCeilings.Rows.RemoveAt(e.RowIndex);
         }
 
         private bool AreControlsEmpty()
         {
-            var controlsAreEmpty = false;
             errorProvider.Clear();
 
             if (string.IsNullOrWhiteSpace(tbName.Text))
             {
                 errorProvider.SetError(tbName, RequiredToFillOut);
-                controlsAreEmpty = true;
+                return true;
             }
 
             if (string.IsNullOrWhiteSpace(tbAddress.Text))
             {
                 errorProvider.SetError(tbAddress, RequiredToFillOut);
-                controlsAreEmpty = true;
+                return true;
             }
 
             if (cbCountry.SelectedItem == null)
             {
                 errorProvider.SetError(cbCountry, RequiredToFillOut);
-                controlsAreEmpty = true;
+                return true;
             }
 
-            return controlsAreEmpty;
+            return false;
         }
 
         private void UpdateManufacturerData()
         {
             foreach (ComboBoxItem item in cbCountry.Items)
-            {
-                if (item == cbCountry.SelectedItem) _manufacturer.Country = (Country)item.Tag;
-            }
+                if (item == cbCountry.SelectedItem)
+                    _manufacturer.Country = (Country)item.Tag;
 
             _manufacturer.Name = tbName.Text;
             _manufacturer.Address = tbAddress.Text;
@@ -185,15 +219,27 @@ namespace StretchCeilings.Views
             }
 
             UpdateManufacturerData();
+
             _manufacturer.Update();
-            _tempCeilings?.ForEach(x => x?.Add());
+
+            _addedCeilings?.ForEach(x => x?.Add());
+            _updatedCeilings?.ForEach(x => x?.Update());
+            _deletedCeilings?.ForEach(x => x?.Delete());
+
             DialogResult = DialogResult.OK;
         }
 
-        private void ManufacturerEditForm_Load(object sender, EventArgs e)
+        private void LoadForm(object sender, EventArgs e)
         {
             SetupControls();
             SetupCeilingsGrid();
+        }
+
+        private void CloseForm(object sender, EventArgs e)
+        {
+            if(_manufacturer.AreFieldsNullOrWitherSpace())
+                _manufacturer.Delete();
+            DialogResult = DialogResult.Cancel;
         }
     }
 }
