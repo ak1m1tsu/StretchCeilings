@@ -8,6 +8,7 @@ using StretchCeilings.Helpers.Controls;
 using StretchCeilings.Helpers.Enums;
 using StretchCeilings.Helpers.Extensions;
 using StretchCeilings.Helpers.Extensions.Controls;
+using StretchCeilings.Helpers.Structs;
 using StretchCeilings.Models;
 using StretchCeilings.Repositories;
 
@@ -17,7 +18,7 @@ namespace StretchCeilings.Views
     {
         private List<Order> _orders;
         
-        private bool _forSearching;
+        private readonly FormState _state;
         private int _count;
         private int _rows;
         private int _currentPage = 1;
@@ -26,9 +27,9 @@ namespace StretchCeilings.Views
         private Order _firstFilter;
         private Order _secondFilter;
 
-        public OrdersForm(bool forSearching = false)
+        public OrdersForm(FormState state = FormState.Default)
         {
-            _forSearching = forSearching;
+            _state = state;
             InitializeComponent();
         }
 
@@ -69,7 +70,7 @@ namespace StretchCeilings.Views
 
         private void FillPaidByCashComboBox()
         {
-            foreach (var paidByCashItem in Constants.PaidByCashItems)
+            foreach (var paidByCashItem in Resources.PaidByCashItems)
             {
                 var item = new ComboBoxItem()
                 {
@@ -94,7 +95,7 @@ namespace StretchCeilings.Views
 
         private void FillRowsComboBox()
         {
-            foreach (var item in Constants.RowCountItems)
+            foreach (var item in Resources.RowCountItems)
                 cbRows.Items.Add(item);
             cbRows.SelectedItem = cbRows.Items[0];
         }
@@ -161,17 +162,17 @@ namespace StretchCeilings.Views
             };
             _secondFilter = new Order();
 
-            nudTotalFrom.Value = Constants.DefaultNumericUpDownValue;
-            nudTotalTo.Value = Constants.DefaultNumericUpDownValue;
-            nudIdValue.Value = Constants.DefaultNumericUpDownValue;
+            nudTotalFrom.Value = Resources.DefaultNumericUpDownValue;
+            nudTotalTo.Value = Resources.DefaultNumericUpDownValue;
+            nudIdValue.Value = Resources.DefaultNumericUpDownValue;
 
-            dtpDateFromValue.CustomFormat = Constants.DefaultDateTimePickerCustomFormat;
-            dtpDateToValue.CustomFormat = Constants.DefaultDateTimePickerCustomFormat;
+            dtpDateFromValue.CustomFormat = Resources.DefaultDateTimePickerCustomFormat;
+            dtpDateToValue.CustomFormat = Resources.DefaultDateTimePickerCustomFormat;
 
-            ibtnCustomer.IconChar = Constants.SearchIcon;
-            ibtnCustomer.Text = Constants.DefaultIconButtonText;
-            ibtnEmployee.IconChar = Constants.SearchIcon;
-            ibtnEmployee.Text = Constants.DefaultIconButtonText;
+            ibtnCustomer.IconChar = AwesomeIcon.Search;
+            ibtnCustomer.Text = Resources.DefaultIconButtonText;
+            ibtnEmployee.IconChar = AwesomeIcon.Search;
+            ibtnEmployee.Text = Resources.DefaultIconButtonText;
 
             cbPaidByCash.SelectedItem = null;
             cbStatusValue.SelectedItem = null;
@@ -281,7 +282,7 @@ namespace StretchCeilings.Views
         {
             var dateTimePicker = (DateTimePicker) sender;
             dateTimePicker.Value = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day, 0, 0, 0);
-            dateTimePicker.CustomFormat = Constants.FilterDateTimePickerCustomFormat;
+            dateTimePicker.CustomFormat = Resources.FilterDateTimePickerCustomFormat;
         }
 
         private void dgvOrders_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -291,7 +292,7 @@ namespace StretchCeilings.Views
 
         private static void SetFilterDatePlacedValue(Order filter, DateTimePicker dateTimePicker)
         {
-            if (dateTimePicker.CustomFormat != Constants.DefaultDateTimePickerCustomFormat)
+            if (dateTimePicker.CustomFormat != Resources.DefaultDateTimePickerCustomFormat)
                 filter.DatePlaced = dateTimePicker.Value;
         }
 

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using StretchCeilings.Helpers;
 using StretchCeilings.Helpers.Extensions;
 using StretchCeilings.Helpers.Extensions.Controls;
+using StretchCeilings.Helpers.Structs;
 using StretchCeilings.Models;
+using StretchCeilings.Repositories;
 
 namespace StretchCeilings.Views
 {
@@ -68,9 +69,12 @@ namespace StretchCeilings.Views
             }
         }
 
-        private void OpenCeilingForm(object sender, EventArgs e)
+        private void OpenCeilingForm(object sender, DataGridViewCellEventArgs e)
         {
-            var ceiling = _ceilings[(int)dgvCeilings.SelectedRows[0].Cells[0].Value - 1];
+            if (dgvCeilings.SelectedRows.Count < 0 && e.RowIndex < 0)
+                return;
+
+            var ceiling = CeilingRepository.GetById((int)dgvCeilings.Rows[e.RowIndex].Cells[0].Value);
             new CeilingForm(ceiling).ShowDialog();
             FillCeilingsGrid();
         }

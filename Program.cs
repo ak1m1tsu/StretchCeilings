@@ -6,7 +6,7 @@ namespace StretchCeilings
 {
     public static class Program
     {
-        private static readonly log4net.ILog _log = Helpers.LogHelper.GetLogger();
+        private static log4net.ILog Log => Helpers.LogHelper.GetLogger();
 
         [STAThread]
         private static void Main()
@@ -19,7 +19,7 @@ namespace StretchCeilings
 
         private static void Exception(object sender, ThreadExceptionEventArgs ex)
         {
-            _log.Error(ex.Exception.Message);
+            Log.Error(ex.Exception.Message);
         }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System.Drawing;
 
-namespace StretchCeilings.Helpers
+namespace StretchCeilings.Helpers.Structs
 {
-    public static class GoogleFont
+    public struct GoogleFont
     {
         public static Font OpenSans => new Font("Open Sans", 12, FontStyle.Regular);
     }

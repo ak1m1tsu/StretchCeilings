@@ -6,7 +6,7 @@ using StretchCeilings.Models;
 
 namespace StretchCeilings.Repositories
 {
-    public static class ManufacturerRepository
+    public class ManufacturerRepository : NotNull
     {
         public static List<Manufacturer> GetAll(out int rows)
         {
@@ -30,30 +30,22 @@ namespace StretchCeilings.Repositories
                 rows = 0;
 
                 if (firstFilter.Id != 0)
-                {
                     queryable = queryable.Where(x => x.Id == firstFilter.Id);
-                }
-                else
-                {
-                    queryable = firstFilter.Address != null 
-                        ? queryable.Where(x => x.Address == firstFilter.Address) 
-                        : queryable;
+                
+                if (IsNull(firstFilter.Address) == false)
+                    queryable =  queryable.Where(x => x.Address == firstFilter.Address);
 
-                    queryable = firstFilter.Country != Country.Unknown
-                        ? queryable.Where(x => x.Country == firstFilter.Country)
-                        : queryable;
+                if (firstFilter.Country != Country.Unknown)
+                    queryable = queryable.Where(x => x.Country == firstFilter.Country);
 
-                    queryable = firstFilter.Name != null
-                        ? queryable.Where(x => x.Name == firstFilter.Name)
-                        : queryable;
-                }
-
+                if (IsNull(firstFilter.Name) == false)
+                    queryable = queryable.Where(x => x.Name == firstFilter.Name);
+                
                 if (queryable.Any() == false) 
                     return queryable.ToList();
 
                 rows = queryable.Count();
                 return queryable.ToList().Skip((page - 1) * count).Take(count).ToList();
-
             }
         }
 
@@ -61,9 +53,7 @@ namespace StretchCeilings.Repositories
         {
             using (var db = new StretchCeilingsContext())
             {
-                var entity = db.Manufacturers.FirstOrDefault(o => o.Id == id);
-
-                return entity;
+                return db.Manufacturers.FirstOrDefault(o => o.Id == id);
             }
         }
     }

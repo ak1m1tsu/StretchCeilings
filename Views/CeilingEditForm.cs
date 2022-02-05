@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Windows.Controls;
 using System.Windows.Forms;
-using StretchCeilings.Helpers;
-using StretchCeilings.Helpers.Controls;
 using StretchCeilings.Helpers.Enums;
 using StretchCeilings.Helpers.Extensions;
+using StretchCeilings.Helpers.Structs;
 using StretchCeilings.Models;
 
 namespace StretchCeilings.Views
@@ -139,7 +138,7 @@ namespace StretchCeilings.Views
             }
             else
             {
-                CustomMessageBox.Show("Не все поля заполнены", CustomMessageBoxCaption.Error);
+                CustomMessageBox.Show("Не все поля заполнены", Caption.Error);
             }
         }
     }

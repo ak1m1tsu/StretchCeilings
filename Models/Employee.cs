@@ -52,43 +52,11 @@ namespace StretchCeilings.Models
             }
         }
 
-        public List<Order> GetOrders(int count, int pages)
-        {
-            using (var db = new StretchCeilingsContext())
-            {
-                var list = new List<Order>();
-                var orderEmployees = db.OrderEmployees.Where(x => x.EmployeeId == Id);
-                foreach (var orderEmployee in orderEmployees)
-                {
-                    list.Add(orderEmployee.Order);
-                }
-                return list;
-            }
-        }
-
         public List<TimeTable> GetSchedule()
         {
             using (var db = new StretchCeilingsContext())
             {
-                return db.Schedule.Where(t => t.EmployeeId == Id).ToList();
-            }
-        }
-
-        public List<Service> GetServices(int count, int pages)
-        {
-            using (var db = new StretchCeilingsContext())
-            {
-                var list = new List<Service>();
-                var orderEmployees = db.OrderEmployees.Where(x => x.EmployeeId == Id);
-                foreach (var orderEmployee in orderEmployees)
-                {
-                    var orderServices = db.OrderServices.Where(x => x.OrderId == orderEmployee.OrderId);
-                    foreach (var orderService in orderServices)
-                    {
-                        list.AddRange(db.Services.Where(x => x.Id == orderService.ServiceId));
-                    }
-                }
-                return list;
+                return db.Schedule.Where(t => t.EmployeeId == Id && t.DeletedDate == null).ToList();
             }
         }
     }

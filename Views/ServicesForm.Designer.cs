@@ -1,4 +1,6 @@
 ﻿
+using StretchCeilings.Helpers.Structs;
+
 namespace StretchCeilings.Views
 {
     partial class ServicesForm
@@ -29,6 +31,7 @@ namespace StretchCeilings.Views
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvServices = new System.Windows.Forms.DataGridView();
             this.panelPages = new System.Windows.Forms.Panel();
             this.cbRows = new System.Windows.Forms.ComboBox();
@@ -62,18 +65,28 @@ namespace StretchCeilings.Views
             // 
             this.dgvServices.AllowUserToAddRows = false;
             this.dgvServices.AllowUserToDeleteRows = false;
+            this.dgvServices.AllowUserToResizeColumns = false;
+            this.dgvServices.AllowUserToResizeRows = false;
             this.dgvServices.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.dgvServices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Open Sans", 12F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvServices.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvServices.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvServices.Font = new System.Drawing.Font("Open Sans", 12F);
             this.dgvServices.Location = new System.Drawing.Point(0, 100);
             this.dgvServices.Name = "dgvServices";
             this.dgvServices.ReadOnly = true;
             this.dgvServices.RowHeadersVisible = false;
             this.dgvServices.RowTemplate.Height = 25;
+            this.dgvServices.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvServices.Size = new System.Drawing.Size(1050, 460);
             this.dgvServices.TabIndex = 13;
-            this.dgvServices.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvServices_CellClick);
-            this.dgvServices.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvServices_CellDoubleClick);
             // 
             // panelPages
             // 
@@ -100,7 +113,6 @@ namespace StretchCeilings.Views
             this.cbRows.Name = "cbRows";
             this.cbRows.Size = new System.Drawing.Size(50, 31);
             this.cbRows.TabIndex = 98;
-            this.cbRows.SelectedIndexChanged += new System.EventHandler(this.cbRows_SelectedIndexChanged);
             // 
             // btnPrevious
             // 
@@ -115,7 +127,6 @@ namespace StretchCeilings.Views
             this.btnPrevious.TabIndex = 90;
             this.btnPrevious.Text = "<";
             this.btnPrevious.UseVisualStyleBackColor = false;
-            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
             // 
             // tbPages
             // 
@@ -143,7 +154,6 @@ namespace StretchCeilings.Views
             this.btnNext.TabIndex = 88;
             this.btnNext.Text = ">";
             this.btnNext.UseVisualStyleBackColor = false;
-            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // panelFilters
             // 
@@ -173,7 +183,6 @@ namespace StretchCeilings.Views
             this.linkLblManufacturer.TabIndex = 98;
             this.linkLblManufacturer.TabStop = true;
             this.linkLblManufacturer.Text = "Нет";
-            this.linkLblManufacturer.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLblManufacturer_LinkClicked);
             // 
             // nudTotalTo
             // 
@@ -186,7 +195,6 @@ namespace StretchCeilings.Views
             this.nudTotalTo.Size = new System.Drawing.Size(122, 29);
             this.nudTotalTo.TabIndex = 97;
             this.nudTotalTo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.nudTotalTo.ValueChanged += new System.EventHandler(this.nudTotalTo_ValueChanged);
             // 
             // nudTotalFrom
             // 
@@ -199,7 +207,6 @@ namespace StretchCeilings.Views
             this.nudTotalFrom.Size = new System.Drawing.Size(115, 29);
             this.nudTotalFrom.TabIndex = 96;
             this.nudTotalFrom.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.nudTotalFrom.ValueChanged += new System.EventHandler(this.nudTotalFrom_ValueChanged);
             // 
             // lblCeiling
             // 
@@ -220,6 +227,7 @@ namespace StretchCeilings.Views
             "Отменен",
             "Завершен"});
             this.cbCeiling.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.cbCeiling.DisplayMember = "Content";
             this.cbCeiling.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCeiling.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbCeiling.Font = new System.Drawing.Font("Open Sans", 12F);
@@ -229,7 +237,6 @@ namespace StretchCeilings.Views
             this.cbCeiling.Name = "cbCeiling";
             this.cbCeiling.Size = new System.Drawing.Size(287, 31);
             this.cbCeiling.TabIndex = 63;
-            this.cbCeiling.SelectedIndexChanged += new System.EventHandler(this.cbCeiling_SelectedIndexChanged);
             // 
             // lblManufacturer
             // 
@@ -302,7 +309,6 @@ namespace StretchCeilings.Views
             this.btnResetFilters.Text = "Сбросить";
             this.btnResetFilters.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnResetFilters.UseVisualStyleBackColor = true;
-            this.btnResetFilters.Click += new System.EventHandler(this.btnResetFilters_Click);
             // 
             // btnUseFilters
             // 
@@ -317,7 +323,6 @@ namespace StretchCeilings.Views
             this.btnUseFilters.Text = "Применить";
             this.btnUseFilters.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnUseFilters.UseVisualStyleBackColor = true;
-            this.btnUseFilters.Click += new System.EventHandler(this.btnUseFilters_Click);
             // 
             // ServicesForm
             // 
@@ -332,7 +337,7 @@ namespace StretchCeilings.Views
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ServicesForm";
-            this.Load += new System.EventHandler(this.ServicesForm_Load);
+            this.Load += new System.EventHandler(this.LoadForm);
             ((System.ComponentModel.ISupportInitialize)(this.dgvServices)).EndInit();
             this.panelPages.ResumeLayout(false);
             this.panelPages.PerformLayout();

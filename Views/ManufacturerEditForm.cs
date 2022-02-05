@@ -4,12 +4,11 @@ using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using StretchCeilings.Helpers;
-using StretchCeilings.Helpers.Controls;
 using StretchCeilings.Helpers.Enums;
 using StretchCeilings.Helpers.Extensions;
 using StretchCeilings.Helpers.Extensions.Controls;
+using StretchCeilings.Helpers.Structs;
 using StretchCeilings.Models;
-using static StretchCeilings.Properties.Resources;
 
 namespace StretchCeilings.Views
 {
@@ -181,19 +180,19 @@ namespace StretchCeilings.Views
 
             if (string.IsNullOrWhiteSpace(tbName.Text))
             {
-                errorProvider.SetError(tbName, RequiredToFillOut);
+                errorProvider.SetError(tbName, Resources.RequiredToFillOut);
                 return true;
             }
 
             if (string.IsNullOrWhiteSpace(tbAddress.Text))
             {
-                errorProvider.SetError(tbAddress, RequiredToFillOut);
+                errorProvider.SetError(tbAddress, Resources.RequiredToFillOut);
                 return true;
             }
 
             if (cbCountry.SelectedItem == null)
             {
-                errorProvider.SetError(cbCountry, RequiredToFillOut);
+                errorProvider.SetError(cbCountry, Resources.RequiredToFillOut);
                 return true;
             }
 
@@ -214,7 +213,7 @@ namespace StretchCeilings.Views
         {
             if (AreControlsEmpty())
             {
-                CustomMessageBox.Show(RequiredControlsAreEmpty, CustomMessageBoxCaption.Error);
+                CustomMessageBox.Show(Resources.ControlsEmpty, Caption.Error);
                 return;
             }
 

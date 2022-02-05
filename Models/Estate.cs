@@ -33,7 +33,9 @@ namespace StretchCeilings.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                db.Entry(Id).CurrentValues.SetValues(DeletedDate = DateTime.Now);
+                DeletedDate = DateTime.Now;
+                var old = db.Estates.Find(Id);
+                db.Entry(old).CurrentValues.SetValues(this);
                 db.SaveChanges();
             }
         }

@@ -1,6 +1,6 @@
-﻿namespace StretchCeilings.Helpers
+﻿namespace StretchCeilings.Helpers.Structs
 {
-    public static class CustomMessageBoxCaption
+    public struct Caption
     {
         public static string Error => "Ошибка.";
         public static string Warning => "Предупреждение.";

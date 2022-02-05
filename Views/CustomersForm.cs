@@ -5,6 +5,7 @@ using StretchCeilings.Helpers;
 using StretchCeilings.Helpers.Controls;
 using StretchCeilings.Helpers.Enums;
 using StretchCeilings.Helpers.Extensions.Controls;
+using StretchCeilings.Helpers.Structs;
 using StretchCeilings.Models;
 using StretchCeilings.Repositories;
 
@@ -17,7 +18,7 @@ namespace StretchCeilings.Views
         private Customer _filter;
         private Customer _customer;
 
-        private readonly bool _forSearching;
+        private readonly FormState _state;
 
         private int _rows;
         private int _count;
@@ -26,9 +27,9 @@ namespace StretchCeilings.Views
 
         public Customer GetCustomer() => _customer;
 
-        public CustomersForm(bool forSearching = false)
+        public CustomersForm(FormState state = FormState.Default)
         {
-            _forSearching = forSearching;
+            _state = state;
             InitializeComponent();
         }
 
@@ -57,7 +58,7 @@ namespace StretchCeilings.Views
             }
 
             nudId.Maximum = decimal.MaxValue;
-            foreach (var rowCountItem in Constants.RowCountItems)
+            foreach (var rowCountItem in Resources.RowCountItems)
             {
                 cbRows.Items.Add(rowCountItem);
             }
@@ -168,21 +169,6 @@ namespace StretchCeilings.Views
             _currentPage = 1;
             _count = int.Parse(cbRows.Items[cbRows.SelectedIndex].ToString());
             FilterDataGrid();
-        }
-
-        private void tbFullName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void nudId_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblId_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -256,7 +256,7 @@ namespace StretchCeilings.Views
             // errorProvider
             // 
             this.errorProvider.ContainerControl = this;
-            this.errorProvider.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider.Icon")));
+            this.errorProvider.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider.AwesomeIcon")));
             // 
             // ManufacturerEditForm
             // 

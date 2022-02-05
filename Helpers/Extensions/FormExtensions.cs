@@ -24,7 +24,7 @@ namespace StretchCeilings.Helpers.Extensions
         {
             if (eventArgs.Button != MouseButtons.Left) return;
             User32Helper.ReleaseCapture();
-            User32Helper.SendMessage(handle, User32Helper.VM_NCLBUTTONDOWN, User32Helper.HT_CAPTION, 0);
+            User32Helper.SendMessage(handle, User32Helper.WmNclButtonDown, User32Helper.HtCaption, 0);
         }
     }
 }

@@ -1,7 +1,8 @@
 ﻿using System.Windows.Forms;
 using StretchCeilings.Helpers.DLL;
+using StretchCeilings.Helpers.Structs;
 
-namespace StretchCeilings.Helpers.Controls
+namespace StretchCeilings.Views
 {
     public partial class CustomMessageBoxForm : Form
     {

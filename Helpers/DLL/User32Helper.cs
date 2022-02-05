@@ -5,11 +5,8 @@ namespace StretchCeilings.Helpers.DLL
 {
     public static class User32Helper
     {
-        private const int _wm_nclButtonDown = 0xA1;
-        private const int _ht_caption = 0x2;
-
-        public static int VM_NCLBUTTONDOWN => _wm_nclButtonDown;
-        public static int HT_CAPTION => _ht_caption;
+        public const int WmNclButtonDown = 0xA1;
+        public const int HtCaption = 0x2;
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         public static extern void ReleaseCapture();

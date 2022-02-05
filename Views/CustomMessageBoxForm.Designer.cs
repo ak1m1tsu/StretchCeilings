@@ -1,5 +1,5 @@
 ﻿
-namespace StretchCeilings.Helpers.Controls
+namespace StretchCeilings.Views
 {
     partial class CustomMessageBoxForm
     {

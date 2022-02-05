@@ -9,7 +9,5 @@ namespace StretchCeilings.Interfaces.Models
         void Update();
         void Delete();
         List<TimeTable> GetSchedule();
-        List<Order> GetOrders(int count, int pages);
-        List<Service> GetServices(int count, int pages);
     }
 }

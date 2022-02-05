@@ -7,21 +7,22 @@ using StretchCeilings.Models;
 
 namespace StretchCeilings.Repositories
 {
-    public static class OrderRepository
+    public class OrderRepository : NotNull
     {
         public static List<Order> GetALl(out int rows)
         {
             using (var db = new StretchCeilingsContext())
             {
-                var orders = db.Orders.Where(o => o.DeletedDate == null).ToList();
+                var orders = db.Orders.Where(o => o.DeletedDate == null);
                 rows = 0;
-                if (orders.Any())
-                {
-                    orders.ForEach(o => db.Entry(o).Reference(r => r.Customer).Load());
-                    rows = orders.Count;
-                }
 
-                return orders;
+                if (orders.Any() == false) 
+                    return orders.ToList();
+                
+                rows = orders.Count();
+                orders.ForEachAsync(o => db.Entry(o).Reference(r => r.Customer).Load());
+                
+                return orders.ToList();
             }
         }
 
@@ -30,54 +31,43 @@ namespace StretchCeilings.Repositories
             using (var db = new StretchCeilingsContext())
             {
                 var orders = db.Orders.Where(o => o.DeletedDate == null);
+                rows = 0;
 
                 if (firstFilter.Id != 0)
                     orders = orders.Where(o => o.Id == firstFilter.Id);
-                else
-                {
-                    orders = firstFilter.DatePlaced != null && secondFilter.DatePlaced != null
-                        ? orders.Where(o => firstFilter.DatePlaced <= o.DatePlaced && secondFilter.DatePlaced >= o.DatePlaced)
-                        : orders;
 
-                    orders = firstFilter.DatePlaced != null
-                        ? orders.Where(o => firstFilter.DatePlaced <= o.DatePlaced)
-                        : orders;
+                if ((IsNull(firstFilter.DatePlaced) && IsNull(secondFilter.DatePlaced)) == false)
+                    orders = orders.Where(o =>
+                        firstFilter.DatePlaced <= o.DatePlaced && secondFilter.DatePlaced >= o.DatePlaced);
 
-                    orders = secondFilter.DatePlaced != null
-                        ? orders.Where(o => secondFilter.DatePlaced >= o.DatePlaced)
-                        : orders;
+                if (IsNull(firstFilter.DatePlaced) == false)
+                        orders = orders.Where(o => firstFilter.DatePlaced <= o.DatePlaced);
 
-                    orders = firstFilter.Total != null && secondFilter.Total != null
-                        ? orders.Where(o => firstFilter.Total <= o.Total && o.Total <= secondFilter.Total)
-                        : orders;
+                if (IsNull(secondFilter.DatePaid) == false)
+                        orders = orders.Where(o => secondFilter.DatePlaced >= o.DatePlaced);
 
-                    orders = firstFilter.Total != null
-                        ? orders.Where(o => firstFilter.Total <= o.Total)
-                        : orders;
+                if ((IsNull(firstFilter.Total) && IsNull(secondFilter.Total)) == false)
+                    orders = orders.Where(o => firstFilter.Total <= o.Total && o.Total <= secondFilter.Total);
 
-                    orders = secondFilter.Total != null
-                        ? orders.Where(o => o.Total <= secondFilter.Total)
-                        : orders;
+                if (IsNull(firstFilter.Total) == false)
+                    orders = orders.Where(o => firstFilter.Total <= o.Total);
 
-                    orders = firstFilter.Status != OrderStatus.Unknown
-                        ? orders.Where(x => x.Status == firstFilter.Status)
-                        : orders;
+                if (IsNull(secondFilter.Total) == false)
+                    orders = orders.Where(o => o.Total <= secondFilter.Total);
+                
+                if (firstFilter.Status != OrderStatus.Unknown)
+                    orders = orders.Where(x => x.Status == firstFilter.Status);
 
-                    orders = firstFilter.PaidByCash != null
-                        ? orders.Where(o => o.PaidByCash == firstFilter.PaidByCash)
-                        : orders;
-                }
+                if (IsNull(firstFilter.PaidByCash) == false)
+                    orders = orders.Where(o => o.PaidByCash == firstFilter.PaidByCash);
 
-                rows = 0;
+                if (!orders.Any()) 
+                    return orders.ToList();
+                
+                orders.ForEachAsync(o => db.Entry(o).Reference(r => r.Customer).Load());
+                rows = orders.Count();
 
-                if (orders.Any())
-                {
-                    orders.ForEachAsync(o => db.Entry(o).Reference(r => r.Customer).Load());
-                    rows = orders.Count();
-                    return orders.ToList().Skip((page - 1) * count).Take(count).ToList();
-                }
-
-                return orders.ToList();
+                return orders.ToList().Skip((page - 1) * count).Take(count).ToList();
             }
         }
 
@@ -87,10 +77,8 @@ namespace StretchCeilings.Repositories
             {
                 var order = db.Orders.FirstOrDefault(o => o.Id == id);
 
-                if (order != null)
-                {
+                if (IsNull(order) == false)
                     db.Entry(order).Reference(o => o.Customer).Load();
-                }
 
                 return order;
             }

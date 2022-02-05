@@ -4,12 +4,11 @@ using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using StretchCeilings.Helpers;
-using StretchCeilings.Helpers.Controls;
 using StretchCeilings.Helpers.Extensions;
 using StretchCeilings.Helpers.Extensions.Controls;
+using StretchCeilings.Helpers.Structs;
 using StretchCeilings.Models;
 using StretchCeilings.Repositories;
-using static StretchCeilings.Properties.Resources;
 
 namespace StretchCeilings.Views
 {
@@ -18,11 +17,14 @@ namespace StretchCeilings.Views
         private readonly Employee _employee;
         private readonly List<Role> _roles;
 
-        private List<TimeTable> _tempTables;
+        private List<TimeTable> _addedTables;
+        private List<TimeTable> _deletedTables;
         private List<TimeTable> _tables;
 
         public EmployeeEditForm(Employee employee)
         {
+            _addedTables = new List<TimeTable>();
+            _deletedTables = new List<TimeTable>();
             _employee = employee;
             _roles = RoleRepository.GetAll();
             InitializeComponent();
@@ -117,19 +119,19 @@ namespace StretchCeilings.Views
 
             if (string.IsNullOrWhiteSpace(tbPassword.Text))
             {
-                epControls.SetError(tbPassword, RequiredToFillOut);
+                epControls.SetError(tbPassword, Resources.RequiredToFillOut);
                 hasErrors = true;
             }
 
             if (string.IsNullOrWhiteSpace(tbFullName.Text))
             {
-                epControls.SetError(tbFullName, RequiredToFillOut);
+                epControls.SetError(tbFullName, Resources.RequiredToFillOut);
                 hasErrors = true;
             }
 
             if (string.IsNullOrWhiteSpace(tbLogin.Text))
             {
-                epControls.SetError(tbLogin, RequiredToFillOut);
+                epControls.SetError(tbLogin, Resources.RequiredToFillOut);
                 hasErrors = true;
             }
 
@@ -145,27 +147,28 @@ namespace StretchCeilings.Views
             var form = new TimeTableForm(_employee);
             if (form.ShowDialog() != DialogResult.OK) return;
 
-            _tempTables = form.TimeTables;
+            _addedTables = form.TimeTables;
 
             var rows = dgvTimeTable.Rows.Count;
+
             var tablesToRemove = (from table in _tables
-                from formTimeTable in _tempTables
+                from formTimeTable in _addedTables
                 where table.Date == formTimeTable.Date
                 select formTimeTable).ToList();
 
-            foreach (var table in tablesToRemove.Where(table => _tempTables.Contains(table)))
+            foreach (var table in tablesToRemove.Where(table => _addedTables.Contains(table)))
             {
-                _tempTables.Remove(table);
+                _addedTables.Remove(table);
             }
 
-            for (int i = rows, j = 0; i < rows + _tempTables.Count; i++, j++)
+            for (int i = rows, j = 0; i < rows + _addedTables.Count; i++, j++)
             {
                 dgvTimeTable.Rows.Add(new DataGridViewRow());
                 dgvTimeTable.Rows[i].Cells["№"].Value = dgvTimeTable.Rows.Count;
-                dgvTimeTable.Rows[i].Cells["Дата"].Value = _tempTables[j].Date?.Date.ToString("d");
-                dgvTimeTable.Rows[i].Cells["День недели"].Value = _tempTables[j].Date?.DayOfWeek;
-                dgvTimeTable.Rows[i].Cells["Начало"].Value = _tempTables[j].TimeStart?.TimeOfDay;
-                dgvTimeTable.Rows[i].Cells["Конец"].Value = _tempTables[j].TimeEnd?.TimeOfDay;
+                dgvTimeTable.Rows[i].Cells["Дата"].Value = _addedTables[j].Date?.Date.ToString("d");
+                dgvTimeTable.Rows[i].Cells["День недели"].Value = _addedTables[j].Date?.DayOfWeek;
+                dgvTimeTable.Rows[i].Cells["Начало"].Value = _addedTables[j].TimeStart?.TimeOfDay;
+                dgvTimeTable.Rows[i].Cells["Конец"].Value = _addedTables[j].TimeEnd?.TimeOfDay;
             }
         }
 
@@ -173,22 +176,26 @@ namespace StretchCeilings.Views
         {
             if (e.RowIndex < 0 || e.ColumnIndex != dgvTimeTable.Columns[" "]?.Index) return;
 
-            TimeTableRepository.GetById((int)dgvTimeTable.SelectedRows[0].Cells["№"].Value).Delete();
+            var tableId = (int)dgvTimeTable.SelectedRows[0].Cells["№"].Value;
+            var timeTable = _addedTables?.FirstOrDefault(x => x.Id == tableId) ??
+                            _tables.FirstOrDefault(x => x.Id == tableId);
 
-            FillTimeTableGrid();
+            _deletedTables.Add(timeTable);
+            dgvTimeTable.Rows.RemoveAt(e.RowIndex);
         }
 
         private void UpdateEmployeeData(object sender, EventArgs e)
         {
             if (CanUpdate())
             {
-                CustomMessageBox.Show(RequiredControlsAreEmpty, CustomMessageBoxCaption.Error);
+                CustomMessageBox.Show(Resources.ControlsEmpty, Caption.Error);
                 return;
             }
 
             UpdateEmployeeData();
             _employee.Update();
-            _tempTables?.ForEach(x => x?.Add());
+            _addedTables?.ForEach(x => x?.Add());
+            _deletedTables?.ForEach(x => x?.Delete());
             DialogResult = DialogResult.OK;
         }
 

@@ -1,4 +1,4 @@
-﻿namespace StretchCeilingsApp.Migrations
+﻿namespace StretchCeilings.DataAccess.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
@@ -66,6 +66,7 @@
                         Type = c.Int(),
                         Corners = c.Int(),
                         EstateId = c.Int(),
+                        Plane = c.String(maxLength: 2147483647),
                         DeletedDate = c.DateTime(),
                     })
                 .PrimaryKey(t => t.Id)

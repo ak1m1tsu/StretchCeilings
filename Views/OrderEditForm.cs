@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
-using StretchCeilings.Helpers;
 using StretchCeilings.Helpers.Enums;
 using StretchCeilings.Helpers.Extensions;
 using StretchCeilings.Helpers.Extensions.Controls;
+using StretchCeilings.Helpers.Structs;
 using StretchCeilings.Models;
 
 namespace StretchCeilings.Views

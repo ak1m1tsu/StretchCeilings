@@ -30,13 +30,13 @@ namespace StretchCeilings.Views
         private void InitializeComponent()
         {
             this.panelRightSide = new System.Windows.Forms.Panel();
+            this.panelAdditServHeader = new System.Windows.Forms.Panel();
+            this.lblAdditServs = new System.Windows.Forms.Label();
             this.panelLeftSide = new System.Windows.Forms.Panel();
+            this.btnEdit = new System.Windows.Forms.Button();
             this.lblPriceValue = new System.Windows.Forms.Label();
             this.lblPrice = new System.Windows.Forms.Label();
             this.linkLblCeilingValue = new System.Windows.Forms.LinkLabel();
-            this.panelAdditServHeader = new System.Windows.Forms.Panel();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.lblAdditServs = new System.Windows.Forms.Label();
             this.lblCeiling = new System.Windows.Forms.Label();
             this.linkLblManufaturerValue = new System.Windows.Forms.LinkLabel();
             this.lblManufacturer = new System.Windows.Forms.Label();
@@ -44,21 +44,41 @@ namespace StretchCeilings.Views
             this.btnClose = new FontAwesome.Sharp.IconButton();
             this.dgvAdditServs = new System.Windows.Forms.DataGridView();
             this.panelRightSide.SuspendLayout();
-            this.panelLeftSide.SuspendLayout();
             this.panelAdditServHeader.SuspendLayout();
+            this.panelLeftSide.SuspendLayout();
             this.panelTopSide.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdditServs)).BeginInit();
             this.SuspendLayout();
             // 
             // panelRightSide
             // 
-            this.panelRightSide.Controls.Add(this.panelAdditServHeader);
             this.panelRightSide.Controls.Add(this.dgvAdditServs);
+            this.panelRightSide.Controls.Add(this.panelAdditServHeader);
             this.panelRightSide.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelRightSide.Location = new System.Drawing.Point(320, 25);
             this.panelRightSide.Name = "panelRightSide";
             this.panelRightSide.Size = new System.Drawing.Size(680, 475);
             this.panelRightSide.TabIndex = 79;
+            // 
+            // panelAdditServHeader
+            // 
+            this.panelAdditServHeader.Controls.Add(this.lblAdditServs);
+            this.panelAdditServHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelAdditServHeader.Location = new System.Drawing.Point(0, 0);
+            this.panelAdditServHeader.Name = "panelAdditServHeader";
+            this.panelAdditServHeader.Size = new System.Drawing.Size(680, 40);
+            this.panelAdditServHeader.TabIndex = 7;
+            // 
+            // lblAdditServs
+            // 
+            this.lblAdditServs.AutoSize = true;
+            this.lblAdditServs.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.lblAdditServs.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.lblAdditServs.Location = new System.Drawing.Point(6, 9);
+            this.lblAdditServs.Name = "lblAdditServs";
+            this.lblAdditServs.Size = new System.Drawing.Size(204, 23);
+            this.lblAdditServs.TabIndex = 0;
+            this.lblAdditServs.Text = "Дополнительные услуги:";
             // 
             // panelLeftSide
             // 
@@ -75,6 +95,21 @@ namespace StretchCeilings.Views
             this.panelLeftSide.Size = new System.Drawing.Size(320, 475);
             this.panelLeftSide.TabIndex = 78;
             // 
+            // btnEdit
+            // 
+            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.btnEdit.FlatAppearance.BorderSize = 0;
+            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnEdit.ForeColor = System.Drawing.Color.White;
+            this.btnEdit.Location = new System.Drawing.Point(206, 439);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(110, 30);
+            this.btnEdit.TabIndex = 48;
+            this.btnEdit.Text = "Изменить";
+            this.btnEdit.UseVisualStyleBackColor = false;
+            // 
             // lblPriceValue
             // 
             this.lblPriceValue.AutoSize = true;
@@ -82,9 +117,9 @@ namespace StretchCeilings.Views
             this.lblPriceValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.lblPriceValue.Location = new System.Drawing.Point(146, 72);
             this.lblPriceValue.Name = "lblPriceValue";
-            this.lblPriceValue.Size = new System.Drawing.Size(59, 23);
+            this.lblPriceValue.Size = new System.Drawing.Size(19, 23);
             this.lblPriceValue.TabIndex = 6;
-            this.lblPriceValue.Text = "450.00";
+            this.lblPriceValue.Text = "0";
             // 
             // lblPrice
             // 
@@ -106,46 +141,11 @@ namespace StretchCeilings.Views
             this.linkLblCeilingValue.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.linkLblCeilingValue.Location = new System.Drawing.Point(146, 38);
             this.linkLblCeilingValue.Name = "linkLblCeilingValue";
-            this.linkLblCeilingValue.Size = new System.Drawing.Size(136, 23);
+            this.linkLblCeilingValue.Size = new System.Drawing.Size(39, 23);
             this.linkLblCeilingValue.TabIndex = 4;
             this.linkLblCeilingValue.TabStop = true;
-            this.linkLblCeilingValue.Text = "Матовый белый";
+            this.linkLblCeilingValue.Text = "Нет";
             this.linkLblCeilingValue.VisitedLinkColor = System.Drawing.Color.Black;
-            // 
-            // panelAdditServHeader
-            // 
-            this.panelAdditServHeader.Controls.Add(this.lblAdditServs);
-            this.panelAdditServHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelAdditServHeader.Location = new System.Drawing.Point(0, 0);
-            this.panelAdditServHeader.Name = "panelAdditServHeader";
-            this.panelAdditServHeader.Size = new System.Drawing.Size(680, 40);
-            this.panelAdditServHeader.TabIndex = 7;
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
-            this.btnEdit.FlatAppearance.BorderSize = 0;
-            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.btnEdit.ForeColor = System.Drawing.Color.White;
-            this.btnEdit.Location = new System.Drawing.Point(206, 439);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(110, 30);
-            this.btnEdit.TabIndex = 48;
-            this.btnEdit.Text = "Изменить";
-            this.btnEdit.UseVisualStyleBackColor = false;
-            // 
-            // lblAdditServs
-            // 
-            this.lblAdditServs.AutoSize = true;
-            this.lblAdditServs.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.lblAdditServs.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.lblAdditServs.Location = new System.Drawing.Point(6, 9);
-            this.lblAdditServs.Name = "lblAdditServs";
-            this.lblAdditServs.Size = new System.Drawing.Size(204, 23);
-            this.lblAdditServs.TabIndex = 0;
-            this.lblAdditServs.Text = "Дополнительные услуги:";
             // 
             // lblCeiling
             // 
@@ -167,10 +167,10 @@ namespace StretchCeilings.Views
             this.linkLblManufaturerValue.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.linkLblManufaturerValue.Location = new System.Drawing.Point(146, 3);
             this.linkLblManufaturerValue.Name = "linkLblManufaturerValue";
-            this.linkLblManufaturerValue.Size = new System.Drawing.Size(57, 23);
+            this.linkLblManufaturerValue.Size = new System.Drawing.Size(39, 23);
             this.linkLblManufaturerValue.TabIndex = 2;
             this.linkLblManufaturerValue.TabStop = true;
-            this.linkLblManufaturerValue.Text = "Pongs";
+            this.linkLblManufaturerValue.Text = "Нет";
             this.linkLblManufaturerValue.VisitedLinkColor = System.Drawing.Color.Black;
             // 
             // lblManufacturer
@@ -193,6 +193,7 @@ namespace StretchCeilings.Views
             this.panelTopSide.Name = "panelTopSide";
             this.panelTopSide.Size = new System.Drawing.Size(1000, 25);
             this.panelTopSide.TabIndex = 77;
+            this.panelTopSide.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DragMove);
             // 
             // btnClose
             // 
@@ -214,10 +215,10 @@ namespace StretchCeilings.Views
             this.dgvAdditServs.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.dgvAdditServs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAdditServs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvAdditServs.Location = new System.Drawing.Point(0, 0);
+            this.dgvAdditServs.Location = new System.Drawing.Point(0, 40);
             this.dgvAdditServs.Name = "dgvAdditServs";
-            this.dgvAdditServs.Size = new System.Drawing.Size(680, 475);
-            this.dgvAdditServs.TabIndex = 5;
+            this.dgvAdditServs.Size = new System.Drawing.Size(680, 435);
+            this.dgvAdditServs.TabIndex = 8;
             // 
             // ServiceForm
             // 
@@ -230,12 +231,12 @@ namespace StretchCeilings.Views
             this.Controls.Add(this.panelTopSide);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ServiceForm";
-            this.Load += new System.EventHandler(this.ServiceForm_Load);
+            this.Load += new System.EventHandler(this.LoadForm);
             this.panelRightSide.ResumeLayout(false);
-            this.panelLeftSide.ResumeLayout(false);
-            this.panelLeftSide.PerformLayout();
             this.panelAdditServHeader.ResumeLayout(false);
             this.panelAdditServHeader.PerformLayout();
+            this.panelLeftSide.ResumeLayout(false);
+            this.panelLeftSide.PerformLayout();
             this.panelTopSide.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdditServs)).EndInit();
             this.ResumeLayout(false);

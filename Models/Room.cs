@@ -19,6 +19,7 @@ namespace StretchCeilings.Models
         public int? EstateId { get; set; }
         [Column("EstateId")]
         public virtual Estate Estate { get; set; }
+        public string Plane { get; set; }
         public DateTime? DeletedDate { get; set; }
 
         public void Add()

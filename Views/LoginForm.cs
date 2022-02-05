@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using StretchCeilings.Helpers;
-using StretchCeilings.Helpers.Controls;
 using StretchCeilings.Helpers.DLL;
+using StretchCeilings.Helpers.Structs;
 using StretchCeilings.Models;
 using StretchCeilings.Repositories;
 
@@ -28,7 +28,7 @@ namespace StretchCeilings.Views
         {
             if (UserSession.LogIn(mtbLogin.Text, tbPassword.Text) == false)
             {
-                CustomMessageBox.Show("Неверный логин или пароль.", CustomMessageBoxCaption.Error);
+                CustomMessageBox.Show("Неверный логин или пароль.", Caption.Error);
                 return;
             }
 
@@ -74,7 +74,7 @@ namespace StretchCeilings.Views
         private void panelTop_MouseDown(object sender, MouseEventArgs e)
         {
             User32Helper.ReleaseCapture();
-            User32Helper.SendMessage(Handle, User32Helper.VM_NCLBUTTONDOWN, User32Helper.HT_CAPTION, 0);
+            User32Helper.SendMessage(Handle, User32Helper.WmNclButtonDown, User32Helper.HtCaption, 0);
         }
     }
 }

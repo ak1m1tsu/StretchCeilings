@@ -2,33 +2,38 @@
 using System.Windows.Forms;
 using StretchCeilings.Helpers;
 using StretchCeilings.Helpers.Enums;
+using StretchCeilings.Helpers.Extensions;
 using StretchCeilings.Helpers.Extensions.Controls;
+using StretchCeilings.Helpers.Structs;
 using StretchCeilings.Models;
+using StretchCeilings.Repositories;
 
 namespace StretchCeilings.Views
 {
     public partial class CustomerForm : Form
     {
-        private readonly Customer _currentCustomer;
+        private readonly Customer _customer;
 
         public CustomerForm(Customer customer)
         {
-            _currentCustomer = customer;
+            _customer = customer;
             InitializeComponent();
         }
 
-        private void SetUpForm()
+        private void SetupForm()
         {
-            lblFullNameValue.Text = _currentCustomer.FullName;
-            lblPhoneNumberValue.Text = _currentCustomer.PhoneNumber;
+            lblFullNameValue.Text = _customer.FullName;
+            lblPhoneNumberValue.Text = _customer.PhoneNumber;
+
+            if(CanUserEdit())
+                ShowEditButton();
             
-            SetUpEstatesGrid();
-            SetUpEditBtn();
+            SetupGrid();
         }
 
-        private void SetUpEstatesGrid()
+        private void SetupGrid()
         {
-            var estates = _currentCustomer.GetEstates();
+            var estates = _customer.GetEstates();
 
             dgvEstates.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
             dgvEstates.AddDataGridViewTextBoxColumn("Адресс", DataGridViewAutoSizeColumnMode.Fill);
@@ -46,27 +51,40 @@ namespace StretchCeilings.Views
             }
         }
 
-        private void SetUpEditBtn()
+        private static bool CanUserEdit() => UserSession.IsAdmin || UserSession.Can(PermissionCode.EditCustomer);
+
+        private void ShowEditButton()
         {
-            if (UserSession.Can(PermissionCode.EditCustomer) == false || 
-                UserSession.IsAdmin == false)
-                btnChangeInfo.Visible = false;
+            btnChangeInfo.Visible = false;
         }
 
-        private void OpenEditForm()
+        private void LoadForm(object sender, EventArgs e)
         {
-            Hide();
-            new CustomerEditForm(_currentCustomer).ShowDialog();
+            SetupForm();
         }
 
-        private void CustomerForm_Load(object sender, EventArgs e)
+        private void DragMove(object sender, MouseEventArgs e)
         {
-            SetUpForm();
+            this.Handle.DragMove(e);
         }
 
-        private void btnChangeInfo_Click(object sender, EventArgs e)
+        private void ShowGridData(object sender, DataGridViewCellEventArgs e)
         {
-            OpenEditForm();
+            if (e.RowIndex < 0 && dgvEstates.SelectedRows.Count < 0)
+                return;
+
+            var id = (int)dgvEstates.Rows[e.RowIndex].Cells[0].Value;
+            var estate = EstateRepository.GetById(id);
+            var form = new EstateForm(estate);
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+
+            }
+        }
+
+        private void CloseForm(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
         }
     }
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
-using StretchCeilings.Helpers;
 using StretchCeilings.Helpers.Controls;
 using StretchCeilings.Helpers.Extensions;
 using StretchCeilings.Helpers.Extensions.Controls;
+using StretchCeilings.Helpers.Structs;
 
 namespace StretchCeilings.Views
 {
@@ -106,9 +106,9 @@ namespace StretchCeilings.Views
         private void MaximizeApp(object sender, EventArgs e)
         {
             WindowState = WindowState != FormWindowState.Maximized ? FormWindowState.Maximized : FormWindowState.Normal;
-            btnResiizeApp.IconChar = btnResiizeApp.IconChar == Constants.WindowMaximizeIcon
-                ? Constants.WindowRestoreIcon
-                : Constants.WindowMaximizeIcon;
+            btnResiizeApp.IconChar = btnResiizeApp.IconChar == AwesomeIcon.WindowMaximize
+                ? AwesomeIcon.WindowRestore
+                : AwesomeIcon.WindowMaximize;
         }
 
         private void CloseApp(object sender, EventArgs e)

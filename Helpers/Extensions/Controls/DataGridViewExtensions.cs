@@ -7,12 +7,20 @@ namespace StretchCeilings.Helpers.Extensions.Controls
     {
         public static void AddDataGridViewTextBoxColumn(this DataGridView dataGrid, string name, DataGridViewAutoSizeColumnMode sizeColumnMode)
         {
-            dataGrid.Columns.Add(new DataGridViewTextBoxColumn() { Name = name, AutoSizeMode = sizeColumnMode });
+            dataGrid.Columns.Add(new DataGridViewTextBoxColumn()
+            {
+                Name = name, 
+                AutoSizeMode = sizeColumnMode
+            });
         }
 
         public static void AddDataGridViewCheckBoxColumn(this DataGridView dataGrid, string name, DataGridViewAutoSizeColumnMode sizeColumnMode)
         {
-            dataGrid.Columns.Add(new DataGridViewCheckBoxColumn() { Name = name, AutoSizeMode = sizeColumnMode });
+            dataGrid.Columns.Add(new DataGridViewCheckBoxColumn()
+            {
+                Name = name, 
+                AutoSizeMode = sizeColumnMode
+            });
         }
 
         public static void AddDataGridViewButtonColumn(this DataGridView dataGrid, Color color)
@@ -22,7 +30,10 @@ namespace StretchCeilings.Helpers.Extensions.Controls
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
                 FlatStyle = FlatStyle.Flat,
                 Name = " ",
-                DefaultCellStyle = new DataGridViewCellStyle() { BackColor = color }
+                DefaultCellStyle = new DataGridViewCellStyle()
+                {
+                    BackColor = color
+                }
             });
         }
     }

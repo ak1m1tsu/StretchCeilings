@@ -1,8 +1,8 @@
 ﻿using System.Drawing;
 
-namespace StretchCeilings.Helpers
+namespace StretchCeilings.Helpers.Structs
 {
-    public class DraculaColor
+    public struct DraculaColor
     {
         public static Color Background => Color.FromArgb(40, 42, 54);
         public static Color Selection => Color.FromArgb(68, 71, 90);

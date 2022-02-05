@@ -1,31 +1,47 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
-using StretchCeilings.Helpers;
-using StretchCeilings.Helpers.Enums;
+using StretchCeilings.Helpers.Extensions;
+using StretchCeilings.Helpers.Structs;
 using StretchCeilings.Models;
 
 namespace StretchCeilings.Views
 {
     public partial class ServiceForm : Form
     {
-        private readonly Service _currentService;
+        private readonly Service _service;
+        private List<ServiceAdditionalService> _additionalServices;
+
         public ServiceForm(Service service)
         {
-            _currentService = service;
+            _service = service;
             InitializeComponent();
         }
 
-        private void ServiceForm_Load(object sender, EventArgs e)
+        private string PriceString => $@"{_service.Price} {Resources.Rubles}";
+
+        private void SetupForm()
         {
-            if (UserSession.Can(PermissionCode.EditService) == false || 
-                UserSession.IsAdmin == false)
-                btnEdit.Visible = false;
+            linkLblManufaturerValue.Text = _service.Manufacturer.Name;
+            linkLblManufaturerValue.Tag = _service.Manufacturer;
+            linkLblCeilingValue.Text = _service.Ceiling.Name;
+            linkLblCeilingValue.Tag = _service.Ceiling;
+            lblPriceValue.Text = PriceString;
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private void SetupDataGrid()
         {
-            if (ShowDialog(new ServiceEditForm(_currentService)) == DialogResult.OK)
-                Close();
+             
+        }
+
+        private void LoadForm(object sender, EventArgs e)
+        {
+            SetupForm();   
+        }
+
+        private void DragMove(object sender, MouseEventArgs e)
+        {
+            this.Handle.DragMove(e);
         }
     }
 }

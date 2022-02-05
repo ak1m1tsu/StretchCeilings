@@ -1,52 +1,73 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
+using StretchCeilings.Helpers.Enums;
+using StretchCeilings.Helpers.Extensions.Controls;
+using StretchCeilings.Helpers.Structs;
 using StretchCeilings.Models;
 
 namespace StretchCeilings.Views
 {
     public partial class ServiceEditForm : Form
     {
-        private readonly Service _currentService;
-        private readonly bool _isNew;
+        private readonly Service _service;
+        private List<AdditionalService> _addedAdditionalServices;
+        private List<AdditionalService> _removedAdditionalServices;
 
-        public ServiceEditForm(Service service, bool isNew = false)
+        public ServiceEditForm(Service service)
         {
-            _currentService = service;
-            _isNew = isNew;
+            _service = service;
+            _addedAdditionalServices = new List<AdditionalService>();
+            _removedAdditionalServices = new List<AdditionalService>();
+
             InitializeComponent();
         }
 
-        private void UpdateServiceInfo()
+        private void SetupGrid()
         {
-            _currentService.Manufacturer = (Manufacturer)cbManufacturerValue.SelectedItem;
-            _currentService.Ceiling = (Ceiling)cbCeilingValue.SelectedItem;
-            _currentService.Price = decimal.Parse(lblPriceValue.Text);
-            _currentService.Update();
+            dgvAdditServs.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvAdditServs.AddDataGridViewTextBoxColumn("Название", DataGridViewAutoSizeColumnMode.Fill);
+            dgvAdditServs.AddDataGridViewTextBoxColumn("Цена", DataGridViewAutoSizeColumnMode.Fill);
+            dgvAdditServs.AddDataGridViewTextBoxColumn("Кол-во", DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvAdditServs.Columns["Кол-во"].ReadOnly = false;
+            dgvAdditServs.AddDataGridViewButtonColumn(DraculaColor.Red);
+
+            dgvAdditServs.Font = GoogleFont.OpenSans;
+            dgvAdditServs.ForeColor = DraculaColor.Background;
+            dgvAdditServs.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
+            dgvAdditServs.DefaultCellStyle.SelectionForeColor = DraculaColor.Foreground;
         }
 
-        private void btnAddAdditionalService_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            UpdateServiceInfo();
-        }
-
-        private void btnNextPage_Click(object sender, EventArgs e)
+        private void UpdateInfo(object sender, EventArgs e)
         {
 
         }
 
-        private void btnPreviousPage_Click(object sender, EventArgs e)
+        private void AddGridData(object sender, EventArgs e)
         {
+            var form = new AdditionalServicesForm(FormState.ForSearching);
 
+            if (form.ShowDialog() != DialogResult.OK)
+                return;
+
+            var rows = dgvAdditServs.Rows.Count;
+            var additionalService = form.GetAdditionalService();
+
+            _addedAdditionalServices.Add(additionalService);
+
+            for (var i = rows; i < rows+1; i++)
+            {
+                dgvAdditServs.Rows.Add(new DataGridViewRow());
+                dgvAdditServs.Rows[i].Cells[0].Value = additionalService.Id;
+                dgvAdditServs.Rows[i].Cells[1].Value = additionalService.Name;
+                dgvAdditServs.Rows[i].Cells[2].Value = additionalService.Price;
+                dgvAdditServs.Rows[i].Cells[3].Value = 1;
+            }
         }
 
-        private void cbCeilingValue_SelectedIndexChanged(object sender, EventArgs e)
+        private void LoadForm(object sender, EventArgs e)
         {
-
+            SetupGrid();
         }
     }
 }

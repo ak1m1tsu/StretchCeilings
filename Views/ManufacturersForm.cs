@@ -1,14 +1,15 @@
-﻿using StretchCeilings.Helpers;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Controls;
+using System.Windows.Forms;
+using StretchCeilings.Helpers;
 using StretchCeilings.Helpers.Controls;
 using StretchCeilings.Helpers.Enums;
 using StretchCeilings.Helpers.Extensions;
 using StretchCeilings.Helpers.Extensions.Controls;
+using StretchCeilings.Helpers.Structs;
 using StretchCeilings.Models;
 using StretchCeilings.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Windows.Controls;
-using System.Windows.Forms;
 
 namespace StretchCeilings.Views
 {
@@ -19,16 +20,16 @@ namespace StretchCeilings.Views
         private Manufacturer _manufacturer;
         private Manufacturer _filter;
 
-        private readonly bool _forSearching;
+        private readonly FormState _state;
 
         private int _rows;
         private int _count;
         private int _currentPage = 1;
         private int _maxPage = 1;
 
-        public ManufacturersForm(bool forSearching = false)
+        public ManufacturersForm(FormState state = FormState.Default)
         {
-            _forSearching = forSearching;
+            _state = state;
             InitializeComponent();
         }
 
@@ -42,24 +43,34 @@ namespace StretchCeilings.Views
             dgvManufacturers.AddDataGridViewTextBoxColumn("Производитель", DataGridViewAutoSizeColumnMode.Fill);
             dgvManufacturers.AddDataGridViewTextBoxColumn("Адрес", DataGridViewAutoSizeColumnMode.Fill);
             dgvManufacturers.AddDataGridViewTextBoxColumn("Страна", DataGridViewAutoSizeColumnMode.DisplayedCells);
-            if(_forSearching == false) 
+            
+            if(CanUserDelete() && IsForSearching() == false) 
                 dgvManufacturers.AddDataGridViewButtonColumn(DraculaColor.Red);
+
             dgvManufacturers.Font = GoogleFont.OpenSans;
             dgvManufacturers.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
             dgvManufacturers.DefaultCellStyle.SelectionForeColor = DraculaColor.Foreground;
-            if (_forSearching)
-                dgvManufacturers.CellDoubleClick += SelectManufacturer;
-            else
+
+            if (IsForSearching())
             {
-                dgvManufacturers.CellClick += RemoveGridData;
-                dgvManufacturers.CellDoubleClick += OpenManufacturerForm;
+                dgvManufacturers.CellDoubleClick += SelectManufacturer;
+                FillDataGrid();
+                return;
             }
+
+            dgvManufacturers.CellClick += RemoveGridData;
+            dgvManufacturers.CellDoubleClick += OpenManufacturerForm;
 
             FillDataGrid();
         }
 
-        private static bool HasUserPermissions()
-            => UserSession.IsAdmin || UserSession.Can(PermissionCode.AddCustomer);
+        private static bool CanUserAdd() => UserSession.IsAdmin ||
+                                            UserSession.Can(PermissionCode.AddCustomer);
+
+        private static bool CanUserDelete() => UserSession.IsAdmin ||
+                                               UserSession.Can(PermissionCode.DelCustomer);
+
+        private bool IsForSearching() => _state == FormState.ForSearching;
 
         private void DrawAddCustomerButton()
         {
@@ -69,13 +80,11 @@ namespace StretchCeilings.Views
 
         private void SelectManufacturer(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvManufacturers.SelectedRows.Count <= 0 || e.RowIndex < 0 || e.RowIndex < 0)
+            if (dgvManufacturers.SelectedRows.Count <= 0 || e.RowIndex < 0)
                 return;
 
-            _manufacturer = ManufacturerRepository.GetById(
-                            (int)dgvManufacturers.SelectedRows[0]
-                                                 .Cells[0]
-                                                 .Value);
+            var manufacturerId = (int)dgvManufacturers.SelectedRows[0].Cells[0].Value;
+            _manufacturer = ManufacturerRepository.GetById(manufacturerId);
             DialogResult = DialogResult.OK;
         }
 
@@ -97,7 +106,7 @@ namespace StretchCeilings.Views
 
         private void FillRowsComboBox()
         {
-            foreach (var rowCountItem in Constants.RowCountItems)
+            foreach (var rowCountItem in Resources.RowCountItems)
                 cbRows.Items.Add(rowCountItem);
             cbRows.SelectedItem = cbRows.Items[0];
         }
@@ -108,7 +117,7 @@ namespace StretchCeilings.Views
             btnNext.Click += ShowNextPage;
             btnPrevious.Click += ShowPreviousPage;
             
-            if (HasUserPermissions() && _forSearching == false)
+            if (CanUserAdd() && IsForSearching() == false)
                 DrawAddCustomerButton();
 
             FillCountryComboBox();
@@ -218,8 +227,8 @@ namespace StretchCeilings.Views
                 Country = Country.Unknown
             };
             
-            tbAddress.Text = Constants.DefaultTextBoxText;
-            tbName.Text = Constants.DefaultTextBoxText;
+            tbAddress.Text = Resources.DefaultTextBoxText;
+            tbName.Text = Resources.DefaultTextBoxText;
 
             cbCountry.SelectedItem = null;
 

@@ -107,6 +107,7 @@ namespace StretchCeilings.Views
             this.btnSave.TabIndex = 48;
             this.btnSave.Text = "Сохранить";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.UpdateInfo);
             // 
             // cbCeilingValue
             // 
@@ -120,7 +121,6 @@ namespace StretchCeilings.Views
             this.cbCeilingValue.Name = "cbCeilingValue";
             this.cbCeilingValue.Size = new System.Drawing.Size(168, 31);
             this.cbCeilingValue.TabIndex = 8;
-            this.cbCeilingValue.SelectedIndexChanged += new System.EventHandler(this.cbCeilingValue_SelectedIndexChanged);
             // 
             // cbManufacturerValue
             // 
@@ -194,11 +194,17 @@ namespace StretchCeilings.Views
             // 
             // dgvAdditServs
             // 
+            this.dgvAdditServs.AllowUserToAddRows = false;
+            this.dgvAdditServs.AllowUserToDeleteRows = false;
+            this.dgvAdditServs.AllowUserToResizeColumns = false;
+            this.dgvAdditServs.AllowUserToResizeRows = false;
             this.dgvAdditServs.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.dgvAdditServs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAdditServs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvAdditServs.Location = new System.Drawing.Point(0, 40);
             this.dgvAdditServs.Name = "dgvAdditServs";
+            this.dgvAdditServs.RowHeadersVisible = false;
+            this.dgvAdditServs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAdditServs.Size = new System.Drawing.Size(680, 395);
             this.dgvAdditServs.TabIndex = 5;
             // 
@@ -225,6 +231,7 @@ namespace StretchCeilings.Views
             this.btnAddAdditServ.TabIndex = 49;
             this.btnAddAdditServ.Text = "Добавить";
             this.btnAddAdditServ.UseVisualStyleBackColor = false;
+            this.btnAddAdditServ.Click += new System.EventHandler(this.AddGridData);
             // 
             // panelAdditServHeader
             // 
@@ -246,7 +253,7 @@ namespace StretchCeilings.Views
             this.lblAdditServs.TabIndex = 0;
             this.lblAdditServs.Text = "Дополнительные услуги:";
             // 
-            // ServiceFormEdit
+            // ServiceEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -256,7 +263,8 @@ namespace StretchCeilings.Views
             this.Controls.Add(this.panelMainInfo);
             this.Controls.Add(this.panelTop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "ServiceFormEdit";
+            this.Name = "ServiceEditForm";
+            this.Load += new System.EventHandler(this.LoadForm);
             this.panelTop.ResumeLayout(false);
             this.panelMainInfo.ResumeLayout(false);
             this.panelMainInfo.PerformLayout();

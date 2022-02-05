@@ -146,7 +146,6 @@ namespace StretchCeilings.Views
             this.dgvAdditionalServices.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAdditionalServices.Size = new System.Drawing.Size(1050, 460);
             this.dgvAdditionalServices.TabIndex = 2;
-            this.dgvAdditionalServices.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAdditionalServices_CellDoubleClick);
             // 
             // panelPages
             // 
@@ -173,7 +172,6 @@ namespace StretchCeilings.Views
             this.cbRows.Name = "cbRows";
             this.cbRows.Size = new System.Drawing.Size(50, 31);
             this.cbRows.TabIndex = 98;
-            this.cbRows.SelectedIndexChanged += new System.EventHandler(this.cbRows_SelectedIndexChanged);
             // 
             // btnPreviousPage
             // 
@@ -338,7 +336,7 @@ namespace StretchCeilings.Views
             this.Controls.Add(this.panelButtons);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AdditionalServicesForm";
-            this.Load += new System.EventHandler(this.AdditionalServicesForm_Load);
+            this.Load += new System.EventHandler(this.LoadForm);
             this.panelButtons.ResumeLayout(false);
             this.panelSearchButtons.ResumeLayout(false);
             this.panelData.ResumeLayout(false);

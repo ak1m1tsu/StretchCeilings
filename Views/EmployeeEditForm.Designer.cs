@@ -244,6 +244,7 @@
             this.dgvTimeTable.Location = new System.Drawing.Point(3, 25);
             this.dgvTimeTable.Name = "dgvTimeTable";
             this.dgvTimeTable.ReadOnly = true;
+            this.dgvTimeTable.RowHeadersVisible = false;
             this.dgvTimeTable.RowTemplate.Height = 25;
             this.dgvTimeTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvTimeTable.Size = new System.Drawing.Size(644, 407);
@@ -278,9 +279,9 @@
             // epControls
             // 
             this.epControls.ContainerControl = this;
-            this.epControls.Icon = ((System.Drawing.Icon)(resources.GetObject("epControls.Icon")));
+            this.epControls.Icon = ((System.Drawing.Icon)(resources.GetObject("epControls.AwesomeIcon")));
             // 
-            // EmployeeFormEdit
+            // EmployeeEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -290,7 +291,7 @@
             this.Controls.Add(this.panelInfo);
             this.Controls.Add(this.panelTop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "EmployeeFormEdit";
+            this.Name = "EmployeeEditForm";
             this.Load += new System.EventHandler(this.LoadForm);
             this.panelTop.ResumeLayout(false);
             this.panelInfo.ResumeLayout(false);

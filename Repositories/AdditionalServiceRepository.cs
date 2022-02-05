@@ -5,21 +5,19 @@ using StretchCeilings.Models;
 
 namespace StretchCeilings.Repositories
 {
-    public static class AdditionalServiceRepository
+    public class AdditionalServiceRepository : NotNull
     {
         public static List<AdditionalService> GetAll(out int rows)
         {
             using (var db = new StretchCeilingsContext())
             {
-                var additionalServices = db.AdditionalServices.Where(o => o.DeletedDate == null).ToList();
+                var queryable = db.AdditionalServices.Where(o => o.DeletedDate == null);
                 rows = 0;
-
-                if (additionalServices.Any())
-                {
-                    rows = additionalServices.Count;
-                }
-
-                return additionalServices;
+                
+                if (queryable.Any())
+                    rows = queryable.Count();
+                
+                return queryable.ToList();
             }
         }
 
@@ -27,40 +25,31 @@ namespace StretchCeilings.Repositories
         {
             using (var db = new StretchCeilingsContext())
             {
-                var additionalServices = db.AdditionalServices.Where(s => s.DeletedDate == null).ToList();
+                var queryable = db.AdditionalServices.Where(s => s.DeletedDate == null);
                 rows = 0;
 
                 if (firstFilter.Id != 0)
-                    additionalServices = additionalServices.Where(s => s.Id == firstFilter.Id).ToList();
-                else
-                {
-                    if (firstFilter.Price != null && secondsFilter.Price != null)
-                    {
-                        additionalServices = additionalServices.Where(s =>
-                            firstFilter.Price <= s.Price && s.Price <= secondsFilter.Price).ToList();
-                    }
-                    else if(firstFilter.Price != null)
-                    {
-                        additionalServices = additionalServices.Where(s => firstFilter.Price <= s.Price).ToList();
-                    }
-                    else if(secondsFilter.Price != null)
-                    {
-                        additionalServices = additionalServices.Where(s => s.Price <= secondsFilter.Price).ToList();
-                    }
+                    queryable = queryable.Where(s => s.Id == firstFilter.Id);
 
-                    if (firstFilter.Name != null)
-                    {
-                        additionalServices = additionalServices.Where(s => s.Name == firstFilter.Name).ToList();
-                    }
-                }
+                if ((IsNull(firstFilter.Price) && IsNull(secondsFilter.Price)) == false)
+                    queryable = queryable.Where(s => firstFilter.Price <= s.Price && s.Price <= secondsFilter.Price);
+                
+                if (IsNull(firstFilter.Price) == false)
+                    queryable = queryable.Where(s => firstFilter.Price <= s.Price);
+                
+                if (IsNull(secondsFilter.Price) == false)
+                    queryable = queryable.Where(s => s.Price <= secondsFilter.Price);
 
-                if (additionalServices.Any())
-                {
-                    rows = additionalServices.Count;
-                    additionalServices = additionalServices.Skip((page - 1) * count).Take(count).ToList();
-                }
+                if (IsNull(firstFilter.Name) == false)
+                    queryable = queryable.Where(s => s.Name == firstFilter.Name);
+                
+                
+                if (queryable.Any() == false)
+                    return queryable.ToList();
+                
+                rows = queryable.Count();
 
-                return additionalServices;
+                return queryable.ToList().Skip((page - 1) * count).Take(count).ToList();
             }
         }
 

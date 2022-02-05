@@ -7,6 +7,7 @@ using StretchCeilings.Helpers;
 using StretchCeilings.Helpers.Controls;
 using StretchCeilings.Helpers.Enums;
 using StretchCeilings.Helpers.Extensions.Controls;
+using StretchCeilings.Helpers.Structs;
 using StretchCeilings.Models;
 using StretchCeilings.Repositories;
 
@@ -17,7 +18,7 @@ namespace StretchCeilings.Views
         private List<Employee> _employees;
         private List<ComboBoxItem> _roles;
 
-        private readonly bool _forSearching;
+        private readonly FormState _state;
 
         private Employee _filter;
         private Employee _getEmployee;
@@ -29,9 +30,9 @@ namespace StretchCeilings.Views
 
         public Employee GetEmployee() => _getEmployee;
 
-        public EmployeesForm(bool forSearching = false)
+        public EmployeesForm(FormState state = FormState.Default)
         {
-            _forSearching = forSearching;
+            _state = state;
             InitializeComponent();
         }
 
@@ -74,7 +75,7 @@ namespace StretchCeilings.Views
                 cbRole.Items.Add(item.Name);
             }
 
-            foreach (var rowCountItem in Constants.RowCountItems)
+            foreach (var rowCountItem in Resources.RowCountItems)
                 cbRows.Items.Add(rowCountItem);
 
             cbRows.SelectedItem = cbRows.Items[0];
@@ -105,8 +106,8 @@ namespace StretchCeilings.Views
         {
             _filter = new Employee();
 
-            nudId.Value = Constants.DefaultNumericUpDownValue;
-            tbFullName.Text = Constants.DefaultTextBoxText;
+            nudId.Value = Resources.DefaultNumericUpDownValue;
+            tbFullName.Text = Resources.DefaultTextBoxText;
             cbRole.SelectedItem = null;
 
             _currentPage = 1;

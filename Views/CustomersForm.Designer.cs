@@ -184,7 +184,6 @@ namespace StretchCeilings.Views
             this.nudId.Size = new System.Drawing.Size(60, 29);
             this.nudId.TabIndex = 15;
             this.nudId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.nudId.ValueChanged += new System.EventHandler(this.nudId_ValueChanged);
             // 
             // lblId
             // 
@@ -196,7 +195,6 @@ namespace StretchCeilings.Views
             this.lblId.Size = new System.Drawing.Size(30, 23);
             this.lblId.TabIndex = 13;
             this.lblId.Text = "№:";
-            this.lblId.Click += new System.EventHandler(this.lblId_Click);
             // 
             // tbFullName
             // 
@@ -208,7 +206,6 @@ namespace StretchCeilings.Views
             this.tbFullName.Name = "tbFullName";
             this.tbFullName.Size = new System.Drawing.Size(241, 29);
             this.tbFullName.TabIndex = 12;
-            this.tbFullName.TextChanged += new System.EventHandler(this.tbFullName_TextChanged);
             // 
             // lblFullName
             // 
