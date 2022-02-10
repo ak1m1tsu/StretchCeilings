@@ -35,7 +35,6 @@
             this.gbRooms = new System.Windows.Forms.GroupBox();
             this.dgvRooms = new System.Windows.Forms.DataGridView();
             this.panelInfo = new System.Windows.Forms.Panel();
-            this.btnSave = new FontAwesome.Sharp.IconButton();
             this.lblAddressValue = new System.Windows.Forms.Label();
             this.lblAddress = new System.Windows.Forms.Label();
             this.panelTop.SuspendLayout();
@@ -124,7 +123,6 @@
             // 
             // panelInfo
             // 
-            this.panelInfo.Controls.Add(this.btnSave);
             this.panelInfo.Controls.Add(this.lblAddressValue);
             this.panelInfo.Controls.Add(this.lblAddress);
             this.panelInfo.Dock = System.Windows.Forms.DockStyle.Top;
@@ -132,24 +130,6 @@
             this.panelInfo.Name = "panelInfo";
             this.panelInfo.Size = new System.Drawing.Size(900, 70);
             this.panelInfo.TabIndex = 0;
-            // 
-            // btnSave
-            // 
-            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
-            this.btnSave.FlatAppearance.BorderSize = 0;
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.IconChar = FontAwesome.Sharp.IconChar.Bahai;
-            this.btnSave.IconColor = System.Drawing.Color.White;
-            this.btnSave.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnSave.IconSize = 30;
-            this.btnSave.Location = new System.Drawing.Point(764, 34);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(130, 30);
-            this.btnSave.TabIndex = 3;
-            this.btnSave.Text = "Изменить";
-            this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnSave.UseVisualStyleBackColor = false;
             // 
             // lblAddressValue
             // 
@@ -180,10 +160,12 @@
             this.Controls.Add(this.panelBody);
             this.Controls.Add(this.panelTop);
             this.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MinimumSize = new System.Drawing.Size(900, 600);
             this.Name = "EstateForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EstateForm";
             this.Load += new System.EventHandler(this.LoadForm);
             this.panelTop.ResumeLayout(false);
@@ -206,6 +188,5 @@
         private System.Windows.Forms.DataGridView dgvRooms;
         private System.Windows.Forms.Label lblAddress;
         private System.Windows.Forms.Label lblAddressValue;
-        private FontAwesome.Sharp.IconButton btnSave;
     }
 }

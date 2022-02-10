@@ -37,10 +37,10 @@ namespace StretchCeilings.Views
 
     public static class CustomMessageBox
     {
-        public static void Show(string text, string caption)
+        public static DialogResult ShowDialog(string text, string caption)
         {
             using (var form = new CustomMessageBoxForm(text, caption))
-                form.ShowDialog();
+                return form.ShowDialog();
         }
     }
 }

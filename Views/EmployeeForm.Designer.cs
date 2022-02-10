@@ -32,6 +32,7 @@ namespace StretchCeilings.Views
             this.panelTop = new System.Windows.Forms.Panel();
             this.btnClose = new FontAwesome.Sharp.IconButton();
             this.panelInfo = new System.Windows.Forms.Panel();
+            this.btnEdit = new System.Windows.Forms.Button();
             this.lblPasswordValue = new System.Windows.Forms.Label();
             this.lblLoginValue = new System.Windows.Forms.Label();
             this.lblRoleValue = new System.Windows.Forms.Label();
@@ -42,7 +43,6 @@ namespace StretchCeilings.Views
             this.lblRole = new System.Windows.Forms.Label();
             this.gbTimeTable = new System.Windows.Forms.GroupBox();
             this.dgvTimeTable = new System.Windows.Forms.DataGridView();
-            this.btnEdit = new System.Windows.Forms.Button();
             this.panelTop.SuspendLayout();
             this.panelInfo.SuspendLayout();
             this.gbTimeTable.SuspendLayout();
@@ -92,6 +92,22 @@ namespace StretchCeilings.Views
             this.panelInfo.Name = "panelInfo";
             this.panelInfo.Size = new System.Drawing.Size(350, 475);
             this.panelInfo.TabIndex = 90;
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.btnEdit.FlatAppearance.BorderSize = 0;
+            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEdit.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.btnEdit.ForeColor = System.Drawing.Color.White;
+            this.btnEdit.Location = new System.Drawing.Point(224, 433);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(120, 30);
+            this.btnEdit.TabIndex = 73;
+            this.btnEdit.Text = "Изменить";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Visible = false;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // lblPasswordValue
             // 
@@ -219,22 +235,6 @@ namespace StretchCeilings.Views
             this.dgvTimeTable.Size = new System.Drawing.Size(644, 447);
             this.dgvTimeTable.TabIndex = 4;
             // 
-            // btnEdit
-            // 
-            this.btnEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
-            this.btnEdit.FlatAppearance.BorderSize = 0;
-            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEdit.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.btnEdit.ForeColor = System.Drawing.Color.White;
-            this.btnEdit.Location = new System.Drawing.Point(224, 433);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(120, 30);
-            this.btnEdit.TabIndex = 73;
-            this.btnEdit.Text = "Изменить";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Visible = false;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
             // EmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -247,6 +247,7 @@ namespace StretchCeilings.Views
             this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "EmployeeForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.EmployeeForm_Load);
             this.panelTop.ResumeLayout(false);
             this.panelInfo.ResumeLayout(false);

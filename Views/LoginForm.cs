@@ -28,7 +28,7 @@ namespace StretchCeilings.Views
         {
             if (UserSession.LogIn(mtbLogin.Text, tbPassword.Text) == false)
             {
-                CustomMessageBox.Show("Неверный логин или пароль.", Caption.Error);
+                CustomMessageBox.ShowDialog("Неверный логин или пароль.", Caption.Error);
                 return;
             }
 

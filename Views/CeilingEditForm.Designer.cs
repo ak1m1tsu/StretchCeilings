@@ -159,7 +159,7 @@ namespace StretchCeilings.Views
             this.lblTexture.TabIndex = 88;
             this.lblTexture.Text = "Фактура:";
             // 
-            // CeilingFormEdit
+            // CeilingEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -174,7 +174,8 @@ namespace StretchCeilings.Views
             this.Controls.Add(this.lblTexture);
             this.Controls.Add(this.panelTop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "CeilingFormEdit";
+            this.Name = "CeilingEditForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Производитель \"Pongs\"";
             this.panelTop.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nudPrice)).EndInit();

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using StretchCeilings.Helpers.Enums;
 using StretchCeilings.Helpers.Extensions;
+using StretchCeilings.Helpers.Extensions.Controls;
 using StretchCeilings.Helpers.Structs;
 using StretchCeilings.Models;
 
@@ -10,28 +12,57 @@ namespace StretchCeilings.Views
     public partial class ServiceForm : Form
     {
         private readonly Service _service;
+        private readonly FormState _state;
         private List<ServiceAdditionalService> _additionalServices;
 
-        public ServiceForm(Service service)
+        public ServiceForm(Service service, FormState state = FormState.Default)
         {
             _service = service;
+            _state = state;
             InitializeComponent();
         }
 
-        private string PriceString => $@"{_service.Price} {Resources.Rubles}";
+        private string PriceString => $@"{_service.Price ?? 0} {Resources.Rubles}";
 
         private void SetupForm()
         {
-            linkLblManufaturerValue.Text = _service.Manufacturer.Name;
-            linkLblManufaturerValue.Tag = _service.Manufacturer;
-            linkLblCeilingValue.Text = _service.Ceiling.Name;
-            linkLblCeilingValue.Tag = _service.Ceiling;
+            linkLblManufaсturerValue.Text = _service.Manufacturer.Name ?? Resources.No;
+            linkLblCeilingValue.Text = _service.Ceiling.Name ?? Resources.No;
+            linkLblRoom.Text = Resources.Selected;
             lblPriceValue.Text = PriceString;
+            if (_state == FormState.ForView)
+                btnEdit.Visible = false;
+
+            SetupDataGrid();
         }
 
         private void SetupDataGrid()
         {
-             
+            dgvAdditServs.AddDataGridViewTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvAdditServs.AddDataGridViewTextBoxColumn(Resources.Name, DataGridViewAutoSizeColumnMode.Fill);
+            dgvAdditServs.AddDataGridViewTextBoxColumn(Resources.Price, DataGridViewAutoSizeColumnMode.Fill);
+            dgvAdditServs.AddDataGridViewTextBoxColumn("Кол-во", DataGridViewAutoSizeColumnMode.DisplayedCells);
+
+            dgvAdditServs.Font = GoogleFont.OpenSans;
+            dgvAdditServs.ForeColor = DraculaColor.Background;
+            dgvAdditServs.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
+            dgvAdditServs.DefaultCellStyle.SelectionForeColor = DraculaColor.Foreground;
+
+            FillDataGrid();
+        }
+
+        private void FillDataGrid()
+        {
+            _additionalServices = _service?.GetAdditionalServices();
+
+            for (var i = 0; i < _additionalServices?.Count; i++)
+            {
+                dgvAdditServs.Rows.Add(new DataGridViewRow());
+                dgvAdditServs.Rows[i].Cells[Resources.Number].Value = dgvAdditServs.Rows.Count;
+                dgvAdditServs.Rows[i].Cells[Resources.Name].Value = _additionalServices[i].AdditionalService?.Name;
+                dgvAdditServs.Rows[i].Cells[Resources.Price].Value = _additionalServices[i].AdditionalService?.Price;
+                dgvAdditServs.Rows[i].Cells["Кол-во"].Value = _additionalServices[i].Count;
+            }
         }
 
         private void LoadForm(object sender, EventArgs e)
@@ -42,6 +73,38 @@ namespace StretchCeilings.Views
         private void DragMove(object sender, MouseEventArgs e)
         {
             this.Handle.DragMove(e);
+        }
+
+        private void ShowManufacturer(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (_service.Manufacturer == null)
+                return;
+
+            var form = new ManufacturerForm(_service.Manufacturer);
+            form.ShowDialog();
+        }
+
+        private void ShowCeiling(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (_service.Ceiling == null)
+                return;
+
+            var form = new CeilingForm(_service.Ceiling);
+            form.ShowDialog();
+        }
+
+        private void CloseForm(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+        }
+
+        private void ShowRoom(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (_service.Room == null)
+                return;
+
+            var form = new RoomForm(_service.Room);
+            form.ShowDialog();
         }
     }
 }

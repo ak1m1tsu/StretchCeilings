@@ -28,24 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelTop = new System.Windows.Forms.Panel();
             this.btnClose = new FontAwesome.Sharp.IconButton();
             this.panelBody = new System.Windows.Forms.Panel();
             this.gbRooms = new System.Windows.Forms.GroupBox();
-            this.panelInfo = new System.Windows.Forms.Panel();
-            this.lblAddress = new System.Windows.Forms.Label();
-            this.tbAddress = new System.Windows.Forms.TextBox();
-            this.btnSave = new FontAwesome.Sharp.IconButton();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.dgvRooms = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.btnAddRoom = new System.Windows.Forms.Button();
+            this.panelInfo = new System.Windows.Forms.Panel();
+            this.btnSave = new FontAwesome.Sharp.IconButton();
+            this.tbAddress = new System.Windows.Forms.TextBox();
+            this.lblAddress = new System.Windows.Forms.Label();
             this.panelTop.SuspendLayout();
             this.panelBody.SuspendLayout();
             this.gbRooms.SuspendLayout();
-            this.panelInfo.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRooms)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.panelInfo.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTop
@@ -98,6 +98,52 @@
             this.gbRooms.TabStop = false;
             this.gbRooms.Text = "Комнаты";
             // 
+            // dgvRooms
+            // 
+            this.dgvRooms.AllowUserToAddRows = false;
+            this.dgvRooms.AllowUserToDeleteRows = false;
+            this.dgvRooms.AllowUserToResizeColumns = false;
+            this.dgvRooms.AllowUserToResizeRows = false;
+            this.dgvRooms.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.dgvRooms.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvRooms.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvRooms.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvRooms.Location = new System.Drawing.Point(3, 25);
+            this.dgvRooms.Name = "dgvRooms";
+            this.dgvRooms.ReadOnly = true;
+            this.dgvRooms.RowHeadersVisible = false;
+            this.dgvRooms.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvRooms.Size = new System.Drawing.Size(894, 434);
+            this.dgvRooms.TabIndex = 1;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnAddRoom);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(3, 459);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(894, 43);
+            this.panel1.TabIndex = 0;
+            // 
+            // btnAddRoom
+            // 
+            this.btnAddRoom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.btnAddRoom.FlatAppearance.BorderSize = 0;
+            this.btnAddRoom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddRoom.Location = new System.Drawing.Point(770, 6);
+            this.btnAddRoom.Name = "btnAddRoom";
+            this.btnAddRoom.Size = new System.Drawing.Size(120, 30);
+            this.btnAddRoom.TabIndex = 0;
+            this.btnAddRoom.Text = "Добавить";
+            this.btnAddRoom.UseVisualStyleBackColor = false;
+            // 
             // panelInfo
             // 
             this.panelInfo.Controls.Add(this.btnSave);
@@ -108,26 +154,6 @@
             this.panelInfo.Name = "panelInfo";
             this.panelInfo.Size = new System.Drawing.Size(900, 70);
             this.panelInfo.TabIndex = 0;
-            // 
-            // lblAddress
-            // 
-            this.lblAddress.AutoSize = true;
-            this.lblAddress.ForeColor = System.Drawing.Color.White;
-            this.lblAddress.Location = new System.Drawing.Point(9, 9);
-            this.lblAddress.Name = "lblAddress";
-            this.lblAddress.Size = new System.Drawing.Size(60, 23);
-            this.lblAddress.TabIndex = 0;
-            this.lblAddress.Text = "Адрес:";
-            // 
-            // tbAddress
-            // 
-            this.tbAddress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
-            this.tbAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbAddress.ForeColor = System.Drawing.Color.White;
-            this.tbAddress.Location = new System.Drawing.Point(75, 6);
-            this.tbAddress.Name = "tbAddress";
-            this.tbAddress.Size = new System.Drawing.Size(401, 29);
-            this.tbAddress.TabIndex = 1;
             // 
             // btnSave
             // 
@@ -147,51 +173,25 @@
             this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSave.UseVisualStyleBackColor = false;
             // 
-            // panel1
+            // tbAddress
             // 
-            this.panel1.Controls.Add(this.btnAddRoom);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(3, 459);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(894, 43);
-            this.panel1.TabIndex = 0;
+            this.tbAddress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.tbAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbAddress.ForeColor = System.Drawing.Color.White;
+            this.tbAddress.Location = new System.Drawing.Point(75, 6);
+            this.tbAddress.Name = "tbAddress";
+            this.tbAddress.Size = new System.Drawing.Size(401, 29);
+            this.tbAddress.TabIndex = 1;
             // 
-            // dgvRooms
+            // lblAddress
             // 
-            this.dgvRooms.AllowUserToAddRows = false;
-            this.dgvRooms.AllowUserToDeleteRows = false;
-            this.dgvRooms.AllowUserToResizeColumns = false;
-            this.dgvRooms.AllowUserToResizeRows = false;
-            this.dgvRooms.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
-            this.dgvRooms.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvRooms.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvRooms.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvRooms.Location = new System.Drawing.Point(3, 25);
-            this.dgvRooms.Name = "dgvRooms";
-            this.dgvRooms.ReadOnly = true;
-            this.dgvRooms.RowHeadersVisible = false;
-            this.dgvRooms.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRooms.Size = new System.Drawing.Size(894, 434);
-            this.dgvRooms.TabIndex = 1;
-            // 
-            // btnAddRoom
-            // 
-            this.btnAddRoom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
-            this.btnAddRoom.FlatAppearance.BorderSize = 0;
-            this.btnAddRoom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddRoom.Location = new System.Drawing.Point(770, 6);
-            this.btnAddRoom.Name = "btnAddRoom";
-            this.btnAddRoom.Size = new System.Drawing.Size(120, 30);
-            this.btnAddRoom.TabIndex = 0;
-            this.btnAddRoom.Text = "Добавить";
-            this.btnAddRoom.UseVisualStyleBackColor = false;
+            this.lblAddress.AutoSize = true;
+            this.lblAddress.ForeColor = System.Drawing.Color.White;
+            this.lblAddress.Location = new System.Drawing.Point(9, 9);
+            this.lblAddress.Name = "lblAddress";
+            this.lblAddress.Size = new System.Drawing.Size(60, 23);
+            this.lblAddress.TabIndex = 0;
+            this.lblAddress.Text = "Адрес:";
             // 
             // EstateEditForm
             // 
@@ -206,14 +206,15 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MinimumSize = new System.Drawing.Size(900, 600);
             this.Name = "EstateEditForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EstateEditForm";
             this.panelTop.ResumeLayout(false);
             this.panelBody.ResumeLayout(false);
             this.gbRooms.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRooms)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.panelInfo.ResumeLayout(false);
             this.panelInfo.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvRooms)).EndInit();
             this.ResumeLayout(false);
 
         }

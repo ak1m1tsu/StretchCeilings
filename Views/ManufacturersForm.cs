@@ -25,7 +25,7 @@ namespace StretchCeilings.Views
         private int _rows;
         private int _count;
         private int _currentPage = 1;
-        private int _maxPage = 1;
+        private int _lastPage = 1;
 
         public ManufacturersForm(FormState state = FormState.Default)
         {
@@ -39,29 +39,15 @@ namespace StretchCeilings.Views
         {
             _manufacturers = ManufacturerRepository.GetAll(out _rows);
 
-            dgvManufacturers.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvManufacturers.AddDataGridViewTextBoxColumn("Производитель", DataGridViewAutoSizeColumnMode.Fill);
+            dgvManufacturers.AddDataGridViewTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvManufacturers.AddDataGridViewTextBoxColumn(Resources.Manufacturer, DataGridViewAutoSizeColumnMode.Fill);
             dgvManufacturers.AddDataGridViewTextBoxColumn("Адрес", DataGridViewAutoSizeColumnMode.Fill);
             dgvManufacturers.AddDataGridViewTextBoxColumn("Страна", DataGridViewAutoSizeColumnMode.DisplayedCells);
-            
-            if(CanUserDelete() && IsForSearching() == false) 
-                dgvManufacturers.AddDataGridViewButtonColumn(DraculaColor.Red);
+            dgvManufacturers.AddDataGridViewButtonColumn(DraculaColor.Red);
 
             dgvManufacturers.Font = GoogleFont.OpenSans;
             dgvManufacturers.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
             dgvManufacturers.DefaultCellStyle.SelectionForeColor = DraculaColor.Foreground;
-
-            if (IsForSearching())
-            {
-                dgvManufacturers.CellDoubleClick += SelectManufacturer;
-                FillDataGrid();
-                return;
-            }
-
-            dgvManufacturers.CellClick += RemoveGridData;
-            dgvManufacturers.CellDoubleClick += OpenManufacturerForm;
-
-            FillDataGrid();
         }
 
         private static bool CanUserAdd() => UserSession.IsAdmin ||
@@ -70,7 +56,7 @@ namespace StretchCeilings.Views
         private static bool CanUserDelete() => UserSession.IsAdmin ||
                                                UserSession.Can(PermissionCode.DelCustomer);
 
-        private bool IsForSearching() => _state == FormState.ForSearching;
+        private bool IsForSearching() => _state == FormState.ForView;
 
         private void DrawAddCustomerButton()
         {
@@ -78,13 +64,19 @@ namespace StretchCeilings.Views
             panelUserButtons.Controls.Add(btnAddManufacturer);
         }
 
+        private void DragMove(object sender, MouseEventArgs e)
+        {
+            this.Handle.DragMove(e);
+        }
+
         private void SelectManufacturer(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvManufacturers.SelectedRows.Count <= 0 || e.RowIndex < 0)
+            if (e.RowIndex < 0)
                 return;
 
-            var manufacturerId = (int)dgvManufacturers.SelectedRows[0].Cells[0].Value;
-            _manufacturer = ManufacturerRepository.GetById(manufacturerId);
+            var index = Convert.ToInt32(dgvManufacturers.Rows[e.RowIndex].Cells[0].Value);
+            _manufacturer = _manufacturers[index-1];
+
             DialogResult = DialogResult.OK;
         }
 
@@ -100,7 +92,7 @@ namespace StretchCeilings.Views
                 };
                 cbCountry.Items.Add(item);
             }
-            cbCountry.DisplayMember = "Content";
+            cbCountry.DisplayMember = Resources.DisplayMember;
             cbCountry.SelectedItem = null;
         }
 
@@ -122,7 +114,20 @@ namespace StretchCeilings.Views
 
             FillCountryComboBox();
             FillRowsComboBox();
-            UpdatePageTextBox();
+
+            if (CanUserDelete() == false)
+                dgvManufacturers.Columns[Resources.Space].Visible = false;
+
+            if (IsForSearching())
+            {
+                panelTopSide.Visible = true;
+                panelTopSide.MouseDown += DragMove;
+                dgvManufacturers.CellDoubleClick += SelectManufacturer;
+                return;
+            }
+
+            dgvManufacturers.CellClick += RemoveGridData;
+            dgvManufacturers.CellDoubleClick += OpenManufacturerForm;
         }
         
         private void FillDataGrid()
@@ -132,14 +137,20 @@ namespace StretchCeilings.Views
             for (var i = 0; i < _manufacturers?.Count; i++)
             {
                 dgvManufacturers.Rows.Add(new DataGridViewRow());
-                dgvManufacturers.Rows[i].Cells[0].Value = _manufacturers[i].Id;
+                dgvManufacturers.Rows[i].Cells[0].Value = dgvManufacturers.Rows.Count;
                 dgvManufacturers.Rows[i].Cells[1].Value = _manufacturers[i].Name;
                 dgvManufacturers.Rows[i].Cells[2].Value = _manufacturers[i].Address;
                 dgvManufacturers.Rows[i].Cells[3].Value = _manufacturers[i].Country?.ParseString();
             }
 
-            _maxPage = (int)Math.Ceiling((double)_rows / _count);
+            UpdateLastPageValue();
             UpdatePageTextBox();
+        }
+
+        private void UpdateLastPageValue()
+        {
+            var result = Math.Ceiling(Convert.ToDouble(_rows) / _count);
+            _lastPage = Convert.ToInt32(result);
         }
 
         private void FilterDataGrid()
@@ -155,10 +166,14 @@ namespace StretchCeilings.Views
 
         private void RemoveGridData(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0 || e.ColumnIndex != dgvManufacturers.Columns[" "]?.Index)
+            var senderGrid = (DataGridView)sender;
+
+            if (e.RowIndex < 0 ||
+                senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn == false)
                 return;
 
-            var manufacturer = ManufacturerRepository.GetById((int)dgvManufacturers.SelectedRows[0].Cells["№"].Value);
+            var index = Convert.ToInt32(dgvManufacturers.Rows[e.RowIndex].Cells[0].Value);
+            var manufacturer = _manufacturers[index - 1];
 
             manufacturer.Delete();
 
@@ -167,27 +182,30 @@ namespace StretchCeilings.Views
 
         private void OpenManufacturerForm(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvManufacturers.SelectedRows.Count <= 0 || e.RowIndex < 0 || e.RowIndex < 0) return;
+            if (e.RowIndex < 0)
+                return;
 
-            var manufacturer = ManufacturerRepository.GetById((int)dgvManufacturers.SelectedRows[0].Cells[0].Value);
+            var index = Convert.ToInt32(dgvManufacturers.Rows[e.RowIndex].Cells[0].Value);
+            var manufacturer = _manufacturers[index - 1];
             new ManufacturerForm(manufacturer).ShowDialog();
+
             FilterDataGrid();
         }
 
         private void UpdatePageTextBox()
         {
-            if (_maxPage == 0)
+            if (_lastPage == 0)
                 _currentPage = 0;
-            tbPages.UpdatePagesValue(_currentPage, _maxPage);
+
+            tbPages.UpdatePagesValue(_currentPage, _lastPage);
         }
 
         private void ShowNextPage(object sender, EventArgs e)
         {
-            if (_currentPage >= _maxPage)
+            if (_currentPage >= _lastPage)
                 return;
 
             _currentPage++;
-            UpdatePageTextBox();
             FilterDataGrid();
         }
 
@@ -197,41 +215,12 @@ namespace StretchCeilings.Views
                 return;
 
             _currentPage--;
-            UpdatePageTextBox();
             FilterDataGrid();
-        }
-
-        private void SetPickedManufacturer(object sender, EventArgs e)
-        {
-            
         }
 
         private void AddGridData(object sender, EventArgs e)
         {
-            var form = new ManufacturerEditForm();
-            if (form.ShowDialog() == DialogResult.OK)
-                FilterDataGrid();
-        }
-
-        private void UseFilters(object sender, EventArgs e)
-        {
-            FilterDataGrid();
-        }
-
-        private void ResetFilters(object sender, EventArgs e)
-        {
-            _currentPage = 1;
-            _maxPage = 1;
-            _filter = new Manufacturer()
-            {
-                Country = Country.Unknown
-            };
-            
-            tbAddress.Text = Resources.DefaultTextBoxText;
-            tbName.Text = Resources.DefaultTextBoxText;
-
-            cbCountry.SelectedItem = null;
-
+            new ManufacturerEditForm().ShowDialog();
             FilterDataGrid();
         }
 
@@ -244,14 +233,46 @@ namespace StretchCeilings.Views
 
             SetupDataGrid();
             SetupControls();
+            FillDataGrid();
         }
 
-        private void SetDisplayedRowsCount(object sender, EventArgs e)
+        private void CloseForm(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+        }
+
+        private void UseFilters(object sender, EventArgs e)
+        {
+            FilterDataGrid();
+        }
+
+        private void ResetFilters(object sender, EventArgs e)
         {
             _currentPage = 1;
-            _count = int.Parse(cbRows.Items[cbRows.SelectedIndex].ToString());
+            _lastPage = 1;
+            _filter = new Manufacturer()
+            {
+                Country = Country.Unknown
+            };
+
+            tbAddress.Text = Resources.DefaultTextBoxText;
+            tbName.Text = Resources.DefaultTextBoxText;
+
+            cbCountry.SelectedItem = null;
 
             FilterDataGrid();
+        }
+
+        private void SetManufacturerAddress(object sender, EventArgs e)
+        {
+            if (tbAddress.Text.Length > 0)
+                _filter.Address = tbAddress.Text;
+        }
+
+        private void SetManufacturerName(object sender, EventArgs e)
+        {
+            if (tbName.Text.Length > 0)
+                _filter.Name = tbName.Text;
         }
 
         private void SetManufacturerCountry(object sender, EventArgs e)
@@ -261,16 +282,11 @@ namespace StretchCeilings.Views
                     _filter.Country = (Country)item.Tag;
         }
 
-        private void SetManufacturerName(object sender, EventArgs e)
+        private void RowCountChanged(object sender, EventArgs e)
         {
-            if (tbName.Text.Length > 0)
-                _filter.Name = tbName.Text;
-        }
-
-        private void SetManufacturerAddress(object sender, EventArgs e)
-        {
-            if (tbAddress.Text.Length > 0)
-                _filter.Address = tbAddress.Text;
+            _currentPage = 1;
+            _count = Convert.ToInt32(cbRows.SelectedItem);
+            FilterDataGrid();
         }
     }
 }

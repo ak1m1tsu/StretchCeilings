@@ -21,14 +21,14 @@ namespace StretchCeilings.Views
         private readonly FormState _state;
 
         private Employee _filter;
-        private Employee _getEmployee;
+        private Employee _employee;
         
         private int _rows;
         private int _count;
         private int _currentPage = 1;
-        private int _maxPage = 1;
+        private int _lastPage = 1;
 
-        public Employee GetEmployee() => _getEmployee;
+        public Employee GetEmployee() => _employee;
 
         public EmployeesForm(FormState state = FormState.Default)
         {
@@ -40,17 +40,15 @@ namespace StretchCeilings.Views
         {
             _employees = EmployeeRepository.GetAll(out _rows);
 
-            dgvEmployees.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvEmployees.AddDataGridViewTextBoxColumn("ФИО", DataGridViewAutoSizeColumnMode.Fill);
-            dgvEmployees.AddDataGridViewTextBoxColumn("Номер телефона", DataGridViewAutoSizeColumnMode.Fill);
-            dgvEmployees.AddDataGridViewTextBoxColumn("Должность", DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvEmployees.AddDataGridViewTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvEmployees.AddDataGridViewTextBoxColumn(Resources.FullName, DataGridViewAutoSizeColumnMode.Fill);
+            dgvEmployees.AddDataGridViewTextBoxColumn(Resources.PhoneNumber, DataGridViewAutoSizeColumnMode.Fill);
+            dgvEmployees.AddDataGridViewTextBoxColumn(Resources.Role, DataGridViewAutoSizeColumnMode.DisplayedCells);
             dgvEmployees.AddDataGridViewButtonColumn(DraculaColor.Red);
 
             dgvEmployees.Font = GoogleFont.OpenSans;
             dgvEmployees.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
             dgvEmployees.DefaultCellStyle.SelectionForeColor = DraculaColor.Foreground;
-
-            FillEmployeesGrid();
         }
 
         private void SetUpControls()
@@ -59,7 +57,7 @@ namespace StretchCeilings.Views
 
             if (UserSession.IsAdmin || UserSession.Can(PermissionCode.AddCustomer))
             {
-                var btnAddOrder = new FlatButton("btnAddOrder", "Добавить", btnAddEmployee_Click);
+                var btnAddOrder = new FlatButton("btnAddOrder", "Добавить", AddGridData);
                 panelUserButtons.Controls.Add(btnAddOrder);
             }
 
@@ -79,11 +77,13 @@ namespace StretchCeilings.Views
                 cbRows.Items.Add(rowCountItem);
 
             cbRows.SelectedItem = cbRows.Items[0];
+            cbRows.SelectedIndexChanged += RowCountChanged;
+            _count = Convert.ToInt32(cbRows.SelectedItem);
 
             UpdateTextBoxPagesText();
         }
 
-        private void FillEmployeesGrid()
+        private void FillDataGrid()
         {
             dgvEmployees.Rows.Clear();
 
@@ -91,18 +91,72 @@ namespace StretchCeilings.Views
             {
                 dgvEmployees.Rows.Add(new DataGridViewRow());
 
-                dgvEmployees.Rows[i].Cells[0].Value = _employees[i].Id;
+                dgvEmployees.Rows[i].Cells[0].Value = dgvEmployees.Rows.Count;
                 dgvEmployees.Rows[i].Cells[1].Value = _employees[i].FullName;
                 dgvEmployees.Rows[i].Cells[2].Value = _employees[i].Login;
                 dgvEmployees.Rows[i].Cells[3].Value = _employees[i].Role?.Name;
             }
 
-            _maxPage = (int)Math.Ceiling((double)_rows / _count);
-
+            UpdateLastPageValue();
             UpdateTextBoxPagesText();
         }
 
-        private void ResetFilters()
+        private void UpdateLastPageValue()
+        {
+            var result = Math.Ceiling(Convert.ToDouble(_rows) / _count);
+            _lastPage = Convert.ToInt32(result);
+        }
+
+        private void FilterEmployeesGrid()
+        {
+            _employees = EmployeeRepository.GetAll(
+                _filter,
+                _count,
+                _currentPage,
+                out _rows);
+
+            FillDataGrid();
+        }
+
+        private void UpdateTextBoxPagesText()
+        {
+            if (_lastPage == 0)
+                _currentPage = 0;
+            tbPages.UpdatePagesValue(_currentPage, _lastPage);
+        }
+
+        private void EmployeesForm_Load(object sender, EventArgs e)
+        {
+            _filter = new Employee();
+
+            SetUpDataGrid();
+            SetUpControls();
+            FillDataGrid();
+        }
+
+        private void RoleChanged(object sender, EventArgs e)
+        {
+            if (cbRole.SelectedItem == null)
+                return;
+
+            var item = (ComboBoxItem)cbRows.SelectedItem;
+            var role = _roles.First(x => x.Content == item.Content).Tag as Role;
+            _filter.Role = role;
+        }
+
+        private void AddGridData(object sender, EventArgs e)
+        {
+            var form = new EmployeeEditForm(new Employee());
+            if (form.ShowDialog() == DialogResult.OK)
+                FilterEmployeesGrid();
+        }
+
+        private void UseFilters(object sender, EventArgs e)
+        {
+            FilterEmployeesGrid();
+        }
+
+        private void ResetFilters(object sender, EventArgs e)
         {
             _filter = new Employee();
 
@@ -115,114 +169,68 @@ namespace StretchCeilings.Views
             FilterEmployeesGrid();
         }
 
-        private void FilterEmployeesGrid()
-        {
-            _employees = EmployeeRepository.GetAll(
-                _filter,
-                _count,
-                _currentPage,
-                out _rows);
-
-            FillEmployeesGrid();
-        }
-        private void OpenDataGridRowForm(DataGridViewCellEventArgs e)
-        {
-            if (dgvEmployees.SelectedRows.Count <= 0 || e.RowIndex < 0) return;
-
-            var employee = EmployeeRepository.GetById((int)dgvEmployees.SelectedRows[0].Cells[0].Value);
-            new EmployeeForm(employee).ShowDialog();
-            FilterEmployeesGrid();
-        }
-
-        private void UpdateTextBoxPagesText()
-        {
-            if (_maxPage == 0)
-                _currentPage = 0;
-            tbPages.UpdatePagesValue(_currentPage, _maxPage);
-        }
-
-        private void EmployeesForm_Load(object sender, EventArgs e)
-        {
-            _filter = new Employee();
-            SetUpDataGrid();
-            SetUpControls();
-        }
-
-        private void cbRole_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbRole.SelectedItem == null) return;
-
-            _filter.Role = (Role)_roles.First(x => x.Name == (string)cbRole.Items[cbRole.SelectedIndex]).Tag;
-        }
-
-        private void btnAddEmployee_Click(object sender, EventArgs e)
-        {
-            var form = new EmployeeEditForm(new Employee());
-            if (form.ShowDialog() == DialogResult.OK)
-                FilterEmployeesGrid();
-        }
-
-        private void btnUseFilters_Click(object sender, EventArgs e)
-        {
-            FilterEmployeesGrid();
-        }
-
-        private void btnResetFilter_Click(object sender, EventArgs e)
-        {
-            ResetFilters();
-        }
-
-        private void cbRows_SelectedIndexChanged(object sender, EventArgs e)
+        private void RowCountChanged(object sender, EventArgs e)
         {
             _currentPage = 1;
-            _count = int.Parse(cbRows.Items[cbRows.SelectedIndex].ToString());
+            _count = Convert.ToInt32(cbRows.SelectedItem);
             FilterEmployeesGrid();
         }
 
-        private void btnPrevious_Click(object sender, EventArgs e)
+        private void SHowPreviousPage(object sender, EventArgs e)
         {
-            if (_currentPage > 1)
-            {
-                _currentPage--;
-                UpdateTextBoxPagesText();
-                FilterEmployeesGrid();
-            }
+            if (_currentPage <= 1)
+                return;
+
+            _currentPage--;
+            FilterEmployeesGrid();
         }
 
-        private void btnNext_Click(object sender, EventArgs e)
+        private void ShowNextPage(object sender, EventArgs e)
         {
-            if (_currentPage < _maxPage)
-            {
-                _currentPage++;
-                UpdateTextBoxPagesText();
-                FilterEmployeesGrid();
-            }
+            if (_currentPage >= _lastPage)
+                return;
+
+            _currentPage++;
+            FilterEmployeesGrid();
         }
 
-        private void nudId_ValueChanged(object sender, EventArgs e)
+        private void IdChanged(object sender, EventArgs e)
         {
-            _filter.Id = (int)nudId.Value;
+            _filter.Id = Convert.ToInt32(nudId.Value);
         }
 
-        private void tbFullName_TextChanged(object sender, EventArgs e)
+        private void FullNameChanged(object sender, EventArgs e)
         {
-            if(tbFullName.Text != "") _filter.FullName = tbFullName.Text;
+            if(tbFullName.Text != "")
+                _filter.FullName = tbFullName.Text;
         }
 
-        private void dgvEmployees_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void RemoveGridData(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0 || e.ColumnIndex != dgvEmployees.Columns[" "]?.Index) return;
+            var senderGrid = (DataGridView)sender;
 
-            var employee = EmployeeRepository.GetById((int)dgvEmployees.SelectedRows[0].Cells["№"].Value);
+            if (e.RowIndex < 0 ||
+                senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn == false)
+                return;
+
+            var index = Convert.ToInt32(dgvEmployees.Rows[e.RowIndex].Cells[0].Value);
+            var employee = _employees[index - 1];
 
             employee.Delete();
 
             FilterEmployeesGrid();
         }
 
-        private void dgvEmployees_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void ShowGridData(object sender, DataGridViewCellEventArgs e)
         {
-            OpenDataGridRowForm(e);
+            if (e.RowIndex < 0)
+                return;
+
+            var index = Convert.ToInt32(dgvEmployees.Rows[e.RowIndex].Cells[0].Value);
+            var employee = _employees[index - 1];
+            new EmployeeForm(employee).ShowDialog();
+
+            FilterEmployeesGrid();
         }
     }
 }

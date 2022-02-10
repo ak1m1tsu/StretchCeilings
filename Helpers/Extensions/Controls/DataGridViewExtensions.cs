@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
+using StretchCeilings.Helpers.Structs;
 
 namespace StretchCeilings.Helpers.Extensions.Controls
 {
@@ -29,7 +30,7 @@ namespace StretchCeilings.Helpers.Extensions.Controls
             {
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
                 FlatStyle = FlatStyle.Flat,
-                Name = " ",
+                Name = Resources.Space,
                 DefaultCellStyle = new DataGridViewCellStyle()
                 {
                     BackColor = color

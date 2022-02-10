@@ -1,4 +1,6 @@
 ﻿
+using StretchCeilings.Helpers.Structs;
+
 namespace StretchCeilings.Views
 {
     partial class OrdersForm
@@ -96,7 +98,7 @@ namespace StretchCeilings.Views
             this.cbRows.Name = "cbRows";
             this.cbRows.Size = new System.Drawing.Size(50, 31);
             this.cbRows.TabIndex = 97;
-            this.cbRows.SelectedIndexChanged += new System.EventHandler(this.cbRows_SelectedIndexChanged);
+            this.cbRows.SelectedIndexChanged += new System.EventHandler(this.RowCountChanged);
             // 
             // btnPreviousPage
             // 
@@ -111,6 +113,7 @@ namespace StretchCeilings.Views
             this.btnPreviousPage.TabIndex = 96;
             this.btnPreviousPage.Text = "<";
             this.btnPreviousPage.UseVisualStyleBackColor = false;
+            this.btnPreviousPage.Click += new System.EventHandler(this.ShowPreviousPage);
             // 
             // tbPage
             // 
@@ -138,11 +141,14 @@ namespace StretchCeilings.Views
             this.btnNextPage.TabIndex = 94;
             this.btnNextPage.Text = ">";
             this.btnNextPage.UseVisualStyleBackColor = false;
+            this.btnNextPage.Click += new System.EventHandler(this.ShowNextPage);
             // 
             // dgvOrders
             // 
             this.dgvOrders.AllowUserToAddRows = false;
             this.dgvOrders.AllowUserToDeleteRows = false;
+            this.dgvOrders.AllowUserToResizeColumns = false;
+            this.dgvOrders.AllowUserToResizeRows = false;
             this.dgvOrders.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.dgvOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOrders.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -154,7 +160,7 @@ namespace StretchCeilings.Views
             this.dgvOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvOrders.Size = new System.Drawing.Size(1050, 460);
             this.dgvOrders.TabIndex = 3;
-            this.dgvOrders.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrders_CellDoubleClick);
+            this.dgvOrders.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ShowGridData);
             // 
             // panelFilters
             // 
@@ -200,6 +206,7 @@ namespace StretchCeilings.Views
             this.ibtnEmployee.Size = new System.Drawing.Size(25, 25);
             this.ibtnEmployee.TabIndex = 114;
             this.ibtnEmployee.UseVisualStyleBackColor = true;
+            this.ibtnEmployee.Click += new System.EventHandler(this.SelectEmployee);
             // 
             // lblPayment
             // 
@@ -228,6 +235,7 @@ namespace StretchCeilings.Views
             this.ibtnCustomer.Size = new System.Drawing.Size(25, 25);
             this.ibtnCustomer.TabIndex = 113;
             this.ibtnCustomer.UseVisualStyleBackColor = true;
+            this.ibtnCustomer.Click += new System.EventHandler(this.SelectCustomer);
             // 
             // cbStatusValue
             // 
@@ -300,7 +308,6 @@ namespace StretchCeilings.Views
             this.nudTotalTo.Size = new System.Drawing.Size(159, 29);
             this.nudTotalTo.TabIndex = 112;
             this.nudTotalTo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.nudTotalTo.ValueChanged += new System.EventHandler(this.nudTotalTo_ValueChanged);
             // 
             // nudIdValue
             // 
@@ -313,7 +320,6 @@ namespace StretchCeilings.Views
             this.nudIdValue.Size = new System.Drawing.Size(62, 29);
             this.nudIdValue.TabIndex = 110;
             this.nudIdValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.nudIdValue.ValueChanged += new System.EventHandler(this.nudIdValue_ValueChanged);
             // 
             // lblId
             // 
@@ -337,7 +343,6 @@ namespace StretchCeilings.Views
             this.nudTotalFrom.Size = new System.Drawing.Size(159, 29);
             this.nudTotalFrom.TabIndex = 111;
             this.nudTotalFrom.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.nudTotalFrom.ValueChanged += new System.EventHandler(this.nudTotalFrom_ValueChanged);
             // 
             // lblPriceTo
             // 
@@ -386,7 +391,7 @@ namespace StretchCeilings.Views
             this.dtpDateToValue.Name = "dtpDateToValue";
             this.dtpDateToValue.Size = new System.Drawing.Size(159, 29);
             this.dtpDateToValue.TabIndex = 101;
-            this.dtpDateToValue.ValueChanged += new System.EventHandler(this.dtpDateToValue_ValueChanged);
+            this.dtpDateToValue.ValueChanged += new System.EventHandler(this.DatePlacedToChanged);
             // 
             // lblDateTo
             // 
@@ -413,7 +418,7 @@ namespace StretchCeilings.Views
             this.dtpDateFromValue.Name = "dtpDateFromValue";
             this.dtpDateFromValue.Size = new System.Drawing.Size(159, 29);
             this.dtpDateFromValue.TabIndex = 99;
-            this.dtpDateFromValue.ValueChanged += new System.EventHandler(this.dtpDateFromValue_ValueChanged);
+            this.dtpDateFromValue.ValueChanged += new System.EventHandler(this.DatePlacedFromChanged);
             // 
             // lblDateFrom
             // 
@@ -451,7 +456,7 @@ namespace StretchCeilings.Views
             this.btnResetFilters.Text = "Сбросить";
             this.btnResetFilters.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnResetFilters.UseVisualStyleBackColor = true;
-            this.btnResetFilters.Click += new System.EventHandler(this.btnResetFilters_Click);
+            this.btnResetFilters.Click += new System.EventHandler(this.ResetFilters);
             // 
             // btnUseFilters
             // 
@@ -467,7 +472,7 @@ namespace StretchCeilings.Views
             this.btnUseFilters.Text = "Применить";
             this.btnUseFilters.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnUseFilters.UseVisualStyleBackColor = true;
-            this.btnUseFilters.Click += new System.EventHandler(this.btnUseFilters_Click);
+            this.btnUseFilters.Click += new System.EventHandler(this.UseFilters);
             // 
             // paneUserButtons
             // 
@@ -504,7 +509,8 @@ namespace StretchCeilings.Views
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "OrdersForm";
-            this.Load += new System.EventHandler(this.OrdersForm_Load);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.LoadForm);
             this.panelPages.ResumeLayout(false);
             this.panelPages.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).EndInit();

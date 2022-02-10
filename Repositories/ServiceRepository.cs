@@ -20,6 +20,7 @@ namespace StretchCeilings.Repositories
 
                 services.ForEachAsync(s => db.Entry(s).Reference(r => r.Ceiling).Load());
                 services.ForEachAsync(s => db.Entry(s).Reference(r => r.Manufacturer).Load());
+                services.ForEachAsync(s => db.Entry(s).Reference(r => r.Room).Load());
 
                 rows = services.Count();
 
@@ -55,8 +56,10 @@ namespace StretchCeilings.Repositories
                 if (!services.Any())
                     return services.ToList();
 
-                services.ToList().ForEach(s => db.Entry(s).Reference(r => r.Ceiling).Load());
-                services.ToList().ForEach(s => db.Entry(s).Reference(r => r.Manufacturer).Load());
+                services.ForEachAsync(s => db.Entry(s).Reference(r => r.Ceiling).Load());
+                services.ForEachAsync(s => db.Entry(s).Reference(r => r.Manufacturer).Load());
+                services.ForEachAsync(s => db.Entry(s).Reference(r => r.Room).Load());
+
 
                 rows = services.Count();
 
@@ -76,6 +79,7 @@ namespace StretchCeilings.Repositories
 
                 db.Entry(service).Reference(r => r.Ceiling).Load();
                 db.Entry(service).Reference(r => r.Manufacturer).Load();
+                db.Entry(service).Reference(r => r.Room).Load();
 
                 return service;
             }

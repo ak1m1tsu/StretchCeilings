@@ -29,6 +29,13 @@ namespace StretchCeilings.Views
         /// </summary>
         private void InitializeComponent()
         {
+            this.panelTopSide = new System.Windows.Forms.Panel();
+            this.btnClose = new FontAwesome.Sharp.IconButton();
+            this.panelButtons = new System.Windows.Forms.Panel();
+            this.panelUserButtons = new System.Windows.Forms.Panel();
+            this.panelFilterButtons = new System.Windows.Forms.Panel();
+            this.btnResetFilters = new System.Windows.Forms.Button();
+            this.btnUserFilters = new System.Windows.Forms.Button();
             this.panelFilters = new System.Windows.Forms.Panel();
             this.tbName = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
@@ -36,23 +43,106 @@ namespace StretchCeilings.Views
             this.lblCuntry = new System.Windows.Forms.Label();
             this.tbAddress = new System.Windows.Forms.TextBox();
             this.lblAddress = new System.Windows.Forms.Label();
-            this.panelButtons = new System.Windows.Forms.Panel();
-            this.panelUserButtons = new System.Windows.Forms.Panel();
-            this.panelFilterButtons = new System.Windows.Forms.Panel();
-            this.btnResetFilters = new System.Windows.Forms.Button();
-            this.btnUserFilters = new System.Windows.Forms.Button();
-            this.dgvManufacturers = new System.Windows.Forms.DataGridView();
             this.panelPages = new System.Windows.Forms.Panel();
             this.cbRows = new System.Windows.Forms.ComboBox();
             this.btnPrevious = new System.Windows.Forms.Button();
             this.tbPages = new System.Windows.Forms.TextBox();
             this.btnNext = new System.Windows.Forms.Button();
-            this.panelFilters.SuspendLayout();
+            this.dgvManufacturers = new System.Windows.Forms.DataGridView();
+            this.panelTopSide.SuspendLayout();
             this.panelButtons.SuspendLayout();
             this.panelFilterButtons.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvManufacturers)).BeginInit();
+            this.panelFilters.SuspendLayout();
             this.panelPages.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvManufacturers)).BeginInit();
             this.SuspendLayout();
+            // 
+            // panelTopSide
+            // 
+            this.panelTopSide.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
+            this.panelTopSide.Controls.Add(this.btnClose);
+            this.panelTopSide.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTopSide.Location = new System.Drawing.Point(0, 0);
+            this.panelTopSide.Name = "panelTopSide";
+            this.panelTopSide.Size = new System.Drawing.Size(1200, 25);
+            this.panelTopSide.TabIndex = 79;
+            this.panelTopSide.Visible = false;
+            // 
+            // btnClose
+            // 
+            this.btnClose.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.IconChar = FontAwesome.Sharp.IconChar.Times;
+            this.btnClose.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.btnClose.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnClose.IconSize = 25;
+            this.btnClose.Location = new System.Drawing.Point(1175, 0);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(25, 25);
+            this.btnClose.TabIndex = 2;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.CloseForm);
+            // 
+            // panelButtons
+            // 
+            this.panelButtons.Controls.Add(this.panelUserButtons);
+            this.panelButtons.Controls.Add(this.panelFilterButtons);
+            this.panelButtons.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panelButtons.Location = new System.Drawing.Point(1050, 25);
+            this.panelButtons.Name = "panelButtons";
+            this.panelButtons.Size = new System.Drawing.Size(150, 575);
+            this.panelButtons.TabIndex = 80;
+            // 
+            // panelUserButtons
+            // 
+            this.panelUserButtons.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelUserButtons.Location = new System.Drawing.Point(0, 100);
+            this.panelUserButtons.Name = "panelUserButtons";
+            this.panelUserButtons.Size = new System.Drawing.Size(150, 475);
+            this.panelUserButtons.TabIndex = 1;
+            // 
+            // panelFilterButtons
+            // 
+            this.panelFilterButtons.Controls.Add(this.btnResetFilters);
+            this.panelFilterButtons.Controls.Add(this.btnUserFilters);
+            this.panelFilterButtons.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelFilterButtons.Location = new System.Drawing.Point(0, 0);
+            this.panelFilterButtons.Name = "panelFilterButtons";
+            this.panelFilterButtons.Size = new System.Drawing.Size(150, 100);
+            this.panelFilterButtons.TabIndex = 0;
+            // 
+            // btnResetFilters
+            // 
+            this.btnResetFilters.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnResetFilters.FlatAppearance.BorderSize = 0;
+            this.btnResetFilters.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnResetFilters.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.btnResetFilters.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.btnResetFilters.Location = new System.Drawing.Point(0, 50);
+            this.btnResetFilters.Name = "btnResetFilters";
+            this.btnResetFilters.Size = new System.Drawing.Size(150, 50);
+            this.btnResetFilters.TabIndex = 10;
+            this.btnResetFilters.Text = "Сбросить";
+            this.btnResetFilters.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnResetFilters.UseVisualStyleBackColor = false;
+            this.btnResetFilters.Click += new System.EventHandler(this.ResetFilters);
+            // 
+            // btnUserFilters
+            // 
+            this.btnUserFilters.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnUserFilters.FlatAppearance.BorderSize = 0;
+            this.btnUserFilters.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUserFilters.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.btnUserFilters.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.btnUserFilters.Location = new System.Drawing.Point(0, 0);
+            this.btnUserFilters.Name = "btnUserFilters";
+            this.btnUserFilters.Size = new System.Drawing.Size(150, 50);
+            this.btnUserFilters.TabIndex = 9;
+            this.btnUserFilters.Text = "Применить";
+            this.btnUserFilters.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUserFilters.UseVisualStyleBackColor = false;
+            this.btnUserFilters.Click += new System.EventHandler(this.UseFilters);
             // 
             // panelFilters
             // 
@@ -63,10 +153,10 @@ namespace StretchCeilings.Views
             this.panelFilters.Controls.Add(this.tbAddress);
             this.panelFilters.Controls.Add(this.lblAddress);
             this.panelFilters.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelFilters.Location = new System.Drawing.Point(0, 0);
+            this.panelFilters.Location = new System.Drawing.Point(0, 25);
             this.panelFilters.Name = "panelFilters";
             this.panelFilters.Size = new System.Drawing.Size(1050, 100);
-            this.panelFilters.TabIndex = 7;
+            this.panelFilters.TabIndex = 81;
             // 
             // tbName
             // 
@@ -148,83 +238,6 @@ namespace StretchCeilings.Views
             this.lblAddress.TabIndex = 11;
             this.lblAddress.Text = "Адрес:";
             // 
-            // panelButtons
-            // 
-            this.panelButtons.Controls.Add(this.panelUserButtons);
-            this.panelButtons.Controls.Add(this.panelFilterButtons);
-            this.panelButtons.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelButtons.Location = new System.Drawing.Point(1050, 0);
-            this.panelButtons.Name = "panelButtons";
-            this.panelButtons.Size = new System.Drawing.Size(150, 600);
-            this.panelButtons.TabIndex = 6;
-            // 
-            // panelUserButtons
-            // 
-            this.panelUserButtons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelUserButtons.Location = new System.Drawing.Point(0, 100);
-            this.panelUserButtons.Name = "panelUserButtons";
-            this.panelUserButtons.Size = new System.Drawing.Size(150, 500);
-            this.panelUserButtons.TabIndex = 1;
-            // 
-            // panelFilterButtons
-            // 
-            this.panelFilterButtons.Controls.Add(this.btnResetFilters);
-            this.panelFilterButtons.Controls.Add(this.btnUserFilters);
-            this.panelFilterButtons.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelFilterButtons.Location = new System.Drawing.Point(0, 0);
-            this.panelFilterButtons.Name = "panelFilterButtons";
-            this.panelFilterButtons.Size = new System.Drawing.Size(150, 100);
-            this.panelFilterButtons.TabIndex = 0;
-            // 
-            // btnResetFilters
-            // 
-            this.btnResetFilters.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnResetFilters.FlatAppearance.BorderSize = 0;
-            this.btnResetFilters.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnResetFilters.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.btnResetFilters.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.btnResetFilters.Location = new System.Drawing.Point(0, 50);
-            this.btnResetFilters.Name = "btnResetFilters";
-            this.btnResetFilters.Size = new System.Drawing.Size(150, 50);
-            this.btnResetFilters.TabIndex = 10;
-            this.btnResetFilters.Text = "Сбросить";
-            this.btnResetFilters.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnResetFilters.UseVisualStyleBackColor = false;
-            this.btnResetFilters.Click += new System.EventHandler(this.ResetFilters);
-            // 
-            // btnUserFilters
-            // 
-            this.btnUserFilters.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnUserFilters.FlatAppearance.BorderSize = 0;
-            this.btnUserFilters.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUserFilters.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.btnUserFilters.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.btnUserFilters.Location = new System.Drawing.Point(0, 0);
-            this.btnUserFilters.Name = "btnUserFilters";
-            this.btnUserFilters.Size = new System.Drawing.Size(150, 50);
-            this.btnUserFilters.TabIndex = 9;
-            this.btnUserFilters.Text = "Применить";
-            this.btnUserFilters.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUserFilters.UseVisualStyleBackColor = false;
-            this.btnUserFilters.Click += new System.EventHandler(this.UseFilters);
-            // 
-            // dgvManufacturers
-            // 
-            this.dgvManufacturers.AllowUserToAddRows = false;
-            this.dgvManufacturers.AllowUserToDeleteRows = false;
-            this.dgvManufacturers.AllowUserToResizeRows = false;
-            this.dgvManufacturers.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
-            this.dgvManufacturers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvManufacturers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvManufacturers.Location = new System.Drawing.Point(0, 100);
-            this.dgvManufacturers.Name = "dgvManufacturers";
-            this.dgvManufacturers.ReadOnly = true;
-            this.dgvManufacturers.RowHeadersVisible = false;
-            this.dgvManufacturers.RowTemplate.Height = 25;
-            this.dgvManufacturers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvManufacturers.Size = new System.Drawing.Size(1050, 460);
-            this.dgvManufacturers.TabIndex = 11;
-            // 
             // panelPages
             // 
             this.panelPages.Controls.Add(this.cbRows);
@@ -235,7 +248,7 @@ namespace StretchCeilings.Views
             this.panelPages.Location = new System.Drawing.Point(0, 560);
             this.panelPages.Name = "panelPages";
             this.panelPages.Size = new System.Drawing.Size(1050, 40);
-            this.panelPages.TabIndex = 10;
+            this.panelPages.TabIndex = 83;
             // 
             // cbRows
             // 
@@ -250,7 +263,7 @@ namespace StretchCeilings.Views
             this.cbRows.Name = "cbRows";
             this.cbRows.Size = new System.Drawing.Size(50, 31);
             this.cbRows.TabIndex = 98;
-            this.cbRows.SelectedIndexChanged += new System.EventHandler(this.SetDisplayedRowsCount);
+            this.cbRows.SelectedIndexChanged += new System.EventHandler(this.RowCountChanged);
             // 
             // btnPrevious
             // 
@@ -293,6 +306,24 @@ namespace StretchCeilings.Views
             this.btnNext.Text = ">";
             this.btnNext.UseVisualStyleBackColor = false;
             // 
+            // dgvManufacturers
+            // 
+            this.dgvManufacturers.AllowUserToAddRows = false;
+            this.dgvManufacturers.AllowUserToDeleteRows = false;
+            this.dgvManufacturers.AllowUserToResizeColumns = false;
+            this.dgvManufacturers.AllowUserToResizeRows = false;
+            this.dgvManufacturers.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.dgvManufacturers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvManufacturers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvManufacturers.Location = new System.Drawing.Point(0, 125);
+            this.dgvManufacturers.Name = "dgvManufacturers";
+            this.dgvManufacturers.ReadOnly = true;
+            this.dgvManufacturers.RowHeadersVisible = false;
+            this.dgvManufacturers.RowTemplate.Height = 25;
+            this.dgvManufacturers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvManufacturers.Size = new System.Drawing.Size(1050, 435);
+            this.dgvManufacturers.TabIndex = 84;
+            // 
             // ManufacturersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -303,22 +334,31 @@ namespace StretchCeilings.Views
             this.Controls.Add(this.panelPages);
             this.Controls.Add(this.panelFilters);
             this.Controls.Add(this.panelButtons);
+            this.Controls.Add(this.panelTopSide);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ManufacturersForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.LoadForm);
-            this.panelFilters.ResumeLayout(false);
-            this.panelFilters.PerformLayout();
+            this.panelTopSide.ResumeLayout(false);
             this.panelButtons.ResumeLayout(false);
             this.panelFilterButtons.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvManufacturers)).EndInit();
+            this.panelFilters.ResumeLayout(false);
+            this.panelFilters.PerformLayout();
             this.panelPages.ResumeLayout(false);
             this.panelPages.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvManufacturers)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
+        private System.Windows.Forms.Panel panelTopSide;
+        private FontAwesome.Sharp.IconButton btnClose;
+        private System.Windows.Forms.Panel panelButtons;
+        private System.Windows.Forms.Panel panelUserButtons;
+        private System.Windows.Forms.Panel panelFilterButtons;
+        private System.Windows.Forms.Button btnResetFilters;
+        private System.Windows.Forms.Button btnUserFilters;
         private System.Windows.Forms.Panel panelFilters;
         private System.Windows.Forms.TextBox tbName;
         private System.Windows.Forms.Label lblName;
@@ -326,16 +366,11 @@ namespace StretchCeilings.Views
         private System.Windows.Forms.Label lblCuntry;
         private System.Windows.Forms.TextBox tbAddress;
         private System.Windows.Forms.Label lblAddress;
-        private System.Windows.Forms.Panel panelButtons;
-        private System.Windows.Forms.Panel panelUserButtons;
-        private System.Windows.Forms.Panel panelFilterButtons;
-        private System.Windows.Forms.Button btnResetFilters;
-        private System.Windows.Forms.Button btnUserFilters;
-        private System.Windows.Forms.DataGridView dgvManufacturers;
         private System.Windows.Forms.Panel panelPages;
         private System.Windows.Forms.ComboBox cbRows;
         private System.Windows.Forms.Button btnPrevious;
         private System.Windows.Forms.TextBox tbPages;
         private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.DataGridView dgvManufacturers;
     }
 }

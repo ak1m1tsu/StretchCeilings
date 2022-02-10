@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using StretchCeilings.Helpers.Extensions;
 using StretchCeilings.Helpers.Extensions.Controls;
+using StretchCeilings.Helpers.Structs;
 using StretchCeilings.Models;
 using StretchCeilings.Repositories;
 
@@ -34,10 +35,10 @@ namespace StretchCeilings.Views
 
             _rooms = _estate?.GetRooms();
 
-            dgvRooms.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvRooms.AddDataGridViewTextBoxColumn("Площадь", DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvRooms.AddDataGridViewTextBoxColumn("Тип", DataGridViewAutoSizeColumnMode.Fill);
-            dgvRooms.AddDataGridViewTextBoxColumn("Углов", DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvRooms.AddDataGridViewTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvRooms.AddDataGridViewTextBoxColumn(Resources.Area, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvRooms.AddDataGridViewTextBoxColumn(Resources.Type, DataGridViewAutoSizeColumnMode.Fill);
+            dgvRooms.AddDataGridViewTextBoxColumn(Resources.Corners, DataGridViewAutoSizeColumnMode.DisplayedCells);
 
             for (var i = 0; i < _rooms?.Count; i++)
             {
@@ -52,7 +53,7 @@ namespace StretchCeilings.Views
 
         private void ShowGridData(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0 && dgvRooms.Rows[e.RowIndex].Index < 0)
+            if (e.RowIndex < 0)
                 return;
 
             var id = (int)dgvRooms.Rows[e.RowIndex].Cells[0].Value;

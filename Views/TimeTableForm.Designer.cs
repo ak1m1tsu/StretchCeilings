@@ -37,26 +37,26 @@ namespace StretchCeilings.Views
             this.labelDate = new System.Windows.Forms.Label();
             this.dtpEndTime = new System.Windows.Forms.DateTimePicker();
             this.panelRepeatBody = new System.Windows.Forms.Panel();
-            this.panelWeeks = new System.Windows.Forms.Panel();
-            this.numericUpDownWeeks = new System.Windows.Forms.NumericUpDown();
-            this.labelWeekForRepeat = new System.Windows.Forms.Label();
             this.panelDays = new System.Windows.Forms.Panel();
-            this.cbMonday = new System.Windows.Forms.CheckBox();
-            this.cbFriday = new System.Windows.Forms.CheckBox();
-            this.cbTuesday = new System.Windows.Forms.CheckBox();
-            this.cbSaturday = new System.Windows.Forms.CheckBox();
-            this.cbWednesday = new System.Windows.Forms.CheckBox();
-            this.cbThursday = new System.Windows.Forms.CheckBox();
-            this.cbSunday = new System.Windows.Forms.CheckBox();
             this.labelDaysOfWeek = new System.Windows.Forms.Label();
+            this.cbSunday = new System.Windows.Forms.CheckBox();
+            this.cbThursday = new System.Windows.Forms.CheckBox();
+            this.cbWednesday = new System.Windows.Forms.CheckBox();
+            this.cbSaturday = new System.Windows.Forms.CheckBox();
+            this.cbTuesday = new System.Windows.Forms.CheckBox();
+            this.cbFriday = new System.Windows.Forms.CheckBox();
+            this.cbMonday = new System.Windows.Forms.CheckBox();
+            this.panelWeeks = new System.Windows.Forms.Panel();
+            this.labelWeekForRepeat = new System.Windows.Forms.Label();
+            this.numericUpDownWeeks = new System.Windows.Forms.NumericUpDown();
             this.buttonSaveData = new FontAwesome.Sharp.IconButton();
             this.panelBody = new System.Windows.Forms.Panel();
             this.buttonCloseForm = new FontAwesome.Sharp.IconButton();
             this.panelTop = new System.Windows.Forms.Panel();
             this.panelRepeatBody.SuspendLayout();
+            this.panelDays.SuspendLayout();
             this.panelWeeks.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWeeks)).BeginInit();
-            this.panelDays.SuspendLayout();
             this.panelBody.SuspendLayout();
             this.panelTop.SuspendLayout();
             this.SuspendLayout();
@@ -160,6 +160,116 @@ namespace StretchCeilings.Views
             this.panelRepeatBody.Size = new System.Drawing.Size(300, 143);
             this.panelRepeatBody.TabIndex = 28;
             // 
+            // panelDays
+            // 
+            this.panelDays.Controls.Add(this.labelDaysOfWeek);
+            this.panelDays.Controls.Add(this.cbSunday);
+            this.panelDays.Controls.Add(this.cbThursday);
+            this.panelDays.Controls.Add(this.cbWednesday);
+            this.panelDays.Controls.Add(this.cbSaturday);
+            this.panelDays.Controls.Add(this.cbTuesday);
+            this.panelDays.Controls.Add(this.cbFriday);
+            this.panelDays.Controls.Add(this.cbMonday);
+            this.panelDays.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelDays.Location = new System.Drawing.Point(0, 44);
+            this.panelDays.Name = "panelDays";
+            this.panelDays.Size = new System.Drawing.Size(300, 99);
+            this.panelDays.TabIndex = 31;
+            // 
+            // labelDaysOfWeek
+            // 
+            this.labelDaysOfWeek.AutoSize = true;
+            this.labelDaysOfWeek.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.labelDaysOfWeek.Location = new System.Drawing.Point(6, 3);
+            this.labelDaysOfWeek.Name = "labelDaysOfWeek";
+            this.labelDaysOfWeek.Size = new System.Drawing.Size(175, 23);
+            this.labelDaysOfWeek.TabIndex = 29;
+            this.labelDaysOfWeek.Text = "Дни для повторения:";
+            // 
+            // cbSunday
+            // 
+            this.cbSunday.AutoSize = true;
+            this.cbSunday.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbSunday.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.cbSunday.Location = new System.Drawing.Point(184, 65);
+            this.cbSunday.Name = "cbSunday";
+            this.cbSunday.Size = new System.Drawing.Size(48, 28);
+            this.cbSunday.TabIndex = 27;
+            this.cbSunday.Text = "Вс";
+            this.cbSunday.UseVisualStyleBackColor = true;
+            // 
+            // cbThursday
+            // 
+            this.cbThursday.AutoSize = true;
+            this.cbThursday.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbThursday.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.cbThursday.Location = new System.Drawing.Point(214, 33);
+            this.cbThursday.Name = "cbThursday";
+            this.cbThursday.Size = new System.Drawing.Size(48, 28);
+            this.cbThursday.TabIndex = 24;
+            this.cbThursday.Text = "Чв";
+            this.cbThursday.UseVisualStyleBackColor = true;
+            // 
+            // cbWednesday
+            // 
+            this.cbWednesday.AutoSize = true;
+            this.cbWednesday.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbWednesday.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.cbWednesday.Location = new System.Drawing.Point(157, 33);
+            this.cbWednesday.Name = "cbWednesday";
+            this.cbWednesday.Size = new System.Drawing.Size(50, 28);
+            this.cbWednesday.TabIndex = 23;
+            this.cbWednesday.Text = "Ср";
+            this.cbWednesday.UseVisualStyleBackColor = true;
+            // 
+            // cbSaturday
+            // 
+            this.cbSaturday.AutoSize = true;
+            this.cbSaturday.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbSaturday.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.cbSaturday.Location = new System.Drawing.Point(126, 65);
+            this.cbSaturday.Name = "cbSaturday";
+            this.cbSaturday.Size = new System.Drawing.Size(50, 28);
+            this.cbSaturday.TabIndex = 26;
+            this.cbSaturday.Text = "Сб";
+            this.cbSaturday.UseVisualStyleBackColor = true;
+            // 
+            // cbTuesday
+            // 
+            this.cbTuesday.AutoSize = true;
+            this.cbTuesday.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbTuesday.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.cbTuesday.Location = new System.Drawing.Point(103, 33);
+            this.cbTuesday.Name = "cbTuesday";
+            this.cbTuesday.Size = new System.Drawing.Size(48, 28);
+            this.cbTuesday.TabIndex = 22;
+            this.cbTuesday.Text = "Вт";
+            this.cbTuesday.UseVisualStyleBackColor = true;
+            // 
+            // cbFriday
+            // 
+            this.cbFriday.AutoSize = true;
+            this.cbFriday.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbFriday.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.cbFriday.Location = new System.Drawing.Point(70, 65);
+            this.cbFriday.Name = "cbFriday";
+            this.cbFriday.Size = new System.Drawing.Size(49, 28);
+            this.cbFriday.TabIndex = 25;
+            this.cbFriday.Text = "Пт";
+            this.cbFriday.UseVisualStyleBackColor = true;
+            // 
+            // cbMonday
+            // 
+            this.cbMonday.AutoSize = true;
+            this.cbMonday.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbMonday.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.cbMonday.Location = new System.Drawing.Point(46, 33);
+            this.cbMonday.Name = "cbMonday";
+            this.cbMonday.Size = new System.Drawing.Size(50, 28);
+            this.cbMonday.TabIndex = 21;
+            this.cbMonday.Text = "Пн";
+            this.cbMonday.UseVisualStyleBackColor = true;
+            // 
             // panelWeeks
             // 
             this.panelWeeks.Controls.Add(this.labelWeekForRepeat);
@@ -169,6 +279,16 @@ namespace StretchCeilings.Views
             this.panelWeeks.Name = "panelWeeks";
             this.panelWeeks.Size = new System.Drawing.Size(300, 44);
             this.panelWeeks.TabIndex = 30;
+            // 
+            // labelWeekForRepeat
+            // 
+            this.labelWeekForRepeat.AutoSize = true;
+            this.labelWeekForRepeat.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.labelWeekForRepeat.Location = new System.Drawing.Point(6, 7);
+            this.labelWeekForRepeat.Name = "labelWeekForRepeat";
+            this.labelWeekForRepeat.Size = new System.Drawing.Size(201, 23);
+            this.labelWeekForRepeat.TabIndex = 28;
+            this.labelWeekForRepeat.Text = "Недель для повторения:";
             // 
             // numericUpDownWeeks
             // 
@@ -195,126 +315,6 @@ namespace StretchCeilings.Views
             0,
             0,
             0});
-            // 
-            // labelWeekForRepeat
-            // 
-            this.labelWeekForRepeat.AutoSize = true;
-            this.labelWeekForRepeat.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.labelWeekForRepeat.Location = new System.Drawing.Point(6, 7);
-            this.labelWeekForRepeat.Name = "labelWeekForRepeat";
-            this.labelWeekForRepeat.Size = new System.Drawing.Size(201, 23);
-            this.labelWeekForRepeat.TabIndex = 28;
-            this.labelWeekForRepeat.Text = "Недель для повторения:";
-            // 
-            // panelDays
-            // 
-            this.panelDays.Controls.Add(this.labelDaysOfWeek);
-            this.panelDays.Controls.Add(this.cbSunday);
-            this.panelDays.Controls.Add(this.cbThursday);
-            this.panelDays.Controls.Add(this.cbWednesday);
-            this.panelDays.Controls.Add(this.cbSaturday);
-            this.panelDays.Controls.Add(this.cbTuesday);
-            this.panelDays.Controls.Add(this.cbFriday);
-            this.panelDays.Controls.Add(this.cbMonday);
-            this.panelDays.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDays.Location = new System.Drawing.Point(0, 44);
-            this.panelDays.Name = "panelDays";
-            this.panelDays.Size = new System.Drawing.Size(300, 99);
-            this.panelDays.TabIndex = 31;
-            // 
-            // cbMonday
-            // 
-            this.cbMonday.AutoSize = true;
-            this.cbMonday.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbMonday.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.cbMonday.Location = new System.Drawing.Point(46, 33);
-            this.cbMonday.Name = "cbMonday";
-            this.cbMonday.Size = new System.Drawing.Size(50, 28);
-            this.cbMonday.TabIndex = 21;
-            this.cbMonday.Text = "Пн";
-            this.cbMonday.UseVisualStyleBackColor = true;
-            // 
-            // cbFriday
-            // 
-            this.cbFriday.AutoSize = true;
-            this.cbFriday.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbFriday.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.cbFriday.Location = new System.Drawing.Point(70, 65);
-            this.cbFriday.Name = "cbFriday";
-            this.cbFriday.Size = new System.Drawing.Size(49, 28);
-            this.cbFriday.TabIndex = 25;
-            this.cbFriday.Text = "Пт";
-            this.cbFriday.UseVisualStyleBackColor = true;
-            // 
-            // cbTuesday
-            // 
-            this.cbTuesday.AutoSize = true;
-            this.cbTuesday.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbTuesday.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.cbTuesday.Location = new System.Drawing.Point(103, 33);
-            this.cbTuesday.Name = "cbTuesday";
-            this.cbTuesday.Size = new System.Drawing.Size(48, 28);
-            this.cbTuesday.TabIndex = 22;
-            this.cbTuesday.Text = "Вт";
-            this.cbTuesday.UseVisualStyleBackColor = true;
-            // 
-            // cbSaturday
-            // 
-            this.cbSaturday.AutoSize = true;
-            this.cbSaturday.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbSaturday.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.cbSaturday.Location = new System.Drawing.Point(126, 65);
-            this.cbSaturday.Name = "cbSaturday";
-            this.cbSaturday.Size = new System.Drawing.Size(50, 28);
-            this.cbSaturday.TabIndex = 26;
-            this.cbSaturday.Text = "Сб";
-            this.cbSaturday.UseVisualStyleBackColor = true;
-            // 
-            // cbWednesday
-            // 
-            this.cbWednesday.AutoSize = true;
-            this.cbWednesday.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbWednesday.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.cbWednesday.Location = new System.Drawing.Point(157, 33);
-            this.cbWednesday.Name = "cbWednesday";
-            this.cbWednesday.Size = new System.Drawing.Size(50, 28);
-            this.cbWednesday.TabIndex = 23;
-            this.cbWednesday.Text = "Ср";
-            this.cbWednesday.UseVisualStyleBackColor = true;
-            // 
-            // cbThursday
-            // 
-            this.cbThursday.AutoSize = true;
-            this.cbThursday.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbThursday.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.cbThursday.Location = new System.Drawing.Point(214, 33);
-            this.cbThursday.Name = "cbThursday";
-            this.cbThursday.Size = new System.Drawing.Size(48, 28);
-            this.cbThursday.TabIndex = 24;
-            this.cbThursday.Text = "Чв";
-            this.cbThursday.UseVisualStyleBackColor = true;
-            // 
-            // cbSunday
-            // 
-            this.cbSunday.AutoSize = true;
-            this.cbSunday.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbSunday.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.cbSunday.Location = new System.Drawing.Point(184, 65);
-            this.cbSunday.Name = "cbSunday";
-            this.cbSunday.Size = new System.Drawing.Size(48, 28);
-            this.cbSunday.TabIndex = 27;
-            this.cbSunday.Text = "Вс";
-            this.cbSunday.UseVisualStyleBackColor = true;
-            // 
-            // labelDaysOfWeek
-            // 
-            this.labelDaysOfWeek.AutoSize = true;
-            this.labelDaysOfWeek.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.labelDaysOfWeek.Location = new System.Drawing.Point(6, 3);
-            this.labelDaysOfWeek.Name = "labelDaysOfWeek";
-            this.labelDaysOfWeek.Size = new System.Drawing.Size(175, 23);
-            this.labelDaysOfWeek.TabIndex = 29;
-            this.labelDaysOfWeek.Text = "Дни для повторения:";
             // 
             // buttonSaveData
             // 
@@ -392,13 +392,14 @@ namespace StretchCeilings.Views
             this.MaximumSize = new System.Drawing.Size(300, 320);
             this.MinimumSize = new System.Drawing.Size(300, 320);
             this.Name = "TimeTableForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.LoadForm);
             this.panelRepeatBody.ResumeLayout(false);
+            this.panelDays.ResumeLayout(false);
+            this.panelDays.PerformLayout();
             this.panelWeeks.ResumeLayout(false);
             this.panelWeeks.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWeeks)).EndInit();
-            this.panelDays.ResumeLayout(false);
-            this.panelDays.PerformLayout();
             this.panelBody.ResumeLayout(false);
             this.panelBody.PerformLayout();
             this.panelTop.ResumeLayout(false);

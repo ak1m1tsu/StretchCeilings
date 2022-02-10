@@ -25,7 +25,7 @@ namespace StretchCeilings.Views
             {
                 ManufacturerId = manufacturer.Id
             };
-
+            _ceiling.Add();
             InitializeComponent();
             this.Load += SetupForm;
         }
@@ -65,7 +65,7 @@ namespace StretchCeilings.Views
                 cbColorType.Items.Add(item);
             }
 
-            cbColorType.DisplayMember = "Content";
+            cbColorType.DisplayMember = Resources.DisplayMember;
             cbColorType.SelectedItem = null;
 
             foreach (ComboBoxItem item in cbColorType.Items)
@@ -89,7 +89,7 @@ namespace StretchCeilings.Views
                 cbTexture.Items.Add(item);
             }
 
-            cbTexture.DisplayMember = "Content";
+            cbTexture.DisplayMember = Resources.DisplayMember;
             cbTexture.SelectedItem = null;
 
             foreach (ComboBoxItem item in cbTexture.Items)
@@ -108,6 +108,7 @@ namespace StretchCeilings.Views
         {
             var color = ColorType.Unknown;
             var texture = TextureType.Unknown;
+
             foreach (ComboBoxItem item in cbColorType.Items)
             {
                 if (item != cbColorType.SelectedItem)
@@ -125,6 +126,7 @@ namespace StretchCeilings.Views
                 texture = (TextureType)item.Tag;
                 _ceiling.TextureType = texture;
             }
+
             _ceiling.Price = nudPrice.Value;
             _ceiling.Name = $"{texture.ParseString()} {color.ParseString().ToLower()}";
         }
@@ -134,11 +136,12 @@ namespace StretchCeilings.Views
             if (AreControlsEmpty() == false)
             {
                 SetCeilingValues();
+                _ceiling.Update();
                 DialogResult = DialogResult.OK;
             }
             else
             {
-                CustomMessageBox.Show("Не все поля заполнены", Caption.Error);
+                CustomMessageBox.ShowDialog(Resources.ControlsEmpty, Caption.Error);
             }
         }
     }

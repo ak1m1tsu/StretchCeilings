@@ -193,6 +193,12 @@
     <Compile Include="Views\RoomEditForm.Designer.cs">
       <DependentUpon>RoomEditForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\RoomsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\RoomsForm.Designer.cs">
+      <DependentUpon>RoomsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\ServiceEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -387,6 +393,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\RoomEditForm.resx">
       <DependentUpon>RoomEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\RoomsForm.resx">
+      <DependentUpon>RoomsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ServiceEditForm.resx">
       <DependentUpon>ServiceEditForm.cs</DependentUpon>

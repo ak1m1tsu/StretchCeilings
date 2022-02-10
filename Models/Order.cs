@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
 using System.Linq;
 using StretchCeilings.DataAccess;
 using StretchCeilings.Helpers.Enums;
@@ -27,28 +28,31 @@ namespace StretchCeilings.Models
         public OrderStatus? Status { get; set; }
         public decimal? Total { get; set; }
 
-        public List<DateTime?> GetWorkdays()
+        public List<OrderWorkDate> GetWorkDates()
         {
             using (var db = new StretchCeilingsContext())
             {
-                return db.Database.SqlQuery<DateTime?>($"SELECT OrderWorkdays.DateOfWork FROM OrderWorkdays WHERE OrderWorkdays.OrderId = {Id}").ToList();
+                return (from wd in db.OrderWorkDates
+                        join o in db.Orders on wd.OrderId equals o.Id
+                        where o.DeletedDate == null 
+                        select wd).ToList();
             }
         }
 
-        public void SetWorkday(DateTime? day)
+        public void SetWorkday(OrderWorkDate workDate)
         {
             using (var db = new StretchCeilingsContext())
             {
-                db.Database.ExecuteSqlCommand($"INSERT INTO OrderWorkdays VALUES ({Id}, {day})");
+                db.OrderWorkDates.Add(workDate);
                 db.SaveChanges();
             }
         }
 
-        public void DeleteWorkDay(DateTime? day)
+        public void DeleteWorkDay(OrderWorkDate workDate)
         {
             using (var db = new StretchCeilingsContext())
             {
-                db.Database.ExecuteSqlCommand($"DELETE FROM OrderWorkdays WHERE OrderWorkdays.OrderId = {Id} AND OrderWorkdays.DateOfWork = {day}");
+                db.OrderWorkDates.Remove(workDate);
                 db.SaveChanges();
             }
         }
@@ -82,7 +86,7 @@ namespace StretchCeilings.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                return db.Logs.Where(l => l.OrderId == Id).ToList();
+                return db.Logs.Where(l => l.OrderId == Id && l.DeletedDate == null).ToList();
             }
         }
 
@@ -90,17 +94,19 @@ namespace StretchCeilings.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                var services = db.Services.SqlQuery("SELECT Services.* FROM Services " +
-                                                     "INNER JOIN OrderServices ON OrderServices.ServiceId = Services.Id " +
-                                                     $"WHERE OrderServices.OrderId = {Id} AND Services.DeletedDate IS NULL").ToList();
+                var services = from s in db.Services
+                    join os in db.OrderServices on s.Id equals os.ServiceId
+                    where os.OrderId == Id && s.DeletedDate == null
+                    select s;
 
-                if (services.Any())
-                {
-                    services.ForEach(service => db.Entry(service).Reference(r => r.Manufacturer).Load());
-                    services.ForEach(service => db.Entry(service).Reference(r => r.Ceiling).Load());
-                }
+                if (!services.Any())
+                    return services.ToList();
 
-                return services;
+                services.ForEachAsync(s => db.Entry(s).Reference(r => r.Ceiling).Load());
+                services.ForEachAsync(s => db.Entry(s).Reference(r => r.Manufacturer).Load());
+                services.ForEachAsync(s => db.Entry(s).Reference(r => r.Room).Load());
+
+                return services.ToList();
             }
         }
 
@@ -108,16 +114,18 @@ namespace StretchCeilings.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                var employees = db.Employees.SqlQuery("SELECT Employees.* FROM Employees " +
-                                                      "INNER JOIN OrderEmployees ON OrderEmployees.EmployeeId = Employees.Id " +
-                                                      $"WHERE OrderEmployees.OrderId = {Id} AND Employees.DeletedDate IS NULL").ToList();
+                var employees = from e in db.Employees
+                    join orderEmployee in db.OrderEmployees on e.Id equals orderEmployee.EmployeeId
+                    join order in db.Orders on orderEmployee.OrderId equals order.Id
+                    where e.DeletedDate == null
+                    select e;
 
-                if (employees.Any())
-                {
-                    employees.ForEach(employee => db.Entry(employee).Reference(e=>e.Role).Load());
-                }
+                if (employees.Any() == false)
+                    return employees.ToList();
 
-                return employees;
+                employees.ForEachAsync(e => db.Entry(e).Reference(r => r.Role).Load());
+
+                return employees.ToList();
             }
         }
 

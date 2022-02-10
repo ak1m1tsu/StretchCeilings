@@ -3,6 +3,6 @@
     public enum FormState
     {
         Default = 0,
-        ForSearching = 1,
+        ForView = 1
     }
 }

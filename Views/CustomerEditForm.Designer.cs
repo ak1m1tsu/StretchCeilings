@@ -29,6 +29,8 @@ namespace StretchCeilings.Views
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerEditForm));
             this.panelTop = new System.Windows.Forms.Panel();
             this.btnClose = new FontAwesome.Sharp.IconButton();
             this.tcCustomer = new System.Windows.Forms.TabControl();
@@ -42,12 +44,14 @@ namespace StretchCeilings.Views
             this.dgvEstates = new System.Windows.Forms.DataGridView();
             this.panelPageSide = new System.Windows.Forms.Panel();
             this.btnAddEstate = new System.Windows.Forms.Button();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.panelTop.SuspendLayout();
             this.tcCustomer.SuspendLayout();
             this.tbInfo.SuspendLayout();
             this.tpEstates.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEstates)).BeginInit();
             this.panelPageSide.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTop
@@ -59,6 +63,7 @@ namespace StretchCeilings.Views
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(634, 25);
             this.panelTop.TabIndex = 78;
+            this.panelTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DragMove);
             // 
             // btnClose
             // 
@@ -74,6 +79,7 @@ namespace StretchCeilings.Views
             this.btnClose.Size = new System.Drawing.Size(25, 25);
             this.btnClose.TabIndex = 2;
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.CloseForm);
             // 
             // tcCustomer
             // 
@@ -108,7 +114,7 @@ namespace StretchCeilings.Views
             this.mtbPhoneNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.mtbPhoneNumber.Font = new System.Drawing.Font("Open Sans", 12F);
             this.mtbPhoneNumber.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.mtbPhoneNumber.Location = new System.Drawing.Point(189, 44);
+            this.mtbPhoneNumber.Location = new System.Drawing.Point(157, 44);
             this.mtbPhoneNumber.Mask = "+7(999)000-00-00";
             this.mtbPhoneNumber.Name = "mtbPhoneNumber";
             this.mtbPhoneNumber.Size = new System.Drawing.Size(155, 29);
@@ -120,7 +126,7 @@ namespace StretchCeilings.Views
             this.tbFullName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbFullName.Font = new System.Drawing.Font("Open Sans", 12F);
             this.tbFullName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.tbFullName.Location = new System.Drawing.Point(189, 11);
+            this.tbFullName.Location = new System.Drawing.Point(157, 11);
             this.tbFullName.Name = "tbFullName";
             this.tbFullName.Size = new System.Drawing.Size(421, 29);
             this.tbFullName.TabIndex = 50;
@@ -138,6 +144,7 @@ namespace StretchCeilings.Views
             this.btnSaveInfo.TabIndex = 49;
             this.btnSaveInfo.Text = "Сохранить";
             this.btnSaveInfo.UseVisualStyleBackColor = false;
+            this.btnSaveInfo.Click += new System.EventHandler(this.UpdateInfo);
             // 
             // lblFullName
             // 
@@ -175,11 +182,18 @@ namespace StretchCeilings.Views
             // 
             // dgvEstates
             // 
+            this.dgvEstates.AllowUserToAddRows = false;
+            this.dgvEstates.AllowUserToDeleteRows = false;
+            this.dgvEstates.AllowUserToResizeColumns = false;
+            this.dgvEstates.AllowUserToResizeRows = false;
             this.dgvEstates.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.dgvEstates.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEstates.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvEstates.Location = new System.Drawing.Point(0, 0);
             this.dgvEstates.Name = "dgvEstates";
+            this.dgvEstates.ReadOnly = true;
+            this.dgvEstates.RowHeadersVisible = false;
+            this.dgvEstates.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvEstates.Size = new System.Drawing.Size(626, 260);
             this.dgvEstates.TabIndex = 2;
             // 
@@ -207,7 +221,12 @@ namespace StretchCeilings.Views
             this.btnAddEstate.Text = "Добавить";
             this.btnAddEstate.UseVisualStyleBackColor = false;
             // 
-            // CustomerFormEdit
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            this.errorProvider.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider.Icon")));
+            // 
+            // CustomerEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -216,8 +235,9 @@ namespace StretchCeilings.Views
             this.Controls.Add(this.tcCustomer);
             this.Controls.Add(this.panelTop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "CustomerFormEdit";
-            this.Load += new System.EventHandler(this.CustomerFormEdit_Load);
+            this.Name = "CustomerEditForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.LoadForm);
             this.panelTop.ResumeLayout(false);
             this.tcCustomer.ResumeLayout(false);
             this.tbInfo.ResumeLayout(false);
@@ -225,6 +245,7 @@ namespace StretchCeilings.Views
             this.tpEstates.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEstates)).EndInit();
             this.panelPageSide.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -244,5 +265,6 @@ namespace StretchCeilings.Views
         private System.Windows.Forms.DataGridView dgvEstates;
         private System.Windows.Forms.Panel panelPageSide;
         private System.Windows.Forms.Button btnAddEstate;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

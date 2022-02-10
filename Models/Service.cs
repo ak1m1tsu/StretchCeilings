@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
 using System.Linq;
 using StretchCeilings.DataAccess;
 using StretchCeilings.Interfaces.Models;
@@ -41,7 +42,9 @@ namespace StretchCeilings.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                db.Entry(Id).CurrentValues.SetValues(this);
+                DeletedDate = DateTime.Now;
+                var old = db.Services.FirstOrDefault(x => x.Id == this.Id);
+                db.Entry(old).CurrentValues.SetValues(this);
                 db.SaveChanges();
             }
         }
@@ -50,23 +53,38 @@ namespace StretchCeilings.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                Price = Ceiling?.Price * Room?.Area;
-                var services = db.ServiceAdditionalServices.Where(x => x.ServiceId == Id);
-                foreach (var serviceAdditionalService in services)
-                {
-                    Price += serviceAdditionalService.AdditionalService?.Price * serviceAdditionalService.Count;
-                }
-            }
+                var ceiling = db.Ceilings.FirstOrDefault(x => x.ManufacturerId == ManufacturerId && DeletedDate == null);
+                var room = db.CustomersRooms.FirstOrDefault(x => x.Id == RoomId && DeletedDate == null);
+                var services = from sas in db.ServiceAdditionalServices
+                    join a in db.AdditionalServices on sas.AdditionalServiceId equals a.Id
+                    where a.DeletedDate == null && sas.ServiceId == Id
+                    select sas;
+                
+                Price = (ceiling?.Price * room?.Area) ?? 0;
 
+                if (!services.Any())
+                    return;
+
+                services.ForEachAsync(x => db.Entry(x).Reference(r => r.AdditionalService).Load());
+                services.ForEachAsync(x => Price += x.Count * x.AdditionalService.Price);
+            }
         }
 
-        public List<AdditionalService> GetAdditionalServices()
+        public List<ServiceAdditionalService> GetAdditionalServices()
         {
             using (var db = new StretchCeilingsContext())
             {
-                return db.AdditionalServices.SqlQuery("SELECT AdditionalServices.* FROM AdditionalServices " +
-                                                      "INNER JOIN ServiceAdditServices ON ServiceAdditServices.AdditServiceId = AdditionalServices.Id " +
-                                                      $"WHERE ServiceAdditServices.ServiceId = {Id} AND AdditionalServices.DeletedDate IS NULL").ToList();
+                var additionalServices = from sas in db.ServiceAdditionalServices
+                    join a in db.AdditionalServices on sas.AdditionalServiceId equals a.Id
+                    join s in db.Services on sas.ServiceId equals s.Id
+                    where sas.ServiceId == Id
+                    select sas;
+
+                if (additionalServices.Any())
+                    additionalServices.ForEachAsync(
+                        sas => db.Entry(sas).Reference(r => r.AdditionalService).Load());
+
+                return additionalServices.ToList();
             }
         }
 
@@ -74,7 +92,8 @@ namespace StretchCeilings.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                db.Entry(Id).CurrentValues.SetValues(this);
+                var old = db.Services.FirstOrDefault(x => x.Id == this.Id);
+                db.Entry(old).CurrentValues.SetValues(this);
                 db.SaveChanges();
             }
         }

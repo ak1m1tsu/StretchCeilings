@@ -23,7 +23,7 @@ namespace StretchCeilings.Views
         private int _rows;
         private int _count;
         private int _currentPage = 1;
-        private int _maxPage = 1;
+        private int _lastPage = 1;
 
         public Customer GetCustomer() => _customer;
 
@@ -37,9 +37,9 @@ namespace StretchCeilings.Views
         {
             _customers = CustomerRepository.GetAll(out _rows);
 
-            dgvCustomers.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvCustomers.AddDataGridViewTextBoxColumn("ФИО", DataGridViewAutoSizeColumnMode.Fill);
-            dgvCustomers.AddDataGridViewTextBoxColumn("Номер телефона", DataGridViewAutoSizeColumnMode.Fill);
+            dgvCustomers.AddDataGridViewTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvCustomers.AddDataGridViewTextBoxColumn(Resources.FullName, DataGridViewAutoSizeColumnMode.Fill);
+            dgvCustomers.AddDataGridViewTextBoxColumn(Resources.PhoneNumber, DataGridViewAutoSizeColumnMode.Fill);
             dgvCustomers.AddDataGridViewButtonColumn(DraculaColor.Red);
 
             dgvCustomers.Font = GoogleFont.OpenSans;
@@ -53,7 +53,7 @@ namespace StretchCeilings.Views
         {
             if (UserSession.IsAdmin || UserSession.Can(PermissionCode.AddCustomer))
             {
-                var btnAddOrder = new FlatButton("btnAddOrder", "Добавить", btnAddOrder_Click);
+                var btnAddOrder = new FlatButton("btnAddOrder", "Добавить", AddNewCustomer);
                 panelUserButtons.Controls.Add(btnAddOrder);
             }
 
@@ -79,7 +79,7 @@ namespace StretchCeilings.Views
                 dgvCustomers.Rows[i].Cells[2].Value = _customers[i].PhoneNumber;
             }
 
-            _maxPage = (int)Math.Ceiling((double)_rows / _count);
+            _lastPage = (int)Math.Ceiling((double)_rows / _count);
             UpdatePagesTextBox();
         }
 
@@ -94,37 +94,21 @@ namespace StretchCeilings.Views
             FillDataGrid();
         }
 
-        private void OpenDataGridRowForm(DataGridViewCellEventArgs e)
+        private void SelectEmployee(object sender,DataGridViewCellEventArgs e)
         {
-            if (dgvCustomers.SelectedRows.Count <= 0 || e.RowIndex < 0) return;
+            if (dgvCustomers.SelectedRows.Count <= 0 || e.RowIndex < 0)
+                return;
 
-            var customer = CustomerRepository.GetById((int)dgvCustomers.SelectedRows[0].Cells[0].Value);
-            new CustomerForm(customer).ShowDialog();
-        }
-
-        private void ShowPreviousPage()
-        {
-            if (_currentPage <= 1) return;
-
-            _currentPage--;
-            UpdatePagesTextBox();
-            FilterDataGrid();
-        }
-
-        private void ShowNextPage()
-        {
-            if (_currentPage >= _maxPage) return;
-
-            _currentPage++;
-            UpdatePagesTextBox();
-            FilterDataGrid();
+            var id = (int)dgvCustomers.Rows[e.RowIndex].Cells[0].Value;
+            _customer = CustomerRepository.GetById(id);
+            DialogResult = DialogResult.OK;
         }
 
         private void UpdatePagesTextBox()
         {
-            if (_maxPage == 0)
+            if (_lastPage == 0)
                 _currentPage = 0;
-            tbPages.UpdatePagesValue(_currentPage, _maxPage);
+            tbPages.UpdatePagesValue(_currentPage, _lastPage);
         }
 
         private void CustomersForm_Load(object sender, EventArgs e)
@@ -134,40 +118,64 @@ namespace StretchCeilings.Views
             SetUpControls();
         }
 
-        private void dgvCustomers_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void RemoveGridData(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0 || e.ColumnIndex != dgvCustomers.Columns[" "]?.Index) return;
+            var senderGrid = (DataGridView)sender;
 
-            var customer = CustomerRepository.GetById((int)dgvCustomers.SelectedRows[0].Cells["№"].Value);
+            if (e.RowIndex < 0 ||
+                senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn == false)
+                return;
+
+            var index = Convert.ToInt32(dgvCustomers.Rows[e.RowIndex].Cells[0].Value);
+            var customer = _customers[index - 1];
             customer.Delete();
 
             FilterDataGrid();
         }
 
-        private void dgvCustomers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void ShowGridData(object sender, DataGridViewCellEventArgs e)
         {
-            OpenDataGridRowForm(e);
+            if (dgvCustomers.SelectedRows.Count <= 0 || e.RowIndex < 0)
+                return;
+
+            var index = Convert.ToInt32(dgvCustomers.Rows[e.RowIndex].Cells[0].Value);
+            var customer = _customers[index - 1];
+            new CustomerForm(customer).ShowDialog();
+            FilterDataGrid();
         }
 
-        private static void btnAddOrder_Click(object sender, EventArgs e)
+        private void AddNewCustomer(object sender, EventArgs e)
         {
-            new CustomerEditForm(new Customer()).ShowDialog();
+            var form = new CustomerEditForm(new Customer());
+            
+            if (form.ShowDialog() != DialogResult.OK)
+                return;
+
+            FilterDataGrid();
         }
 
-        private void btnPreviousPage_Click(object sender, EventArgs e)
+        private void ShowPreviousPage(object sender, EventArgs e)
         {
-            ShowPreviousPage();
+            if (_currentPage <= 1)
+                return;
+
+            _currentPage--;
+            FilterDataGrid();
         }
 
-        private void btnNextPage_Click(object sender, EventArgs e)
+        private void ShowNextPage(object sender, EventArgs e)
         {
-            ShowNextPage();
+            if (_currentPage >= _lastPage)
+                return;
+
+            _currentPage++;
+            FilterDataGrid();
         }
 
-        private void cbRows_SelectedIndexChanged(object sender, EventArgs e)
+        private void RowCountChanged(object sender, EventArgs e)
         {
             _currentPage = 1;
-            _count = int.Parse(cbRows.Items[cbRows.SelectedIndex].ToString());
+            _count = Convert.ToInt32(cbRows.SelectedItem);
             FilterDataGrid();
         }
     }

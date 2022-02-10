@@ -29,12 +29,16 @@ namespace StretchCeilings.Views
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServiceEditForm));
             this.panelTop = new System.Windows.Forms.Panel();
             this.btnClose = new FontAwesome.Sharp.IconButton();
             this.panelMainInfo = new System.Windows.Forms.Panel();
+            this.linkLblRoom = new System.Windows.Forms.LinkLabel();
+            this.lblRoom = new System.Windows.Forms.Label();
+            this.linkLblManufacturer = new System.Windows.Forms.LinkLabel();
             this.btnSave = new System.Windows.Forms.Button();
-            this.cbCeilingValue = new System.Windows.Forms.ComboBox();
-            this.cbManufacturerValue = new System.Windows.Forms.ComboBox();
+            this.cbCeiling = new System.Windows.Forms.ComboBox();
             this.lblPriceValue = new System.Windows.Forms.Label();
             this.lblPrice = new System.Windows.Forms.Label();
             this.lblCeiling = new System.Windows.Forms.Label();
@@ -45,12 +49,14 @@ namespace StretchCeilings.Views
             this.btnAddAdditServ = new System.Windows.Forms.Button();
             this.panelAdditServHeader = new System.Windows.Forms.Panel();
             this.lblAdditServs = new System.Windows.Forms.Label();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.panelTop.SuspendLayout();
             this.panelMainInfo.SuspendLayout();
             this.panelAdditServBody.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdditServs)).BeginInit();
             this.panelGridBtns.SuspendLayout();
             this.panelAdditServHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTop
@@ -62,6 +68,7 @@ namespace StretchCeilings.Views
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(1000, 25);
             this.panelTop.TabIndex = 74;
+            this.panelTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DragMove);
             // 
             // btnClose
             // 
@@ -77,12 +84,15 @@ namespace StretchCeilings.Views
             this.btnClose.Size = new System.Drawing.Size(25, 25);
             this.btnClose.TabIndex = 2;
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.CloseForm);
             // 
             // panelMainInfo
             // 
+            this.panelMainInfo.Controls.Add(this.linkLblRoom);
+            this.panelMainInfo.Controls.Add(this.lblRoom);
+            this.panelMainInfo.Controls.Add(this.linkLblManufacturer);
             this.panelMainInfo.Controls.Add(this.btnSave);
-            this.panelMainInfo.Controls.Add(this.cbCeilingValue);
-            this.panelMainInfo.Controls.Add(this.cbManufacturerValue);
+            this.panelMainInfo.Controls.Add(this.cbCeiling);
             this.panelMainInfo.Controls.Add(this.lblPriceValue);
             this.panelMainInfo.Controls.Add(this.lblPrice);
             this.panelMainInfo.Controls.Add(this.lblCeiling);
@@ -90,8 +100,47 @@ namespace StretchCeilings.Views
             this.panelMainInfo.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMainInfo.Location = new System.Drawing.Point(0, 25);
             this.panelMainInfo.Name = "panelMainInfo";
-            this.panelMainInfo.Size = new System.Drawing.Size(320, 475);
+            this.panelMainInfo.Size = new System.Drawing.Size(362, 475);
             this.panelMainInfo.TabIndex = 75;
+            // 
+            // linkLblRoom
+            // 
+            this.linkLblRoom.AutoSize = true;
+            this.linkLblRoom.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.linkLblRoom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.linkLblRoom.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.linkLblRoom.Location = new System.Drawing.Point(141, 35);
+            this.linkLblRoom.Name = "linkLblRoom";
+            this.linkLblRoom.Size = new System.Drawing.Size(39, 23);
+            this.linkLblRoom.TabIndex = 101;
+            this.linkLblRoom.TabStop = true;
+            this.linkLblRoom.Text = "Нет";
+            this.linkLblRoom.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SelectRoom);
+            // 
+            // lblRoom
+            // 
+            this.lblRoom.AutoSize = true;
+            this.lblRoom.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.lblRoom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.lblRoom.Location = new System.Drawing.Point(5, 35);
+            this.lblRoom.Name = "lblRoom";
+            this.lblRoom.Size = new System.Drawing.Size(82, 23);
+            this.lblRoom.TabIndex = 100;
+            this.lblRoom.Text = "Комната:";
+            // 
+            // linkLblManufacturer
+            // 
+            this.linkLblManufacturer.AutoSize = true;
+            this.linkLblManufacturer.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.linkLblManufacturer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.linkLblManufacturer.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.linkLblManufacturer.Location = new System.Drawing.Point(142, 5);
+            this.linkLblManufacturer.Name = "linkLblManufacturer";
+            this.linkLblManufacturer.Size = new System.Drawing.Size(39, 23);
+            this.linkLblManufacturer.TabIndex = 99;
+            this.linkLblManufacturer.TabStop = true;
+            this.linkLblManufacturer.Text = "Нет";
+            this.linkLblManufacturer.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SelectManufacturer);
             // 
             // btnSave
             // 
@@ -101,7 +150,7 @@ namespace StretchCeilings.Views
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Open Sans", 12F);
             this.btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.btnSave.Location = new System.Drawing.Point(194, 440);
+            this.btnSave.Location = new System.Drawing.Point(236, 440);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(120, 30);
             this.btnSave.TabIndex = 48;
@@ -109,40 +158,26 @@ namespace StretchCeilings.Views
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.UpdateInfo);
             // 
-            // cbCeilingValue
+            // cbCeiling
             // 
-            this.cbCeilingValue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
-            this.cbCeilingValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCeilingValue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbCeilingValue.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.cbCeilingValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.cbCeilingValue.FormattingEnabled = true;
-            this.cbCeilingValue.Location = new System.Drawing.Point(146, 40);
-            this.cbCeilingValue.Name = "cbCeilingValue";
-            this.cbCeilingValue.Size = new System.Drawing.Size(168, 31);
-            this.cbCeilingValue.TabIndex = 8;
-            // 
-            // cbManufacturerValue
-            // 
-            this.cbManufacturerValue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
-            this.cbManufacturerValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbManufacturerValue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbManufacturerValue.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.cbManufacturerValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.cbManufacturerValue.FormattingEnabled = true;
-            this.cbManufacturerValue.Items.AddRange(new object[] {
-            "Pongs"});
-            this.cbManufacturerValue.Location = new System.Drawing.Point(146, 3);
-            this.cbManufacturerValue.Name = "cbManufacturerValue";
-            this.cbManufacturerValue.Size = new System.Drawing.Size(168, 31);
-            this.cbManufacturerValue.TabIndex = 7;
+            this.cbCeiling.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.cbCeiling.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCeiling.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbCeiling.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.cbCeiling.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.cbCeiling.FormattingEnabled = true;
+            this.cbCeiling.Location = new System.Drawing.Point(143, 63);
+            this.cbCeiling.Name = "cbCeiling";
+            this.cbCeiling.Size = new System.Drawing.Size(171, 31);
+            this.cbCeiling.TabIndex = 8;
+            this.cbCeiling.SelectedIndexChanged += new System.EventHandler(this.SelectCeiling);
             // 
             // lblPriceValue
             // 
             this.lblPriceValue.AutoSize = true;
             this.lblPriceValue.Font = new System.Drawing.Font("Open Sans", 12F);
             this.lblPriceValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.lblPriceValue.Location = new System.Drawing.Point(146, 78);
+            this.lblPriceValue.Location = new System.Drawing.Point(139, 101);
             this.lblPriceValue.Name = "lblPriceValue";
             this.lblPriceValue.Size = new System.Drawing.Size(41, 23);
             this.lblPriceValue.TabIndex = 6;
@@ -153,7 +188,7 @@ namespace StretchCeilings.Views
             this.lblPrice.AutoSize = true;
             this.lblPrice.Font = new System.Drawing.Font("Open Sans", 12F);
             this.lblPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.lblPrice.Location = new System.Drawing.Point(3, 78);
+            this.lblPrice.Location = new System.Drawing.Point(3, 101);
             this.lblPrice.Name = "lblPrice";
             this.lblPrice.Size = new System.Drawing.Size(54, 23);
             this.lblPrice.TabIndex = 5;
@@ -164,7 +199,7 @@ namespace StretchCeilings.Views
             this.lblCeiling.AutoSize = true;
             this.lblCeiling.Font = new System.Drawing.Font("Open Sans", 12F);
             this.lblCeiling.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.lblCeiling.Location = new System.Drawing.Point(3, 42);
+            this.lblCeiling.Location = new System.Drawing.Point(3, 65);
             this.lblCeiling.Name = "lblCeiling";
             this.lblCeiling.Size = new System.Drawing.Size(81, 23);
             this.lblCeiling.TabIndex = 3;
@@ -187,9 +222,9 @@ namespace StretchCeilings.Views
             this.panelAdditServBody.Controls.Add(this.panelGridBtns);
             this.panelAdditServBody.Controls.Add(this.panelAdditServHeader);
             this.panelAdditServBody.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelAdditServBody.Location = new System.Drawing.Point(320, 25);
+            this.panelAdditServBody.Location = new System.Drawing.Point(362, 25);
             this.panelAdditServBody.Name = "panelAdditServBody";
-            this.panelAdditServBody.Size = new System.Drawing.Size(680, 475);
+            this.panelAdditServBody.Size = new System.Drawing.Size(638, 475);
             this.panelAdditServBody.TabIndex = 76;
             // 
             // dgvAdditServs
@@ -203,10 +238,13 @@ namespace StretchCeilings.Views
             this.dgvAdditServs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvAdditServs.Location = new System.Drawing.Point(0, 40);
             this.dgvAdditServs.Name = "dgvAdditServs";
+            this.dgvAdditServs.ReadOnly = true;
             this.dgvAdditServs.RowHeadersVisible = false;
             this.dgvAdditServs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAdditServs.Size = new System.Drawing.Size(680, 395);
+            this.dgvAdditServs.Size = new System.Drawing.Size(638, 395);
             this.dgvAdditServs.TabIndex = 5;
+            this.dgvAdditServs.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.RemoveGridData);
+            this.dgvAdditServs.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.SetCount);
             // 
             // panelGridBtns
             // 
@@ -214,7 +252,7 @@ namespace StretchCeilings.Views
             this.panelGridBtns.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelGridBtns.Location = new System.Drawing.Point(0, 435);
             this.panelGridBtns.Name = "panelGridBtns";
-            this.panelGridBtns.Size = new System.Drawing.Size(680, 40);
+            this.panelGridBtns.Size = new System.Drawing.Size(638, 40);
             this.panelGridBtns.TabIndex = 0;
             // 
             // btnAddAdditServ
@@ -225,7 +263,7 @@ namespace StretchCeilings.Views
             this.btnAddAdditServ.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddAdditServ.Font = new System.Drawing.Font("Open Sans", 12F);
             this.btnAddAdditServ.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.btnAddAdditServ.Location = new System.Drawing.Point(553, 5);
+            this.btnAddAdditServ.Location = new System.Drawing.Point(511, 5);
             this.btnAddAdditServ.Name = "btnAddAdditServ";
             this.btnAddAdditServ.Size = new System.Drawing.Size(120, 30);
             this.btnAddAdditServ.TabIndex = 49;
@@ -239,7 +277,7 @@ namespace StretchCeilings.Views
             this.panelAdditServHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelAdditServHeader.Location = new System.Drawing.Point(0, 0);
             this.panelAdditServHeader.Name = "panelAdditServHeader";
-            this.panelAdditServHeader.Size = new System.Drawing.Size(680, 40);
+            this.panelAdditServHeader.Size = new System.Drawing.Size(638, 40);
             this.panelAdditServHeader.TabIndex = 4;
             // 
             // lblAdditServs
@@ -253,6 +291,11 @@ namespace StretchCeilings.Views
             this.lblAdditServs.TabIndex = 0;
             this.lblAdditServs.Text = "Дополнительные услуги:";
             // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            this.errorProvider.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider.Icon")));
+            // 
             // ServiceEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -264,6 +307,7 @@ namespace StretchCeilings.Views
             this.Controls.Add(this.panelTop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ServiceEditForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.LoadForm);
             this.panelTop.ResumeLayout(false);
             this.panelMainInfo.ResumeLayout(false);
@@ -273,6 +317,7 @@ namespace StretchCeilings.Views
             this.panelGridBtns.ResumeLayout(false);
             this.panelAdditServHeader.ResumeLayout(false);
             this.panelAdditServHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -283,8 +328,7 @@ namespace StretchCeilings.Views
         private FontAwesome.Sharp.IconButton btnClose;
         private System.Windows.Forms.Panel panelMainInfo;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.ComboBox cbCeilingValue;
-        private System.Windows.Forms.ComboBox cbManufacturerValue;
+        private System.Windows.Forms.ComboBox cbCeiling;
         private System.Windows.Forms.Label lblPriceValue;
         private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.Label lblCeiling;
@@ -295,5 +339,9 @@ namespace StretchCeilings.Views
         private System.Windows.Forms.Button btnAddAdditServ;
         private System.Windows.Forms.Panel panelAdditServHeader;
         private System.Windows.Forms.Label lblAdditServs;
+        private System.Windows.Forms.LinkLabel linkLblManufacturer;
+        private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.LinkLabel linkLblRoom;
+        private System.Windows.Forms.Label lblRoom;
     }
 }

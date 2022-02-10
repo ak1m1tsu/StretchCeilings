@@ -111,7 +111,6 @@
             this.tbLogin.Name = "tbLogin";
             this.tbLogin.Size = new System.Drawing.Size(203, 29);
             this.tbLogin.TabIndex = 36;
-            this.tbLogin.TextChanged += new System.EventHandler(this.SetEmployeeLogin);
             // 
             // btnSave
             // 
@@ -145,7 +144,6 @@
             this.cbRole.Name = "cbRole";
             this.cbRole.Size = new System.Drawing.Size(203, 31);
             this.cbRole.TabIndex = 34;
-            this.cbRole.SelectedIndexChanged += new System.EventHandler(this.SetEmployeeRole);
             // 
             // tbPassword
             // 
@@ -157,7 +155,6 @@
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(203, 29);
             this.tbPassword.TabIndex = 33;
-            this.tbPassword.TextChanged += new System.EventHandler(this.SetEmployeePassword);
             // 
             // tbFullName
             // 
@@ -169,7 +166,6 @@
             this.tbFullName.Name = "tbFullName";
             this.tbFullName.Size = new System.Drawing.Size(203, 29);
             this.tbFullName.TabIndex = 31;
-            this.tbFullName.TextChanged += new System.EventHandler(this.SetEmployeeFullName);
             // 
             // lblName
             // 
@@ -279,7 +275,7 @@
             // epControls
             // 
             this.epControls.ContainerControl = this;
-            this.epControls.Icon = ((System.Drawing.Icon)(resources.GetObject("epControls.AwesomeIcon")));
+            this.epControls.Icon = ((System.Drawing.Icon)(resources.GetObject("epControls.Icon")));
             // 
             // EmployeeEditForm
             // 
@@ -292,6 +288,7 @@
             this.Controls.Add(this.panelTop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "EmployeeEditForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.LoadForm);
             this.panelTop.ResumeLayout(false);
             this.panelInfo.ResumeLayout(false);

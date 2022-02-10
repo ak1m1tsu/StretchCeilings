@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using StretchCeilings.Helpers;
 using StretchCeilings.Helpers.Enums;
@@ -6,17 +7,19 @@ using StretchCeilings.Helpers.Extensions;
 using StretchCeilings.Helpers.Extensions.Controls;
 using StretchCeilings.Helpers.Structs;
 using StretchCeilings.Models;
-using StretchCeilings.Repositories;
 
 namespace StretchCeilings.Views
 {
     public partial class CustomerForm : Form
     {
-        private readonly Customer _customer;
+        private Customer _customer;
+        private readonly FormState _state;
+        private List<Estate> _estates;
 
-        public CustomerForm(Customer customer)
+        public CustomerForm(Customer customer, FormState state = FormState.Default)
         {
             _customer = customer;
+            _state = state;
             InitializeComponent();
         }
 
@@ -25,39 +28,55 @@ namespace StretchCeilings.Views
             lblFullNameValue.Text = _customer.FullName;
             lblPhoneNumberValue.Text = _customer.PhoneNumber;
 
-            if(CanUserEdit())
-                ShowEditButton();
+            if (_state == FormState.ForView)
+                btnEdit.Visible = false;
+
+            if (CanUserEdit())
+                btnEdit.Enabled = true;
             
             SetupGrid();
         }
 
         private void SetupGrid()
         {
-            var estates = _customer.GetEstates();
+            _estates = _customer.GetEstates();
 
-            dgvEstates.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvEstates.AddDataGridViewTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
             dgvEstates.AddDataGridViewTextBoxColumn("Адресс", DataGridViewAutoSizeColumnMode.Fill);
 
             dgvEstates.Font = GoogleFont.OpenSans;
             dgvEstates.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
             dgvEstates.DefaultCellStyle.SelectionForeColor = DraculaColor.Foreground;
 
-            for (var i = 0; i < estates?.Count; i++)
+            for (var i = 0; i < _estates?.Count; i++)
             {
                 dgvEstates.Rows.Add(new DataGridViewRow());
 
-                dgvEstates.Rows[i].Cells[0].Value = estates[i].Id;
-                dgvEstates.Rows[i].Cells[1].Value = estates[i].Address;
+                dgvEstates.Rows[i].Cells[0].Value = dgvEstates.Rows.Count;
+                dgvEstates.Rows[i].Cells[1].Value = _estates[i].Address;
+            }
+        }
+
+        private void ReSetupForm()
+        {
+            lblFullNameValue.Text = _customer.FullName;
+            lblPhoneNumberValue.Text = _customer.PhoneNumber;
+
+            _estates = _customer.GetEstates();
+
+            dgvEstates.Rows.Clear();
+
+            for (var i = 0; i < _estates?.Count; i++)
+            {
+                dgvEstates.Rows.Add(new DataGridViewRow());
+
+                dgvEstates.Rows[i].Cells[0].Value = dgvEstates.Rows.Count;
+                dgvEstates.Rows[i].Cells[1].Value = _estates[i].Address;
             }
         }
 
         private static bool CanUserEdit() => UserSession.IsAdmin || UserSession.Can(PermissionCode.EditCustomer);
-
-        private void ShowEditButton()
-        {
-            btnChangeInfo.Visible = false;
-        }
-
+        
         private void LoadForm(object sender, EventArgs e)
         {
             SetupForm();
@@ -70,21 +89,27 @@ namespace StretchCeilings.Views
 
         private void ShowGridData(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0 && dgvEstates.SelectedRows.Count < 0)
+            if (e.RowIndex < 0)
                 return;
 
-            var id = (int)dgvEstates.Rows[e.RowIndex].Cells[0].Value;
-            var estate = EstateRepository.GetById(id);
-            var form = new EstateForm(estate);
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-
-            }
+            var index = (int)dgvEstates.Rows[e.RowIndex].Cells[0].Value;
+            var estate = _estates[index - 1];
+            new EstateForm(estate).ShowDialog();
         }
 
         private void CloseForm(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
+        }
+
+        private void OpenEditForm(object sender, EventArgs e)
+        {
+            var form = new CustomerEditForm(_customer);
+            if (form.ShowDialog() != DialogResult.OK) 
+                return;
+
+            _customer = form.GetCustomer();
+            ReSetupForm();
         }
     }
 }

@@ -30,24 +30,26 @@ namespace StretchCeilings.Views
         private void InitializeComponent()
         {
             this.panelRightSide = new System.Windows.Forms.Panel();
+            this.dgvAdditServs = new System.Windows.Forms.DataGridView();
             this.panelAdditServHeader = new System.Windows.Forms.Panel();
             this.lblAdditServs = new System.Windows.Forms.Label();
             this.panelLeftSide = new System.Windows.Forms.Panel();
+            this.linkLblRoom = new System.Windows.Forms.LinkLabel();
+            this.lblRoom = new System.Windows.Forms.Label();
             this.btnEdit = new System.Windows.Forms.Button();
             this.lblPriceValue = new System.Windows.Forms.Label();
             this.lblPrice = new System.Windows.Forms.Label();
             this.linkLblCeilingValue = new System.Windows.Forms.LinkLabel();
             this.lblCeiling = new System.Windows.Forms.Label();
-            this.linkLblManufaturerValue = new System.Windows.Forms.LinkLabel();
+            this.linkLblManufaсturerValue = new System.Windows.Forms.LinkLabel();
             this.lblManufacturer = new System.Windows.Forms.Label();
             this.panelTopSide = new System.Windows.Forms.Panel();
             this.btnClose = new FontAwesome.Sharp.IconButton();
-            this.dgvAdditServs = new System.Windows.Forms.DataGridView();
             this.panelRightSide.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAdditServs)).BeginInit();
             this.panelAdditServHeader.SuspendLayout();
             this.panelLeftSide.SuspendLayout();
             this.panelTopSide.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvAdditServs)).BeginInit();
             this.SuspendLayout();
             // 
             // panelRightSide
@@ -59,6 +61,23 @@ namespace StretchCeilings.Views
             this.panelRightSide.Name = "panelRightSide";
             this.panelRightSide.Size = new System.Drawing.Size(680, 475);
             this.panelRightSide.TabIndex = 79;
+            // 
+            // dgvAdditServs
+            // 
+            this.dgvAdditServs.AllowUserToAddRows = false;
+            this.dgvAdditServs.AllowUserToDeleteRows = false;
+            this.dgvAdditServs.AllowUserToResizeColumns = false;
+            this.dgvAdditServs.AllowUserToResizeRows = false;
+            this.dgvAdditServs.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.dgvAdditServs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAdditServs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvAdditServs.Location = new System.Drawing.Point(0, 40);
+            this.dgvAdditServs.Name = "dgvAdditServs";
+            this.dgvAdditServs.ReadOnly = true;
+            this.dgvAdditServs.RowHeadersVisible = false;
+            this.dgvAdditServs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvAdditServs.Size = new System.Drawing.Size(680, 435);
+            this.dgvAdditServs.TabIndex = 8;
             // 
             // panelAdditServHeader
             // 
@@ -82,18 +101,48 @@ namespace StretchCeilings.Views
             // 
             // panelLeftSide
             // 
+            this.panelLeftSide.Controls.Add(this.linkLblRoom);
+            this.panelLeftSide.Controls.Add(this.lblRoom);
             this.panelLeftSide.Controls.Add(this.btnEdit);
             this.panelLeftSide.Controls.Add(this.lblPriceValue);
             this.panelLeftSide.Controls.Add(this.lblPrice);
             this.panelLeftSide.Controls.Add(this.linkLblCeilingValue);
             this.panelLeftSide.Controls.Add(this.lblCeiling);
-            this.panelLeftSide.Controls.Add(this.linkLblManufaturerValue);
+            this.panelLeftSide.Controls.Add(this.linkLblManufaсturerValue);
             this.panelLeftSide.Controls.Add(this.lblManufacturer);
             this.panelLeftSide.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelLeftSide.Font = new System.Drawing.Font("Open Sans", 12F);
             this.panelLeftSide.Location = new System.Drawing.Point(0, 25);
             this.panelLeftSide.Name = "panelLeftSide";
             this.panelLeftSide.Size = new System.Drawing.Size(320, 475);
             this.panelLeftSide.TabIndex = 78;
+            // 
+            // linkLblRoom
+            // 
+            this.linkLblRoom.ActiveLinkColor = System.Drawing.Color.White;
+            this.linkLblRoom.AutoSize = true;
+            this.linkLblRoom.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.linkLblRoom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.linkLblRoom.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.linkLblRoom.Location = new System.Drawing.Point(146, 70);
+            this.linkLblRoom.Name = "linkLblRoom";
+            this.linkLblRoom.Size = new System.Drawing.Size(39, 23);
+            this.linkLblRoom.TabIndex = 50;
+            this.linkLblRoom.TabStop = true;
+            this.linkLblRoom.Text = "Нет";
+            this.linkLblRoom.VisitedLinkColor = System.Drawing.Color.Black;
+            this.linkLblRoom.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ShowRoom);
+            // 
+            // lblRoom
+            // 
+            this.lblRoom.AutoSize = true;
+            this.lblRoom.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.lblRoom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.lblRoom.Location = new System.Drawing.Point(3, 70);
+            this.lblRoom.Name = "lblRoom";
+            this.lblRoom.Size = new System.Drawing.Size(82, 23);
+            this.lblRoom.TabIndex = 49;
+            this.lblRoom.Text = "Комната:";
             // 
             // btnEdit
             // 
@@ -101,7 +150,6 @@ namespace StretchCeilings.Views
             this.btnEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.btnEdit.FlatAppearance.BorderSize = 0;
             this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.btnEdit.ForeColor = System.Drawing.Color.White;
             this.btnEdit.Location = new System.Drawing.Point(206, 439);
             this.btnEdit.Name = "btnEdit";
@@ -115,7 +163,7 @@ namespace StretchCeilings.Views
             this.lblPriceValue.AutoSize = true;
             this.lblPriceValue.Font = new System.Drawing.Font("Open Sans", 12F);
             this.lblPriceValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.lblPriceValue.Location = new System.Drawing.Point(146, 72);
+            this.lblPriceValue.Location = new System.Drawing.Point(146, 103);
             this.lblPriceValue.Name = "lblPriceValue";
             this.lblPriceValue.Size = new System.Drawing.Size(19, 23);
             this.lblPriceValue.TabIndex = 6;
@@ -126,7 +174,7 @@ namespace StretchCeilings.Views
             this.lblPrice.AutoSize = true;
             this.lblPrice.Font = new System.Drawing.Font("Open Sans", 12F);
             this.lblPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.lblPrice.Location = new System.Drawing.Point(3, 72);
+            this.lblPrice.Location = new System.Drawing.Point(3, 103);
             this.lblPrice.Name = "lblPrice";
             this.lblPrice.Size = new System.Drawing.Size(54, 23);
             this.lblPrice.TabIndex = 5;
@@ -146,6 +194,7 @@ namespace StretchCeilings.Views
             this.linkLblCeilingValue.TabStop = true;
             this.linkLblCeilingValue.Text = "Нет";
             this.linkLblCeilingValue.VisitedLinkColor = System.Drawing.Color.Black;
+            this.linkLblCeilingValue.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ShowCeiling);
             // 
             // lblCeiling
             // 
@@ -158,20 +207,21 @@ namespace StretchCeilings.Views
             this.lblCeiling.TabIndex = 3;
             this.lblCeiling.Text = "Потолок:";
             // 
-            // linkLblManufaturerValue
+            // linkLblManufaсturerValue
             // 
-            this.linkLblManufaturerValue.ActiveLinkColor = System.Drawing.Color.White;
-            this.linkLblManufaturerValue.AutoSize = true;
-            this.linkLblManufaturerValue.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.linkLblManufaturerValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.linkLblManufaturerValue.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.linkLblManufaturerValue.Location = new System.Drawing.Point(146, 3);
-            this.linkLblManufaturerValue.Name = "linkLblManufaturerValue";
-            this.linkLblManufaturerValue.Size = new System.Drawing.Size(39, 23);
-            this.linkLblManufaturerValue.TabIndex = 2;
-            this.linkLblManufaturerValue.TabStop = true;
-            this.linkLblManufaturerValue.Text = "Нет";
-            this.linkLblManufaturerValue.VisitedLinkColor = System.Drawing.Color.Black;
+            this.linkLblManufaсturerValue.ActiveLinkColor = System.Drawing.Color.White;
+            this.linkLblManufaсturerValue.AutoSize = true;
+            this.linkLblManufaсturerValue.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.linkLblManufaсturerValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.linkLblManufaсturerValue.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.linkLblManufaсturerValue.Location = new System.Drawing.Point(146, 3);
+            this.linkLblManufaсturerValue.Name = "linkLblManufaсturerValue";
+            this.linkLblManufaсturerValue.Size = new System.Drawing.Size(39, 23);
+            this.linkLblManufaсturerValue.TabIndex = 2;
+            this.linkLblManufaсturerValue.TabStop = true;
+            this.linkLblManufaсturerValue.Text = "Нет";
+            this.linkLblManufaсturerValue.VisitedLinkColor = System.Drawing.Color.Black;
+            this.linkLblManufaсturerValue.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ShowManufacturer);
             // 
             // lblManufacturer
             // 
@@ -209,16 +259,7 @@ namespace StretchCeilings.Views
             this.btnClose.Size = new System.Drawing.Size(25, 25);
             this.btnClose.TabIndex = 2;
             this.btnClose.UseVisualStyleBackColor = true;
-            // 
-            // dgvAdditServs
-            // 
-            this.dgvAdditServs.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
-            this.dgvAdditServs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAdditServs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvAdditServs.Location = new System.Drawing.Point(0, 40);
-            this.dgvAdditServs.Name = "dgvAdditServs";
-            this.dgvAdditServs.Size = new System.Drawing.Size(680, 435);
-            this.dgvAdditServs.TabIndex = 8;
+            this.btnClose.Click += new System.EventHandler(this.CloseForm);
             // 
             // ServiceForm
             // 
@@ -231,14 +272,15 @@ namespace StretchCeilings.Views
             this.Controls.Add(this.panelTopSide);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ServiceForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.LoadForm);
             this.panelRightSide.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAdditServs)).EndInit();
             this.panelAdditServHeader.ResumeLayout(false);
             this.panelAdditServHeader.PerformLayout();
             this.panelLeftSide.ResumeLayout(false);
             this.panelLeftSide.PerformLayout();
             this.panelTopSide.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvAdditServs)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -254,10 +296,12 @@ namespace StretchCeilings.Views
         private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.LinkLabel linkLblCeilingValue;
         private System.Windows.Forms.Label lblCeiling;
-        private System.Windows.Forms.LinkLabel linkLblManufaturerValue;
+        private System.Windows.Forms.LinkLabel linkLblManufaсturerValue;
         private System.Windows.Forms.Label lblManufacturer;
         private System.Windows.Forms.Panel panelTopSide;
         private FontAwesome.Sharp.IconButton btnClose;
         private System.Windows.Forms.DataGridView dgvAdditServs;
+        private System.Windows.Forms.LinkLabel linkLblRoom;
+        private System.Windows.Forms.Label lblRoom;
     }
 }

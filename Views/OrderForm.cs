@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 using StretchCeilings.Helpers;
 using StretchCeilings.Helpers.Enums;
@@ -6,180 +7,220 @@ using StretchCeilings.Helpers.Extensions;
 using StretchCeilings.Helpers.Extensions.Controls;
 using StretchCeilings.Helpers.Structs;
 using StretchCeilings.Models;
-using StretchCeilings.Repositories;
 
 namespace StretchCeilings.Views
 {
     public partial class OrderForm : Form
     {
-        private readonly Order _currentOrder;
+        private readonly FormState _state;
 
-        public OrderForm(Order order)
+        private Order _order;
+        private List<Log> _logs;
+        private List<Employee> _employees;
+        private List<Service> _services;
+        private List<OrderWorkDate> _workDates;
+
+        public OrderForm(Order order, FormState state = FormState.Default)
         {
-            _currentOrder = order;
+            _order = order;
+            _state = state;
             InitializeComponent();
         }
 
-        private void SetupEditButton()
-        {
-            if (UserSession.IsAdmin || UserSession.Can(PermissionCode.EditOrder))
-                btnEditOrder.Visible = true;
-        }
+        private bool CanUserEdit =>
+            UserSession.IsAdmin || 
+            UserSession.Can(PermissionCode.EditOrder);
+        
 
-        private void SetUpForm()
+        private void SetupForm()
         {
-            linkLblCustomer.Text = _currentOrder.Customer?.FullName;
+            linkLblCustomer.Text = _order.Customer?.FullName;
             linkLblCustomer.ActiveLinkColor = DraculaColor.Pink;
             linkLblCustomer.VisitedLinkColor = DraculaColor.Purple;
 
-            lblDatePlacedValue.Text = _currentOrder.DatePlaced?.ToString();
-            lblDateOfMeasurementsValue.Text = _currentOrder?.DateOfMeasurements?.ToString();
-            lblDatePaidValue.Text = _currentOrder?.DatePaid?.ToString();
-            lblStatusValue.Text = _currentOrder?.Status?.ParseString();
-            lblPriceValue.Text = _currentOrder?.Total?.ToString();
+            lblDatePlacedValue.Text = _order.DatePlaced?.ToString();
+            lblDateOfMeasurementsValue.Text = _order?.DateOfMeasurements?.ToString();
+            lblDatePaidValue.Text = _order?.DatePaid?.ToString();
+            lblStatusValue.Text = _order?.Status?.ParseString();
+            lblPriceValue.Text = _order?.Total?.ToString();
 
-            if (_currentOrder.PaidByCash == true)
-            {
-                cbPaidByCash.CheckState = CheckState.Checked;
-            }
+            if (_order.PaidByCash == true)
+                lblPaidByCashValue.Text = Resources.Yes;
 
-            SetUpWorkDaysGrid();
-            SetUpServicesGrid();
-            SetUpEmployeesGrid();
+            if (CanUserEdit)
+                btnEdit.Enabled = true;
+
+            if (_state == FormState.ForView)
+                btnEdit.Visible = false;
+
+            SetupWorkDaysGrid();
+            SetupServicesGrid();
+            SetupEmployeesGrid();
             SetUpLogsGrid();
         }
 
-        private void SetUpServicesGrid()
+        private void ReSetupForm()
         {
-            var services = _currentOrder.GetServices();
+            linkLblCustomer.Text = _order.Customer?.FullName;
+            lblDatePlacedValue.Text = _order.DatePlaced?.ToString();
+            lblDateOfMeasurementsValue.Text = _order?.DateOfMeasurements?.ToString();
+            lblDatePaidValue.Text = _order?.DatePaid?.ToString();
+            lblStatusValue.Text = _order?.Status?.ParseString();
+            lblPriceValue.Text = _order?.Total?.ToString();
+            lblPaidByCashValue.Text = Resources.No;
+            if (_order.PaidByCash == true)
+                lblPaidByCashValue.Text = Resources.Yes;
 
-            dgvServices.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvServices.AddDataGridViewTextBoxColumn("Производитель", DataGridViewAutoSizeColumnMode.Fill);
-            dgvServices.AddDataGridViewTextBoxColumn("Потолок", DataGridViewAutoSizeColumnMode.Fill);
-            dgvServices.AddDataGridViewTextBoxColumn("Цена", DataGridViewAutoSizeColumnMode.DisplayedCells);
+            SetupWorkDaysGrid();
+            SetupServicesGrid();
+            SetupEmployeesGrid();
+            SetUpLogsGrid();
+        }
+
+        private void SetupServicesGrid()
+        {
+            _services = _order.GetServices();
+
+            dgvServices.AddDataGridViewTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvServices.AddDataGridViewTextBoxColumn(Resources.Manufacturer, DataGridViewAutoSizeColumnMode.Fill);
+            dgvServices.AddDataGridViewTextBoxColumn(Resources.Ceiling, DataGridViewAutoSizeColumnMode.Fill);
+            dgvServices.AddDataGridViewTextBoxColumn(Resources.Price, DataGridViewAutoSizeColumnMode.DisplayedCells);
             dgvServices.AddDataGridViewButtonColumn(DraculaColor.Red);
             
             dgvServices.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
             dgvServices.DefaultCellStyle.SelectionForeColor = DraculaColor.Foreground;
 
-            for (var i = 0; i < services?.Count; i++)
+            for (var i = 0; i < _services?.Count; i++)
             {
                 dgvServices.Rows.AddRange(new DataGridViewRow());
 
-                dgvServices.Rows[i].Cells[0].Value = services[i].Id;
-                dgvServices.Rows[i].Cells[1].Value = services[i].Manufacturer.Name;
-                dgvServices.Rows[i].Cells[2].Value = services[i].Ceiling.Name;
-                dgvServices.Rows[i].Cells[3].Value = services[i].Price;
+                dgvServices.Rows[i].Cells[0].Value = dgvServices.Rows.Count;
+                dgvServices.Rows[i].Cells[1].Value = _services[i].Manufacturer.Name;
+                dgvServices.Rows[i].Cells[2].Value = _services[i].Ceiling.Name;
+                dgvServices.Rows[i].Cells[3].Value = _services[i].Price;
             }
         }
 
-        private void SetUpEmployeesGrid()
+        private void SetupEmployeesGrid()
         {
-            var employees = _currentOrder.GetEmployees();
+            _employees = _order.GetEmployees();
 
-            dgvEmployees.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvEmployees.AddDataGridViewTextBoxColumn("Имя", DataGridViewAutoSizeColumnMode.Fill);
+            dgvEmployees.AddDataGridViewTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvEmployees.AddDataGridViewTextBoxColumn(Resources.PersonName, DataGridViewAutoSizeColumnMode.Fill);
             dgvEmployees.AddDataGridViewButtonColumn(DraculaColor.Red);
 
             dgvEmployees.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
             dgvEmployees.DefaultCellStyle.SelectionForeColor = DraculaColor.Foreground;
 
-            for (var i = 0; i < employees?.Count; i++)
+            for (var i = 0; i < _employees?.Count; i++)
             {
                 dgvEmployees.Rows.Add(new DataGridViewRow());
 
-                dgvEmployees.Rows[i].Cells[0].Value = employees[i].Id;
-                dgvEmployees.Rows[i].Cells[1].Value = employees[i].FullName;
+                dgvEmployees.Rows[i].Cells[0].Value = dgvEmployees.Rows.Count;
+                dgvEmployees.Rows[i].Cells[1].Value = _employees[i].FullName;
             }
         }
 
         private void SetUpLogsGrid()
         {
-            var logs = _currentOrder.GetLogs();
+            _logs = _order.GetLogs();
 
-            dgvLogs.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvLogs.AddDataGridViewTextBoxColumn("Дата создания", DataGridViewAutoSizeColumnMode.Fill);
-            dgvLogs.AddDataGridViewTextBoxColumn("Событие", DataGridViewAutoSizeColumnMode.Fill);
+            dgvLogs.AddDataGridViewTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvLogs.AddDataGridViewTextBoxColumn(Resources.DateCreated, DataGridViewAutoSizeColumnMode.Fill);
+            dgvLogs.AddDataGridViewTextBoxColumn(Resources.Action, DataGridViewAutoSizeColumnMode.Fill);
             dgvLogs.AddDataGridViewButtonColumn(DraculaColor.Red);
 
             dgvLogs.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
             dgvLogs.DefaultCellStyle.SelectionForeColor = DraculaColor.Foreground;
 
-            for (var i = 0; i < logs?.Count; i++)
+            for (var i = 0; i < _logs?.Count; i++)
             {
                 dgvLogs.Rows.Add(new DataGridViewRow());
 
-                dgvLogs.Rows[i].Cells[0].Value = logs[i].Id;
-                dgvLogs.Rows[i].Cells[1].Value = logs[i].DateCreated;
-                dgvLogs.Rows[i].Cells[2].Value = logs[i].Comment;
+                dgvLogs.Rows[i].Cells[0].Value = dgvLogs.Rows.Count;
+                dgvLogs.Rows[i].Cells[1].Value = _logs[i].DateCreated;
+                dgvLogs.Rows[i].Cells[2].Value = _logs[i].Comment;
             }
         }
 
-        private void SetUpWorkDaysGrid()
+        private void SetupWorkDaysGrid()
         {
-            var workdays = _currentOrder.GetWorkdays();
+            _workDates = _order.GetWorkDates();
 
-            dgvWorkDates.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvWorkDates.AddDataGridViewTextBoxColumn("Дата", DataGridViewAutoSizeColumnMode.Fill);
+            dgvWorkDates.AddDataGridViewTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvWorkDates.AddDataGridViewTextBoxColumn(Resources.Date, DataGridViewAutoSizeColumnMode.Fill);
             dgvWorkDates.AddDataGridViewButtonColumn(DraculaColor.Red);
             
             dgvWorkDates.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
             dgvWorkDates.DefaultCellStyle.SelectionForeColor = DraculaColor.Foreground;
             dgvWorkDates.DefaultCellStyle.ForeColor = Color.Black;
 
-            for (var i = 0; i < workdays?.Count; i++)
+            for (var i = 0; i < _workDates?.Count; i++)
             {
                 dgvWorkDates.Rows.Add(new DataGridViewRow());
 
-                dgvWorkDates.Rows[i].Cells[0].Value = i + 1;
-                dgvWorkDates.Rows[i].Cells[1].Value = workdays[i];
+                dgvWorkDates.Rows[i].Cells[0].Value = dgvWorkDates.Rows.Count;
+                dgvWorkDates.Rows[i].Cells[1].Value = _workDates[i].DateOfWork;
             }
-        }
-
-        private void ShowCustomerInfo()
-        {
-            new CustomerForm(_currentOrder.Customer).ShowDialog();
-        }
-
-        private void ShowEmployeeInfo(DataGridViewCellEventArgs e)
-        {
-            if (dgvEmployees.SelectedRows.Count <= 0 || e.RowIndex < 0) return;
-            new EmployeeForm(EmployeeRepository.GetById((int)dgvEmployees.SelectedRows[0].Cells[0].Value)).ShowDialog();
-        }
-
-        private void ShowServiceInfo(DataGridViewCellEventArgs e)
-        {
-            if (dgvEmployees.SelectedRows.Count <= 0 || e.RowIndex < 0) return;
-            new ServiceForm(ServiceRepository.GetById((int)dgvServices.SelectedRows[0].Cells[0].Value)).ShowDialog();
         }
 
         private void OrderForm_Load(object sender, System.EventArgs e)
         {
-            SetUpForm();
-            SetupEditButton();
+            SetupForm();
         }
 
-        private void btnEditOrder_Click(object sender, System.EventArgs e)
+        private void CloseForm(object sender, System.EventArgs e)
         {
-            Hide();
-            var orderFormEdit = new OrderEditForm(_currentOrder);
-            orderFormEdit.FormClosed += (o, args) => Show();
-            orderFormEdit.ShowDialog();
+            DialogResult = DialogResult.Cancel;
         }
 
-        private void dgvEmployees_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void ShowService(object sender, DataGridViewCellEventArgs e)
         {
-            ShowEmployeeInfo(e);
+            if (e.RowIndex < 0)
+                return;
+
+            var index = (int)dgvServices.Rows[e.RowIndex].Cells[0].Value;
+            var service = _services[index - 1];
+            var form = new ServiceForm(service, FormState.ForView);
+            form.ShowDialog();
         }
 
-        private void dgvServices_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void ShowEmployee(object sender, DataGridViewCellEventArgs e)
         {
-            ShowServiceInfo(e);
+            if (e.RowIndex < 0)
+                return;
+
+            var index = (int)dgvEmployees.Rows[e.RowIndex].Cells[0].Value;
+            var employee = _employees[index - 1];
+            var form = new EmployeeForm(employee, FormState.ForView);
+            form.ShowDialog();
         }
 
-        private void linkLblCustomer_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void ShowCustomer(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ShowCustomerInfo();
+            var customer = _order.Customer;
+            var form = new CustomerForm(customer, FormState.ForView);
+            form.ShowDialog();
+        }
+
+        private void DragMove(object sender, MouseEventArgs e)
+        {
+            this.Handle.DragMove(e);
+        }
+
+        private void ShowEditForm(object sender, System.EventArgs e)
+        {
+            this.Hide();
+
+            var form = new OrderEditForm(_order);
+            
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                _order = form.GetOrder();
+                ReSetupForm();
+            }
+
+            this.Show();
         }
     }
 }

@@ -7,12 +7,12 @@ namespace StretchCeilings.Views
 {
     public partial class AdditionalServiceEditForm : Form
     {
-        private readonly AdditionalService _currentService;
+        private readonly AdditionalService _additionalService;
         private readonly bool _isNew;
 
         public AdditionalServiceEditForm(AdditionalService service, bool isNew = false)
         {
-            _currentService = service;
+            _additionalService = service;
             _isNew = isNew;
             InitializeComponent();
         }
@@ -20,23 +20,23 @@ namespace StretchCeilings.Views
         private void SetUpForm()
         {
             nudPrice.Maximum = decimal.MaxValue;
-            nudPrice.Value = Convert.ToDecimal(_currentService.Price);
+            nudPrice.Value = Convert.ToDecimal(_additionalService.Price);
 
-            tbName.Text = _currentService.Name;
+            tbName.Text = _additionalService.Name;
         }
 
         private void SaveChanges()
         {
-            _currentService.Name = tbName.Text;
-            _currentService.Price = nudPrice.Value;
+            _additionalService.Name = tbName.Text;
+            _additionalService.Price = nudPrice.Value;
 
             if (_isNew)
             {
-                _currentService.Add();
+                _additionalService.Add();
             }
             else
             {
-                _currentService.Update();
+                _additionalService.Update();
             }
             DialogResult = DialogResult.OK;
         }

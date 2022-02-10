@@ -80,7 +80,7 @@ namespace StretchCeilings.Views
             this.cbRows.Name = "cbRows";
             this.cbRows.Size = new System.Drawing.Size(50, 31);
             this.cbRows.TabIndex = 98;
-            this.cbRows.SelectedIndexChanged += new System.EventHandler(this.cbRows_SelectedIndexChanged);
+            this.cbRows.SelectedIndexChanged += new System.EventHandler(this.RowCountChanged);
             // 
             // btnPreviousPage
             // 
@@ -96,7 +96,7 @@ namespace StretchCeilings.Views
             this.btnPreviousPage.TabIndex = 84;
             this.btnPreviousPage.Text = "<";
             this.btnPreviousPage.UseVisualStyleBackColor = false;
-            this.btnPreviousPage.Click += new System.EventHandler(this.btnPreviousPage_Click);
+            this.btnPreviousPage.Click += new System.EventHandler(this.ShowPreviousPage);
             // 
             // tbPages
             // 
@@ -126,12 +126,13 @@ namespace StretchCeilings.Views
             this.btnNextPage.TabIndex = 82;
             this.btnNextPage.Text = ">";
             this.btnNextPage.UseVisualStyleBackColor = false;
-            this.btnNextPage.Click += new System.EventHandler(this.btnNextPage_Click);
+            this.btnNextPage.Click += new System.EventHandler(this.ShowNextPage);
             // 
             // dgvCustomers
             // 
             this.dgvCustomers.AllowUserToAddRows = false;
             this.dgvCustomers.AllowUserToDeleteRows = false;
+            this.dgvCustomers.AllowUserToResizeColumns = false;
             this.dgvCustomers.AllowUserToResizeRows = false;
             this.dgvCustomers.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.dgvCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -144,8 +145,8 @@ namespace StretchCeilings.Views
             this.dgvCustomers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCustomers.Size = new System.Drawing.Size(1050, 500);
             this.dgvCustomers.TabIndex = 7;
-            this.dgvCustomers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomers_CellClick);
-            this.dgvCustomers.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomers_CellDoubleClick);
+            this.dgvCustomers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.RemoveGridData);
+            this.dgvCustomers.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ShowGridData);
             // 
             // panelFilters
             // 
@@ -300,6 +301,7 @@ namespace StretchCeilings.Views
             this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "CustomersForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.CustomersForm_Load);
             this.panelPages.ResumeLayout(false);
             this.panelPages.PerformLayout();

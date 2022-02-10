@@ -33,6 +33,8 @@ namespace StretchCeilings.Views
             this.btnClose = new FontAwesome.Sharp.IconButton();
             this.tcOrder = new System.Windows.Forms.TabControl();
             this.tpInfo = new System.Windows.Forms.TabPage();
+            this.lblPaidByCash = new System.Windows.Forms.Label();
+            this.cbPaidByCash = new System.Windows.Forms.ComboBox();
             this.linkLblCustomer = new System.Windows.Forms.LinkLabel();
             this.lblStatus = new System.Windows.Forms.Label();
             this.lblDateCanceledValue = new System.Windows.Forms.Label();
@@ -44,10 +46,9 @@ namespace StretchCeilings.Views
             this.dtpDatePlaced = new System.Windows.Forms.DateTimePicker();
             this.dtpDatePaid = new System.Windows.Forms.DateTimePicker();
             this.lblPriceValue = new System.Windows.Forms.Label();
-            this.cbPaidByCash = new System.Windows.Forms.CheckBox();
             this.dtpDateOfMeasurements = new System.Windows.Forms.DateTimePicker();
             this.lblPrice = new System.Windows.Forms.Label();
-            this.cbStatusValue = new System.Windows.Forms.ComboBox();
+            this.cbStatus = new System.Windows.Forms.ComboBox();
             this.gpWorkDates = new System.Windows.Forms.GroupBox();
             this.dgvWorkDates = new System.Windows.Forms.DataGridView();
             this.panelWorkDatesButtons = new System.Windows.Forms.Panel();
@@ -87,6 +88,7 @@ namespace StretchCeilings.Views
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(1100, 25);
             this.panelTop.TabIndex = 78;
+            this.panelTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DragMove);
             // 
             // btnClose
             // 
@@ -102,6 +104,7 @@ namespace StretchCeilings.Views
             this.btnClose.Size = new System.Drawing.Size(25, 25);
             this.btnClose.TabIndex = 2;
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.CloseForm);
             // 
             // tcOrder
             // 
@@ -120,6 +123,8 @@ namespace StretchCeilings.Views
             // tpInfo
             // 
             this.tpInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(42)))), ((int)(((byte)(54)))));
+            this.tpInfo.Controls.Add(this.lblPaidByCash);
+            this.tpInfo.Controls.Add(this.cbPaidByCash);
             this.tpInfo.Controls.Add(this.linkLblCustomer);
             this.tpInfo.Controls.Add(this.lblStatus);
             this.tpInfo.Controls.Add(this.lblDateCanceledValue);
@@ -131,10 +136,9 @@ namespace StretchCeilings.Views
             this.tpInfo.Controls.Add(this.dtpDatePlaced);
             this.tpInfo.Controls.Add(this.dtpDatePaid);
             this.tpInfo.Controls.Add(this.lblPriceValue);
-            this.tpInfo.Controls.Add(this.cbPaidByCash);
             this.tpInfo.Controls.Add(this.dtpDateOfMeasurements);
             this.tpInfo.Controls.Add(this.lblPrice);
-            this.tpInfo.Controls.Add(this.cbStatusValue);
+            this.tpInfo.Controls.Add(this.cbStatus);
             this.tpInfo.Controls.Add(this.gpWorkDates);
             this.tpInfo.Location = new System.Drawing.Point(4, 32);
             this.tpInfo.Name = "tpInfo";
@@ -143,28 +147,49 @@ namespace StretchCeilings.Views
             this.tpInfo.TabIndex = 0;
             this.tpInfo.Text = "Основная информация";
             // 
+            // lblPaidByCash
+            // 
+            this.lblPaidByCash.AutoSize = true;
+            this.lblPaidByCash.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.lblPaidByCash.Location = new System.Drawing.Point(3, 199);
+            this.lblPaidByCash.Name = "lblPaidByCash";
+            this.lblPaidByCash.Size = new System.Drawing.Size(179, 23);
+            this.lblPaidByCash.TabIndex = 73;
+            this.lblPaidByCash.Text = "Оплачен наличными:";
+            // 
+            // cbPaidByCash
+            // 
+            this.cbPaidByCash.AutoCompleteCustomSource.AddRange(new string[] {
+            "Ожидает ответа клиента",
+            "Ожидает выполнения работ",
+            "Ожидает результатов замеров",
+            "Отменен",
+            "Завершен"});
+            this.cbPaidByCash.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.cbPaidByCash.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.cbPaidByCash.FormattingEnabled = true;
+            this.cbPaidByCash.Location = new System.Drawing.Point(188, 196);
+            this.cbPaidByCash.Name = "cbPaidByCash";
+            this.cbPaidByCash.Size = new System.Drawing.Size(68, 31);
+            this.cbPaidByCash.TabIndex = 72;
+            // 
             // linkLblCustomer
             // 
-            this.linkLblCustomer.ActiveLinkColor = System.Drawing.Color.White;
             this.linkLblCustomer.AutoSize = true;
             this.linkLblCustomer.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.linkLblCustomer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.linkLblCustomer.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.linkLblCustomer.Location = new System.Drawing.Point(172, 7);
-            this.linkLblCustomer.MaximumSize = new System.Drawing.Size(100, 23);
+            this.linkLblCustomer.Location = new System.Drawing.Point(187, 6);
             this.linkLblCustomer.Name = "linkLblCustomer";
-            this.linkLblCustomer.Size = new System.Drawing.Size(29, 23);
-            this.linkLblCustomer.TabIndex = 98;
+            this.linkLblCustomer.Size = new System.Drawing.Size(39, 23);
+            this.linkLblCustomer.TabIndex = 71;
             this.linkLblCustomer.TabStop = true;
-            this.linkLblCustomer.Text = "👤";
-            this.linkLblCustomer.VisitedLinkColor = System.Drawing.Color.Black;
+            this.linkLblCustomer.Text = "Нет";
             // 
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.lblStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.lblStatus.Location = new System.Drawing.Point(6, 156);
+            this.lblStatus.Location = new System.Drawing.Point(6, 162);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(65, 23);
             this.lblStatus.TabIndex = 69;
@@ -174,8 +199,7 @@ namespace StretchCeilings.Views
             // 
             this.lblDateCanceledValue.AutoSize = true;
             this.lblDateCanceledValue.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.lblDateCanceledValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.lblDateCanceledValue.Location = new System.Drawing.Point(172, 128);
+            this.lblDateCanceledValue.Location = new System.Drawing.Point(185, 132);
             this.lblDateCanceledValue.Name = "lblDateCanceledValue";
             this.lblDateCanceledValue.Size = new System.Drawing.Size(39, 23);
             this.lblDateCanceledValue.TabIndex = 68;
@@ -185,8 +209,7 @@ namespace StretchCeilings.Views
             // 
             this.lblDateCanceled.AutoSize = true;
             this.lblDateCanceled.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.lblDateCanceled.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.lblDateCanceled.Location = new System.Drawing.Point(6, 126);
+            this.lblDateCanceled.Location = new System.Drawing.Point(6, 132);
             this.lblDateCanceled.Name = "lblDateCanceled";
             this.lblDateCanceled.Size = new System.Drawing.Size(116, 23);
             this.lblDateCanceled.TabIndex = 67;
@@ -196,8 +219,7 @@ namespace StretchCeilings.Views
             // 
             this.lblDatePaid.AutoSize = true;
             this.lblDatePaid.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.lblDatePaid.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.lblDatePaid.Location = new System.Drawing.Point(6, 96);
+            this.lblDatePaid.Location = new System.Drawing.Point(6, 101);
             this.lblDatePaid.Name = "lblDatePaid";
             this.lblDatePaid.Size = new System.Drawing.Size(113, 23);
             this.lblDatePaid.TabIndex = 66;
@@ -207,8 +229,7 @@ namespace StretchCeilings.Views
             // 
             this.lblDateOfMeasurements.AutoSize = true;
             this.lblDateOfMeasurements.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.lblDateOfMeasurements.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.lblDateOfMeasurements.Location = new System.Drawing.Point(6, 66);
+            this.lblDateOfMeasurements.Location = new System.Drawing.Point(6, 70);
             this.lblDateOfMeasurements.Name = "lblDateOfMeasurements";
             this.lblDateOfMeasurements.Size = new System.Drawing.Size(122, 23);
             this.lblDateOfMeasurements.TabIndex = 65;
@@ -218,8 +239,7 @@ namespace StretchCeilings.Views
             // 
             this.lblDatePlaced.AutoSize = true;
             this.lblDatePlaced.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.lblDatePlaced.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.lblDatePlaced.Location = new System.Drawing.Point(6, 36);
+            this.lblDatePlaced.Location = new System.Drawing.Point(6, 39);
             this.lblDatePlaced.Name = "lblDatePlaced";
             this.lblDatePlaced.Size = new System.Drawing.Size(155, 23);
             this.lblDatePlaced.TabIndex = 64;
@@ -229,7 +249,6 @@ namespace StretchCeilings.Views
             // 
             this.lblCustomer.AutoSize = true;
             this.lblCustomer.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.lblCustomer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.lblCustomer.Location = new System.Drawing.Point(6, 6);
             this.lblCustomer.Name = "lblCustomer";
             this.lblCustomer.Size = new System.Drawing.Size(70, 23);
@@ -241,7 +260,7 @@ namespace StretchCeilings.Views
             this.dtpDatePlaced.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpDatePlaced.Font = new System.Drawing.Font("Open Sans", 12F);
             this.dtpDatePlaced.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDatePlaced.Location = new System.Drawing.Point(172, 36);
+            this.dtpDatePlaced.Location = new System.Drawing.Point(188, 36);
             this.dtpDatePlaced.Name = "dtpDatePlaced";
             this.dtpDatePlaced.Size = new System.Drawing.Size(157, 29);
             this.dtpDatePlaced.TabIndex = 50;
@@ -251,7 +270,7 @@ namespace StretchCeilings.Views
             this.dtpDatePaid.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpDatePaid.Font = new System.Drawing.Font("Open Sans", 12F);
             this.dtpDatePaid.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDatePaid.Location = new System.Drawing.Point(172, 96);
+            this.dtpDatePaid.Location = new System.Drawing.Point(188, 98);
             this.dtpDatePaid.Name = "dtpDatePaid";
             this.dtpDatePaid.Size = new System.Drawing.Size(157, 29);
             this.dtpDatePaid.TabIndex = 52;
@@ -260,33 +279,18 @@ namespace StretchCeilings.Views
             // 
             this.lblPriceValue.AutoSize = true;
             this.lblPriceValue.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.lblPriceValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.lblPriceValue.Location = new System.Drawing.Point(172, 218);
+            this.lblPriceValue.Location = new System.Drawing.Point(187, 235);
             this.lblPriceValue.Name = "lblPriceValue";
             this.lblPriceValue.Size = new System.Drawing.Size(41, 23);
             this.lblPriceValue.TabIndex = 60;
             this.lblPriceValue.Text = "0.00";
-            // 
-            // cbPaidByCash
-            // 
-            this.cbPaidByCash.AutoSize = true;
-            this.cbPaidByCash.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.cbPaidByCash.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.cbPaidByCash.Location = new System.Drawing.Point(4, 190);
-            this.cbPaidByCash.Margin = new System.Windows.Forms.Padding(0);
-            this.cbPaidByCash.Name = "cbPaidByCash";
-            this.cbPaidByCash.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cbPaidByCash.Size = new System.Drawing.Size(186, 27);
-            this.cbPaidByCash.TabIndex = 59;
-            this.cbPaidByCash.Text = ":Оплата наличными";
-            this.cbPaidByCash.UseVisualStyleBackColor = true;
             // 
             // dtpDateOfMeasurements
             // 
             this.dtpDateOfMeasurements.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpDateOfMeasurements.Font = new System.Drawing.Font("Open Sans", 12F);
             this.dtpDateOfMeasurements.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDateOfMeasurements.Location = new System.Drawing.Point(172, 66);
+            this.dtpDateOfMeasurements.Location = new System.Drawing.Point(188, 67);
             this.dtpDateOfMeasurements.Name = "dtpDateOfMeasurements";
             this.dtpDateOfMeasurements.Size = new System.Drawing.Size(157, 29);
             this.dtpDateOfMeasurements.TabIndex = 54;
@@ -295,29 +299,27 @@ namespace StretchCeilings.Views
             // 
             this.lblPrice.AutoSize = true;
             this.lblPrice.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.lblPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.lblPrice.Location = new System.Drawing.Point(6, 218);
+            this.lblPrice.Location = new System.Drawing.Point(3, 235);
             this.lblPrice.Name = "lblPrice";
             this.lblPrice.Size = new System.Drawing.Size(54, 23);
             this.lblPrice.TabIndex = 58;
             this.lblPrice.Text = "Цена:";
             // 
-            // cbStatusValue
+            // cbStatus
             // 
-            this.cbStatusValue.AutoCompleteCustomSource.AddRange(new string[] {
+            this.cbStatus.AutoCompleteCustomSource.AddRange(new string[] {
             "Ожидает ответа клиента",
             "Ожидает выполнения работ",
             "Ожидает результатов замеров",
             "Отменен",
             "Завершен"});
-            this.cbStatusValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbStatusValue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbStatusValue.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.cbStatusValue.FormattingEnabled = true;
-            this.cbStatusValue.Location = new System.Drawing.Point(172, 156);
-            this.cbStatusValue.Name = "cbStatusValue";
-            this.cbStatusValue.Size = new System.Drawing.Size(280, 31);
-            this.cbStatusValue.TabIndex = 60;
+            this.cbStatus.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.cbStatus.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.cbStatus.FormattingEnabled = true;
+            this.cbStatus.Location = new System.Drawing.Point(188, 159);
+            this.cbStatus.Name = "cbStatus";
+            this.cbStatus.Size = new System.Drawing.Size(280, 31);
+            this.cbStatus.TabIndex = 60;
             // 
             // gpWorkDates
             // 
@@ -378,7 +380,7 @@ namespace StretchCeilings.Views
             this.tpServices.Location = new System.Drawing.Point(4, 32);
             this.tpServices.Name = "tpServices";
             this.tpServices.Padding = new System.Windows.Forms.Padding(3);
-            this.tpServices.Size = new System.Drawing.Size(1176, 400);
+            this.tpServices.Size = new System.Drawing.Size(1092, 339);
             this.tpServices.TabIndex = 1;
             this.tpServices.Text = "Услуги";
             // 
@@ -393,16 +395,16 @@ namespace StretchCeilings.Views
             this.dgvServices.Location = new System.Drawing.Point(3, 3);
             this.dgvServices.Name = "dgvServices";
             this.dgvServices.RowHeadersVisible = false;
-            this.dgvServices.Size = new System.Drawing.Size(1170, 354);
+            this.dgvServices.Size = new System.Drawing.Size(1086, 293);
             this.dgvServices.TabIndex = 4;
             // 
             // panelServiceButtons
             // 
             this.panelServiceButtons.Controls.Add(this.btnAddService);
             this.panelServiceButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelServiceButtons.Location = new System.Drawing.Point(3, 357);
+            this.panelServiceButtons.Location = new System.Drawing.Point(3, 296);
             this.panelServiceButtons.Name = "panelServiceButtons";
-            this.panelServiceButtons.Size = new System.Drawing.Size(1170, 40);
+            this.panelServiceButtons.Size = new System.Drawing.Size(1086, 40);
             this.panelServiceButtons.TabIndex = 3;
             // 
             // btnAddService
@@ -410,9 +412,8 @@ namespace StretchCeilings.Views
             this.btnAddService.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.btnAddService.FlatAppearance.BorderSize = 0;
             this.btnAddService.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddService.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.btnAddService.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.btnAddService.Location = new System.Drawing.Point(1043, 5);
+            this.btnAddService.Location = new System.Drawing.Point(963, 6);
             this.btnAddService.Name = "btnAddService";
             this.btnAddService.Size = new System.Drawing.Size(120, 30);
             this.btnAddService.TabIndex = 44;
@@ -427,7 +428,7 @@ namespace StretchCeilings.Views
             this.tpEmployees.Location = new System.Drawing.Point(4, 32);
             this.tpEmployees.Name = "tpEmployees";
             this.tpEmployees.Padding = new System.Windows.Forms.Padding(3);
-            this.tpEmployees.Size = new System.Drawing.Size(1176, 400);
+            this.tpEmployees.Size = new System.Drawing.Size(1092, 339);
             this.tpEmployees.TabIndex = 2;
             this.tpEmployees.Text = "Мастера";
             // 
@@ -442,16 +443,16 @@ namespace StretchCeilings.Views
             this.dgvEmployees.Location = new System.Drawing.Point(3, 3);
             this.dgvEmployees.Name = "dgvEmployees";
             this.dgvEmployees.RowHeadersVisible = false;
-            this.dgvEmployees.Size = new System.Drawing.Size(1170, 354);
+            this.dgvEmployees.Size = new System.Drawing.Size(1086, 293);
             this.dgvEmployees.TabIndex = 2;
             // 
             // panelEmployeesButtons
             // 
             this.panelEmployeesButtons.Controls.Add(this.btnAddEmployee);
             this.panelEmployeesButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelEmployeesButtons.Location = new System.Drawing.Point(3, 357);
+            this.panelEmployeesButtons.Location = new System.Drawing.Point(3, 296);
             this.panelEmployeesButtons.Name = "panelEmployeesButtons";
-            this.panelEmployeesButtons.Size = new System.Drawing.Size(1170, 40);
+            this.panelEmployeesButtons.Size = new System.Drawing.Size(1086, 40);
             this.panelEmployeesButtons.TabIndex = 0;
             // 
             // btnAddEmployee
@@ -459,9 +460,8 @@ namespace StretchCeilings.Views
             this.btnAddEmployee.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.btnAddEmployee.FlatAppearance.BorderSize = 0;
             this.btnAddEmployee.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.btnAddEmployee.ForeColor = System.Drawing.Color.White;
-            this.btnAddEmployee.Location = new System.Drawing.Point(1043, 5);
+            this.btnAddEmployee.Location = new System.Drawing.Point(963, 5);
             this.btnAddEmployee.Name = "btnAddEmployee";
             this.btnAddEmployee.Size = new System.Drawing.Size(120, 30);
             this.btnAddEmployee.TabIndex = 44;
@@ -475,7 +475,7 @@ namespace StretchCeilings.Views
             this.tpLogs.Location = new System.Drawing.Point(4, 32);
             this.tpLogs.Name = "tpLogs";
             this.tpLogs.Padding = new System.Windows.Forms.Padding(3);
-            this.tpLogs.Size = new System.Drawing.Size(1176, 400);
+            this.tpLogs.Size = new System.Drawing.Size(1092, 339);
             this.tpLogs.TabIndex = 3;
             this.tpLogs.Text = "События";
             // 
@@ -490,10 +490,10 @@ namespace StretchCeilings.Views
             this.dgvLogs.Location = new System.Drawing.Point(3, 3);
             this.dgvLogs.Name = "dgvLogs";
             this.dgvLogs.RowHeadersVisible = false;
-            this.dgvLogs.Size = new System.Drawing.Size(1170, 394);
+            this.dgvLogs.Size = new System.Drawing.Size(1086, 333);
             this.dgvLogs.TabIndex = 4;
             // 
-            // OrderFormEdit
+            // OrderEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -501,9 +501,11 @@ namespace StretchCeilings.Views
             this.ClientSize = new System.Drawing.Size(1100, 400);
             this.Controls.Add(this.tcOrder);
             this.Controls.Add(this.panelTop);
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "OrderFormEdit";
-            this.Load += new System.EventHandler(this.OrderFormEdit_Load);
+            this.Name = "OrderEditForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.LoadForm);
             this.panelTop.ResumeLayout(false);
             this.tcOrder.ResumeLayout(false);
             this.tpInfo.ResumeLayout(false);
@@ -529,7 +531,6 @@ namespace StretchCeilings.Views
         private FontAwesome.Sharp.IconButton btnClose;
         private System.Windows.Forms.TabControl tcOrder;
         private System.Windows.Forms.TabPage tpInfo;
-        private System.Windows.Forms.LinkLabel linkLblCustomer;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Label lblDateCanceledValue;
         private System.Windows.Forms.Label lblDateCanceled;
@@ -540,10 +541,9 @@ namespace StretchCeilings.Views
         private System.Windows.Forms.DateTimePicker dtpDatePlaced;
         private System.Windows.Forms.DateTimePicker dtpDatePaid;
         private System.Windows.Forms.Label lblPriceValue;
-        private System.Windows.Forms.CheckBox cbPaidByCash;
         private System.Windows.Forms.DateTimePicker dtpDateOfMeasurements;
         private System.Windows.Forms.Label lblPrice;
-        private System.Windows.Forms.ComboBox cbStatusValue;
+        private System.Windows.Forms.ComboBox cbStatus;
         private System.Windows.Forms.GroupBox gpWorkDates;
         private System.Windows.Forms.DataGridView dgvWorkDates;
         private System.Windows.Forms.Panel panelWorkDatesButtons;
@@ -558,5 +558,8 @@ namespace StretchCeilings.Views
         private System.Windows.Forms.Button btnAddEmployee;
         private System.Windows.Forms.TabPage tpLogs;
         private System.Windows.Forms.DataGridView dgvLogs;
+        private System.Windows.Forms.LinkLabel linkLblCustomer;
+        private System.Windows.Forms.ComboBox cbPaidByCash;
+        private System.Windows.Forms.Label lblPaidByCash;
     }
 }

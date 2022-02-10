@@ -8,6 +8,6 @@ namespace StretchCeilings.Interfaces.Models
         void Add();
         void Update();
         void Delete();
-        List<AdditionalService> GetAdditionalServices();
+        List<ServiceAdditionalService> GetAdditionalServices();
     }
 }

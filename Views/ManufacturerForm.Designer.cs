@@ -222,6 +222,7 @@ namespace StretchCeilings.Views
             this.Controls.Add(this.panelTop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ManufacturerForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.ManufacturerForm_Load);
             this.panelTop.ResumeLayout(false);
             this.panelBody.ResumeLayout(false);

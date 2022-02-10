@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using StretchCeilings.DataAccess;
 
@@ -26,30 +25,37 @@ namespace StretchCeilings.Models
             }
         }
 
+        public void Delete()
+        {
+            using (var db = new StretchCeilingsContext())
+            {
+                var service = db.ServiceAdditionalServices.First(x =>
+                    x.AdditionalServiceId == AdditionalServiceId &&
+                    x.ServiceId == ServiceId);
+
+                db.ServiceAdditionalServices.Remove(service);
+                db.SaveChanges();
+            }
+        }
+
         public void Update()
         {
             using (var db = new StretchCeilingsContext())
             {
                 var old = db.ServiceAdditionalServices.FirstOrDefault(x =>
-                    x.ServiceId == ServiceId && x.AdditionalServiceId == AdditionalServiceId);
-                ServiceId = Service.Id;
-                AdditionalServiceId = AdditionalService.Id;
+                    x.ServiceId == ServiceId &&
+                    x.AdditionalServiceId == AdditionalServiceId);
+
                 db.Entry(old).CurrentValues.SetValues(this);
                 db.SaveChanges();
             }
         }
 
-        public List<AdditionalService> GetAdditionalServices()
+        public AdditionalService GetAdditionalService()
         {
             using (var db = new StretchCeilingsContext())
             {
-                var services = new List<AdditionalService>();
-                for (var i = 0; i < Count; i++)
-                {
-                    services.Add(db.AdditionalServices.FirstOrDefault(x=>x.Id == AdditionalServiceId));
-                }
-
-                return services;
+                return db.AdditionalServices.FirstOrDefault(x => x.Id == AdditionalServiceId);
             }
         }
     }

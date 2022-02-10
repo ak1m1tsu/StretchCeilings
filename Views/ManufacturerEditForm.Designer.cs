@@ -30,7 +30,6 @@ namespace StretchCeilings.Views
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManufacturerEditForm));
             this.panelTop = new System.Windows.Forms.Panel();
             this.btnClose = new FontAwesome.Sharp.IconButton();
             this.panelBody = new System.Windows.Forms.Panel();
@@ -256,7 +255,6 @@ namespace StretchCeilings.Views
             // errorProvider
             // 
             this.errorProvider.ContainerControl = this;
-            this.errorProvider.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider.AwesomeIcon")));
             // 
             // ManufacturerEditForm
             // 
@@ -268,6 +266,7 @@ namespace StretchCeilings.Views
             this.Controls.Add(this.panelTop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ManufacturerEditForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.LoadForm);
             this.panelTop.ResumeLayout(false);
             this.panelBody.ResumeLayout(false);

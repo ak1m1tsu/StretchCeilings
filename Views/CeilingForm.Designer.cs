@@ -162,6 +162,7 @@ namespace StretchCeilings.Views
             this.Controls.Add(this.panelTop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "CeilingForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Производитель \"Pongs\"";
             this.panelTop.ResumeLayout(false);
             this.ResumeLayout(false);

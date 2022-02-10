@@ -5,7 +5,6 @@ using StretchCeilings.Helpers.Extensions;
 using StretchCeilings.Helpers.Extensions.Controls;
 using StretchCeilings.Helpers.Structs;
 using StretchCeilings.Models;
-using StretchCeilings.Repositories;
 
 namespace StretchCeilings.Views
 {
@@ -31,19 +30,17 @@ namespace StretchCeilings.Views
             btnEdit.Click += OpenEditForm;
             panelTop.MouseDown += DragMove;
 
-            lblAddressValue.Text = _manufacturer?.Address;
-            lblNameValue.Text = _manufacturer?.Name;
-            lblCountryValue.Text = _manufacturer?.Country?.ParseString();
+            FillFormControls();
             dgvCeilings.CellDoubleClick += OpenCeilingForm;
         }
 
         private void SetupCeilingsGrid()
         {
-            dgvCeilings.AddDataGridViewTextBoxColumn("№", DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvCeilings.AddDataGridViewTextBoxColumn("Название", DataGridViewAutoSizeColumnMode.Fill);
-            dgvCeilings.AddDataGridViewTextBoxColumn("Текстура", DataGridViewAutoSizeColumnMode.Fill);
-            dgvCeilings.AddDataGridViewTextBoxColumn("Цвет", DataGridViewAutoSizeColumnMode.Fill);
-            dgvCeilings.AddDataGridViewTextBoxColumn("Цена", DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvCeilings.AddDataGridViewTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvCeilings.AddDataGridViewTextBoxColumn(Resources.Name, DataGridViewAutoSizeColumnMode.Fill);
+            dgvCeilings.AddDataGridViewTextBoxColumn(Resources.Texture, DataGridViewAutoSizeColumnMode.Fill);
+            dgvCeilings.AddDataGridViewTextBoxColumn(Resources.Color, DataGridViewAutoSizeColumnMode.Fill);
+            dgvCeilings.AddDataGridViewTextBoxColumn(Resources.Price, DataGridViewAutoSizeColumnMode.DisplayedCells);
             dgvCeilings.Font = GoogleFont.OpenSans;
             dgvCeilings.ForeColor = DraculaColor.Background;
             dgvCeilings.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
@@ -54,18 +51,18 @@ namespace StretchCeilings.Views
 
         private void FillCeilingsGrid()
         {
-            _ceilings = _manufacturer.GetCeilings();
+            _ceilings = _manufacturer?.GetCeilings();
 
             dgvCeilings.Rows.Clear();
 
             for (var i = 0; i < _ceilings?.Count; i++)
             {
                 dgvCeilings.Rows.Add(new DataGridViewRow());
-                dgvCeilings.Rows[i].Cells["№"].Value = _ceilings[i].Id;
-                dgvCeilings.Rows[i].Cells["Название"].Value = _ceilings[i].Name;
-                dgvCeilings.Rows[i].Cells["Текстура"].Value = _ceilings[i].TextureType?.ParseString();
-                dgvCeilings.Rows[i].Cells["Цвет"].Value = _ceilings[i].ColorType?.ParseString();
-                dgvCeilings.Rows[i].Cells["Цена"].Value = _ceilings[i].Price;
+                dgvCeilings.Rows[i].Cells[Resources.Number].Value = dgvCeilings.Rows.Count;
+                dgvCeilings.Rows[i].Cells[Resources.Name].Value = _ceilings[i].Name;
+                dgvCeilings.Rows[i].Cells[Resources.Texture].Value = _ceilings[i].TextureType?.ParseString();
+                dgvCeilings.Rows[i].Cells[Resources.Color].Value = _ceilings[i].ColorType?.ParseString();
+                dgvCeilings.Rows[i].Cells[Resources.Price].Value = _ceilings[i].Price;
             }
         }
 
@@ -74,22 +71,34 @@ namespace StretchCeilings.Views
             if (dgvCeilings.SelectedRows.Count < 0 && e.RowIndex < 0)
                 return;
 
-            var ceiling = CeilingRepository.GetById((int)dgvCeilings.Rows[e.RowIndex].Cells[0].Value);
+            var id = (int)dgvCeilings.Rows[e.RowIndex].Cells[0].Value - 1;
+            var ceiling = _ceilings[id];
             new CeilingForm(ceiling).ShowDialog();
+
             FillCeilingsGrid();
+        }
+
+        private void FillFormControls()
+        {
+            lblAddressValue.Text = _manufacturer?.Address;
+            lblNameValue.Text = _manufacturer?.Name;
+            lblCountryValue.Text = _manufacturer?.Country?.ParseString();
         }
 
         private void OpenEditForm(object sender, EventArgs e)
         {
-            Hide();
+            this.Hide();
+
             var form = new ManufacturerEditForm(_manufacturer);
+
             if (form.ShowDialog() == DialogResult.OK)
             {
                 _manufacturer = form.GetManufacturer();
-                SetupControls();
+                FillFormControls();
                 FillCeilingsGrid();
             }
-            Show();
+
+            this.Show();
         }
 
         private void ManufacturerForm_Load(object sender, EventArgs e)

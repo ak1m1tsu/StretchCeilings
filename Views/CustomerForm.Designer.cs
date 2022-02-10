@@ -32,19 +32,19 @@ namespace StretchCeilings.Views
             this.panelTop = new System.Windows.Forms.Panel();
             this.btnClose = new FontAwesome.Sharp.IconButton();
             this.tcCustomer = new System.Windows.Forms.TabControl();
+            this.tbInfo = new System.Windows.Forms.TabPage();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.lblPhoneNumberValue = new System.Windows.Forms.Label();
+            this.lblFullNameValue = new System.Windows.Forms.Label();
+            this.lblFullName = new System.Windows.Forms.Label();
+            this.lblPhoneNumber = new System.Windows.Forms.Label();
             this.tpEstates = new System.Windows.Forms.TabPage();
             this.dgvEstates = new System.Windows.Forms.DataGridView();
-            this.lblPhoneNumber = new System.Windows.Forms.Label();
-            this.lblFullName = new System.Windows.Forms.Label();
-            this.lblFullNameValue = new System.Windows.Forms.Label();
-            this.lblPhoneNumberValue = new System.Windows.Forms.Label();
-            this.btnChangeInfo = new System.Windows.Forms.Button();
-            this.tbInfo = new System.Windows.Forms.TabPage();
             this.panelTop.SuspendLayout();
             this.tcCustomer.SuspendLayout();
+            this.tbInfo.SuspendLayout();
             this.tpEstates.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEstates)).BeginInit();
-            this.tbInfo.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTop
@@ -54,7 +54,7 @@ namespace StretchCeilings.Views
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Location = new System.Drawing.Point(0, 0);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(634, 25);
+            this.panelTop.Size = new System.Drawing.Size(700, 25);
             this.panelTop.TabIndex = 2;
             this.panelTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DragMove);
             // 
@@ -69,7 +69,7 @@ namespace StretchCeilings.Views
             this.btnClose.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.btnClose.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnClose.IconSize = 25;
-            this.btnClose.Location = new System.Drawing.Point(609, 0);
+            this.btnClose.Location = new System.Drawing.Point(675, 0);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(25, 25);
             this.btnClose.TabIndex = 2;
@@ -88,8 +88,84 @@ namespace StretchCeilings.Views
             this.tcCustomer.Name = "tcCustomer";
             this.tcCustomer.Padding = new System.Drawing.Point(0, 0);
             this.tcCustomer.SelectedIndex = 0;
-            this.tcCustomer.Size = new System.Drawing.Size(634, 336);
+            this.tcCustomer.Size = new System.Drawing.Size(700, 375);
             this.tcCustomer.TabIndex = 3;
+            // 
+            // tbInfo
+            // 
+            this.tbInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(42)))), ((int)(((byte)(54)))));
+            this.tbInfo.Controls.Add(this.btnEdit);
+            this.tbInfo.Controls.Add(this.lblPhoneNumberValue);
+            this.tbInfo.Controls.Add(this.lblFullNameValue);
+            this.tbInfo.Controls.Add(this.lblFullName);
+            this.tbInfo.Controls.Add(this.lblPhoneNumber);
+            this.tbInfo.Location = new System.Drawing.Point(4, 34);
+            this.tbInfo.Margin = new System.Windows.Forms.Padding(0);
+            this.tbInfo.Name = "tbInfo";
+            this.tbInfo.Size = new System.Drawing.Size(692, 337);
+            this.tbInfo.TabIndex = 0;
+            this.tbInfo.Text = "Основная информация";
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.btnEdit.Enabled = false;
+            this.btnEdit.FlatAppearance.BorderSize = 0;
+            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEdit.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.btnEdit.ForeColor = System.Drawing.Color.White;
+            this.btnEdit.Location = new System.Drawing.Point(564, 299);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(120, 30);
+            this.btnEdit.TabIndex = 76;
+            this.btnEdit.Text = "Изменить";
+            this.btnEdit.UseVisualStyleBackColor = false;
+            this.btnEdit.Click += new System.EventHandler(this.OpenEditForm);
+            // 
+            // lblPhoneNumberValue
+            // 
+            this.lblPhoneNumberValue.AutoSize = true;
+            this.lblPhoneNumberValue.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.lblPhoneNumberValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.lblPhoneNumberValue.Location = new System.Drawing.Point(152, 42);
+            this.lblPhoneNumberValue.Name = "lblPhoneNumberValue";
+            this.lblPhoneNumberValue.Size = new System.Drawing.Size(39, 23);
+            this.lblPhoneNumberValue.TabIndex = 48;
+            this.lblPhoneNumberValue.Text = "Нет";
+            // 
+            // lblFullNameValue
+            // 
+            this.lblFullNameValue.AutoSize = true;
+            this.lblFullNameValue.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.lblFullNameValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.lblFullNameValue.Location = new System.Drawing.Point(152, 11);
+            this.lblFullNameValue.Name = "lblFullNameValue";
+            this.lblFullNameValue.Size = new System.Drawing.Size(39, 23);
+            this.lblFullNameValue.TabIndex = 47;
+            this.lblFullNameValue.Text = "Нет";
+            // 
+            // lblFullName
+            // 
+            this.lblFullName.AutoSize = true;
+            this.lblFullName.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.lblFullName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.lblFullName.Location = new System.Drawing.Point(5, 11);
+            this.lblFullName.Name = "lblFullName";
+            this.lblFullName.Size = new System.Drawing.Size(51, 23);
+            this.lblFullName.TabIndex = 45;
+            this.lblFullName.Text = "ФИО:";
+            // 
+            // lblPhoneNumber
+            // 
+            this.lblPhoneNumber.AutoSize = true;
+            this.lblPhoneNumber.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.lblPhoneNumber.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.lblPhoneNumber.Location = new System.Drawing.Point(5, 42);
+            this.lblPhoneNumber.Name = "lblPhoneNumber";
+            this.lblPhoneNumber.Size = new System.Drawing.Size(146, 23);
+            this.lblPhoneNumber.TabIndex = 46;
+            this.lblPhoneNumber.Text = "Номер телефона:";
             // 
             // tpEstates
             // 
@@ -120,97 +196,24 @@ namespace StretchCeilings.Views
             this.dgvEstates.TabIndex = 2;
             this.dgvEstates.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ShowGridData);
             // 
-            // lblPhoneNumber
-            // 
-            this.lblPhoneNumber.AutoSize = true;
-            this.lblPhoneNumber.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.lblPhoneNumber.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.lblPhoneNumber.Location = new System.Drawing.Point(5, 42);
-            this.lblPhoneNumber.Name = "lblPhoneNumber";
-            this.lblPhoneNumber.Size = new System.Drawing.Size(146, 23);
-            this.lblPhoneNumber.TabIndex = 46;
-            this.lblPhoneNumber.Text = "Номер телефона:";
-            // 
-            // lblFullName
-            // 
-            this.lblFullName.AutoSize = true;
-            this.lblFullName.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.lblFullName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.lblFullName.Location = new System.Drawing.Point(5, 11);
-            this.lblFullName.Name = "lblFullName";
-            this.lblFullName.Size = new System.Drawing.Size(51, 23);
-            this.lblFullName.TabIndex = 45;
-            this.lblFullName.Text = "ФИО:";
-            // 
-            // lblFullNameValue
-            // 
-            this.lblFullNameValue.AutoSize = true;
-            this.lblFullNameValue.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.lblFullNameValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.lblFullNameValue.Location = new System.Drawing.Point(174, 11);
-            this.lblFullNameValue.Name = "lblFullNameValue";
-            this.lblFullNameValue.Size = new System.Drawing.Size(39, 23);
-            this.lblFullNameValue.TabIndex = 47;
-            this.lblFullNameValue.Text = "Нет";
-            // 
-            // lblPhoneNumberValue
-            // 
-            this.lblPhoneNumberValue.AutoSize = true;
-            this.lblPhoneNumberValue.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.lblPhoneNumberValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.lblPhoneNumberValue.Location = new System.Drawing.Point(174, 42);
-            this.lblPhoneNumberValue.Name = "lblPhoneNumberValue";
-            this.lblPhoneNumberValue.Size = new System.Drawing.Size(39, 23);
-            this.lblPhoneNumberValue.TabIndex = 48;
-            this.lblPhoneNumberValue.Text = "Нет";
-            // 
-            // btnChangeInfo
-            // 
-            this.btnChangeInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnChangeInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
-            this.btnChangeInfo.FlatAppearance.BorderSize = 0;
-            this.btnChangeInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnChangeInfo.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.btnChangeInfo.ForeColor = System.Drawing.Color.White;
-            this.btnChangeInfo.Location = new System.Drawing.Point(502, 265);
-            this.btnChangeInfo.Name = "btnChangeInfo";
-            this.btnChangeInfo.Size = new System.Drawing.Size(120, 30);
-            this.btnChangeInfo.TabIndex = 76;
-            this.btnChangeInfo.Text = "Изменить";
-            this.btnChangeInfo.UseVisualStyleBackColor = false;
-            // 
-            // tbInfo
-            // 
-            this.tbInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(42)))), ((int)(((byte)(54)))));
-            this.tbInfo.Controls.Add(this.btnChangeInfo);
-            this.tbInfo.Controls.Add(this.lblPhoneNumberValue);
-            this.tbInfo.Controls.Add(this.lblFullNameValue);
-            this.tbInfo.Controls.Add(this.lblFullName);
-            this.tbInfo.Controls.Add(this.lblPhoneNumber);
-            this.tbInfo.Location = new System.Drawing.Point(4, 34);
-            this.tbInfo.Margin = new System.Windows.Forms.Padding(0);
-            this.tbInfo.Name = "tbInfo";
-            this.tbInfo.Size = new System.Drawing.Size(626, 298);
-            this.tbInfo.TabIndex = 0;
-            this.tbInfo.Text = "Основная информация";
-            // 
             // CustomerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(42)))), ((int)(((byte)(54)))));
-            this.ClientSize = new System.Drawing.Size(634, 361);
+            this.ClientSize = new System.Drawing.Size(700, 400);
             this.Controls.Add(this.tcCustomer);
             this.Controls.Add(this.panelTop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "CustomerForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.LoadForm);
             this.panelTop.ResumeLayout(false);
             this.tcCustomer.ResumeLayout(false);
-            this.tpEstates.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEstates)).EndInit();
             this.tbInfo.ResumeLayout(false);
             this.tbInfo.PerformLayout();
+            this.tpEstates.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEstates)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -223,7 +226,7 @@ namespace StretchCeilings.Views
         private System.Windows.Forms.TabPage tpEstates;
         private System.Windows.Forms.DataGridView dgvEstates;
         private System.Windows.Forms.TabPage tbInfo;
-        private System.Windows.Forms.Button btnChangeInfo;
+        private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Label lblPhoneNumberValue;
         private System.Windows.Forms.Label lblFullNameValue;
         private System.Windows.Forms.Label lblFullName;

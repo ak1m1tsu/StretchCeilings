@@ -10,55 +10,63 @@ namespace StretchCeilings.Views
 {
     public partial class AdditionalServiceForm : Form
     {
-        private AdditionalService _currentService;
+        private AdditionalService _additionalService;
+        private readonly FormState _state;
 
-        public AdditionalServiceForm(AdditionalService service)
+        public AdditionalServiceForm(AdditionalService additionalService, FormState state = FormState.Default)
         {
-            _currentService = service;
+            _additionalService = additionalService;
+            _state = state;
             InitializeComponent();
         }
 
-        private void ReSetUpForm()
-        {
-            _currentService = AdditionalServiceRepository.GetById(_currentService.Id);
+        private static bool CanUserEdit =>
+            UserSession.IsAdmin ||
+            UserSession.Can(PermissionCode.EditAdditionalService);
 
-            lblNameValue.Text = _currentService?.Name;
-            lblPriceValue.Text = _currentService?.Price?.ToString();
+        private void ReSetupForm()
+        {
+            _additionalService = AdditionalServiceRepository.GetById(_additionalService.Id);
+
+            lblNameValue.Text = _additionalService?.Name;
+            lblPriceValue.Text = _additionalService?.Price?.ToString();
         }
 
-        private void SetUpForm()
+        private void SetupForm()
         {
-            if (UserSession.Can(PermissionCode.EditService) || UserSession.IsAdmin)
-                btnChange.Visible = true;
+            if (_state == FormState.ForView)
+                btnEdit.Visible = false;
 
-            lblNameValue.Text = _currentService?.Name;
-            lblPriceValue.Text = _currentService?.Price?.ToString();
+            if (CanUserEdit)
+                btnEdit.Enabled = true;
+
+            lblNameValue.Text = _additionalService?.Name;
+            lblPriceValue.Text = _additionalService?.Price?.ToString();
         }
 
-        private void Edit()
+        private void ShowEditForm(object sender, EventArgs e)
         {
-            Hide();
-            if (new AdditionalServiceEditForm(_currentService).ShowDialog() == DialogResult.OK)
-                ReSetUpForm();
-            Show();
+            this.Hide();
+
+            var form = new AdditionalServiceEditForm(_additionalService);
+
+            if (form.ShowDialog() == DialogResult.OK)
+                ReSetupForm();
+
+            this.Show();
         }
 
-        private void btnChange_Click(object sender, EventArgs e)
+        private void LoadForm(object sender, EventArgs e)
         {
-            Edit();
+            SetupForm();
         }
 
-        private void AdditionalServiceForm_Load(object sender, EventArgs e)
+        private void DragMove(object sender, MouseEventArgs e)
         {
-            SetUpForm();
+            this.Handle.DragMove(e);
         }
 
-        private void panelTop_MouseDown(object sender, MouseEventArgs e)
-        {
-            Handle.DragMove(e);
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
+        private void CloseForm(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
         }

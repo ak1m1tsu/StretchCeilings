@@ -128,7 +128,7 @@ namespace StretchCeilings.Views
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // AdditionalServiceFormEdit
+            // AdditionalServiceEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -141,7 +141,8 @@ namespace StretchCeilings.Views
             this.Controls.Add(this.lblPrice);
             this.Controls.Add(this.lblName);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "AdditionalServiceFormEdit";
+            this.Name = "AdditionalServiceEditForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.AdditionalServiceFormEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudPrice)).EndInit();
             this.panelTop.ResumeLayout(false);

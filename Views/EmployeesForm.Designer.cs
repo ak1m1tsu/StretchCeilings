@@ -80,7 +80,7 @@ namespace StretchCeilings.Views
             this.nudId.Size = new System.Drawing.Size(68, 29);
             this.nudId.TabIndex = 40;
             this.nudId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.nudId.ValueChanged += new System.EventHandler(this.nudId_ValueChanged);
+            this.nudId.ValueChanged += new System.EventHandler(this.IdChanged);
             // 
             // lblId
             // 
@@ -111,7 +111,7 @@ namespace StretchCeilings.Views
             this.cbRole.Name = "cbRole";
             this.cbRole.Size = new System.Drawing.Size(252, 31);
             this.cbRole.TabIndex = 38;
-            this.cbRole.SelectedIndexChanged += new System.EventHandler(this.cbRole_SelectedIndexChanged);
+            this.cbRole.SelectedIndexChanged += new System.EventHandler(this.RoleChanged);
             // 
             // lblRole
             // 
@@ -134,7 +134,7 @@ namespace StretchCeilings.Views
             this.tbFullName.Name = "tbFullName";
             this.tbFullName.Size = new System.Drawing.Size(252, 29);
             this.tbFullName.TabIndex = 12;
-            this.tbFullName.TextChanged += new System.EventHandler(this.tbFullName_TextChanged);
+            this.tbFullName.TextChanged += new System.EventHandler(this.FullNameChanged);
             // 
             // lblFullName
             // 
@@ -189,7 +189,7 @@ namespace StretchCeilings.Views
             this.btnResetFilter.Text = "Сбросить";
             this.btnResetFilter.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnResetFilter.UseVisualStyleBackColor = true;
-            this.btnResetFilter.Click += new System.EventHandler(this.btnResetFilter_Click);
+            this.btnResetFilter.Click += new System.EventHandler(this.ResetFilters);
             // 
             // btnUseFilters
             // 
@@ -205,12 +205,13 @@ namespace StretchCeilings.Views
             this.btnUseFilters.Text = "Применить";
             this.btnUseFilters.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnUseFilters.UseVisualStyleBackColor = true;
-            this.btnUseFilters.Click += new System.EventHandler(this.btnUseFilters_Click);
+            this.btnUseFilters.Click += new System.EventHandler(this.UseFilters);
             // 
             // dgvEmployees
             // 
             this.dgvEmployees.AllowUserToAddRows = false;
             this.dgvEmployees.AllowUserToDeleteRows = false;
+            this.dgvEmployees.AllowUserToResizeColumns = false;
             this.dgvEmployees.AllowUserToResizeRows = false;
             this.dgvEmployees.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.dgvEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -223,8 +224,8 @@ namespace StretchCeilings.Views
             this.dgvEmployees.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvEmployees.Size = new System.Drawing.Size(1050, 460);
             this.dgvEmployees.TabIndex = 9;
-            this.dgvEmployees.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmployees_CellClick);
-            this.dgvEmployees.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmployees_CellDoubleClick);
+            this.dgvEmployees.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.RemoveGridData);
+            this.dgvEmployees.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ShowGridData);
             // 
             // panelPages
             // 
@@ -251,7 +252,6 @@ namespace StretchCeilings.Views
             this.cbRows.Name = "cbRows";
             this.cbRows.Size = new System.Drawing.Size(50, 31);
             this.cbRows.TabIndex = 99;
-            this.cbRows.SelectedIndexChanged += new System.EventHandler(this.cbRows_SelectedIndexChanged);
             // 
             // btnPrevious
             // 
@@ -266,7 +266,7 @@ namespace StretchCeilings.Views
             this.btnPrevious.TabIndex = 69;
             this.btnPrevious.Text = "<";
             this.btnPrevious.UseVisualStyleBackColor = false;
-            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
+            this.btnPrevious.Click += new System.EventHandler(this.SHowPreviousPage);
             // 
             // tbPages
             // 
@@ -294,7 +294,7 @@ namespace StretchCeilings.Views
             this.btnNext.TabIndex = 67;
             this.btnNext.Text = ">";
             this.btnNext.UseVisualStyleBackColor = false;
-            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            this.btnNext.Click += new System.EventHandler(this.ShowNextPage);
             // 
             // EmployeesForm
             // 
@@ -308,6 +308,7 @@ namespace StretchCeilings.Views
             this.Controls.Add(this.panelButtons);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "EmployeesForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.EmployeesForm_Load);
             this.panelInfo.ResumeLayout(false);
             this.panelInfo.PerformLayout();

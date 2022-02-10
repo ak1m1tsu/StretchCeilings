@@ -33,6 +33,10 @@ namespace StretchCeilings.Views
             this.panelTop = new System.Windows.Forms.Panel();
             this.btnClose = new FontAwesome.Sharp.IconButton();
             this.panelBody = new System.Windows.Forms.Panel();
+            this.gbPlane = new System.Windows.Forms.GroupBox();
+            this.pbPlane = new System.Windows.Forms.PictureBox();
+            this.panelButton = new System.Windows.Forms.Panel();
+            this.btnChangePicture = new System.Windows.Forms.Button();
             this.panelInfo = new System.Windows.Forms.Panel();
             this.cbType = new System.Windows.Forms.ComboBox();
             this.nudArea = new System.Windows.Forms.NumericUpDown();
@@ -40,18 +44,14 @@ namespace StretchCeilings.Views
             this.lblCorners = new System.Windows.Forms.Label();
             this.lblType = new System.Windows.Forms.Label();
             this.lblArea = new System.Windows.Forms.Label();
-            this.gbPlane = new System.Windows.Forms.GroupBox();
-            this.pbPlane = new System.Windows.Forms.PictureBox();
-            this.panelButton = new System.Windows.Forms.Panel();
-            this.btnChangePicture = new System.Windows.Forms.Button();
             this.panelTop.SuspendLayout();
             this.panelBody.SuspendLayout();
-            this.panelInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudArea)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCorners)).BeginInit();
             this.gbPlane.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPlane)).BeginInit();
             this.panelButton.SuspendLayout();
+            this.panelInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudArea)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCorners)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTop
@@ -91,6 +91,58 @@ namespace StretchCeilings.Views
             this.panelBody.Name = "panelBody";
             this.panelBody.Size = new System.Drawing.Size(900, 556);
             this.panelBody.TabIndex = 84;
+            // 
+            // gbPlane
+            // 
+            this.gbPlane.Controls.Add(this.pbPlane);
+            this.gbPlane.Controls.Add(this.panelButton);
+            this.gbPlane.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbPlane.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.gbPlane.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.gbPlane.Location = new System.Drawing.Point(0, 100);
+            this.gbPlane.Margin = new System.Windows.Forms.Padding(0);
+            this.gbPlane.Name = "gbPlane";
+            this.gbPlane.Padding = new System.Windows.Forms.Padding(0);
+            this.gbPlane.Size = new System.Drawing.Size(900, 456);
+            this.gbPlane.TabIndex = 6;
+            this.gbPlane.TabStop = false;
+            this.gbPlane.Text = "План";
+            // 
+            // pbPlane
+            // 
+            this.pbPlane.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pbPlane.Location = new System.Drawing.Point(0, 22);
+            this.pbPlane.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pbPlane.Name = "pbPlane";
+            this.pbPlane.Size = new System.Drawing.Size(764, 434);
+            this.pbPlane.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbPlane.TabIndex = 9;
+            this.pbPlane.TabStop = false;
+            // 
+            // panelButton
+            // 
+            this.panelButton.Controls.Add(this.btnChangePicture);
+            this.panelButton.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panelButton.Location = new System.Drawing.Point(764, 22);
+            this.panelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panelButton.Name = "panelButton";
+            this.panelButton.Size = new System.Drawing.Size(136, 434);
+            this.panelButton.TabIndex = 8;
+            // 
+            // btnChangePicture
+            // 
+            this.btnChangePicture.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.btnChangePicture.FlatAppearance.BorderSize = 0;
+            this.btnChangePicture.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnChangePicture.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.btnChangePicture.ForeColor = System.Drawing.Color.White;
+            this.btnChangePicture.Location = new System.Drawing.Point(8, 5);
+            this.btnChangePicture.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnChangePicture.Name = "btnChangePicture";
+            this.btnChangePicture.Size = new System.Drawing.Size(120, 30);
+            this.btnChangePicture.TabIndex = 44;
+            this.btnChangePicture.Text = "Изменить";
+            this.btnChangePicture.UseVisualStyleBackColor = false;
             // 
             // panelInfo
             // 
@@ -177,58 +229,6 @@ namespace StretchCeilings.Views
             this.lblArea.TabIndex = 11;
             this.lblArea.Text = "Площадь:";
             // 
-            // gbPlane
-            // 
-            this.gbPlane.Controls.Add(this.pbPlane);
-            this.gbPlane.Controls.Add(this.panelButton);
-            this.gbPlane.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbPlane.ForeColor = DraculaColor.Foreground;
-            this.gbPlane.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.gbPlane.Location = new System.Drawing.Point(0, 100);
-            this.gbPlane.Margin = new System.Windows.Forms.Padding(0);
-            this.gbPlane.Name = "gbPlane";
-            this.gbPlane.Padding = new System.Windows.Forms.Padding(0);
-            this.gbPlane.Size = new System.Drawing.Size(900, 456);
-            this.gbPlane.TabIndex = 6;
-            this.gbPlane.TabStop = false;
-            this.gbPlane.Text = "План";
-            // 
-            // pbPlane
-            // 
-            this.pbPlane.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbPlane.Location = new System.Drawing.Point(0, 22);
-            this.pbPlane.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.pbPlane.Name = "pbPlane";
-            this.pbPlane.Size = new System.Drawing.Size(764, 434);
-            this.pbPlane.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbPlane.TabIndex = 9;
-            this.pbPlane.TabStop = false;
-            // 
-            // panelButton
-            // 
-            this.panelButton.Controls.Add(this.btnChangePicture);
-            this.panelButton.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelButton.Location = new System.Drawing.Point(764, 22);
-            this.panelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.panelButton.Name = "panelButton";
-            this.panelButton.Size = new System.Drawing.Size(136, 434);
-            this.panelButton.TabIndex = 8;
-            // 
-            // btnChangePicture
-            // 
-            this.btnChangePicture.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
-            this.btnChangePicture.FlatAppearance.BorderSize = 0;
-            this.btnChangePicture.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnChangePicture.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.btnChangePicture.ForeColor = System.Drawing.Color.White;
-            this.btnChangePicture.Location = new System.Drawing.Point(8, 5);
-            this.btnChangePicture.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnChangePicture.Name = "btnChangePicture";
-            this.btnChangePicture.Size = new System.Drawing.Size(120, 30);
-            this.btnChangePicture.TabIndex = 44;
-            this.btnChangePicture.Text = "Изменить";
-            this.btnChangePicture.UseVisualStyleBackColor = false;
-            // 
             // RoomEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
@@ -243,15 +243,16 @@ namespace StretchCeilings.Views
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "RoomEditForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.panelTop.ResumeLayout(false);
             this.panelBody.ResumeLayout(false);
+            this.gbPlane.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbPlane)).EndInit();
+            this.panelButton.ResumeLayout(false);
             this.panelInfo.ResumeLayout(false);
             this.panelInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudArea)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCorners)).EndInit();
-            this.gbPlane.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbPlane)).EndInit();
-            this.panelButton.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

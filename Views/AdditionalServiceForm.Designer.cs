@@ -29,7 +29,7 @@ namespace StretchCeilings.Views
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnChange = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
             this.lblPriceValue = new System.Windows.Forms.Label();
             this.lblPrice = new System.Windows.Forms.Label();
             this.lblNameValue = new System.Windows.Forms.Label();
@@ -39,21 +39,21 @@ namespace StretchCeilings.Views
             this.panelTop.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnChange
+            // btnEdit
             // 
-            this.btnChange.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
-            this.btnChange.FlatAppearance.BorderSize = 0;
-            this.btnChange.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnChange.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.btnChange.ForeColor = System.Drawing.Color.White;
-            this.btnChange.Location = new System.Drawing.Point(273, 162);
-            this.btnChange.Name = "btnChange";
-            this.btnChange.Size = new System.Drawing.Size(120, 30);
-            this.btnChange.TabIndex = 72;
-            this.btnChange.Text = "Изменить";
-            this.btnChange.UseVisualStyleBackColor = true;
-            this.btnChange.Visible = false;
-            this.btnChange.Click += new System.EventHandler(this.btnChange_Click);
+            this.btnEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.btnEdit.Enabled = false;
+            this.btnEdit.FlatAppearance.BorderSize = 0;
+            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEdit.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.btnEdit.ForeColor = System.Drawing.Color.White;
+            this.btnEdit.Location = new System.Drawing.Point(273, 162);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(120, 30);
+            this.btnEdit.TabIndex = 72;
+            this.btnEdit.Text = "Изменить";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.ShowEditForm);
             // 
             // lblPriceValue
             // 
@@ -108,7 +108,7 @@ namespace StretchCeilings.Views
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(400, 25);
             this.panelTop.TabIndex = 73;
-            this.panelTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTop_MouseDown);
+            this.panelTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DragMove);
             // 
             // btnClose
             // 
@@ -124,7 +124,7 @@ namespace StretchCeilings.Views
             this.btnClose.Size = new System.Drawing.Size(25, 25);
             this.btnClose.TabIndex = 2;
             this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.btnClose.Click += new System.EventHandler(this.CloseForm);
             // 
             // AdditionalServiceForm
             // 
@@ -133,7 +133,7 @@ namespace StretchCeilings.Views
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(42)))), ((int)(((byte)(54)))));
             this.ClientSize = new System.Drawing.Size(400, 200);
             this.Controls.Add(this.panelTop);
-            this.Controls.Add(this.btnChange);
+            this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.lblPriceValue);
             this.Controls.Add(this.lblPrice);
             this.Controls.Add(this.lblNameValue);
@@ -141,7 +141,8 @@ namespace StretchCeilings.Views
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MinimumSize = new System.Drawing.Size(400, 200);
             this.Name = "AdditionalServiceForm";
-            this.Load += new System.EventHandler(this.AdditionalServiceForm_Load);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.LoadForm);
             this.panelTop.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -149,7 +150,7 @@ namespace StretchCeilings.Views
         }
 
         #endregion
-        private System.Windows.Forms.Button btnChange;
+        private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Label lblPriceValue;
         private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.Label lblNameValue;
