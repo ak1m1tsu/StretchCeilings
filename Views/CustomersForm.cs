@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using StretchCeilings.Helpers;
-using StretchCeilings.Helpers.Controls;
-using StretchCeilings.Helpers.Enums;
-using StretchCeilings.Helpers.Extensions.Controls;
-using StretchCeilings.Helpers.Structs;
+using StretchCeilings.Extensions;
+using StretchCeilings.Extensions.Controls;
 using StretchCeilings.Models;
+using StretchCeilings.Models.Enums;
 using StretchCeilings.Repositories;
+using StretchCeilings.Sessions;
+using StretchCeilings.Structs;
+using StretchCeilings.Views.Controls;
 
 namespace StretchCeilings.Views
 {
@@ -33,37 +34,51 @@ namespace StretchCeilings.Views
             InitializeComponent();
         }
 
-        private void SetUpDataGrid()
-        {
-            _customers = CustomerRepository.GetAll(out _rows);
+        private static bool CanUserAdd => UserSession.IsAdmin ||
+                                          UserSession.Can(PermissionCode.AddCustomer);
 
-            dgvCustomers.AddDataGridViewTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvCustomers.AddDataGridViewTextBoxColumn(Resources.FullName, DataGridViewAutoSizeColumnMode.Fill);
-            dgvCustomers.AddDataGridViewTextBoxColumn(Resources.PhoneNumber, DataGridViewAutoSizeColumnMode.Fill);
-            dgvCustomers.AddDataGridViewButtonColumn(DraculaColor.Red);
+        private static bool CanUserDelete => UserSession.IsAdmin ||
+                                               UserSession.Can(PermissionCode.DelCustomer);
+
+        private bool IsForView => _state == FormState.ForView;
+
+        private void SetupDataGrid()
+        {
+            dgvCustomers.CreateTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvCustomers.CreateTextBoxColumn(Resources.FullName, DataGridViewAutoSizeColumnMode.Fill);
+            dgvCustomers.CreateTextBoxColumn(Resources.PhoneNumber, DataGridViewAutoSizeColumnMode.Fill);
+            dgvCustomers.CreateButtonColumn();
 
             dgvCustomers.Font = GoogleFont.OpenSans;
             dgvCustomers.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
             dgvCustomers.DefaultCellStyle.SelectionForeColor = DraculaColor.Foreground;
-
-            FillDataGrid();
         }
 
-        private void SetUpControls()
+        private void SetupControls()
         {
-            if (UserSession.IsAdmin || UserSession.Can(PermissionCode.AddCustomer))
-            {
-                var btnAddOrder = new FlatButton("btnAddOrder", "Добавить", AddNewCustomer);
-                panelUserButtons.Controls.Add(btnAddOrder);
-            }
-
             nudId.Maximum = decimal.MaxValue;
+            
             foreach (var rowCountItem in Resources.RowCountItems)
-            {
                 cbRows.Items.Add(rowCountItem);
+            
+            cbRows.SelectedIndex = 0;
+            _count = Convert.ToInt32(cbRows.SelectedItem);
+            cbRows.SelectedIndexChanged += RowCountChanged;
+
+            if (CanUserAdd && IsForView == false)
+                DrawAddButton();
+
+            if (CanUserDelete == false || IsForView)
+                dgvCustomers.Columns[Resources.Space].Visible = false;
+
+            if (IsForView)
+            {
+                dgvCustomers.CellDoubleClick += SelectCustomer;
+                panelTopSide.Visible = true;
+                return;
             }
 
-            cbRows.SelectedItem = cbRows.Items[0];
+            dgvCustomers.CellDoubleClick += ShowGridData;
         }
 
         private void FillDataGrid()
@@ -74,13 +89,19 @@ namespace StretchCeilings.Views
             {
                 dgvCustomers.Rows.Add(new DataGridViewRow());
 
-                dgvCustomers.Rows[i].Cells[0].Value = _customers[i].Id;
+                dgvCustomers.Rows[i].Cells[0].Value = dgvCustomers.Rows.Count;
                 dgvCustomers.Rows[i].Cells[1].Value = _customers[i].FullName;
                 dgvCustomers.Rows[i].Cells[2].Value = _customers[i].PhoneNumber;
             }
 
-            _lastPage = (int)Math.Ceiling((double)_rows / _count);
+            UpdateLastPageValue();
             UpdatePagesTextBox();
+        }
+
+        private void UpdateLastPageValue()
+        {
+            var result = Math.Ceiling(Convert.ToDouble(_rows) / _count);
+            _lastPage = Convert.ToInt32(result);
         }
 
         private void FilterDataGrid()
@@ -94,13 +115,19 @@ namespace StretchCeilings.Views
             FillDataGrid();
         }
 
-        private void SelectEmployee(object sender,DataGridViewCellEventArgs e)
+        private void DrawAddButton()
         {
-            if (dgvCustomers.SelectedRows.Count <= 0 || e.RowIndex < 0)
+            var btnAddOrder = new FlatButton("btnAddOrder", "Добавить", AddGridData);
+            panelUserButtons.Controls.Add(btnAddOrder);
+        }
+
+        private void SelectCustomer(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
                 return;
 
-            var id = (int)dgvCustomers.Rows[e.RowIndex].Cells[0].Value;
-            _customer = CustomerRepository.GetById(id);
+            var index = Convert.ToInt32(dgvCustomers.Rows[e.RowIndex].Cells[0].Value);
+            _customer = _customers[index - 1];
             DialogResult = DialogResult.OK;
         }
 
@@ -111,11 +138,14 @@ namespace StretchCeilings.Views
             tbPages.UpdatePagesValue(_currentPage, _lastPage);
         }
 
-        private void CustomersForm_Load(object sender, EventArgs e)
+        private void LoadForm(object sender, EventArgs e)
         {
+            _customers = CustomerRepository.GetAll(out _rows);
             _filter = new Customer();
-            SetUpDataGrid();
-            SetUpControls();
+
+            SetupDataGrid();
+            SetupControls();
+            FillDataGrid();
         }
 
         private void RemoveGridData(object sender, DataGridViewCellEventArgs e)
@@ -126,11 +156,15 @@ namespace StretchCeilings.Views
                 senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn == false)
                 return;
 
+            if (FlatMessageBox.ShowDialog("Вы точно хотите удалить клиента?", Caption.Warning) != DialogResult.Cancel)
+                return;
+
             var index = Convert.ToInt32(dgvCustomers.Rows[e.RowIndex].Cells[0].Value);
             var customer = _customers[index - 1];
             customer.Delete();
 
             FilterDataGrid();
+            FlatMessageBox.ShowDialog("Клиент успешно удален", Caption.Info);
         }
 
         private void ShowGridData(object sender, DataGridViewCellEventArgs e)
@@ -144,14 +178,15 @@ namespace StretchCeilings.Views
             FilterDataGrid();
         }
 
-        private void AddNewCustomer(object sender, EventArgs e)
+        private void AddGridData(object sender, EventArgs e)
         {
-            var form = new CustomerEditForm(new Customer());
+            var form = new CustomerEditForm();
             
             if (form.ShowDialog() != DialogResult.OK)
                 return;
 
             FilterDataGrid();
+            FlatMessageBox.ShowDialog("Клиент успешно добавлен", Caption.Info);
         }
 
         private void ShowPreviousPage(object sender, EventArgs e)
@@ -177,6 +212,51 @@ namespace StretchCeilings.Views
             _currentPage = 1;
             _count = Convert.ToInt32(cbRows.SelectedItem);
             FilterDataGrid();
+        }
+
+        private void DragMove(object sender, MouseEventArgs e)
+        {
+            this.Handle.DragMove(e);
+        }
+
+        private void CloseForm(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+        }
+
+        private void UpdateFilterValues()
+        {
+            if (tbFullName.Text != "")
+                _filter.FullName = tbFullName.Text;
+
+            if (nudId.Value != 0)
+                _filter.Id = Convert.ToInt32(nudId.Value);
+
+            if (mtbPhoneNumber.Text != Resources.EmptyPhoneNumber ||
+                mtbPhoneNumber.Text.Length < Resources.EmptyPhoneNumber.Length)
+                _filter.PhoneNumber = mtbPhoneNumber.Text;
+        }
+
+        private void UseFilters(object sender, EventArgs e)
+        {
+            UpdateFilterValues();
+            FilterDataGrid();
+        }
+
+        private void ResetFilterValues()
+        {
+            _filter = new Customer();
+            _currentPage = 1;
+            tbFullName.Text = null;
+            mtbPhoneNumber.Text = Resources.EmptyPhoneNumber;
+            nudId.Value = 0;
+        }
+
+        private void ResetFilters(object sender, EventArgs e)
+        {
+            ResetFilterValues();
+            FilterDataGrid();
+            FlatMessageBox.ShowDialog("Значение фильтров сброшено до стандартных", Caption.Info);
         }
     }
 }

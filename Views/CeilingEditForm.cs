@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Windows.Controls;
 using System.Windows.Forms;
-using StretchCeilings.Helpers.Enums;
-using StretchCeilings.Helpers.Extensions;
-using StretchCeilings.Helpers.Structs;
+using StretchCeilings.Extensions;
 using StretchCeilings.Models;
+using StretchCeilings.Models.Enums;
+using StretchCeilings.Structs;
 
 namespace StretchCeilings.Views
 {
@@ -16,7 +16,7 @@ namespace StretchCeilings.Views
         {
             _ceiling = ceiling;
             InitializeComponent();
-            this.Load += SetupForm;
+            Load += SetupForm;
         }
 
         public CeilingEditForm(Manufacturer manufacturer)
@@ -27,7 +27,7 @@ namespace StretchCeilings.Views
             };
             _ceiling.Add();
             InitializeComponent();
-            this.Load += SetupForm;
+            Load += SetupForm;
         }
 
         private void DragMove(object sender, MouseEventArgs e)
@@ -141,7 +141,7 @@ namespace StretchCeilings.Views
             }
             else
             {
-                CustomMessageBox.ShowDialog(Resources.ControlsEmpty, Caption.Error);
+                FlatMessageBox.ShowDialog(Resources.ControlsEmpty, Caption.Error);
             }
         }
     }

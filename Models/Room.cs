@@ -1,13 +1,14 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using StretchCeilings.DataAccess;
-using StretchCeilings.Helpers.Enums;
-using StretchCeilings.Interfaces.Models;
+using StretchCeilings.Models.Enums;
+using StretchCeilings.Models.Interfaces;
 
 namespace StretchCeilings.Models
 {
-    public class Room : IRoom
+    public class Room : IDbModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -40,21 +41,12 @@ namespace StretchCeilings.Models
             }
         }
 
-        public string GetPlane()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetPlane(string path)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Update()
         {
             using (var db = new StretchCeilingsContext())
             {
-                db.Entry(Id).CurrentValues.SetValues(this);
+                var old = db.CustomersRooms.FirstOrDefault(x => x.Id == Id);
+                db.Entry(old).CurrentValues.SetValues(this);
                 db.SaveChanges();
             }
         }

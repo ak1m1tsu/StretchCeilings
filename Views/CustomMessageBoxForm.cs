@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 using StretchCeilings.Helpers.DLL;
-using StretchCeilings.Helpers.Structs;
+using StretchCeilings.Structs;
 
 namespace StretchCeilings.Views
 {
@@ -28,14 +28,14 @@ namespace StretchCeilings.Views
             btnCloseForm.FlatAppearance.MouseOverBackColor = DraculaColor.Red;
         }
 
-        private void panelTop_MouseDown(object sender, MouseEventArgs e)
+        private void DragMove(object sender, MouseEventArgs e)
         {
             User32Helper.ReleaseCapture();
             User32Helper.SendMessage(Handle, 0x112, 0xf012, 0);
         }
     }
 
-    public static class CustomMessageBox
+    public static class FlatMessageBox
     {
         public static DialogResult ShowDialog(string text, string caption)
         {

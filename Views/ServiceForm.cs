@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using StretchCeilings.Helpers.Enums;
-using StretchCeilings.Helpers.Extensions;
-using StretchCeilings.Helpers.Extensions.Controls;
-using StretchCeilings.Helpers.Structs;
+using StretchCeilings.Extensions;
+using StretchCeilings.Extensions.Controls;
 using StretchCeilings.Models;
+using StretchCeilings.Models.Enums;
+using StretchCeilings.Structs;
 
 namespace StretchCeilings.Views
 {
@@ -24,6 +24,8 @@ namespace StretchCeilings.Views
 
         private string PriceString => $@"{_service.Price ?? 0} {Resources.Rubles}";
 
+        private bool IsForView => _state == FormState.ForView;
+
         private void SetupForm()
         {
             linkLblManufaсturerValue.Text = _service.Manufacturer.Name ?? Resources.No;
@@ -38,10 +40,10 @@ namespace StretchCeilings.Views
 
         private void SetupDataGrid()
         {
-            dgvAdditServs.AddDataGridViewTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvAdditServs.AddDataGridViewTextBoxColumn(Resources.Name, DataGridViewAutoSizeColumnMode.Fill);
-            dgvAdditServs.AddDataGridViewTextBoxColumn(Resources.Price, DataGridViewAutoSizeColumnMode.Fill);
-            dgvAdditServs.AddDataGridViewTextBoxColumn("Кол-во", DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvAdditServs.CreateTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvAdditServs.CreateTextBoxColumn(Resources.Name, DataGridViewAutoSizeColumnMode.Fill);
+            dgvAdditServs.CreateTextBoxColumn(Resources.Price, DataGridViewAutoSizeColumnMode.Fill);
+            dgvAdditServs.CreateTextBoxColumn("Кол-во", DataGridViewAutoSizeColumnMode.DisplayedCells);
 
             dgvAdditServs.Font = GoogleFont.OpenSans;
             dgvAdditServs.ForeColor = DraculaColor.Background;
@@ -72,7 +74,7 @@ namespace StretchCeilings.Views
 
         private void DragMove(object sender, MouseEventArgs e)
         {
-            this.Handle.DragMove(e);
+            Handle.DragMove(e);
         }
 
         private void ShowManufacturer(object sender, LinkLabelLinkClickedEventArgs e)
@@ -80,7 +82,7 @@ namespace StretchCeilings.Views
             if (_service.Manufacturer == null)
                 return;
 
-            var form = new ManufacturerForm(_service.Manufacturer);
+            var form = new ManufacturerForm(_service.Manufacturer, FormState.ForView);
             form.ShowDialog();
         }
 

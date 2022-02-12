@@ -196,6 +196,8 @@ namespace StretchCeilings.Views
             this.dgvEstates.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvEstates.Size = new System.Drawing.Size(626, 260);
             this.dgvEstates.TabIndex = 2;
+            this.dgvEstates.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.RemoveGridData);
+            this.dgvEstates.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ShowGridData);
             // 
             // panelPageSide
             // 
@@ -220,6 +222,7 @@ namespace StretchCeilings.Views
             this.btnAddEstate.TabIndex = 82;
             this.btnAddEstate.Text = "Добавить";
             this.btnAddEstate.UseVisualStyleBackColor = false;
+            this.btnAddEstate.Click += new System.EventHandler(this.AddGridData);
             // 
             // errorProvider
             // 

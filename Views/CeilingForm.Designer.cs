@@ -31,7 +31,6 @@ namespace StretchCeilings.Views
         {
             this.panelTop = new System.Windows.Forms.Panel();
             this.btnClose = new FontAwesome.Sharp.IconButton();
-            this.btnEditInfo = new System.Windows.Forms.Button();
             this.lblColorTypeValue = new System.Windows.Forms.Label();
             this.lblColorType = new System.Windows.Forms.Label();
             this.lblPriceValue = new System.Windows.Forms.Label();
@@ -65,20 +64,6 @@ namespace StretchCeilings.Views
             this.btnClose.Size = new System.Drawing.Size(25, 25);
             this.btnClose.TabIndex = 2;
             this.btnClose.UseVisualStyleBackColor = true;
-            // 
-            // btnEditInfo
-            // 
-            this.btnEditInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
-            this.btnEditInfo.FlatAppearance.BorderSize = 0;
-            this.btnEditInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEditInfo.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.btnEditInfo.ForeColor = System.Drawing.Color.White;
-            this.btnEditInfo.Location = new System.Drawing.Point(274, 164);
-            this.btnEditInfo.Name = "btnEditInfo";
-            this.btnEditInfo.Size = new System.Drawing.Size(120, 30);
-            this.btnEditInfo.TabIndex = 95;
-            this.btnEditInfo.Text = "Изменить";
-            this.btnEditInfo.UseVisualStyleBackColor = false;
             // 
             // lblColorTypeValue
             // 
@@ -152,7 +137,6 @@ namespace StretchCeilings.Views
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(42)))), ((int)(((byte)(54)))));
             this.ClientSize = new System.Drawing.Size(400, 200);
-            this.Controls.Add(this.btnEditInfo);
             this.Controls.Add(this.lblColorTypeValue);
             this.Controls.Add(this.lblColorType);
             this.Controls.Add(this.lblPriceValue);
@@ -174,7 +158,6 @@ namespace StretchCeilings.Views
 
         private System.Windows.Forms.Panel panelTop;
         private FontAwesome.Sharp.IconButton btnClose;
-        private System.Windows.Forms.Button btnEditInfo;
         private System.Windows.Forms.Label lblColorTypeValue;
         private System.Windows.Forms.Label lblColorType;
         private System.Windows.Forms.Label lblPriceValue;

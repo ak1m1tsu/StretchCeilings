@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Forms;
-using StretchCeilings.Helpers.Enums;
-using StretchCeilings.Helpers.Extensions;
-using StretchCeilings.Helpers.Extensions.Controls;
-using StretchCeilings.Helpers.Structs;
+using StretchCeilings.Extensions;
+using StretchCeilings.Extensions.Controls;
 using StretchCeilings.Models;
+using StretchCeilings.Models.Enums;
 using StretchCeilings.Repositories;
+using StretchCeilings.Structs;
 
 namespace StretchCeilings.Views
 {
@@ -42,12 +42,12 @@ namespace StretchCeilings.Views
 
         private void SetupGrid()
         {
-            dgvRooms.AddDataGridViewTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvRooms.AddDataGridViewTextBoxColumn(Resources.FullName, DataGridViewAutoSizeColumnMode.Fill);
-            dgvRooms.AddDataGridViewTextBoxColumn("Адрес", DataGridViewAutoSizeColumnMode.Fill);
-            dgvRooms.AddDataGridViewTextBoxColumn(Resources.Type, DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvRooms.AddDataGridViewTextBoxColumn(Resources.Area, DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvRooms.AddDataGridViewTextBoxColumn(Resources.Corners, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvRooms.CreateTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvRooms.CreateTextBoxColumn(Resources.FullName, DataGridViewAutoSizeColumnMode.Fill);
+            dgvRooms.CreateTextBoxColumn("Адрес", DataGridViewAutoSizeColumnMode.Fill);
+            dgvRooms.CreateTextBoxColumn(Resources.Type, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvRooms.CreateTextBoxColumn(Resources.Area, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvRooms.CreateTextBoxColumn(Resources.Corners, DataGridViewAutoSizeColumnMode.DisplayedCells);
 
             dgvRooms.Font = GoogleFont.OpenSans;
             dgvRooms.ForeColor = DraculaColor.Background;

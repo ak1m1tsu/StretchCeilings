@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Forms;
-using StretchCeilings.Helpers;
-using StretchCeilings.Helpers.Controls;
-using StretchCeilings.Helpers.Enums;
-using StretchCeilings.Helpers.Extensions.Controls;
-using StretchCeilings.Helpers.Structs;
+using StretchCeilings.Extensions;
+using StretchCeilings.Extensions.Controls;
 using StretchCeilings.Models;
+using StretchCeilings.Models.Enums;
 using StretchCeilings.Repositories;
+using StretchCeilings.Sessions;
+using StretchCeilings.Structs;
+using StretchCeilings.Views.Controls;
 
 namespace StretchCeilings.Views
 {
@@ -36,32 +37,35 @@ namespace StretchCeilings.Views
             InitializeComponent();
         }
 
-        private void SetUpDataGrid()
+        private static bool CanUserDelete => UserSession.IsAdmin ||
+                                               UserSession.Can(PermissionCode.DelOrder);
+
+        private static bool CanUserAdd => UserSession.IsAdmin ||
+                                            UserSession.Can(PermissionCode.AddOrder);
+
+        private bool IsForView => _state == FormState.ForView;
+
+        private void SetupDataGrid()
         {
             _employees = EmployeeRepository.GetAll(out _rows);
 
-            dgvEmployees.AddDataGridViewTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvEmployees.AddDataGridViewTextBoxColumn(Resources.FullName, DataGridViewAutoSizeColumnMode.Fill);
-            dgvEmployees.AddDataGridViewTextBoxColumn(Resources.PhoneNumber, DataGridViewAutoSizeColumnMode.Fill);
-            dgvEmployees.AddDataGridViewTextBoxColumn(Resources.Role, DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvEmployees.AddDataGridViewButtonColumn(DraculaColor.Red);
+            dgvEmployees.CreateTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvEmployees.CreateTextBoxColumn(Resources.FullName, DataGridViewAutoSizeColumnMode.Fill);
+            dgvEmployees.CreateTextBoxColumn(Resources.PhoneNumber, DataGridViewAutoSizeColumnMode.Fill);
+            dgvEmployees.CreateTextBoxColumn(Resources.Role, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvEmployees.CreateButtonColumn();
 
             dgvEmployees.Font = GoogleFont.OpenSans;
             dgvEmployees.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
             dgvEmployees.DefaultCellStyle.SelectionForeColor = DraculaColor.Foreground;
         }
 
-        private void SetUpControls()
+        private void SetupControls()
         {
             _roles = new List<ComboBoxItem>();
-
-            if (UserSession.IsAdmin || UserSession.Can(PermissionCode.AddCustomer))
-            {
-                var btnAddOrder = new FlatButton("btnAddOrder", "Добавить", AddGridData);
-                panelUserButtons.Controls.Add(btnAddOrder);
-            }
-
+            
             nudId.Maximum = decimal.MaxValue;
+
             foreach (var role in RoleRepository.GetAll())
             {
                 var item = new ComboBoxItem()
@@ -81,6 +85,21 @@ namespace StretchCeilings.Views
             _count = Convert.ToInt32(cbRows.SelectedItem);
 
             UpdateTextBoxPagesText();
+
+            if (CanUserAdd && IsForView == false)
+                DrawAddButton();
+
+            if (CanUserDelete == false || IsForView)
+                dgvEmployees.Columns[Resources.Space].Visible = false;
+
+            if (IsForView)
+            {
+                dgvEmployees.CellDoubleClick += SelectEmployee;
+                panelTopSide.Visible = true;
+                return;
+            }
+
+            dgvEmployees.CellDoubleClick += ShowGridData;
         }
 
         private void FillDataGrid()
@@ -99,6 +118,12 @@ namespace StretchCeilings.Views
 
             UpdateLastPageValue();
             UpdateTextBoxPagesText();
+        }
+
+        private void DrawAddButton()
+        {
+            var btnAddOrder = new FlatButton("btnAddOrder", "Добавить", AddGridData);
+            panelUserButtons.Controls.Add(btnAddOrder);
         }
 
         private void UpdateLastPageValue()
@@ -125,12 +150,12 @@ namespace StretchCeilings.Views
             tbPages.UpdatePagesValue(_currentPage, _lastPage);
         }
 
-        private void EmployeesForm_Load(object sender, EventArgs e)
+        private void LoadForm(object sender, EventArgs e)
         {
             _filter = new Employee();
 
-            SetUpDataGrid();
-            SetUpControls();
+            SetupDataGrid();
+            SetupControls();
             FillDataGrid();
         }
 
@@ -147,8 +172,12 @@ namespace StretchCeilings.Views
         private void AddGridData(object sender, EventArgs e)
         {
             var form = new EmployeeEditForm(new Employee());
-            if (form.ShowDialog() == DialogResult.OK)
-                FilterEmployeesGrid();
+
+            if (form.ShowDialog() != DialogResult.OK)
+                return;
+
+            FilterEmployeesGrid();
+            FlatMessageBox.ShowDialog("Сотрудник успешно добавлен", Caption.Info);
         }
 
         private void UseFilters(object sender, EventArgs e)
@@ -167,7 +196,9 @@ namespace StretchCeilings.Views
             _currentPage = 1;
 
             FilterEmployeesGrid();
+            FlatMessageBox.ShowDialog("Значение фильтров сброшено до стандартных", Caption.Info);
         }
+
 
         private void RowCountChanged(object sender, EventArgs e)
         {
@@ -176,7 +207,7 @@ namespace StretchCeilings.Views
             FilterEmployeesGrid();
         }
 
-        private void SHowPreviousPage(object sender, EventArgs e)
+        private void ShowPreviousPage(object sender, EventArgs e)
         {
             if (_currentPage <= 1)
                 return;
@@ -213,12 +244,27 @@ namespace StretchCeilings.Views
                 senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn == false)
                 return;
 
+            if (FlatMessageBox.ShowDialog("Вы уверены что хотите удалить сотрудника?", Caption.Warning) != DialogResult.OK)
+                return;
+
             var index = Convert.ToInt32(dgvEmployees.Rows[e.RowIndex].Cells[0].Value);
             var employee = _employees[index - 1];
 
             employee.Delete();
 
             FilterEmployeesGrid();
+            FlatMessageBox.ShowDialog("Сотрудник успешно удален.", Caption.Info);
+        }
+
+        private void SelectEmployee(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                return;
+
+            var index = Convert.ToInt32(dgvEmployees.Rows[e.RowIndex].Cells[0].Value);
+            _employee = _employees[index - 1];
+
+            DialogResult = DialogResult.OK;
         }
 
         private void ShowGridData(object sender, DataGridViewCellEventArgs e)
@@ -231,6 +277,16 @@ namespace StretchCeilings.Views
             new EmployeeForm(employee).ShowDialog();
 
             FilterEmployeesGrid();
+        }
+
+        private void CloseForm(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+        }
+
+        private void DragMove(object sender, MouseEventArgs e)
+        {
+            this.Handle.DragMove(e);
         }
     }
 }

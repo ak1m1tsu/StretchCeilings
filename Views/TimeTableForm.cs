@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using StretchCeilings.Helpers.Extensions;
+using StretchCeilings.Extensions;
 using StretchCeilings.Models;
 
 namespace StretchCeilings.Views

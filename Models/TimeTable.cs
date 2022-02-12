@@ -3,11 +3,11 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using StretchCeilings.DataAccess;
-using StretchCeilings.Interfaces.Models;
+using StretchCeilings.Models.Interfaces;
 
 namespace StretchCeilings.Models
 {
-    public class TimeTable : ITimeTable
+    public class TimeTable : IDbModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

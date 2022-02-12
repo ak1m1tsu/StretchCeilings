@@ -3,12 +3,12 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using StretchCeilings.DataAccess;
-using StretchCeilings.Helpers.Enums;
-using StretchCeilings.Interfaces.Models;
+using StretchCeilings.Models.Enums;
+using StretchCeilings.Models.Interfaces;
 
 namespace StretchCeilings.Models
 {
-    public class Ceiling : ICeiling
+    public class Ceiling : IDbModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

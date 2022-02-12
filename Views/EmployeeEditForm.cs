@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using StretchCeilings.Extensions;
+using StretchCeilings.Extensions.Controls;
 using StretchCeilings.Helpers;
-using StretchCeilings.Helpers.Extensions;
-using StretchCeilings.Helpers.Extensions.Controls;
-using StretchCeilings.Helpers.Structs;
 using StretchCeilings.Models;
 using StretchCeilings.Repositories;
+using StretchCeilings.Sessions;
+using StretchCeilings.Structs;
 
 namespace StretchCeilings.Views
 {
@@ -17,8 +18,8 @@ namespace StretchCeilings.Views
         private readonly Employee _employee;
         private readonly List<Role> _roles;
 
-        private List<TimeTable> _addedTables;
-        private List<TimeTable> _deletedTables;
+        private readonly List<TimeTable> _addedTables;
+        private readonly List<TimeTable> _deletedTables;
         private List<TimeTable> _tables;
 
         public EmployeeEditForm(Employee employee)
@@ -74,12 +75,12 @@ namespace StretchCeilings.Views
 
         private void SetUpTimeTableGrid()
         {
-            dgvTimeTable.AddDataGridViewTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvTimeTable.AddDataGridViewTextBoxColumn(Resources.Date,DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvTimeTable.AddDataGridViewTextBoxColumn(Resources.DayOfWeek,DataGridViewAutoSizeColumnMode.Fill);
-            dgvTimeTable.AddDataGridViewTextBoxColumn(Resources.ShiftStart,DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvTimeTable.AddDataGridViewTextBoxColumn(Resources.ShiftEnd,DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvTimeTable.AddDataGridViewButtonColumn(DraculaColor.Red);
+            dgvTimeTable.CreateTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvTimeTable.CreateTextBoxColumn(Resources.Date,DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvTimeTable.CreateTextBoxColumn(Resources.DayOfWeek,DataGridViewAutoSizeColumnMode.Fill);
+            dgvTimeTable.CreateTextBoxColumn(Resources.ShiftStart,DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvTimeTable.CreateTextBoxColumn(Resources.ShiftEnd,DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvTimeTable.CreateButtonColumn();
 
             dgvTimeTable.Font = GoogleFont.OpenSans;
             dgvTimeTable.ForeColor = DraculaColor.Background;
@@ -201,7 +202,7 @@ namespace StretchCeilings.Views
         {
             if (HasErrors())
             {
-                CustomMessageBox.ShowDialog(Resources.ControlsEmpty, Caption.Error);
+                FlatMessageBox.ShowDialog(Resources.ControlsEmpty, Caption.Error);
                 return;
             }
 

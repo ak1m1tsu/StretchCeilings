@@ -1,6 +1,4 @@
-﻿using StretchCeilings.Helpers.Structs;
-
-namespace StretchCeilings.Views
+﻿namespace StretchCeilings.Views
 {
     partial class RoomForm
     {

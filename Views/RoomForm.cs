@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
+using StretchCeilings.Extensions;
 using StretchCeilings.Models;
-using StretchCeilings.Helpers.Extensions;
 
 namespace StretchCeilings.Views
 {
@@ -32,7 +32,7 @@ namespace StretchCeilings.Views
 
         private void DragMove(object sender, MouseEventArgs e)
         {
-            this.Handle.DragMove(e);
+            Handle.DragMove(e);
         }
     }
 }

@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Forms;
-using StretchCeilings.Helpers;
-using StretchCeilings.Helpers.Controls;
-using StretchCeilings.Helpers.Enums;
-using StretchCeilings.Helpers.Extensions;
-using StretchCeilings.Helpers.Extensions.Controls;
-using StretchCeilings.Helpers.Structs;
+using StretchCeilings.Extensions;
+using StretchCeilings.Extensions.Controls;
 using StretchCeilings.Models;
+using StretchCeilings.Models.Enums;
 using StretchCeilings.Repositories;
+using StretchCeilings.Sessions;
+using StretchCeilings.Structs;
+using StretchCeilings.Views.Controls;
 
 namespace StretchCeilings.Views
 {
@@ -36,7 +36,7 @@ namespace StretchCeilings.Views
 
         public Service GetService() => _service;
 
-        private bool IsForSearching => _state == FormState.ForView;
+        private bool IsForView => _state == FormState.ForView;
 
         private static bool CanUserDelete => UserSession.IsAdmin ||
                                              UserSession.Can(PermissionCode.DelService);
@@ -57,14 +57,11 @@ namespace StretchCeilings.Views
 
         private void SetupDataGrid()
         {
-            dgvServices.AddDataGridViewTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvServices.AddDataGridViewTextBoxColumn(Resources.Manufacturer, DataGridViewAutoSizeColumnMode.Fill);
-            dgvServices.AddDataGridViewTextBoxColumn(Resources.Ceiling, DataGridViewAutoSizeColumnMode.Fill);
-            dgvServices.AddDataGridViewTextBoxColumn(Resources.Price, DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvServices.AddDataGridViewButtonColumn(DraculaColor.Red);
-
-            if (CanUserDelete == false)
-                dgvServices.Columns[Resources.Space].Visible = false;
+            dgvServices.CreateTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvServices.CreateTextBoxColumn(Resources.Manufacturer, DataGridViewAutoSizeColumnMode.Fill);
+            dgvServices.CreateTextBoxColumn(Resources.Ceiling, DataGridViewAutoSizeColumnMode.Fill);
+            dgvServices.CreateTextBoxColumn(Resources.Price, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvServices.CreateButtonColumn();
 
             dgvServices.Font = GoogleFont.OpenSans;
             dgvServices.ForeColor = DraculaColor.Background;
@@ -78,9 +75,6 @@ namespace StretchCeilings.Views
             btnPrevious.Click += ShowPreviousPage;
             btnResetFilters.FlatAppearance.MouseDownBackColor = DraculaColor.Red;
             
-            if (CanUserAdd)
-                DrawAddServiceButton();
-
             nudTotalFrom.Maximum = decimal.MaxValue;
             nudTotalTo.Maximum = decimal.MaxValue;
 
@@ -91,10 +85,15 @@ namespace StretchCeilings.Views
             _count = Convert.ToInt32(cbRows.Items[0]);
             cbRows.SelectedIndexChanged += RowCountChanged;
 
-            if (IsForSearching)
+            if (CanUserAdd && IsForView == false)
+                DrawAddServiceButton();
+
+            if (CanUserDelete == false || IsForView)
+                dgvServices.Columns[Resources.Space].Visible = false;
+
+            if (IsForView)
             {
                 dgvServices.CellDoubleClick += SelectService;
-                dgvServices.Columns[Resources.Space].Visible = false;
                 panelTopSide.Visible = true;
                 return;
             }
@@ -129,12 +128,6 @@ namespace StretchCeilings.Views
 
         private void FilterDataGrid()
         {
-            //if (nudTotalFrom.Value > nudTotalTo.Value)
-            //{
-            //    CustomMessageBox.ShowDialog(Resources.InvalidPriceRange, Caption.Error);
-            //    return;
-            //}
-            
             _services = ServiceRepository.GetAll(
                 _firstFilter,
                 _secondFilter,
@@ -160,7 +153,7 @@ namespace StretchCeilings.Views
 
         private void SelectService(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvServices.SelectedRows.Count <= 0 || e.RowIndex < 0)
+            if (e.RowIndex < 0)
                 return;
 
             var index = Convert.ToInt32(dgvServices.Rows[e.RowIndex].Cells[0].Value);
@@ -181,8 +174,11 @@ namespace StretchCeilings.Views
         {
             var service = new ServiceEditForm();
 
-            if (service.ShowDialog() == DialogResult.OK)
-                FilterDataGrid();
+            if (service.ShowDialog() != DialogResult.OK)
+                return;
+            
+            FilterDataGrid();
+            FlatMessageBox.ShowDialog("Услуга успешно добавлена", Caption.Info);
         }
         
         private void ShowPreviousPage(object sender, EventArgs e)
@@ -211,7 +207,7 @@ namespace StretchCeilings.Views
                 senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn == false)
                 return;
 
-            if (CustomMessageBox.ShowDialog("Вы точно хотите удалить данную услугу?", Caption.Warning) != DialogResult.OK)
+            if (FlatMessageBox.ShowDialog("Вы точно хотите удалить данную услугу?", Caption.Warning) != DialogResult.OK)
                 return;
 
             var index = Convert.ToInt32(dgvServices.Rows[e.RowIndex].Cells[0].Value);
@@ -219,6 +215,7 @@ namespace StretchCeilings.Views
             service.Delete();
             
             FilterDataGrid();
+            FlatMessageBox.ShowDialog("Услуга успешно удалена.", Caption.Info);
         }
 
         private void ShowGridData(object sender, DataGridViewCellEventArgs e)
@@ -252,6 +249,7 @@ namespace StretchCeilings.Views
             _services = ServiceRepository.GetAll(out _rows);
 
             FillDataGrid();
+            FlatMessageBox.ShowDialog("Значение фильтров сброшено до стандартных", Caption.Info);
         }
 
         private void SelectManufacturer(object sender, LinkLabelLinkClickedEventArgs e)
@@ -300,7 +298,7 @@ namespace StretchCeilings.Views
 
         private void DragMove(object sender, MouseEventArgs e)
         {
-            this.Handle.DragMove(e);
+            Handle.DragMove(e);
         }
 
         private void PriceFromChanged(object sender, EventArgs e)

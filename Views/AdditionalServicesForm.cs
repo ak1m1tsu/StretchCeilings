@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using StretchCeilings.Helpers;
-using StretchCeilings.Helpers.Controls;
-using StretchCeilings.Helpers.Enums;
-using StretchCeilings.Helpers.Extensions;
-using StretchCeilings.Helpers.Extensions.Controls;
-using StretchCeilings.Helpers.Structs;
+using StretchCeilings.Extensions;
+using StretchCeilings.Extensions.Controls;
 using StretchCeilings.Models;
+using StretchCeilings.Models.Enums;
 using StretchCeilings.Repositories;
+using StretchCeilings.Sessions;
+using StretchCeilings.Structs;
+using StretchCeilings.Views.Controls;
 
 namespace StretchCeilings.Views
 {
@@ -35,23 +35,20 @@ namespace StretchCeilings.Views
 
         public AdditionalService GetAdditionalService() => _additionalService;
 
-        private bool IsForSearching => _state == FormState.ForView;
+        private bool IsForView => _state == FormState.ForView;
 
         private static bool CanUserAdd => UserSession.IsAdmin ||
-                                            UserSession.Can(PermissionCode.EditAdditionalService);
+                                          UserSession.Can(PermissionCode.EditAdditionalService);
 
         private static bool CanUserDelete => UserSession.IsAdmin ||
-                                               UserSession.Can(PermissionCode.DelCustomer);
+                                             UserSession.Can(PermissionCode.DelCustomer);
 
         private void SetupDataGrid()
         {
-            dgvAdditionalServices.AddDataGridViewTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvAdditionalServices.AddDataGridViewTextBoxColumn(Resources.Name, DataGridViewAutoSizeColumnMode.Fill);
-            dgvAdditionalServices.AddDataGridViewTextBoxColumn(Resources.Price, DataGridViewAutoSizeColumnMode.Fill);
-            dgvAdditionalServices.AddDataGridViewButtonColumn(DraculaColor.Red);
-
-            if (CanUserDelete == false)
-                dgvAdditionalServices.Columns[Resources.Space].Visible = false;
+            dgvAdditionalServices.CreateTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvAdditionalServices.CreateTextBoxColumn(Resources.Name, DataGridViewAutoSizeColumnMode.Fill);
+            dgvAdditionalServices.CreateTextBoxColumn(Resources.Price, DataGridViewAutoSizeColumnMode.Fill);
+            dgvAdditionalServices.CreateButtonColumn();
 
             dgvAdditionalServices.Font = GoogleFont.OpenSans;
             dgvAdditionalServices.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
@@ -67,9 +64,6 @@ namespace StretchCeilings.Views
 
         private void SetupControls()
         {
-            if (CanUserAdd)
-                DrawAddButton();
-
             nudId.Maximum = decimal.MaxValue;
             nudTotalFrom.Maximum = decimal.MaxValue;
             nudTotalTo.Maximum = decimal.MaxValue;
@@ -80,10 +74,15 @@ namespace StretchCeilings.Views
             cbRows.SelectedIndexChanged += RowCountChanged;
             cbRows.SelectedItem = cbRows.Items[0];
 
-            if (IsForSearching)
+            if (CanUserAdd)
+                DrawAddButton();
+
+            if (CanUserDelete == false || IsForView)
+                dgvAdditionalServices.Columns[Resources.Space].Visible = false;
+
+            if (IsForView)
             {
                 dgvAdditionalServices.CellDoubleClick += SelectGridData;
-                dgvAdditionalServices.Columns[Resources.Space].Visible = false;
                 panelTopSide.Visible = true;
                 return;
             }
@@ -109,6 +108,7 @@ namespace StretchCeilings.Views
 
             var index = Convert.ToInt32(dgvAdditionalServices.Rows[e.RowIndex].Cells[0].Value);
             _additionalService = _additionalServices[index - 1];
+
             DialogResult = DialogResult.OK;
         }
 
@@ -128,7 +128,7 @@ namespace StretchCeilings.Views
         {
             if (nudTotalFrom.Value > nudTotalTo.Value)
             {
-                CustomMessageBox.ShowDialog(Resources.InvalidPriceRange, Caption.Error);
+                FlatMessageBox.ShowDialog(Resources.InvalidPriceRange, Caption.Error);
                 return;
             }
 
@@ -199,7 +199,7 @@ namespace StretchCeilings.Views
                 senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn == false)
                 return;
 
-            if (CustomMessageBox.ShowDialog("Вы точно хотите удалить данную услугу?", Caption.Warning) != DialogResult.OK)
+            if (FlatMessageBox.ShowDialog("Вы точно хотите удалить данную доп. услугу?", Caption.Warning) != DialogResult.OK)
                 return;
 
             var index = Convert.ToInt32(dgvAdditionalServices.Rows[e.RowIndex].Cells[0].Value);
@@ -207,6 +207,7 @@ namespace StretchCeilings.Views
             service.Delete();
 
             FilterDataGrid();
+            FlatMessageBox.ShowDialog("Доп. услуга успешно удалена", Caption.Info);
         }
         
         private void IdChanged(object sender, EventArgs e)
@@ -268,6 +269,7 @@ namespace StretchCeilings.Views
             _additionalServices = AdditionalServiceRepository.GetAll(out _rows);
 
             FillDataGrid();
+            FlatMessageBox.ShowDialog("Значение фильтров сброшено до стандартных", Caption.Info);
         }
 
         private void CloseForm(object sender, EventArgs e)
@@ -277,7 +279,7 @@ namespace StretchCeilings.Views
 
         private void DragMove(object sender, MouseEventArgs e)
         {
-            this.Handle.DragMove(e);
+            Handle.DragMove(e);
         }
     }
 }

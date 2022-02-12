@@ -1,6 +1,4 @@
-﻿using StretchCeilings.Helpers.Structs;
-
-namespace StretchCeilings.Views
+﻿namespace StretchCeilings.Views
 {
     partial class RoomEditForm
     {
@@ -38,6 +36,7 @@ namespace StretchCeilings.Views
             this.panelButton = new System.Windows.Forms.Panel();
             this.btnChangePicture = new System.Windows.Forms.Button();
             this.panelInfo = new System.Windows.Forms.Panel();
+            this.btnSave = new FontAwesome.Sharp.IconButton();
             this.cbType = new System.Windows.Forms.ComboBox();
             this.nudArea = new System.Windows.Forms.NumericUpDown();
             this.nudCorners = new System.Windows.Forms.NumericUpDown();
@@ -62,7 +61,7 @@ namespace StretchCeilings.Views
             this.panelTop.Location = new System.Drawing.Point(0, 0);
             this.panelTop.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(900, 44);
+            this.panelTop.Size = new System.Drawing.Size(900, 25);
             this.panelTop.TabIndex = 83;
             // 
             // btnClose
@@ -77,19 +76,20 @@ namespace StretchCeilings.Views
             this.btnClose.Location = new System.Drawing.Point(862, 0);
             this.btnClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(38, 44);
+            this.btnClose.Size = new System.Drawing.Size(38, 25);
             this.btnClose.TabIndex = 2;
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.CloseForm);
             // 
             // panelBody
             // 
             this.panelBody.Controls.Add(this.gbPlane);
             this.panelBody.Controls.Add(this.panelInfo);
             this.panelBody.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelBody.Location = new System.Drawing.Point(0, 44);
+            this.panelBody.Location = new System.Drawing.Point(0, 25);
             this.panelBody.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelBody.Name = "panelBody";
-            this.panelBody.Size = new System.Drawing.Size(900, 556);
+            this.panelBody.Size = new System.Drawing.Size(900, 575);
             this.panelBody.TabIndex = 84;
             // 
             // gbPlane
@@ -103,7 +103,7 @@ namespace StretchCeilings.Views
             this.gbPlane.Margin = new System.Windows.Forms.Padding(0);
             this.gbPlane.Name = "gbPlane";
             this.gbPlane.Padding = new System.Windows.Forms.Padding(0);
-            this.gbPlane.Size = new System.Drawing.Size(900, 456);
+            this.gbPlane.Size = new System.Drawing.Size(900, 475);
             this.gbPlane.TabIndex = 6;
             this.gbPlane.TabStop = false;
             this.gbPlane.Text = "План";
@@ -114,7 +114,7 @@ namespace StretchCeilings.Views
             this.pbPlane.Location = new System.Drawing.Point(0, 22);
             this.pbPlane.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pbPlane.Name = "pbPlane";
-            this.pbPlane.Size = new System.Drawing.Size(764, 434);
+            this.pbPlane.Size = new System.Drawing.Size(764, 453);
             this.pbPlane.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbPlane.TabIndex = 9;
             this.pbPlane.TabStop = false;
@@ -126,7 +126,7 @@ namespace StretchCeilings.Views
             this.panelButton.Location = new System.Drawing.Point(764, 22);
             this.panelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelButton.Name = "panelButton";
-            this.panelButton.Size = new System.Drawing.Size(136, 434);
+            this.panelButton.Size = new System.Drawing.Size(136, 453);
             this.panelButton.TabIndex = 8;
             // 
             // btnChangePicture
@@ -143,9 +143,11 @@ namespace StretchCeilings.Views
             this.btnChangePicture.TabIndex = 44;
             this.btnChangePicture.Text = "Изменить";
             this.btnChangePicture.UseVisualStyleBackColor = false;
+            this.btnChangePicture.Click += new System.EventHandler(this.PlaneChanged);
             // 
             // panelInfo
             // 
+            this.panelInfo.Controls.Add(this.btnSave);
             this.panelInfo.Controls.Add(this.cbType);
             this.panelInfo.Controls.Add(this.nudArea);
             this.panelInfo.Controls.Add(this.nudCorners);
@@ -159,6 +161,25 @@ namespace StretchCeilings.Views
             this.panelInfo.Name = "panelInfo";
             this.panelInfo.Size = new System.Drawing.Size(900, 100);
             this.panelInfo.TabIndex = 5;
+            // 
+            // btnSave
+            // 
+            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.btnSave.FlatAppearance.BorderSize = 0;
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.ForeColor = System.Drawing.Color.White;
+            this.btnSave.IconChar = FontAwesome.Sharp.IconChar.Save;
+            this.btnSave.IconColor = System.Drawing.Color.White;
+            this.btnSave.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnSave.IconSize = 30;
+            this.btnSave.Location = new System.Drawing.Point(755, 61);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(140, 30);
+            this.btnSave.TabIndex = 21;
+            this.btnSave.Text = "Cохранить";
+            this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.UpdateRoom);
             // 
             // cbType
             // 
@@ -244,6 +265,7 @@ namespace StretchCeilings.Views
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "RoomEditForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.LoadForm);
             this.panelTop.ResumeLayout(false);
             this.panelBody.ResumeLayout(false);
             this.gbPlane.ResumeLayout(false);
@@ -273,5 +295,6 @@ namespace StretchCeilings.Views
         private System.Windows.Forms.PictureBox pbPlane;
         private System.Windows.Forms.Panel panelButton;
         private System.Windows.Forms.Button btnChangePicture;
+        private FontAwesome.Sharp.IconButton btnSave;
     }
 }

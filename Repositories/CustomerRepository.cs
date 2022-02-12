@@ -5,7 +5,7 @@ using StretchCeilings.Models;
 
 namespace StretchCeilings.Repositories
 {
-    public class CustomerRepository : NotNull
+    public class CustomerRepository
     {
         public static List<Customer> GetAll(out int rows)
         {
@@ -31,10 +31,10 @@ namespace StretchCeilings.Repositories
                 if (filter.Id != 0)
                     queryable = queryable.Where(x => x.Id == filter.Id);
 
-                if (IsNull(filter.FullName) == false)
+                if (filter.FullName != null)
                     queryable = queryable.Where(x => x.FullName == filter.FullName);
 
-                if (IsNull(filter.PhoneNumber) == false)
+                if (filter.PhoneNumber != null)
                     queryable = queryable.Where(x => x.PhoneNumber == filter.PhoneNumber);
                 
                 if (!queryable.Any())

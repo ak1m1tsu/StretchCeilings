@@ -6,7 +6,7 @@ using StretchCeilings.Models;
 
 namespace StretchCeilings.Repositories
 {
-    public class ServiceRepository : NotNull
+    public class ServiceRepository
     {
         public static List<Service> GetAll(out int rows)
         {
@@ -38,19 +38,19 @@ namespace StretchCeilings.Repositories
                 if (firstFilter.Id != 0)
                     services = services.Where(x => x.Id == firstFilter.Id);
 
-                if ((IsNull(firstFilter.Price) && IsNull(secondFilter.Price)) == false)
+                if (firstFilter.Price != null && secondFilter.Price != null)
                     services = services.Where(x => firstFilter.Price <= x.Price && x.Price <= secondFilter.Price);
 
-                if (IsNull(firstFilter.Price) == false)
+                if (firstFilter.Price != null)
                     services = services.Where(x => firstFilter.Price <= x.Price);
 
-                if (IsNull(secondFilter.Price) == false)
+                if (secondFilter.Price != null)
                     services = services.Where(x => x.Price <= secondFilter.Price);
 
-                if (IsNull(firstFilter.ManufacturerId) == false)
+                if (firstFilter.ManufacturerId != null)
                     services = services.Where(x => x.ManufacturerId == firstFilter.ManufacturerId);
 
-                if(IsNull(firstFilter.CeilingId) == false)
+                if (firstFilter.CeilingId != null)
                     services = services.Where(x => x.CeilingId == firstFilter.CeilingId);
                 
                 if (!services.Any())
@@ -72,11 +72,8 @@ namespace StretchCeilings.Repositories
         {
             using (var db = new StretchCeilingsContext())
             {
-                var service = db.Services.FirstOrDefault(o => o.Id == id);
-
-                if (IsNull(service))
-                    return service;
-
+                var service = db.Services.Find(id);
+                
                 db.Entry(service).Reference(r => r.Ceiling).Load();
                 db.Entry(service).Reference(r => r.Manufacturer).Load();
                 db.Entry(service).Reference(r => r.Room).Load();

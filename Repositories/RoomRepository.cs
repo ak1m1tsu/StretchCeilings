@@ -6,7 +6,7 @@ using StretchCeilings.Models;
 
 namespace StretchCeilings.Repositories
 {
-    public class RoomRepository : NotNull
+    public class RoomRepository
     {
         public static List<Room> GetAll(out int rows)
         {
@@ -15,12 +15,12 @@ namespace StretchCeilings.Repositories
                 var rooms = db.CustomersRooms.Where(x => x.DeletedDate == null);
                 rows = 0;
 
-                if (rooms.Any())
-                {
-                    rooms.ForEachAsync(r => db.Entry(r).Reference(re => re.Estate).Load());
-                    rooms.ForEachAsync(r => db.Entry(r?.Estate).Reference(re => re.Customer).Load());
-                    rows = rooms.Count();
-                }
+                if (rooms.Any() == false)
+                    return rooms.ToList();
+
+                rooms.ForEachAsync(r => db.Entry(r).Reference(re => re.Estate).Load());
+                rooms.ForEachAsync(r => db.Entry(r?.Estate).Reference(re => re.Customer).Load());
+                rows = rooms.Count();
 
                 return rooms.ToList();
             }
@@ -33,10 +33,10 @@ namespace StretchCeilings.Repositories
                 var rooms = db.CustomersRooms.Where(x => x.DeletedDate == null);
                 rows = 0;
 
-                if (IsNull(estate) == false)
+                if (estate != null)
                     rooms = rooms.Where(x => x.EstateId == estate.Id);
 
-                if (IsNull(customer) == false)
+                if (customer != null)
                     rooms = rooms.Where(x => x.Estate.CustomerId == customer.Id);
 
                 if (rooms.Any() == false)
@@ -56,7 +56,7 @@ namespace StretchCeilings.Repositories
             {
                 var room = db.CustomersRooms.FirstOrDefault(x => x.Id == id);
 
-                if (IsNull(room))
+                if (room != null)
                     db.Entry(room).Reference(r => r.Estate).Load();
 
                 return room;

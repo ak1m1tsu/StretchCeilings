@@ -48,7 +48,7 @@ namespace StretchCeilings.Views
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(350, 25);
             this.panelTop.TabIndex = 0;
-            this.panelTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTop_MouseDown);
+            this.panelTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DragMove);
             // 
             // btnClose
             // 
@@ -65,7 +65,7 @@ namespace StretchCeilings.Views
             this.btnClose.Size = new System.Drawing.Size(25, 25);
             this.btnClose.TabIndex = 2;
             this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnCloseApp_Click);
+            this.btnClose.Click += new System.EventHandler(this.CloseApp);
             // 
             // mtbLogin
             // 
@@ -78,7 +78,7 @@ namespace StretchCeilings.Views
             this.mtbLogin.Name = "mtbLogin";
             this.mtbLogin.Size = new System.Drawing.Size(179, 29);
             this.mtbLogin.TabIndex = 12;
-            this.mtbLogin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtbLogin_KeyDown);
+            this.mtbLogin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EnterClicked);
             // 
             // btnLogin
             // 
@@ -93,7 +93,7 @@ namespace StretchCeilings.Views
             this.btnLogin.TabIndex = 14;
             this.btnLogin.Text = "Войти";
             this.btnLogin.UseVisualStyleBackColor = false;
-            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            this.btnLogin.Click += new System.EventHandler(this.LogIn);
             // 
             // tbPassword
             // 
@@ -105,7 +105,7 @@ namespace StretchCeilings.Views
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(179, 29);
             this.tbPassword.TabIndex = 13;
-            this.tbPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbPassword_KeyDown);
+            this.tbPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EnterClicked);
             // 
             // lblPassword
             // 
@@ -144,7 +144,7 @@ namespace StretchCeilings.Views
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Load += new System.EventHandler(this.LoginForm_Load);
+            this.Load += new System.EventHandler(this.LoadForm);
             this.panelTop.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

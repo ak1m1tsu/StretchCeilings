@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Forms;
-using StretchCeilings.Helpers;
-using StretchCeilings.Helpers.Enums;
-using StretchCeilings.Helpers.Extensions;
-using StretchCeilings.Helpers.Extensions.Controls;
-using StretchCeilings.Helpers.Structs;
+using StretchCeilings.Extensions;
+using StretchCeilings.Extensions.Controls;
 using StretchCeilings.Models;
+using StretchCeilings.Models.Enums;
+using StretchCeilings.Sessions;
+using StretchCeilings.Structs;
 
 namespace StretchCeilings.Views
 {
@@ -27,10 +26,11 @@ namespace StretchCeilings.Views
             InitializeComponent();
         }
 
-        private bool CanUserEdit =>
-            UserSession.IsAdmin || 
-            UserSession.Can(PermissionCode.EditOrder);
-        
+        private static bool CanUserEdit => UserSession.IsAdmin || 
+                                           UserSession.Can(PermissionCode.EditOrder);
+
+        private string TotalToString => $"{_order.Total ?? 0} руб.";
+
 
         private void SetupForm()
         {
@@ -42,7 +42,7 @@ namespace StretchCeilings.Views
             lblDateOfMeasurementsValue.Text = _order?.DateOfMeasurements?.ToString();
             lblDatePaidValue.Text = _order?.DatePaid?.ToString();
             lblStatusValue.Text = _order?.Status?.ParseString();
-            lblPriceValue.Text = _order?.Total?.ToString();
+            lblPriceValue.Text = TotalToString;
 
             if (_order.PaidByCash == true)
                 lblPaidByCashValue.Text = Resources.Yes;
@@ -53,10 +53,7 @@ namespace StretchCeilings.Views
             if (_state == FormState.ForView)
                 btnEdit.Visible = false;
 
-            SetupWorkDaysGrid();
-            SetupServicesGrid();
-            SetupEmployeesGrid();
-            SetUpLogsGrid();
+            SetupDataGrids();
         }
 
         private void ReSetupForm()
@@ -68,28 +65,30 @@ namespace StretchCeilings.Views
             lblStatusValue.Text = _order?.Status?.ParseString();
             lblPriceValue.Text = _order?.Total?.ToString();
             lblPaidByCashValue.Text = Resources.No;
+            
             if (_order.PaidByCash == true)
                 lblPaidByCashValue.Text = Resources.Yes;
 
+            SetupDataGrids();
+        }
+
+        private void SetupDataGrids()
+        {
             SetupWorkDaysGrid();
             SetupServicesGrid();
             SetupEmployeesGrid();
-            SetUpLogsGrid();
+            SetupLogsGrid();
         }
 
         private void SetupServicesGrid()
         {
             _services = _order.GetServices();
 
-            dgvServices.AddDataGridViewTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvServices.AddDataGridViewTextBoxColumn(Resources.Manufacturer, DataGridViewAutoSizeColumnMode.Fill);
-            dgvServices.AddDataGridViewTextBoxColumn(Resources.Ceiling, DataGridViewAutoSizeColumnMode.Fill);
-            dgvServices.AddDataGridViewTextBoxColumn(Resources.Price, DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvServices.AddDataGridViewButtonColumn(DraculaColor.Red);
-            
-            dgvServices.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
-            dgvServices.DefaultCellStyle.SelectionForeColor = DraculaColor.Foreground;
-
+            dgvServices.CreateTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvServices.CreateTextBoxColumn(Resources.Manufacturer, DataGridViewAutoSizeColumnMode.Fill);
+            dgvServices.CreateTextBoxColumn(Resources.Ceiling, DataGridViewAutoSizeColumnMode.Fill);
+            dgvServices.CreateTextBoxColumn(Resources.Price, DataGridViewAutoSizeColumnMode.DisplayedCells);
+           
             for (var i = 0; i < _services?.Count; i++)
             {
                 dgvServices.Rows.AddRange(new DataGridViewRow());
@@ -105,12 +104,8 @@ namespace StretchCeilings.Views
         {
             _employees = _order.GetEmployees();
 
-            dgvEmployees.AddDataGridViewTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvEmployees.AddDataGridViewTextBoxColumn(Resources.PersonName, DataGridViewAutoSizeColumnMode.Fill);
-            dgvEmployees.AddDataGridViewButtonColumn(DraculaColor.Red);
-
-            dgvEmployees.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
-            dgvEmployees.DefaultCellStyle.SelectionForeColor = DraculaColor.Foreground;
+            dgvEmployees.CreateTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvEmployees.CreateTextBoxColumn(Resources.PersonName, DataGridViewAutoSizeColumnMode.Fill);
 
             for (var i = 0; i < _employees?.Count; i++)
             {
@@ -121,18 +116,14 @@ namespace StretchCeilings.Views
             }
         }
 
-        private void SetUpLogsGrid()
+        private void SetupLogsGrid()
         {
             _logs = _order.GetLogs();
 
-            dgvLogs.AddDataGridViewTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvLogs.AddDataGridViewTextBoxColumn(Resources.DateCreated, DataGridViewAutoSizeColumnMode.Fill);
-            dgvLogs.AddDataGridViewTextBoxColumn(Resources.Action, DataGridViewAutoSizeColumnMode.Fill);
-            dgvLogs.AddDataGridViewButtonColumn(DraculaColor.Red);
-
-            dgvLogs.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
-            dgvLogs.DefaultCellStyle.SelectionForeColor = DraculaColor.Foreground;
-
+            dgvLogs.CreateTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvLogs.CreateTextBoxColumn(Resources.DateCreated, DataGridViewAutoSizeColumnMode.Fill);
+            dgvLogs.CreateTextBoxColumn(Resources.Action, DataGridViewAutoSizeColumnMode.Fill);
+            
             for (var i = 0; i < _logs?.Count; i++)
             {
                 dgvLogs.Rows.Add(new DataGridViewRow());
@@ -147,14 +138,9 @@ namespace StretchCeilings.Views
         {
             _workDates = _order.GetWorkDates();
 
-            dgvWorkDates.AddDataGridViewTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvWorkDates.AddDataGridViewTextBoxColumn(Resources.Date, DataGridViewAutoSizeColumnMode.Fill);
-            dgvWorkDates.AddDataGridViewButtonColumn(DraculaColor.Red);
+            dgvWorkDates.CreateTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvWorkDates.CreateTextBoxColumn(Resources.Date, DataGridViewAutoSizeColumnMode.Fill);
             
-            dgvWorkDates.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
-            dgvWorkDates.DefaultCellStyle.SelectionForeColor = DraculaColor.Foreground;
-            dgvWorkDates.DefaultCellStyle.ForeColor = Color.Black;
-
             for (var i = 0; i < _workDates?.Count; i++)
             {
                 dgvWorkDates.Rows.Add(new DataGridViewRow());
@@ -205,7 +191,7 @@ namespace StretchCeilings.Views
 
         private void DragMove(object sender, MouseEventArgs e)
         {
-            this.Handle.DragMove(e);
+            Handle.DragMove(e);
         }
 
         private void ShowEditForm(object sender, System.EventArgs e)

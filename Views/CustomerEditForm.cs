@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
-using StretchCeilings.Helpers.Extensions;
-using StretchCeilings.Helpers.Extensions.Controls;
-using StretchCeilings.Helpers.Structs;
+using StretchCeilings.Extensions;
+using StretchCeilings.Extensions.Controls;
+using StretchCeilings.Helpers;
 using StretchCeilings.Models;
+using StretchCeilings.Structs;
 
 namespace StretchCeilings.Views
 {
@@ -12,63 +14,71 @@ namespace StretchCeilings.Views
     {
         private readonly Customer _customer;
         private List<Estate> _estates;
-        private List<Estate> _updatedEstates;
-        private List<Estate> _addedEstates;
-        private List<Estate> _deletedEstates;
 
-        public CustomerEditForm(Customer customer)
+        public CustomerEditForm(Customer customer = null)
         {
             _customer = customer;
+            if (_customer == null)
+            {
+                _customer = new Customer();
+                _customer.Add();
+            }
             InitializeComponent();
         }
 
         public Customer GetCustomer() => _customer;
 
-        private void SetupForm()
+        private void SetupDataGrid()
+        {
+            dgvEstates.CreateTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvEstates.CreateTextBoxColumn("Адрес", DataGridViewAutoSizeColumnMode.Fill);
+            dgvEstates.CreateButtonColumn();
+
+            dgvEstates.Font = GoogleFont.OpenSans;
+            dgvEstates.ForeColor = DraculaColor.Background;
+            dgvEstates.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
+            dgvEstates.DefaultCellStyle.SelectionForeColor = DraculaColor.Foreground;
+        }
+
+        private void SetupControls()
         {
             tbFullName.Text = _customer?.FullName;
             mtbPhoneNumber.Text = _customer?.PhoneNumber;
+        }
 
-            _updatedEstates = new List<Estate>();
-            _addedEstates = new List<Estate>();
-            _deletedEstates = new List<Estate>();
-            _estates = _customer?.GetEstates();
-
-            dgvEstates.AddDataGridViewTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvEstates.AddDataGridViewTextBoxColumn("Адресс", DataGridViewAutoSizeColumnMode.Fill);
-
-            dgvEstates.Font = GoogleFont.OpenSans;
-            dgvEstates.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
-            dgvEstates.DefaultCellStyle.SelectionForeColor = DraculaColor.Foreground;
-
-            for (var i = 0; i < _estates?.Count; i++)
+        private void FillDataGrid()
+        {
+            dgvEstates.Rows.Clear();
+            
+            for (var i = 0; i < _estates.Count(x => x.DeletedDate == null); i++)
             {
                 dgvEstates.Rows.Add(new DataGridViewRow());
-
-                dgvEstates.Rows[i].Cells[0].Value = _estates[i].Id;
+                dgvEstates.Rows[i].Cells[0].Value = dgvEstates.Rows.Count;
                 dgvEstates.Rows[i].Cells[1].Value = _estates[i].Address;
             }
         }
 
         private void LoadForm(object sender, EventArgs e)
         {
-            SetupForm();
+            _estates = _customer?.GetEstates();
+            
+            SetupDataGrid();
+            SetupControls();
+            FillDataGrid();
         }
 
         private void UpdateInfo(object sender, EventArgs e)
         {
             if (HasErrors())
             {
-                CustomMessageBox.ShowDialog(Resources.ControlsEmpty, Caption.Error);
+                FlatMessageBox.ShowDialog(Resources.ControlsEmpty, Caption.Error);
                 return;
             }
 
             _customer.FullName = tbFullName.Text;
             _customer.PhoneNumber = mtbPhoneNumber.Text;
             _customer.Update();
-            _addedEstates?.ForEach(x => x?.Add());
-            _updatedEstates?.ForEach(x => x?.Add());
-            _deletedEstates?.ForEach(x => x.Delete());
+            _estates.ForEach(x => x?.Update());
             DialogResult = DialogResult.OK;
         }
 
@@ -95,13 +105,57 @@ namespace StretchCeilings.Views
 
         private void DragMove(object sender, MouseEventArgs e)
         {
-            this.Handle.DragMove(e);
+            Handle.DragMove(e);
         }
 
         private void CloseForm(object sender, EventArgs e)
         {
+            if (_customer.HasNullField())
+                _customer.Delete();
+
 
             DialogResult = DialogResult.Cancel;
+        }
+
+        private void AddGridData(object sender, EventArgs e)
+        {
+            var form = new EstateEditForm(_customer);
+            
+            if (form.ShowDialog() != DialogResult.OK)
+                return;
+
+            _estates = _customer.GetEstates();
+            FillDataGrid();
+        }
+
+        private void RemoveGridData(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (e.RowIndex < 0 ||
+                senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn == false)
+                return;
+
+            var index = Convert.ToInt32(dgvEstates.Rows[e.RowIndex].Cells[0].Value);
+            var estate = _estates[index - 1];
+            
+            estate.DeletedDate = DateTime.Now;
+            FillDataGrid();
+        }
+
+        private void ShowGridData(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                return;
+
+            var index = Convert.ToInt32(dgvEstates.Rows[e.RowIndex].Cells[0].Value);
+            var estate = _estates[index - 1];
+            var form = new EstateEditForm(estate);
+
+            if (form.ShowDialog() == DialogResult.OK)
+                _estates[index - 1] = form.GetEstate();
+            
+            FillDataGrid();
         }
     }
 }

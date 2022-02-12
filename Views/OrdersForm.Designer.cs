@@ -1,6 +1,4 @@
 ﻿
-using StretchCeilings.Helpers.Structs;
-
 namespace StretchCeilings.Views
 {
     partial class OrdersForm
@@ -38,23 +36,23 @@ namespace StretchCeilings.Views
             this.btnNextPage = new System.Windows.Forms.Button();
             this.dgvOrders = new System.Windows.Forms.DataGridView();
             this.panelFilters = new System.Windows.Forms.Panel();
-            this.ibtnEmployee = new FontAwesome.Sharp.IconButton();
+            this.linkEmployee = new System.Windows.Forms.LinkLabel();
+            this.linkCustomer = new System.Windows.Forms.LinkLabel();
             this.lblPayment = new System.Windows.Forms.Label();
-            this.ibtnCustomer = new FontAwesome.Sharp.IconButton();
             this.cbStatusValue = new System.Windows.Forms.ComboBox();
             this.lblEmployee = new System.Windows.Forms.Label();
             this.lblCustomer = new System.Windows.Forms.Label();
             this.cbPaidByCash = new System.Windows.Forms.ComboBox();
             this.nudTotalTo = new System.Windows.Forms.NumericUpDown();
-            this.nudIdValue = new System.Windows.Forms.NumericUpDown();
+            this.nudId = new System.Windows.Forms.NumericUpDown();
             this.lblId = new System.Windows.Forms.Label();
             this.nudTotalFrom = new System.Windows.Forms.NumericUpDown();
             this.lblPriceTo = new System.Windows.Forms.Label();
             this.lblPriceFrom = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.dtpDateToValue = new System.Windows.Forms.DateTimePicker();
+            this.dtpDateTo = new System.Windows.Forms.DateTimePicker();
             this.lblDateTo = new System.Windows.Forms.Label();
-            this.dtpDateFromValue = new System.Windows.Forms.DateTimePicker();
+            this.dtpDateFrom = new System.Windows.Forms.DateTimePicker();
             this.lblDateFrom = new System.Windows.Forms.Label();
             this.panelSearchButtons = new System.Windows.Forms.Panel();
             this.btnResetFilters = new System.Windows.Forms.Button();
@@ -65,7 +63,7 @@ namespace StretchCeilings.Views
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).BeginInit();
             this.panelFilters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudTotalTo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudIdValue)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudId)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTotalFrom)).BeginInit();
             this.panelSearchButtons.SuspendLayout();
             this.panelButtonsSide.SuspendLayout();
@@ -98,7 +96,6 @@ namespace StretchCeilings.Views
             this.cbRows.Name = "cbRows";
             this.cbRows.Size = new System.Drawing.Size(50, 31);
             this.cbRows.TabIndex = 97;
-            this.cbRows.SelectedIndexChanged += new System.EventHandler(this.RowCountChanged);
             // 
             // btnPreviousPage
             // 
@@ -165,23 +162,23 @@ namespace StretchCeilings.Views
             // panelFilters
             // 
             this.panelFilters.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(42)))), ((int)(((byte)(54)))));
-            this.panelFilters.Controls.Add(this.ibtnEmployee);
+            this.panelFilters.Controls.Add(this.linkEmployee);
+            this.panelFilters.Controls.Add(this.linkCustomer);
             this.panelFilters.Controls.Add(this.lblPayment);
-            this.panelFilters.Controls.Add(this.ibtnCustomer);
             this.panelFilters.Controls.Add(this.cbStatusValue);
             this.panelFilters.Controls.Add(this.lblEmployee);
             this.panelFilters.Controls.Add(this.lblCustomer);
             this.panelFilters.Controls.Add(this.cbPaidByCash);
             this.panelFilters.Controls.Add(this.nudTotalTo);
-            this.panelFilters.Controls.Add(this.nudIdValue);
+            this.panelFilters.Controls.Add(this.nudId);
             this.panelFilters.Controls.Add(this.lblId);
             this.panelFilters.Controls.Add(this.nudTotalFrom);
             this.panelFilters.Controls.Add(this.lblPriceTo);
             this.panelFilters.Controls.Add(this.lblPriceFrom);
             this.panelFilters.Controls.Add(this.lblStatus);
-            this.panelFilters.Controls.Add(this.dtpDateToValue);
+            this.panelFilters.Controls.Add(this.dtpDateTo);
             this.panelFilters.Controls.Add(this.lblDateTo);
-            this.panelFilters.Controls.Add(this.dtpDateFromValue);
+            this.panelFilters.Controls.Add(this.dtpDateFrom);
             this.panelFilters.Controls.Add(this.lblDateFrom);
             this.panelFilters.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelFilters.Location = new System.Drawing.Point(0, 0);
@@ -190,23 +187,33 @@ namespace StretchCeilings.Views
             this.panelFilters.Size = new System.Drawing.Size(1050, 100);
             this.panelFilters.TabIndex = 1;
             // 
-            // ibtnEmployee
+            // linkEmployee
             // 
-            this.ibtnEmployee.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ibtnEmployee.FlatAppearance.BorderSize = 0;
-            this.ibtnEmployee.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ibtnEmployee.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.ibtnEmployee.IconChar = FontAwesome.Sharp.IconChar.Search;
-            this.ibtnEmployee.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.ibtnEmployee.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ibtnEmployee.IconSize = 25;
-            this.ibtnEmployee.Location = new System.Drawing.Point(643, 38);
-            this.ibtnEmployee.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ibtnEmployee.Name = "ibtnEmployee";
-            this.ibtnEmployee.Size = new System.Drawing.Size(25, 25);
-            this.ibtnEmployee.TabIndex = 114;
-            this.ibtnEmployee.UseVisualStyleBackColor = true;
-            this.ibtnEmployee.Click += new System.EventHandler(this.SelectEmployee);
+            this.linkEmployee.AutoSize = true;
+            this.linkEmployee.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.linkEmployee.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.linkEmployee.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.linkEmployee.Location = new System.Drawing.Point(641, 6);
+            this.linkEmployee.Name = "linkEmployee";
+            this.linkEmployee.Size = new System.Drawing.Size(39, 23);
+            this.linkEmployee.TabIndex = 118;
+            this.linkEmployee.TabStop = true;
+            this.linkEmployee.Text = "Нет";
+            this.linkEmployee.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SelectEmployee);
+            // 
+            // linkCustomer
+            // 
+            this.linkCustomer.AutoSize = true;
+            this.linkCustomer.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.linkCustomer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.linkCustomer.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.linkCustomer.Location = new System.Drawing.Point(641, 39);
+            this.linkCustomer.Name = "linkCustomer";
+            this.linkCustomer.Size = new System.Drawing.Size(39, 23);
+            this.linkCustomer.TabIndex = 117;
+            this.linkCustomer.TabStop = true;
+            this.linkCustomer.Text = "Нет";
+            this.linkCustomer.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SelectCustomer);
             // 
             // lblPayment
             // 
@@ -218,24 +225,6 @@ namespace StretchCeilings.Views
             this.lblPayment.Size = new System.Drawing.Size(179, 23);
             this.lblPayment.TabIndex = 116;
             this.lblPayment.Text = "Оплачен наличными:";
-            // 
-            // ibtnCustomer
-            // 
-            this.ibtnCustomer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ibtnCustomer.FlatAppearance.BorderSize = 0;
-            this.ibtnCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ibtnCustomer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.ibtnCustomer.IconChar = FontAwesome.Sharp.IconChar.Search;
-            this.ibtnCustomer.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.ibtnCustomer.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ibtnCustomer.IconSize = 25;
-            this.ibtnCustomer.Location = new System.Drawing.Point(643, 6);
-            this.ibtnCustomer.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ibtnCustomer.Name = "ibtnCustomer";
-            this.ibtnCustomer.Size = new System.Drawing.Size(25, 25);
-            this.ibtnCustomer.TabIndex = 113;
-            this.ibtnCustomer.UseVisualStyleBackColor = true;
-            this.ibtnCustomer.Click += new System.EventHandler(this.SelectCustomer);
             // 
             // cbStatusValue
             // 
@@ -250,7 +239,7 @@ namespace StretchCeilings.Views
             this.cbStatusValue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbStatusValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.cbStatusValue.FormattingEnabled = true;
-            this.cbStatusValue.Location = new System.Drawing.Point(643, 68);
+            this.cbStatusValue.Location = new System.Drawing.Point(645, 68);
             this.cbStatusValue.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbStatusValue.Name = "cbStatusValue";
             this.cbStatusValue.Size = new System.Drawing.Size(280, 31);
@@ -309,17 +298,17 @@ namespace StretchCeilings.Views
             this.nudTotalTo.TabIndex = 112;
             this.nudTotalTo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // nudIdValue
+            // nudId
             // 
-            this.nudIdValue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
-            this.nudIdValue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.nudIdValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.nudIdValue.Location = new System.Drawing.Point(225, 68);
-            this.nudIdValue.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.nudIdValue.Name = "nudIdValue";
-            this.nudIdValue.Size = new System.Drawing.Size(62, 29);
-            this.nudIdValue.TabIndex = 110;
-            this.nudIdValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nudId.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.nudId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.nudId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.nudId.Location = new System.Drawing.Point(225, 68);
+            this.nudId.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.nudId.Name = "nudId";
+            this.nudId.Size = new System.Drawing.Size(62, 29);
+            this.nudId.TabIndex = 110;
+            this.nudId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblId
             // 
@@ -377,21 +366,21 @@ namespace StretchCeilings.Views
             this.lblStatus.TabIndex = 102;
             this.lblStatus.Text = "Статус:";
             // 
-            // dtpDateToValue
+            // dtpDateTo
             // 
-            this.dtpDateToValue.CalendarForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.dtpDateToValue.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(42)))), ((int)(((byte)(54)))));
-            this.dtpDateToValue.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
-            this.dtpDateToValue.CalendarTitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.dtpDateToValue.CalendarTrailingForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.dtpDateToValue.CustomFormat = " ";
-            this.dtpDateToValue.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDateToValue.Location = new System.Drawing.Point(390, 3);
-            this.dtpDateToValue.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dtpDateToValue.Name = "dtpDateToValue";
-            this.dtpDateToValue.Size = new System.Drawing.Size(159, 29);
-            this.dtpDateToValue.TabIndex = 101;
-            this.dtpDateToValue.ValueChanged += new System.EventHandler(this.DatePlacedToChanged);
+            this.dtpDateTo.CalendarForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.dtpDateTo.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(42)))), ((int)(((byte)(54)))));
+            this.dtpDateTo.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.dtpDateTo.CalendarTitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.dtpDateTo.CalendarTrailingForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.dtpDateTo.CustomFormat = " ";
+            this.dtpDateTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpDateTo.Location = new System.Drawing.Point(390, 3);
+            this.dtpDateTo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dtpDateTo.Name = "dtpDateTo";
+            this.dtpDateTo.Size = new System.Drawing.Size(159, 29);
+            this.dtpDateTo.TabIndex = 101;
+            this.dtpDateTo.ValueChanged += new System.EventHandler(this.DatePlacedToChanged);
             // 
             // lblDateTo
             // 
@@ -404,21 +393,21 @@ namespace StretchCeilings.Views
             this.lblDateTo.TabIndex = 100;
             this.lblDateTo.Text = "до:";
             // 
-            // dtpDateFromValue
+            // dtpDateFrom
             // 
-            this.dtpDateFromValue.CalendarForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.dtpDateFromValue.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(42)))), ((int)(((byte)(54)))));
-            this.dtpDateFromValue.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
-            this.dtpDateFromValue.CalendarTitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.dtpDateFromValue.CalendarTrailingForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.dtpDateFromValue.CustomFormat = " ";
-            this.dtpDateFromValue.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDateFromValue.Location = new System.Drawing.Point(128, 3);
-            this.dtpDateFromValue.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dtpDateFromValue.Name = "dtpDateFromValue";
-            this.dtpDateFromValue.Size = new System.Drawing.Size(159, 29);
-            this.dtpDateFromValue.TabIndex = 99;
-            this.dtpDateFromValue.ValueChanged += new System.EventHandler(this.DatePlacedFromChanged);
+            this.dtpDateFrom.CalendarForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.dtpDateFrom.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(42)))), ((int)(((byte)(54)))));
+            this.dtpDateFrom.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.dtpDateFrom.CalendarTitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.dtpDateFrom.CalendarTrailingForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.dtpDateFrom.CustomFormat = " ";
+            this.dtpDateFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpDateFrom.Location = new System.Drawing.Point(128, 3);
+            this.dtpDateFrom.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dtpDateFrom.Name = "dtpDateFrom";
+            this.dtpDateFrom.Size = new System.Drawing.Size(159, 29);
+            this.dtpDateFrom.TabIndex = 99;
+            this.dtpDateFrom.ValueChanged += new System.EventHandler(this.DatePlacedFromChanged);
             // 
             // lblDateFrom
             // 
@@ -517,7 +506,7 @@ namespace StretchCeilings.Views
             this.panelFilters.ResumeLayout(false);
             this.panelFilters.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudTotalTo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudIdValue)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudId)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTotalFrom)).EndInit();
             this.panelSearchButtons.ResumeLayout(false);
             this.panelButtonsSide.ResumeLayout(false);
@@ -538,10 +527,9 @@ namespace StretchCeilings.Views
         private System.Windows.Forms.Button btnUseFilters;
         private System.Windows.Forms.Panel paneUserButtons;
         private System.Windows.Forms.Panel panelButtonsSide;
-        private FontAwesome.Sharp.IconButton ibtnCustomer;
         private System.Windows.Forms.NumericUpDown nudTotalTo;
         private System.Windows.Forms.NumericUpDown nudTotalFrom;
-        private System.Windows.Forms.NumericUpDown nudIdValue;
+        private System.Windows.Forms.NumericUpDown nudId;
         private System.Windows.Forms.Label lblPriceTo;
         private System.Windows.Forms.Label lblPriceFrom;
         private System.Windows.Forms.Label lblId;
@@ -549,12 +537,13 @@ namespace StretchCeilings.Views
         private System.Windows.Forms.Label lblCustomer;
         private System.Windows.Forms.ComboBox cbStatusValue;
         private System.Windows.Forms.Label lblStatus;
-        private System.Windows.Forms.DateTimePicker dtpDateToValue;
+        private System.Windows.Forms.DateTimePicker dtpDateTo;
         private System.Windows.Forms.Label lblDateTo;
-        private System.Windows.Forms.DateTimePicker dtpDateFromValue;
+        private System.Windows.Forms.DateTimePicker dtpDateFrom;
         private System.Windows.Forms.Label lblDateFrom;
-        private FontAwesome.Sharp.IconButton ibtnEmployee;
         private System.Windows.Forms.Label lblPayment;
         private System.Windows.Forms.ComboBox cbPaidByCash;
+        private System.Windows.Forms.LinkLabel linkEmployee;
+        private System.Windows.Forms.LinkLabel linkCustomer;
     }
 }

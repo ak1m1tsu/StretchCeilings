@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
-using StretchCeilings.Helpers.Controls;
-using StretchCeilings.Helpers.Extensions;
-using StretchCeilings.Helpers.Extensions.Controls;
-using StretchCeilings.Helpers.Structs;
+using StretchCeilings.Extensions;
+using StretchCeilings.Extensions.Controls;
+using StretchCeilings.Structs;
+using StretchCeilings.Views.Controls;
 
 namespace StretchCeilings.Views
 {
@@ -56,7 +56,7 @@ namespace StretchCeilings.Views
             panelNav.AddButtons(buttons.ToArray());
         }
 
-        private void SetUpForm()
+        private void SetupForm()
         {
             btnCloseApp.FlatAppearance.MouseOverBackColor = DraculaColor.Red;
             DrawNavigationButtons();
@@ -64,7 +64,7 @@ namespace StretchCeilings.Views
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            SetUpForm();
+            SetupForm();
         }
 
         private void ShowOrdersForm(object sender, EventArgs e)

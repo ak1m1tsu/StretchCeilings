@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
-using StretchCeilings.Helpers;
-using StretchCeilings.Helpers.Enums;
-using StretchCeilings.Helpers.Extensions;
+using StretchCeilings.Extensions;
 using StretchCeilings.Models;
+using StretchCeilings.Models.Enums;
 using StretchCeilings.Repositories;
+using StretchCeilings.Sessions;
 
 namespace StretchCeilings.Views
 {
@@ -46,14 +46,14 @@ namespace StretchCeilings.Views
 
         private void ShowEditForm(object sender, EventArgs e)
         {
-            this.Hide();
+            Hide();
 
             var form = new AdditionalServiceEditForm(_additionalService);
 
             if (form.ShowDialog() == DialogResult.OK)
                 ReSetupForm();
 
-            this.Show();
+            Show();
         }
 
         private void LoadForm(object sender, EventArgs e)
@@ -63,7 +63,7 @@ namespace StretchCeilings.Views
 
         private void DragMove(object sender, MouseEventArgs e)
         {
-            this.Handle.DragMove(e);
+            Handle.DragMove(e);
         }
 
         private void CloseForm(object sender, EventArgs e)

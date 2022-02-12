@@ -29,13 +29,21 @@ namespace StretchCeilings.Views
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrderEditForm));
             this.panelTop = new System.Windows.Forms.Panel();
             this.btnClose = new FontAwesome.Sharp.IconButton();
             this.tcOrder = new System.Windows.Forms.TabControl();
             this.tpInfo = new System.Windows.Forms.TabPage();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.lblDatePlacedValue = new System.Windows.Forms.Label();
             this.lblPaidByCash = new System.Windows.Forms.Label();
             this.cbPaidByCash = new System.Windows.Forms.ComboBox();
-            this.linkLblCustomer = new System.Windows.Forms.LinkLabel();
+            this.linkCustomer = new System.Windows.Forms.LinkLabel();
             this.lblStatus = new System.Windows.Forms.Label();
             this.lblDateCanceledValue = new System.Windows.Forms.Label();
             this.lblDateCanceled = new System.Windows.Forms.Label();
@@ -43,7 +51,6 @@ namespace StretchCeilings.Views
             this.lblDateOfMeasurements = new System.Windows.Forms.Label();
             this.lblDatePlaced = new System.Windows.Forms.Label();
             this.lblCustomer = new System.Windows.Forms.Label();
-            this.dtpDatePlaced = new System.Windows.Forms.DateTimePicker();
             this.dtpDatePaid = new System.Windows.Forms.DateTimePicker();
             this.lblPriceValue = new System.Windows.Forms.Label();
             this.dtpDateOfMeasurements = new System.Windows.Forms.DateTimePicker();
@@ -63,6 +70,7 @@ namespace StretchCeilings.Views
             this.btnAddEmployee = new System.Windows.Forms.Button();
             this.tpLogs = new System.Windows.Forms.TabPage();
             this.dgvLogs = new System.Windows.Forms.DataGridView();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.panelTop.SuspendLayout();
             this.tcOrder.SuspendLayout();
             this.tpInfo.SuspendLayout();
@@ -77,6 +85,7 @@ namespace StretchCeilings.Views
             this.panelEmployeesButtons.SuspendLayout();
             this.tpLogs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLogs)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTop
@@ -123,9 +132,11 @@ namespace StretchCeilings.Views
             // tpInfo
             // 
             this.tpInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(42)))), ((int)(((byte)(54)))));
+            this.tpInfo.Controls.Add(this.btnUpdate);
+            this.tpInfo.Controls.Add(this.lblDatePlacedValue);
             this.tpInfo.Controls.Add(this.lblPaidByCash);
             this.tpInfo.Controls.Add(this.cbPaidByCash);
-            this.tpInfo.Controls.Add(this.linkLblCustomer);
+            this.tpInfo.Controls.Add(this.linkCustomer);
             this.tpInfo.Controls.Add(this.lblStatus);
             this.tpInfo.Controls.Add(this.lblDateCanceledValue);
             this.tpInfo.Controls.Add(this.lblDateCanceled);
@@ -133,7 +144,6 @@ namespace StretchCeilings.Views
             this.tpInfo.Controls.Add(this.lblDateOfMeasurements);
             this.tpInfo.Controls.Add(this.lblDatePlaced);
             this.tpInfo.Controls.Add(this.lblCustomer);
-            this.tpInfo.Controls.Add(this.dtpDatePlaced);
             this.tpInfo.Controls.Add(this.dtpDatePaid);
             this.tpInfo.Controls.Add(this.lblPriceValue);
             this.tpInfo.Controls.Add(this.dtpDateOfMeasurements);
@@ -146,6 +156,30 @@ namespace StretchCeilings.Views
             this.tpInfo.Size = new System.Drawing.Size(1092, 339);
             this.tpInfo.TabIndex = 0;
             this.tpInfo.Text = "Основная информация";
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.btnUpdate.FlatAppearance.BorderSize = 0;
+            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdate.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.btnUpdate.Location = new System.Drawing.Point(394, 304);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(120, 30);
+            this.btnUpdate.TabIndex = 75;
+            this.btnUpdate.Text = "Сохранить";
+            this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.UpdateData);
+            // 
+            // lblDatePlacedValue
+            // 
+            this.lblDatePlacedValue.AutoSize = true;
+            this.lblDatePlacedValue.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.lblDatePlacedValue.Location = new System.Drawing.Point(189, 37);
+            this.lblDatePlacedValue.Name = "lblDatePlacedValue";
+            this.lblDatePlacedValue.Size = new System.Drawing.Size(39, 23);
+            this.lblDatePlacedValue.TabIndex = 74;
+            this.lblDatePlacedValue.Text = "Нет";
             // 
             // lblPaidByCash
             // 
@@ -165,6 +199,7 @@ namespace StretchCeilings.Views
             "Ожидает результатов замеров",
             "Отменен",
             "Завершен"});
+            this.cbPaidByCash.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPaidByCash.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbPaidByCash.Font = new System.Drawing.Font("Open Sans", 12F);
             this.cbPaidByCash.FormattingEnabled = true;
@@ -173,17 +208,18 @@ namespace StretchCeilings.Views
             this.cbPaidByCash.Size = new System.Drawing.Size(68, 31);
             this.cbPaidByCash.TabIndex = 72;
             // 
-            // linkLblCustomer
+            // linkCustomer
             // 
-            this.linkLblCustomer.AutoSize = true;
-            this.linkLblCustomer.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.linkLblCustomer.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.linkLblCustomer.Location = new System.Drawing.Point(187, 6);
-            this.linkLblCustomer.Name = "linkLblCustomer";
-            this.linkLblCustomer.Size = new System.Drawing.Size(39, 23);
-            this.linkLblCustomer.TabIndex = 71;
-            this.linkLblCustomer.TabStop = true;
-            this.linkLblCustomer.Text = "Нет";
+            this.linkCustomer.AutoSize = true;
+            this.linkCustomer.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.linkCustomer.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.linkCustomer.Location = new System.Drawing.Point(187, 6);
+            this.linkCustomer.Name = "linkCustomer";
+            this.linkCustomer.Size = new System.Drawing.Size(39, 23);
+            this.linkCustomer.TabIndex = 71;
+            this.linkCustomer.TabStop = true;
+            this.linkCustomer.Text = "Нет";
+            this.linkCustomer.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SelectCustomer);
             // 
             // lblStatus
             // 
@@ -239,7 +275,7 @@ namespace StretchCeilings.Views
             // 
             this.lblDatePlaced.AutoSize = true;
             this.lblDatePlaced.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.lblDatePlaced.Location = new System.Drawing.Point(6, 39);
+            this.lblDatePlaced.Location = new System.Drawing.Point(6, 37);
             this.lblDatePlaced.Name = "lblDatePlaced";
             this.lblDatePlaced.Size = new System.Drawing.Size(155, 23);
             this.lblDatePlaced.TabIndex = 64;
@@ -255,19 +291,9 @@ namespace StretchCeilings.Views
             this.lblCustomer.TabIndex = 48;
             this.lblCustomer.Text = "Клиент:";
             // 
-            // dtpDatePlaced
-            // 
-            this.dtpDatePlaced.CustomFormat = "dd.MM.yyyy HH:mm";
-            this.dtpDatePlaced.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.dtpDatePlaced.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDatePlaced.Location = new System.Drawing.Point(188, 36);
-            this.dtpDatePlaced.Name = "dtpDatePlaced";
-            this.dtpDatePlaced.Size = new System.Drawing.Size(157, 29);
-            this.dtpDatePlaced.TabIndex = 50;
-            // 
             // dtpDatePaid
             // 
-            this.dtpDatePaid.CustomFormat = "dd.MM.yyyy HH:mm";
+            this.dtpDatePaid.CustomFormat = "";
             this.dtpDatePaid.Font = new System.Drawing.Font("Open Sans", 12F);
             this.dtpDatePaid.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpDatePaid.Location = new System.Drawing.Point(188, 98);
@@ -281,13 +307,13 @@ namespace StretchCeilings.Views
             this.lblPriceValue.Font = new System.Drawing.Font("Open Sans", 12F);
             this.lblPriceValue.Location = new System.Drawing.Point(187, 235);
             this.lblPriceValue.Name = "lblPriceValue";
-            this.lblPriceValue.Size = new System.Drawing.Size(41, 23);
+            this.lblPriceValue.Size = new System.Drawing.Size(55, 23);
             this.lblPriceValue.TabIndex = 60;
-            this.lblPriceValue.Text = "0.00";
+            this.lblPriceValue.Text = "0 руб.";
             // 
             // dtpDateOfMeasurements
             // 
-            this.dtpDateOfMeasurements.CustomFormat = "dd.MM.yyyy HH:mm";
+            this.dtpDateOfMeasurements.CustomFormat = "";
             this.dtpDateOfMeasurements.Font = new System.Drawing.Font("Open Sans", 12F);
             this.dtpDateOfMeasurements.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpDateOfMeasurements.Location = new System.Drawing.Point(188, 67);
@@ -313,6 +339,7 @@ namespace StretchCeilings.Views
             "Ожидает результатов замеров",
             "Отменен",
             "Завершен"});
+            this.cbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbStatus.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbStatus.Font = new System.Drawing.Font("Open Sans", 12F);
             this.cbStatus.FormattingEnabled = true;
@@ -342,12 +369,23 @@ namespace StretchCeilings.Views
             this.dgvWorkDates.AllowUserToResizeRows = false;
             this.dgvWorkDates.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.dgvWorkDates.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Open Sans", 12F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvWorkDates.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvWorkDates.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvWorkDates.Location = new System.Drawing.Point(3, 25);
             this.dgvWorkDates.Name = "dgvWorkDates";
+            this.dgvWorkDates.ReadOnly = true;
             this.dgvWorkDates.RowHeadersVisible = false;
+            this.dgvWorkDates.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvWorkDates.Size = new System.Drawing.Size(565, 265);
             this.dgvWorkDates.TabIndex = 1;
+            this.dgvWorkDates.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.RemoveWorkDate);
             // 
             // panelWorkDatesButtons
             // 
@@ -371,6 +409,7 @@ namespace StretchCeilings.Views
             this.btnAddWorkDay.TabIndex = 43;
             this.btnAddWorkDay.Text = "Добавить";
             this.btnAddWorkDay.UseVisualStyleBackColor = false;
+            this.btnAddWorkDay.Click += new System.EventHandler(this.AddWorkDate);
             // 
             // tpServices
             // 
@@ -391,12 +430,23 @@ namespace StretchCeilings.Views
             this.dgvServices.AllowUserToResizeRows = false;
             this.dgvServices.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.dgvServices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Open Sans", 12F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvServices.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvServices.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvServices.Location = new System.Drawing.Point(3, 3);
             this.dgvServices.Name = "dgvServices";
+            this.dgvServices.ReadOnly = true;
             this.dgvServices.RowHeadersVisible = false;
+            this.dgvServices.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvServices.Size = new System.Drawing.Size(1086, 293);
             this.dgvServices.TabIndex = 4;
+            this.dgvServices.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.RemoveService);
             // 
             // panelServiceButtons
             // 
@@ -419,6 +469,7 @@ namespace StretchCeilings.Views
             this.btnAddService.TabIndex = 44;
             this.btnAddService.Text = "Добавить";
             this.btnAddService.UseVisualStyleBackColor = false;
+            this.btnAddService.Click += new System.EventHandler(this.AddService);
             // 
             // tpEmployees
             // 
@@ -436,15 +487,27 @@ namespace StretchCeilings.Views
             // 
             this.dgvEmployees.AllowUserToAddRows = false;
             this.dgvEmployees.AllowUserToDeleteRows = false;
+            this.dgvEmployees.AllowUserToResizeColumns = false;
             this.dgvEmployees.AllowUserToResizeRows = false;
             this.dgvEmployees.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.dgvEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Open Sans", 12F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvEmployees.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvEmployees.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvEmployees.Location = new System.Drawing.Point(3, 3);
             this.dgvEmployees.Name = "dgvEmployees";
+            this.dgvEmployees.ReadOnly = true;
             this.dgvEmployees.RowHeadersVisible = false;
+            this.dgvEmployees.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvEmployees.Size = new System.Drawing.Size(1086, 293);
             this.dgvEmployees.TabIndex = 2;
+            this.dgvEmployees.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.RemoveEmployee);
             // 
             // panelEmployeesButtons
             // 
@@ -467,6 +530,7 @@ namespace StretchCeilings.Views
             this.btnAddEmployee.TabIndex = 44;
             this.btnAddEmployee.Text = "Добавить";
             this.btnAddEmployee.UseVisualStyleBackColor = false;
+            this.btnAddEmployee.Click += new System.EventHandler(this.AddEmployee);
             // 
             // tpLogs
             // 
@@ -483,15 +547,32 @@ namespace StretchCeilings.Views
             // 
             this.dgvLogs.AllowUserToAddRows = false;
             this.dgvLogs.AllowUserToDeleteRows = false;
+            this.dgvLogs.AllowUserToResizeColumns = false;
             this.dgvLogs.AllowUserToResizeRows = false;
             this.dgvLogs.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.dgvLogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Open Sans", 12F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvLogs.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvLogs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvLogs.Location = new System.Drawing.Point(3, 3);
             this.dgvLogs.Name = "dgvLogs";
+            this.dgvLogs.ReadOnly = true;
             this.dgvLogs.RowHeadersVisible = false;
+            this.dgvLogs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvLogs.Size = new System.Drawing.Size(1086, 333);
             this.dgvLogs.TabIndex = 4;
+            this.dgvLogs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.RemoveLog);
+            // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            this.errorProvider.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider.Icon")));
             // 
             // OrderEditForm
             // 
@@ -521,6 +602,7 @@ namespace StretchCeilings.Views
             this.panelEmployeesButtons.ResumeLayout(false);
             this.tpLogs.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLogs)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -538,7 +620,6 @@ namespace StretchCeilings.Views
         private System.Windows.Forms.Label lblDateOfMeasurements;
         private System.Windows.Forms.Label lblDatePlaced;
         private System.Windows.Forms.Label lblCustomer;
-        private System.Windows.Forms.DateTimePicker dtpDatePlaced;
         private System.Windows.Forms.DateTimePicker dtpDatePaid;
         private System.Windows.Forms.Label lblPriceValue;
         private System.Windows.Forms.DateTimePicker dtpDateOfMeasurements;
@@ -558,8 +639,11 @@ namespace StretchCeilings.Views
         private System.Windows.Forms.Button btnAddEmployee;
         private System.Windows.Forms.TabPage tpLogs;
         private System.Windows.Forms.DataGridView dgvLogs;
-        private System.Windows.Forms.LinkLabel linkLblCustomer;
+        private System.Windows.Forms.LinkLabel linkCustomer;
         private System.Windows.Forms.ComboBox cbPaidByCash;
         private System.Windows.Forms.Label lblPaidByCash;
+        private System.Windows.Forms.Label lblDatePlacedValue;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

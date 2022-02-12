@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using StretchCeilings.DataAccess;
-using StretchCeilings.Interfaces.Models;
+using StretchCeilings.Models.Interfaces;
 
 namespace StretchCeilings.Models
 {
@@ -21,7 +21,10 @@ namespace StretchCeilings.Models
             {
                 using (var db = new StretchCeilingsContext())
                 {
-                    var rolePermission = new RolePermission() {RoleId = Id, PermissionId = permission.Id};
+                    var rolePermission = new RolePermission()
+                    {
+                        RoleId = Id, PermissionId = permission.Id
+                    };
                     db.RolePermissions.Add(rolePermission);
                     db.SaveChanges();
                 }
@@ -39,7 +42,8 @@ namespace StretchCeilings.Models
                 using (var db = new StretchCeilingsContext())
                 {
                     var rolePermission = db.RolePermissions.FirstOrDefault(x => x.PermissionId == permission.Id);
-                    if (rolePermission != null) db.RolePermissions.Remove(rolePermission);
+                    if (rolePermission != null)
+                        db.RolePermissions.Remove(rolePermission);
                     db.SaveChanges();
                 }
             }
@@ -53,15 +57,42 @@ namespace StretchCeilings.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                var list = new List<Permission>();
-                var rolePermissions = db.RolePermissions.Where(x => x.RoleId == Id);
-                foreach (var rolePermission in rolePermissions)
-                {
-                    db.Entry(rolePermission).Reference(r => r.Permission).Load();
-                    list.Add(rolePermission.Permission);
-                }
+                var permissions = db.Roles
+                    .Join(db.RolePermissions, r => r.Id, rp => rp.RoleId, (r, rp) => new { r, rp })
+                    .Join(db.Permissions, @t => @t.rp.PermissionId, p => p.Id, (@t, p) => new { @t, p })
+                    .Where(@t => @t.@t.rp.RoleId == Id)
+                    .Select(@t => @t.p);
 
-                return list;
+                return permissions.ToList();
+            }
+        }
+
+        public void Add()
+        {
+            using (var db = new StretchCeilingsContext())
+            {
+                db.Roles.Add(this);
+                db.SaveChanges();
+            }
+        }
+
+        public void Update()
+        {
+            using (var db = new StretchCeilingsContext())
+            {
+                var old = db.Roles.First(x => x.Id == Id);
+                db.Entry(old).CurrentValues.SetValues(this);
+                db.SaveChanges();
+            }
+        }
+
+        public void Delete()
+        {
+            using (var db = new StretchCeilingsContext())
+            {
+                var old = db.Roles.First(x => x.Id == Id);
+                db.Roles.Remove(old);
+                db.SaveChanges();
             }
         }
     }

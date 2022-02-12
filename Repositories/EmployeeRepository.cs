@@ -6,7 +6,7 @@ using StretchCeilings.Models;
 
 namespace StretchCeilings.Repositories
 {
-    public class EmployeeRepository : NotNull
+    public class EmployeeRepository
     {
         public static List<Employee> GetAll(Employee filter, int count, int page, out int rows)
         {
@@ -18,10 +18,10 @@ namespace StretchCeilings.Repositories
                 if (filter.Id != 0)
                     queryable = queryable.Where(x => x.Id == filter.Id);
 
-                if (IsNull(filter.FullName) == false)
+                if (filter.FullName != null)
                     queryable = queryable.Where(x => x.FullName == filter.FullName);
 
-                if (IsNull(filter.RoleId) == false)
+                if (filter.RoleId != null && filter.RoleId != 0)
                     queryable = queryable.Where(x => x.RoleId == filter.RoleId);
 
                 if (queryable.Any() == false)
@@ -72,7 +72,7 @@ namespace StretchCeilings.Repositories
             {
                 var employee = db.Employees.FirstOrDefault(e => e.Id == id);
 
-                if (IsNull(employee) == false)
+                if (employee != null)
                     db.Entry(employee).Reference(e => e.Role).Load();
                 
                 return employee;
@@ -83,9 +83,9 @@ namespace StretchCeilings.Repositories
         {
             using (var db = new StretchCeilingsContext())
             {
-                var user = db.Employees.FirstOrDefault(x => x.Login == login && x.Password == password);
+                var user = db.Employees.First(x => x.Login == login && x.Password == password);
                 
-                if (IsNull(user) == false)
+                if (user != null)
                     db.Entry(user).Reference(x=>x.Role).Load();
                 
                 return user;

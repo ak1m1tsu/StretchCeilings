@@ -5,7 +5,7 @@ using StretchCeilings.Models;
 
 namespace StretchCeilings.Repositories
 {
-    public class AdditionalServiceRepository : NotNull
+    public class AdditionalServiceRepository
     {
         public static List<AdditionalService> GetAll(out int rows)
         {
@@ -31,16 +31,16 @@ namespace StretchCeilings.Repositories
                 if (firstFilter.Id != 0)
                     queryable = queryable.Where(s => s.Id == firstFilter.Id);
 
-                if ((IsNull(firstFilter.Price) && IsNull(secondsFilter.Price)) == false)
+                if (firstFilter.Price != null && secondsFilter.Price != null)
                     queryable = queryable.Where(s => firstFilter.Price <= s.Price && s.Price <= secondsFilter.Price);
                 
-                if (IsNull(firstFilter.Price) == false)
+                if (firstFilter.Price != null)
                     queryable = queryable.Where(s => firstFilter.Price <= s.Price);
                 
-                if (IsNull(secondsFilter.Price) == false)
+                if (secondsFilter.Price != null)
                     queryable = queryable.Where(s => s.Price <= secondsFilter.Price);
 
-                if (IsNull(firstFilter.Name) == false)
+                if (firstFilter.Name != null)
                     queryable = queryable.Where(s => s.Name == firstFilter.Name);
                 
                 

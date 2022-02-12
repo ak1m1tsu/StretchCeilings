@@ -6,7 +6,7 @@ using StretchCeilings.Models;
 
 namespace StretchCeilings.Repositories
 {
-    public class EstateRepository : NotNull
+    public class EstateRepository
     {
         public static List<Estate> GetByCustomerId(int id)
         {
@@ -29,8 +29,8 @@ namespace StretchCeilings.Repositories
             {
                 var estate = db.Estates.FirstOrDefault(x => x.Id == id);
 
-                if (IsNull(estate))
-                    return estate;
+                if (estate == null)
+                    return new Estate();
 
                 db.Entry(estate).Reference(r => r.Customer).Load();
 

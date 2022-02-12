@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
-using StretchCeilings.Helpers.Extensions;
-using StretchCeilings.Helpers.Extensions.Controls;
-using StretchCeilings.Helpers.Structs;
+using StretchCeilings.Extensions;
+using StretchCeilings.Extensions.Controls;
 using StretchCeilings.Models;
-using StretchCeilings.Repositories;
+using StretchCeilings.Structs;
 
 namespace StretchCeilings.Views
 {
@@ -21,30 +21,30 @@ namespace StretchCeilings.Views
 
         private void DragMove(object sender, MouseEventArgs e)
         {
-            this.Handle.DragMove(e);
+            Handle.DragMove(e);
         }
 
-        private void CloseForm(object sender, System.EventArgs e)
+        private void CloseForm(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
         }
 
-        private void LoadForm(object sender, System.EventArgs e)
+        private void LoadForm(object sender, EventArgs e)
         {
             lblAddressValue.Text = _estate.Address;
 
             _rooms = _estate?.GetRooms();
 
-            dgvRooms.AddDataGridViewTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvRooms.AddDataGridViewTextBoxColumn(Resources.Area, DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvRooms.AddDataGridViewTextBoxColumn(Resources.Type, DataGridViewAutoSizeColumnMode.Fill);
-            dgvRooms.AddDataGridViewTextBoxColumn(Resources.Corners, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvRooms.CreateTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvRooms.CreateTextBoxColumn(Resources.Area, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvRooms.CreateTextBoxColumn(Resources.Type, DataGridViewAutoSizeColumnMode.Fill);
+            dgvRooms.CreateTextBoxColumn(Resources.Corners, DataGridViewAutoSizeColumnMode.DisplayedCells);
 
             for (var i = 0; i < _rooms?.Count; i++)
             {
                 dgvRooms.Rows.Add(new DataGridViewRow());
 
-                dgvRooms.Rows[i].Cells[0].Value = _rooms[i].Id;
+                dgvRooms.Rows[i].Cells[0].Value = dgvRooms.Rows.Count;
                 dgvRooms.Rows[i].Cells[1].Value = _rooms[i].Area;
                 dgvRooms.Rows[i].Cells[2].Value = _rooms[i].Type?.ParseString();
                 dgvRooms.Rows[i].Cells[3].Value = _rooms[i].Corners;
@@ -56,13 +56,11 @@ namespace StretchCeilings.Views
             if (e.RowIndex < 0)
                 return;
 
-            var id = (int)dgvRooms.Rows[e.RowIndex].Cells[0].Value;
-            var room = RoomRepository.GetById(id);
+            var index = Convert.ToInt32(dgvRooms.Rows[e.RowIndex].Cells[0].Value);
+            var room = _rooms[index - 1];
             var form = new RoomForm(room);
-            if (form.ShowDialog() == DialogResult.OK)
-            {
 
-            }
+            form.ShowDialog();
         }
     }
 }

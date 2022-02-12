@@ -34,7 +34,7 @@
             this.panelBody = new System.Windows.Forms.Panel();
             this.gbRooms = new System.Windows.Forms.GroupBox();
             this.dgvRooms = new System.Windows.Forms.DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelBottom = new System.Windows.Forms.Panel();
             this.btnAddRoom = new System.Windows.Forms.Button();
             this.panelInfo = new System.Windows.Forms.Panel();
             this.btnSave = new FontAwesome.Sharp.IconButton();
@@ -44,7 +44,7 @@
             this.panelBody.SuspendLayout();
             this.gbRooms.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRooms)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.panelBottom.SuspendLayout();
             this.panelInfo.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,6 +57,7 @@
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(900, 25);
             this.panelTop.TabIndex = 91;
+            this.panelTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DragMove);
             // 
             // btnClose
             // 
@@ -73,6 +74,7 @@
             this.btnClose.Size = new System.Drawing.Size(25, 25);
             this.btnClose.TabIndex = 2;
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.CloseForm);
             // 
             // panelBody
             // 
@@ -87,7 +89,7 @@
             // gbRooms
             // 
             this.gbRooms.Controls.Add(this.dgvRooms);
-            this.gbRooms.Controls.Add(this.panel1);
+            this.gbRooms.Controls.Add(this.panelBottom);
             this.gbRooms.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbRooms.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.gbRooms.ForeColor = System.Drawing.Color.White;
@@ -121,16 +123,17 @@
             this.dgvRooms.RowHeadersVisible = false;
             this.dgvRooms.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvRooms.Size = new System.Drawing.Size(894, 434);
-            this.dgvRooms.TabIndex = 1;
+            this.dgvRooms.TabIndex = 2;
+            this.dgvRooms.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Remove);
             // 
-            // panel1
+            // panelBottom
             // 
-            this.panel1.Controls.Add(this.btnAddRoom);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(3, 459);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(894, 43);
-            this.panel1.TabIndex = 0;
+            this.panelBottom.Controls.Add(this.btnAddRoom);
+            this.panelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelBottom.Location = new System.Drawing.Point(3, 459);
+            this.panelBottom.Name = "panelBottom";
+            this.panelBottom.Size = new System.Drawing.Size(894, 43);
+            this.panelBottom.TabIndex = 0;
             // 
             // btnAddRoom
             // 
@@ -143,6 +146,7 @@
             this.btnAddRoom.TabIndex = 0;
             this.btnAddRoom.Text = "Добавить";
             this.btnAddRoom.UseVisualStyleBackColor = false;
+            this.btnAddRoom.Click += new System.EventHandler(this.AddGridData);
             // 
             // panelInfo
             // 
@@ -172,6 +176,7 @@
             this.btnSave.Text = "Cохранить";
             this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.UpdateEstate);
             // 
             // tbAddress
             // 
@@ -208,11 +213,12 @@
             this.Name = "EstateEditForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EstateEditForm";
+            this.Load += new System.EventHandler(this.LoadForm);
             this.panelTop.ResumeLayout(false);
             this.panelBody.ResumeLayout(false);
             this.gbRooms.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvRooms)).EndInit();
-            this.panel1.ResumeLayout(false);
+            this.panelBottom.ResumeLayout(false);
             this.panelInfo.ResumeLayout(false);
             this.panelInfo.PerformLayout();
             this.ResumeLayout(false);
@@ -230,7 +236,7 @@
         private System.Windows.Forms.TextBox tbAddress;
         private FontAwesome.Sharp.IconButton btnSave;
         private System.Windows.Forms.DataGridView dgvRooms;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelBottom;
         private System.Windows.Forms.Button btnAddRoom;
     }
 }

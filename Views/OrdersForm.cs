@@ -2,25 +2,25 @@
 using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Forms;
-using FontAwesome.Sharp;
-using StretchCeilings.Helpers;
-using StretchCeilings.Helpers.Controls;
-using StretchCeilings.Helpers.Enums;
-using StretchCeilings.Helpers.Extensions;
-using StretchCeilings.Helpers.Extensions.Controls;
-using StretchCeilings.Helpers.Structs;
+using StretchCeilings.Extensions;
+using StretchCeilings.Extensions.Controls;
 using StretchCeilings.Models;
+using StretchCeilings.Models.Enums;
 using StretchCeilings.Repositories;
+using StretchCeilings.Sessions;
+using StretchCeilings.Structs;
+using StretchCeilings.Views.Controls;
 
 namespace StretchCeilings.Views
 {
     public partial class OrdersForm : Form
     {
         private List<Order> _orders;
-
-        private Order _order;
+        
         private Order _firstFilter;
         private Order _secondFilter;
+        private Employee _employee;
+        private Customer _customer;
         
         private readonly FormState _state;
 
@@ -35,35 +35,33 @@ namespace StretchCeilings.Views
             InitializeComponent();
         }
 
-        public Order GetOrder() => _order;
-        private static bool CanUserAdd() => UserSession.IsAdmin ||
-                                            UserSession.Can(PermissionCode.AddOrder);
-        private static bool CanUserDelete() => UserSession.IsAdmin ||
-                                               UserSession.Can(PermissionCode.DelOrder);
+        private static bool CanUserAdd => UserSession.IsAdmin ||
+                                          UserSession.Can(PermissionCode.AddOrder);
+        private static bool CanUserDelete => UserSession.IsAdmin ||
+                                             UserSession.Can(PermissionCode.DelOrder);
 
+        private bool IsForView => _state == FormState.ForView;
+        
         private void SetupForm()
         {
             _orders = OrderRepository.GetALl(out _rows);
             _firstFilter = new Order();
             _secondFilter = new Order();
 
-            SetUpDataGrid();
-            SetUpControls();
+            SetupDataGrid();
+            SetupControls();
             FillDataGrid();
         }
 
-        private void SetUpDataGrid()
+        private void SetupDataGrid()
         {
-            dgvOrders.AddDataGridViewTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvOrders.AddDataGridViewTextBoxColumn("Дата размещения", DataGridViewAutoSizeColumnMode.Fill);
-            dgvOrders.AddDataGridViewTextBoxColumn("Клиент", DataGridViewAutoSizeColumnMode.Fill);
-            dgvOrders.AddDataGridViewTextBoxColumn("Статус", DataGridViewAutoSizeColumnMode.Fill);
-            dgvOrders.AddDataGridViewCheckBoxColumn("Оплачен наличными", DataGridViewAutoSizeColumnMode.Fill);
-            dgvOrders.AddDataGridViewTextBoxColumn("Стоимость", DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvOrders.AddDataGridViewButtonColumn(DraculaColor.Red);
-
-            if (CanUserDelete())
-                dgvOrders.Columns[Resources.Space].Visible = false;
+            dgvOrders.CreateTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvOrders.CreateTextBoxColumn("Дата размещения", DataGridViewAutoSizeColumnMode.Fill);
+            dgvOrders.CreateTextBoxColumn("Клиент", DataGridViewAutoSizeColumnMode.Fill);
+            dgvOrders.CreateTextBoxColumn("Статус", DataGridViewAutoSizeColumnMode.Fill);
+            dgvOrders.CreateCheckBoxColumn("Оплачен наличными", DataGridViewAutoSizeColumnMode.Fill);
+            dgvOrders.CreateTextBoxColumn("Стоимость", DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvOrders.CreateButtonColumn();
 
             dgvOrders.Font = GoogleFont.OpenSans;
             dgvOrders.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
@@ -75,7 +73,9 @@ namespace StretchCeilings.Views
         {
             foreach (OrderStatus status in Enum.GetValues(typeof(OrderStatus)))
             {
-                if (status == OrderStatus.Unknown) continue;
+                if (status == OrderStatus.Unknown)
+                    continue;
+
                 var item = new ComboBoxItem()
                 {
                     Content = status.ParseString(),
@@ -121,11 +121,8 @@ namespace StretchCeilings.Views
             cbRows.SelectedIndexChanged += RowCountChanged;
         }
 
-        private void SetUpControls()
+        private void SetupControls()
         {
-            if (CanUserAdd())
-                DrawAddOrderButton();
-            
             btnResetFilters.FlatAppearance.MouseOverBackColor = DraculaColor.Red;
 
             nudTotalFrom.Maximum = decimal.MaxValue;
@@ -134,6 +131,12 @@ namespace StretchCeilings.Views
             FillStatusComboBox();
             FillPaidByCashComboBox();
             FillRowsComboBox();
+
+            if (CanUserAdd && IsForView == false)
+                DrawAddOrderButton();
+
+            if (CanUserDelete == false || IsForView)
+                dgvOrders.Columns[Resources.Space].Visible = false;
         }
 
         private void FillDataGrid()
@@ -146,7 +149,7 @@ namespace StretchCeilings.Views
 
                 dgvOrders.Rows[i].Cells[0].Value = dgvOrders.Rows.Count;
                 dgvOrders.Rows[i].Cells[1].Value = _orders[i].DatePlaced;
-                dgvOrders.Rows[i].Cells[2].Value = _orders[i].Customer.FullName;
+                dgvOrders.Rows[i].Cells[2].Value = _orders[i].Customer?.FullName;
                 dgvOrders.Rows[i].Cells[3].Value = _orders[i].Status?.ParseString();
                 dgvOrders.Rows[i].Cells[4].Value = _orders[i].PaidByCash;
                 dgvOrders.Rows[i].Cells[5].Value = _orders[i].Total;
@@ -167,6 +170,8 @@ namespace StretchCeilings.Views
             _orders = OrderRepository.GetALl(
                 _firstFilter,
                 _secondFilter,
+                _customer,
+                _employee,
                 _count,
                 _currentPage,
                 out _rows);
@@ -190,11 +195,15 @@ namespace StretchCeilings.Views
                 e.RowIndex < 0)
                 return;
 
+            if (FlatMessageBox.ShowDialog("Вы уверены что хотите удалить заказ?", Caption.Warning) != DialogResult.OK)
+                return;
+
             var index = Convert.ToInt32(dgvOrders.SelectedRows[0].Cells[Resources.Number].Value);
             var order = _orders[index - 1];
             order.Delete();
 
             FilterDataGrid();
+            FlatMessageBox.ShowDialog("Заказ успешно удален", Caption.Info);
         }
 
         private void LoadForm(object sender, EventArgs e)
@@ -204,8 +213,13 @@ namespace StretchCeilings.Views
 
         private void AddGridData(object sender, EventArgs e)
         {
-            if (new OrderEditForm().ShowDialog() == DialogResult.OK)
-                FilterDataGrid();
+            var form = new OrderEditForm();
+
+            if (form.ShowDialog() != DialogResult.OK)
+                return;
+
+            FilterDataGrid();
+            FlatMessageBox.ShowDialog("Заказ успешно добавлен", Caption.Info);
         }
 
         private void UseFilters(object sender, EventArgs e)
@@ -214,8 +228,32 @@ namespace StretchCeilings.Views
             FilterDataGrid();
         }
 
+        private bool AreFilterControlsFilledCorrect()
+        {
+            if (nudTotalFrom.Value > nudTotalTo.Value)
+            {
+                FlatMessageBox.ShowDialog("Неверно указан диапозон цен", Caption.Error);
+                return false;
+            }
+
+            var dateFrom = dtpDateFrom.Value.Date;
+            var dateTo = dtpDateTo.Value.Date;
+            var dateFromTime = new TimeSpan(dateFrom.Day, dateFrom.Hour, dateFrom.Minute);
+            var dateToTime = new TimeSpan(dateTo.Day, dateTo.Hour, dateTo.Minute);
+
+            if (dateFrom <= dateTo || dateFromTime <= dateToTime)
+                return true;
+
+            FlatMessageBox.ShowDialog("Неверно указан диапозон дат", Caption.Error);
+            return false;
+
+        }
+
         private void UpdateFilterValues()
         {
+            if (AreFilterControlsFilledCorrect() == false)
+                return;
+
             foreach (ComboBoxItem item in cbStatusValue.Items)
                 if (item == cbStatusValue.SelectedItem)
                     _firstFilter.Status = (OrderStatus)item.Tag;
@@ -224,9 +262,18 @@ namespace StretchCeilings.Views
                 if (item == cbPaidByCash.SelectedItem)
                     _firstFilter.PaidByCash = Convert.ToBoolean(item.Tag);
 
-            _firstFilter.Total = nudTotalFrom.Value;
-            _secondFilter.Total = nudTotalTo.Value;
-            _firstFilter.Id = Convert.ToInt32(nudIdValue.Value);
+            if (nudTotalFrom.Value > 0)
+                _firstFilter.Total = nudTotalFrom.Value;
+            if (nudTotalTo.Value > 0)
+                _secondFilter.Total = nudTotalTo.Value;
+
+            if (dtpDateFrom.CustomFormat != Resources.Space)
+                _firstFilter.DatePlaced = dtpDateFrom.Value;
+
+            if (dtpDateTo.CustomFormat != Resources.Space)
+                _secondFilter.DatePlaced = dtpDateTo.Value;
+
+            _firstFilter.Id = Convert.ToInt32(nudId.Value);
         }
 
         private void ResetFilters(object sender, EventArgs e)
@@ -236,23 +283,25 @@ namespace StretchCeilings.Views
                 Status = OrderStatus.Unknown
             };
             _secondFilter = new Order();
+            _employee = null;
+            _customer = null;
 
             nudTotalFrom.Value = Resources.DefaultNumericUpDownValue;
             nudTotalTo.Value = Resources.DefaultNumericUpDownValue;
-            nudIdValue.Value = Resources.DefaultNumericUpDownValue;
+            nudId.Value = Resources.DefaultNumericUpDownValue;
 
-            dtpDateFromValue.CustomFormat = Resources.Space;
-            dtpDateToValue.CustomFormat = Resources.Space;
-
-            ibtnCustomer.IconChar = AwesomeIcon.Search;
-            ibtnCustomer.Text = Resources.DefaultIconButtonText;
-            ibtnEmployee.IconChar = AwesomeIcon.Search;
-            ibtnEmployee.Text = Resources.DefaultIconButtonText;
+            dtpDateFrom.CustomFormat = Resources.Space;
+            dtpDateTo.CustomFormat = Resources.Space;
 
             cbPaidByCash.SelectedItem = null;
             cbStatusValue.SelectedItem = null;
 
+            linkCustomer.Text = Resources.No;
+            linkEmployee.Text = Resources.No;
+
             FilterDataGrid();
+
+            FlatMessageBox.ShowDialog("Значение фильтров сброшено до стандартных", Caption.Info);
         }
 
         private static void ChangeFormat(object sender, EventArgs e)
@@ -273,22 +322,14 @@ namespace StretchCeilings.Views
             form.ShowDialog();
         }
 
-        private static void ChangeDatePlaced(Order filter, DateTimePicker dateTimePicker)
-        {
-            if (dateTimePicker.CustomFormat != Resources.Space)
-                filter.DatePlaced = dateTimePicker.Value;
-        }
-
         private void DatePlacedFromChanged(object sender, EventArgs e)
         {
             ChangeFormat(sender, e);
-            ChangeDatePlaced(_firstFilter, dtpDateFromValue);
         }
 
         private void DatePlacedToChanged(object sender, EventArgs e)
         {
             ChangeFormat(sender, e);
-            ChangeDatePlaced(_secondFilter, dtpDateToValue);
         }
 
         private void RowCountChanged(object sender, EventArgs e)
@@ -316,34 +357,36 @@ namespace StretchCeilings.Views
             FilterDataGrid();
         }
 
-        private void SelectCustomer(object sender, EventArgs e)
+        private void SelectCustomer(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            var customersForm = new CustomersForm();
+            var form = new CustomersForm(FormState.ForView);
+            
+            if (form.ShowDialog() != DialogResult.OK)
+                return;
 
-            customersForm.ShowDialog();
+            var customer = form.GetCustomer();
 
-            if (customersForm.DialogResult != DialogResult.OK) return;
+            if (customer == null)
+                return;
 
-            var customer = customersForm.GetCustomer();
-            ibtnCustomer.Tag = customer;
-            ibtnCustomer.Text = customer?.FullName;
-            ibtnCustomer.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            ibtnCustomer.IconChar = IconChar.None;
+            _customer = customer;
+            linkCustomer.Text = customer.FullName;
         }
 
-        private void SelectEmployee(object sender, EventArgs e)
+        private void SelectEmployee(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            var employeesForm = new EmployeesForm();
+            var form = new EmployeesForm(FormState.ForView);
+            
+            if (form.ShowDialog() != DialogResult.OK)
+                return;
 
-            employeesForm.ShowDialog();
+            var employee = form.GetEmployee();
 
-            if (employeesForm.DialogResult != DialogResult.OK) return;
+            if (employee == null)
+                return;
 
-            var employee = employeesForm.GetEmployee();
-            ibtnEmployee.Tag = employee;
-            ibtnEmployee.Text = employee?.FullName;
-            ibtnEmployee.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            ibtnCustomer.IconChar = IconChar.None;
+            _employee = employee;
+            linkEmployee.Text = employee.FullName;
         }
     }
 }

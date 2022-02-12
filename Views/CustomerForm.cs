@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using StretchCeilings.Helpers;
-using StretchCeilings.Helpers.Enums;
-using StretchCeilings.Helpers.Extensions;
-using StretchCeilings.Helpers.Extensions.Controls;
-using StretchCeilings.Helpers.Structs;
+using StretchCeilings.Extensions;
+using StretchCeilings.Extensions.Controls;
 using StretchCeilings.Models;
+using StretchCeilings.Models.Enums;
+using StretchCeilings.Sessions;
+using StretchCeilings.Structs;
 
 namespace StretchCeilings.Views
 {
@@ -41,8 +41,8 @@ namespace StretchCeilings.Views
         {
             _estates = _customer.GetEstates();
 
-            dgvEstates.AddDataGridViewTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvEstates.AddDataGridViewTextBoxColumn("Адресс", DataGridViewAutoSizeColumnMode.Fill);
+            dgvEstates.CreateTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvEstates.CreateTextBoxColumn("Адресс", DataGridViewAutoSizeColumnMode.Fill);
 
             dgvEstates.Font = GoogleFont.OpenSans;
             dgvEstates.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
@@ -84,7 +84,7 @@ namespace StretchCeilings.Views
 
         private void DragMove(object sender, MouseEventArgs e)
         {
-            this.Handle.DragMove(e);
+            Handle.DragMove(e);
         }
 
         private void ShowGridData(object sender, DataGridViewCellEventArgs e)

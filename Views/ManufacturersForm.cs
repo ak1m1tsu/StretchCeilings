@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Forms;
-using StretchCeilings.Helpers;
-using StretchCeilings.Helpers.Controls;
-using StretchCeilings.Helpers.Enums;
-using StretchCeilings.Helpers.Extensions;
-using StretchCeilings.Helpers.Extensions.Controls;
-using StretchCeilings.Helpers.Structs;
+using StretchCeilings.Extensions;
+using StretchCeilings.Extensions.Controls;
 using StretchCeilings.Models;
+using StretchCeilings.Models.Enums;
 using StretchCeilings.Repositories;
+using StretchCeilings.Sessions;
+using StretchCeilings.Structs;
+using StretchCeilings.Views.Controls;
 
 namespace StretchCeilings.Views
 {
@@ -35,28 +35,28 @@ namespace StretchCeilings.Views
 
         public Manufacturer GetManufacturer() => _manufacturer;
 
+        private static bool CanUserAdd => UserSession.IsAdmin ||
+                                          UserSession.Can(PermissionCode.AddCustomer);
+
+        private static bool CanUserDelete => UserSession.IsAdmin ||
+                                             UserSession.Can(PermissionCode.DelCustomer);
+
+        private bool IsForView => _state == FormState.ForView;
+
         private void SetupDataGrid()
         {
             _manufacturers = ManufacturerRepository.GetAll(out _rows);
 
-            dgvManufacturers.AddDataGridViewTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvManufacturers.AddDataGridViewTextBoxColumn(Resources.Manufacturer, DataGridViewAutoSizeColumnMode.Fill);
-            dgvManufacturers.AddDataGridViewTextBoxColumn("Адрес", DataGridViewAutoSizeColumnMode.Fill);
-            dgvManufacturers.AddDataGridViewTextBoxColumn("Страна", DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvManufacturers.AddDataGridViewButtonColumn(DraculaColor.Red);
+            dgvManufacturers.CreateTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvManufacturers.CreateTextBoxColumn(Resources.Manufacturer, DataGridViewAutoSizeColumnMode.Fill);
+            dgvManufacturers.CreateTextBoxColumn("Адрес", DataGridViewAutoSizeColumnMode.Fill);
+            dgvManufacturers.CreateTextBoxColumn("Страна", DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvManufacturers.CreateButtonColumn();
 
             dgvManufacturers.Font = GoogleFont.OpenSans;
             dgvManufacturers.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
             dgvManufacturers.DefaultCellStyle.SelectionForeColor = DraculaColor.Foreground;
         }
-
-        private static bool CanUserAdd() => UserSession.IsAdmin ||
-                                            UserSession.Can(PermissionCode.AddCustomer);
-
-        private static bool CanUserDelete() => UserSession.IsAdmin ||
-                                               UserSession.Can(PermissionCode.DelCustomer);
-
-        private bool IsForSearching() => _state == FormState.ForView;
 
         private void DrawAddCustomerButton()
         {
@@ -66,7 +66,7 @@ namespace StretchCeilings.Views
 
         private void DragMove(object sender, MouseEventArgs e)
         {
-            this.Handle.DragMove(e);
+            Handle.DragMove(e);
         }
 
         private void SelectManufacturer(object sender, DataGridViewCellEventArgs e)
@@ -109,16 +109,16 @@ namespace StretchCeilings.Views
             btnNext.Click += ShowNextPage;
             btnPrevious.Click += ShowPreviousPage;
             
-            if (CanUserAdd() && IsForSearching() == false)
-                DrawAddCustomerButton();
-
             FillCountryComboBox();
             FillRowsComboBox();
 
-            if (CanUserDelete() == false)
+            if (CanUserAdd && IsForView == false)
+                DrawAddCustomerButton();
+
+            if (CanUserDelete == false || IsForView)
                 dgvManufacturers.Columns[Resources.Space].Visible = false;
 
-            if (IsForSearching())
+            if (IsForView)
             {
                 panelTopSide.Visible = true;
                 panelTopSide.MouseDown += DragMove;
@@ -127,7 +127,7 @@ namespace StretchCeilings.Views
             }
 
             dgvManufacturers.CellClick += RemoveGridData;
-            dgvManufacturers.CellDoubleClick += OpenManufacturerForm;
+            dgvManufacturers.CellDoubleClick += ShowGridData;
         }
         
         private void FillDataGrid()
@@ -172,15 +172,20 @@ namespace StretchCeilings.Views
                 senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn == false)
                 return;
 
+            if (FlatMessageBox.ShowDialog("Вы уверены что хотите удалить производителя?", Caption.Warning) !=
+                DialogResult.OK)
+                return;
+
             var index = Convert.ToInt32(dgvManufacturers.Rows[e.RowIndex].Cells[0].Value);
             var manufacturer = _manufacturers[index - 1];
 
             manufacturer.Delete();
 
             FilterDataGrid();
+            FlatMessageBox.ShowDialog("Производитель успешно удален", Caption.Info);
         }
 
-        private void OpenManufacturerForm(object sender, DataGridViewCellEventArgs e)
+        private void ShowGridData(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0)
                 return;
@@ -220,8 +225,12 @@ namespace StretchCeilings.Views
 
         private void AddGridData(object sender, EventArgs e)
         {
-            new ManufacturerEditForm().ShowDialog();
+            var form = new ManufacturerEditForm();
+            if (form.ShowDialog() != DialogResult.OK)
+                return;
+            
             FilterDataGrid();
+            FlatMessageBox.ShowDialog("Производитель успешно добавлен", Caption.Info);
         }
 
         private void LoadForm(object sender, EventArgs e)
@@ -261,6 +270,7 @@ namespace StretchCeilings.Views
             cbCountry.SelectedItem = null;
 
             FilterDataGrid();
+            FlatMessageBox.ShowDialog("Значение фильтров сброшено до стандартных", Caption.Info);
         }
 
         private void SetManufacturerAddress(object sender, EventArgs e)

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using StretchCeilings.DataAccess;
-using StretchCeilings.Interfaces.Models;
+using StretchCeilings.Models.Interfaces;
 
 namespace StretchCeilings.Models
 {
@@ -41,7 +41,7 @@ namespace StretchCeilings.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                return db.Estates.Where(e => e.CustomerId == Id).ToList();
+                return db.Estates.Where(e => e.CustomerId == Id && e.DeletedDate == null).ToList();
             }
         }
 

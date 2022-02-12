@@ -2,11 +2,11 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using StretchCeilings.DataAccess;
-using StretchCeilings.Interfaces.Models;
+using StretchCeilings.Models.Interfaces;
 
 namespace StretchCeilings.Models
 {
-    public class Log : ILog
+    public class Log : IDbModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -32,7 +32,9 @@ namespace StretchCeilings.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                db.Entry(Id).CurrentValues.SetValues(DeletedDate = DateTime.Now);
+                DeletedDate = DateTime.Now;
+                var old = db.Logs.Find(Id);
+                db.Entry(old).CurrentValues.SetValues(this);
                 db.SaveChanges();
             }
         }
@@ -41,7 +43,8 @@ namespace StretchCeilings.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                db.Entry(Id).CurrentValues.SetValues(this);
+                var old = db.Logs.Find(Id);
+                db.Entry(old).CurrentValues.SetValues(this);
                 db.SaveChanges();
             }
         }

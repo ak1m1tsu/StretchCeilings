@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using StretchCeilings.Helpers.Extensions;
+using StretchCeilings.Extensions;
 using StretchCeilings.Models;
 
 namespace StretchCeilings.Views

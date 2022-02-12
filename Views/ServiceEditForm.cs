@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using StretchCeilings.Extensions;
+using StretchCeilings.Extensions.Controls;
 using StretchCeilings.Helpers;
-using StretchCeilings.Helpers.Enums;
-using StretchCeilings.Helpers.Extensions;
-using StretchCeilings.Helpers.Extensions.Controls;
-using StretchCeilings.Helpers.Structs;
 using StretchCeilings.Models;
+using StretchCeilings.Models.Enums;
 using StretchCeilings.Repositories;
+using StretchCeilings.Structs;
 
 namespace StretchCeilings.Views
 {
@@ -51,12 +51,12 @@ namespace StretchCeilings.Views
         {
             _additionalServices = _service?.GetAdditionalServices();
 
-            dgvAdditServs.AddDataGridViewTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvAdditServs.AddDataGridViewTextBoxColumn(Resources.Name, DataGridViewAutoSizeColumnMode.Fill);
-            dgvAdditServs.AddDataGridViewTextBoxColumn(Resources.Price, DataGridViewAutoSizeColumnMode.Fill);
-            dgvAdditServs.AddDataGridViewTextBoxColumn("Кол-во", DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvAdditServs.CreateTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvAdditServs.CreateTextBoxColumn(Resources.Name, DataGridViewAutoSizeColumnMode.Fill);
+            dgvAdditServs.CreateTextBoxColumn(Resources.Price, DataGridViewAutoSizeColumnMode.Fill);
+            dgvAdditServs.CreateTextBoxColumn("Кол-во", DataGridViewAutoSizeColumnMode.DisplayedCells);
             dgvAdditServs.Columns["Кол-во"].ReadOnly = false;
-            dgvAdditServs.AddDataGridViewButtonColumn(DraculaColor.Red);
+            dgvAdditServs.CreateButtonColumn();
 
             dgvAdditServs.Font = GoogleFont.OpenSans;
             dgvAdditServs.ForeColor = DraculaColor.Background;
@@ -75,7 +75,7 @@ namespace StretchCeilings.Views
         {
             if (AreFieldsEmpty())
             {
-                CustomMessageBox.ShowDialog(Resources.ControlsEmpty, Caption.Error);
+                FlatMessageBox.ShowDialog(Resources.ControlsEmpty, Caption.Error);
                 return;
             }
 
@@ -219,7 +219,7 @@ namespace StretchCeilings.Views
 
         private void DragMove(object sender, MouseEventArgs e)
         {
-            this.Handle.DragMove(e);
+            Handle.DragMove(e);
         }
 
         private void SelectCeiling(object sender, EventArgs e)

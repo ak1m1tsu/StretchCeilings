@@ -2,12 +2,12 @@
 using System.Data.Entity;
 using System.Linq;
 using StretchCeilings.DataAccess;
-using StretchCeilings.Helpers.Enums;
 using StretchCeilings.Models;
+using StretchCeilings.Models.Enums;
 
 namespace StretchCeilings.Repositories
 {
-    public class OrderRepository : NotNull
+    public class OrderRepository
     {
         public static List<Order> GetALl(out int rows)
         {
@@ -26,7 +26,7 @@ namespace StretchCeilings.Repositories
             }
         }
 
-        public static List<Order> GetALl(Order firstFilter, Order secondFilter, int count, int page, out int rows)
+        public static List<Order> GetALl(Order firstFilter, Order secondFilter, Customer customer, Employee employee, int count, int page, out int rows)
         {
             using (var db = new StretchCeilingsContext())
             {
@@ -36,32 +36,42 @@ namespace StretchCeilings.Repositories
                 if (firstFilter.Id != 0)
                     orders = orders.Where(o => o.Id == firstFilter.Id);
 
-                if ((IsNull(firstFilter.DatePlaced) && IsNull(secondFilter.DatePlaced)) == false)
+                if (firstFilter.DatePlaced != null && secondFilter.DatePlaced != null)
                     orders = orders.Where(o =>
                         firstFilter.DatePlaced <= o.DatePlaced && secondFilter.DatePlaced >= o.DatePlaced);
 
-                if (IsNull(firstFilter.DatePlaced) == false)
+                if (firstFilter.DatePlaced != null)
                         orders = orders.Where(o => firstFilter.DatePlaced <= o.DatePlaced);
 
-                if (IsNull(secondFilter.DatePaid) == false)
+                if (secondFilter.DatePaid != null)
                         orders = orders.Where(o => secondFilter.DatePlaced >= o.DatePlaced);
 
-                if ((IsNull(firstFilter.Total) && IsNull(secondFilter.Total)) == false)
+                if (firstFilter.Total != null && secondFilter.Total != null)
                     orders = orders.Where(o => firstFilter.Total <= o.Total && o.Total <= secondFilter.Total);
 
-                if (IsNull(firstFilter.Total) == false)
+                if (firstFilter.Total != null)
                     orders = orders.Where(o => firstFilter.Total <= o.Total);
 
-                if (IsNull(secondFilter.Total) == false)
+                if (secondFilter.Total != null)
                     orders = orders.Where(o => o.Total <= secondFilter.Total);
                 
-                if (firstFilter.Status != OrderStatus.Unknown)
+                if (firstFilter.Status != OrderStatus.Unknown && firstFilter.Status != null)
                     orders = orders.Where(x => x.Status == firstFilter.Status);
 
-                if (IsNull(firstFilter.PaidByCash) == false)
+                if (firstFilter.PaidByCash != null)
                     orders = orders.Where(o => o.PaidByCash == firstFilter.PaidByCash);
 
-                if (!orders.Any()) 
+                if (customer != null && customer.Id != 0)
+                    orders = orders.Where(x => x.CustomerId == customer.Id);
+
+                if (employee != null && employee.Id != 0)
+                {
+                    orders = orders.Join(db.OrderEmployees, o => o.Id, oe => oe.OrderId, (o, oe) => new { o, oe })
+                        .Where(@t => @t.oe.EmployeeId == employee.Id)
+                        .Select(@t => @t.o);
+                }
+
+                if (orders.Any() == false) 
                     return orders.ToList();
                 
                 orders.ForEachAsync(o => db.Entry(o).Reference(r => r.Customer).Load());
@@ -77,7 +87,7 @@ namespace StretchCeilings.Repositories
             {
                 var order = db.Orders.FirstOrDefault(o => o.Id == id);
 
-                if (IsNull(order) == false)
+                if (order != null)
                     db.Entry(order).Reference(o => o.Customer).Load();
 
                 return order;

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using StretchCeilings.Helpers;
-using StretchCeilings.Helpers.Enums;
-using StretchCeilings.Helpers.Extensions;
-using StretchCeilings.Helpers.Extensions.Controls;
-using StretchCeilings.Helpers.Structs;
+using StretchCeilings.Extensions;
+using StretchCeilings.Extensions.Controls;
 using StretchCeilings.Models;
+using StretchCeilings.Models.Enums;
+using StretchCeilings.Sessions;
+using StretchCeilings.Structs;
 
 namespace StretchCeilings.Views
 {
@@ -24,15 +24,15 @@ namespace StretchCeilings.Views
             InitializeComponent();
         }
 
-        private void SetUpForm()
+        private void SetupForm()
         {
             btnClose.DialogResult = DialogResult.Cancel;
 
-            SetUpControls();
-            SetUpTimeTableGrid();
+            SetupControls();
+            SetupDataGrid();
         }
 
-        private void SetUpControls()
+        private void SetupControls()
         {
             if (UserSession.IsAdmin)
             {
@@ -54,7 +54,7 @@ namespace StretchCeilings.Views
             lblRoleValue.Text = _employee?.Role?.Name;
         }
 
-        private void FillTimeTableGrid()
+        private void FillDataGrid()
         {
             _tables = _employee.GetSchedule();
 
@@ -72,51 +72,46 @@ namespace StretchCeilings.Views
             }
         }
 
-        private void SetUpTimeTableGrid()
+        private void SetupDataGrid()
         {
-            dgvTimeTable.AddDataGridViewTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvTimeTable.AddDataGridViewTextBoxColumn(Resources.Date, DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvTimeTable.AddDataGridViewTextBoxColumn(Resources.DayOfWeek, DataGridViewAutoSizeColumnMode.Fill);
-            dgvTimeTable.AddDataGridViewTextBoxColumn(Resources.ShiftStart, DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvTimeTable.AddDataGridViewTextBoxColumn(Resources.ShiftEnd, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvTimeTable.CreateTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvTimeTable.CreateTextBoxColumn(Resources.Date, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvTimeTable.CreateTextBoxColumn(Resources.DayOfWeek, DataGridViewAutoSizeColumnMode.Fill);
+            dgvTimeTable.CreateTextBoxColumn(Resources.ShiftStart, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvTimeTable.CreateTextBoxColumn(Resources.ShiftEnd, DataGridViewAutoSizeColumnMode.DisplayedCells);
             
             dgvTimeTable.Font = GoogleFont.OpenSans;
             dgvTimeTable.ForeColor = DraculaColor.Background;
             dgvTimeTable.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
             dgvTimeTable.DefaultCellStyle.SelectionForeColor = DraculaColor.Foreground;
 
-            FillTimeTableGrid();
+            FillDataGrid();
         }
 
-        private void OpenEditForm()
+        private void LoadForm(object sender, EventArgs e)
+        {
+            SetupForm();
+        }
+
+        private void DragMove(object sender, MouseEventArgs e)
+        {
+            this.Handle.DragMove(e);
+        }
+
+        private void ShowEditForm(object sender, EventArgs e)
         {
             this.Hide();
-            
+
             var form = new EmployeeEditForm(_employee);
-            
+
             if (form.ShowDialog() == DialogResult.OK)
             {
                 _employee = form.GetEmployee();
-                SetUpControls();
-                FillTimeTableGrid();
+                SetupControls();
+                FillDataGrid();
             }
 
             this.Show();
-        }
-
-        private void EmployeeForm_Load(object sender, EventArgs e)
-        {
-            SetUpForm();
-        }
-
-        private void panelTop_MouseDown(object sender, MouseEventArgs e)
-        {
-            Handle.DragMove(e);
-        }
-
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            OpenEditForm();
         }
     }
 }

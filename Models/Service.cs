@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 using StretchCeilings.DataAccess;
-using StretchCeilings.Interfaces.Models;
+using StretchCeilings.Models.Interfaces;
 
 namespace StretchCeilings.Models
 {
@@ -43,7 +43,7 @@ namespace StretchCeilings.Models
             using (var db = new StretchCeilingsContext())
             {
                 DeletedDate = DateTime.Now;
-                var old = db.Services.FirstOrDefault(x => x.Id == this.Id);
+                var old = db.Services.FirstOrDefault(x => x.Id == Id);
                 db.Entry(old).CurrentValues.SetValues(this);
                 db.SaveChanges();
             }
@@ -55,10 +55,10 @@ namespace StretchCeilings.Models
             {
                 var ceiling = db.Ceilings.FirstOrDefault(x => x.ManufacturerId == ManufacturerId && DeletedDate == null);
                 var room = db.CustomersRooms.FirstOrDefault(x => x.Id == RoomId && DeletedDate == null);
-                var services = from sas in db.ServiceAdditionalServices
-                    join a in db.AdditionalServices on sas.AdditionalServiceId equals a.Id
-                    where a.DeletedDate == null && sas.ServiceId == Id
-                    select sas;
+                var services = db.ServiceAdditionalServices
+                    .Join(db.AdditionalServices, sas => sas.AdditionalServiceId, a => a.Id, (sas, a) => new { sas, a })
+                    .Where(@t => @t.a.DeletedDate == null && @t.sas.ServiceId == Id)
+                    .Select(@t => @t.sas);
                 
                 Price = (ceiling?.Price * room?.Area) ?? 0;
 
@@ -74,11 +74,11 @@ namespace StretchCeilings.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                var additionalServices = from sas in db.ServiceAdditionalServices
-                    join a in db.AdditionalServices on sas.AdditionalServiceId equals a.Id
-                    join s in db.Services on sas.ServiceId equals s.Id
-                    where sas.ServiceId == Id
-                    select sas;
+                var additionalServices = db.ServiceAdditionalServices
+                    .Join(db.AdditionalServices, sas => sas.AdditionalServiceId, a => a.Id, (sas, a) => new { sas, a })
+                    .Join(db.Services, @t => @t.sas.ServiceId, s => s.Id, (@t, s) => new { @t, s })
+                    .Where(@t => @t.@t.sas.ServiceId == Id)
+                    .Select(@t => @t.@t.sas);
 
                 if (additionalServices.Any())
                     additionalServices.ForEachAsync(
@@ -92,7 +92,7 @@ namespace StretchCeilings.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                var old = db.Services.FirstOrDefault(x => x.Id == this.Id);
+                var old = db.Services.FirstOrDefault(x => x.Id == Id);
                 db.Entry(old).CurrentValues.SetValues(this);
                 db.SaveChanges();
             }

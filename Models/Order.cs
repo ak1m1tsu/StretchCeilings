@@ -5,8 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 using StretchCeilings.DataAccess;
-using StretchCeilings.Helpers.Enums;
-using StretchCeilings.Interfaces.Models;
+using StretchCeilings.Models.Enums;
+using StretchCeilings.Models.Interfaces;
 
 namespace StretchCeilings.Models
 {
@@ -32,10 +32,10 @@ namespace StretchCeilings.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                return (from wd in db.OrderWorkDates
-                        join o in db.Orders on wd.OrderId equals o.Id
-                        where o.DeletedDate == null 
-                        select wd).ToList();
+                return (db.OrderWorkDates
+                    .Join(db.Orders, wd => wd.OrderId, o => o.Id, (wd, o) => new { wd, o })
+                    .Where(@t => @t.o.DeletedDate == null && @t.o.Id == Id)
+                    .Select(@t => @t.wd)).ToList();
             }
         }
 
@@ -68,7 +68,10 @@ namespace StretchCeilings.Models
 
         public void CalculateTotal()
         {
-            GetServices().ForEach(s => Total += s.Price);
+            var services = GetServices();
+            Total = 0;
+            foreach (var service in services)
+                Total += service.Price;
         }
 
         public void Delete()
@@ -94,10 +97,10 @@ namespace StretchCeilings.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                var services = from s in db.Services
-                    join os in db.OrderServices on s.Id equals os.ServiceId
-                    where os.OrderId == Id && s.DeletedDate == null
-                    select s;
+                var services = db.Services
+                    .Join(db.OrderServices, s => s.Id, os => os.ServiceId, (s, os) => new { s, os })
+                    .Where(@t => @t.os.OrderId == Id && @t.s.DeletedDate == null)
+                    .Select(@t => @t.s);
 
                 if (!services.Any())
                     return services.ToList();
@@ -114,11 +117,13 @@ namespace StretchCeilings.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                var employees = from e in db.Employees
-                    join orderEmployee in db.OrderEmployees on e.Id equals orderEmployee.EmployeeId
-                    join order in db.Orders on orderEmployee.OrderId equals order.Id
-                    where e.DeletedDate == null
-                    select e;
+                var employees = db.Employees
+                    .Join(db.OrderEmployees, e => e.Id, orderEmployee => orderEmployee.EmployeeId,
+                        (e, orderEmployee) => new { e, orderEmployee })
+                    .Join(db.Orders, @t => @t.orderEmployee.OrderId, order => order.Id,
+                        (@t, order) => new { @t, order })
+                    .Where(@t => @t.@t.e.DeletedDate == null && @t.order.Id == Id)
+                    .Select(@t => @t.@t.e);
 
                 if (employees.Any() == false)
                     return employees.ToList();

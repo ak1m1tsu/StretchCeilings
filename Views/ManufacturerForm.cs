@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using StretchCeilings.Helpers.Extensions;
-using StretchCeilings.Helpers.Extensions.Controls;
-using StretchCeilings.Helpers.Structs;
+using StretchCeilings.Extensions;
+using StretchCeilings.Extensions.Controls;
 using StretchCeilings.Models;
+using StretchCeilings.Models.Enums;
+using StretchCeilings.Structs;
 
 namespace StretchCeilings.Views
 {
@@ -12,12 +13,16 @@ namespace StretchCeilings.Views
     {
         private List<Ceiling> _ceilings;
         private Manufacturer _manufacturer;
+        private readonly FormState _state;
 
-        public ManufacturerForm(Manufacturer manufacturer)
+        public ManufacturerForm(Manufacturer manufacturer, FormState state = FormState.Default)
         {
             _manufacturer = manufacturer;
+            _state = state;
             InitializeComponent();
         }
+
+        private bool IsForView => _state == FormState.ForView;
 
         private void DragMove(object sender, MouseEventArgs e)
         {
@@ -28,6 +33,9 @@ namespace StretchCeilings.Views
         {
             btnClose.DialogResult = DialogResult.Cancel;
             btnEdit.Click += OpenEditForm;
+            if (IsForView)
+                btnEdit.Visible = false;
+
             panelTop.MouseDown += DragMove;
 
             FillFormControls();
@@ -36,11 +44,11 @@ namespace StretchCeilings.Views
 
         private void SetupCeilingsGrid()
         {
-            dgvCeilings.AddDataGridViewTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvCeilings.AddDataGridViewTextBoxColumn(Resources.Name, DataGridViewAutoSizeColumnMode.Fill);
-            dgvCeilings.AddDataGridViewTextBoxColumn(Resources.Texture, DataGridViewAutoSizeColumnMode.Fill);
-            dgvCeilings.AddDataGridViewTextBoxColumn(Resources.Color, DataGridViewAutoSizeColumnMode.Fill);
-            dgvCeilings.AddDataGridViewTextBoxColumn(Resources.Price, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvCeilings.CreateTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvCeilings.CreateTextBoxColumn(Resources.Name, DataGridViewAutoSizeColumnMode.Fill);
+            dgvCeilings.CreateTextBoxColumn(Resources.Texture, DataGridViewAutoSizeColumnMode.Fill);
+            dgvCeilings.CreateTextBoxColumn(Resources.Color, DataGridViewAutoSizeColumnMode.Fill);
+            dgvCeilings.CreateTextBoxColumn(Resources.Price, DataGridViewAutoSizeColumnMode.DisplayedCells);
             dgvCeilings.Font = GoogleFont.OpenSans;
             dgvCeilings.ForeColor = DraculaColor.Background;
             dgvCeilings.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
@@ -71,8 +79,8 @@ namespace StretchCeilings.Views
             if (dgvCeilings.SelectedRows.Count < 0 && e.RowIndex < 0)
                 return;
 
-            var id = (int)dgvCeilings.Rows[e.RowIndex].Cells[0].Value - 1;
-            var ceiling = _ceilings[id];
+            var index = Convert.ToInt32(dgvCeilings.Rows[e.RowIndex].Cells[0].Value);
+            var ceiling = _ceilings[index - 1];
             new CeilingForm(ceiling).ShowDialog();
 
             FillCeilingsGrid();
@@ -87,7 +95,7 @@ namespace StretchCeilings.Views
 
         private void OpenEditForm(object sender, EventArgs e)
         {
-            this.Hide();
+            Hide();
 
             var form = new ManufacturerEditForm(_manufacturer);
 
@@ -98,7 +106,7 @@ namespace StretchCeilings.Views
                 FillCeilingsGrid();
             }
 
-            this.Show();
+            Show();
         }
 
         private void ManufacturerForm_Load(object sender, EventArgs e)

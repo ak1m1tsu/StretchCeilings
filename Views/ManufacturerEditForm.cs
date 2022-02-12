@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using StretchCeilings.Extensions;
+using StretchCeilings.Extensions.Controls;
 using StretchCeilings.Helpers;
-using StretchCeilings.Helpers.Enums;
-using StretchCeilings.Helpers.Extensions;
-using StretchCeilings.Helpers.Extensions.Controls;
-using StretchCeilings.Helpers.Structs;
 using StretchCeilings.Models;
+using StretchCeilings.Models.Enums;
+using StretchCeilings.Structs;
 
 namespace StretchCeilings.Views
 {
@@ -28,20 +28,20 @@ namespace StretchCeilings.Views
         
         private void DragMove(object sender, MouseEventArgs e)
         {
-            this.Handle.DragMove(e);
+            Handle.DragMove(e);
         }
 
         private void SetupControls()
         {
-            this.btnSave.Click += UpdateData;
-            this.btnClose.Click += CloseForm;
-            this.btnAddCeiling.Click += AddGridData;
-            this.panelTop.MouseDown += DragMove;
-            this.dgvCeilings.CellDoubleClick += OpenCeilingForm;
-            this.dgvCeilings.CellClick += RemoveGridData;
+            btnSave.Click += UpdateData;
+            btnClose.Click += CloseForm;
+            btnAddCeiling.Click += AddGridData;
+            panelTop.MouseDown += DragMove;
+            dgvCeilings.CellDoubleClick += OpenCeilingForm;
+            dgvCeilings.CellClick += RemoveGridData;
 
-            this.tbAddress.Text = _manufacturer?.Address;
-            this.tbName.Text = _manufacturer?.Name;
+            tbAddress.Text = _manufacturer?.Address;
+            tbName.Text = _manufacturer?.Name;
 
             FillCountryComboBox();
 
@@ -55,12 +55,12 @@ namespace StretchCeilings.Views
 
         private void SetupCeilingsGrid()
         {
-            dgvCeilings.AddDataGridViewTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvCeilings.AddDataGridViewTextBoxColumn(Resources.Name, DataGridViewAutoSizeColumnMode.Fill);
-            dgvCeilings.AddDataGridViewTextBoxColumn(Resources.Texture, DataGridViewAutoSizeColumnMode.Fill);
-            dgvCeilings.AddDataGridViewTextBoxColumn(Resources.Color, DataGridViewAutoSizeColumnMode.Fill);
-            dgvCeilings.AddDataGridViewTextBoxColumn(Resources.Price, DataGridViewAutoSizeColumnMode.DisplayedCells);
-            dgvCeilings.AddDataGridViewButtonColumn(DraculaColor.Red);
+            dgvCeilings.CreateTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvCeilings.CreateTextBoxColumn(Resources.Name, DataGridViewAutoSizeColumnMode.Fill);
+            dgvCeilings.CreateTextBoxColumn(Resources.Texture, DataGridViewAutoSizeColumnMode.Fill);
+            dgvCeilings.CreateTextBoxColumn(Resources.Color, DataGridViewAutoSizeColumnMode.Fill);
+            dgvCeilings.CreateTextBoxColumn(Resources.Price, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            dgvCeilings.CreateButtonColumn();
 
             dgvCeilings.Font = GoogleFont.OpenSans;
             dgvCeilings.ForeColor = DraculaColor.Background;
@@ -151,29 +151,30 @@ namespace StretchCeilings.Views
             FillCeilingsGrid();
         }
 
-        private bool AreControlsEmpty()
+        private bool CanUpdate()
         {
+            var can = true;
             errorProvider.Clear();
 
             if (string.IsNullOrWhiteSpace(tbName.Text))
             {
                 errorProvider.SetError(tbName, Resources.RequiredToFill);
-                return true;
+                can = false;
             }
 
             if (string.IsNullOrWhiteSpace(tbAddress.Text))
             {
                 errorProvider.SetError(tbAddress, Resources.RequiredToFill);
-                return true;
+                can = false;
             }
 
             if (cbCountry.SelectedItem == null)
             {
                 errorProvider.SetError(cbCountry, Resources.RequiredToFill);
-                return true;
+                can = false;
             }
 
-            return false;
+            return can;
         }
 
         private void UpdateManufacturerFields()
@@ -188,9 +189,9 @@ namespace StretchCeilings.Views
 
         private void UpdateData(object sender, EventArgs e)
         {
-            if (AreControlsEmpty())
+            if (CanUpdate() == false)
             {
-                CustomMessageBox.ShowDialog(Resources.ControlsEmpty, Caption.Error);
+                FlatMessageBox.ShowDialog(Resources.ControlsEmpty, Caption.Error);
                 return;
             }
 

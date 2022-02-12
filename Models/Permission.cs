@@ -1,13 +1,13 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using StretchCeilings.DataAccess;
-using StretchCeilings.Helpers.Enums;
-using StretchCeilings.Interfaces.Models;
+using StretchCeilings.Models.Enums;
+using StretchCeilings.Models.Interfaces;
 
 namespace StretchCeilings.Models
 {
-    public class Permission : IPermission
+    public class Permission : IDbModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] 
@@ -16,57 +16,32 @@ namespace StretchCeilings.Models
         [Index(IsUnique = true)]
         public PermissionCode Code { get; set; }
 
-        public string Add()
+        public void Add()
         {
-            try
+            using (var db = new StretchCeilingsContext())
             {
-                using (var db = new StretchCeilingsContext())
-                {
-                    db.Permissions.Add(this);
-                    db.SaveChanges();
-
-                    return string.Empty;
-                }
-            }
-            catch (Exception ex)
-            {
-                return ex.Message;
+                db.Permissions.Add(this);
+                db.SaveChanges();
             }
         }
 
-        public string Delete()
+        public void Delete()
         {
-            try
+            using (var db = new StretchCeilingsContext())
             {
-                using (var db = new StretchCeilingsContext())
-                {
-                    db.Permissions.Add(this);
-                    db.SaveChanges();
-
-                    return string.Empty;
-                }
-            }
-            catch (Exception ex)
-            {
-                return ex.Message;
+                var old = db.Permissions.First(x => x.Id == Id);
+                db.Permissions.Remove(old);
+                db.SaveChanges();
             }
         }
 
-        public string Update()
+        public void Update()
         {
-            try
+            using (var db = new StretchCeilingsContext())
             {
-                using (var db = new StretchCeilingsContext())
-                {
-                    db.Permissions.Add(this);
-                    db.SaveChanges();
-
-                    return string.Empty;
-                }
-            }
-            catch (Exception ex)
-            {
-                return ex.Message;
+                var old = db.Permissions.First(x => x.Id == Id);
+                db.Entry(old).CurrentValues.SetValues(this);
+                db.SaveChanges();
             }
         }
     }
