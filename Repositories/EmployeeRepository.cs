@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using StretchCeilings.DataAccess;
@@ -12,25 +13,24 @@ namespace StretchCeilings.Repositories
         {
             using (var db = new StretchCeilingsContext())
             {
-                var queryable = db.Employees.Where(x => x.DeletedDate == null);
-                rows = 0;
+                var enumerable = db.Employees.Where(x => x.DeletedDate == null)
+                    .Include(x => x.Role)
+                    .AsEnumerable();
 
                 if (filter.Id != 0)
-                    queryable = queryable.Where(x => x.Id == filter.Id);
+                    enumerable = enumerable.Where(x => x.Id == filter.Id);
 
                 if (filter.FullName != null)
-                    queryable = queryable.Where(x => x.FullName == filter.FullName);
+                    enumerable = enumerable.Where(x => x.FullName.IndexOf(filter.FullName, StringComparison.OrdinalIgnoreCase) > -1);
 
                 if (filter.RoleId != null && filter.RoleId != 0)
-                    queryable = queryable.Where(x => x.RoleId == filter.RoleId);
+                    enumerable = enumerable.Where(x => x.RoleId == filter.RoleId);
 
-                if (queryable.Any() == false)
-                    return queryable.ToList();
+                var employees = enumerable.ToList();
 
-                queryable.ForEachAsync(x => db.Entry(x).Reference(r => r.Role).Load());
-                rows = queryable.Count();
+                rows = employees.Count();
 
-                return queryable.ToList().Skip((page - 1) * count).Take(count).ToList();
+                return employees.Skip((page - 1) * count).Take(count).ToList();
             }
         }
 
@@ -38,16 +38,15 @@ namespace StretchCeilings.Repositories
         {
             using (var db = new StretchCeilingsContext())
             {
-                var queryable = db.Employees.Where(x => x.DeletedDate == null);
-                rows = 0;
+                var enumerable = db.Employees.Where(x => x.DeletedDate == null)
+                    .Include(x => x.Role)
+                    .AsEnumerable();
 
-                if (queryable.Any() == false)
-                    return queryable.ToList();
+                var employees = enumerable.ToList();
+
+                rows = employees.Count();
                 
-                queryable.ForEachAsync(x => db.Entry(x).Reference(r => r.Role).Load());
-                rows = queryable.Count();
-                
-                return queryable.ToList();
+                return employees;
             }
         }
 
@@ -55,12 +54,8 @@ namespace StretchCeilings.Repositories
         {
             using (var db = new StretchCeilingsContext())
             {
-                var user = db.Employees.FirstOrDefault(x => x.Login == login && x.Password == password && x.DeletedDate == null);
-                
-                if (user != null)
-                    db.Entry(user).Reference(x=>x.Role).Load();
-                
-                return user;
+                return db.Employees.Include(x => x.Role)
+                    .First(x => x.Login == login && x.Password == password && x.DeletedDate == null);
             }
         }
     }

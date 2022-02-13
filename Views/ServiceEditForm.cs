@@ -6,7 +6,6 @@ using StretchCeilings.Extensions;
 using StretchCeilings.Extensions.Controls;
 using StretchCeilings.Helpers;
 using StretchCeilings.Models;
-using StretchCeilings.Models.Enums;
 using StretchCeilings.Repositories;
 using StretchCeilings.Structs;
 using StretchCeilings.Views.Enums;

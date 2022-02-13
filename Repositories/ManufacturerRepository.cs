@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using StretchCeilings.DataAccess;
 using StretchCeilings.Models;
@@ -12,13 +13,14 @@ namespace StretchCeilings.Repositories
         {
             using (var db = new StretchCeilingsContext())
             {
-                var queryable = db.Manufacturers.Where(x => x.DeletedDate == null);
-                rows = 0;
+                var queryable = db.Manufacturers.Where(x => x.DeletedDate == null)
+                    .AsEnumerable();
 
-                if (queryable.Any()) 
-                    rows = queryable.Count();
+                var manufacturers = queryable.ToList();
 
-                return queryable.ToList();
+                rows = manufacturers.Count();
+
+                return manufacturers;
             }
         }
 
@@ -26,26 +28,26 @@ namespace StretchCeilings.Repositories
         {
             using (var db = new StretchCeilingsContext())
             {
-                var queryable = db.Manufacturers.Where(x => x.DeletedDate == null);
-                rows = 0;
+                var enumerable = db.Manufacturers.Where(x => x.DeletedDate == null)
+                    .AsEnumerable();
 
                 if (filter.Id != 0)
-                    queryable = queryable.Where(x => x.Id == filter.Id);
+                    enumerable = enumerable.Where(x => x.Id == filter.Id);
                 
                 if (filter.Address != null)
-                    queryable =  queryable.Where(x => x.Address == filter.Address);
+                    enumerable =  enumerable.Where(x => x.Address.IndexOf(filter.Address, StringComparison.OrdinalIgnoreCase) > -1);
 
                 if (filter.Country != Country.Unknown)
-                    queryable = queryable.Where(x => x.Country == filter.Country);
+                    enumerable = enumerable.Where(x => x.Country == filter.Country);
 
                 if (filter.Name != null)
-                    queryable = queryable.Where(x => x.Name == filter.Name);
-                
-                if (queryable.Any() == false) 
-                    return queryable.ToList();
+                    enumerable = enumerable.Where(x => x.Name.IndexOf(filter.Name, StringComparison.OrdinalIgnoreCase) > -1);
 
-                rows = queryable.Count();
-                return queryable.ToList().Skip((page - 1) * count).Take(count).ToList();
+                var manufacturers = enumerable.ToList();
+
+                rows = manufacturers.Count();
+
+                return manufacturers.Skip((page - 1) * count).Take(count).ToList();
             }
         }
 

@@ -11,13 +11,14 @@ namespace StretchCeilings.Repositories
         {
             using (var db = new StretchCeilingsContext())
             {
-                var queryable = db.AdditionalServices.Where(o => o.DeletedDate == null);
-                rows = 0;
+                var enumerable = db.AdditionalServices.Where(o => o.DeletedDate == null)
+                    .AsEnumerable();
+
+                var additionalServices = enumerable.ToList();
+
+                rows = additionalServices.Count();
                 
-                if (queryable.Any())
-                    rows = queryable.Count();
-                
-                return queryable.ToList();
+                return additionalServices;
             }
         }
 
@@ -25,31 +26,29 @@ namespace StretchCeilings.Repositories
         {
             using (var db = new StretchCeilingsContext())
             {
-                var queryable = db.AdditionalServices.Where(s => s.DeletedDate == null);
-                rows = 0;
+                var enumerable = db.AdditionalServices.Where(s => s.DeletedDate == null)
+                    .AsEnumerable();
 
                 if (firstFilter.Id != 0)
-                    queryable = queryable.Where(s => s.Id == firstFilter.Id);
+                    enumerable = enumerable.Where(s => s.Id == firstFilter.Id);
 
                 if (firstFilter.Price != null && secondsFilter.Price != null)
-                    queryable = queryable.Where(s => firstFilter.Price <= s.Price && s.Price <= secondsFilter.Price);
+                    enumerable = enumerable.Where(s => firstFilter.Price <= s.Price && s.Price <= secondsFilter.Price);
                 
                 if (firstFilter.Price != null)
-                    queryable = queryable.Where(s => firstFilter.Price <= s.Price);
+                    enumerable = enumerable.Where(s => firstFilter.Price <= s.Price);
                 
                 if (secondsFilter.Price != null)
-                    queryable = queryable.Where(s => s.Price <= secondsFilter.Price);
+                    enumerable = enumerable.Where(s => s.Price <= secondsFilter.Price);
 
                 if (firstFilter.Name != null)
-                    queryable = queryable.Where(s => s.Name == firstFilter.Name);
-                
-                
-                if (queryable.Any() == false)
-                    return queryable.ToList();
-                
-                rows = queryable.Count();
+                    enumerable = enumerable.Where(s => s.Name == firstFilter.Name);
 
-                return queryable.ToList().Skip((page - 1) * count).Take(count).ToList();
+                var additionalServices = enumerable.ToList();
+
+                rows = additionalServices.Count();
+
+                return additionalServices.Skip((page - 1) * count).Take(count).ToList();
             }
         }
 
@@ -57,9 +56,7 @@ namespace StretchCeilings.Repositories
         {
             using (var db = new StretchCeilingsContext())
             {
-                var additionalService = db.AdditionalServices.FirstOrDefault(o => o.Id == id);
-
-                return additionalService;
+                return db.AdditionalServices.Find(id);
             }
         }
     }

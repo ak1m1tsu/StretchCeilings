@@ -12,19 +12,17 @@ namespace StretchCeilings.Repositories
         {
             using (var db = new StretchCeilingsContext())
             {
-                var services = db.Services.Where(o => o.DeletedDate == null);
-                rows = 0;
+                var enumerable = db.Services.Where(o => o.DeletedDate == null)
+                    .Include(x => x.Ceiling)
+                    .Include(x => x.Manufacturer)
+                    .Include(x => x.Room)
+                    .AsEnumerable();
 
-                if (!services.Any()) 
-                    return services.ToList();
-
-                services.ForEachAsync(s => db.Entry(s).Reference(r => r.Ceiling).Load());
-                services.ForEachAsync(s => db.Entry(s).Reference(r => r.Manufacturer).Load());
-                services.ForEachAsync(s => db.Entry(s).Reference(r => r.Room).Load());
+                var services = enumerable.ToList();
 
                 rows = services.Count();
 
-                return services.ToList();
+                return services;
             }
         }
 
@@ -32,39 +30,35 @@ namespace StretchCeilings.Repositories
         {
             using (var db = new StretchCeilingsContext())
             {
-                var services = db.Services.Where(o => o.DeletedDate == null);
-                rows = 0;
-
+                var enumerable = db.Services.Where(o => o.DeletedDate == null)
+                    .Include(x => x.Ceiling)
+                    .Include(x => x.Manufacturer)
+                    .Include(x => x.Room)
+                    .AsEnumerable();
+                
                 if (firstFilter.Id != 0)
-                    services = services.Where(x => x.Id == firstFilter.Id);
+                    enumerable = enumerable.Where(x => x.Id == firstFilter.Id);
 
                 if (firstFilter.Price != null && secondFilter.Price != null)
-                    services = services.Where(x => firstFilter.Price <= x.Price && x.Price <= secondFilter.Price);
+                    enumerable = enumerable.Where(x => firstFilter.Price <= x.Price && x.Price <= secondFilter.Price);
 
                 if (firstFilter.Price != null)
-                    services = services.Where(x => firstFilter.Price <= x.Price);
+                    enumerable = enumerable.Where(x => firstFilter.Price <= x.Price);
 
                 if (secondFilter.Price != null)
-                    services = services.Where(x => x.Price <= secondFilter.Price);
+                    enumerable = enumerable.Where(x => x.Price <= secondFilter.Price);
 
                 if (firstFilter.ManufacturerId != null)
-                    services = services.Where(x => x.ManufacturerId == firstFilter.ManufacturerId);
+                    enumerable = enumerable.Where(x => x.Manufacturer.Id == firstFilter.ManufacturerId);
 
                 if (firstFilter.CeilingId != null)
-                    services = services.Where(x => x.CeilingId == firstFilter.CeilingId);
-                
-                if (!services.Any())
-                    return services.ToList();
+                    enumerable = enumerable.Where(x => x.Ceiling.Id == firstFilter.CeilingId);
 
-                services.ForEachAsync(s => db.Entry(s).Reference(r => r.Ceiling).Load());
-                services.ForEachAsync(s => db.Entry(s).Reference(r => r.Manufacturer).Load());
-                services.ForEachAsync(s => db.Entry(s).Reference(r => r.Room).Load());
+                var services = enumerable.ToList();
 
+                rows = services.Count;
 
-                rows = services.Count();
-
-                return services.ToList().Skip((page - 1) * count).Take(count).ToList();
-
+                return services.Skip((page - 1) * count).Take(count).ToList();
             }
         }
     }

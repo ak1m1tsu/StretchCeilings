@@ -12,13 +12,14 @@ namespace StretchCeilings.Repositories
         {
             using (var db = new StretchCeilingsContext())
             {
-                var queryable = db.Customers.Where(x => x.DeletedDate == null);
-                rows = 0;
+                var enumerable = db.Customers.Where(x => x.DeletedDate == null)
+                    .AsEnumerable();
 
-                if (queryable.Any())
-                    rows = queryable.Count();
+                var customers = enumerable.ToList();
 
-                return queryable.ToList();
+                rows = customers.Count();
+
+                return customers.ToList();
             }
         }
 
@@ -26,23 +27,23 @@ namespace StretchCeilings.Repositories
         {
             using (var db = new StretchCeilingsContext())
             {
-                var queryable = db.Customers.Where(x => x.DeletedDate == null);
-                rows = 0;
+                var enumerable = db.Customers.Where(x => x.DeletedDate == null)
+                    .AsEnumerable();
 
                 if (filter.Id != 0)
-                    queryable = queryable.Where(x => x.Id == filter.Id);
+                    enumerable = enumerable.Where(x => x.Id == filter.Id);
 
-                if (filter.FullName != null)
-                    queryable = queryable.Where(x => x.FullName == filter.FullName);
-
-                if (filter.PhoneNumber != null)
-                    queryable = queryable.Where(x => x.PhoneNumber == filter.PhoneNumber);
+                if (string.IsNullOrEmpty(filter.FullName) == false)
+                    enumerable = enumerable.Where(x => x.FullName.IndexOf(filter.FullName, StringComparison.OrdinalIgnoreCase) > -1);
                 
-                if (!queryable.Any())
-                    return queryable.ToList();
+                if (string.IsNullOrEmpty(filter.PhoneNumber) == false)
+                    enumerable = enumerable.Where(x => x.PhoneNumber == filter.PhoneNumber);
 
-                rows = queryable.Count();
-                return queryable.ToList().Skip((page - 1) * count).Take(count).ToList();
+                var customers = enumerable.ToList();
+                
+                rows = customers.Count();
+
+                return customers.Skip((page - 1) * count).Take(count).ToList();
             }
         }
 

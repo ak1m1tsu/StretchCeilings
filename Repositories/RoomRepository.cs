@@ -12,14 +12,12 @@ namespace StretchCeilings.Repositories
         {
             using (var db = new StretchCeilingsContext())
             {
-                var rooms = db.CustomersRooms.Where(x => x.DeletedDate == null);
-                rows = 0;
+                var enumerable = db.CustomersRooms.Where(x => x.DeletedDate == null)
+                    .Include(x => x.Estate)
+                    .AsEnumerable();
 
-                if (rooms.Any() == false)
-                    return rooms.ToList();
+                var rooms = enumerable.ToList();
 
-                rooms.ForEachAsync(r => db.Entry(r).Reference(re => re.Estate).Load());
-                rooms.ForEachAsync(r => db.Entry(r?.Estate).Reference(re => re.Customer).Load());
                 rows = rooms.Count();
 
                 return rooms.ToList();
@@ -30,23 +28,22 @@ namespace StretchCeilings.Repositories
         {
             using (var db = new StretchCeilingsContext())
             {
-                var rooms = db.CustomersRooms.Where(x => x.DeletedDate == null);
-                rows = 0;
-
+                var enumerable = db.CustomersRooms.Where(x => x.DeletedDate == null)
+                    .Include(x => x.Estate)
+                    .Include(x => x.Estate.Customer)
+                    .AsEnumerable();
+                
                 if (estate != null)
-                    rooms = rooms.Where(x => x.EstateId == estate.Id);
+                    enumerable = enumerable.Where(x => x.Estate.Id == estate.Id);
 
                 if (customer != null)
-                    rooms = rooms.Where(x => x.Estate.CustomerId == customer.Id);
+                    enumerable = enumerable.Where(x => x.Estate.Customer.Id == customer.Id);
 
-                if (rooms.Any() == false)
-                    return rooms.ToList();
+                var rooms = enumerable.ToList();
 
                 rows = rooms.Count();
-                rooms.ForEachAsync(r => db.Entry(r).Reference(re => re.Estate).Load());
-                rooms.ForEachAsync(r => db.Entry(r.Estate).Reference(re => re.Customer).Load());
 
-                return rooms.ToList().Skip((page - 1) * count).Take(count).ToList();
+                return rooms.Skip((page - 1) * count).Take(count).ToList();
             }
         }
     }
