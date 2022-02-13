@@ -7,6 +7,7 @@ using StretchCeilings.Models;
 using StretchCeilings.Models.Enums;
 using StretchCeilings.Sessions;
 using StretchCeilings.Structs;
+using StretchCeilings.Views.Enums;
 
 namespace StretchCeilings.Views
 {
@@ -92,7 +93,7 @@ namespace StretchCeilings.Views
             if (e.RowIndex < 0)
                 return;
 
-            var index = (int)dgvEstates.Rows[e.RowIndex].Cells[0].Value;
+            var index = Convert.ToInt32(dgvEstates.Rows[e.RowIndex].Cells[0].Value);
             var estate = _estates[index - 1];
             new EstateForm(estate).ShowDialog();
         }

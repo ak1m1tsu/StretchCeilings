@@ -11,6 +11,7 @@ using StretchCeilings.Repositories;
 using StretchCeilings.Sessions;
 using StretchCeilings.Structs;
 using StretchCeilings.Views.Controls;
+using StretchCeilings.Views.Enums;
 
 namespace StretchCeilings.Views
 {
@@ -63,8 +64,6 @@ namespace StretchCeilings.Views
         private void SetupControls()
         {
             _roles = new List<ComboBoxItem>();
-            
-            nudId.Maximum = decimal.MaxValue;
 
             foreach (var role in RoleRepository.GetAll())
             {
@@ -188,25 +187,17 @@ namespace StretchCeilings.Views
         private void ResetFilters(object sender, EventArgs e)
         {
             _filter = new Employee();
-
-            nudId.Value = Resources.DefaultNumericUpDownValue;
+            
             tbFullName.Text = Resources.DefaultTextBoxText;
             cbRole.SelectedItem = null;
 
             _currentPage = 1;
-
+            _lastPage = 1;
+            
             FilterEmployeesGrid();
             FlatMessageBox.ShowDialog("Значение фильтров сброшено до стандартных", Caption.Info);
         }
-
-
-        private void RowCountChanged(object sender, EventArgs e)
-        {
-            _currentPage = 1;
-            _count = Convert.ToInt32(cbRows.SelectedItem);
-            FilterEmployeesGrid();
-        }
-
+        
         private void ShowPreviousPage(object sender, EventArgs e)
         {
             if (_currentPage <= 1)
@@ -224,15 +215,10 @@ namespace StretchCeilings.Views
             _currentPage++;
             FilterEmployeesGrid();
         }
-
-        private void IdChanged(object sender, EventArgs e)
-        {
-            _filter.Id = Convert.ToInt32(nudId.Value);
-        }
-
+        
         private void FullNameChanged(object sender, EventArgs e)
         {
-            if(tbFullName.Text != "")
+            if(string.IsNullOrEmpty(tbFullName.Text) == false)
                 _filter.FullName = tbFullName.Text;
         }
 
@@ -244,13 +230,13 @@ namespace StretchCeilings.Views
                 senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn == false)
                 return;
 
-            if (FlatMessageBox.ShowDialog("Вы уверены что хотите удалить сотрудника?", Caption.Warning) != DialogResult.OK)
+            if (FlatMessageBox.ShowDialog("Вы уверены что хотите удалить сотрудника?", Caption.Warning, MessageBoxState.Question) != DialogResult.Yes)
                 return;
 
             var index = Convert.ToInt32(dgvEmployees.Rows[e.RowIndex].Cells[0].Value);
             var employee = _employees[index - 1];
-
             employee.Delete();
+            _currentPage = 1;
 
             FilterEmployeesGrid();
             FlatMessageBox.ShowDialog("Сотрудник успешно удален.", Caption.Info);
@@ -286,7 +272,14 @@ namespace StretchCeilings.Views
 
         private void DragMove(object sender, MouseEventArgs e)
         {
-            this.Handle.DragMove(e);
+            Handle.DragMove(e);
+        }
+
+        private void RowCountChanged(object sender, EventArgs e)
+        {
+            _currentPage = 1;
+            _count = Convert.ToInt32(cbRows.SelectedItem);
+            FilterEmployeesGrid();
         }
     }
 }

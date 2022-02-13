@@ -1,4 +1,4 @@
-﻿namespace StretchCeilings.Models.Enums
+﻿namespace StretchCeilings.Views.Enums
 {
     public enum FormState
     {

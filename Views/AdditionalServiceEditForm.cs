@@ -2,18 +2,24 @@
 using System.Windows.Forms;
 using StretchCeilings.Extensions;
 using StretchCeilings.Models;
+using StretchCeilings.Structs;
 
 namespace StretchCeilings.Views
 {
     public partial class AdditionalServiceEditForm : Form
     {
         private readonly AdditionalService _additionalService;
-        private readonly bool _isNew;
 
-        public AdditionalServiceEditForm(AdditionalService service, bool isNew = false)
+        public AdditionalServiceEditForm(AdditionalService service = null)
         {
             _additionalService = service;
-            _isNew = isNew;
+
+            if (_additionalService == null)
+            {
+                _additionalService = new AdditionalService();
+                _additionalService.Add();
+            }
+
             InitializeComponent();
         }
 
@@ -25,28 +31,46 @@ namespace StretchCeilings.Views
             tbName.Text = _additionalService.Name;
         }
 
-        private void SaveChanges()
+        private bool CanUpdate()
+        {
+            var can = true;
+
+            if (string.IsNullOrWhiteSpace(tbName.Text))
+            {
+                errorProvider.SetError(tbName, Resources.RequiredToFill);
+                can = false;
+            }
+
+            if (nudPrice.Value < 0)
+            {
+                errorProvider.SetError(nudPrice, Resources.RequiredToFill);
+                can = false;
+            }
+
+            return can;
+        }
+
+        private void UpdateFields()
         {
             _additionalService.Name = tbName.Text;
             _additionalService.Price = nudPrice.Value;
+        }
 
-            if (_isNew)
+        private void UpdateData(object sender, EventArgs e)
+        {
+            if (CanUpdate() == false)
             {
-                _additionalService.Add();
+                FlatMessageBox.ShowDialog(Resources.ControlsEmpty, Caption.Error);
+                return;
             }
-            else
-            {
-                _additionalService.Update();
-            }
+
+            UpdateFields();
+            _additionalService.Update();
+
             DialogResult = DialogResult.OK;
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            SaveChanges();
-        }
-
-        private void AdditionalServiceFormEdit_Load(object sender, EventArgs e)
+        private void LoadForm(object sender, EventArgs e)
         {
             SetUpForm();
         }

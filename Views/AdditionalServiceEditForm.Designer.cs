@@ -29,6 +29,8 @@ namespace StretchCeilings.Views
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdditionalServiceEditForm));
             this.btnSave = new System.Windows.Forms.Button();
             this.lblPrice = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
@@ -36,8 +38,10 @@ namespace StretchCeilings.Views
             this.nudPrice = new System.Windows.Forms.NumericUpDown();
             this.panelTop = new System.Windows.Forms.Panel();
             this.btnClose = new FontAwesome.Sharp.IconButton();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.nudPrice)).BeginInit();
             this.panelTop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSave
@@ -53,7 +57,7 @@ namespace StretchCeilings.Views
             this.btnSave.TabIndex = 70;
             this.btnSave.Text = "Сохранить";
             this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnSave.Click += new System.EventHandler(this.UpdateData);
             // 
             // lblPrice
             // 
@@ -85,7 +89,7 @@ namespace StretchCeilings.Views
             this.tbName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.tbName.Location = new System.Drawing.Point(96, 30);
             this.tbName.Name = "tbName";
-            this.tbName.Size = new System.Drawing.Size(275, 29);
+            this.tbName.Size = new System.Drawing.Size(272, 29);
             this.tbName.TabIndex = 71;
             // 
             // nudPrice
@@ -128,6 +132,11 @@ namespace StretchCeilings.Views
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            this.errorProvider.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider.Icon")));
+            // 
             // AdditionalServiceEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -143,9 +152,10 @@ namespace StretchCeilings.Views
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AdditionalServiceEditForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Load += new System.EventHandler(this.AdditionalServiceFormEdit_Load);
+            this.Load += new System.EventHandler(this.LoadForm);
             ((System.ComponentModel.ISupportInitialize)(this.nudPrice)).EndInit();
             this.panelTop.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -160,5 +170,6 @@ namespace StretchCeilings.Views
         private System.Windows.Forms.NumericUpDown nudPrice;
         private System.Windows.Forms.Panel panelTop;
         private FontAwesome.Sharp.IconButton btnClose;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

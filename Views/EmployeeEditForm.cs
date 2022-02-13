@@ -10,6 +10,7 @@ using StretchCeilings.Models;
 using StretchCeilings.Repositories;
 using StretchCeilings.Sessions;
 using StretchCeilings.Structs;
+using StretchCeilings.Views.Enums;
 
 namespace StretchCeilings.Views
 {
@@ -165,10 +166,10 @@ namespace StretchCeilings.Views
             _addedTables.AddRange(form.TimeTables);
 
             var rows = dgvTimeTable.Rows.Count;
-            var tablesToRemove = (from table in _tables
-                from formTimeTable in _addedTables
-                where table.Date == formTimeTable.Date
-                select formTimeTable).ToList();
+            var tablesToRemove = _tables
+                .SelectMany(table => _addedTables, (table, formTimeTable) => new { table, formTimeTable })
+                .Where(@t => @t.table.Date == @t.formTimeTable.Date)
+                .Select(@t => @t.formTimeTable).ToList();
 
             foreach (var table in tablesToRemove.Where(table => _addedTables.Contains(table)))
             {
@@ -188,14 +189,21 @@ namespace StretchCeilings.Views
 
         private void RemoveGridData(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0 || e.ColumnIndex != dgvTimeTable.Columns[Resources.Space]?.Index) return;
+            var senderGrid = (DataGridView)sender;
 
-            var tableId = (int)dgvTimeTable.SelectedRows[0].Cells[Resources.Number].Value;
-            var timeTable = _addedTables?.FirstOrDefault(x => x.Id == tableId) ??
-                            _tables.FirstOrDefault(x => x.Id == tableId);
+            if (e.RowIndex < 0 ||
+                senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn == false)
+                return;
+
+            if (FlatMessageBox.ShowDialog("Вы уверены что хотите удалить этот рабочий день?", Caption.Warning, MessageBoxState.Question) != DialogResult.Yes)
+                return;
+
+            var index = Convert.ToInt32(dgvTimeTable.SelectedRows[0].Cells[Resources.Number].Value);
+            var timeTable = _addedTables[index - 1] ?? _tables[index - 1];
 
             _deletedTables.Add(timeTable);
             dgvTimeTable.Rows.RemoveAt(e.RowIndex);
+            FlatMessageBox.ShowDialog("Рабочий день успешно удален", Caption.Info);
         }
 
         private void UpdateEmployeeData(object sender, EventArgs e)

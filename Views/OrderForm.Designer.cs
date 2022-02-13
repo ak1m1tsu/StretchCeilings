@@ -41,7 +41,7 @@ namespace StretchCeilings.Views
             this.lblDatePaidValue = new System.Windows.Forms.Label();
             this.lblDateOfMeasurementsValue = new System.Windows.Forms.Label();
             this.lblDatePlacedValue = new System.Windows.Forms.Label();
-            this.linkLblCustomer = new System.Windows.Forms.LinkLabel();
+            this.linkCustomer = new System.Windows.Forms.LinkLabel();
             this.lblStatus = new System.Windows.Forms.Label();
             this.lblDateCanceledValue = new System.Windows.Forms.Label();
             this.lblDateCanceled = new System.Windows.Forms.Label();
@@ -123,7 +123,7 @@ namespace StretchCeilings.Views
             this.tpInfo.Controls.Add(this.lblDatePaidValue);
             this.tpInfo.Controls.Add(this.lblDateOfMeasurementsValue);
             this.tpInfo.Controls.Add(this.lblDatePlacedValue);
-            this.tpInfo.Controls.Add(this.linkLblCustomer);
+            this.tpInfo.Controls.Add(this.linkCustomer);
             this.tpInfo.Controls.Add(this.lblStatus);
             this.tpInfo.Controls.Add(this.lblDateCanceledValue);
             this.tpInfo.Controls.Add(this.lblDateCanceled);
@@ -224,19 +224,19 @@ namespace StretchCeilings.Views
             this.lblDatePlacedValue.TabIndex = 71;
             this.lblDatePlacedValue.Text = "Нет";
             // 
-            // linkLblCustomer
+            // linkCustomer
             // 
-            this.linkLblCustomer.AutoSize = true;
-            this.linkLblCustomer.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.linkLblCustomer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.linkLblCustomer.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.linkLblCustomer.Location = new System.Drawing.Point(187, 5);
-            this.linkLblCustomer.Name = "linkLblCustomer";
-            this.linkLblCustomer.Size = new System.Drawing.Size(39, 23);
-            this.linkLblCustomer.TabIndex = 70;
-            this.linkLblCustomer.TabStop = true;
-            this.linkLblCustomer.Text = "Нет";
-            this.linkLblCustomer.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ShowCustomer);
+            this.linkCustomer.AutoSize = true;
+            this.linkCustomer.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.linkCustomer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.linkCustomer.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.linkCustomer.Location = new System.Drawing.Point(187, 5);
+            this.linkCustomer.Name = "linkCustomer";
+            this.linkCustomer.Size = new System.Drawing.Size(39, 23);
+            this.linkCustomer.TabIndex = 70;
+            this.linkCustomer.TabStop = true;
+            this.linkCustomer.Text = "Нет";
+            this.linkCustomer.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ShowCustomer);
             // 
             // lblStatus
             // 
@@ -510,7 +510,7 @@ namespace StretchCeilings.Views
         private System.Windows.Forms.Label lblDatePaidValue;
         private System.Windows.Forms.Label lblDateOfMeasurementsValue;
         private System.Windows.Forms.Label lblDatePlacedValue;
-        private System.Windows.Forms.LinkLabel linkLblCustomer;
+        private System.Windows.Forms.LinkLabel linkCustomer;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Label lblDateCanceledValue;
         private System.Windows.Forms.Label lblDateCanceled;

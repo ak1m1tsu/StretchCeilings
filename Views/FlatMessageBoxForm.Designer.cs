@@ -1,7 +1,7 @@
 ﻿
 namespace StretchCeilings.Views
 {
-    partial class CustomMessageBoxForm
+    partial class FlatMessageBoxForm
     {
         /// <summary>
         /// Required designer variable.
@@ -36,7 +36,9 @@ namespace StretchCeilings.Views
             this.panelMessage = new System.Windows.Forms.Panel();
             this.lblMessage = new System.Windows.Forms.Label();
             this.panelBtns = new System.Windows.Forms.Panel();
-            this.btnAccept = new System.Windows.Forms.Button();
+            this.btnNo = new System.Windows.Forms.Button();
+            this.btnOk = new System.Windows.Forms.Button();
+            this.btnYes = new System.Windows.Forms.Button();
             this.panelTop.SuspendLayout();
             this.panelBody.SuspendLayout();
             this.panelMessage.SuspendLayout();
@@ -50,19 +52,20 @@ namespace StretchCeilings.Views
             this.panelTop.Controls.Add(this.btnCloseForm);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Location = new System.Drawing.Point(0, 0);
+            this.panelTop.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(384, 25);
+            this.panelTop.Size = new System.Drawing.Size(400, 25);
             this.panelTop.TabIndex = 7;
             this.panelTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DragMove);
             // 
             // lblCaption
             // 
             this.lblCaption.AutoSize = true;
-            this.lblCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblCaption.Font = new System.Drawing.Font("Open Sans SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.lblCaption.Location = new System.Drawing.Point(3, 2);
+            this.lblCaption.Location = new System.Drawing.Point(4, 3);
             this.lblCaption.Name = "lblCaption";
-            this.lblCaption.Size = new System.Drawing.Size(0, 20);
+            this.lblCaption.Size = new System.Drawing.Size(0, 23);
             this.lblCaption.TabIndex = 2;
             // 
             // btnCloseForm
@@ -74,9 +77,10 @@ namespace StretchCeilings.Views
             this.btnCloseForm.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.btnCloseForm.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnCloseForm.IconSize = 25;
-            this.btnCloseForm.Location = new System.Drawing.Point(359, 0);
+            this.btnCloseForm.Location = new System.Drawing.Point(370, 0);
+            this.btnCloseForm.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCloseForm.Name = "btnCloseForm";
-            this.btnCloseForm.Size = new System.Drawing.Size(25, 25);
+            this.btnCloseForm.Size = new System.Drawing.Size(30, 25);
             this.btnCloseForm.TabIndex = 1;
             this.btnCloseForm.UseVisualStyleBackColor = true;
             // 
@@ -87,8 +91,9 @@ namespace StretchCeilings.Views
             this.panelBody.Controls.Add(this.panelBtns);
             this.panelBody.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelBody.Location = new System.Drawing.Point(0, 25);
+            this.panelBody.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelBody.Name = "panelBody";
-            this.panelBody.Size = new System.Drawing.Size(384, 136);
+            this.panelBody.Size = new System.Drawing.Size(400, 125);
             this.panelBody.TabIndex = 8;
             // 
             // panelMessage
@@ -96,56 +101,95 @@ namespace StretchCeilings.Views
             this.panelMessage.Controls.Add(this.lblMessage);
             this.panelMessage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMessage.Location = new System.Drawing.Point(0, 0);
+            this.panelMessage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelMessage.Name = "panelMessage";
-            this.panelMessage.Size = new System.Drawing.Size(384, 96);
+            this.panelMessage.Size = new System.Drawing.Size(400, 85);
             this.panelMessage.TabIndex = 1;
             // 
             // lblMessage
             // 
             this.lblMessage.AutoSize = true;
-            this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblMessage.Font = new System.Drawing.Font("Open Sans SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblMessage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.lblMessage.Location = new System.Drawing.Point(17, 38);
+            this.lblMessage.Location = new System.Drawing.Point(8, 26);
             this.lblMessage.MaximumSize = new System.Drawing.Size(350, 0);
-            this.lblMessage.MinimumSize = new System.Drawing.Size(350, 0);
+            this.lblMessage.MinimumSize = new System.Drawing.Size(380, 0);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(350, 20);
+            this.lblMessage.Size = new System.Drawing.Size(380, 23);
             this.lblMessage.TabIndex = 3;
             this.lblMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panelBtns
             // 
-            this.panelBtns.Controls.Add(this.btnAccept);
+            this.panelBtns.Controls.Add(this.btnNo);
+            this.panelBtns.Controls.Add(this.btnOk);
+            this.panelBtns.Controls.Add(this.btnYes);
             this.panelBtns.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelBtns.Location = new System.Drawing.Point(0, 96);
+            this.panelBtns.Location = new System.Drawing.Point(0, 85);
+            this.panelBtns.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelBtns.Name = "panelBtns";
-            this.panelBtns.Size = new System.Drawing.Size(384, 40);
+            this.panelBtns.Size = new System.Drawing.Size(400, 40);
             this.panelBtns.TabIndex = 0;
             // 
-            // btnAccept
+            // btnNo
             // 
-            this.btnAccept.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
-            this.btnAccept.FlatAppearance.BorderSize = 0;
-            this.btnAccept.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAccept.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.btnAccept.ForeColor = System.Drawing.Color.White;
-            this.btnAccept.Location = new System.Drawing.Point(134, 5);
-            this.btnAccept.Name = "btnAccept";
-            this.btnAccept.Size = new System.Drawing.Size(120, 30);
-            this.btnAccept.TabIndex = 76;
-            this.btnAccept.Text = "ОК";
-            this.btnAccept.UseVisualStyleBackColor = false;
+            this.btnNo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.btnNo.FlatAppearance.BorderSize = 0;
+            this.btnNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNo.Font = new System.Drawing.Font("Open Sans SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnNo.ForeColor = System.Drawing.Color.White;
+            this.btnNo.Location = new System.Drawing.Point(297, 4);
+            this.btnNo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnNo.Name = "btnNo";
+            this.btnNo.Size = new System.Drawing.Size(100, 30);
+            this.btnNo.TabIndex = 77;
+            this.btnNo.Text = "Нет";
+            this.btnNo.UseVisualStyleBackColor = false;
+            this.btnNo.Visible = false;
             // 
-            // CustomMessageBoxForm
+            // btnOk
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.btnOk.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.btnOk.FlatAppearance.BorderSize = 0;
+            this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOk.Font = new System.Drawing.Font("Open Sans SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnOk.ForeColor = System.Drawing.Color.White;
+            this.btnOk.Location = new System.Drawing.Point(150, 4);
+            this.btnOk.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(100, 30);
+            this.btnOk.TabIndex = 76;
+            this.btnOk.Text = "ОК";
+            this.btnOk.UseVisualStyleBackColor = false;
+            // 
+            // btnYes
+            // 
+            this.btnYes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.btnYes.FlatAppearance.BorderSize = 0;
+            this.btnYes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnYes.Font = new System.Drawing.Font("Open Sans SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnYes.ForeColor = System.Drawing.Color.White;
+            this.btnYes.Location = new System.Drawing.Point(191, 4);
+            this.btnYes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnYes.Name = "btnYes";
+            this.btnYes.Size = new System.Drawing.Size(100, 30);
+            this.btnYes.TabIndex = 78;
+            this.btnYes.Text = "Да";
+            this.btnYes.UseVisualStyleBackColor = false;
+            this.btnYes.Visible = false;
+            // 
+            // FlatMessageBoxForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(42)))), ((int)(((byte)(54)))));
-            this.ClientSize = new System.Drawing.Size(384, 161);
+            this.ClientSize = new System.Drawing.Size(400, 150);
             this.Controls.Add(this.panelBody);
             this.Controls.Add(this.panelTop);
+            this.Font = new System.Drawing.Font("Open Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "CustomMessageBoxForm";
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Name = "FlatMessageBoxForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
@@ -165,7 +209,9 @@ namespace StretchCeilings.Views
         private System.Windows.Forms.Label lblCaption;
         private System.Windows.Forms.Panel panelMessage;
         private System.Windows.Forms.Panel panelBtns;
-        private System.Windows.Forms.Button btnAccept;
         private System.Windows.Forms.Label lblMessage;
+        private System.Windows.Forms.Button btnNo;
+        private System.Windows.Forms.Button btnOk;
+        private System.Windows.Forms.Button btnYes;
     }
 }

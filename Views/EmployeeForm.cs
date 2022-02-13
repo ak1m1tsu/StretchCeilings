@@ -7,6 +7,7 @@ using StretchCeilings.Models;
 using StretchCeilings.Models.Enums;
 using StretchCeilings.Sessions;
 using StretchCeilings.Structs;
+using StretchCeilings.Views.Enums;
 
 namespace StretchCeilings.Views
 {
@@ -95,12 +96,12 @@ namespace StretchCeilings.Views
 
         private void DragMove(object sender, MouseEventArgs e)
         {
-            this.Handle.DragMove(e);
+            Handle.DragMove(e);
         }
 
         private void ShowEditForm(object sender, EventArgs e)
         {
-            this.Hide();
+            Hide();
 
             var form = new EmployeeEditForm(_employee);
 
@@ -111,7 +112,7 @@ namespace StretchCeilings.Views
                 FillDataGrid();
             }
 
-            this.Show();
+            Show();
         }
     }
 }

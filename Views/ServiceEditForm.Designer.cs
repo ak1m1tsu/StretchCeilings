@@ -34,9 +34,9 @@ namespace StretchCeilings.Views
             this.panelTop = new System.Windows.Forms.Panel();
             this.btnClose = new FontAwesome.Sharp.IconButton();
             this.panelMainInfo = new System.Windows.Forms.Panel();
-            this.linkLblRoom = new System.Windows.Forms.LinkLabel();
+            this.linkRoom = new System.Windows.Forms.LinkLabel();
             this.lblRoom = new System.Windows.Forms.Label();
-            this.linkLblManufacturer = new System.Windows.Forms.LinkLabel();
+            this.linkManufacturer = new System.Windows.Forms.LinkLabel();
             this.btnSave = new System.Windows.Forms.Button();
             this.cbCeiling = new System.Windows.Forms.ComboBox();
             this.lblPriceValue = new System.Windows.Forms.Label();
@@ -88,9 +88,9 @@ namespace StretchCeilings.Views
             // 
             // panelMainInfo
             // 
-            this.panelMainInfo.Controls.Add(this.linkLblRoom);
+            this.panelMainInfo.Controls.Add(this.linkRoom);
             this.panelMainInfo.Controls.Add(this.lblRoom);
-            this.panelMainInfo.Controls.Add(this.linkLblManufacturer);
+            this.panelMainInfo.Controls.Add(this.linkManufacturer);
             this.panelMainInfo.Controls.Add(this.btnSave);
             this.panelMainInfo.Controls.Add(this.cbCeiling);
             this.panelMainInfo.Controls.Add(this.lblPriceValue);
@@ -103,19 +103,19 @@ namespace StretchCeilings.Views
             this.panelMainInfo.Size = new System.Drawing.Size(362, 475);
             this.panelMainInfo.TabIndex = 75;
             // 
-            // linkLblRoom
+            // linkRoom
             // 
-            this.linkLblRoom.AutoSize = true;
-            this.linkLblRoom.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.linkLblRoom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.linkLblRoom.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.linkLblRoom.Location = new System.Drawing.Point(141, 35);
-            this.linkLblRoom.Name = "linkLblRoom";
-            this.linkLblRoom.Size = new System.Drawing.Size(39, 23);
-            this.linkLblRoom.TabIndex = 101;
-            this.linkLblRoom.TabStop = true;
-            this.linkLblRoom.Text = "Нет";
-            this.linkLblRoom.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SelectRoom);
+            this.linkRoom.AutoSize = true;
+            this.linkRoom.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.linkRoom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.linkRoom.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.linkRoom.Location = new System.Drawing.Point(141, 35);
+            this.linkRoom.Name = "linkRoom";
+            this.linkRoom.Size = new System.Drawing.Size(39, 23);
+            this.linkRoom.TabIndex = 101;
+            this.linkRoom.TabStop = true;
+            this.linkRoom.Text = "Нет";
+            this.linkRoom.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SelectRoom);
             // 
             // lblRoom
             // 
@@ -128,19 +128,19 @@ namespace StretchCeilings.Views
             this.lblRoom.TabIndex = 100;
             this.lblRoom.Text = "Комната:";
             // 
-            // linkLblManufacturer
+            // linkManufacturer
             // 
-            this.linkLblManufacturer.AutoSize = true;
-            this.linkLblManufacturer.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.linkLblManufacturer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.linkLblManufacturer.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.linkLblManufacturer.Location = new System.Drawing.Point(142, 5);
-            this.linkLblManufacturer.Name = "linkLblManufacturer";
-            this.linkLblManufacturer.Size = new System.Drawing.Size(39, 23);
-            this.linkLblManufacturer.TabIndex = 99;
-            this.linkLblManufacturer.TabStop = true;
-            this.linkLblManufacturer.Text = "Нет";
-            this.linkLblManufacturer.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SelectManufacturer);
+            this.linkManufacturer.AutoSize = true;
+            this.linkManufacturer.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.linkManufacturer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.linkManufacturer.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.linkManufacturer.Location = new System.Drawing.Point(142, 5);
+            this.linkManufacturer.Name = "linkManufacturer";
+            this.linkManufacturer.Size = new System.Drawing.Size(39, 23);
+            this.linkManufacturer.TabIndex = 99;
+            this.linkManufacturer.TabStop = true;
+            this.linkManufacturer.Text = "Нет";
+            this.linkManufacturer.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SelectManufacturer);
             // 
             // btnSave
             // 
@@ -339,9 +339,9 @@ namespace StretchCeilings.Views
         private System.Windows.Forms.Button btnAddAdditServ;
         private System.Windows.Forms.Panel panelAdditServHeader;
         private System.Windows.Forms.Label lblAdditServs;
-        private System.Windows.Forms.LinkLabel linkLblManufacturer;
+        private System.Windows.Forms.LinkLabel linkManufacturer;
         private System.Windows.Forms.ErrorProvider errorProvider;
-        private System.Windows.Forms.LinkLabel linkLblRoom;
+        private System.Windows.Forms.LinkLabel linkRoom;
         private System.Windows.Forms.Label lblRoom;
     }
 }

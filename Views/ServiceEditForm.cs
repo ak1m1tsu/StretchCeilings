@@ -9,6 +9,7 @@ using StretchCeilings.Models;
 using StretchCeilings.Models.Enums;
 using StretchCeilings.Repositories;
 using StretchCeilings.Structs;
+using StretchCeilings.Views.Enums;
 
 namespace StretchCeilings.Views
 {
@@ -20,31 +21,37 @@ namespace StretchCeilings.Views
         public ServiceEditForm(Service service = null)
         {
             _service = service;
+
             if (_service == null)
             {
                 _service = new Service();
                 _service.Add();
             }
+
             InitializeComponent();
         }
 
-        private bool AreFieldsEmpty()
-        {
-            var empty = false;
+        private string PriceToString => $"{_service.Price ?? 0} руб.";
 
-            if (string.IsNullOrWhiteSpace(linkLblManufacturer.Text))
+        public Service GetService() => _service;
+
+        private bool CanUpdate()
+        {
+            var can = true;
+
+            if (string.IsNullOrWhiteSpace(linkManufacturer.Text))
             {
-                errorProvider.SetError(linkLblManufacturer, Resources.RequiredToFill);
-                empty = true;
+                errorProvider.SetError(linkManufacturer, Resources.RequiredToFill);
+                can = false;
             }
 
             if (cbCeiling.SelectedItem == null)
             {
                 errorProvider.SetError(cbCeiling, Resources.RequiredToFill);
-                empty = true;
+                can = false;
             }
 
-            return empty;
+            return can;
         }
 
         private void SetupGrid()
@@ -69,17 +76,23 @@ namespace StretchCeilings.Views
         private void SetupControls()
         {
             cbCeiling.DisplayMember = Resources.DisplayMember;
+
+            linkManufacturer.Text = _service?.Manufacturer?.Name;
+            linkRoom.Text = _service?.Room?.Type?.ParseString();
+            FillCeilingComboBox();
+            foreach (ComboBoxItem item in cbCeiling.Items)
+                if (((Ceiling)item.Tag).Id == _service?.CeilingId)
+                    cbCeiling.SelectedItem = item;
         }
 
         private void UpdateInfo(object sender, EventArgs e)
         {
-            if (AreFieldsEmpty())
+            if (CanUpdate() == false)
             {
                 FlatMessageBox.ShowDialog(Resources.ControlsEmpty, Caption.Error);
                 return;
             }
-
-            _service.CalculatePrice();
+            
             _service.Update();
 
             DialogResult = DialogResult.OK;
@@ -122,11 +135,15 @@ namespace StretchCeilings.Views
                 _additionalServices[i].Count++;
                 _additionalServices[i].Update();
                 dgvAdditServs.Rows[i].Cells["Кол-во"].Value = _additionalServices[i].Count;
+                _service.CalculatePrice();
+                lblPriceValue.Text = PriceToString;
                 return;
             }
             
             _additionalServices?.Add(additionalService);
             additionalService.Add();
+            _service.CalculatePrice();
+            lblPriceValue.Text = PriceToString;
 
             FillDataGrid();
         }
@@ -150,7 +167,9 @@ namespace StretchCeilings.Views
                 return;
             
             _service.RoomId = room.Id;
-            linkLblRoom.Text = Resources.Selected;
+            _service.CalculatePrice();
+            lblPriceValue.Text = PriceToString;
+            linkRoom.Text = room.Type?.ParseString();
         }
 
         private void SelectManufacturer(object sender, LinkLabelLinkClickedEventArgs e)
@@ -166,7 +185,7 @@ namespace StretchCeilings.Views
                 return;
 
             _service.ManufacturerId = manufacturer.Id;
-            linkLblManufacturer.Text = manufacturer.Name;
+            linkManufacturer.Text = manufacturer.Name;
 
             FillCeilingComboBox();
         }
@@ -200,7 +219,7 @@ namespace StretchCeilings.Views
                 dgvAdditServs.SelectedRows[0].Cells["Кол-во"].Value == null)
                 return;
 
-            var index = (int)dgvAdditServs.Rows[e.RowIndex].Cells[0].Value;
+            var index = Convert.ToInt32(dgvAdditServs.Rows[e.RowIndex].Cells[0].Value);
             var value = dgvAdditServs.Rows[e.RowIndex].Cells["Кол-во"].Value.ToString();
             
             if(int.TryParse(value, out var count) == false)
@@ -226,22 +245,36 @@ namespace StretchCeilings.Views
         {
             foreach (ComboBoxItem item in cbCeiling.Items)
             {
-                if (item == cbCeiling.SelectedItem)
-                    _service.CeilingId = ((Ceiling)item.Tag).Id;
+                if (item != cbCeiling.SelectedItem)
+                    continue;
+
+                _service.CeilingId = ((Ceiling)item.Tag).Id;
+                _service.CalculatePrice();
+                lblPriceValue.Text = PriceToString;
             }
         }
 
         private void RemoveGridData(object sender, DataGridViewCellEventArgs e)
         {
+            var senderGrid = (DataGridView)sender;
+
             if (e.RowIndex < 0 ||
-                e.ColumnIndex != dgvAdditServs.Columns[Resources.Space].Index)
+                senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn == false)
                 return;
 
-            var index = (int)dgvAdditServs.Rows[e.RowIndex].Cells[Resources.Number].Value;
+            if (FlatMessageBox.ShowDialog("Вы уверены что хотите удалить доп. услугу?", Caption.Warning, MessageBoxState.Question) != DialogResult.Yes)
+                return;
+
+            var index = Convert.ToInt32(dgvAdditServs.Rows[e.RowIndex].Cells[Resources.Number].Value);
             var service = _additionalServices[index-1];
+
             service.Delete();
             _additionalServices.Remove(service);
+            _service.CalculatePrice();
+            lblPriceValue.Text = PriceToString;
+
             FillDataGrid();
+            FlatMessageBox.ShowDialog("Доп. услуга успешно удалена.", Caption.Info);
         }
     }
 }

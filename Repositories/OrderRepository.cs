@@ -9,7 +9,7 @@ namespace StretchCeilings.Repositories
 {
     public class OrderRepository
     {
-        public static List<Order> GetALl(out int rows)
+        public static List<Order> GetAll(out int rows)
         {
             using (var db = new StretchCeilingsContext())
             {
@@ -26,7 +26,7 @@ namespace StretchCeilings.Repositories
             }
         }
 
-        public static List<Order> GetALl(Order firstFilter, Order secondFilter, Customer customer, Employee employee, int count, int page, out int rows)
+        public static List<Order> GetAll(Order firstFilter, Order secondFilter, Customer customer, Employee employee, int count, int page, out int rows)
         {
             using (var db = new StretchCeilingsContext())
             {
@@ -85,10 +85,10 @@ namespace StretchCeilings.Repositories
         {
             using (var db = new StretchCeilingsContext())
             {
-                var order = db.Orders.FirstOrDefault(o => o.Id == id);
+                var order = db.Orders.Find(id);
 
                 if (order != null)
-                    db.Entry(order).Reference(o => o.Customer).Load();
+                    db.Entry(order).Reference(x => x.Customer).Load();
 
                 return order;
             }

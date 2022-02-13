@@ -22,7 +22,7 @@ namespace StretchCeilings.Views
 
         private void DragMove(object sender, MouseEventArgs e)
         {
-            this.Handle.DragMove(e);
+            Handle.DragMove(e);
         }
 
         private void AddWorkDate(object sender, EventArgs e)

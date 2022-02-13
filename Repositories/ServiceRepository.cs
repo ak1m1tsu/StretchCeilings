@@ -67,19 +67,5 @@ namespace StretchCeilings.Repositories
 
             }
         }
-
-        public static Service GetById(int id)
-        {
-            using (var db = new StretchCeilingsContext())
-            {
-                var service = db.Services.Find(id);
-                
-                db.Entry(service).Reference(r => r.Ceiling).Load();
-                db.Entry(service).Reference(r => r.Manufacturer).Load();
-                db.Entry(service).Reference(r => r.Room).Load();
-
-                return service;
-            }
-        }
     }
 }

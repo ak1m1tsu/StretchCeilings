@@ -44,8 +44,6 @@ namespace StretchCeilings.Views
             this.btnClose = new FontAwesome.Sharp.IconButton();
             this.panelFilters = new System.Windows.Forms.Panel();
             this.mtbPhoneNumber = new System.Windows.Forms.MaskedTextBox();
-            this.nudId = new System.Windows.Forms.NumericUpDown();
-            this.lblId = new System.Windows.Forms.Label();
             this.tbFullName = new System.Windows.Forms.TextBox();
             this.lblFullName = new System.Windows.Forms.Label();
             this.lblPhoneNumber = new System.Windows.Forms.Label();
@@ -55,7 +53,6 @@ namespace StretchCeilings.Views
             this.panelSearchButtons.SuspendLayout();
             this.panelTopSide.SuspendLayout();
             this.panelFilters.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudId)).BeginInit();
             this.SuspendLayout();
             // 
             // panelPages
@@ -83,6 +80,7 @@ namespace StretchCeilings.Views
             this.cbRows.Name = "cbRows";
             this.cbRows.Size = new System.Drawing.Size(50, 31);
             this.cbRows.TabIndex = 98;
+            this.cbRows.SelectedIndexChanged += new System.EventHandler(this.RowCountChanged);
             // 
             // btnPreviousPage
             // 
@@ -240,8 +238,6 @@ namespace StretchCeilings.Views
             // panelFilters
             // 
             this.panelFilters.Controls.Add(this.mtbPhoneNumber);
-            this.panelFilters.Controls.Add(this.nudId);
-            this.panelFilters.Controls.Add(this.lblId);
             this.panelFilters.Controls.Add(this.tbFullName);
             this.panelFilters.Controls.Add(this.lblFullName);
             this.panelFilters.Controls.Add(this.lblPhoneNumber);
@@ -262,29 +258,6 @@ namespace StretchCeilings.Views
             this.mtbPhoneNumber.Name = "mtbPhoneNumber";
             this.mtbPhoneNumber.Size = new System.Drawing.Size(157, 29);
             this.mtbPhoneNumber.TabIndex = 52;
-            // 
-            // nudId
-            // 
-            this.nudId.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
-            this.nudId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.nudId.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.nudId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.nudId.Location = new System.Drawing.Point(174, 67);
-            this.nudId.Name = "nudId";
-            this.nudId.Size = new System.Drawing.Size(60, 29);
-            this.nudId.TabIndex = 15;
-            this.nudId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // lblId
-            // 
-            this.lblId.AutoSize = true;
-            this.lblId.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.lblId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.lblId.Location = new System.Drawing.Point(3, 69);
-            this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(30, 23);
-            this.lblId.TabIndex = 13;
-            this.lblId.Text = "№:";
             // 
             // tbFullName
             // 
@@ -343,7 +316,6 @@ namespace StretchCeilings.Views
             this.panelTopSide.ResumeLayout(false);
             this.panelFilters.ResumeLayout(false);
             this.panelFilters.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudId)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -365,8 +337,6 @@ namespace StretchCeilings.Views
         private FontAwesome.Sharp.IconButton btnClose;
         private System.Windows.Forms.Panel panelFilters;
         private System.Windows.Forms.MaskedTextBox mtbPhoneNumber;
-        private System.Windows.Forms.NumericUpDown nudId;
-        private System.Windows.Forms.Label lblId;
         private System.Windows.Forms.TextBox tbFullName;
         private System.Windows.Forms.Label lblFullName;
         private System.Windows.Forms.Label lblPhoneNumber;

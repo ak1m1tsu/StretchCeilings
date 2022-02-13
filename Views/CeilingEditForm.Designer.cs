@@ -29,6 +29,8 @@ namespace StretchCeilings.Views
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CeilingEditForm));
             this.panelTop = new System.Windows.Forms.Panel();
             this.btnClose = new FontAwesome.Sharp.IconButton();
             this.nudPrice = new System.Windows.Forms.NumericUpDown();
@@ -38,8 +40,10 @@ namespace StretchCeilings.Views
             this.lblColorType = new System.Windows.Forms.Label();
             this.lblPrice = new System.Windows.Forms.Label();
             this.lblTexture = new System.Windows.Forms.Label();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPrice)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTop
@@ -159,6 +163,11 @@ namespace StretchCeilings.Views
             this.lblTexture.TabIndex = 88;
             this.lblTexture.Text = "Фактура:";
             // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            this.errorProvider.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider.Icon")));
+            // 
             // CeilingEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -179,6 +188,7 @@ namespace StretchCeilings.Views
             this.Text = "Производитель \"Pongs\"";
             this.panelTop.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nudPrice)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -195,5 +205,6 @@ namespace StretchCeilings.Views
         private System.Windows.Forms.Label lblColorType;
         private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.Label lblTexture;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

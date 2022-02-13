@@ -51,39 +51,11 @@ namespace StretchCeilings.Repositories
             }
         }
 
-        public static List<Employee> GetAll()
-        {
-            using (var db = new StretchCeilingsContext())
-            {
-                var queryable = db.Employees.Where(x => x.DeletedDate == null);
-
-                if (queryable.Any() == false)
-                    return queryable.ToList();
-
-                queryable.ForEachAsync(x => db.Entry(x).Reference(r => r.Role).Load());
-                
-                return queryable.ToList();
-            }
-        }
-
-        public static Employee GetById(int id)
-        {
-            using (var db = new StretchCeilingsContext())
-            {
-                var employee = db.Employees.FirstOrDefault(e => e.Id == id);
-
-                if (employee != null)
-                    db.Entry(employee).Reference(e => e.Role).Load();
-                
-                return employee;
-            }
-        }
-
         public static Employee GetUser(string login, string password)
         {
             using (var db = new StretchCeilingsContext())
             {
-                var user = db.Employees.First(x => x.Login == login && x.Password == password);
+                var user = db.Employees.FirstOrDefault(x => x.Login == login && x.Password == password && x.DeletedDate == null);
                 
                 if (user != null)
                     db.Entry(user).Reference(x=>x.Role).Load();

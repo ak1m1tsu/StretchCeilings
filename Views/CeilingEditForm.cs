@@ -34,9 +34,7 @@ namespace StretchCeilings.Views
         {
             Handle.DragMove(e);
         }
-
-        public Ceiling GetCeiling() => _ceiling;
-
+        
         private void SetupForm(object sender, EventArgs e)
         {
             btnClose.DialogResult = DialogResult.Cancel;
@@ -97,14 +95,32 @@ namespace StretchCeilings.Views
                     cbTexture.SelectedItem = item;
         }
 
-        private bool AreControlsEmpty()
+        private bool CanUpdate()
         {
-            return string.IsNullOrEmpty(cbColorType.SelectedItem?.ToString()) ||
-                   string.IsNullOrEmpty(cbTexture.SelectedItem?.ToString()) ||
-                   nudPrice.Value == 0M;
+            var can = true;
+
+            if (cbColorType.SelectedItem == null)
+            {
+                errorProvider.SetError(cbColorType, Resources.RequiredToFill);
+                can = false;
+            }
+
+            if (cbTexture.SelectedItem == null)
+            {
+                errorProvider.SetError(cbTexture, Resources.RequiredToFill);
+                can = false;
+            }
+
+            if (nudPrice.Value <= 0)
+            {
+                errorProvider.SetError(nudPrice, Resources.RequiredToFill);
+                can = false;
+            }
+
+            return can;
         }
 
-        private void SetCeilingValues()
+        private void UpdateFields()
         {
             var color = ColorType.Unknown;
             var texture = TextureType.Unknown;
@@ -133,16 +149,15 @@ namespace StretchCeilings.Views
 
         private void SaveChanges(object sender, EventArgs e)
         {
-            if (AreControlsEmpty() == false)
-            {
-                SetCeilingValues();
-                _ceiling.Update();
-                DialogResult = DialogResult.OK;
-            }
-            else
+            if (CanUpdate() == false)
             {
                 FlatMessageBox.ShowDialog(Resources.ControlsEmpty, Caption.Error);
+                return;
             }
+
+            UpdateFields();
+            _ceiling.Update();
+            DialogResult = DialogResult.OK;
         }
     }
 }

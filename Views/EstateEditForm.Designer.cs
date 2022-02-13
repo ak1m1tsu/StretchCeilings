@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EstateEditForm));
             this.panelTop = new System.Windows.Forms.Panel();
             this.btnClose = new FontAwesome.Sharp.IconButton();
             this.panelBody = new System.Windows.Forms.Panel();
@@ -40,12 +42,14 @@
             this.btnSave = new FontAwesome.Sharp.IconButton();
             this.tbAddress = new System.Windows.Forms.TextBox();
             this.lblAddress = new System.Windows.Forms.Label();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.panelTop.SuspendLayout();
             this.panelBody.SuspendLayout();
             this.gbRooms.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRooms)).BeginInit();
             this.panelBottom.SuspendLayout();
             this.panelInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTop
@@ -198,6 +202,11 @@
             this.lblAddress.TabIndex = 0;
             this.lblAddress.Text = "Адрес:";
             // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            this.errorProvider.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider.Icon")));
+            // 
             // EstateEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
@@ -221,6 +230,7 @@
             this.panelBottom.ResumeLayout(false);
             this.panelInfo.ResumeLayout(false);
             this.panelInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -238,5 +248,6 @@
         private System.Windows.Forms.DataGridView dgvRooms;
         private System.Windows.Forms.Panel panelBottom;
         private System.Windows.Forms.Button btnAddRoom;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

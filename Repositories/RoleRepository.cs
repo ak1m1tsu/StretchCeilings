@@ -7,14 +7,6 @@ namespace StretchCeilings.Repositories
 {
     public static class RoleRepository
     {
-        public static Role GetById(int id)
-        {
-            using (var db = new StretchCeilingsContext())
-            {
-                return db.Roles.FirstOrDefault(x => x.Id == id);
-            }
-        }
-
         public static List<Role> GetAll()
         {
             using (var db = new StretchCeilingsContext())

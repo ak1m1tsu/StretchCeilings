@@ -8,6 +8,7 @@ using StretchCeilings.Models;
 using StretchCeilings.Models.Enums;
 using StretchCeilings.Repositories;
 using StretchCeilings.Structs;
+using StretchCeilings.Views.Enums;
 
 namespace StretchCeilings.Views
 {
@@ -119,6 +120,8 @@ namespace StretchCeilings.Views
         {
             _customer = null;
             _estate = null;
+            _currentPage = 1;
+            _lastPage = 1;
 
             lLblCustomer.Text = Resources.No;
 
@@ -205,7 +208,7 @@ namespace StretchCeilings.Views
 
         private void DragMove(object sender, MouseEventArgs e)
         {
-            this.Handle.DragMove(e);
+            Handle.DragMove(e);
         }
     }
 }

@@ -6,6 +6,7 @@ using StretchCeilings.Extensions.Controls;
 using StretchCeilings.Models;
 using StretchCeilings.Models.Enums;
 using StretchCeilings.Structs;
+using StretchCeilings.Views.Enums;
 
 namespace StretchCeilings.Views
 {
@@ -76,7 +77,7 @@ namespace StretchCeilings.Views
 
         private void OpenCeilingForm(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvCeilings.SelectedRows.Count < 0 && e.RowIndex < 0)
+            if (e.RowIndex < 0)
                 return;
 
             var index = Convert.ToInt32(dgvCeilings.Rows[e.RowIndex].Cells[0].Value);

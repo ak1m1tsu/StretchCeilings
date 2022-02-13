@@ -29,7 +29,7 @@ namespace StretchCeilings.Views
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelTopSide = new System.Windows.Forms.Panel();
             this.btnClose = new FontAwesome.Sharp.IconButton();
             this.panelButtons = new System.Windows.Forms.Panel();
@@ -184,6 +184,11 @@ namespace StretchCeilings.Views
             this.nudTotalTo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nudTotalTo.Font = new System.Drawing.Font("Open Sans", 12F);
             this.nudTotalTo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.nudTotalTo.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
             this.nudTotalTo.Location = new System.Drawing.Point(311, 67);
             this.nudTotalTo.Name = "nudTotalTo";
             this.nudTotalTo.Size = new System.Drawing.Size(122, 29);
@@ -197,6 +202,11 @@ namespace StretchCeilings.Views
             this.nudTotalFrom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nudTotalFrom.Font = new System.Drawing.Font("Open Sans", 12F);
             this.nudTotalFrom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.nudTotalFrom.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
             this.nudTotalFrom.Location = new System.Drawing.Point(146, 67);
             this.nudTotalFrom.Name = "nudTotalFrom";
             this.nudTotalFrom.Size = new System.Drawing.Size(115, 29);
@@ -290,6 +300,7 @@ namespace StretchCeilings.Views
             this.cbRows.Name = "cbRows";
             this.cbRows.Size = new System.Drawing.Size(50, 31);
             this.cbRows.TabIndex = 98;
+            this.cbRows.SelectedIndexChanged += new System.EventHandler(this.RowCountChanged);
             // 
             // btnPrevious
             // 
@@ -340,14 +351,14 @@ namespace StretchCeilings.Views
             this.dgvServices.AllowUserToResizeRows = false;
             this.dgvServices.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.dgvServices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Open Sans", 12F);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvServices.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Open Sans", 12F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvServices.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvServices.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvServices.Font = new System.Drawing.Font("Open Sans", 12F);
             this.dgvServices.Location = new System.Drawing.Point(0, 125);

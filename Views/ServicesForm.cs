@@ -10,6 +10,7 @@ using StretchCeilings.Repositories;
 using StretchCeilings.Sessions;
 using StretchCeilings.Structs;
 using StretchCeilings.Views.Controls;
+using StretchCeilings.Views.Enums;
 
 namespace StretchCeilings.Views
 {
@@ -80,10 +81,7 @@ namespace StretchCeilings.Views
 
             foreach (var item in Resources.RowCountItems)
                 cbRows.Items.Add(item);
-
             cbRows.SelectedItem = cbRows.Items[0];
-            _count = Convert.ToInt32(cbRows.Items[0]);
-            cbRows.SelectedIndexChanged += RowCountChanged;
 
             if (CanUserAdd && IsForView == false)
                 DrawAddServiceButton();
@@ -136,13 +134,6 @@ namespace StretchCeilings.Views
                 out _rows);
 
             FillDataGrid();
-        }
-
-        private void RowCountChanged(object sender, EventArgs e)
-        {
-            _currentPage = 1;
-            _count = Convert.ToInt32(cbRows.SelectedItem);
-            FilterDataGrid();
         }
 
         private void DrawAddServiceButton()
@@ -207,13 +198,14 @@ namespace StretchCeilings.Views
                 senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn == false)
                 return;
 
-            if (FlatMessageBox.ShowDialog("Вы точно хотите удалить данную услугу?", Caption.Warning) != DialogResult.OK)
+            if (FlatMessageBox.ShowDialog("Вы уверены что хотите удалить данную услугу?", Caption.Warning, MessageBoxState.Question) != DialogResult.Yes)
                 return;
 
             var index = Convert.ToInt32(dgvServices.Rows[e.RowIndex].Cells[0].Value);
             var service = _services[index - 1];
             service.Delete();
-            
+            _currentPage = 1;
+
             FilterDataGrid();
             FlatMessageBox.ShowDialog("Услуга успешно удалена.", Caption.Info);
         }
@@ -225,14 +217,26 @@ namespace StretchCeilings.Views
 
             var index = Convert.ToInt32(dgvServices.Rows[e.RowIndex].Cells[0].Value);
             var service = _services[index - 1];
-            var form = new ServiceForm(service);
+            new ServiceForm(service).ShowDialog();
 
-            if(form.ShowDialog() == DialogResult.OK)
-                FillDataGrid();
+            FilterDataGrid();
+        }
+
+        private bool AreFilterControlsFilledCorrect()
+        {
+            if (nudTotalFrom.Value > nudTotalTo.Value)
+            {
+                FlatMessageBox.ShowDialog("Неверно указан диапозон цен.", Caption.Error);
+                return false;
+            }
+
+            return true;
         }
 
         private void UseFilters(object sender, EventArgs e)
         {
+            if (AreFilterControlsFilledCorrect() == false)
+                return;
             FilterDataGrid();
         }
 
@@ -240,6 +244,8 @@ namespace StretchCeilings.Views
         {
             _firstFilter = new Service();
             _secondFilter = new Service();
+            _currentPage = 1;
+            _lastPage = 1;
 
             nudTotalFrom.Value = Resources.DefaultNumericUpDownValue;
             nudTotalTo.Value = Resources.DefaultNumericUpDownValue;
@@ -248,7 +254,7 @@ namespace StretchCeilings.Views
 
             _services = ServiceRepository.GetAll(out _rows);
 
-            FillDataGrid();
+            FilterDataGrid();
             FlatMessageBox.ShowDialog("Значение фильтров сброшено до стандартных", Caption.Info);
         }
 
@@ -309,6 +315,13 @@ namespace StretchCeilings.Views
         private void PriceToChanged(object sender, EventArgs e)
         {
             _secondFilter.Price = nudTotalTo.Value;
+        }
+
+        private void RowCountChanged(object sender, EventArgs e)
+        {
+            _currentPage = 1;
+            _count = Convert.ToInt32(cbRows.SelectedItem);
+            FilterDataGrid();
         }
     }
 }

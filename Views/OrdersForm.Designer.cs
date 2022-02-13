@@ -96,6 +96,7 @@ namespace StretchCeilings.Views
             this.cbRows.Name = "cbRows";
             this.cbRows.Size = new System.Drawing.Size(50, 31);
             this.cbRows.TabIndex = 97;
+            this.cbRows.SelectedIndexChanged += new System.EventHandler(this.RowCountChanged);
             // 
             // btnPreviousPage
             // 
@@ -291,6 +292,11 @@ namespace StretchCeilings.Views
             this.nudTotalTo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.nudTotalTo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nudTotalTo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.nudTotalTo.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
             this.nudTotalTo.Location = new System.Drawing.Point(390, 35);
             this.nudTotalTo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.nudTotalTo.Name = "nudTotalTo";
@@ -326,6 +332,11 @@ namespace StretchCeilings.Views
             this.nudTotalFrom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.nudTotalFrom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nudTotalFrom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.nudTotalFrom.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
             this.nudTotalFrom.Location = new System.Drawing.Point(128, 35);
             this.nudTotalFrom.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.nudTotalFrom.Name = "nudTotalFrom";

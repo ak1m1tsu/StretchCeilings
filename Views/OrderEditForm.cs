@@ -9,6 +9,7 @@ using StretchCeilings.Helpers;
 using StretchCeilings.Models;
 using StretchCeilings.Models.Enums;
 using StretchCeilings.Structs;
+using StretchCeilings.Views.Enums;
 
 namespace StretchCeilings.Views
 {
@@ -48,7 +49,7 @@ namespace StretchCeilings.Views
 
             InitializeComponent();
         }
-
+        
         private string TotalToString => $"{_order.Total ?? 0} руб.";
 
         public Order GetOrder() => _order;
@@ -260,7 +261,7 @@ namespace StretchCeilings.Views
 
         private void DragMove(object sender, MouseEventArgs e)
         {
-            this.Handle.DragMove(e);
+            Handle.DragMove(e);
         }
 
         private void AddWorkDate(object sender, EventArgs e)
@@ -497,7 +498,10 @@ namespace StretchCeilings.Views
         private void UpdateData(object sender, EventArgs e)
         {
             if (CanUpdate() == false)
+            {
+                FlatMessageBox.ShowDialog(Resources.ControlsEmpty, Caption.Error);
                 return;
+            }
 
             UpdateOrderFields();
             _order.Update();
@@ -513,13 +517,16 @@ namespace StretchCeilings.Views
                 senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn == false)
                 return;
 
-            if (FlatMessageBox.ShowDialog("Вы уверены что хотите удалить эту услугу из заказа?", Caption.Warning) !=
-                DialogResult.OK)
+            if (FlatMessageBox.ShowDialog("Вы уверены что хотите удалить эту услугу из заказа?", Caption.Warning, MessageBoxState.Question) !=
+                DialogResult.Yes)
                 return;
 
             var index = Convert.ToInt32(dgvServices.Rows[e.RowIndex].Cells[0].Value);
-            _services[index - 1].Delete();
+            var service = _services[index - 1];
+            _order.RemoveService(service.Id);
             _services = _order.GetServices();
+            _order.CalculateTotal();
+            lblPriceValue.Text = TotalToString;
 
             FillServiceGrid();
             FlatMessageBox.ShowDialog("Услуга успешно удалена", Caption.Info);
@@ -533,8 +540,8 @@ namespace StretchCeilings.Views
                 senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn == false)
                 return;
 
-            if (FlatMessageBox.ShowDialog("Вы уверены что хотите удалить эту дату?", Caption.Warning) !=
-                DialogResult.OK)
+            if (FlatMessageBox.ShowDialog("Вы уверены что хотите удалить эту дату?", Caption.Warning, MessageBoxState.Question) !=
+                DialogResult.Yes)
                 return;
 
             var index = Convert.ToInt32(dgvWorkDates.Rows[e.RowIndex].Cells[0].Value);
@@ -553,12 +560,13 @@ namespace StretchCeilings.Views
                 senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn == false)
                 return;
 
-            if (FlatMessageBox.ShowDialog("Вы уверены что хотите удалить этого сотрудника из заказа?", Caption.Warning) !=
-                DialogResult.OK)
+            if (FlatMessageBox.ShowDialog("Вы уверены что хотите удалить этого сотрудника из заказа?", Caption.Warning, MessageBoxState.Question) !=
+                DialogResult.Yes)
                 return;
 
             var index = Convert.ToInt32(dgvEmployees.Rows[e.RowIndex].Cells[0].Value);
-            _employees[index - 1].Delete();
+            var employee = _employees[index - 1];
+            _order.RemoveEmployee(employee.Id);
             _employees = _order.GetEmployees();
 
             FillEmployeeGrid();
@@ -573,8 +581,8 @@ namespace StretchCeilings.Views
                 senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn == false)
                 return;
 
-            if (FlatMessageBox.ShowDialog("Вы уверены что хотите удалить этот лог?", Caption.Warning) !=
-                DialogResult.OK)
+            if (FlatMessageBox.ShowDialog("Вы уверены что хотите удалить этот лог?", Caption.Warning, MessageBoxState.Question) !=
+                DialogResult.Yes)
                 return;
 
             var index = Convert.ToInt32(dgvLogs.Rows[e.RowIndex].Cells[0].Value);

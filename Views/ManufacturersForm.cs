@@ -10,6 +10,7 @@ using StretchCeilings.Repositories;
 using StretchCeilings.Sessions;
 using StretchCeilings.Structs;
 using StretchCeilings.Views.Controls;
+using StretchCeilings.Views.Enums;
 
 namespace StretchCeilings.Views
 {
@@ -108,7 +109,7 @@ namespace StretchCeilings.Views
             btnResetFilters.FlatAppearance.MouseOverBackColor = DraculaColor.Red;
             btnNext.Click += ShowNextPage;
             btnPrevious.Click += ShowPreviousPage;
-            
+
             FillCountryComboBox();
             FillRowsComboBox();
 
@@ -172,14 +173,14 @@ namespace StretchCeilings.Views
                 senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn == false)
                 return;
 
-            if (FlatMessageBox.ShowDialog("Вы уверены что хотите удалить производителя?", Caption.Warning) !=
-                DialogResult.OK)
+            if (FlatMessageBox.ShowDialog("Вы уверены что хотите удалить производителя?", Caption.Warning, MessageBoxState.Question) != DialogResult.Yes)
                 return;
 
             var index = Convert.ToInt32(dgvManufacturers.Rows[e.RowIndex].Cells[0].Value);
             var manufacturer = _manufacturers[index - 1];
 
             manufacturer.Delete();
+            _currentPage = 1;
 
             FilterDataGrid();
             FlatMessageBox.ShowDialog("Производитель успешно удален", Caption.Info);

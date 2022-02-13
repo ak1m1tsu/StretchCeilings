@@ -66,7 +66,20 @@ namespace StretchCeilings.Views
             }
         }
 
-        private void UpdateEstate(object sender, EventArgs e)
+        private bool CanUpdate()
+        {
+            var can = true;
+
+            if (string.IsNullOrWhiteSpace(tbAddress.Text))
+            {
+                errorProvider.SetError(tbAddress, Resources.RequiredToFill);
+                can = false;
+            }
+
+            return can;
+        }
+
+        private void UpdateFields()
         {
             _estate.Address = tbAddress.Text;
             _estate.Update();
@@ -74,7 +87,17 @@ namespace StretchCeilings.Views
             foreach (var room in _rooms.Where(room => room.Id == 0))
                 room.Add();
             _rooms.ForEach(x => x?.Update());
+        }
 
+        private void UpdateEstate(object sender, EventArgs e)
+        {
+            if (CanUpdate() == false)
+            {
+                FlatMessageBox.ShowDialog(Resources.ControlsEmpty, Caption.Error);
+                return;
+            }
+
+            UpdateFields();
             DialogResult = DialogResult.OK;
         }
 

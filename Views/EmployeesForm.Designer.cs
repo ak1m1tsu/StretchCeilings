@@ -37,8 +37,6 @@ namespace StretchCeilings.Views
             this.btnClose = new FontAwesome.Sharp.IconButton();
             this.panelTopSide = new System.Windows.Forms.Panel();
             this.panelInfo = new System.Windows.Forms.Panel();
-            this.nudId = new System.Windows.Forms.NumericUpDown();
-            this.lblId = new System.Windows.Forms.Label();
             this.cbRole = new System.Windows.Forms.ComboBox();
             this.lblRole = new System.Windows.Forms.Label();
             this.tbFullName = new System.Windows.Forms.TextBox();
@@ -53,7 +51,6 @@ namespace StretchCeilings.Views
             this.panelFilterButtons.SuspendLayout();
             this.panelTopSide.SuspendLayout();
             this.panelInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudId)).BeginInit();
             this.panelPages.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).BeginInit();
             this.SuspendLayout();
@@ -148,8 +145,6 @@ namespace StretchCeilings.Views
             // 
             // panelInfo
             // 
-            this.panelInfo.Controls.Add(this.nudId);
-            this.panelInfo.Controls.Add(this.lblId);
             this.panelInfo.Controls.Add(this.cbRole);
             this.panelInfo.Controls.Add(this.lblRole);
             this.panelInfo.Controls.Add(this.tbFullName);
@@ -159,30 +154,6 @@ namespace StretchCeilings.Views
             this.panelInfo.Name = "panelInfo";
             this.panelInfo.Size = new System.Drawing.Size(1050, 100);
             this.panelInfo.TabIndex = 91;
-            // 
-            // nudId
-            // 
-            this.nudId.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
-            this.nudId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.nudId.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.nudId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.nudId.Location = new System.Drawing.Point(124, 70);
-            this.nudId.Name = "nudId";
-            this.nudId.Size = new System.Drawing.Size(68, 29);
-            this.nudId.TabIndex = 40;
-            this.nudId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.nudId.ValueChanged += new System.EventHandler(this.IdChanged);
-            // 
-            // lblId
-            // 
-            this.lblId.AutoSize = true;
-            this.lblId.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.lblId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.lblId.Location = new System.Drawing.Point(3, 71);
-            this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(30, 23);
-            this.lblId.TabIndex = 39;
-            this.lblId.Text = "№:";
             // 
             // cbRole
             // 
@@ -263,6 +234,7 @@ namespace StretchCeilings.Views
             this.cbRows.Name = "cbRows";
             this.cbRows.Size = new System.Drawing.Size(50, 31);
             this.cbRows.TabIndex = 99;
+            this.cbRows.SelectedIndexChanged += new System.EventHandler(this.RowCountChanged);
             // 
             // btnPrevious
             // 
@@ -346,7 +318,6 @@ namespace StretchCeilings.Views
             this.panelTopSide.ResumeLayout(false);
             this.panelInfo.ResumeLayout(false);
             this.panelInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudId)).EndInit();
             this.panelPages.ResumeLayout(false);
             this.panelPages.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).EndInit();
@@ -364,8 +335,6 @@ namespace StretchCeilings.Views
         private FontAwesome.Sharp.IconButton btnClose;
         private System.Windows.Forms.Panel panelTopSide;
         private System.Windows.Forms.Panel panelInfo;
-        private System.Windows.Forms.NumericUpDown nudId;
-        private System.Windows.Forms.Label lblId;
         private System.Windows.Forms.ComboBox cbRole;
         private System.Windows.Forms.Label lblRole;
         private System.Windows.Forms.TextBox tbFullName;

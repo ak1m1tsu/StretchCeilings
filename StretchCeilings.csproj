@@ -9,13 +9,14 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>StretchCeilings</RootNamespace>
     <AssemblyName>StretchCeilings</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -28,7 +29,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -109,7 +109,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Structs\Caption.cs" />
     <Compile Include="Structs\DraculaColor.cs" />
-    <Compile Include="Models\Enums\FormState.cs" />
+    <Compile Include="Views\Enums\FormState.cs" />
     <Compile Include="Structs\GoogleFont.cs" />
     <Compile Include="Helpers\ModelHelper.cs" />
     <Compile Include="Structs\AwesomeIcon.cs" />
@@ -124,8 +124,6 @@
     <Compile Include="Models\RolePermission.cs" />
     <Compile Include="Models\ServiceAdditionalService.cs" />
     <Compile Include="DataAccess\StretchCeilingsConfiguration.cs" />
-    <Compile Include="Repositories\CeilingRepository.cs" />
-    <Compile Include="Repositories\EstateRepository.cs" />
     <Compile Include="Repositories\RoomRepository.cs" />
     <Compile Include="Views\AdditionalServiceForm.cs">
       <SubType>Form</SubType>
@@ -163,6 +161,7 @@
     <Compile Include="Views\EmployeeEditForm.Designer.cs">
       <DependentUpon>EmployeeEditForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Enums\MessageBoxState.cs" />
     <Compile Include="Views\EstateEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -211,7 +210,6 @@
     <Compile Include="Views\ServiceEditForm.Designer.cs">
       <DependentUpon>ServiceEditForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Enums\LogLevel.cs" />
     <Compile Include="Models\Interfaces\ICustomer.cs" />
     <Compile Include="Models\Interfaces\IEstate.cs" />
     <Compile Include="Models\Interfaces\IEmployee.cs" />
@@ -325,11 +323,11 @@
     <Compile Include="Models\Service.cs" />
     <Compile Include="Models\TimeTable.cs" />
     <Compile Include="Structs\Resources.cs" />
-    <Compile Include="Views\CustomMessageBoxForm.cs">
+    <Compile Include="Views\FlatMessageBoxForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\CustomMessageBoxForm.Designer.cs">
-      <DependentUpon>CustomMessageBoxForm.cs</DependentUpon>
+    <Compile Include="Views\FlatMessageBoxForm.Designer.cs">
+      <DependentUpon>FlatMessageBoxForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\FlatButton.cs">
       <SubType>Component</SubType>
@@ -355,7 +353,6 @@
     <Compile Include="Repositories\OrderRepository.cs" />
     <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="Repositories\ServiceRepository.cs" />
-    <Compile Include="Repositories\TimeTableRepository.cs" />
     <Compile Include="Sessions\UserSession.cs" />
     <EmbeddedResource Include="Migrations\202202051101293_init.resx">
       <DependentUpon>202202051101293_init.cs</DependentUpon>
@@ -458,8 +455,8 @@
     <EmbeddedResource Include="Views\ServicesForm.resx">
       <DependentUpon>ServicesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\CustomMessageBoxForm.resx">
-      <DependentUpon>CustomMessageBoxForm.cs</DependentUpon>
+    <EmbeddedResource Include="Views\FlatMessageBoxForm.resx">
+      <DependentUpon>FlatMessageBoxForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -489,7 +486,7 @@
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 и x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">

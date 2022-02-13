@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using StretchCeilings.Extensions;
 using StretchCeilings.Extensions.Controls;
 using StretchCeilings.Models;
-using StretchCeilings.Models.Enums;
+using StretchCeilings.Repositories;
 using StretchCeilings.Structs;
+using StretchCeilings.Views.Enums;
 
 namespace StretchCeilings.Views
 {
     public partial class ServiceForm : Form
     {
-        private readonly Service _service;
+        private Service _service;
         private readonly FormState _state;
         private List<ServiceAdditionalService> _additionalServices;
 
@@ -30,9 +32,9 @@ namespace StretchCeilings.Views
         {
             linkLblManufaсturerValue.Text = _service.Manufacturer.Name ?? Resources.No;
             linkLblCeilingValue.Text = _service.Ceiling.Name ?? Resources.No;
-            linkLblRoom.Text = Resources.Selected;
+            linkLblRoom.Text = _service.Room?.Type?.ParseString();
             lblPriceValue.Text = PriceString;
-            if (_state == FormState.ForView)
+            if (IsForView)
                 btnEdit.Visible = false;
 
             SetupDataGrid();
@@ -53,9 +55,22 @@ namespace StretchCeilings.Views
             FillDataGrid();
         }
 
+        private void ReSetupForm()
+        {
+            var manufacturer = ManufacturerRepository.GetById(_service.ManufacturerId.Value);
+            linkLblManufaсturerValue.Text = manufacturer.Name ?? Resources.No;
+            linkLblCeilingValue.Text = manufacturer.GetCeilings().First(x => x.Id == _service.CeilingId).Name ?? Resources.No;
+            linkLblRoom.Text = Resources.Selected;
+            lblPriceValue.Text = PriceString;
+
+            FillDataGrid();
+        }
+
         private void FillDataGrid()
         {
             _additionalServices = _service?.GetAdditionalServices();
+
+            dgvAdditServs.Rows.Clear();
 
             for (var i = 0; i < _additionalServices?.Count; i++)
             {
@@ -107,6 +122,20 @@ namespace StretchCeilings.Views
 
             var form = new RoomForm(_service.Room);
             form.ShowDialog();
+        }
+
+        private void OpenEditForm(object sender, EventArgs e)
+        {
+            Hide();
+
+            var form = new ServiceEditForm(_service);
+
+            if (form.ShowDialog() != DialogResult.OK)
+                return;
+
+            _service = form.GetService();
+            ReSetupForm();
+            Show();
         }
     }
 }

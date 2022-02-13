@@ -9,6 +9,7 @@ using StretchCeilings.Repositories;
 using StretchCeilings.Sessions;
 using StretchCeilings.Structs;
 using StretchCeilings.Views.Controls;
+using StretchCeilings.Views.Enums;
 
 namespace StretchCeilings.Views
 {
@@ -64,14 +65,11 @@ namespace StretchCeilings.Views
 
         private void SetupControls()
         {
-            nudId.Maximum = decimal.MaxValue;
             nudTotalFrom.Maximum = decimal.MaxValue;
             nudTotalTo.Maximum = decimal.MaxValue;
 
             foreach (var item in Resources.RowCountItems)
                 cbRows.Items.Add(item);
-
-            cbRows.SelectedIndexChanged += RowCountChanged;
             cbRows.SelectedItem = cbRows.Items[0];
 
             if (CanUserAdd)
@@ -131,8 +129,7 @@ namespace StretchCeilings.Views
                 FlatMessageBox.ShowDialog(Resources.InvalidPriceRange, Caption.Error);
                 return;
             }
-
-            _currentPage = 1;
+            
             _additionalServices = AdditionalServiceRepository.GetAll(
                 _firstFilter,
                 _secondsFilter,
@@ -171,14 +168,7 @@ namespace StretchCeilings.Views
                 _currentPage = 0;
             tbPage.UpdatePagesValue(_currentPage, _lastPage);
         }
-
-        private void RowCountChanged(object sender, EventArgs e)
-        {
-            _currentPage = 1;
-            _count = Convert.ToInt32(cbRows.SelectedItem);
-            FilterDataGrid();
-        }
-
+        
         private void LoadForm(object sender, EventArgs e)
         {
             SetupForm();
@@ -186,9 +176,12 @@ namespace StretchCeilings.Views
 
         private void AddGridData(object sender, EventArgs e)
         {
-            var service = new AdditionalServiceEditForm(new AdditionalService(), true);
-            if (service.ShowDialog() == DialogResult.OK)
-                FilterDataGrid();
+            var service = new AdditionalServiceEditForm();
+            if (service.ShowDialog() != DialogResult.OK)
+                return;
+
+            FilterDataGrid();
+            FlatMessageBox.ShowDialog("Дополнительная услуга успешно добавлена.", Caption.Info);
         }
 
         private void RemoveGridData(object sender, DataGridViewCellEventArgs e)
@@ -199,20 +192,16 @@ namespace StretchCeilings.Views
                 senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn == false)
                 return;
 
-            if (FlatMessageBox.ShowDialog("Вы точно хотите удалить данную доп. услугу?", Caption.Warning) != DialogResult.OK)
+            if (FlatMessageBox.ShowDialog("Вы уверены что хотите удалить данную доп. услугу?", Caption.Warning, MessageBoxState.Question) != DialogResult.Yes)
                 return;
 
             var index = Convert.ToInt32(dgvAdditionalServices.Rows[e.RowIndex].Cells[0].Value);
             var service = _additionalServices[index - 1];
             service.Delete();
+            _currentPage = 1;
 
             FilterDataGrid();
             FlatMessageBox.ShowDialog("Доп. услуга успешно удалена", Caption.Info);
-        }
-        
-        private void IdChanged(object sender, EventArgs e)
-        {
-            _firstFilter.Id = Convert.ToInt32(nudId.Value);
         }
 
         private void NameChanged(object sender, EventArgs e)
@@ -250,6 +239,7 @@ namespace StretchCeilings.Views
         
         private void UseFilters(object sender, EventArgs e)
         {
+            _currentPage = 1;
             FilterDataGrid();
         }
 
@@ -263,12 +253,11 @@ namespace StretchCeilings.Views
 
             nudTotalFrom.Value = Resources.DefaultNumericUpDownValue;
             nudTotalTo.Value = Resources.DefaultNumericUpDownValue;
-            nudId.Value = Resources.DefaultNumericUpDownValue;
             tbName.Text = Resources.DefaultTextBoxText;
 
             _additionalServices = AdditionalServiceRepository.GetAll(out _rows);
 
-            FillDataGrid();
+            FilterDataGrid();
             FlatMessageBox.ShowDialog("Значение фильтров сброшено до стандартных", Caption.Info);
         }
 
@@ -280,6 +269,13 @@ namespace StretchCeilings.Views
         private void DragMove(object sender, MouseEventArgs e)
         {
             Handle.DragMove(e);
+        }
+
+        private void RowCountChanged(object sender, EventArgs e)
+        {
+            _currentPage = 1;
+            _count = Convert.ToInt32(cbRows.SelectedItem);
+            FilterDataGrid();
         }
     }
 }

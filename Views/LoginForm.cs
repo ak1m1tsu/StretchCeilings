@@ -23,7 +23,7 @@ namespace StretchCeilings.Views
                 return;
             }
 
-            this.Hide();
+            Hide();
 
             _mainForm = new MainForm();
             _mainForm.FormClosed += CloseApp;
@@ -54,7 +54,7 @@ namespace StretchCeilings.Views
 
         private void DragMove(object sender, MouseEventArgs e)
         {
-            this.Handle.DragMove(e);
+            Handle.DragMove(e);
         }
     }
 }

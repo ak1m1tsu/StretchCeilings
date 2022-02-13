@@ -41,10 +41,8 @@ namespace StretchCeilings.Views
             this.nudTotalFrom = new System.Windows.Forms.NumericUpDown();
             this.lblPriceTo = new System.Windows.Forms.Label();
             this.lblPriceFrom = new System.Windows.Forms.Label();
-            this.nudId = new System.Windows.Forms.NumericUpDown();
             this.tbName = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
-            this.lblId = new System.Windows.Forms.Label();
             this.panelPages = new System.Windows.Forms.Panel();
             this.cbRows = new System.Windows.Forms.ComboBox();
             this.btnPreviousPage = new System.Windows.Forms.Button();
@@ -57,7 +55,6 @@ namespace StretchCeilings.Views
             this.panelFilters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudTotalTo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTotalFrom)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudId)).BeginInit();
             this.panelPages.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdditionalServices)).BeginInit();
             this.SuspendLayout();
@@ -156,10 +153,8 @@ namespace StretchCeilings.Views
             this.panelFilters.Controls.Add(this.nudTotalFrom);
             this.panelFilters.Controls.Add(this.lblPriceTo);
             this.panelFilters.Controls.Add(this.lblPriceFrom);
-            this.panelFilters.Controls.Add(this.nudId);
             this.panelFilters.Controls.Add(this.tbName);
             this.panelFilters.Controls.Add(this.lblName);
-            this.panelFilters.Controls.Add(this.lblId);
             this.panelFilters.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelFilters.Location = new System.Drawing.Point(0, 25);
             this.panelFilters.Name = "panelFilters";
@@ -172,7 +167,12 @@ namespace StretchCeilings.Views
             this.nudTotalTo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nudTotalTo.Font = new System.Drawing.Font("Open Sans", 12F);
             this.nudTotalTo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.nudTotalTo.Location = new System.Drawing.Point(283, 68);
+            this.nudTotalTo.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.nudTotalTo.Location = new System.Drawing.Point(283, 38);
             this.nudTotalTo.Name = "nudTotalTo";
             this.nudTotalTo.Size = new System.Drawing.Size(121, 29);
             this.nudTotalTo.TabIndex = 99;
@@ -185,7 +185,12 @@ namespace StretchCeilings.Views
             this.nudTotalFrom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nudTotalFrom.Font = new System.Drawing.Font("Open Sans", 12F);
             this.nudTotalFrom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.nudTotalFrom.Location = new System.Drawing.Point(110, 68);
+            this.nudTotalFrom.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.nudTotalFrom.Location = new System.Drawing.Point(110, 38);
             this.nudTotalFrom.Name = "nudTotalFrom";
             this.nudTotalFrom.Size = new System.Drawing.Size(115, 29);
             this.nudTotalFrom.TabIndex = 98;
@@ -197,7 +202,7 @@ namespace StretchCeilings.Views
             this.lblPriceTo.AutoSize = true;
             this.lblPriceTo.Font = new System.Drawing.Font("Open Sans", 12F);
             this.lblPriceTo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.lblPriceTo.Location = new System.Drawing.Point(237, 70);
+            this.lblPriceTo.Location = new System.Drawing.Point(237, 40);
             this.lblPriceTo.Name = "lblPriceTo";
             this.lblPriceTo.Size = new System.Drawing.Size(33, 23);
             this.lblPriceTo.TabIndex = 7;
@@ -208,24 +213,11 @@ namespace StretchCeilings.Views
             this.lblPriceFrom.AutoSize = true;
             this.lblPriceFrom.Font = new System.Drawing.Font("Open Sans", 12F);
             this.lblPriceFrom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.lblPriceFrom.Location = new System.Drawing.Point(3, 70);
+            this.lblPriceFrom.Location = new System.Drawing.Point(3, 40);
             this.lblPriceFrom.Name = "lblPriceFrom";
             this.lblPriceFrom.Size = new System.Drawing.Size(76, 23);
             this.lblPriceFrom.TabIndex = 5;
             this.lblPriceFrom.Text = "Цена от:";
-            // 
-            // nudId
-            // 
-            this.nudId.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
-            this.nudId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.nudId.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.nudId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.nudId.Location = new System.Drawing.Point(110, 2);
-            this.nudId.Name = "nudId";
-            this.nudId.Size = new System.Drawing.Size(68, 29);
-            this.nudId.TabIndex = 4;
-            this.nudId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.nudId.ValueChanged += new System.EventHandler(this.IdChanged);
             // 
             // tbName
             // 
@@ -233,7 +225,7 @@ namespace StretchCeilings.Views
             this.tbName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbName.Font = new System.Drawing.Font("Open Sans", 12F);
             this.tbName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.tbName.Location = new System.Drawing.Point(110, 35);
+            this.tbName.Location = new System.Drawing.Point(110, 5);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(294, 29);
             this.tbName.TabIndex = 3;
@@ -244,22 +236,11 @@ namespace StretchCeilings.Views
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Open Sans", 12F);
             this.lblName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.lblName.Location = new System.Drawing.Point(3, 37);
+            this.lblName.Location = new System.Drawing.Point(3, 7);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(90, 23);
             this.lblName.TabIndex = 2;
             this.lblName.Text = "Название:";
-            // 
-            // lblId
-            // 
-            this.lblId.AutoSize = true;
-            this.lblId.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.lblId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.lblId.Location = new System.Drawing.Point(3, 4);
-            this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(30, 23);
-            this.lblId.TabIndex = 0;
-            this.lblId.Text = "№:";
             // 
             // panelPages
             // 
@@ -286,6 +267,7 @@ namespace StretchCeilings.Views
             this.cbRows.Name = "cbRows";
             this.cbRows.Size = new System.Drawing.Size(50, 31);
             this.cbRows.TabIndex = 98;
+            this.cbRows.SelectedIndexChanged += new System.EventHandler(this.RowCountChanged);
             // 
             // btnPreviousPage
             // 
@@ -367,7 +349,6 @@ namespace StretchCeilings.Views
             this.panelFilters.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudTotalTo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTotalFrom)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudId)).EndInit();
             this.panelPages.ResumeLayout(false);
             this.panelPages.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdditionalServices)).EndInit();
@@ -388,10 +369,8 @@ namespace StretchCeilings.Views
         private System.Windows.Forms.NumericUpDown nudTotalFrom;
         private System.Windows.Forms.Label lblPriceTo;
         private System.Windows.Forms.Label lblPriceFrom;
-        private System.Windows.Forms.NumericUpDown nudId;
         private System.Windows.Forms.TextBox tbName;
         private System.Windows.Forms.Label lblName;
-        private System.Windows.Forms.Label lblId;
         private System.Windows.Forms.Panel panelPages;
         private System.Windows.Forms.ComboBox cbRows;
         private System.Windows.Forms.Button btnPreviousPage;

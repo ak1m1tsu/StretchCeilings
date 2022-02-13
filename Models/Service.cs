@@ -53,20 +53,23 @@ namespace StretchCeilings.Models
         {
             using (var db = new StretchCeilingsContext())
             {
-                var ceiling = db.Ceilings.FirstOrDefault(x => x.ManufacturerId == ManufacturerId && DeletedDate == null);
+                var ceiling = db.Ceilings.FirstOrDefault(x => x.Id == CeilingId && DeletedDate == null);
                 var room = db.CustomersRooms.FirstOrDefault(x => x.Id == RoomId && DeletedDate == null);
                 var services = db.ServiceAdditionalServices
                     .Join(db.AdditionalServices, sas => sas.AdditionalServiceId, a => a.Id, (sas, a) => new { sas, a })
                     .Where(@t => @t.a.DeletedDate == null && @t.sas.ServiceId == Id)
                     .Select(@t => @t.sas);
-                
+                var s = services.ToList();
                 Price = (ceiling?.Price * room?.Area) ?? 0;
 
-                if (!services.Any())
+                if (services.Any() == false)
                     return;
 
-                services.ForEachAsync(x => db.Entry(x).Reference(r => r.AdditionalService).Load());
-                services.ForEachAsync(x => Price += x.Count * x.AdditionalService.Price);
+                foreach (var serviceAdditionalService in services)
+                {
+                    db.Entry(serviceAdditionalService).Reference(x => x.AdditionalService).Load();
+                    Price += serviceAdditionalService.Count * serviceAdditionalService.AdditionalService.Price;
+                }
             }
         }
 

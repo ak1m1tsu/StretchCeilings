@@ -157,6 +157,7 @@ namespace StretchCeilings.Views
             this.btnEdit.TabIndex = 48;
             this.btnEdit.Text = "Изменить";
             this.btnEdit.UseVisualStyleBackColor = false;
+            this.btnEdit.Click += new System.EventHandler(this.OpenEditForm);
             // 
             // lblPriceValue
             // 

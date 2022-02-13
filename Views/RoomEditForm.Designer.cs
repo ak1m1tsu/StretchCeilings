@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RoomEditForm));
             this.panelTop = new System.Windows.Forms.Panel();
             this.btnClose = new FontAwesome.Sharp.IconButton();
             this.panelBody = new System.Windows.Forms.Panel();
@@ -43,6 +45,7 @@
             this.lblCorners = new System.Windows.Forms.Label();
             this.lblType = new System.Windows.Forms.Label();
             this.lblArea = new System.Windows.Forms.Label();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.panelTop.SuspendLayout();
             this.panelBody.SuspendLayout();
             this.gbPlane.SuspendLayout();
@@ -51,6 +54,7 @@
             this.panelInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudArea)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCorners)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTop
@@ -250,6 +254,11 @@
             this.lblArea.TabIndex = 11;
             this.lblArea.Text = "Площадь:";
             // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            this.errorProvider.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider.Icon")));
+            // 
             // RoomEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
@@ -275,6 +284,7 @@
             this.panelInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudArea)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCorners)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -296,5 +306,6 @@
         private System.Windows.Forms.Panel panelButton;
         private System.Windows.Forms.Button btnChangePicture;
         private FontAwesome.Sharp.IconButton btnSave;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

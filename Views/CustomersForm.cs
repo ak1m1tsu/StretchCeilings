@@ -9,6 +9,7 @@ using StretchCeilings.Repositories;
 using StretchCeilings.Sessions;
 using StretchCeilings.Structs;
 using StretchCeilings.Views.Controls;
+using StretchCeilings.Views.Enums;
 
 namespace StretchCeilings.Views
 {
@@ -56,14 +57,11 @@ namespace StretchCeilings.Views
 
         private void SetupControls()
         {
-            nudId.Maximum = decimal.MaxValue;
-            
             foreach (var rowCountItem in Resources.RowCountItems)
                 cbRows.Items.Add(rowCountItem);
             
             cbRows.SelectedIndex = 0;
             _count = Convert.ToInt32(cbRows.SelectedItem);
-            cbRows.SelectedIndexChanged += RowCountChanged;
 
             if (CanUserAdd && IsForView == false)
                 DrawAddButton();
@@ -156,12 +154,13 @@ namespace StretchCeilings.Views
                 senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn == false)
                 return;
 
-            if (FlatMessageBox.ShowDialog("Вы точно хотите удалить клиента?", Caption.Warning) != DialogResult.Cancel)
+            if (FlatMessageBox.ShowDialog("Вы уверены что хотите удалить клиента?", Caption.Warning, MessageBoxState.Question) != DialogResult.Yes)
                 return;
 
             var index = Convert.ToInt32(dgvCustomers.Rows[e.RowIndex].Cells[0].Value);
             var customer = _customers[index - 1];
             customer.Delete();
+            _currentPage = 1;
 
             FilterDataGrid();
             FlatMessageBox.ShowDialog("Клиент успешно удален", Caption.Info);
@@ -207,16 +206,9 @@ namespace StretchCeilings.Views
             FilterDataGrid();
         }
 
-        private void RowCountChanged(object sender, EventArgs e)
-        {
-            _currentPage = 1;
-            _count = Convert.ToInt32(cbRows.SelectedItem);
-            FilterDataGrid();
-        }
-
         private void DragMove(object sender, MouseEventArgs e)
         {
-            this.Handle.DragMove(e);
+            Handle.DragMove(e);
         }
 
         private void CloseForm(object sender, EventArgs e)
@@ -226,14 +218,12 @@ namespace StretchCeilings.Views
 
         private void UpdateFilterValues()
         {
-            if (tbFullName.Text != "")
+            if (string.IsNullOrWhiteSpace(tbFullName.Text) == false)
                 _filter.FullName = tbFullName.Text;
-
-            if (nudId.Value != 0)
-                _filter.Id = Convert.ToInt32(nudId.Value);
-
-            if (mtbPhoneNumber.Text != Resources.EmptyPhoneNumber ||
-                mtbPhoneNumber.Text.Length < Resources.EmptyPhoneNumber.Length)
+            
+            if (mtbPhoneNumber.Text != Resources.EmptyPhoneNumber &&
+                mtbPhoneNumber.Text.Length == Resources.EmptyPhoneNumber.Length &&
+                mtbPhoneNumber.Text.Contains(" ") == false)
                 _filter.PhoneNumber = mtbPhoneNumber.Text;
         }
 
@@ -247,9 +237,9 @@ namespace StretchCeilings.Views
         {
             _filter = new Customer();
             _currentPage = 1;
+            _lastPage = 1;
             tbFullName.Text = null;
             mtbPhoneNumber.Text = Resources.EmptyPhoneNumber;
-            nudId.Value = 0;
         }
 
         private void ResetFilters(object sender, EventArgs e)
@@ -257,6 +247,13 @@ namespace StretchCeilings.Views
             ResetFilterValues();
             FilterDataGrid();
             FlatMessageBox.ShowDialog("Значение фильтров сброшено до стандартных", Caption.Info);
+        }
+
+        private void RowCountChanged(object sender, EventArgs e)
+        {
+            _currentPage = 1;
+            _count = Convert.ToInt32(cbRows.SelectedItem);
+            FilterDataGrid();
         }
     }
 }

@@ -5,6 +5,7 @@ using StretchCeilings.Models;
 using StretchCeilings.Models.Enums;
 using StretchCeilings.Repositories;
 using StretchCeilings.Sessions;
+using StretchCeilings.Views.Enums;
 
 namespace StretchCeilings.Views
 {

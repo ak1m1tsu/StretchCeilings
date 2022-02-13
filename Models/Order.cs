@@ -39,24 +39,6 @@ namespace StretchCeilings.Models
             }
         }
 
-        public void SetWorkday(OrderWorkDate workDate)
-        {
-            using (var db = new StretchCeilingsContext())
-            {
-                db.OrderWorkDates.Add(workDate);
-                db.SaveChanges();
-            }
-        }
-
-        public void DeleteWorkDay(OrderWorkDate workDate)
-        {
-            using (var db = new StretchCeilingsContext())
-            {
-                db.OrderWorkDates.Remove(workDate);
-                db.SaveChanges();
-            }
-        }
-
         public void Add()
         {
             using (var db = new StretchCeilingsContext())
@@ -110,6 +92,36 @@ namespace StretchCeilings.Models
                 services.ForEachAsync(s => db.Entry(s).Reference(r => r.Room).Load());
 
                 return services.ToList();
+            }
+        }
+
+        public void RemoveService(int id)
+        {
+            using (var db = new StretchCeilingsContext())
+            {
+                var service = db.OrderServices
+                    .First(x => x.OrderId == Id && x.ServiceId == id);
+
+                if (service == null)
+                    return;
+
+                db.OrderServices.Remove(service);
+                db.SaveChanges();
+            }
+        }
+
+        public void RemoveEmployee(int id)
+        {
+            using (var db = new StretchCeilingsContext())
+            {
+                var employee = db.OrderEmployees
+                    .First(x => x.OrderId == Id && x.EmployeeId == id);
+
+                if (employee == null)
+                    return;
+
+                db.OrderEmployees.Remove(employee);
+                db.SaveChanges();
             }
         }
 

@@ -53,25 +53,57 @@ namespace StretchCeilings.Views
         {
             var fileDialog = new OpenFileDialog()
             {
-                Filter = "Image files(*.png)|*.png"
+                Filter = Resources.ImageFilter
             };
             fileDialog.ShowDialog();
             pbPlane.ImageLocation = fileDialog.FileName;
         }
 
-        private void UpdateRoom(object sender, EventArgs e)
+        private bool CanUpdate()
+        {
+            var can = true;
+
+            if (nudArea.Value < 0)
+            {
+                errorProvider.SetError(nudArea, Resources.RequiredToFill);
+                can = false;
+            }
+
+            if (nudCorners.Value < 0)
+            {
+                errorProvider.SetError(nudCorners, Resources.RequiredToFill);
+                can = false;
+            }
+
+            if (cbType.SelectedItem == null)
+            {
+                errorProvider.SetError(cbType, Resources.RequiredToFill);
+                can = false;
+            }
+
+            return can;
+        }
+
+        private void UpdateFields()
         {
             _room.Area = Convert.ToInt32(nudArea.Value);
             _room.Corners = Convert.ToInt32(nudCorners.Value);
-            foreach (ComboBoxItem item in cbType.Items)
-            {
-                if (item != cbType.SelectedItem)
-                    continue;
+            _room.Plane = pbPlane.ImageLocation;
 
-                _room.Type = (RoomType)item.Tag;
+            foreach (ComboBoxItem item in cbType.Items)
+                if (item == cbType.SelectedItem)
+                    _room.Type = (RoomType)item.Tag;
+        }
+
+        private void UpdateRoom(object sender, EventArgs e)
+        {
+            if (CanUpdate())
+            {
+                FlatMessageBox.ShowDialog(Resources.ControlsEmpty, Caption.Error);
+                return;
             }
 
-            _room.Plane = pbPlane.ImageLocation;
+            UpdateFields();
             DialogResult = DialogResult.OK;
         }
 

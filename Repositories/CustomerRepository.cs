@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using StretchCeilings.DataAccess;
 using StretchCeilings.Models;
@@ -49,7 +50,7 @@ namespace StretchCeilings.Repositories
         {
             using (var db = new StretchCeilingsContext())
             {
-                return db.Customers.FirstOrDefault(o => o.Id == id);
+                return db.Customers.Find(id);
             }
         }
     }

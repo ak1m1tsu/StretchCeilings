@@ -22,24 +22,24 @@ namespace StretchCeilings.Repositories
             }
         }
 
-        public static List<Manufacturer> GetAll(Manufacturer firstFilter, int count, int page, out int rows)
+        public static List<Manufacturer> GetAll(Manufacturer filter, int count, int page, out int rows)
         {
             using (var db = new StretchCeilingsContext())
             {
                 var queryable = db.Manufacturers.Where(x => x.DeletedDate == null);
                 rows = 0;
 
-                if (firstFilter.Id != 0)
-                    queryable = queryable.Where(x => x.Id == firstFilter.Id);
+                if (filter.Id != 0)
+                    queryable = queryable.Where(x => x.Id == filter.Id);
                 
-                if (firstFilter.Address != null)
-                    queryable =  queryable.Where(x => x.Address == firstFilter.Address);
+                if (filter.Address != null)
+                    queryable =  queryable.Where(x => x.Address == filter.Address);
 
-                if (firstFilter.Country != Country.Unknown)
-                    queryable = queryable.Where(x => x.Country == firstFilter.Country);
+                if (filter.Country != Country.Unknown)
+                    queryable = queryable.Where(x => x.Country == filter.Country);
 
-                if (firstFilter.Name != null)
-                    queryable = queryable.Where(x => x.Name == firstFilter.Name);
+                if (filter.Name != null)
+                    queryable = queryable.Where(x => x.Name == filter.Name);
                 
                 if (queryable.Any() == false) 
                     return queryable.ToList();

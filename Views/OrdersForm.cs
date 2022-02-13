@@ -10,6 +10,7 @@ using StretchCeilings.Repositories;
 using StretchCeilings.Sessions;
 using StretchCeilings.Structs;
 using StretchCeilings.Views.Controls;
+using StretchCeilings.Views.Enums;
 
 namespace StretchCeilings.Views
 {
@@ -44,7 +45,7 @@ namespace StretchCeilings.Views
         
         private void SetupForm()
         {
-            _orders = OrderRepository.GetALl(out _rows);
+            _orders = OrderRepository.GetAll(out _rows);
             _firstFilter = new Order();
             _secondFilter = new Order();
 
@@ -115,10 +116,7 @@ namespace StretchCeilings.Views
         {
             foreach (var item in Resources.RowCountItems)
                 cbRows.Items.Add(item);
-
             cbRows.SelectedIndex = 0;
-            _count = Convert.ToInt32(cbRows.SelectedItem);
-            cbRows.SelectedIndexChanged += RowCountChanged;
         }
 
         private void SetupControls()
@@ -147,7 +145,7 @@ namespace StretchCeilings.Views
             {
                 dgvOrders.Rows.Add(new DataGridViewRow());
 
-                dgvOrders.Rows[i].Cells[0].Value = dgvOrders.Rows.Count;
+                dgvOrders.Rows[i].Cells[0].Value = _orders[i].Id;
                 dgvOrders.Rows[i].Cells[1].Value = _orders[i].DatePlaced;
                 dgvOrders.Rows[i].Cells[2].Value = _orders[i].Customer?.FullName;
                 dgvOrders.Rows[i].Cells[3].Value = _orders[i].Status?.ParseString();
@@ -167,7 +165,7 @@ namespace StretchCeilings.Views
 
         private void FilterDataGrid()
         {
-            _orders = OrderRepository.GetALl(
+            _orders = OrderRepository.GetAll(
                 _firstFilter,
                 _secondFilter,
                 _customer,
@@ -195,12 +193,13 @@ namespace StretchCeilings.Views
                 e.RowIndex < 0)
                 return;
 
-            if (FlatMessageBox.ShowDialog("Вы уверены что хотите удалить заказ?", Caption.Warning) != DialogResult.OK)
+            if (FlatMessageBox.ShowDialog("Вы уверены что хотите удалить заказ?", Caption.Warning, MessageBoxState.Question) != DialogResult.Yes)
                 return;
 
             var index = Convert.ToInt32(dgvOrders.SelectedRows[0].Cells[Resources.Number].Value);
-            var order = _orders[index - 1];
+            var order = OrderRepository.GetById(index);
             order.Delete();
+            _currentPage = 1;
 
             FilterDataGrid();
             FlatMessageBox.ShowDialog("Заказ успешно удален", Caption.Info);
@@ -246,7 +245,6 @@ namespace StretchCeilings.Views
 
             FlatMessageBox.ShowDialog("Неверно указан диапозон дат", Caption.Error);
             return false;
-
         }
 
         private void UpdateFilterValues()
@@ -299,6 +297,9 @@ namespace StretchCeilings.Views
             linkCustomer.Text = Resources.No;
             linkEmployee.Text = Resources.No;
 
+            _currentPage = 1;
+            _lastPage = 1;
+
             FilterDataGrid();
 
             FlatMessageBox.ShowDialog("Значение фильтров сброшено до стандартных", Caption.Info);
@@ -316,10 +317,10 @@ namespace StretchCeilings.Views
             if (e.RowIndex < 0)
                 return;
 
-            var index = Convert.ToInt32(dgvOrders.Rows[e.RowIndex].Cells[0].Value);
-            var order = _orders[index - 1];
-            var form = new OrderForm(order);
-            form.ShowDialog();
+            var id = Convert.ToInt32(dgvOrders.Rows[e.RowIndex].Cells[0].Value);
+            var order = OrderRepository.GetById(id);
+            new OrderForm(order).ShowDialog();
+            FilterDataGrid();
         }
 
         private void DatePlacedFromChanged(object sender, EventArgs e)
@@ -330,13 +331,6 @@ namespace StretchCeilings.Views
         private void DatePlacedToChanged(object sender, EventArgs e)
         {
             ChangeFormat(sender, e);
-        }
-
-        private void RowCountChanged(object sender, EventArgs e)
-        {
-            _currentPage = 1;
-            _count = Convert.ToInt32(cbRows.SelectedItem);
-            FilterDataGrid();
         }
 
         private void ShowPreviousPage(object sender, EventArgs e)
@@ -387,6 +381,13 @@ namespace StretchCeilings.Views
 
             _employee = employee;
             linkEmployee.Text = employee.FullName;
+        }
+
+        private void RowCountChanged(object sender, EventArgs e)
+        {
+            _currentPage = 1;
+            _count = Convert.ToInt32(cbRows.SelectedItem);
+            FilterDataGrid();
         }
     }
 }

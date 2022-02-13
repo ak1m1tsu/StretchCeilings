@@ -9,6 +9,7 @@ using StretchCeilings.Helpers;
 using StretchCeilings.Models;
 using StretchCeilings.Models.Enums;
 using StretchCeilings.Structs;
+using StretchCeilings.Views.Enums;
 
 namespace StretchCeilings.Views
 {
@@ -21,6 +22,13 @@ namespace StretchCeilings.Views
         public ManufacturerEditForm(Manufacturer manufacturer = null)
         {
             _manufacturer = manufacturer;
+            
+            if (_manufacturer == null)
+            {
+                _manufacturer = new Manufacturer();
+                _manufacturer.Add();
+            }
+
             InitializeComponent();
         }
 
@@ -79,7 +87,8 @@ namespace StretchCeilings.Views
             for (var i = 0; i < _ceilings?.Count; i++)
             {
                 dgvCeilings.Rows.Add(new DataGridViewRow());
-                dgvCeilings.Rows[i].Cells[Resources.Number].Value = i + 1;
+
+                dgvCeilings.Rows[i].Cells[Resources.Number].Value = dgvCeilings.Rows.Count;
                 dgvCeilings.Rows[i].Cells[Resources.Name].Value = _ceilings[i].Name;
                 dgvCeilings.Rows[i].Cells[Resources.Texture].Value = _ceilings[i].TextureType?.ParseString();
                 dgvCeilings.Rows[i].Cells[Resources.Color].Value = _ceilings[i].ColorType?.ParseString();
@@ -92,9 +101,9 @@ namespace StretchCeilings.Views
             if (e.RowIndex < 0)
                 return;
 
-            var index = (int)dgvCeilings.Rows[e.RowIndex].Cells[0].Value;
-            var old = _ceilings?.FirstOrDefault(x => x.Id == index);
-            var form = new CeilingEditForm(old);
+            var index = Convert.ToInt32(dgvCeilings.Rows[e.RowIndex].Cells[0].Value);
+            var ceiling = _ceilings[index - 1];
+            var form = new CeilingEditForm(ceiling);
 
             if (form.ShowDialog() != DialogResult.OK)
                 return;
@@ -133,22 +142,30 @@ namespace StretchCeilings.Views
                 return;
 
             FillCeilingsGrid();
+            FlatMessageBox.ShowDialog("Потолок успешно добавлен", Caption.Info);
         }
 
         private void RemoveGridData(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0 || e.ColumnIndex != dgvCeilings.Columns[Resources.Space]?.Index)
+            var senderGrid = (DataGridView)sender;
+
+            if (e.RowIndex < 0 || 
+                senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn == false)
                 return;
 
-            var id = (int)dgvCeilings.Rows[e.RowIndex].Cells[Resources.Number].Value - 1;
+            if (FlatMessageBox.ShowDialog("Вы уверены что хотите удалить этот потолок?", Caption.Warning, MessageBoxState.Question) != DialogResult.Yes)
+                return;
 
-            var ceiling = _ceilings[id];
+            var index = Convert.ToInt32(dgvCeilings.Rows[e.RowIndex].Cells[Resources.Number].Value);
+            var ceiling = _ceilings[index - 1];
 
             if (ceiling == null)
                 return;
             
             ceiling.Delete();
+
             FillCeilingsGrid();
+            FlatMessageBox.ShowDialog("Потолок успешно удален", Caption.Info);
         }
 
         private bool CanUpdate()

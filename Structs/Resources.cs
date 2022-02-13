@@ -31,7 +31,7 @@ namespace StretchCeilings.Structs
         public const string InvalidPriceRange = "Неверно указан диапозон цен.";
         public const string EmptyPhoneNumber = "+7(   )   -  -  ";
         public const string RequiredToFill = "Это поле обязательно к заполнению.";
-        public const string DefaultIconButtonText = "";
+        public const string ImageFilter = "Image files(*.png)|*.png";
         public const string DefaultTextBoxText = "";
         public const string FilterDateTimePickerCustomFormat = @"dd.MM.yyyy HH:mm";
         public const string No = "Нет";
@@ -44,6 +44,6 @@ namespace StretchCeilings.Structs
             { "Нет" , false },
             { "Да", true }
         };
-        public static int[] RowCountItems => new int[3] { 2, 5, 10 };
+        public static int[] RowCountItems => new int[3] { 15, 20, 25 };
     }
 }

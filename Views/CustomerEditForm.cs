@@ -7,6 +7,7 @@ using StretchCeilings.Extensions.Controls;
 using StretchCeilings.Helpers;
 using StretchCeilings.Models;
 using StretchCeilings.Structs;
+using StretchCeilings.Views.Enums;
 
 namespace StretchCeilings.Views
 {
@@ -134,6 +135,9 @@ namespace StretchCeilings.Views
 
             if (e.RowIndex < 0 ||
                 senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn == false)
+                return;
+
+            if (FlatMessageBox.ShowDialog("Вы уверены что хотите удалить данную недвижимость?", Caption.Warning, MessageBoxState.Question) != DialogResult.Yes)
                 return;
 
             var index = Convert.ToInt32(dgvEstates.Rows[e.RowIndex].Cells[0].Value);
