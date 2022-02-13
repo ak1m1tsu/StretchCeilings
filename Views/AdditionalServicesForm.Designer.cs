@@ -316,6 +316,8 @@ namespace StretchCeilings.Views
             // 
             this.dgvAdditionalServices.AllowUserToAddRows = false;
             this.dgvAdditionalServices.AllowUserToDeleteRows = false;
+            this.dgvAdditionalServices.AllowUserToResizeColumns = false;
+            this.dgvAdditionalServices.AllowUserToResizeRows = false;
             this.dgvAdditionalServices.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
             this.dgvAdditionalServices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAdditionalServices.Dock = System.Windows.Forms.DockStyle.Fill;

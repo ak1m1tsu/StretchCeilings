@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using StretchCeilings.DataAccess;
 using StretchCeilings.Models;
@@ -42,7 +43,7 @@ namespace StretchCeilings.Repositories
                     enumerable = enumerable.Where(s => s.Price <= secondsFilter.Price);
 
                 if (firstFilter.Name != null)
-                    enumerable = enumerable.Where(s => s.Name == firstFilter.Name);
+                    enumerable = enumerable.Where(s => s.Name.IndexOf(firstFilter.Name, StringComparison.OrdinalIgnoreCase) > -1);
 
                 var additionalServices = enumerable.ToList();
 

@@ -17,6 +17,8 @@ namespace StretchCeilings.Views
 
             Load += SetupForm;
         }
+        
+        private string PriceString => $"{_ceiling?.Price ?? 0} руб.";
 
         private void DragMove(object sender, MouseEventArgs e)
         {
@@ -27,7 +29,7 @@ namespace StretchCeilings.Views
         {
             lblTextureValue.Text = _ceiling.TextureType?.ParseString();
             lblColorTypeValue.Text = _ceiling.ColorType?.ParseString();
-            lblPriceValue.Text = _ceiling.Price.ToString();
+            lblPriceValue.Text = PriceString;
             
             btnClose.DialogResult = DialogResult.Cancel;
             

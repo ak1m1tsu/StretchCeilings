@@ -211,12 +211,14 @@ namespace StretchCeilings.Views
 
         private void PriceFromChanged(object sender, EventArgs e)
         {
-            _firstFilter.Price = nudTotalFrom.Value;
+            if (nudTotalFrom.Value > 0)
+                _firstFilter.Price = nudTotalFrom.Value;
         }
 
         private void PriceToChanged(object sender, EventArgs e)
         {
-            _secondsFilter.Price = nudTotalTo.Value;
+            if (nudTotalTo.Value > 0)
+                _secondsFilter.Price = nudTotalTo.Value;
         }
 
         private void ShowPreviousPage(object sender, EventArgs e)

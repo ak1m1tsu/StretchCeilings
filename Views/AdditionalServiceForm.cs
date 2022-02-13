@@ -25,12 +25,14 @@ namespace StretchCeilings.Views
             UserSession.IsAdmin ||
             UserSession.Can(PermissionCode.EditAdditionalService);
 
+        private string PriceString => $"{_additionalService?.Price ?? 0} руб.";
+
         private void ReSetupForm()
         {
             _additionalService = AdditionalServiceRepository.GetById(_additionalService.Id);
 
             lblNameValue.Text = _additionalService?.Name;
-            lblPriceValue.Text = _additionalService?.Price?.ToString();
+            lblPriceValue.Text = PriceString;
         }
 
         private void SetupForm()
@@ -42,7 +44,7 @@ namespace StretchCeilings.Views
                 btnEdit.Enabled = true;
 
             lblNameValue.Text = _additionalService?.Name;
-            lblPriceValue.Text = _additionalService?.Price?.ToString();
+            lblPriceValue.Text = PriceString;
         }
 
         private void ShowEditForm(object sender, EventArgs e)
