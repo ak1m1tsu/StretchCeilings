@@ -2,28 +2,35 @@
 using System.Collections.Generic;
 using System.Linq;
 using StretchCeilings.DataAccess;
+using StretchCeilings.Extensions;
 using StretchCeilings.Models;
+using StretchCeilings.Repositories.Enums;
 
 namespace StretchCeilings.Repositories
 {
     public class AdditionalServiceRepository
     {
-        public static List<AdditionalService> GetAll(out int rows)
+        public static List<AdditionalService> GetAll()
         {
             using (var db = new StretchCeilingsContext())
             {
                 var enumerable = db.AdditionalServices.Where(o => o.DeletedDate == null)
+                    .OrderByDescending(x => x.Id)
                     .AsEnumerable();
 
                 var additionalServices = enumerable.ToList();
-
-                rows = additionalServices.Count();
                 
                 return additionalServices;
             }
         }
 
-        public static List<AdditionalService> GetAll(AdditionalService firstFilter, AdditionalService secondsFilter, int count, int page, out int rows)
+        public static List<AdditionalService> GetAll(
+            AdditionalService firstFilter, 
+            AdditionalService secondsFilter, 
+            int count, 
+            int page,
+            SortOption option = SortOption.Descending,
+            AdditionalServiceProperty property = AdditionalServiceProperty.Name)
         {
             using (var db = new StretchCeilingsContext())
             {
@@ -45,9 +52,7 @@ namespace StretchCeilings.Repositories
                 if (firstFilter.Name != null)
                     enumerable = enumerable.Where(s => s.Name.IndexOf(firstFilter.Name, StringComparison.OrdinalIgnoreCase) > -1);
 
-                var additionalServices = enumerable.ToList();
-
-                rows = additionalServices.Count();
+                var additionalServices = enumerable.SortBy(property.ToString(), option).ToList();
 
                 return additionalServices.Skip((page - 1) * count).Take(count).ToList();
             }

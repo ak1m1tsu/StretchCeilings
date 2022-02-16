@@ -2,13 +2,15 @@
 using System.Data.Entity;
 using System.Linq;
 using StretchCeilings.DataAccess;
+using StretchCeilings.Extensions;
 using StretchCeilings.Models;
+using StretchCeilings.Repositories.Enums;
 
 namespace StretchCeilings.Repositories
 {
     public class ServiceRepository
     {
-        public static List<Service> GetAll(out int rows)
+        public static List<Service> GetAll()
         {
             using (var db = new StretchCeilingsContext())
             {
@@ -20,13 +22,17 @@ namespace StretchCeilings.Repositories
 
                 var services = enumerable.ToList();
 
-                rows = services.Count();
-
                 return services;
             }
         }
 
-        public static List<Service> GetAll(Service firstFilter, Service secondFilter, int count, int page, out int rows)
+        public static List<Service> GetAll(
+            Service firstFilter, 
+            Service secondFilter, 
+            int count, 
+            int page,
+            SortOption option = SortOption.Descending,
+            ServiceProperty property = ServiceProperty.Price)
         {
             using (var db = new StretchCeilingsContext())
             {
@@ -54,9 +60,7 @@ namespace StretchCeilings.Repositories
                 if (firstFilter.CeilingId != null)
                     enumerable = enumerable.Where(x => x.Ceiling.Id == firstFilter.CeilingId);
 
-                var services = enumerable.ToList();
-
-                rows = services.Count;
+                var services = enumerable.SortBy(property.ToString(), option).ToList();
 
                 return services.Skip((page - 1) * count).Take(count).ToList();
             }

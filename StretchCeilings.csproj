@@ -105,8 +105,17 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\RepositoryExtensions.cs" />
     <Compile Include="Models\Interfaces\IDbModel.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Repositories\Enums\AdditionalServiceProperty.cs" />
+    <Compile Include="Repositories\Enums\CustomerProperty.cs" />
+    <Compile Include="Repositories\Enums\EmployeeProperty.cs" />
+    <Compile Include="Repositories\Enums\ManufacturerProperty.cs" />
+    <Compile Include="Repositories\Enums\OrderProperty.cs" />
+    <Compile Include="Repositories\Enums\RoomProperty.cs" />
+    <Compile Include="Repositories\Enums\ServiceProperty.cs" />
+    <Compile Include="Repositories\Enums\SortOption.cs" />
     <Compile Include="Structs\Caption.cs" />
     <Compile Include="Structs\DraculaColor.cs" />
     <Compile Include="Views\Enums\FormState.cs" />

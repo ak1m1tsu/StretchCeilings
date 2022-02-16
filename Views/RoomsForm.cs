@@ -33,7 +33,8 @@ namespace StretchCeilings.Views
 
         private void SetupForm()
         {
-            _rooms = RoomRepository.GetAll(out _rows);
+            _rooms = RoomRepository.GetAll();
+            _rows = _rooms.Count;
 
             SetupGrid();
             SetupControls();
@@ -97,8 +98,9 @@ namespace StretchCeilings.Views
                 _customer,
                 _estate,
                 _count,
-                _currentPage,
-                out _rows);
+                _currentPage);
+
+            _rows = _rooms.Count;
 
             FillDataGrid();
         }

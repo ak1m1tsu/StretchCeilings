@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using FontAwesome.Sharp;
 using StretchCeilings.Extensions;
 using StretchCeilings.Extensions.Controls;
 using StretchCeilings.Models;
 using StretchCeilings.Models.Enums;
 using StretchCeilings.Repositories;
+using StretchCeilings.Repositories.Enums;
 using StretchCeilings.Sessions;
 using StretchCeilings.Structs;
 using StretchCeilings.Views.Controls;
@@ -22,6 +24,8 @@ namespace StretchCeilings.Views
         private Manufacturer _filter;
 
         private readonly FormState _state;
+        private SortOption _sortOption;
+        private ManufacturerProperty _property;
 
         private int _rows;
         private int _count;
@@ -31,6 +35,7 @@ namespace StretchCeilings.Views
         public ManufacturersForm(FormState state = FormState.Default)
         {
             _state = state;
+            _sortOption = SortOption.Descending;
             InitializeComponent();
         }
 
@@ -46,7 +51,8 @@ namespace StretchCeilings.Views
 
         private void SetupDataGrid()
         {
-            _manufacturers = ManufacturerRepository.GetAll(out _rows);
+            _manufacturers = ManufacturerRepository.GetAll();
+            _rows = _manufacturers.Count;
 
             dgvManufacturers.CreateTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
             dgvManufacturers.CreateTextBoxColumn(Resources.Manufacturer, DataGridViewAutoSizeColumnMode.Fill);
@@ -112,6 +118,7 @@ namespace StretchCeilings.Views
 
             FillCountryComboBox();
             FillRowsComboBox();
+            FillPropertyComboBox();
 
             if (CanUserAdd && IsForView == false)
                 DrawAddCustomerButton();
@@ -160,7 +167,10 @@ namespace StretchCeilings.Views
                 _filter,
                 _count,
                 _currentPage,
-                out _rows);
+                _sortOption,
+                _property);
+
+            _rows = _manufacturers.Count;
 
             FillDataGrid();
         }
@@ -298,6 +308,44 @@ namespace StretchCeilings.Views
             _currentPage = 1;
             _count = Convert.ToInt32(cbRows.SelectedItem);
             FilterDataGrid();
+        }
+
+        private void SortOptionChanged(object sender, EventArgs e)
+        {
+            if (_sortOption == SortOption.Ascending)
+            {
+                _sortOption = SortOption.Descending;
+                iBtnSortOption.IconChar = IconChar.SortAmountDown;
+            }
+            else
+            {
+                _sortOption = SortOption.Ascending;
+                iBtnSortOption.IconChar = IconChar.SortAmountDownAlt;
+            }
+        }
+
+        private void PropertyChanged(object sender, EventArgs e)
+        {
+            foreach (ComboBoxItem item in cbProperties.Items)
+                if (item == cbProperties.SelectedItem)
+                    _property = (ManufacturerProperty)item.Tag;
+        }
+
+        private void FillPropertyComboBox()
+        {
+            foreach (ManufacturerProperty property in Enum.GetValues(typeof(ManufacturerProperty)))
+            {
+                var item = new ComboBoxItem()
+                {
+                    Content = property.ParseString(),
+                    Tag = property
+                };
+
+                cbProperties.Items.Add(item);
+            }
+
+            cbProperties.DisplayMember = Resources.DisplayMember;
+            cbProperties.SelectedIndex = 0;
         }
     }
 }

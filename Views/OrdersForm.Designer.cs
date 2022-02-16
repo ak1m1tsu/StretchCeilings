@@ -30,6 +30,9 @@ namespace StretchCeilings.Views
         private void InitializeComponent()
         {
             this.panelPages = new System.Windows.Forms.Panel();
+            this.iBtnSortOption = new FontAwesome.Sharp.IconButton();
+            this.lblOrderBy = new System.Windows.Forms.Label();
+            this.cbProperties = new System.Windows.Forms.ComboBox();
             this.cbRows = new System.Windows.Forms.ComboBox();
             this.btnPreviousPage = new System.Windows.Forms.Button();
             this.tbPage = new System.Windows.Forms.TextBox();
@@ -72,16 +75,68 @@ namespace StretchCeilings.Views
             // panelPages
             // 
             this.panelPages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(42)))), ((int)(((byte)(54)))));
+            this.panelPages.Controls.Add(this.iBtnSortOption);
+            this.panelPages.Controls.Add(this.lblOrderBy);
+            this.panelPages.Controls.Add(this.cbProperties);
             this.panelPages.Controls.Add(this.cbRows);
             this.panelPages.Controls.Add(this.btnPreviousPage);
             this.panelPages.Controls.Add(this.tbPage);
             this.panelPages.Controls.Add(this.btnNextPage);
             this.panelPages.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelPages.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
             this.panelPages.Location = new System.Drawing.Point(0, 560);
             this.panelPages.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelPages.Name = "panelPages";
             this.panelPages.Size = new System.Drawing.Size(1050, 40);
             this.panelPages.TabIndex = 2;
+            // 
+            // iBtnSortOption
+            // 
+            this.iBtnSortOption.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.iBtnSortOption.FlatAppearance.BorderSize = 0;
+            this.iBtnSortOption.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iBtnSortOption.IconChar = FontAwesome.Sharp.IconChar.SortAmountDown;
+            this.iBtnSortOption.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.iBtnSortOption.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iBtnSortOption.IconSize = 31;
+            this.iBtnSortOption.Location = new System.Drawing.Point(483, 4);
+            this.iBtnSortOption.Name = "iBtnSortOption";
+            this.iBtnSortOption.Size = new System.Drawing.Size(31, 31);
+            this.iBtnSortOption.TabIndex = 106;
+            this.iBtnSortOption.UseVisualStyleBackColor = false;
+            this.iBtnSortOption.Click += new System.EventHandler(this.SortOptionChanged);
+            // 
+            // lblOrderBy
+            // 
+            this.lblOrderBy.AutoSize = true;
+            this.lblOrderBy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblOrderBy.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.lblOrderBy.Location = new System.Drawing.Point(140, 8);
+            this.lblOrderBy.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblOrderBy.Name = "lblOrderBy";
+            this.lblOrderBy.Size = new System.Drawing.Size(141, 23);
+            this.lblOrderBy.TabIndex = 105;
+            this.lblOrderBy.Text = "Сортировать по:";
+            // 
+            // cbProperties
+            // 
+            this.cbProperties.AutoCompleteCustomSource.AddRange(new string[] {
+            "Ожидает ответа клиента",
+            "Ожидает выполнения работ",
+            "Ожидает результатов замеров",
+            "Отменен",
+            "Завершен"});
+            this.cbProperties.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.cbProperties.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbProperties.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbProperties.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
+            this.cbProperties.FormattingEnabled = true;
+            this.cbProperties.Location = new System.Drawing.Point(286, 4);
+            this.cbProperties.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cbProperties.Name = "cbProperties";
+            this.cbProperties.Size = new System.Drawing.Size(194, 31);
+            this.cbProperties.TabIndex = 104;
+            this.cbProperties.SelectedIndexChanged += new System.EventHandler(this.PropertyChanged);
             // 
             // cbRows
             // 
@@ -320,7 +375,7 @@ namespace StretchCeilings.Views
             // 
             this.lblId.AutoSize = true;
             this.lblId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(242)))));
-            this.lblId.Location = new System.Drawing.Point(3, 70);
+            this.lblId.Location = new System.Drawing.Point(3, 72);
             this.lblId.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblId.Name = "lblId";
             this.lblId.Size = new System.Drawing.Size(67, 23);
@@ -556,5 +611,8 @@ namespace StretchCeilings.Views
         private System.Windows.Forms.ComboBox cbPaidByCash;
         private System.Windows.Forms.LinkLabel linkEmployee;
         private System.Windows.Forms.LinkLabel linkCustomer;
+        private System.Windows.Forms.Label lblOrderBy;
+        private System.Windows.Forms.ComboBox cbProperties;
+        private FontAwesome.Sharp.IconButton iBtnSortOption;
     }
 }

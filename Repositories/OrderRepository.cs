@@ -2,36 +2,43 @@
 using System.Data.Entity;
 using System.Linq;
 using StretchCeilings.DataAccess;
+using StretchCeilings.Extensions;
 using StretchCeilings.Models;
 using StretchCeilings.Models.Enums;
+using StretchCeilings.Repositories.Enums;
 
 namespace StretchCeilings.Repositories
 {
     public class OrderRepository
     {
-        public static List<Order> GetAll(out int rows)
+        public static List<Order> GetAll()
         {
             using (var db = new StretchCeilingsContext())
             {
                 var enumerable = db.Orders.Where(o => o.DeletedDate == null)
                     .Include(x => x.Customer)
+                    .OrderByDescending(x => x.Id)
                     .AsEnumerable();
 
                 var orders = enumerable.ToList();
-
-                rows = orders.Count();
                 
                 return orders.ToList();
             }
         }
-
-        public static List<Order> GetAll(Order firstFilter, Order secondFilter, Customer customer, Employee employee, int count, int page, out int rows)
+        
+        public static List<Order> GetAll(Order firstFilter, 
+            Order secondFilter, 
+            Customer customer, 
+            Employee employee,
+            int count, 
+            int page,
+            SortOption option = SortOption.Descending,
+            OrderProperty property = OrderProperty.Id)
         {
             using (var db = new StretchCeilingsContext())
             {
                 var enumerable = db.Orders.Where(o => o.DeletedDate == null)
                     .Include(x => x.Customer)
-                    .OrderByDescending(x => x.Total)
                     .AsEnumerable();
 
                 if (firstFilter.Id != 0)
@@ -42,10 +49,10 @@ namespace StretchCeilings.Repositories
                         firstFilter.DatePlaced <= o.DatePlaced && secondFilter.DatePlaced >= o.DatePlaced);
 
                 if (firstFilter.DatePlaced != null)
-                        enumerable = enumerable.Where(o => firstFilter.DatePlaced <= o.DatePlaced);
+                    enumerable = enumerable.Where(o => firstFilter.DatePlaced <= o.DatePlaced);
 
                 if (secondFilter.DatePaid != null)
-                        enumerable = enumerable.Where(o => secondFilter.DatePlaced >= o.DatePlaced);
+                    enumerable = enumerable.Where(o => secondFilter.DatePlaced >= o.DatePlaced);
 
                 if (firstFilter.Total != null && secondFilter.Total != null)
                     enumerable = enumerable.Where(o => firstFilter.Total <= o.Total && o.Total <= secondFilter.Total);
@@ -55,7 +62,7 @@ namespace StretchCeilings.Repositories
 
                 if (secondFilter.Total != null)
                     enumerable = enumerable.Where(o => o.Total <= secondFilter.Total);
-                
+
                 if (firstFilter.Status != OrderStatus.Unknown && firstFilter.Status != null)
                     enumerable = enumerable.Where(x => x.Status == firstFilter.Status);
 
@@ -72,9 +79,7 @@ namespace StretchCeilings.Repositories
                         .Select(@t => @t.o);
                 }
 
-                var orders = enumerable.ToList();
-
-                rows = orders.Count;
+                var orders = enumerable.SortBy(property.ToString(), option).ToList();
 
                 return orders.Skip((page - 1) * count).Take(count).ToList();
             }

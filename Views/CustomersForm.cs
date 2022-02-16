@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Controls;
 using System.Windows.Forms;
+using FontAwesome.Sharp;
 using StretchCeilings.Extensions;
 using StretchCeilings.Extensions.Controls;
 using StretchCeilings.Models;
 using StretchCeilings.Models.Enums;
 using StretchCeilings.Repositories;
+using StretchCeilings.Repositories.Enums;
 using StretchCeilings.Sessions;
 using StretchCeilings.Structs;
 using StretchCeilings.Views.Controls;
@@ -21,6 +24,8 @@ namespace StretchCeilings.Views
         private Customer _customer;
 
         private readonly FormState _state;
+        private SortOption _sortOption;
+        private CustomerProperty _property;
 
         private int _rows;
         private int _count;
@@ -32,6 +37,7 @@ namespace StretchCeilings.Views
         public CustomersForm(FormState state = FormState.Default)
         {
             _state = state;
+            _sortOption = SortOption.Descending;
             InitializeComponent();
         }
 
@@ -60,6 +66,8 @@ namespace StretchCeilings.Views
             foreach (var rowCountItem in Resources.RowCountItems)
                 cbRows.Items.Add(rowCountItem);
             
+            FillPropertyComboBox();
+
             cbRows.SelectedIndex = 0;
             _count = Convert.ToInt32(cbRows.SelectedItem);
 
@@ -108,8 +116,11 @@ namespace StretchCeilings.Views
                 _filter,
                 _count,
                 _currentPage,
-                out _rows);
-            
+                _sortOption,
+                _property);
+
+            _rows = _customers.Count;
+
             FillDataGrid();
         }
 
@@ -138,7 +149,8 @@ namespace StretchCeilings.Views
 
         private void LoadForm(object sender, EventArgs e)
         {
-            _customers = CustomerRepository.GetAll(out _rows);
+            _customers = CustomerRepository.GetAll();
+            _rows = _customers.Count;
             _filter = new Customer();
 
             SetupDataGrid();
@@ -254,6 +266,44 @@ namespace StretchCeilings.Views
             _currentPage = 1;
             _count = Convert.ToInt32(cbRows.SelectedItem);
             FilterDataGrid();
+        }
+
+        private void SortOptionChanged(object sender, EventArgs e)
+        {
+            if (_sortOption == SortOption.Ascending)
+            {
+                _sortOption = SortOption.Descending;
+                iBtnSortOption.IconChar = IconChar.SortAmountDown;
+            }
+            else
+            {
+                _sortOption = SortOption.Ascending;
+                iBtnSortOption.IconChar = IconChar.SortAmountDownAlt;
+            }
+        }
+
+        private void PropertyChanged(object sender, EventArgs e)
+        {
+            foreach (ComboBoxItem item in cbProperties.Items)
+                if (item == cbProperties.SelectedItem)
+                    _property = (CustomerProperty)item.Tag;
+        }
+
+        private void FillPropertyComboBox()
+        {
+            foreach (CustomerProperty property in Enum.GetValues(typeof(CustomerProperty)))
+            {
+                var item = new ComboBoxItem()
+                {
+                    Content = property.ParseString(),
+                    Tag = property
+                };
+
+                cbProperties.Items.Add(item);
+            }
+
+            cbProperties.DisplayMember = Resources.DisplayMember;
+            cbProperties.SelectedIndex = 0;
         }
     }
 }

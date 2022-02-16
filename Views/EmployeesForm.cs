@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using FontAwesome.Sharp;
 using StretchCeilings.Extensions;
 using StretchCeilings.Extensions.Controls;
 using StretchCeilings.Models;
 using StretchCeilings.Models.Enums;
 using StretchCeilings.Repositories;
+using StretchCeilings.Repositories.Enums;
 using StretchCeilings.Sessions;
 using StretchCeilings.Structs;
 using StretchCeilings.Views.Controls;
@@ -21,6 +23,8 @@ namespace StretchCeilings.Views
         private List<ComboBoxItem> _roles;
 
         private readonly FormState _state;
+        private SortOption _sortOption;
+        private EmployeeProperty _property;
 
         private Employee _filter;
         private Employee _employee;
@@ -35,6 +39,7 @@ namespace StretchCeilings.Views
         public EmployeesForm(FormState state = FormState.Default)
         {
             _state = state;
+            _sortOption = SortOption.Descending;
             InitializeComponent();
         }
 
@@ -48,7 +53,8 @@ namespace StretchCeilings.Views
 
         private void SetupDataGrid()
         {
-            _employees = EmployeeRepository.GetAll(out _rows);
+            _employees = EmployeeRepository.GetAll();
+            _rows = _employees.Count;
 
             dgvEmployees.CreateTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
             dgvEmployees.CreateTextBoxColumn(Resources.FullName, DataGridViewAutoSizeColumnMode.Fill);
@@ -65,6 +71,8 @@ namespace StretchCeilings.Views
         {
             _roles = new List<ComboBoxItem>();
 
+            FillPropertyComboBox();
+            
             foreach (var role in RoleRepository.GetAll())
             {
                 var item = new ComboBoxItem()
@@ -131,13 +139,16 @@ namespace StretchCeilings.Views
             _lastPage = Convert.ToInt32(result);
         }
 
-        private void FilterEmployeesGrid()
+        private void FilterDataGrid()
         {
             _employees = EmployeeRepository.GetAll(
                 _filter,
                 _count,
                 _currentPage,
-                out _rows);
+                _sortOption,
+                _property);
+
+            _rows = _employees.Count;
 
             FillDataGrid();
         }
@@ -175,13 +186,13 @@ namespace StretchCeilings.Views
             if (form.ShowDialog() != DialogResult.OK)
                 return;
 
-            FilterEmployeesGrid();
+            FilterDataGrid();
             FlatMessageBox.ShowDialog("Сотрудник успешно добавлен", Caption.Info);
         }
 
         private void UseFilters(object sender, EventArgs e)
         {
-            FilterEmployeesGrid();
+            FilterDataGrid();
         }
 
         private void ResetFilters(object sender, EventArgs e)
@@ -194,7 +205,7 @@ namespace StretchCeilings.Views
             _currentPage = 1;
             _lastPage = 1;
             
-            FilterEmployeesGrid();
+            FilterDataGrid();
             FlatMessageBox.ShowDialog("Значение фильтров сброшено до стандартных", Caption.Info);
         }
         
@@ -204,7 +215,7 @@ namespace StretchCeilings.Views
                 return;
 
             _currentPage--;
-            FilterEmployeesGrid();
+            FilterDataGrid();
         }
 
         private void ShowNextPage(object sender, EventArgs e)
@@ -213,7 +224,7 @@ namespace StretchCeilings.Views
                 return;
 
             _currentPage++;
-            FilterEmployeesGrid();
+            FilterDataGrid();
         }
         
         private void FullNameChanged(object sender, EventArgs e)
@@ -238,7 +249,7 @@ namespace StretchCeilings.Views
             employee.Delete();
             _currentPage = 1;
 
-            FilterEmployeesGrid();
+            FilterDataGrid();
             FlatMessageBox.ShowDialog("Сотрудник успешно удален.", Caption.Info);
         }
 
@@ -262,7 +273,7 @@ namespace StretchCeilings.Views
             var employee = _employees[index - 1];
             new EmployeeForm(employee).ShowDialog();
 
-            FilterEmployeesGrid();
+            FilterDataGrid();
         }
 
         private void CloseForm(object sender, EventArgs e)
@@ -279,7 +290,45 @@ namespace StretchCeilings.Views
         {
             _currentPage = 1;
             _count = Convert.ToInt32(cbRows.SelectedItem);
-            FilterEmployeesGrid();
+            FilterDataGrid();
+        }
+
+        private void SortOptionChanged(object sender, EventArgs e)
+        {
+            if (_sortOption == SortOption.Ascending)
+            {
+                _sortOption = SortOption.Descending;
+                iBtnSortOption.IconChar = IconChar.SortAmountDown;
+            }
+            else
+            {
+                _sortOption = SortOption.Ascending;
+                iBtnSortOption.IconChar = IconChar.SortAmountDownAlt;
+            }
+        }
+
+        private void PropertyChanged(object sender, EventArgs e)
+        {
+            foreach (ComboBoxItem item in cbProperties.Items)
+                if (item == cbProperties.SelectedItem)
+                    _property = (EmployeeProperty)item.Tag;
+        }
+
+        private void FillPropertyComboBox()
+        {
+            foreach (EmployeeProperty property in Enum.GetValues(typeof(EmployeeProperty)))
+            {
+                var item = new ComboBoxItem()
+                {
+                    Content = property.ParseString(),
+                    Tag = property
+                };
+
+                cbProperties.Items.Add(item);
+            }
+
+            cbProperties.DisplayMember = Resources.DisplayMember;
+            cbProperties.SelectedIndex = 0;
         }
     }
 }

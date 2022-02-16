@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Controls;
 using System.Windows.Forms;
+using FontAwesome.Sharp;
 using StretchCeilings.Extensions;
 using StretchCeilings.Extensions.Controls;
 using StretchCeilings.Models;
 using StretchCeilings.Models.Enums;
 using StretchCeilings.Repositories;
+using StretchCeilings.Repositories.Enums;
 using StretchCeilings.Sessions;
 using StretchCeilings.Structs;
 using StretchCeilings.Views.Controls;
@@ -27,10 +30,13 @@ namespace StretchCeilings.Views
         private int _count;
         
         private readonly FormState _state;
+        private SortOption _sortOption;
+        private AdditionalServiceProperty _property;
 
         public AdditionalServicesForm(FormState state = FormState.Default)
         {
             _state = state;
+            _sortOption = SortOption.Descending;
             InitializeComponent();
         }
 
@@ -67,6 +73,7 @@ namespace StretchCeilings.Views
         {
             nudTotalFrom.Maximum = decimal.MaxValue;
             nudTotalTo.Maximum = decimal.MaxValue;
+            FillPropertyComboBox();
 
             foreach (var item in Resources.RowCountItems)
                 cbRows.Items.Add(item);
@@ -135,7 +142,10 @@ namespace StretchCeilings.Views
                 _secondsFilter,
                 _count,
                 _currentPage,
-                out _rows);
+                _sortOption,
+                _property);
+
+            _rows = _additionalServices.Count;
 
             FillDataGrid();
         }
@@ -256,9 +266,7 @@ namespace StretchCeilings.Views
             nudTotalFrom.Value = Resources.DefaultNumericUpDownValue;
             nudTotalTo.Value = Resources.DefaultNumericUpDownValue;
             tbName.Text = Resources.DefaultTextBoxText;
-
-            _additionalServices = AdditionalServiceRepository.GetAll(out _rows);
-
+            
             FilterDataGrid();
             FlatMessageBox.ShowDialog("Значение фильтров сброшено до стандартных", Caption.Info);
         }
@@ -278,6 +286,44 @@ namespace StretchCeilings.Views
             _currentPage = 1;
             _count = Convert.ToInt32(cbRows.SelectedItem);
             FilterDataGrid();
+        }
+
+        private void SortOptionChanged(object sender, EventArgs e)
+        {
+            if (_sortOption == SortOption.Ascending)
+            {
+                _sortOption = SortOption.Descending;
+                iBtnSortOption.IconChar = IconChar.SortAmountDown;
+            }
+            else
+            {
+                _sortOption = SortOption.Ascending;
+                iBtnSortOption.IconChar = IconChar.SortAmountDownAlt;
+            }
+        }
+
+        private void PropertyChanged(object sender, EventArgs e)
+        {
+            foreach (ComboBoxItem item in cbProperties.Items)
+                if (item == cbProperties.SelectedItem)
+                    _property = (AdditionalServiceProperty)item.Tag;
+        }
+
+        private void FillPropertyComboBox()
+        {
+            foreach (AdditionalServiceProperty property in Enum.GetValues(typeof(AdditionalServiceProperty)))
+            {
+                var item = new ComboBoxItem()
+                {
+                    Content = property.ParseString(),
+                    Tag = property
+                };
+
+                cbProperties.Items.Add(item);
+            }
+
+            cbProperties.DisplayMember = Resources.DisplayMember;
+            cbProperties.SelectedIndex = 0;
         }
     }
 }

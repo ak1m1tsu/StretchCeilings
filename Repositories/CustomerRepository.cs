@@ -2,28 +2,34 @@
 using System.Collections.Generic;
 using System.Linq;
 using StretchCeilings.DataAccess;
+using StretchCeilings.Extensions;
 using StretchCeilings.Models;
+using StretchCeilings.Repositories.Enums;
 
 namespace StretchCeilings.Repositories
 {
     public class CustomerRepository
     {
-        public static List<Customer> GetAll(out int rows)
+        public static List<Customer> GetAll()
         {
             using (var db = new StretchCeilingsContext())
             {
                 var enumerable = db.Customers.Where(x => x.DeletedDate == null)
+                    .OrderByDescending(x => x.FullName)
                     .AsEnumerable();
 
                 var customers = enumerable.ToList();
-
-                rows = customers.Count();
 
                 return customers.ToList();
             }
         }
 
-        public static List<Customer> GetAll(Customer filter, int count, int page, out int rows)
+        public static List<Customer> GetAll(
+            Customer filter, 
+            int count, 
+            int page,
+            SortOption option = SortOption.Descending,
+            CustomerProperty property = CustomerProperty.FullName)
         {
             using (var db = new StretchCeilingsContext())
             {
@@ -39,9 +45,7 @@ namespace StretchCeilings.Repositories
                 if (string.IsNullOrEmpty(filter.PhoneNumber) == false)
                     enumerable = enumerable.Where(x => x.PhoneNumber == filter.PhoneNumber);
 
-                var customers = enumerable.ToList();
-                
-                rows = customers.Count();
+                var customers = enumerable.SortBy(property.ToString(), option).ToList();
 
                 return customers.Skip((page - 1) * count).Take(count).ToList();
             }

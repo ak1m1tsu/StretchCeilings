@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using FontAwesome.Sharp;
 using StretchCeilings.Extensions;
 using StretchCeilings.Extensions.Controls;
 using StretchCeilings.Models;
 using StretchCeilings.Models.Enums;
 using StretchCeilings.Repositories;
+using StretchCeilings.Repositories.Enums;
 using StretchCeilings.Sessions;
 using StretchCeilings.Structs;
 using StretchCeilings.Views.Controls;
@@ -23,6 +25,8 @@ namespace StretchCeilings.Views
         private Service _secondFilter;
 
         private readonly FormState _state;
+        private SortOption _sortOption;
+        private ServiceProperty _property;
 
         private int _rows;
         private int _count;
@@ -31,6 +35,7 @@ namespace StretchCeilings.Views
         
         public ServicesForm(FormState state = FormState.Default)
         {
+            _sortOption = SortOption.Descending;
             _state = state;
             InitializeComponent();
         }
@@ -47,7 +52,8 @@ namespace StretchCeilings.Views
 
         private void SetupForm()
         {
-            _services = ServiceRepository.GetAll(out _rows);
+            _services = ServiceRepository.GetAll();
+            _rows = _services.Count;
             _firstFilter = new Service();
             _secondFilter = new Service();
 
@@ -76,6 +82,7 @@ namespace StretchCeilings.Views
             btnPrevious.Click += ShowPreviousPage;
             btnResetFilters.FlatAppearance.MouseDownBackColor = DraculaColor.Red;
             
+            FillPropertyComboBox();
             nudTotalFrom.Maximum = decimal.MaxValue;
             nudTotalTo.Maximum = decimal.MaxValue;
 
@@ -131,7 +138,10 @@ namespace StretchCeilings.Views
                 _secondFilter,
                 _count,
                 _currentPage,
-                out _rows);
+                _sortOption,
+                _property);
+
+            _rows = _services.Count;
 
             FillDataGrid();
         }
@@ -252,8 +262,6 @@ namespace StretchCeilings.Views
             linkLblManufacturer.Text = Resources.No;
             cbCeiling.Items.Clear();
 
-            _services = ServiceRepository.GetAll(out _rows);
-
             FilterDataGrid();
             FlatMessageBox.ShowDialog("Значение фильтров сброшено до стандартных", Caption.Info);
         }
@@ -322,6 +330,44 @@ namespace StretchCeilings.Views
             _currentPage = 1;
             _count = Convert.ToInt32(cbRows.SelectedItem);
             FilterDataGrid();
+        }
+
+        private void SortOptionChanged(object sender, EventArgs e)
+        {
+            if (_sortOption == SortOption.Ascending)
+            {
+                _sortOption = SortOption.Descending;
+                iBtnSortOption.IconChar = IconChar.SortAmountDown;
+            }
+            else
+            {
+                _sortOption = SortOption.Ascending;
+                iBtnSortOption.IconChar = IconChar.SortAmountDownAlt;
+            }
+        }
+
+        private void PropertyChanged(object sender, EventArgs e)
+        {
+            foreach (ComboBoxItem item in cbProperties.Items)
+                if (item == cbProperties.SelectedItem)
+                    _property = (ServiceProperty)item.Tag;
+        }
+
+        private void FillPropertyComboBox()
+        {
+            foreach (ServiceProperty property in Enum.GetValues(typeof(ServiceProperty)))
+            {
+                var item = new ComboBoxItem()
+                {
+                    Content = property.ParseString(),
+                    Tag = property
+                };
+
+                cbProperties.Items.Add(item);
+            }
+
+            cbProperties.DisplayMember = Resources.DisplayMember;
+            cbProperties.SelectedIndex = 0;
         }
     }
 }

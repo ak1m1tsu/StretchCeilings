@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using FontAwesome.Sharp;
 using StretchCeilings.Extensions;
 using StretchCeilings.Extensions.Controls;
 using StretchCeilings.Models;
 using StretchCeilings.Models.Enums;
 using StretchCeilings.Repositories;
+using StretchCeilings.Repositories.Enums;
 using StretchCeilings.Sessions;
 using StretchCeilings.Structs;
 using StretchCeilings.Views.Controls;
@@ -24,6 +26,8 @@ namespace StretchCeilings.Views
         private Customer _customer;
         
         private readonly FormState _state;
+        private SortOption _sortOption;
+        private OrderProperty _property;
 
         private int _count;
         private int _rows;
@@ -33,6 +37,7 @@ namespace StretchCeilings.Views
         public OrdersForm(FormState state = FormState.Default)
         {
             _state = state;
+            _sortOption = SortOption.Descending;
             InitializeComponent();
         }
 
@@ -45,9 +50,10 @@ namespace StretchCeilings.Views
         
         private void SetupForm()
         {
-            _orders = OrderRepository.GetAll(out _rows);
+            _orders = OrderRepository.GetAll();
             _firstFilter = new Order();
             _secondFilter = new Order();
+            _rows = _orders.Count;
 
             SetupDataGrid();
             SetupControls();
@@ -68,6 +74,23 @@ namespace StretchCeilings.Views
             dgvOrders.DefaultCellStyle.SelectionBackColor = DraculaColor.Selection;
             dgvOrders.DefaultCellStyle.SelectionForeColor = DraculaColor.Foreground;
             dgvOrders.CellClick += RemoveGridRow;
+        }
+
+        private void FillPropertyComboBox()
+        {
+            foreach (OrderProperty property in Enum.GetValues(typeof(OrderProperty)))
+            {
+                var item = new ComboBoxItem()
+                {
+                    Content = property.ParseString(),
+                    Tag = property
+                };
+
+                cbProperties.Items.Add(item);
+            }
+
+            cbProperties.DisplayMember = Resources.DisplayMember;
+            cbProperties.SelectedIndex = 0;
         }
 
         private void FillStatusComboBox()
@@ -129,6 +152,7 @@ namespace StretchCeilings.Views
             FillStatusComboBox();
             FillPaidByCashComboBox();
             FillRowsComboBox();
+            FillPropertyComboBox();
 
             if (CanUserAdd && IsForView == false)
                 DrawAddOrderButton();
@@ -172,7 +196,10 @@ namespace StretchCeilings.Views
                 _employee,
                 _count,
                 _currentPage,
-                out _rows);
+                _sortOption,
+                _property);
+
+            _rows = _orders.Count;
 
             FillDataGrid();
         }
@@ -388,6 +415,27 @@ namespace StretchCeilings.Views
             _currentPage = 1;
             _count = Convert.ToInt32(cbRows.SelectedItem);
             FilterDataGrid();
+        }
+
+        private void SortOptionChanged(object sender, EventArgs e)
+        {
+            if (_sortOption == SortOption.Ascending)
+            {
+                _sortOption = SortOption.Descending;
+                iBtnSortOption.IconChar = IconChar.SortAmountDown;
+            }
+            else
+            {
+                _sortOption = SortOption.Ascending;
+                iBtnSortOption.IconChar = IconChar.SortAmountDownAlt;
+            }
+        }
+
+        private void PropertyChanged(object sender, EventArgs e)
+        {
+            foreach (ComboBoxItem item in cbProperties.Items)
+                if (item == cbProperties.SelectedItem)
+                    _property = (OrderProperty)item.Tag;
         }
     }
 }
