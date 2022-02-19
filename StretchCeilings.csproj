@@ -105,338 +105,349 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extensions\RepositoryExtensions.cs" />
-    <Compile Include="Models\Interfaces\IDbModel.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Repositories\Enums\AdditionalServiceProperty.cs" />
-    <Compile Include="Repositories\Enums\CustomerProperty.cs" />
-    <Compile Include="Repositories\Enums\EmployeeProperty.cs" />
-    <Compile Include="Repositories\Enums\ManufacturerProperty.cs" />
-    <Compile Include="Repositories\Enums\OrderProperty.cs" />
-    <Compile Include="Repositories\Enums\RoomProperty.cs" />
-    <Compile Include="Repositories\Enums\ServiceProperty.cs" />
-    <Compile Include="Repositories\Enums\SortOption.cs" />
-    <Compile Include="Structs\Caption.cs" />
-    <Compile Include="Structs\DraculaColor.cs" />
-    <Compile Include="Views\Enums\FormState.cs" />
-    <Compile Include="Structs\GoogleFont.cs" />
-    <Compile Include="Helpers\ModelHelper.cs" />
-    <Compile Include="Structs\AwesomeIcon.cs" />
-    <Compile Include="Migrations\202202051101293_init.cs" />
-    <Compile Include="Migrations\202202051101293_init.designer.cs">
+    <Compile Include="App\Services\AuthService.cs" />
+    <Compile Include="DataAccess\Repositories\Repository.cs" />
+    <Compile Include="Domain\Repositories\IAdditionalServiceRepository.cs" />
+    <Compile Include="Domain\Repositories\ICustomerRepository.cs" />
+    <Compile Include="Domain\Repositories\IManufacturerRepository.cs" />
+    <Compile Include="Domain\Repositories\IOrderRepository.cs" />
+    <Compile Include="Domain\Repositories\IRoleRepository.cs" />
+    <Compile Include="Domain\Repositories\IRoomRepository.cs" />
+    <Compile Include="Domain\Repositories\IServiceRepository.cs" />
+    <Compile Include="Domain\Services\IAuthService.cs" />
+    <Compile Include="DataAccess\Repositories\Extensions\RepositoryExtensions.cs" />
+    <Compile Include="Domain\Models\Interfaces\IDbModel.cs" />
+    <Compile Include="DataAccess\Migrations\Configuration.cs" />
+    <Compile Include="Domain\Enums\AdditionalServiceProperty.cs" />
+    <Compile Include="Domain\Enums\CustomerProperty.cs" />
+    <Compile Include="Domain\Enums\EmployeeProperty.cs" />
+    <Compile Include="Domain\Enums\ManufacturerProperty.cs" />
+    <Compile Include="Domain\Enums\OrderProperty.cs" />
+    <Compile Include="Domain\Enums\RoomProperty.cs" />
+    <Compile Include="Domain\Enums\ServiceProperty.cs" />
+    <Compile Include="Domain\Enums\SortOption.cs" />
+    <Compile Include="Domain\Repositories\IEmployeeRepository.cs" />
+    <Compile Include="Domain\IRepository.cs" />
+    <Compile Include="UI\Structs\Caption.cs" />
+    <Compile Include="UI\Structs\DraculaColor.cs" />
+    <Compile Include="UI\Views\Enums\FormState.cs" />
+    <Compile Include="UI\Structs\GoogleFont.cs" />
+    <Compile Include="Domain\Helpers\ModelHelper.cs" />
+    <Compile Include="UI\Structs\AwesomeIcon.cs" />
+    <Compile Include="DataAccess\Migrations\202202051101293_init.cs" />
+    <Compile Include="DataAccess\Migrations\202202051101293_init.designer.cs">
       <DependentUpon>202202051101293_init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\AdditionalService.cs" />
-    <Compile Include="Models\OrderEmployee.cs" />
-    <Compile Include="Models\OrderService.cs" />
-    <Compile Include="Models\OrderWorkDate.cs" />
-    <Compile Include="Models\RolePermission.cs" />
-    <Compile Include="Models\ServiceAdditionalService.cs" />
+    <Compile Include="Domain\Models\AdditionalService.cs" />
+    <Compile Include="Domain\Models\OrderEmployee.cs" />
+    <Compile Include="Domain\Models\OrderService.cs" />
+    <Compile Include="Domain\Models\OrderWorkDate.cs" />
+    <Compile Include="Domain\Models\RolePermission.cs" />
+    <Compile Include="Domain\Models\ServiceAdditionalService.cs" />
     <Compile Include="DataAccess\StretchCeilingsConfiguration.cs" />
-    <Compile Include="Repositories\RoomRepository.cs" />
-    <Compile Include="Views\AdditionalServiceForm.cs">
+    <Compile Include="DataAccess\Repositories\RoomRepository.cs" />
+    <Compile Include="UI\Views\AdditionalServiceForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\AdditionalServiceForm.Designer.cs">
+    <Compile Include="UI\Views\AdditionalServiceForm.Designer.cs">
       <DependentUpon>AdditionalServiceForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\AdditionalServiceEditForm.cs">
+    <Compile Include="UI\Views\AdditionalServiceEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\AdditionalServiceEditForm.Designer.cs">
+    <Compile Include="UI\Views\AdditionalServiceEditForm.Designer.cs">
       <DependentUpon>AdditionalServiceEditForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\AdditionalServicesForm.cs">
+    <Compile Include="UI\Views\AdditionalServicesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\AdditionalServicesForm.Designer.cs">
+    <Compile Include="UI\Views\AdditionalServicesForm.Designer.cs">
       <DependentUpon>AdditionalServicesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\CeilingEditForm.cs">
+    <Compile Include="UI\Views\CeilingEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\CeilingEditForm.Designer.cs">
+    <Compile Include="UI\Views\CeilingEditForm.Designer.cs">
       <DependentUpon>CeilingEditForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\CustomerEditForm.cs">
+    <Compile Include="UI\Views\CustomerEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\CustomerEditForm.Designer.cs">
+    <Compile Include="UI\Views\CustomerEditForm.Designer.cs">
       <DependentUpon>CustomerEditForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\EmployeeEditForm.cs">
+    <Compile Include="UI\Views\EmployeeEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\EmployeeEditForm.Designer.cs">
+    <Compile Include="UI\Views\EmployeeEditForm.Designer.cs">
       <DependentUpon>EmployeeEditForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Enums\MessageBoxState.cs" />
-    <Compile Include="Views\EstateEditForm.cs">
+    <Compile Include="UI\Views\Enums\MessageBoxState.cs" />
+    <Compile Include="UI\Views\EstateEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\EstateEditForm.Designer.cs">
+    <Compile Include="UI\Views\EstateEditForm.Designer.cs">
       <DependentUpon>EstateEditForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\EstateForm.cs">
+    <Compile Include="UI\Views\EstateForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\EstateForm.Designer.cs">
+    <Compile Include="UI\Views\EstateForm.Designer.cs">
       <DependentUpon>EstateForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\ManufacturerEditForm.cs">
+    <Compile Include="UI\Views\ManufacturerEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\ManufacturerEditForm.Designer.cs">
+    <Compile Include="UI\Views\ManufacturerEditForm.Designer.cs">
       <DependentUpon>ManufacturerEditForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\OrderEditForm.cs">
+    <Compile Include="UI\Views\OrderEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\OrderEditForm.Designer.cs">
+    <Compile Include="UI\Views\OrderEditForm.Designer.cs">
       <DependentUpon>OrderEditForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\OrderWorkDateForm.cs">
+    <Compile Include="UI\Views\OrderWorkDateForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\OrderWorkDateForm.Designer.cs">
+    <Compile Include="UI\Views\OrderWorkDateForm.Designer.cs">
       <DependentUpon>OrderWorkDateForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\RoomEditForm.cs">
+    <Compile Include="UI\Views\RoomEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\RoomEditForm.Designer.cs">
+    <Compile Include="UI\Views\RoomEditForm.Designer.cs">
       <DependentUpon>RoomEditForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\RoomsForm.cs">
+    <Compile Include="UI\Views\RoomsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\RoomsForm.Designer.cs">
+    <Compile Include="UI\Views\RoomsForm.Designer.cs">
       <DependentUpon>RoomsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\ServiceEditForm.cs">
+    <Compile Include="UI\Views\ServiceEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\ServiceEditForm.Designer.cs">
+    <Compile Include="UI\Views\ServiceEditForm.Designer.cs">
       <DependentUpon>ServiceEditForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Interfaces\ICustomer.cs" />
-    <Compile Include="Models\Interfaces\IEstate.cs" />
-    <Compile Include="Models\Interfaces\IEmployee.cs" />
-    <Compile Include="Models\Interfaces\IManufacturer.cs" />
-    <Compile Include="Models\Interfaces\IOrder.cs" />
-    <Compile Include="Models\Interfaces\IRole.cs" />
-    <Compile Include="Models\Ceiling.cs" />
-    <Compile Include="Models\Interfaces\IService.cs" />
-    <Compile Include="Views\LoginForm.cs">
+    <Compile Include="Domain\Models\Interfaces\ICustomer.cs" />
+    <Compile Include="Domain\Models\Interfaces\IEstate.cs" />
+    <Compile Include="Domain\Models\Interfaces\IEmployee.cs" />
+    <Compile Include="Domain\Models\Interfaces\IManufacturer.cs" />
+    <Compile Include="Domain\Models\Interfaces\IOrder.cs" />
+    <Compile Include="Domain\Models\Interfaces\IRole.cs" />
+    <Compile Include="Domain\Models\Ceiling.cs" />
+    <Compile Include="Domain\Models\Interfaces\IService.cs" />
+    <Compile Include="UI\Views\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\LoginForm.designer.cs">
+    <Compile Include="UI\Views\LoginForm.designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainForm.cs">
+    <Compile Include="UI\Views\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\MainForm.designer.cs">
+    <Compile Include="UI\Views\MainForm.designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\CustomerForm.cs">
+    <Compile Include="UI\Views\CustomerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\CustomerForm.Designer.cs">
+    <Compile Include="UI\Views\CustomerForm.Designer.cs">
       <DependentUpon>CustomerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\EmployeeForm.cs">
+    <Compile Include="UI\Views\EmployeeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\EmployeeForm.Designer.cs">
+    <Compile Include="UI\Views\EmployeeForm.Designer.cs">
       <DependentUpon>EmployeeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\ManufacturerForm.cs">
+    <Compile Include="UI\Views\ManufacturerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\ManufacturerForm.Designer.cs">
+    <Compile Include="UI\Views\ManufacturerForm.Designer.cs">
       <DependentUpon>ManufacturerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\OrderForm.cs">
+    <Compile Include="UI\Views\OrderForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\OrderForm.Designer.cs">
+    <Compile Include="UI\Views\OrderForm.Designer.cs">
       <DependentUpon>OrderForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\CeilingForm.cs">
+    <Compile Include="UI\Views\CeilingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\CeilingForm.Designer.cs">
+    <Compile Include="UI\Views\CeilingForm.Designer.cs">
       <DependentUpon>CeilingForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\RoomForm.cs">
+    <Compile Include="UI\Views\RoomForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\RoomForm.Designer.cs">
+    <Compile Include="UI\Views\RoomForm.Designer.cs">
       <DependentUpon>RoomForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\ServiceForm.cs">
+    <Compile Include="UI\Views\ServiceForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\ServiceForm.Designer.cs">
+    <Compile Include="UI\Views\ServiceForm.Designer.cs">
       <DependentUpon>ServiceForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\TimeTableForm.cs">
+    <Compile Include="UI\Views\TimeTableForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\TimeTableForm.Designer.cs">
+    <Compile Include="UI\Views\TimeTableForm.Designer.cs">
       <DependentUpon>TimeTableForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\CustomersForm.cs">
+    <Compile Include="UI\Views\CustomersForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\CustomersForm.Designer.cs">
+    <Compile Include="UI\Views\CustomersForm.Designer.cs">
       <DependentUpon>CustomersForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\EmployeesForm.cs">
+    <Compile Include="UI\Views\EmployeesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\EmployeesForm.Designer.cs">
+    <Compile Include="UI\Views\EmployeesForm.Designer.cs">
       <DependentUpon>EmployeesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\ManufacturersForm.cs">
+    <Compile Include="UI\Views\ManufacturersForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\ManufacturersForm.Designer.cs">
+    <Compile Include="UI\Views\ManufacturersForm.Designer.cs">
       <DependentUpon>ManufacturersForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\OrdersForm.cs">
+    <Compile Include="UI\Views\OrdersForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\OrdersForm.Designer.cs">
+    <Compile Include="UI\Views\OrdersForm.Designer.cs">
       <DependentUpon>OrdersForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\ServicesForm.cs">
+    <Compile Include="UI\Views\ServicesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\ServicesForm.Designer.cs">
+    <Compile Include="UI\Views\ServicesForm.Designer.cs">
       <DependentUpon>ServicesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\StretchCeilingsContext.cs" />
-    <Compile Include="Models\Customer.cs" />
-    <Compile Include="Models\Employee.cs" />
-    <Compile Include="Models\Estate.cs" />
-    <Compile Include="Models\Manufacturer.cs" />
-    <Compile Include="Models\Log.cs" />
-    <Compile Include="Models\Order.cs" />
-    <Compile Include="Models\Permission.cs" />
-    <Compile Include="Models\Role.cs" />
-    <Compile Include="Models\Room.cs" />
-    <Compile Include="Models\Service.cs" />
-    <Compile Include="Models\TimeTable.cs" />
-    <Compile Include="Structs\Resources.cs" />
-    <Compile Include="Views\FlatMessageBoxForm.cs">
+    <Compile Include="Domain\Models\Customer.cs" />
+    <Compile Include="Domain\Models\Employee.cs" />
+    <Compile Include="Domain\Models\Estate.cs" />
+    <Compile Include="Domain\Models\Manufacturer.cs" />
+    <Compile Include="Domain\Models\Log.cs" />
+    <Compile Include="Domain\Models\Order.cs" />
+    <Compile Include="Domain\Models\Permission.cs" />
+    <Compile Include="Domain\Models\Role.cs" />
+    <Compile Include="Domain\Models\Room.cs" />
+    <Compile Include="Domain\Models\Service.cs" />
+    <Compile Include="Domain\Models\TimeTable.cs" />
+    <Compile Include="UI\Structs\Resources.cs" />
+    <Compile Include="UI\Views\FlatMessageBoxForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\FlatMessageBoxForm.Designer.cs">
+    <Compile Include="UI\Views\FlatMessageBoxForm.Designer.cs">
       <DependentUpon>FlatMessageBoxForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\FlatButton.cs">
+    <Compile Include="UI\Views\Controls\FlatButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Models\Enums\Country.cs" />
-    <Compile Include="Extensions\Controls\DataGridViewExtensions.cs" />
-    <Compile Include="Helpers\DLL\User32Helper.cs" />
-    <Compile Include="Extensions\Controls\PanelExtensions.cs" />
-    <Compile Include="Extensions\EnumExtensions.cs" />
-    <Compile Include="Models\Enums\ColorType.cs" />
-    <Compile Include="Models\Enums\TextureType.cs" />
-    <Compile Include="Models\Enums\OrderStatus.cs" />
-    <Compile Include="Models\Enums\PermissionCode.cs" />
-    <Compile Include="Models\Enums\RoomType.cs" />
-    <Compile Include="Extensions\FormExtensions.cs" />
-    <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="Extensions\Controls\TextBoxExtensions.cs" />
-    <Compile Include="Helpers\LogHelper.cs" />
-    <Compile Include="Repositories\AdditionalServiceRepository.cs" />
-    <Compile Include="Repositories\CustomerRepository.cs" />
-    <Compile Include="Repositories\EmployeeRepository.cs" />
-    <Compile Include="Repositories\ManufacturerRepository.cs" />
-    <Compile Include="Repositories\OrderRepository.cs" />
-    <Compile Include="Repositories\RoleRepository.cs" />
-    <Compile Include="Repositories\ServiceRepository.cs" />
-    <Compile Include="Sessions\UserSession.cs" />
-    <EmbeddedResource Include="Migrations\202202051101293_init.resx">
+    <Compile Include="Domain\Models\Enums\Country.cs" />
+    <Compile Include="UI\Extensions\DataGridViewExtensions.cs" />
+    <Compile Include="UI\Helpers\User32Helper.cs" />
+    <Compile Include="UI\Extensions\PanelExtensions.cs" />
+    <Compile Include="Domain\Extensions\EnumExtensions.cs" />
+    <Compile Include="Domain\Models\Enums\ColorType.cs" />
+    <Compile Include="Domain\Models\Enums\TextureType.cs" />
+    <Compile Include="Domain\Models\Enums\OrderStatus.cs" />
+    <Compile Include="Domain\Models\Enums\PermissionCode.cs" />
+    <Compile Include="Domain\Models\Enums\RoomType.cs" />
+    <Compile Include="UI\Extensions\FormExtensions.cs" />
+    <Compile Include="Domain\Extensions\StringExtensions.cs" />
+    <Compile Include="UI\Extensions\TextBoxExtensions.cs" />
+    <Compile Include="UI\Helpers\LogHelper.cs" />
+    <Compile Include="DataAccess\Repositories\AdditionalServiceRepository.cs" />
+    <Compile Include="DataAccess\Repositories\CustomerRepository.cs" />
+    <Compile Include="DataAccess\Repositories\EmployeeRepository.cs" />
+    <Compile Include="DataAccess\Repositories\ManufacturerRepository.cs" />
+    <Compile Include="DataAccess\Repositories\OrderRepository.cs" />
+    <Compile Include="DataAccess\Repositories\RoleRepository.cs" />
+    <Compile Include="DataAccess\Repositories\ServiceRepository.cs" />
+    <EmbeddedResource Include="DataAccess\Migrations\202202051101293_init.resx">
       <DependentUpon>202202051101293_init.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\AdditionalServiceForm.resx">
+    <EmbeddedResource Include="UI\Views\AdditionalServiceForm.resx">
       <DependentUpon>AdditionalServiceForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\AdditionalServiceEditForm.resx">
+    <EmbeddedResource Include="UI\Views\AdditionalServiceEditForm.resx">
       <DependentUpon>AdditionalServiceEditForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\AdditionalServicesForm.resx">
+    <EmbeddedResource Include="UI\Views\AdditionalServicesForm.resx">
       <DependentUpon>AdditionalServicesForm.cs</DependentUpon>
       <LastGenOutput>AdditionalServicesForm1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\CeilingEditForm.resx">
+    <EmbeddedResource Include="UI\Views\CeilingEditForm.resx">
       <DependentUpon>CeilingEditForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\CustomerEditForm.resx">
+    <EmbeddedResource Include="UI\Views\CustomerEditForm.resx">
       <DependentUpon>CustomerEditForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\EmployeeEditForm.resx">
+    <EmbeddedResource Include="UI\Views\EmployeeEditForm.resx">
       <DependentUpon>EmployeeEditForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\EstateEditForm.resx">
+    <EmbeddedResource Include="UI\Views\EstateEditForm.resx">
       <DependentUpon>EstateEditForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\EstateForm.resx">
+    <EmbeddedResource Include="UI\Views\EstateForm.resx">
       <DependentUpon>EstateForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\ManufacturerEditForm.resx">
+    <EmbeddedResource Include="UI\Views\ManufacturerEditForm.resx">
       <DependentUpon>ManufacturerEditForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\OrderEditForm.resx">
+    <EmbeddedResource Include="UI\Views\OrderEditForm.resx">
       <DependentUpon>OrderEditForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\OrderWorkDateForm.resx">
+    <EmbeddedResource Include="UI\Views\OrderWorkDateForm.resx">
       <DependentUpon>OrderWorkDateForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\RoomEditForm.resx">
+    <EmbeddedResource Include="UI\Views\RoomEditForm.resx">
       <DependentUpon>RoomEditForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\RoomsForm.resx">
+    <EmbeddedResource Include="UI\Views\RoomsForm.resx">
       <DependentUpon>RoomsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\ServiceEditForm.resx">
+    <EmbeddedResource Include="UI\Views\ServiceEditForm.resx">
       <DependentUpon>ServiceEditForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\LoginForm.resx">
+    <EmbeddedResource Include="UI\Views\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\MainForm.resx">
+    <EmbeddedResource Include="UI\Views\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\CustomerForm.resx">
+    <EmbeddedResource Include="UI\Views\CustomerForm.resx">
       <DependentUpon>CustomerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\EmployeeForm.resx">
+    <EmbeddedResource Include="UI\Views\EmployeeForm.resx">
       <DependentUpon>EmployeeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\ManufacturerForm.resx">
+    <EmbeddedResource Include="UI\Views\ManufacturerForm.resx">
       <DependentUpon>ManufacturerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\OrderForm.resx">
+    <EmbeddedResource Include="UI\Views\OrderForm.resx">
       <DependentUpon>OrderForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\CeilingForm.resx">
+    <EmbeddedResource Include="UI\Views\CeilingForm.resx">
       <DependentUpon>CeilingForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\RoomForm.resx">
+    <EmbeddedResource Include="UI\Views\RoomForm.resx">
       <DependentUpon>RoomForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\ServiceForm.resx">
+    <EmbeddedResource Include="UI\Views\ServiceForm.resx">
       <DependentUpon>ServiceForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\TimeTableForm.resx">
+    <EmbeddedResource Include="UI\Views\TimeTableForm.resx">
       <DependentUpon>TimeTableForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -449,22 +460,22 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Views\CustomersForm.resx">
+    <EmbeddedResource Include="UI\Views\CustomersForm.resx">
       <DependentUpon>CustomersForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\EmployeesForm.resx">
+    <EmbeddedResource Include="UI\Views\EmployeesForm.resx">
       <DependentUpon>EmployeesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\ManufacturersForm.resx">
+    <EmbeddedResource Include="UI\Views\ManufacturersForm.resx">
       <DependentUpon>ManufacturersForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\OrdersForm.resx">
+    <EmbeddedResource Include="UI\Views\OrdersForm.resx">
       <DependentUpon>OrdersForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\ServicesForm.resx">
+    <EmbeddedResource Include="UI\Views\ServicesForm.resx">
       <DependentUpon>ServicesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\FlatMessageBoxForm.resx">
+    <EmbeddedResource Include="UI\Views\FlatMessageBoxForm.resx">
       <DependentUpon>FlatMessageBoxForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
@@ -482,15 +493,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Forms\additional_service.png" />
-    <Content Include="Assets\Forms\additional_services.png" />
-    <Content Include="Assets\Forms\additional_service_edit.png" />
-    <Content Include="Assets\Forms\ceiling.png" />
-    <Content Include="Assets\Forms\login.png" />
-    <Content Include="Assets\Forms\order.png" />
-    <Content Include="Assets\Forms\orders.png" />
-    <Content Include="Assets\Forms\order_edit.png" />
-    <None Include="Assets\Icons\error_32x32.ico" />
+    <None Include="UI\Assets\Icons\error_32x32.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

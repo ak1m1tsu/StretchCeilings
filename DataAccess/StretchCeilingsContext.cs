@@ -1,5 +1,5 @@
 ﻿using System.Data.Entity;
-using StretchCeilings.Models;
+using StretchCeilings.Domain.Models;
 
 namespace StretchCeilings.DataAccess
 {

@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Threading;
 using System.Windows.Forms;
+using StretchCeilings.UI.Helpers;
+using StretchCeilings.UI.Views;
 
 namespace StretchCeilings
 {
     public static class Program
     {
-        private static log4net.ILog Log => Helpers.LogHelper.GetLogger();
+        private static log4net.ILog Log => LogHelper.GetLogger();
 
         [STAThread]
         private static void Main()
@@ -14,7 +16,7 @@ namespace StretchCeilings
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.ThreadException += Exception;
-            Application.Run(new Views.LoginForm());
+            Application.Run(new LoginForm());
         }
 
         private static void Exception(object sender, ThreadExceptionEventArgs ex)
