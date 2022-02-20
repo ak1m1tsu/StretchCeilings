@@ -75,12 +75,12 @@ namespace StretchCeilings.UI.Views
             SetUpForm();
         }
 
-        private void panelTop_MouseDown(object sender, MouseEventArgs e)
+        private void DragMove(object sender, MouseEventArgs e)
         {
             Handle.DragMove(e);
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
+        private void CloseForm(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
         }

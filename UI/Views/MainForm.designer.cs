@@ -93,6 +93,7 @@ namespace StretchCeilings.UI.Views
             // 
             this.btnCloseApp.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnCloseApp.FlatAppearance.BorderSize = 0;
+            this.btnCloseApp.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(85)))), ((int)(((byte)(85)))));
             this.btnCloseApp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCloseApp.Font = new System.Drawing.Font("Open Sans SemiBold", 14.25F, System.Drawing.FontStyle.Bold);
             this.btnCloseApp.IconChar = FontAwesome.Sharp.IconChar.Times;

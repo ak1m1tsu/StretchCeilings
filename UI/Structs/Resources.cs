@@ -44,6 +44,6 @@ namespace StretchCeilings.UI.Structs
             { "Нет" , false },
             { "Да", true }
         };
-        public static int[] RowCountItems => new int[3] { 15, 20, 25 };
+        public static int[] RowCountItems => new int[5] { 5, 10, 15, 20, 25 };
     }
 }

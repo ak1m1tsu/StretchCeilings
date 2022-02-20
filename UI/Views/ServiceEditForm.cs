@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using StretchCeilings.DataAccess.Repositories;
@@ -15,7 +16,7 @@ namespace StretchCeilings.UI.Views
 {
     public partial class ServiceEditForm : Form
     {
-        private IManufacturerRepository _repository;
+        private readonly IManufacturerRepository _repository;
         private readonly Service _service;
         private List<ServiceAdditionalService> _additionalServices;
 
@@ -58,7 +59,7 @@ namespace StretchCeilings.UI.Views
 
         private void SetupGrid()
         {
-            _additionalServices = _service?.GetAdditionalServices();
+            _additionalServices = _service?.GetAdditionalServices().ToList();
 
             dgvAdditServs.CreateTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
             dgvAdditServs.CreateTextBoxColumn(Resources.Name, DataGridViewAutoSizeColumnMode.Fill);

@@ -40,7 +40,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
-        public List<Room> GetRooms()
+        public IEnumerable<Room> GetRooms()
         {
             using (var db = new StretchCeilingsContext())
             {

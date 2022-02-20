@@ -20,7 +20,7 @@ namespace StretchCeilings.UI.Views
 {
     public partial class CustomersForm : Form
     {
-        private ICustomerRepository _repository;
+        private readonly ICustomerRepository _repository;
         private List<Customer> _customers;
 
         private Customer _filter;

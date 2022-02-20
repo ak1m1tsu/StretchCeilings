@@ -73,7 +73,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
-        public List<ServiceAdditionalService> GetAdditionalServices()
+        public IEnumerable<ServiceAdditionalService> GetAdditionalServices()
         {
             using (var db = new StretchCeilingsContext())
             {

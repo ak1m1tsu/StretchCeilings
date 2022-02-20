@@ -9,9 +9,9 @@ using StretchCeilings.Domain.Repositories;
 
 namespace StretchCeilings.DataAccess.Repositories
 {
-    public class OrderRepository : Repository, IOrderRepository
+    public class OrderRepository : Repository<Order>, IOrderRepository
     {
-        public IEnumerable<Order> GetAll()
+        public override IEnumerable<Order> GetAll()
         {
             return Context.Orders.Where(o => o.DeletedDate == null)
                 .Include(x => x.Customer)
@@ -75,7 +75,7 @@ namespace StretchCeilings.DataAccess.Repositories
             return orders.Skip((page - 1) * count).Take(count);
         }
 
-        public Order FindById(int id)
+        public override Order FindById(int id)
         {
             return Context.Orders.Include(x => x.Customer).First(x => x.Id == id);
         }

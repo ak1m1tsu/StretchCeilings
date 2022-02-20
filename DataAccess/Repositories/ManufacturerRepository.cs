@@ -9,9 +9,9 @@ using StretchCeilings.Domain.Repositories;
 
 namespace StretchCeilings.DataAccess.Repositories
 {
-    public class ManufacturerRepository : Repository, IManufacturerRepository
+    public class ManufacturerRepository : Repository<Manufacturer>, IManufacturerRepository
     {
-        public IEnumerable<Manufacturer> GetAll()
+        public override IEnumerable<Manufacturer> GetAll()
         {
             return Context.Manufacturers.Where(x => x.DeletedDate == null)
                 .AsEnumerable();
@@ -44,7 +44,7 @@ namespace StretchCeilings.DataAccess.Repositories
             return manufacturers.Skip((page - 1) * count).Take(count);
         }
 
-        public Manufacturer FindById(int id)
+        public override Manufacturer FindById(int id)
         {
             return Context.Manufacturers.First(o => o.Id == id);
         }

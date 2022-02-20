@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using StretchCeilings.App.Services;
 using StretchCeilings.Domain.Models;
@@ -55,7 +56,7 @@ namespace StretchCeilings.UI.Views
 
         private void FillDataGrid()
         {
-            _tables = _employee.GetSchedule();
+            _tables = _employee.GetSchedule().ToList();
 
             dgvTimeTable.Rows.Clear();
 

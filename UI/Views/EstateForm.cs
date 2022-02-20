@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using StretchCeilings.Domain.Extensions;
 using StretchCeilings.Domain.Models;
@@ -33,7 +34,7 @@ namespace StretchCeilings.UI.Views
         {
             lblAddressValue.Text = _estate.Address;
 
-            _rooms = _estate?.GetRooms();
+            _rooms = _estate?.GetRooms().ToList();
 
             dgvRooms.CreateTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
             dgvRooms.CreateTextBoxColumn(Resources.Area, DataGridViewAutoSizeColumnMode.DisplayedCells);

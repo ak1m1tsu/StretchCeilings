@@ -9,9 +9,9 @@ using StretchCeilings.Domain.Repositories;
 
 namespace StretchCeilings.DataAccess.Repositories
 {
-    public class EmployeeRepository : Repository, IEmployeeRepository
+    public class EmployeeRepository : Repository<Employee>, IEmployeeRepository
     {
-        public IEnumerable<Employee> GetAll()
+        public override IEnumerable<Employee> GetAll()
         {
             return Context.Employees.Where(x => x.DeletedDate == null)
                 .Include(x => x.Role)
@@ -44,7 +44,7 @@ namespace StretchCeilings.DataAccess.Repositories
             return employees.Skip((page - 1) * count).Take(count);
         }
 
-        public Employee FindById(int id)
+        public override Employee FindById(int id)
         {
             throw new NotImplementedException();
         }

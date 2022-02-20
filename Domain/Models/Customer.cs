@@ -37,7 +37,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
-        public List<Estate> GetEstates()
+        public IEnumerable<Estate> GetEstates()
         {
             using (var db = new StretchCeilingsContext())
             {

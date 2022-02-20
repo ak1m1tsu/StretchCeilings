@@ -14,7 +14,7 @@ namespace StretchCeilings.UI.Views
 {
     public partial class ServiceForm : Form
     {
-        private IManufacturerRepository _repository;
+        private readonly IManufacturerRepository _repository;
         private Service _service;
         private readonly FormState _state;
         private List<ServiceAdditionalService> _additionalServices;
@@ -71,7 +71,7 @@ namespace StretchCeilings.UI.Views
 
         private void FillDataGrid()
         {
-            _additionalServices = _service?.GetAdditionalServices();
+            _additionalServices = _service?.GetAdditionalServices().ToList();
 
             dgvAdditServs.Rows.Clear();
 

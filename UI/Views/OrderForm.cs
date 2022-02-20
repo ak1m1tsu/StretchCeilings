@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using StretchCeilings.App.Services;
 using StretchCeilings.DataAccess.Repositories;
@@ -15,7 +16,7 @@ namespace StretchCeilings.UI.Views
 {
     public partial class OrderForm : Form
     {
-        private ICustomerRepository _repository;
+        private readonly ICustomerRepository _repository;
         private readonly FormState _state;
 
         private Order _order;
@@ -86,7 +87,7 @@ namespace StretchCeilings.UI.Views
 
         private void FillServicesGrid()
         {
-            _services = _order.GetServices();
+            _services = _order.GetServices().ToList();
             dgvServices.Rows.Clear();
 
             for (var i = 0; i < _services?.Count; i++)
@@ -102,7 +103,7 @@ namespace StretchCeilings.UI.Views
 
         private void FillEmployeesGrid()
         {
-            _employees = _order.GetEmployees();
+            _employees = _order.GetEmployees().ToList();
             dgvEmployees.Rows.Clear();
 
             for (var i = 0; i < _employees?.Count; i++)
@@ -130,7 +131,7 @@ namespace StretchCeilings.UI.Views
 
         private void FillLogsGrid()
         {
-            _logs = _order.GetLogs();
+            _logs = _order.GetLogs().ToList();
             dgvLogs.Rows.Clear();
 
             for (var i = 0; i < _logs?.Count; i++)
@@ -228,7 +229,7 @@ namespace StretchCeilings.UI.Views
 
         private void ShowEditForm(object sender, EventArgs e)
         {
-            this.Hide();
+            Hide();
 
             var form = new OrderEditForm(_order);
             
@@ -238,7 +239,7 @@ namespace StretchCeilings.UI.Views
                 ReSetupForm();
             }
 
-            this.Show();
+            Show();
         }
     }
 }

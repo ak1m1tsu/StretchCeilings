@@ -60,7 +60,7 @@ namespace StretchCeilings.UI.Views
 
         private void LoadForm(object sender, EventArgs e)
         {
-            _estates = _customer?.GetEstates();
+            _estates = _customer?.GetEstates().ToList();
             
             SetupDataGrid();
             SetupControls();
@@ -124,7 +124,7 @@ namespace StretchCeilings.UI.Views
             if (form.ShowDialog() != DialogResult.OK)
                 return;
 
-            _estates = _customer.GetEstates();
+            _estates = _customer.GetEstates().ToList();
             FillDataGrid();
         }
 

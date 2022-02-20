@@ -8,9 +8,9 @@ using StretchCeilings.Domain.Repositories;
 
 namespace StretchCeilings.DataAccess.Repositories
 {
-    public class ServiceRepository : Repository, IServiceRepository
+    public class ServiceRepository : Repository<Service>, IServiceRepository
     {
-        public IEnumerable<Service> GetAll()
+        public override IEnumerable<Service> GetAll()
         {
             return Context.Services.Where(o => o.DeletedDate == null)
                 .Include(x => x.Ceiling)
@@ -19,7 +19,7 @@ namespace StretchCeilings.DataAccess.Repositories
                 .AsEnumerable();
         }
 
-        public Service FindById(int id)
+        public override Service FindById(int id)
         {
             return Context.Services.Find(id);
         }

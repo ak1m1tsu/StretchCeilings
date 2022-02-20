@@ -4,7 +4,7 @@ namespace StretchCeilings.Domain.Models.Interfaces
 {
     public interface IRole : IDbModel
     {
-        List<Permission> GetPermissions();
+        IEnumerable<Permission> GetPermissions();
         void AddPermission(Permission permission);
         void DeletePermission(Permission permission);
     }

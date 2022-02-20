@@ -5,14 +5,14 @@ using StretchCeilings.Domain.Repositories;
 
 namespace StretchCeilings.DataAccess.Repositories
 {
-    public class RoleRepository : Repository, IRoleRepository
+    public class RoleRepository : Repository<Role>, IRoleRepository
     {
-        public  IEnumerable<Role> GetAll()
+        public override IEnumerable<Role> GetAll()
         {
             return Context.Roles.AsEnumerable();
         }
 
-        public Role FindById(int id)
+        public override Role FindById(int id)
         {
             return Context.Roles.Find(id);
         }

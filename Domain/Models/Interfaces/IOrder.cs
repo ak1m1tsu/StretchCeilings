@@ -5,8 +5,8 @@ namespace StretchCeilings.Domain.Models.Interfaces
     public interface IOrder : IDbModel
     {
         void CalculateTotal();
-        List<Log> GetLogs();
-        List<Service> GetServices();
-        List<Employee> GetEmployees();
+        IEnumerable<Log> GetLogs();
+        IEnumerable<Service> GetServices();
+        IEnumerable<Employee> GetEmployees();
     }
 }

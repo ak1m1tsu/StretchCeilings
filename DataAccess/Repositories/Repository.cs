@@ -1,16 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
+using StretchCeilings.Domain;
 
 namespace StretchCeilings.DataAccess.Repositories
 {
-    public class Repository : IDisposable
+    public abstract class Repository<T> : IRepository<T>, IDisposable where T : class
     {
         private readonly StretchCeilingsContext _context;
-        private bool _isDisposed;
+        private bool _disposed;
 
-        public Repository()
+        protected Repository()
         {
-            _isDisposed = false;
             _context = new StretchCeilingsContext();
+            _disposed = false;
         }
 
         protected StretchCeilingsContext Context
@@ -20,8 +22,21 @@ namespace StretchCeilings.DataAccess.Repositories
 
         public void Dispose()
         {
-            _context?.Dispose();
-            _isDisposed = true;
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposed == false)
+                if (disposing)
+                    _context?.Dispose();
+
+            _disposed = true;
+        }
+
+        public abstract IEnumerable<T> GetAll();
+
+        public abstract T FindById(int id);
     }
 }

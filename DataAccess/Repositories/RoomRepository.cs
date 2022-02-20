@@ -8,16 +8,16 @@ using StretchCeilings.Domain.Repositories;
 
 namespace StretchCeilings.DataAccess.Repositories
 {
-    public class RoomRepository : Repository, IRoomRepository
+    public class RoomRepository : Repository<Room>, IRoomRepository
     {
-        public IEnumerable<Room> GetAll()
+        public override IEnumerable<Room> GetAll()
         {
             return Context.CustomersRooms.Where(x => x.DeletedDate == null)
                 .Include(x => x.Estate)
                 .Include(x => x.Estate.Customer);
         }
 
-        public Room FindById(int id)
+        public override Room FindById(int id)
         {
             return Context.CustomersRooms.Find(id);
         }

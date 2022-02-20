@@ -17,7 +17,7 @@ namespace StretchCeilings.UI.Views
     public partial class EmployeeEditForm : Form
     {
         private readonly Employee _employee;
-        private IRoleRepository _repository;
+        private readonly IRoleRepository _repository;
         private readonly List<Role> _roles;
 
         private readonly List<TimeTable> _addedTables;
@@ -95,7 +95,7 @@ namespace StretchCeilings.UI.Views
 
         private void FillTimeTableGrid()
         {
-            _tables = _employee?.GetSchedule();
+            _tables = _employee?.GetSchedule().ToList();
             
             dgvTimeTable.Rows.Clear();
 

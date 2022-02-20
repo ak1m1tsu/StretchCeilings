@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using StretchCeilings.App.Services;
 using StretchCeilings.Domain.Models;
@@ -39,7 +40,7 @@ namespace StretchCeilings.UI.Views
 
         private void SetupGrid()
         {
-            _estates = _customer.GetEstates();
+            _estates = _customer.GetEstates().ToList();
 
             dgvEstates.CreateTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
             dgvEstates.CreateTextBoxColumn("Адресс", DataGridViewAutoSizeColumnMode.Fill);
@@ -62,7 +63,7 @@ namespace StretchCeilings.UI.Views
             lblFullNameValue.Text = _customer.FullName;
             lblPhoneNumberValue.Text = _customer.PhoneNumber;
 
-            _estates = _customer.GetEstates();
+            _estates = _customer.GetEstates().ToList();
 
             dgvEstates.Rows.Clear();
 

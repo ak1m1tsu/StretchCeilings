@@ -67,7 +67,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
-        public List<Log> GetLogs()
+        public IEnumerable<Log> GetLogs()
         {
             using (var db = new StretchCeilingsContext())
             {
@@ -75,7 +75,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
-        public List<Service> GetServices()
+        public IEnumerable<Service> GetServices()
         {
             using (var db = new StretchCeilingsContext())
             {
@@ -125,7 +125,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
-        public List<Employee> GetEmployees()
+        public IEnumerable<Employee> GetEmployees()
         {
             using (var db = new StretchCeilingsContext())
             {

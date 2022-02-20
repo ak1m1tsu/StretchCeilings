@@ -21,7 +21,7 @@ namespace StretchCeilings.UI.Views
     public partial class EmployeesForm : Form
     {
         private readonly IEmployeeRepository _employeeRepository;
-        private IRoleRepository _roleRepository;
+        private readonly IRoleRepository _roleRepository;
         private List<Employee> _employees;
         private List<ComboBoxItem> _roles;
 

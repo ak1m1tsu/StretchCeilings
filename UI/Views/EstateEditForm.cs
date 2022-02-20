@@ -103,7 +103,7 @@ namespace StretchCeilings.UI.Views
 
         private void LoadForm(object sender, EventArgs e)
         {
-            _rooms = _estate.GetRooms();
+            _rooms = _estate.GetRooms().ToList();
 
             SetupDataGrid();
             SetupControls();

@@ -8,7 +8,7 @@ using StretchCeilings.Domain.Repositories;
 
 namespace StretchCeilings.DataAccess.Repositories
 {
-    public class CustomerRepository : Repository, ICustomerRepository
+    public class CustomerRepository : Repository<Customer>, ICustomerRepository
     {
         public IEnumerable<Customer> GetAll(
             Customer filter,
@@ -34,12 +34,12 @@ namespace StretchCeilings.DataAccess.Repositories
             return customers.Skip((page - 1) * count).Take(count).ToList();
         }
 
-        public IEnumerable<Customer> GetAll()
+        public override IEnumerable<Customer> GetAll()
         {
             return Context.Customers.AsEnumerable();
         }
 
-        public Customer FindById(int id)
+        public override Customer FindById(int id)
         {
             return Context.Customers.Find(id);
         }

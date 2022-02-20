@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using StretchCeilings.App.Services;
+using StretchCeilings.DataAccess.Repositories;
 using StretchCeilings.Domain.Services;
 using StretchCeilings.UI.Extensions;
 using StretchCeilings.UI.Structs;
@@ -9,12 +10,12 @@ namespace StretchCeilings.UI.Views
 {
     public partial class LoginForm : Form
     {
+        private readonly IAuthService _authService;
         private MainForm _mainForm;
-        private IAuthService _authService;
 
         public LoginForm()
         {
-            _authService = new AuthService();
+            _authService = new AuthService(new EmployeeRepository());
             InitializeComponent();
         }
 

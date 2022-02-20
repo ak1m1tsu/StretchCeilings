@@ -4,6 +4,6 @@ namespace StretchCeilings.Domain.Models.Interfaces
 {
     public interface ICustomer : IDbModel
     {
-        List<Estate> GetEstates();
+        IEnumerable<Estate> GetEstates();
     }
 }

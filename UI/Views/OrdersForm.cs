@@ -20,7 +20,7 @@ namespace StretchCeilings.UI.Views
 {
     public partial class OrdersForm : Form
     {
-        private IOrderRepository _repository;
+        private readonly IOrderRepository _repository;
         private List<Order> _orders;
         
         private Order _firstFilter;

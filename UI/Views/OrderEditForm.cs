@@ -144,7 +144,7 @@ namespace StretchCeilings.UI.Views
 
         private void SetupEmployeesGrid()
         {
-            _employees = _order?.GetEmployees();
+            _employees = _order?.GetEmployees().ToList();
             
             dgvEmployees.CreateTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
             dgvEmployees.CreateTextBoxColumn(Resources.PersonName, DataGridViewAutoSizeColumnMode.Fill);
@@ -170,7 +170,7 @@ namespace StretchCeilings.UI.Views
 
         private void SetupServicesGrid()
         {
-            _services = _order?.GetServices();
+            _services = _order?.GetServices().ToList();
 
             dgvServices.CreateTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
             dgvServices.CreateTextBoxColumn(Resources.Manufacturer, DataGridViewAutoSizeColumnMode.Fill);
@@ -198,7 +198,7 @@ namespace StretchCeilings.UI.Views
 
         private void SetupLogsGrid()
         {
-            _logs = _order?.GetLogs();
+            _logs = _order?.GetLogs().ToList();
 
             dgvLogs.CreateTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
             dgvLogs.CreateTextBoxColumn(Resources.DateCreated, DataGridViewAutoSizeColumnMode.Fill);
@@ -292,7 +292,7 @@ namespace StretchCeilings.UI.Views
             }.Add();
 
             _workDates = _order.GetWorkDates();
-            _logs = _order.GetLogs();
+            _logs = _order.GetLogs().ToList();
 
             FillLogsGrid();
             FillWorkDatesGrid();
@@ -315,7 +315,7 @@ namespace StretchCeilings.UI.Views
 
             linkCustomer.Text = form.GetCustomer().FullName;
             _order.CustomerId = form.GetCustomer().Id;
-            _logs = _order.GetLogs();
+            _logs = _order.GetLogs().ToList();
 
             FillLogsGrid();
         }
@@ -347,8 +347,8 @@ namespace StretchCeilings.UI.Views
                 Comment = "Добавлена новая услуга"
             }.Add();
 
-            _services = _order.GetServices();
-            _logs = _order.GetLogs();
+            _services = _order.GetServices().ToList();
+            _logs = _order.GetLogs().ToList();
             _order.CalculateTotal();
 
             lblPriceValue.Text = TotalToString;
@@ -386,8 +386,8 @@ namespace StretchCeilings.UI.Views
                 Comment = $"Добавлен новый мастер \"{employee.FullName}\""
             }.Add();
 
-            _employees = _order.GetEmployees();
-            _logs = _order.GetLogs();
+            _employees = _order.GetEmployees().ToList();
+            _logs = _order.GetLogs().ToList();
 
             FillLogsGrid();
             FillEmployeeGrid();
@@ -406,7 +406,7 @@ namespace StretchCeilings.UI.Views
                 Comment = $"Дата замеров изменена на \"{dtpDateOfMeasurements.Value}\""
             }.Add();
 
-            _logs = _order.GetLogs();
+            _logs = _order.GetLogs().ToList();
             FillLogsGrid();
         }
 
@@ -421,7 +421,7 @@ namespace StretchCeilings.UI.Views
                 Comment = $"Дата оплаты изменена на \"{dtpDatePaid.Value}\""
             }.Add();
 
-            _logs = _order.GetLogs();
+            _logs = _order.GetLogs().ToList();
             FillLogsGrid();
         }
 
@@ -435,7 +435,7 @@ namespace StretchCeilings.UI.Views
                         Comment = $"Статус заказа изменен на \"{item.Content}\""
                     }.Add();
 
-            _logs = _order.GetLogs();
+            _logs = _order.GetLogs().ToList();
             FillLogsGrid();
         }
 
@@ -449,7 +449,7 @@ namespace StretchCeilings.UI.Views
                         Comment = $"Оплата наличными изменена на \"{item.Content}\""
                     }.Add();
 
-            _logs = _order.GetLogs();
+            _logs = _order.GetLogs().ToList();
             FillLogsGrid();
         }
 
@@ -524,7 +524,7 @@ namespace StretchCeilings.UI.Views
             var index = Convert.ToInt32(dgvServices.Rows[e.RowIndex].Cells[0].Value);
             var service = _services[index - 1];
             _order.RemoveService(service.Id);
-            _services = _order.GetServices();
+            _services = _order.GetServices().ToList();
             _order.CalculateTotal();
             lblPriceValue.Text = TotalToString;
 
@@ -567,7 +567,7 @@ namespace StretchCeilings.UI.Views
             var index = Convert.ToInt32(dgvEmployees.Rows[e.RowIndex].Cells[0].Value);
             var employee = _employees[index - 1];
             _order.RemoveEmployee(employee.Id);
-            _employees = _order.GetEmployees();
+            _employees = _order.GetEmployees().ToList();
 
             FillEmployeeGrid();
             FlatMessageBox.ShowDialog("Сотрудник успешно удален", Caption.Info);
@@ -587,7 +587,7 @@ namespace StretchCeilings.UI.Views
 
             var index = Convert.ToInt32(dgvLogs.Rows[e.RowIndex].Cells[0].Value);
             _logs[index - 1].Delete();
-            _logs = _order.GetLogs();
+            _logs = _order.GetLogs().ToList();
 
             FillLogsGrid();
             FlatMessageBox.ShowDialog("Лог успешно удален", Caption.Info);

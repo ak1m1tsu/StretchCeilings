@@ -7,7 +7,7 @@ namespace StretchCeilings.UI.Views
 {
     public partial class FlatMessageBoxForm : Form
     {
-        private MessageBoxState _state;
+        private readonly MessageBoxState _state;
 
         public FlatMessageBoxForm()
         {

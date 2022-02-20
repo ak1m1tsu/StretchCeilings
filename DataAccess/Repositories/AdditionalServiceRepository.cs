@@ -8,9 +8,9 @@ using StretchCeilings.Domain.Repositories;
 
 namespace StretchCeilings.DataAccess.Repositories
 {
-    public class AdditionalServiceRepository : Repository, IAdditionalServiceRepository
+    public class AdditionalServiceRepository : Repository<AdditionalService>, IAdditionalServiceRepository
     {
-        public IEnumerable<AdditionalService> GetAll()
+        public override IEnumerable<AdditionalService> GetAll()
         {
             return Context.AdditionalServices.Where(o => o.DeletedDate == null)
                 .OrderByDescending(x => x.Id)
@@ -48,7 +48,7 @@ namespace StretchCeilings.DataAccess.Repositories
             return additionalServices.Skip((page - 1) * count).Take(count);
         }
 
-        public AdditionalService FindById(int id)
+        public override AdditionalService FindById(int id)
         {
             return Context.AdditionalServices.Find(id);
         }

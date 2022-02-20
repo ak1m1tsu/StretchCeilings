@@ -20,7 +20,7 @@ namespace StretchCeilings.UI.Views
 {
     public partial class AdditionalServicesForm : Form
     {
-        private IAdditionalServiceRepository _repository;
+        private readonly IAdditionalServiceRepository _repository;
         private List<AdditionalService> _additionalServices;
 
         private AdditionalService _additionalService;

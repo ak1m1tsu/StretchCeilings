@@ -4,6 +4,6 @@ namespace StretchCeilings.Domain.Models.Interfaces
 {
     public interface IEmployee : IDbModel
     {
-        List<TimeTable> GetSchedule();
+        IEnumerable<TimeTable> GetSchedule();
     }
 }

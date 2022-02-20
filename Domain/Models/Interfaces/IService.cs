@@ -4,6 +4,6 @@ namespace StretchCeilings.Domain.Models.Interfaces
 {
     public interface IService : IDbModel
     {
-        List<ServiceAdditionalService> GetAdditionalServices();
+        IEnumerable<ServiceAdditionalService> GetAdditionalServices();
     }
 }

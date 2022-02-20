@@ -39,7 +39,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
-        public List<Ceiling> GetCeilings()
+        public IEnumerable<Ceiling> GetCeilings()
         {
             using (var db = new StretchCeilingsContext())
             {

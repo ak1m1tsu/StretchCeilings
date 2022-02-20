@@ -53,7 +53,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
-        public List<Permission> GetPermissions()
+        public IEnumerable<Permission> GetPermissions()
         {
             using (var db = new StretchCeilingsContext())
             {

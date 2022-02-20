@@ -52,7 +52,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
-        public List<TimeTable> GetSchedule()
+        public IEnumerable<TimeTable> GetSchedule()
         {
             using (var db = new StretchCeilingsContext())
             {

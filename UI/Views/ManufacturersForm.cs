@@ -20,7 +20,7 @@ namespace StretchCeilings.UI.Views
 {
     public partial class ManufacturersForm : Form
     {
-        private IManufacturerRepository _repository;
+        private readonly IManufacturerRepository _repository;
         private List<Manufacturer> _manufacturers;
 
         private Manufacturer _manufacturer;

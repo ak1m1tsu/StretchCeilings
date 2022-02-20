@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using StretchCeilings.DataAccess.Repositories;
 using StretchCeilings.Domain.Models;
 using StretchCeilings.Domain.Models.Enums;
 using StretchCeilings.Domain.Repositories;
@@ -14,9 +13,9 @@ namespace StretchCeilings.App.Services
         private const byte LOGIN_LENGTH = 16;
         private const char EMPTY_CHAR = ' ';
 
-        public AuthService()
+        public AuthService(IEmployeeRepository employeeRepository)
         {
-            _employeeRepository = new EmployeeRepository();
+            _employeeRepository = employeeRepository;
         }
 
         public bool Login(string login, string password)

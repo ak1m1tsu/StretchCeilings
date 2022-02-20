@@ -15,7 +15,7 @@ namespace StretchCeilings.UI.Views
 {
     public partial class RoomsForm : Form
     {
-        private IRoomRepository _repository;
+        private readonly IRoomRepository _repository;
         private List<Room> _rooms;
 
         private Room _room;
