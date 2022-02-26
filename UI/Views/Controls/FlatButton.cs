@@ -5,8 +5,10 @@ using StretchCeilings.UI.Structs;
 
 namespace StretchCeilings.UI.Views.Controls
 {
+    /// <inheritdoc />
     public sealed class FlatButton : Button
     {
+        /// <inheritdoc />
         public FlatButton(string name, string text, EventHandler eventHandler)
         {
             Size = new Size(160, 65);

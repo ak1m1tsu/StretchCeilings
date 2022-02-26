@@ -18,6 +18,7 @@ using StretchCeilings.UI.Views.Enums;
 
 namespace StretchCeilings.UI.Views
 {
+    /// <inheritdoc />
     public partial class AdditionalServicesForm : Form
     {
         private readonly IAdditionalServiceRepository _repository;
@@ -36,6 +37,7 @@ namespace StretchCeilings.UI.Views
         private SortOption _sortOption;
         private AdditionalServiceProperty _property;
 
+        /// <inheritdoc />
         public AdditionalServicesForm(FormState state = FormState.Default)
         {
             _repository = new AdditionalServiceRepository();

@@ -10,6 +10,7 @@ using StretchCeilings.UI.Views.Enums;
 
 namespace StretchCeilings.UI.Views
 {
+    /// <inheritdoc />
     public partial class EmployeeForm : Form
     {
         private readonly FormState _state;
@@ -17,6 +18,7 @@ namespace StretchCeilings.UI.Views
         private Employee _employee;
         private List<TimeTable> _tables;
 
+        /// <inheritdoc />
         public EmployeeForm(Employee employee, FormState state = FormState.Default)
         {
             _employee = employee;

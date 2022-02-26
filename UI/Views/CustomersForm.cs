@@ -18,6 +18,7 @@ using StretchCeilings.UI.Views.Enums;
 
 namespace StretchCeilings.UI.Views
 {
+    /// <inheritdoc />
     public partial class CustomersForm : Form
     {
         private readonly ICustomerRepository _repository;
@@ -37,6 +38,7 @@ namespace StretchCeilings.UI.Views
 
         public Customer GetCustomer() => _customer;
 
+        /// <inheritdoc />
         public CustomersForm(FormState state = FormState.Default)
         {
             _repository = new CustomerRepository();

@@ -6,10 +6,12 @@ using StretchCeilings.UI.Extensions;
 
 namespace StretchCeilings.UI.Views
 {
+    /// <inheritdoc />
     public partial class CeilingForm : Form
     {
         private readonly Ceiling _ceiling;
 
+        /// <inheritdoc />
         public CeilingForm(Ceiling ceiling)
         {
             _ceiling = ceiling;

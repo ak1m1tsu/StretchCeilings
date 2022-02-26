@@ -1,5 +1,8 @@
 ﻿namespace StretchCeilings.Domain.Models.Enums
 {
+    /// <summary>
+    /// Statuses of order
+    /// </summary>
     public enum OrderStatus
     {
         Unknown = 0,

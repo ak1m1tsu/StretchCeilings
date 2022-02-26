@@ -7,6 +7,7 @@ using StretchCeilings.UI.Views.Controls;
 
 namespace StretchCeilings.UI.Views
 {
+    /// <inheritdoc />
     public partial class MainForm : Form
     {
         private Form _activeForm;
@@ -16,7 +17,9 @@ namespace StretchCeilings.UI.Views
         private readonly ServicesForm _servicesForm;
         private readonly ManufacturersForm _manufacturersForm;
         private readonly AdditionalServicesForm _additionalServicesForm;
+        private readonly StatisticsForm _statisticsForm;
 
+        /// <inheritdoc />
         public MainForm()
         {
             _servicesForm = new ServicesForm();
@@ -25,6 +28,7 @@ namespace StretchCeilings.UI.Views
             _ordersForm = new OrdersForm();
             _additionalServicesForm = new AdditionalServicesForm();
             _manufacturersForm = new ManufacturersForm();
+            _statisticsForm = new StatisticsForm();
             InitializeComponent();
         }
 
@@ -48,8 +52,9 @@ namespace StretchCeilings.UI.Views
                 new FlatButton("btnCustomers", "Клиенты", ShowCustomersForm),
                 new FlatButton("btnEmployees", "Сотрудники", ShowEmployeesForm),
                 new FlatButton("btnServices", "Услуги", ShowServicesForm),
-                new FlatButton("btnAdditionalService", "Дополнительный услуги", ShowAdditionalServicesForm),
-                new FlatButton("btnManufacturers", "Производители", ShowManufacturersForm)
+                new FlatButton("btnAdditionalService", "Дополнительные услуги", ShowAdditionalServicesForm),
+                new FlatButton("btnManufacturers", "Производители", ShowManufacturersForm),
+                new FlatButton("btnStatistics", "Статистика", ShowStatisticsForm)
             }.Reverse();
 
             panelNav.AddButtons(buttons.ToArray());
@@ -69,6 +74,11 @@ namespace StretchCeilings.UI.Views
         private void ShowOrdersForm(object sender, EventArgs e)
         {
             OpenChildForm(_ordersForm);
+        }
+
+        private void ShowStatisticsForm(object sender, EventArgs e)
+        {
+            OpenChildForm(_statisticsForm);
         }
 
         private void ShowCustomersForm(object sender, EventArgs e)

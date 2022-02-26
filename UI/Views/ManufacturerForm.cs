@@ -10,12 +10,14 @@ using StretchCeilings.UI.Views.Enums;
 
 namespace StretchCeilings.UI.Views
 {
+    /// <inheritdoc />
     public partial class ManufacturerForm : Form
     {
         private List<Ceiling> _ceilings;
         private Manufacturer _manufacturer;
         private readonly FormState _state;
 
+        /// <inheritdoc />
         public ManufacturerForm(Manufacturer manufacturer, FormState state = FormState.Default)
         {
             _manufacturer = manufacturer;

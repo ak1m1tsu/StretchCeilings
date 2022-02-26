@@ -14,12 +14,14 @@ using StretchCeilings.UI.Views.Enums;
 
 namespace StretchCeilings.UI.Views
 {
+    /// <inheritdoc />
     public partial class ServiceEditForm : Form
     {
         private readonly IManufacturerRepository _repository;
         private readonly Service _service;
         private List<ServiceAdditionalService> _additionalServices;
 
+        /// <inheritdoc />
         public ServiceEditForm(Service service = null)
         {
             _service = service;

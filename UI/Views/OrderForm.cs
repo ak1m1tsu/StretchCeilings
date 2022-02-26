@@ -14,6 +14,7 @@ using StretchCeilings.UI.Views.Enums;
 
 namespace StretchCeilings.UI.Views
 {
+    /// <inheritdoc />
     public partial class OrderForm : Form
     {
         private readonly ICustomerRepository _repository;
@@ -25,6 +26,7 @@ namespace StretchCeilings.UI.Views
         private List<Service> _services;
         private List<OrderWorkDate> _workDates;
 
+        /// <inheritdoc />
         public OrderForm(Order order, FormState state = FormState.Default)
         {
             _repository = new CustomerRepository();
@@ -117,7 +119,7 @@ namespace StretchCeilings.UI.Views
 
         private void FillWorkDatesGrid()
         {
-            _workDates = _order.GetWorkDates();
+            _workDates = _order.GetWorkDates().ToList();
             dgvWorkDates.Rows.Clear();
 
             for (var i = 0; i < _workDates?.Count; i++)

@@ -10,17 +10,20 @@ using StretchCeilings.UI.Structs;
 
 namespace StretchCeilings.UI.Views
 {
+    /// <inheritdoc />
     public partial class EstateEditForm : Form
     {
         private readonly Estate _estate;
         private List<Room> _rooms;
 
+        /// <inheritdoc />
         public EstateEditForm(Estate estate)
         {
             _estate = estate;
             InitializeComponent();
         }
 
+        /// <inheritdoc />
         public EstateEditForm(Customer customer)
         {
             _estate = new Estate()

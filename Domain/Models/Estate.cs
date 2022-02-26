@@ -8,18 +8,35 @@ using StretchCeilings.Domain.Models.Interfaces;
 
 namespace StretchCeilings.Domain.Models
 {
+    /// <inheritdoc />
     public class Estate : IEstate
     {
+        /// <summary>
+        /// identifier
+        /// </summary>
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        /// <summary>
+        /// address
+        /// </summary>
         public string Address { get; set; }
+        /// <summary>
+        /// customer identifier
+        /// </summary>
         [Column("CustomerId")]
         public int? CustomerId { get; set; }
+        /// <summary>
+        /// customer
+        /// </summary>
         [Column("CustomerId")]
         public virtual Customer Customer { get; set; }
+        /// <summary>
+        /// deleted date
+        /// </summary>
         public DateTime? DeletedDate { get; set; }
 
+        /// <inheritdoc />
         public void Add()
         {
             using (var db = new StretchCeilingsContext())
@@ -29,6 +46,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
+        /// <inheritdoc />
         public void Delete()
         {
             using (var db = new StretchCeilingsContext())
@@ -40,6 +58,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
+        /// <inheritdoc />
         public IEnumerable<Room> GetRooms()
         {
             using (var db = new StretchCeilingsContext())
@@ -48,6 +67,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
+        /// <inheritdoc />
         public void Update()
         {
             using (var db = new StretchCeilingsContext())

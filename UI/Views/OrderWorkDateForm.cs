@@ -4,10 +4,12 @@ using StretchCeilings.UI.Extensions;
 
 namespace StretchCeilings.UI.Views
 {
+    /// <inheritdoc />
     public partial class OrderWorkDateForm : Form
     {
         private DateTime _date;
 
+        /// <inheritdoc />
         public OrderWorkDateForm()
         {
             InitializeComponent();

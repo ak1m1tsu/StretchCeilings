@@ -10,11 +10,13 @@ using StretchCeilings.UI.Views.Enums;
 
 namespace StretchCeilings.UI.Views
 {
+    /// <inheritdoc />
     public partial class CustomerEditForm : Form
     {
         private readonly Customer _customer;
         private List<Estate> _estates;
 
+        /// <inheritdoc />
         public CustomerEditForm(Customer customer = null)
         {
             _customer = customer;

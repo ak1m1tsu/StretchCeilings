@@ -4,17 +4,31 @@ using StretchCeilings.Domain.Models.Interfaces;
 
 namespace StretchCeilings.Domain.Models
 {
+    /// <inheritdoc />
     public class OrderService : IDbModel
     {
+        /// <summary>
+        /// order identifier
+        /// </summary>
         [Column("OrderId")] 
         public int? OrderId { get; set; }
+        /// <summary>
+        /// order
+        /// </summary>
         [Column("OrderId")] 
         public virtual Order Order { get; set; }
+        /// <summary>
+        /// service identifier
+        /// </summary>
         [Column("ServiceId")] 
         public int? ServiceId { get; set; }
+        /// <summary>
+        /// service
+        /// </summary>
         [Column("ServiceId")] 
         public virtual Service Service { get; set; }
 
+        /// <inheritdoc />
         public void Add()
         {
             using (var db = new StretchCeilingsContext())
@@ -24,6 +38,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
+        /// <inheritdoc />
         public void Update()
         {
             using (var db = new StretchCeilingsContext())
@@ -35,6 +50,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
+        /// <inheritdoc />
         public void Delete()
         {
             using (var db = new StretchCeilingsContext())

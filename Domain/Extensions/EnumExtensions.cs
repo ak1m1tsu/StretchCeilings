@@ -6,6 +6,9 @@ using StretchCeilings.Domain.Models.Enums;
 namespace StretchCeilings.Domain.Extensions
 {
 
+    /// <summary>
+    /// Presents extension for converting enums to string
+    /// </summary>
     public static class EnumExtensions
     {
         private static readonly Dictionary<OrderStatus, string> OrderStatuses = new Dictionary<OrderStatus, string>
@@ -110,56 +113,145 @@ namespace StretchCeilings.Domain.Extensions
             { ManufacturerProperty.Country, "Страна" }
         };
 
+        /// <summary>
+        /// Convert <see cref="ColorType"/> to <see cref="string"/>
+        /// </summary>
+        /// <param name="colorType">source</param>
+        /// <returns>
+        /// Converted <see cref="ColorType"/>
+        /// </returns>
         public static string ParseString(this ColorType colorType)
         {
             return ColorTypes.FirstOrDefault(c => c.Key == colorType).Value;
         }
 
+        /// <summary>
+        /// Convert <see cref="PermissionCode"/> to <see cref="string"/>
+        /// </summary>
+        /// <param name="code">source</param>
+        /// <returns>
+        /// Converted <see cref="PermissionCode"/>
+        /// </returns>
         public static string ParseString(this PermissionCode code)
         {
             return PermissionCodes.FirstOrDefault(c => c.Key == code).Value;
         }
 
+        /// <summary>
+        /// Convert <see cref="OrderStatus"/> to <see cref="string"/>
+        /// </summary>
+        /// <param name="status">source</param>
+        /// <returns>
+        /// Converted <see cref="OrderStatus"/>
+        /// </returns>
         public static string ParseString(this OrderStatus status)
         {
             return OrderStatuses.FirstOrDefault(c => c.Key == status).Value;
         }
 
+        /// <summary>
+        /// Convert <see cref="TextureType"/> to <see cref="string"/>
+        /// </summary>
+        /// <param name="textureType">source</param>
+        /// <returns>
+        /// Converted <see cref="TextureType"/>
+        /// </returns>
         public static string ParseString(this TextureType textureType)
         {
             return TextureTypes.FirstOrDefault(t => t.Key == textureType).Value;
         }
 
+        /// <summary>
+        /// Convert <see cref="RoomType"/> to <see cref="string"/>
+        /// 
+        /// </summary>
+        /// <param name="type">source</param>
+        /// <returns>
+        /// Converted <see cref="RoomType"/>
+        /// </returns>
         public static string ParseString(this RoomType type)
         {
             return RoomTypes.FirstOrDefault(t => t.Key == type).Value;
         }
 
+        /// <summary>
+        /// Convert <see cref="Country"/> to <see cref="string"/>
+        /// 
+        /// </summary>
+        /// <param name="type">source</param>
+        /// <returns>
+        /// Converted <see cref="Country"/>
+        /// </returns>
         public static string ParseString(this Country type)
         {
             return Countries.FirstOrDefault(t => t.Key == type).Value;
         }
 
+        /// <summary>
+        /// Convert <see cref="ServiceProperty"/> to <see cref="string"/>
+        /// 
+        /// </summary>
+        /// <param name="property">source</param>
+        /// <returns>
+        /// Converted <see cref="ServiceProperty"/>
+        /// </returns>
         public static string ParseString(this OrderProperty property)
         {
             return OrderProperties.FirstOrDefault(x => x.Key == property).Value;
         }
+        /// <summary>
+        /// Convert <see cref="AdditionalServiceProperty"/> to <see cref="string"/>
+        /// 
+        /// </summary>
+        /// <param name="property">source</param>
+        /// <returns>
+        /// Converted <see cref="AdditionalServiceProperty"/>
+        /// </returns>
         public static string ParseString(this AdditionalServiceProperty property)
         {
             return AdditionalServiceProperties.FirstOrDefault(x => x.Key == property).Value;
         }
+        /// <summary>
+        /// Convert <see cref="CustomerProperty"/> to <see cref="string"/>
+        /// 
+        /// </summary>
+        /// <param name="property">source</param>
+        /// <returns>
+        /// Converted <see cref="CustomerProperty"/>
+        /// </returns>
         public static string ParseString(this CustomerProperty property)
         {
             return CustomerProperties.FirstOrDefault(x => x.Key == property).Value;
         }
+        /// <summary>
+        /// Convert <see cref="EmployeeProperty"/> to <see cref="string"/>
+        /// </summary>
+        /// <param name="property">source</param>
+        /// <returns>
+        /// Converted <see cref="EmployeeProperty"/>
+        /// </returns>
         public static string ParseString(this EmployeeProperty property)
         {
             return EmployeeProperties.FirstOrDefault(x => x.Key == property).Value;
         }
+        /// <summary>
+        /// Convert <see cref="ManufacturerProperty"/> to <see cref="string"/>
+        /// </summary>
+        /// <param name="property">source</param>
+        /// <returns>
+        /// Converted <see cref="ManufacturerProperty"/>
+        /// </returns>
         public static string ParseString(this ManufacturerProperty property)
         {
             return ManufacturerProperties.FirstOrDefault(x => x.Key == property).Value;
         }
+        /// <summary>
+        /// Convert <see cref="ServiceProperty"/> to <see cref="string"/>
+        /// </summary>
+        /// <param name="property">source</param>
+        /// <returns>
+        /// Converted <see cref="ServiceProperty"/>
+        /// </returns>
         public static string ParseString(this ServiceProperty property)
         {
             return ServiceProperties.FirstOrDefault(x => x.Key == property).Value;

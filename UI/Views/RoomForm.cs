@@ -6,10 +6,12 @@ using StretchCeilings.UI.Extensions;
 
 namespace StretchCeilings.UI.Views
 {
+    /// <inheritdoc />
     public partial class RoomForm : Form
     {
         private readonly Room _room;
 
+        /// <inheritdoc />
         public RoomForm(Room room)
         {
             _room = room;

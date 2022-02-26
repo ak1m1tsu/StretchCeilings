@@ -8,13 +8,21 @@ using StretchCeilings.Domain.Models.Interfaces;
 
 namespace StretchCeilings.Domain.Models
 {
+    /// <inheritdoc />
     public class Role : IRole
     {
+        /// <summary>
+        /// identifier
+        /// </summary>
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        /// <summary>
+        /// name
+        /// </summary>
         public string Name { get; set; }
 
+        /// <inheritdoc />
         public void AddPermission(Permission permission)
         {
             try
@@ -35,6 +43,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
+        /// <inheritdoc />
         public void DeletePermission(Permission permission)
         {
             try
@@ -53,6 +62,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
+        /// <inheritdoc />
         public IEnumerable<Permission> GetPermissions()
         {
             using (var db = new StretchCeilingsContext())
@@ -67,6 +77,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
+        /// <inheritdoc />
         public void Add()
         {
             using (var db = new StretchCeilingsContext())
@@ -76,6 +87,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
+        /// <inheritdoc />
         public void Update()
         {
             using (var db = new StretchCeilingsContext())
@@ -86,6 +98,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
+        /// <inheritdoc />
         public void Delete()
         {
             using (var db = new StretchCeilingsContext())

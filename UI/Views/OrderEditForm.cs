@@ -13,6 +13,7 @@ using StretchCeilings.UI.Views.Enums;
 
 namespace StretchCeilings.UI.Views
 {
+    /// <inheritdoc />
     public partial class OrderEditForm : Form
     {
         private readonly Order _order;
@@ -21,6 +22,7 @@ namespace StretchCeilings.UI.Views
         private List<Log> _logs;
         private List<OrderWorkDate> _workDates;
 
+        /// <inheritdoc />
         public OrderEditForm(Order order = null)
         {
             _order = order;
@@ -224,7 +226,7 @@ namespace StretchCeilings.UI.Views
 
         private void SetupWorkDatesGrid()
         {
-            _workDates = _order?.GetWorkDates();
+            _workDates = _order?.GetWorkDates().ToList();
 
             dgvWorkDates.CreateTextBoxColumn(Resources.Number, DataGridViewAutoSizeColumnMode.DisplayedCells);
             dgvWorkDates.CreateTextBoxColumn(Resources.Date, DataGridViewAutoSizeColumnMode.Fill);
@@ -291,7 +293,7 @@ namespace StretchCeilings.UI.Views
                 Comment = $"Добавлена дата выполнения работ \"{workDate}\""
             }.Add();
 
-            _workDates = _order.GetWorkDates();
+            _workDates = _order.GetWorkDates().ToList();
             _logs = _order.GetLogs().ToList();
 
             FillLogsGrid();
@@ -546,7 +548,7 @@ namespace StretchCeilings.UI.Views
 
             var index = Convert.ToInt32(dgvWorkDates.Rows[e.RowIndex].Cells[0].Value);
             _workDates[index - 1].Delete();
-            _workDates = _order.GetWorkDates();
+            _workDates = _order.GetWorkDates().ToList();
 
             FillWorkDatesGrid();
             FlatMessageBox.ShowDialog("Дата успешно удалена", Caption.Info);

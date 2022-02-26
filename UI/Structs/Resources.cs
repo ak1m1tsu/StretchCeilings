@@ -2,6 +2,9 @@
 
 namespace StretchCeilings.UI.Structs
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public struct Resources
     {
         public const string Number = "№";
@@ -39,7 +42,7 @@ namespace StretchCeilings.UI.Structs
         public const string Rubles = "руб.";
         public const decimal DefaultNumericUpDownValue = 0;
 
-        public static  IDictionary<string, bool> PaidByCashItems => new Dictionary<string, bool>()
+        public static IDictionary<string, bool> PaidByCashItems => new Dictionary<string, bool>()
         {
             { "Нет" , false },
             { "Да", true }

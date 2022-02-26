@@ -8,10 +8,12 @@ using StretchCeilings.UI.Structs;
 
 namespace StretchCeilings.UI.Views
 {
+    /// <inheritdoc />
     public partial class RoomEditForm : Form
     {
         private readonly Room _room;
 
+        /// <inheritdoc />
         public RoomEditForm(Estate estate)
         {
             _room = new Room()

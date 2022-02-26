@@ -18,6 +18,7 @@ using StretchCeilings.UI.Views.Enums;
 
 namespace StretchCeilings.UI.Views
 {
+    /// <inheritdoc />
     public partial class OrdersForm : Form
     {
         private readonly IOrderRepository _repository;
@@ -37,6 +38,7 @@ namespace StretchCeilings.UI.Views
         private int _currentPage = 1;
         private int _lastPage = 1;
 
+        /// <inheritdoc />
         public OrdersForm(FormState state = FormState.Default)
         {
             _state = state;

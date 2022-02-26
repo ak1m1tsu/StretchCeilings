@@ -10,25 +10,60 @@ using StretchCeilings.Domain.Models.Interfaces;
 
 namespace StretchCeilings.Domain.Models
 {
+    /// <inheritdoc />
     public class Order : IOrder
     {
+        /// <summary>
+        /// identifier
+        /// </summary>
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        /// <summary>
+        /// customer identifier
+        /// </summary>
         [Column("CustomerId")]
         public int? CustomerId { get; set; }
+        /// <summary>
+        /// customer
+        /// </summary>
         [Column("CustomerId")]
         public virtual Customer Customer { get; set; }
+        /// <summary>
+        /// placed date
+        /// </summary>
         public DateTime? DatePlaced { get; set; }
+        /// <summary>
+        /// measurements date
+        /// </summary>
         public DateTime? DateOfMeasurements { get; set; }
+        /// <summary>
+        /// paid date
+        /// </summary>
         public DateTime? DatePaid { get; set; }
+        /// <summary>
+        /// canceled date
+        /// </summary>
         public DateTime? DateCanceled { get; set; }
+        /// <summary>
+        /// deleted date
+        /// </summary>
         public DateTime? DeletedDate { get; set; }
+        /// <summary>
+        /// paid by cash
+        /// </summary>
         public bool? PaidByCash { get; set; }
+        /// <summary>
+        /// order status
+        /// </summary>
         public OrderStatus? Status { get; set; }
+        /// <summary>
+        /// total price
+        /// </summary>
         public decimal? Total { get; set; }
 
-        public List<OrderWorkDate> GetWorkDates()
+        /// <inheritdoc />
+        public IEnumerable<OrderWorkDate> GetWorkDates()
         {
             using (var db = new StretchCeilingsContext())
             {
@@ -39,6 +74,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
+        /// <inheritdoc />
         public void Add()
         {
             using (var db = new StretchCeilingsContext())
@@ -48,6 +84,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
+        /// <inheritdoc />
         public void CalculateTotal()
         {
             var services = GetServices();
@@ -56,6 +93,7 @@ namespace StretchCeilings.Domain.Models
                 Total += service.Price;
         }
 
+        /// <inheritdoc />
         public void Delete()
         {
             using (var db = new StretchCeilingsContext())
@@ -67,6 +105,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
+        /// <inheritdoc />
         public IEnumerable<Log> GetLogs()
         {
             using (var db = new StretchCeilingsContext())
@@ -75,6 +114,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
+        /// <inheritdoc />
         public IEnumerable<Service> GetServices()
         {
             using (var db = new StretchCeilingsContext())
@@ -95,6 +135,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
+        /// <inheritdoc />
         public void RemoveService(int id)
         {
             using (var db = new StretchCeilingsContext())
@@ -110,6 +151,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
+        /// <inheritdoc />
         public void RemoveEmployee(int id)
         {
             using (var db = new StretchCeilingsContext())
@@ -125,6 +167,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
+        /// <inheritdoc />
         public IEnumerable<Employee> GetEmployees()
         {
             using (var db = new StretchCeilingsContext())
@@ -146,6 +189,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
+        /// <inheritdoc />
         public void Update()
         {
             using (var db = new StretchCeilingsContext())

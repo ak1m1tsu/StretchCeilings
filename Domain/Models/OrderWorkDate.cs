@@ -5,14 +5,25 @@ using StretchCeilings.Domain.Models.Interfaces;
 
 namespace StretchCeilings.Domain.Models
 {
+    /// <inheritdoc />
     public class OrderWorkDate : IDbModel
     {
+        /// <summary>
+        /// order identifier
+        /// </summary>
         [Column("OrderId")] 
         public int? OrderId { get; set; }
+        /// <summary>
+        /// order
+        /// </summary>
         [Column("OrderId")] 
         public virtual Order Order { get; set; }
+        /// <summary>
+        /// work date
+        /// </summary>
         public DateTime DateOfWork { get; set; }
 
+        /// <inheritdoc />
         public void Add()
         {
             using (var db = new StretchCeilingsContext())
@@ -22,6 +33,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
+        /// <inheritdoc />
         public void Update()
         {
             using (var db = new StretchCeilingsContext())
@@ -33,6 +45,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
+        /// <inheritdoc />
         public void Delete()
         {
             using (var db = new StretchCeilingsContext())

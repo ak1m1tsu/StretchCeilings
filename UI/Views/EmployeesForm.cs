@@ -18,6 +18,7 @@ using StretchCeilings.UI.Views.Enums;
 
 namespace StretchCeilings.UI.Views
 {
+    /// <inheritdoc />
     public partial class EmployeesForm : Form
     {
         private readonly IEmployeeRepository _employeeRepository;
@@ -39,6 +40,7 @@ namespace StretchCeilings.UI.Views
 
         public Employee GetEmployee() => _employee;
 
+        /// <inheritdoc />
         public EmployeesForm(FormState state = FormState.Default)
         {
             _employeeRepository = new EmployeeRepository();

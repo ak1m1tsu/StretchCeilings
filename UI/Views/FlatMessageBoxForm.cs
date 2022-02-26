@@ -5,15 +5,18 @@ using StretchCeilings.UI.Views.Enums;
 
 namespace StretchCeilings.UI.Views
 {
+    /// <inheritdoc />
     public partial class FlatMessageBoxForm : Form
     {
         private readonly MessageBoxState _state;
 
+        /// <inheritdoc />
         public FlatMessageBoxForm()
         {
             InitializeComponent();
         }
 
+        /// <inheritdoc />
         public FlatMessageBoxForm(string text, string caption, MessageBoxState state)
         {
             _state = state;

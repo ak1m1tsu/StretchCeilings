@@ -13,6 +13,7 @@ using StretchCeilings.UI.Views.Enums;
 
 namespace StretchCeilings.UI.Views
 {
+    /// <inheritdoc />
     public partial class RoomsForm : Form
     {
         private readonly IRoomRepository _repository;
@@ -27,6 +28,7 @@ namespace StretchCeilings.UI.Views
         private int _currentPage = 1;
         private int _lastPage = 1;
 
+        /// <inheritdoc />
         public RoomsForm()
         {
             _repository = new RoomRepository();

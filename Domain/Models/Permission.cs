@@ -7,15 +7,26 @@ using StretchCeilings.Domain.Models.Interfaces;
 
 namespace StretchCeilings.Domain.Models
 {
+    /// <inheritdoc />
     public class Permission : IDbModel
     {
+        /// <summary>
+        /// identifier
+        /// </summary>
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] 
         public int Id { get; set; }
+        /// <summary>
+        /// name
+        /// </summary>
         public string Name { get; set; }
+        /// <summary>
+        /// permission code
+        /// </summary>
         [Index(IsUnique = true)]
         public PermissionCode Code { get; set; }
 
+        /// <inheritdoc />
         public void Add()
         {
             using (var db = new StretchCeilingsContext())
@@ -25,6 +36,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
+        /// <inheritdoc />
         public void Delete()
         {
             using (var db = new StretchCeilingsContext())
@@ -35,6 +47,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
+        /// <inheritdoc />
         public void Update()
         {
             using (var db = new StretchCeilingsContext())

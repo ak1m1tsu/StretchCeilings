@@ -14,6 +14,7 @@ using StretchCeilings.UI.Views.Enums;
 
 namespace StretchCeilings.UI.Views
 {
+    /// <inheritdoc />
     public partial class EmployeeEditForm : Form
     {
         private readonly Employee _employee;
@@ -24,6 +25,7 @@ namespace StretchCeilings.UI.Views
         private readonly List<TimeTable> _deletedTables;
         private List<TimeTable> _tables;
 
+        /// <inheritdoc />
         public EmployeeEditForm(Employee employee)
         {
             _repository = new RoleRepository();

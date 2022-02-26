@@ -9,11 +9,13 @@ using StretchCeilings.UI.Structs;
 
 namespace StretchCeilings.UI.Views
 {
+    /// <inheritdoc />
     public partial class EstateForm : Form
     {
         private readonly Estate _estate;
-        private List<Room> _rooms; 
+        private List<Room> _rooms;
 
+        /// <inheritdoc />
         public EstateForm(Estate estate)
         {
             _estate = estate;

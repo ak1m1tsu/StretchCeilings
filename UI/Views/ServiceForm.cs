@@ -12,6 +12,7 @@ using StretchCeilings.UI.Views.Enums;
 
 namespace StretchCeilings.UI.Views
 {
+    /// <inheritdoc />
     public partial class ServiceForm : Form
     {
         private readonly IManufacturerRepository _repository;
@@ -19,6 +20,7 @@ namespace StretchCeilings.UI.Views
         private readonly FormState _state;
         private List<ServiceAdditionalService> _additionalServices;
 
+        /// <inheritdoc />
         public ServiceForm(Service service, FormState state = FormState.Default)
         {
             _repository = new ManufacturerRepository();

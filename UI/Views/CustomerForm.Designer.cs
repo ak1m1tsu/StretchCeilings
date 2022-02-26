@@ -39,12 +39,20 @@ namespace StretchCeilings.UI.Views
             this.lblFullName = new System.Windows.Forms.Label();
             this.lblPhoneNumber = new System.Windows.Forms.Label();
             this.tpEstates = new System.Windows.Forms.TabPage();
-            this.dgvEstates = new System.Windows.Forms.DataGridView();
+            this.dataGridViewEstates = new System.Windows.Forms.DataGridView();
+            this.tabPageOrders = new System.Windows.Forms.TabPage();
+            this.tabPageServices = new System.Windows.Forms.TabPage();
+            this.dataGridViewOrders = new System.Windows.Forms.DataGridView();
+            this.dataGridViewServices = new System.Windows.Forms.DataGridView();
             this.panelTop.SuspendLayout();
             this.tcCustomer.SuspendLayout();
             this.tbInfo.SuspendLayout();
             this.tpEstates.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEstates)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEstates)).BeginInit();
+            this.tabPageOrders.SuspendLayout();
+            this.tabPageServices.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrders)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewServices)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTop
@@ -80,6 +88,8 @@ namespace StretchCeilings.UI.Views
             // 
             this.tcCustomer.Controls.Add(this.tbInfo);
             this.tcCustomer.Controls.Add(this.tpEstates);
+            this.tcCustomer.Controls.Add(this.tabPageOrders);
+            this.tcCustomer.Controls.Add(this.tabPageServices);
             this.tcCustomer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tcCustomer.Font = new System.Drawing.Font("Open Sans", 12F);
             this.tcCustomer.ItemSize = new System.Drawing.Size(200, 30);
@@ -169,32 +179,88 @@ namespace StretchCeilings.UI.Views
             // 
             // tpEstates
             // 
-            this.tpEstates.Controls.Add(this.dgvEstates);
+            this.tpEstates.Controls.Add(this.dataGridViewEstates);
             this.tpEstates.Location = new System.Drawing.Point(4, 34);
             this.tpEstates.Name = "tpEstates";
             this.tpEstates.Padding = new System.Windows.Forms.Padding(3);
-            this.tpEstates.Size = new System.Drawing.Size(626, 298);
+            this.tpEstates.Size = new System.Drawing.Size(692, 337);
             this.tpEstates.TabIndex = 1;
             this.tpEstates.Text = "Недвижемость";
             this.tpEstates.UseVisualStyleBackColor = true;
             // 
-            // dgvEstates
+            // dataGridViewEstates
             // 
-            this.dgvEstates.AllowUserToAddRows = false;
-            this.dgvEstates.AllowUserToDeleteRows = false;
-            this.dgvEstates.AllowUserToResizeColumns = false;
-            this.dgvEstates.AllowUserToResizeRows = false;
-            this.dgvEstates.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
-            this.dgvEstates.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEstates.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvEstates.Location = new System.Drawing.Point(3, 3);
-            this.dgvEstates.Name = "dgvEstates";
-            this.dgvEstates.ReadOnly = true;
-            this.dgvEstates.RowHeadersVisible = false;
-            this.dgvEstates.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvEstates.Size = new System.Drawing.Size(620, 292);
-            this.dgvEstates.TabIndex = 2;
-            this.dgvEstates.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ShowGridData);
+            this.dataGridViewEstates.AllowUserToAddRows = false;
+            this.dataGridViewEstates.AllowUserToDeleteRows = false;
+            this.dataGridViewEstates.AllowUserToResizeColumns = false;
+            this.dataGridViewEstates.AllowUserToResizeRows = false;
+            this.dataGridViewEstates.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.dataGridViewEstates.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewEstates.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewEstates.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewEstates.Name = "dataGridViewEstates";
+            this.dataGridViewEstates.ReadOnly = true;
+            this.dataGridViewEstates.RowHeadersVisible = false;
+            this.dataGridViewEstates.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewEstates.Size = new System.Drawing.Size(686, 331);
+            this.dataGridViewEstates.TabIndex = 2;
+            this.dataGridViewEstates.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ShowGridData);
+            // 
+            // tabPageOrders
+            // 
+            this.tabPageOrders.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(42)))), ((int)(((byte)(54)))));
+            this.tabPageOrders.Controls.Add(this.dataGridViewOrders);
+            this.tabPageOrders.Location = new System.Drawing.Point(4, 34);
+            this.tabPageOrders.Name = "tabPageOrders";
+            this.tabPageOrders.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageOrders.Size = new System.Drawing.Size(692, 337);
+            this.tabPageOrders.TabIndex = 2;
+            this.tabPageOrders.Text = "Заказы";
+            // 
+            // tabPageServices
+            // 
+            this.tabPageServices.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(42)))), ((int)(((byte)(54)))));
+            this.tabPageServices.Controls.Add(this.dataGridViewServices);
+            this.tabPageServices.Location = new System.Drawing.Point(4, 34);
+            this.tabPageServices.Name = "tabPageServices";
+            this.tabPageServices.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageServices.Size = new System.Drawing.Size(692, 337);
+            this.tabPageServices.TabIndex = 3;
+            this.tabPageServices.Text = "Услуги";
+            // 
+            // dataGridViewOrders
+            // 
+            this.dataGridViewOrders.AllowUserToAddRows = false;
+            this.dataGridViewOrders.AllowUserToDeleteRows = false;
+            this.dataGridViewOrders.AllowUserToResizeColumns = false;
+            this.dataGridViewOrders.AllowUserToResizeRows = false;
+            this.dataGridViewOrders.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.dataGridViewOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewOrders.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewOrders.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewOrders.Name = "dataGridViewOrders";
+            this.dataGridViewOrders.ReadOnly = true;
+            this.dataGridViewOrders.RowHeadersVisible = false;
+            this.dataGridViewOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewOrders.Size = new System.Drawing.Size(686, 331);
+            this.dataGridViewOrders.TabIndex = 3;
+            // 
+            // dataGridViewServices
+            // 
+            this.dataGridViewServices.AllowUserToAddRows = false;
+            this.dataGridViewServices.AllowUserToDeleteRows = false;
+            this.dataGridViewServices.AllowUserToResizeColumns = false;
+            this.dataGridViewServices.AllowUserToResizeRows = false;
+            this.dataGridViewServices.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(71)))), ((int)(((byte)(90)))));
+            this.dataGridViewServices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewServices.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewServices.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewServices.Name = "dataGridViewServices";
+            this.dataGridViewServices.ReadOnly = true;
+            this.dataGridViewServices.RowHeadersVisible = false;
+            this.dataGridViewServices.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewServices.Size = new System.Drawing.Size(686, 331);
+            this.dataGridViewServices.TabIndex = 3;
             // 
             // CustomerForm
             // 
@@ -213,7 +279,11 @@ namespace StretchCeilings.UI.Views
             this.tbInfo.ResumeLayout(false);
             this.tbInfo.PerformLayout();
             this.tpEstates.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEstates)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEstates)).EndInit();
+            this.tabPageOrders.ResumeLayout(false);
+            this.tabPageServices.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrders)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewServices)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -224,12 +294,16 @@ namespace StretchCeilings.UI.Views
         private FontAwesome.Sharp.IconButton btnClose;
         private System.Windows.Forms.TabControl tcCustomer;
         private System.Windows.Forms.TabPage tpEstates;
-        private System.Windows.Forms.DataGridView dgvEstates;
+        private System.Windows.Forms.DataGridView dataGridViewEstates;
         private System.Windows.Forms.TabPage tbInfo;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Label lblPhoneNumberValue;
         private System.Windows.Forms.Label lblFullNameValue;
         private System.Windows.Forms.Label lblFullName;
         private System.Windows.Forms.Label lblPhoneNumber;
+        private System.Windows.Forms.TabPage tabPageOrders;
+        private System.Windows.Forms.TabPage tabPageServices;
+        private System.Windows.Forms.DataGridView dataGridViewOrders;
+        private System.Windows.Forms.DataGridView dataGridViewServices;
     }
 }

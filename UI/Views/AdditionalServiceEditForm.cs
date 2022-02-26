@@ -6,10 +6,12 @@ using StretchCeilings.UI.Structs;
 
 namespace StretchCeilings.UI.Views
 {
+    /// <inheritdoc />
     public partial class AdditionalServiceEditForm : Form
     {
         private readonly AdditionalService _additionalService;
 
+        /// <inheritdoc />
         public AdditionalServiceEditForm(AdditionalService service = null)
         {
             _additionalService = service;

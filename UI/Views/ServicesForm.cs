@@ -18,6 +18,7 @@ using StretchCeilings.UI.Views.Enums;
 
 namespace StretchCeilings.UI.Views
 {
+    /// <inheritdoc />
     public partial class ServicesForm : Form
     {
         private readonly IServiceRepository _repository;
@@ -35,7 +36,8 @@ namespace StretchCeilings.UI.Views
         private int _count;
         private int _currentPage = 1;
         private int _lastPage = 1;
-        
+
+        /// <inheritdoc />
         public ServicesForm(FormState state = FormState.Default)
         {
             _repository = new ServiceRepository();

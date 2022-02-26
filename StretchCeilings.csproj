@@ -40,7 +40,9 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>2</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -50,6 +52,8 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\StretchCeilings.xml</DocumentationFile>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>StretchCeilings.Program</StartupObject>
@@ -92,6 +96,7 @@
       <HintPath>packages\System.Data.SQLite.Linq.1.0.115.5\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -293,6 +298,12 @@
     <Compile Include="UI\Views\ServiceForm.Designer.cs">
       <DependentUpon>ServiceForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Views\StatisticsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Views\StatisticsForm.Designer.cs">
+      <DependentUpon>StatisticsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Views\TimeTableForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -364,7 +375,6 @@
     <Compile Include="Domain\Models\Enums\PermissionCode.cs" />
     <Compile Include="Domain\Models\Enums\RoomType.cs" />
     <Compile Include="UI\Extensions\FormExtensions.cs" />
-    <Compile Include="Domain\Extensions\StringExtensions.cs" />
     <Compile Include="UI\Extensions\TextBoxExtensions.cs" />
     <Compile Include="UI\Helpers\LogHelper.cs" />
     <Compile Include="DataAccess\Repositories\AdditionalServiceRepository.cs" />
@@ -382,6 +392,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Views\AdditionalServiceEditForm.resx">
       <DependentUpon>AdditionalServiceEditForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Views\AdditionalServicesForm.resx">
       <DependentUpon>AdditionalServicesForm.cs</DependentUpon>
@@ -392,6 +403,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Views\CustomerEditForm.resx">
       <DependentUpon>CustomerEditForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Views\EmployeeEditForm.resx">
       <DependentUpon>EmployeeEditForm.cs</DependentUpon>
@@ -410,24 +422,29 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Views\OrderWorkDateForm.resx">
       <DependentUpon>OrderWorkDateForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Views\RoomEditForm.resx">
       <DependentUpon>RoomEditForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Views\RoomsForm.resx">
       <DependentUpon>RoomsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Views\ServiceEditForm.resx">
       <DependentUpon>ServiceEditForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Views\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Views\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Views\CustomerForm.resx">
       <DependentUpon>CustomerForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Views\EmployeeForm.resx">
       <DependentUpon>EmployeeForm.cs</DependentUpon>
@@ -443,9 +460,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Views\RoomForm.resx">
       <DependentUpon>RoomForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Views\ServiceForm.resx">
       <DependentUpon>ServiceForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Views\StatisticsForm.resx">
+      <DependentUpon>StatisticsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Views\TimeTableForm.resx">
       <DependentUpon>TimeTableForm.cs</DependentUpon>
@@ -474,6 +496,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Views\ServicesForm.resx">
       <DependentUpon>ServicesForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Views\FlatMessageBoxForm.resx">
       <DependentUpon>FlatMessageBoxForm.cs</DependentUpon>
@@ -516,7 +539,9 @@
     <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
     <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
     <Error Condition="!Exists('packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets'))" />
+    <Error Condition="!Exists('packages\Vsxmd.1.4.5\build\Vsxmd.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Vsxmd.1.4.5\build\Vsxmd.targets'))" />
   </Target>
   <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <Import Project="packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
+  <Import Project="packages\Vsxmd.1.4.5\build\Vsxmd.targets" Condition="Exists('packages\Vsxmd.1.4.5\build\Vsxmd.targets')" />
 </Project>

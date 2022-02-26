@@ -8,11 +8,13 @@ using StretchCeilings.UI.Structs;
 
 namespace StretchCeilings.UI.Views
 {
+    /// <inheritdoc />
     public partial class LoginForm : Form
     {
         private readonly IAuthService _authService;
         private MainForm _mainForm;
 
+        /// <inheritdoc />
         public LoginForm()
         {
             _authService = new AuthService(new EmployeeRepository());

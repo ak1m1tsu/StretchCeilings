@@ -10,12 +10,14 @@ using StretchCeilings.UI.Views.Enums;
 
 namespace StretchCeilings.UI.Views
 {
+    /// <inheritdoc />
     public partial class AdditionalServiceForm : Form
     {
         private readonly IAdditionalServiceRepository _repository;
         private AdditionalService _additionalService;
         private readonly FormState _state;
 
+        /// <inheritdoc />
         public AdditionalServiceForm(AdditionalService additionalService, FormState state = FormState.Default)
         {
             _additionalService = additionalService;

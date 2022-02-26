@@ -1,5 +1,8 @@
 ﻿namespace StretchCeilings.Domain.Models.Enums
 {
+    /// <summary>
+    /// Codes of permissions
+    /// </summary>
     public enum PermissionCode
     {
         Unknown = 0,

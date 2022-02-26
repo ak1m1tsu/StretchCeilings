@@ -1,21 +1,41 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using StretchCeilings.DataAccess;
+using StretchCeilings.Domain.Models.Interfaces;
 
 namespace StretchCeilings.Domain.Models
 {
-    public class ServiceAdditionalService
+    /// <summary>
+    /// Presents database entity
+    /// </summary>
+    public class ServiceAdditionalService : IDbModel
     {
+        /// <summary>
+        /// service identifier
+        /// </summary>
         [Column("ServiceId")] 
         public int? ServiceId { get; set; }
+        /// <summary>
+        /// service
+        /// </summary>
         [Column("ServiceId")] 
         public virtual Service Service { get; set; }
+        /// <summary>
+        /// additional service identifier
+        /// </summary>
         [Column("AdditionalServiceId")] 
         public int? AdditionalServiceId { get; set; }
+        /// <summary>
+        /// additional service
+        /// </summary>
         [Column("AdditionalServiceId")] 
         public virtual AdditionalService AdditionalService { get; set; }
+        /// <summary>
+        /// additional service count
+        /// </summary>
         public int Count { get; set; }
 
+        /// <inheritdoc />
         public void Add()
         {
             using (var db = new StretchCeilingsContext())
@@ -25,6 +45,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
+        /// <inheritdoc />
         public void Delete()
         {
             using (var db = new StretchCeilingsContext())
@@ -38,6 +59,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
+        /// <inheritdoc />
         public void Update()
         {
             using (var db = new StretchCeilingsContext())
@@ -51,6 +73,12 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
+        /// <summary>
+        /// Returns additional service
+        /// </summary>
+        /// <returns>
+        /// <see cref="AdditionalService"/>
+        /// </returns>
         public AdditionalService GetAdditionalService()
         {
             using (var db = new StretchCeilingsContext())

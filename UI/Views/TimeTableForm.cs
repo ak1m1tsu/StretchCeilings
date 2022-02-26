@@ -7,13 +7,15 @@ using StretchCeilings.UI.Extensions;
 
 namespace StretchCeilings.UI.Views
 {
+    /// <inheritdoc />
     public partial class TimeTableForm : Form
     {
         private readonly Employee _employee;
         private List<CheckBox> _days;
 
-        public List<TimeTable> TimeTables { get; } 
+        public List<TimeTable> TimeTables { get; }
 
+        /// <inheritdoc />
         public TimeTableForm(Employee employee)
         {
             _employee = employee;

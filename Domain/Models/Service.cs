@@ -9,26 +9,55 @@ using StretchCeilings.Domain.Models.Interfaces;
 
 namespace StretchCeilings.Domain.Models
 {
+    /// <inheritdoc />
     public class Service : IService
     {
+        /// <summary>
+        /// identifier
+        /// </summary>
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        /// <summary>
+        /// manufacturer identifier
+        /// </summary>
         [Column("ManufacturerId")] 
         public int? ManufacturerId { get; set; }
+        /// <summary>
+        /// manufacturer
+        /// </summary>
         [Column("ManufacturerId")] 
         public virtual Manufacturer Manufacturer { get; set; }
+        /// <summary>
+        /// ceiling identifier
+        /// </summary>
         [Column("CeilingId")] 
         public int? CeilingId { get; set; }
+        /// <summary>
+        /// ceiling
+        /// </summary>
         [Column("CeilingId")] 
         public virtual Ceiling Ceiling { get; set; }
+        /// <summary>
+        /// room identifier
+        /// </summary>
         [Column("RoomId")] 
         public int? RoomId { get; set; }
+        /// <summary>
+        /// room
+        /// </summary>
         [Column("RoomId")] 
         public virtual Room Room { get; set; }
+        /// <summary>
+        /// price
+        /// </summary>
         public decimal? Price { get; set; }
+        /// <summary>
+        /// deleted date
+        /// </summary>
         public DateTime? DeletedDate { get; set; }
 
+        /// <inheritdoc />
         public void Add()
         {
             using (var db = new StretchCeilingsContext())
@@ -38,6 +67,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
+        /// <inheritdoc />
         public void Delete()
         {
             using (var db = new StretchCeilingsContext())
@@ -49,6 +79,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
+        /// <inheritdoc />
         public void CalculatePrice()
         {
             using (var db = new StretchCeilingsContext())
@@ -73,6 +104,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
+        /// <inheritdoc />
         public IEnumerable<ServiceAdditionalService> GetAdditionalServices()
         {
             using (var db = new StretchCeilingsContext())
@@ -91,6 +123,7 @@ namespace StretchCeilings.Domain.Models
             }
         }
 
+        /// <inheritdoc />
         public void Update()
         {
             using (var db = new StretchCeilingsContext())

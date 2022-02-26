@@ -1,5 +1,8 @@
 ﻿namespace StretchCeilings.Domain.Models.Enums
 {
+    /// <summary>
+    /// Countries of manufacturer
+    /// </summary>
     public enum Country
     {
         Unknown = 0,
