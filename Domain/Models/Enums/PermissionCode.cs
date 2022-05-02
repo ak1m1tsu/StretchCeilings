@@ -5,7 +5,6 @@
     /// </summary>
     public enum PermissionCode
     {
-        Unknown = 0,
         All,
         AddOrder,
         EditOrder,
